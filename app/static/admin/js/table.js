@@ -137,7 +137,9 @@ function deleteRows(tableElement, tbodyElement, ids) {
               "tr[data-id='%s']".replace("%s", id),
             );
 
-            fetch(URL.replace("-1", id), { method: "delete" })
+            fetch(URL.replace(String.fromCharCode(64), id), {
+              method: "delete",
+            })
               .then((response) => response.json())
               .then((data) => {
                 if (data.status == 200) {
@@ -192,7 +194,7 @@ function deleteRow(rowElement) {
       let theadElement = tableElement.querySelector("thead");
 
       let url = tableElement.dataset.deleteRow?.replace(
-        "-1",
+        String.fromCharCode(64),
         rowElement.dataset.id,
       );
 
@@ -239,7 +241,7 @@ function deleteRow(rowElement) {
 function addTableRow(tableElement, theadElement, tbodyElement, id) {
   deleteNoRowLabel(tbodyElement);
 
-  let url = tableElement.dataset.getRow.replace("-1", id);
+  let url = tableElement.dataset.getRow.replace(String.fromCharCode(64), id);
   fetch(url, { method: "get" })
     .then((response) => response.json())
     .then((data) => {
@@ -285,7 +287,7 @@ function reloadRow(tableElement, theadElement, rowElement) {
 
   let thElement, trElement, indexOf, url;
 
-  url = tableElement.dataset.getRow.replace("-1", dataID);
+  url = tableElement.dataset.getRow.replace(String.fromCharCode(64), dataID);
 
   fetch(url, {
     method: "get",
@@ -398,7 +400,10 @@ function deleteNoRowLabel(tbodyElement) {
 
 function viewRow(tableElement, row) {
   const rowID = row.dataset.id;
-  const viewURL = tableElement.dataset.viewRow.replace("-1", rowID);
+  const viewURL = tableElement.dataset.viewRow.replace(
+    String.fromCharCode(64),
+    rowID,
+  );
   const viewModalID = tableElement.dataset.viewRowModalId;
   const viewModalElement = document.querySelector(viewModalID);
   const viewModalBodyElement = viewModalElement.querySelector("div.modal-body");
@@ -606,7 +611,7 @@ function initTableContol(
               addTableRow(tableElement, theadElement, tbodyElement, d.id);
             }
           } else {
-            const id = form.querySelector("input[id$=_id]")?.value;
+            const id = form.querySelector("input[id$=uid]")?.value;
 
             if (id) {
               const row = tableElement.querySelector(
