@@ -45,7 +45,7 @@ class AddUserForm(FlaskForm):
 
 
 class UpdateUserForm(FlaskForm):
-    user_id = HiddenField("User ID", validators=[DataRequired()])
+    uid = HiddenField("UID", validators=[DataRequired()])
     first_name = StringField("First Name", validators=[Length(max=50)])
     middle_name = StringField("Middle Name", validators=[Length(max=50)])
     last_name = StringField("Last Name", validators=[Length(max=50)])
@@ -66,11 +66,7 @@ class UpdateUserForm(FlaskForm):
     def validate_user_name(self, user_name):
         if (
             db.session.query(User)
-            .filter(
-                and_(
-                    User.user_id != self.user_id.data, User.user_name == user_name.data
-                )
-            )
+            .filter(and_(User.uid != self.uid.data, User.user_name == user_name.data))
             .first()
         ):
             raise ValidationError("Username already taken")
