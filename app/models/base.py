@@ -2,8 +2,8 @@ import random
 from datetime import datetime, timedelta, timezone
 
 from numerize import numerize
-from sqlalchemy import Column, Integer, String, event, extract, func
-from sqlalchemy.ext.declarative import as_declarative, declared_attr
+from sqlalchemy import Column, String, event, extract, func
+from sqlalchemy.ext.declarative import declared_attr
 
 from app.extensions import db
 
