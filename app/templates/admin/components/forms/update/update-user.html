@@ -2,7 +2,7 @@
 <form
   method="POST"
   action="{{ url_for('api.update_user') }}"
-  data-get="{{ url_for('api.fetch_user', user_id=-1) }}"
+  data-get="{{ url_for('api.fetch_user', uid='@') }}"
   enctype="multipart/form-data"
 >
   {{ form.hidden_tag() }}
