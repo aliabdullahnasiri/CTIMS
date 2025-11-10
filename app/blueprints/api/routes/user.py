@@ -31,7 +31,7 @@ def fetch_users_rows() -> Response:
     users: List[User] = User.query.all()
 
     cols: List[Tuple[ColumnID, ColumnName]] = [
-        (ColumnID("user_id"), ColumnName("User ID")),
+        (ColumnID("uid"), ColumnName("UID")),
         (ColumnID("first_name"), ColumnName("First Name")),
         (ColumnID("middle_name"), ColumnName("Middle Name")),
         (ColumnID("last_name"), ColumnName("Last Name")),
@@ -67,12 +67,12 @@ def fetch_users_rows() -> Response:
     return response
 
 
-@bp.get("/fetch/row/user/<int:user_id>")
+@bp.get("/fetch/row/user/<string:uid>")
 @login_required
-def fetch_user_row(user_id) -> Response:
+def fetch_user_row(uid) -> Response:
     response: Response = Response()
 
-    user: Union[User, None] = User.query.filter_by(user_id=user_id).first()
+    user: Union[User, None] = User.query.filter_by(uid=uid).first()
 
     if user:
         response.response = json.dumps(user.to_dict())
@@ -90,10 +90,10 @@ def fetch_user_row(user_id) -> Response:
     return response
 
 
-@bp.get("/fetch/user/<int:user_id>")
+@bp.get("/fetch/user/<string:uid>")
 @login_required
-def fetch_user(user_id) -> Response:
-    user = User.query.filter_by(user_id=user_id).first()
+def fetch_user(uid) -> Response:
+    user = User.query.filter_by(uid=uid).first()
 
     if user:
         response: Response = Response(
@@ -124,7 +124,7 @@ def update_user() -> Response:
     response: Dict = {}
 
     if form.validate_on_submit():
-        user = User.query.filter_by(user_id=form.user_id.data).first()
+        user = User.query.filter_by(uid=form.uid.data).first()
 
         if user:
             user.first_name = form.first_name.data
@@ -161,12 +161,12 @@ def update_user() -> Response:
     )
 
 
-@bp.delete("/delete/user/<int:user_id>")
+@bp.delete("/delete/user/<string:uid>")
 @login_required
-def delete_user(user_id):
+def delete_user(uid):
     response = {}
 
-    if user := User.query.filter_by(user_id=user_id).first():
+    if user := User.query.filter_by(uid=uid).first():
         db.session.delete(user)
         db.session.commit()
 
@@ -228,7 +228,7 @@ def add_user() -> Response:
         response["message"] = "User added successfully"
         response["category"] = "success"
         response["title"] = "User Added"
-        response["id"] = user.user_id
+        response["id"] = user.uid
 
     else:
         response["errors"] = form.errors
