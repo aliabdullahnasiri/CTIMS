@@ -9,10 +9,8 @@ import { createListSectionItem, resetForm } from "./form.js";
       const id =
         event.relatedTarget.dataset.id ||
         event.relatedTarget?.closest("[data-id]")?.dataset.id;
-      const url = get.replace(
-        String.fromCharCode(45).concat(String.fromCharCode(49)),
-        id,
-      );
+
+      const url = get.replace(String.fromCharCode(64), id);
 
       fetch(url, {
         method: "get",
