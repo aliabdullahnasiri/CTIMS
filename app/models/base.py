@@ -13,7 +13,7 @@ class Base(db.Model):
 
     @declared_attr
     def uid(cls):
-        return Column(String(8), unique=True, nullable=False)
+        return Column(String(8), primary_key=True)
 
     # Timestamps
     created_at = db.Column(

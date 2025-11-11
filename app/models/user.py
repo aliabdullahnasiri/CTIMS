@@ -10,8 +10,8 @@ from app.extensions import bcrypt, db, login_manager
 
 
 @login_manager.user_loader
-def load_user(user_id: str):
-    return User.query.get(int(user_id))
+def load_user(uid: str):
+    return User.query.get(uid)
 
 
 class Role(enum.Enum):
@@ -21,8 +21,6 @@ class Role(enum.Enum):
 
 class User(UserMixin, db.Model):
     __tablename__ = "users"
-
-    user_id = db.Column(db.Integer, primary_key=True)
 
     first_name = db.Column(db.String(50))
     middle_name = db.Column(db.String(50))
@@ -43,7 +41,6 @@ class User(UserMixin, db.Model):
 
     def to_dict(self) -> Dict:
         dct = {
-            "user_id": self.user_id,
             "first_name": self.first_name,
             "middle_name": self.middle_name,
             "last_name": self.last_name,
@@ -58,7 +55,7 @@ class User(UserMixin, db.Model):
         return dct
 
     def get_id(self):
-        return str(self.user_id)
+        return str(self.uid)
 
     def set_password(self, password: str) -> None:
         self.password_hash = bcrypt.generate_password_hash(password).decode()
