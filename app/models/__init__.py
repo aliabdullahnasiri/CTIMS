@@ -1,2 +1,16 @@
 import app.models.base
-from app.models import department, user
+from app.models import (
+    attendance,
+    class_,
+    department,
+    employee,
+    file,
+    job,
+    phone,
+    student,
+    subject,
+    teach,
+    teacher,
+    time,
+    user,
+)
