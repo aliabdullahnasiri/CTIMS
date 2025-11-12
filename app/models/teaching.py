@@ -14,6 +14,8 @@ class Teaching(db.Model):
         return {
             "teacher_id": self.teacher_id,
             "subject_id": self.subject_id,
+            "teacher": self.teacher.to_dict(),
+            "subject": self.subject.to_dict(),
             **super().to_dict(),
         }
 
