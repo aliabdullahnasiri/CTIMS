@@ -1,0 +1,13 @@
+<table
+  class="table align-items-center mb-0 table-hover"
+  data-type="dynamic"
+  data-get-rows="{{ url_for('api.fetch_departments_rows') }}"
+  data-get-row="{{ url_for('api.fetch_department_row', uid='@')}}"
+  data-update-row="{{ url_for('api.update_department')}}"
+  data-delete-row="{{ url_for('api.delete_department', uid='@')}}"
+  data-add-row-modal-id="#AddDepartmentModal"
+  data-edit-row-modal-id="#EditDepartmentModal"
+>
+  <thead></thead>
+  <tbody></tbody>
+</table>
