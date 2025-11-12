@@ -10,6 +10,6 @@ from app.forms.time import AddTimeForm, UpdateTimeForm
 def times():
     return render_template(
         "admin/pages/times.html",
-        title="Time",
+        title="Times",
         form={"a": AddTimeForm(), "u": UpdateTimeForm()},
     )
