@@ -27,7 +27,7 @@ class Job(db.Model):
             "job_title": self.job_title,
             "job_description": self.job_description,
             "min_salary": f"{self.min_salary:.2f}",
-            "max_salary": f"{self.min_salary:.2f}",
+            "max_salary": f"{self.max_salary:.2f}",
             **super().to_dict(),
         }
 
