@@ -9,8 +9,8 @@ class Subject(db.Model):
     name = db.Column(db.String(50))
     description = db.Column(db.String(255))
 
-    teachers = db.relationship(
-        "Teacher", back_populates="teacher", cascade="all, delete, delete-orphan"
+    teachings = db.relationship(
+        "Teaching", back_populates="subject", cascade="all, delete-orphan"
     )
     files = db.relationship(
         "SubjectFile", back_populates="subject", cascade="all, delete, delete-orphan"

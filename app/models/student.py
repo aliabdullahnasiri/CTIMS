@@ -22,6 +22,7 @@ class Student(db.Model):
     # Files
     avatar_path = db.Column(db.String(255), nullable=True)  # Path to avatar image
 
+    attendances = db.relationship("StudentAttendance", back_populates="student")
     class_ = db.relationship("Class", back_populates="students")
     phones = db.relationship(
         "StudentPhone", back_populates="student", cascade="all, delete, delete-orphan"

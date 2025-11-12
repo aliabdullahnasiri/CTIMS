@@ -9,8 +9,8 @@ from app.models import (
     phone,
     student,
     subject,
-    teach,
     teacher,
+    teaching,
     time,
     user,
 )

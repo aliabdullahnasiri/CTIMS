@@ -18,10 +18,11 @@ class Teacher(db.Model):
     avatar_path = db.Column(db.String(255), nullable=True)  # Path to avatar image
     salary = db.Column(db.Numeric(12, 2), nullable=True)
 
-    classes = db.relationship("Class", back_populates="teacher")
-    subjects = db.relationship(
-        "Subject", back_populates="teacher", cascade="all, delete, delete-orphan"
+    teachings = db.relationship(
+        "Teaching", back_populates="teacher", cascade="all, delete-orphan"
     )
+    attendances = db.relationship("TeacherAttendance", back_populates="teacher")
+    classes = db.relationship("Class", back_populates="teacher")
     phones = db.relationship(
         "TeacherPhone", back_populates="teacher", cascade="all, delete, delete-orphan"
     )
