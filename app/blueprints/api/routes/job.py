@@ -26,7 +26,9 @@ def fetch_jobs() -> Response:
 @bp.get("/fetch/rows/jobs")
 @login_required
 def fetch_jobs_rows() -> Response:
-    jobs: List[Job] = Job.query.all()
+    response: Response = Response(
+        headers={"Content-Type": "application/json"},
+    )
 
     cols: List[Tuple[ColumnID, ColumnName]] = [
         (ColumnID("uid"), ColumnName("Job UID")),
@@ -35,18 +37,36 @@ def fetch_jobs_rows() -> Response:
         (ColumnID("max_salary"), ColumnName("Max Salary")),
     ]
 
+    jobs: List[Job] = Job.query.all()
     rows: List[List] = []
 
     for job in jobs:
-        dct = job.to_dict()
-        row = [dct.get(col_id, "N/A") for col_id, _ in cols]
+        row: List = []
+
+        for col_id, _ in cols:
+            val = getattr(job, col_id)
+
+            match col_id:
+                case "min_salary":
+                    row.append(job.display_min_salary)
+
+                case "max_salary":
+                    row.append(job.display_max_salary)
+
+                case _:
+                    row.append(val)
+
         rows.append(row)
 
-    return Response(
-        json.dumps({"cols": cols, "rows": rows}),
-        status=200,
-        headers={"Content-Type": "application/json"},
-    )
+    dct: Dict = {
+        "cols": cols,
+        "rows": rows,
+    }
+
+    response.response = json.dumps(dct)
+    response.status_code = 200
+
+    return response
 
 
 @bp.get("/fetch/row/job/<string:uid>")
