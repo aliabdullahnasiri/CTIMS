@@ -26,8 +26,8 @@ class Time(db.Model):
 
     @property
     def display_start_time(self) -> str:
-        return self.start_time.strftime("%H:%M") if self.start_time else "N/A"
+        return self.start.strftime("%H:%M") if self.start else "N/A"
 
     @property
     def display_end_time(self) -> str:
-        return self.end_time.strftime("%H:%M") if self.end_time else "N/A"
+        return self.end.strftime("%H:%M") if self.end else "N/A"
