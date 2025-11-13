@@ -225,7 +225,7 @@ def update_employee() -> Response:
                             .first()
                         ):
                             phone = EmployeePhone()
-                            phone.uid = form.uid.data
+                            phone.employee_id = form.uid.data
                             phone.phone_number = nphone
 
                             db.session.add(phone)
