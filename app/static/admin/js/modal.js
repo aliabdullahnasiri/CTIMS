@@ -115,8 +115,6 @@ import { createListSectionItem, resetForm } from "./form.js";
   document.addEventListener("hidden.bs.modal", (event) => {
     const form = event.target.querySelector("form");
 
-    if (form && !form.hasAttribute("data-get")) {
-      resetForm(form);
-    }
+    if (form) resetForm(form);
   });
 }).call();
