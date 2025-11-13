@@ -26,7 +26,17 @@ export function uploadFile(
   return http;
 }
 
-export function resetForm(formElement) {}
+export function resetForm(formElement) {
+  formElement.reset();
+
+  // Reset Multi-Value Input
+  for (const input of formElement.querySelectorAll("div.multi-value-input")) {
+    for (const val of input?.querySelectorAll(
+      "div.values span[data-role=value]",
+    ))
+      val.remove();
+  }
+}
 
 async function submitForm(formElement) {
   const formData = new FormData(formElement);
@@ -45,7 +55,7 @@ async function submitForm(formElement) {
         if (dropZone) {
           outputElement = dropZone.querySelector(".output");
 
-          if (outputElement){
+          if (outputElement) {
             if (!(key in links)) {
               if (outputElement.tagName == "IMG") {
                 links[key] = outputElement.dataset.url;
@@ -241,9 +251,7 @@ export function createListSectionItem(extension, size, uploaded, link) {
 
 function u(file, ulElement, formElement, submitElement) {
   const [type, size] = [
-    shortFileType(
-      file.type.split(String.fromCharCode(47)).pop().toUpperCase(),
-    ),
+    shortFileType(file.type.split(String.fromCharCode(47)).pop().toUpperCase()),
     humanizeFileSize(file.size),
   ];
 
@@ -256,17 +264,16 @@ function u(file, ulElement, formElement, submitElement) {
   let http = uploadFile(
     file,
     (e) => {
-      progressBar.style.width = String(
-        (e.loaded / e.total) * 100,
-      ).concat(String.fromCharCode(37));
+      progressBar.style.width = String((e.loaded / e.total) * 100).concat(
+        String.fromCharCode(37),
+      );
     },
     () => {
       item.remove();
     },
     () => {
       item.querySelector("div.header button i").innerHTML = "delete";
-      item.querySelector("div.header button").dataset.role =
-        "delete-file";
+      item.querySelector("div.header button").dataset.role = "delete-file";
 
       progressBar.closest("div.footer")?.remove();
     },
