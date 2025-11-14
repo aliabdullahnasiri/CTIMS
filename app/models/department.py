@@ -10,6 +10,13 @@ class Department(db.Model):
     description = db.Column(db.String(255))
     manager = db.Column(db.String(8))
 
+    subjects = db.relationship(
+        "Subject", back_populates="department", cascade="all, delete, delete-orphan"
+    )
+    semesters = db.relationship(
+        "Semester", back_populates="department", cascade="all, delete, delete-orphan"
+    )
+
     def to_dict(self) -> Dict:
         return {
             "name": self.name,
