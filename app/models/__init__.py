@@ -7,6 +7,7 @@ from app.models import (
     file,
     job,
     phone,
+    semester,
     student,
     subject,
     teacher,
