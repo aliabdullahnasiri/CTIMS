@@ -33,6 +33,7 @@ class Subject(db.Model):
             "credit": self.credit if self.credit else None,
             "department_uid": self.department_id,
             "semester_uid": self.semester_id,
+            "teachers": [t.teacher_id for t in self.teachings],
             "files": [f.file.to_dict() for f in self.files],
             **super().to_dict(),
         }
