@@ -15,6 +15,9 @@ class Semester(db.Model):
     subjects = db.relationship(
         "Subject", back_populates="semester", cascade="all, delete, delete-orphan"
     )
+    classes = db.relationship(
+        "Class", back_populates="semester", cascade="all, delete, delete-orphan"
+    )
 
     def to_dict(self) -> dict:
         return {
