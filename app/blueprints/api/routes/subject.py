@@ -4,12 +4,14 @@ from typing import Dict, List, Tuple, Union
 
 from flask import Response, request
 from flask_login import login_required
+from sqlalchemy import and_
 
 from app.blueprints.api import bp
 from app.extensions import console, db
 from app.forms.subject import AddSubjectForm, UpdateSubjectForm
 from app.models.file import File, SubjectFile
 from app.models.subject import Subject
+from app.models.teaching import Teaching
 from app.types import ColumnID, ColumnName
 
 
@@ -159,6 +161,16 @@ def add_subject() -> Response:
         except Exception as e:
             print(e)
 
+        if form.teachers.data:
+            for uid in json.loads(form.teachers.data):
+                t = Teaching()
+                t.subject_id = subject.uid
+                t.teacher_id = uid
+
+                db.session.add(t)
+
+            db.session.commit()
+
         response["message"] = "Subject added successfully"
         response["category"] = "success"
         response["title"] = "Subject Added"
@@ -194,6 +206,38 @@ def update_subject() -> Response:
                 subject.credit = form.credit.data
 
             db.session.commit()
+
+            if form.teachers.data:
+                nteachers = json.loads(form.teachers.data)
+                oteachers = subject.teachings
+
+                for oteacher in oteachers:
+                    if oteacher.teacher_id not in nteachers:
+                        db.session.delete(oteacher)
+
+                for nteacher in nteachers:
+                    if (
+                        not db.session.query(Teaching)
+                        .filter(
+                            and_(
+                                Teaching.teacher_id == nteacher,
+                                Teaching.subject_id == subject.uid,
+                            )
+                        )
+                        .first()
+                    ):
+                        t = Teaching()
+                        t.teacher_id = nteacher
+                        t.subject_id = form.uid.data
+
+                        db.session.add(t)
+
+                db.session.commit()
+
+            else:
+                for t in subject.teachings:
+                    db.session.delete(t)
+                    db.session.commit()
 
             try:
                 links = request.form["links"]
