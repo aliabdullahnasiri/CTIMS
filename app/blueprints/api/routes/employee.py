@@ -150,7 +150,7 @@ def add_employee() -> Response:
                         continue
 
                     employee_phone = EmployeePhone()
-                    employee_phone.uid = employee.uid
+                    employee_phone.employee_id = employee.uid
                     employee_phone.phone_number = phone
 
                     db.session.add(employee_phone)
