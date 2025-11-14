@@ -15,9 +15,7 @@ class Class(db.Model):
 
     def to_dict(self):
         return {
-            "class_id": self.uid,
-            "class_name": self.name,
-            "teacher": self.teacher.to_dict(),
-            "students": [student.to_dict() for student in self.students],
+            "uid": self.uid,
+            "name": self.name,
             **super().to_dict(),
         }
