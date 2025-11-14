@@ -1,3 +1,5 @@
+from datetime import date
+
 import humanize
 from flask import url_for
 
