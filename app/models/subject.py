@@ -9,6 +9,15 @@ class Subject(db.Model):
     name = db.Column(db.String(50))
     description = db.Column(db.String(255))
 
+    department_id = db.Column(
+        db.String(8), db.ForeignKey("departments.uid"), nullable=False
+    )
+    semester_id = db.Column(
+        db.String(8), db.ForeignKey("semesters.uid"), nullable=False
+    )
+
+    department = db.relationship("Department", back_populates="subjects")
+    semester = db.relationship("Semester", back_populates="subjects")
     teachings = db.relationship(
         "Teaching", back_populates="subject", cascade="all, delete-orphan"
     )
@@ -21,6 +30,8 @@ class Subject(db.Model):
             "name": self.name,
             "description": self.description,
             "files": [f.file.to_dict() for f in self.files],
+            "department": self.department.to_dict(),
+            "semester": self.semester.to_dict(),
             **super().to_dict(),
         }
 
