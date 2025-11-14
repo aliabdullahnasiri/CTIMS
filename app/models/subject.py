@@ -1,6 +1,6 @@
 from typing import Dict
 
-from app.extensions import db
+from app.extensions import console, db
 
 
 class Subject(db.Model):
@@ -30,10 +30,10 @@ class Subject(db.Model):
         return {
             "name": self.name,
             "description": self.description,
-            "credit": self.credit,
+            "credit": self.credit if self.credit else None,
+            "department_uid": self.department_id,
+            "semester_uid": self.semester_id,
             "files": [f.file.to_dict() for f in self.files],
-            "department": self.department.to_dict(),
-            "semester": self.semester.to_dict(),
             **super().to_dict(),
         }
 

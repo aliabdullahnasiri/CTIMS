@@ -21,8 +21,6 @@ class Semester(db.Model):
             "name": self.name,
             "number": self.number,
             "department_uid": self.department_id,
-            "department": self.department.to_dict(),
-            "subjects": [s.to_dict() for s in self.subjects],
             **super().to_dict(),
         }
 
