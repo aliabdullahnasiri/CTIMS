@@ -225,7 +225,7 @@ def update_teacher() -> Response:
                         .first()
                     ):
                         phone = TeacherPhone()
-                        phone.teacher_id = form.teacher_id.data
+                        phone.teacher_id = form.uid.data
                         phone.phone_number = nphone
 
                         db.session.add(phone)
@@ -278,7 +278,7 @@ def update_teacher() -> Response:
                                 for f in files:
                                     tf: TeacherFile = TeacherFile()
 
-                                    tf.teacher_id = teacher.teacher_id
+                                    tf.teacher_id = teacher.uid
                                     tf.file_id = f.uid
 
                                     db.session.add(tf)
