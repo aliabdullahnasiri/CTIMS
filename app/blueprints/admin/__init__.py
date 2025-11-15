@@ -9,6 +9,7 @@ from .routes import (
     employee,
     job,
     semester,
+    student,
     subject,
     teacher,
     time,
