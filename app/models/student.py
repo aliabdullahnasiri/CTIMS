@@ -68,7 +68,8 @@ class Student(db.Model):
 
     def to_dict(self) -> dict:
         return {
-            "student_id": self.uid,
+            "uid": self.uid,
+            "class_id": self.class_id,
             "first_name": self.first_name,
             "middle_name": self.middle_name,
             "last_name": self.last_name,
