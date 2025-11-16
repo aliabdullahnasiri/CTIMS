@@ -17,10 +17,10 @@ class Exam(db.Model):
     subject_id = db.Column(db.String(8), db.ForeignKey("subjects.uid"), nullable=False)
     class_id = db.Column(db.String(8), db.ForeignKey("classes.uid"), nullable=False)
 
-    subject = db.relationship("Subject", backref="exams")
-    class_ = db.relationship("Class", backref="exams")
+    subject = db.relationship("Subject", back_populates="exams")
+    class_ = db.relationship("Class", back_populates="exams")
     results = db.relationship(
-        "Result", backref="exam", cascade="all, delete, delete-orphan"
+        "Result", back_populates="exam", cascade="all, delete, delete-orphan"
     )
 
     def to_dict(self) -> Dict:
