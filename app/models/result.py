@@ -12,10 +12,8 @@ class Result(db.Model):
 
     student_id = db.Column(db.String(8), db.ForeignKey("students.uid"), nullable=False)
 
-    student = db.relationship("Student", backref="results")
-    exam = db.relationship(
-        "Exam", back_populates="results", cascade="all, delete, delete-orphan"
-    )
+    student = db.relationship("Student", back_populates="results")
+    exam = db.relationship("Exam", back_populates="results")
 
     def to_dict(self) -> Dict:
         return {
