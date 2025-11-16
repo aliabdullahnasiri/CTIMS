@@ -8,6 +8,7 @@ from .routes import (
     department,
     employee,
     job,
+    profile,
     semester,
     student,
     subject,
