@@ -30,6 +30,9 @@ class Student(db.Model):
     files = db.relationship(
         "StudentFile", back_populates="student", cascade="all, delete, delete-orphan"
     )
+    results = db.relationship(
+        "Result", back_populates="student", cascade="all, delete, delete-orphan"
+    )
 
     @property
     def full_name(self) -> str:
