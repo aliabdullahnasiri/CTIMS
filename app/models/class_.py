@@ -13,6 +13,9 @@ class Class(db.Model):
     teacher = db.relationship("Teacher", back_populates="classes")
     students = db.relationship("Student", back_populates="class_")
     semester = db.relationship("Semester", back_populates="classes")
+    exams = db.relationship(
+        "Exam", back_populates="class_", cascade="all, delete, delete-orphan"
+    )
 
     def __repr__(self):
         return f"<Class {self.name} Teacher={self.teacher_id}>"
