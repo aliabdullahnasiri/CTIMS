@@ -25,6 +25,9 @@ class Subject(db.Model):
     files = db.relationship(
         "SubjectFile", back_populates="subject", cascade="all, delete, delete-orphan"
     )
+    exams = db.relationship(
+        "Exam", back_populates="subject", cascade="all, delete, delete-orphan"
+    )
 
     def to_dict(self) -> Dict:
         return {
