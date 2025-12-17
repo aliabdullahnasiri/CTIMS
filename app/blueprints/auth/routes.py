@@ -19,7 +19,7 @@ def login():
         user = User.query.filter_by(email=form.email.data).first()
 
         if user and check_password_hash(user.password_hash, form.password.data):
-            login_user(user)
+            login_user(user, remember=True)
 
             flash(f"Welcome back, {user.user_name}!", category="success")
 
