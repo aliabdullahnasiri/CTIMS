@@ -8,16 +8,18 @@ from wtforms import (
     MultipleFileField,
     StringField,
     SubmitField,
+    TextAreaField,
     TimeField,
 )
 from wtforms.validators import DataRequired, Length, ValidationError
 
 from app.models.class_ import Class
+from app.models.subject import Subject
 
 
 class AddExamForm(FlaskForm):
     title = StringField("Title", validators=[DataRequired(), Length(max=50)])
-    description = StringField("Description", validators=[Length(max=50)])
+    description = TextAreaField("Description", validators=[Length(max=50)])
 
     exam_date = DateField("Exam Date", validators=[DataRequired()])
     exam_time = TimeField("Exam Time", validators=[DataRequired()])
@@ -32,7 +34,7 @@ class AddExamForm(FlaskForm):
 
         if not pattern.search(subject_id.data):
             raise ValidationError("Not a valid Subject UID.")
-        elif not Class.query.filter_by(uid=subject_id.data).first():
+        elif not Subject.query.filter_by(uid=subject_id.data).first():
             raise ValidationError("Subject with the given ID was not found :(")
 
     def validate_class_id(self, class_id) -> None:
