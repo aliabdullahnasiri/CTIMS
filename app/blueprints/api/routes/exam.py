@@ -30,12 +30,11 @@ def fetch_exams_rows() -> Response:
 
     cols: List[Tuple[ColumnID, ColumnName]] = [
         (ColumnID("uid"), ColumnName("Exam UID")),
-        (ColumnID("class_uid"), ColumnName("Class UID")),
-        (ColumnID("subject_uid"), ColumnName("Subject UID")),
         (ColumnID("title"), ColumnName("Title")),
         (ColumnID("description"), ColumnName("Description")),
         (ColumnID("total_marks"), ColumnName("Total Marks")),
         (ColumnID("exam_date"), ColumnName("Exam Date")),
+        (ColumnID("exam_time"), ColumnName("Exam Time")),
     ]
 
     rows: List[List] = []
