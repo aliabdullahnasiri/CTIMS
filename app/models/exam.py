@@ -26,6 +26,8 @@ class Exam(db.Model):
     def to_dict(self) -> Dict:
         return {
             "uid": self.uid,
+            "class_id": self.class_id,
+            "subject_id": self.subject_id,
             "title": self.title,
             "description": self.description,
             "exam_date": self.exam_date.strftime("%Y-%m-%d"),
