@@ -12,6 +12,8 @@ class Time(db.Model):
     start = db.Column(db.Time, nullable=True)
     end = db.Column(db.Time, nullable=True)
 
+    classes = db.relationship("Class", back_populates="time")
+
     def to_dict(self) -> Dict:
         return {
             "title": self.title,

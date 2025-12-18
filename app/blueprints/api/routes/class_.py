@@ -108,6 +108,7 @@ def add_class() -> Response:
         class_.name = form.name.data
         class_.teacher_id = form.teacher_id.data
         class_.semester_id = form.semester_id.data
+        class_.time_id = form.time_id.data
 
         db.session.add(class_)
         db.session.commit()
@@ -137,6 +138,7 @@ def update_class() -> Response:
             class_.name = form.name.data
             class_.teacher_id = form.teacher_id.data
             class_.semester_id = form.semester_id.data
+            class_.time_id = form.time_id.data
 
             db.session.commit()
 
