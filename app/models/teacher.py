@@ -99,6 +99,7 @@ class Teacher(db.Model):
             "salary": f"{self.salary:.2f}" if self.salary is not None else None,
             "avatar": self.avatar_path,
             "phones": [p.phone_number for p in self.phones],
+            "subjects": [s.subject.uid for s in self.teachings],
             "files": [f.file.to_dict() for f in self.files],
             **super().to_dict(),
         }

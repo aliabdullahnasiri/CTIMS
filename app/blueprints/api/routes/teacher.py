@@ -1,5 +1,6 @@
 import json
 import pathlib
+from operator import and_
 from typing import Dict, List, Tuple, Union
 
 from flask import Response, request, url_for
@@ -12,6 +13,7 @@ from app.forms.teacher import AddTeacherForm, UpdateTeacherForm
 from app.models.file import File, TeacherFile
 from app.models.phone import TeacherPhone
 from app.models.teacher import Teacher
+from app.models.teaching import Teaching
 from app.types import ColumnID, ColumnName
 
 
@@ -177,6 +179,16 @@ def add_teacher() -> Response:
 
             db.session.commit()
 
+        if form.subjects.data:
+            for uid in json.loads(form.subjects.data):
+                t = Teaching()
+                t.teacher_id = teacher.uid
+                t.subject_id = uid
+
+                db.session.add(t)
+
+            db.session.commit()
+
         response["message"] = "Teacher added successfully."
         response["title"] = "Added!"
         response["category"] = "success"
@@ -209,6 +221,38 @@ def update_teacher() -> Response:
             teacher.salary = form.salary.data
 
             db.session.commit()
+
+            if form.subjects.data:
+                nsubjects = json.loads(form.subjects.data)
+                osubjects = teacher.teachings
+
+                for osubject in osubjects:
+                    if osubject.subject_id not in nsubjects:
+                        db.session.delete(osubject)
+
+                for nsubject in nsubjects:
+                    if (
+                        not db.session.query(Teaching)
+                        .filter(
+                            and_(
+                                Teaching.subject_id == nsubject,
+                                Teaching.teacher_id == teacher.uid,
+                            )
+                        )
+                        .first()
+                    ):
+                        t = Teaching()
+                        t.subject_id = nsubject
+                        t.teacher_id = form.uid.data
+
+                        db.session.add(t)
+
+                db.session.commit()
+
+            else:
+                for t in teacher.teachings:
+                    db.session.delete(t)
+                    db.session.commit()
 
             if form.phones.data:
                 nphones = json.loads(form.phones.data)

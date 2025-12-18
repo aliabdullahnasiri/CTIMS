@@ -1,3 +1,5 @@
+from sqlalchemy import UniqueConstraint
+
 from app.extensions import db
 
 
@@ -9,6 +11,10 @@ class Teaching(db.Model):
 
     teacher = db.relationship("Teacher", back_populates="teachings")
     subject = db.relationship("Subject", back_populates="teachings")
+
+    __table_args__ = (
+        UniqueConstraint("teacher_id", "subject_id", name="uix_teacher_subject"),
+    )
 
     def to_dict(self) -> dict:
         return {

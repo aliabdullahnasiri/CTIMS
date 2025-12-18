@@ -1,4 +1,5 @@
 import json
+import re
 
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileAllowed
@@ -24,6 +25,7 @@ from wtforms.validators import (
 
 from app.extensions import db
 from app.models.phone import TeacherPhone
+from app.models.subject import Subject
 from app.models.teacher import Teacher
 
 
@@ -52,12 +54,33 @@ class AddTeacherForm(FlaskForm):
     )
 
     phones = StringField("Phone", validators=[Optional()])
+    subjects = StringField("Subject UID", validators=[Optional()])
+
     submit = SubmitField("Add Teacher")
 
     # Check if email already exists
     def validate_email(self, email):
         if Teacher.query.filter_by(email=email.data).first():
             raise ValidationError("Email already registered")
+
+    def validate_subjects(self, subjects) -> None:
+        pattern: re.Pattern = re.compile(r"^S.\d{6}$")
+
+        subjects = json.loads(subjects.data)
+
+        for uid in subjects:
+            if not pattern.search(uid):
+                raise ValidationError(f"Not a valid Subject UID {uid!r}.")
+
+            if not (
+                db.session.query(Subject)
+                .filter(
+                    Subject.uid == uid,
+                )
+                .first()
+            ):
+
+                raise ValidationError("Teacher with the given ID was not found :(")
 
     def validate_phones(self, phones):
         nums = json.loads(phones.data)
