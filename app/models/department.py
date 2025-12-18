@@ -21,6 +21,7 @@ class Department(db.Model):
         return {
             "name": self.name,
             "description": self.description,
+            "head_of_department": self.head_of_department,
             **super().to_dict(),
         }
 
