@@ -8,7 +8,7 @@ class Department(db.Model):
 
     name = db.Column(db.String(60))
     description = db.Column(db.String(255))
-    manager = db.Column(db.String(8))
+    head_of_department = db.Column(db.String(8))
 
     subjects = db.relationship(
         "Subject", back_populates="department", cascade="all, delete, delete-orphan"

@@ -110,7 +110,7 @@ def add_department() -> Response:
 
         department.name = form.name.data
         department.description = form.description.data
-        department.manager = form.manager.data
+        department.head_of_department = form.head_of_department.data
 
         db.session.add(department)
         db.session.commit()
@@ -146,7 +146,7 @@ def update_department() -> Response:
         if department:
             department.name = form.name.data
             department.description = form.description.data
-            department.manager = form.manager.data
+            department.head_of_department = form.head_of_department.data
 
             db.session.commit()
 

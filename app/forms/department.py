@@ -30,16 +30,23 @@ class AddDepartmentForm(FlaskForm):
         ],
     )
 
-    manager = StringField(
-        "Manager UID",
+    head_of_department = StringField(
+        "Head of department UID",
         validators=[Optional(), Length(min=8, max=8)],
     )
 
     submit = SubmitField("Add Department")
 
-    def validate_manager(self, manager):
-        if not Employee.query.filter_by(uid=manager.data).first():
+    def validate_head_of_department(self, head_of_department) -> None:
+        h: str = head_of_department.data
+        pattern: re.Pattern = re.compile(r"^(E|T).\d{6}$")
+
+        if not pattern.search(h):
+            raise ValidationError("Not a valid head of department UID.")
+        elif h.startswith("E") and not Employee.query.filter_by(uid=h).first():
             raise ValidationError("Employee with the given ID was not found :(")
+        elif h.startswith("T") and not Employee.query.filter_by(uid=h).first():
+            raise ValidationError("Teacher with the given ID was not found :(")
 
 
 class UpdateDepartmentForm(AddDepartmentForm):
