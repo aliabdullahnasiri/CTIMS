@@ -6,6 +6,7 @@ from .routes import (
     class_,
     department,
     employee,
+    exam,
     job,
     semester,
     student,
