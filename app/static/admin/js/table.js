@@ -264,7 +264,10 @@ function addTableRow(tableElement, theadElement, tbodyElement, id) {
         if (value !== undefined) {
           tdElement = document.createElement("td");
 
-          if (index == 1 && tableElement.dataset.deleteRow) {
+          if (
+            (index == 1 && tableElement.dataset.deleteRow) ||
+            (index == 0 && !tableElement.dataset.deleteRow)
+          ) {
             tdElement.classList.value = "text-xs align-middle text-center";
           } else {
             tdElement.classList.add("text-xs");
