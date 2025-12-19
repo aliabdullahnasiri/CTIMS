@@ -76,6 +76,7 @@ class Student(db.Model):
             "first_name": self.first_name,
             "middle_name": self.middle_name,
             "last_name": self.last_name,
+            "full_name": self.full_name,
             "email": self.email,
             "birthday": self.display_birthday,
             "age": self.age,
