@@ -31,7 +31,7 @@ def fetch_jobs_rows() -> Response:
     )
 
     cols: List[Tuple[ColumnID, ColumnName]] = [
-        (ColumnID("uid"), ColumnName("Job UID")),
+        (ColumnID("uid"), ColumnName("UID")),
         (ColumnID("job_title"), ColumnName("Job Title")),
         (ColumnID("min_salary"), ColumnName("Min Salary")),
         (ColumnID("max_salary"), ColumnName("Max Salary")),
