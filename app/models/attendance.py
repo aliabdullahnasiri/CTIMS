@@ -22,7 +22,7 @@ class StudentAttendance(db.Model):
 
     def to_dict(self):
         return {
-            "id": self.id,
+            "uid": self.uid,
             "date": self.date.isoformat(),
             "status": self.status.value,
             "student": self.student.to_dict(),
@@ -54,7 +54,7 @@ class TeacherAttendance(db.Model):
 
     def to_dict(self):
         return {
-            "attendance_id": self.uid,
+            "uid": self.uid,
             "date": self.display_date,
             "status": self.status.value,
             "teacher": self.teacher.to_dict(),
