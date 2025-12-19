@@ -34,32 +34,29 @@ function addActionButtons(tableElement, trElement) {
 
   tdElement.classList.value = "align-middle";
 
-  let editLinkElement = document.createElement("a");
-  let deleteLinkElement = document.createElement("a");
-  let viewLinkElement = document.createElement("a");
+  if (tableElement.dataset.deleteRow) {
+    let deleteLinkElement = document.createElement("a");
 
-  editLinkElement.classList.value =
-    deleteLinkElement.classList.value =
-    viewLinkElement.classList.value =
-      "text-secondary font-weight-bold text-xs m-1";
+    deleteLinkElement.dataset.role = "delete";
+    deleteLinkElement.innerHTML = "Delete";
 
-  editLinkElement.href =
-    deleteLinkElement.href =
-    viewLinkElement.href =
-      "javascript:;";
+    tdElement.append(deleteLinkElement);
+  }
+  if (tableElement.dataset.editRowModalId) {
+    let editLinkElement = document.createElement("a");
+    editLinkElement.dataset.role = "edit";
+    editLinkElement.dataset.bsToggle = "modal";
+    editLinkElement.dataset.bsPlacement = "top";
+    editLinkElement.ariaLabel = "Edit Modal";
+    editLinkElement.dataset.bsOriginalTitle = "Edit Modal";
+    editLinkElement.dataset.bsTarget = tableElement.dataset.editRowModalId;
+    editLinkElement.innerHTML = "Edit";
 
-  editLinkElement.dataset.role = "edit";
-  editLinkElement.dataset.bsToggle = "modal";
-  editLinkElement.dataset.bsPlacement = "top";
-  editLinkElement.ariaLabel = "Edit Modal";
-  editLinkElement.dataset.bsOriginalTitle = "Edit Modal";
-  editLinkElement.dataset.bsTarget = tableElement.dataset.editRowModalId;
-  editLinkElement.innerHTML = "Edit";
-
-  deleteLinkElement.dataset.role = "delete";
-  deleteLinkElement.innerHTML = "Delete";
+    tdElement.append(editLinkElement);
+  }
 
   if (tableElement.dataset.viewRowModalId) {
+    let viewLinkElement = document.createElement("a");
     viewLinkElement.dataset.role = "view";
     viewLinkElement.dataset.bsToggle = "modal";
     viewLinkElement.dataset.bsPlacement = "top";
@@ -67,11 +64,14 @@ function addActionButtons(tableElement, trElement) {
     viewLinkElement.dataset.bsOriginalTitle = "View Modal";
     viewLinkElement.dataset.bsTarget = tableElement.dataset.viewRowModalId;
     viewLinkElement.innerHTML = "View";
+
+    tdElement.append(viewLinkElement);
   }
 
-  tdElement.append(viewLinkElement);
-  tdElement.append(editLinkElement);
-  tdElement.append(deleteLinkElement);
+  tdElement.querySelectorAll("a").forEach((element) => {
+    element.classList.value = "text-secondary font-weight-bold text-xs m-1";
+    element.href = "javascript:;";
+  });
 
   trElement.append(tdElement);
 }
