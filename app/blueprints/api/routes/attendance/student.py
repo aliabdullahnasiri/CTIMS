@@ -63,15 +63,13 @@ def fetch_student_attendance_row(uid: str) -> Response:
     if sa:
         return Response(
             json.dumps(
-                dict(
-                    {
-                        key: val
-                        for key, val in zip(
-                            [col_id for col_id, _ in cols],
-                            [render_td(col_id, sa) for col_id, _ in cols],
-                        )
-                    }
-                )
+                {
+                    key: val
+                    for key, val in zip(
+                        [col_id for col_id, _ in cols],
+                        [render_td(col_id, sa) for col_id, _ in cols],
+                    )
+                }
             ),
             status=200,
             headers={"Content-Type": "application/json"},

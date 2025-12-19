@@ -7,8 +7,17 @@ from flask_login import login_required
 from app.blueprints.api import bp
 from app.extensions import db
 from app.forms.attendance.teacher import AddTeacherAttendanceForm
+from app.functions import render_td
 from app.models.attendance import TeacherAttendance
 from app.types import ColumnID, ColumnName
+
+cols: List[Tuple[ColumnID, ColumnName]] = [
+    (ColumnID("uid"), ColumnName("UID")),
+    (ColumnID("temp_teacher"), ColumnName("Teacher")),
+    (ColumnID("date"), ColumnName("Date")),
+    (ColumnID("time"), ColumnName("Time")),
+    (ColumnID("temp_teacher_attandance_status"), ColumnName("Status")),
+]
 
 
 @bp.get("/fetch/teachers/attendances")
@@ -31,15 +40,10 @@ def fetch_teachers_attendances() -> Response:
 def fetch_teachers_attendances_rows() -> Response:
     teacher_attendances: List[TeacherAttendance] = TeacherAttendance.query.all()
 
-    cols: List[Tuple[ColumnID, ColumnName]] = [
-        (ColumnID("uid"), ColumnName("UID")),
-    ]
-
     rows: List[List] = []
 
     for teacher_attendance in teacher_attendances:
-        dct = teacher_attendance.to_dict()
-        row = [dct.get(col_id, "N/A") for col_id, _ in cols]
+        row = [render_td(col_id, teacher_attendance) for col_id, _ in cols]
         rows.append(row)
 
     return Response(
@@ -58,7 +62,15 @@ def fetch_teacher_attendance_row(uid: str) -> Response:
 
     if teacher_attendance:
         return Response(
-            json.dumps(teacher_attendance.to_dict()),
+            json.dumps(
+                {
+                    key: val
+                    for key, val in zip(
+                        [col_id for col_id, _ in cols],
+                        [render_td(col_id, teacher_attendance) for col_id, _ in cols],
+                    )
+                }
+            ),
             status=200,
             headers={"Content-Type": "application/json"},
         )
