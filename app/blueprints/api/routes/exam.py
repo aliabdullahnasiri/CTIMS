@@ -7,6 +7,7 @@ from flask_login import login_required
 from app.blueprints.api import bp
 from app.extensions import db
 from app.forms.exam import AddExamForm, UpdateExamForm
+from app.functions import render_td
 from app.models.exam import Exam
 from app.types import ColumnID, ColumnName
 
@@ -23,25 +24,25 @@ def fetch_exams() -> Response:
     )
 
 
+cols: List[Tuple[ColumnID, ColumnName]] = [
+    (ColumnID("uid"), ColumnName("UID")),
+    (ColumnID("title"), ColumnName("Title")),
+    (ColumnID("description"), ColumnName("Description")),
+    (ColumnID("total_marks"), ColumnName("Total Marks")),
+    (ColumnID("exam_date"), ColumnName("Exam Date")),
+    (ColumnID("exam_time"), ColumnName("Exam Time")),
+]
+
+
 @bp.get("/fetch/rows/exams")
 @login_required
 def fetch_exams_rows() -> Response:
     exams: List[Exam] = Exam.query.all()
 
-    cols: List[Tuple[ColumnID, ColumnName]] = [
-        (ColumnID("uid"), ColumnName("UID")),
-        (ColumnID("title"), ColumnName("Title")),
-        (ColumnID("description"), ColumnName("Description")),
-        (ColumnID("total_marks"), ColumnName("Total Marks")),
-        (ColumnID("exam_date"), ColumnName("Exam Date")),
-        (ColumnID("exam_time"), ColumnName("Exam Time")),
-    ]
-
     rows: List[List] = []
 
     for exam in exams:
-        dct = exam.to_dict()
-        row = [dct.get(col_id, "N/A") for col_id, _ in cols]
+        row = [render_td(col_id, exam) for col_id, _ in cols]
         rows.append(row)
 
     return Response(
@@ -58,7 +59,15 @@ def fetch_exam_row(uid: str) -> Response:
 
     if exam:
         return Response(
-            json.dumps(exam.to_dict()),
+            json.dumps(
+                {
+                    key: val
+                    for key, val in zip(
+                        [col_id for col_id, _ in cols],
+                        [render_td(col_id, exam) for col_id, _ in cols],
+                    )
+                }
+            ),
             status=200,
             headers={"Content-Type": "application/json"},
         )
