@@ -7,8 +7,16 @@ from flask_login import login_required
 from app.blueprints.api import bp
 from app.extensions import db
 from app.forms.result import AddResultForm, UpdateResultForm
+from app.functions import render_td
 from app.models.result import Result
 from app.types import ColumnID, ColumnName
+
+cols: List[Tuple[ColumnID, ColumnName]] = [
+    (ColumnID("uid"), ColumnName("UID")),
+    (ColumnID("temp_student"), ColumnName("Student")),
+    (ColumnID("percentage"), ColumnName("Percentage")),
+    (ColumnID("temp_result_status"), ColumnName("Status")),
+]
 
 
 @bp.get("/fetch/results")
@@ -28,17 +36,10 @@ def fetch_results() -> Response:
 def fetch_results_rows() -> Response:
     results: List[Result] = Result.query.all()
 
-    cols: List[Tuple[ColumnID, ColumnName]] = [
-        (ColumnID("uid"), ColumnName("UID")),
-        (ColumnID("exam_id"), ColumnName("Exam UID")),
-        (ColumnID("student_id"), ColumnName("Student UID")),
-    ]
-
     rows: List[List] = []
 
     for result in results:
-        dct = result.to_dict()
-        row = [dct.get(col_id, "N/A") for col_id, _ in cols]
+        row = [render_td(col_id, result) for col_id, _ in cols]
         rows.append(row)
 
     return Response(
@@ -55,7 +56,15 @@ def fetch_result_row(uid: str) -> Response:
 
     if result:
         return Response(
-            json.dumps(result.to_dict()),
+            json.dumps(
+                {
+                    key: val
+                    for key, val in zip(
+                        [col_id for col_id, _ in cols],
+                        [render_td(col_id, result) for col_id, _ in cols],
+                    )
+                }
+            ),
             status=200,
             headers={"Content-Type": "application/json"},
         )
