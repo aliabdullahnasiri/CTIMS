@@ -36,6 +36,7 @@ def fetch_students_attendances_rows() -> Response:
         (ColumnID("uid"), ColumnName("UID")),
         (ColumnID("temp_student"), ColumnName("Student")),
         (ColumnID("date"), ColumnName("Date")),
+        (ColumnID("time"), ColumnName("Time")),
         (ColumnID("temp_student_attandance_status"), ColumnName("Status")),
     ]
 

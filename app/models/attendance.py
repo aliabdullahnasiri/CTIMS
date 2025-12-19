@@ -24,7 +24,8 @@ class StudentAttendance(db.Model):
     def to_dict(self):
         return {
             "uid": self.uid,
-            "date": self.date.isoformat(),
+            "date": self.display_date,
+            "time": self.display_time,
             "status": self.status.value,
             "student": self.student.to_dict(),
             **super().to_dict(),
@@ -32,11 +33,11 @@ class StudentAttendance(db.Model):
 
     @property
     def display_date(self) -> str:
-        return self.date.strftime("%Y-%m-%d")
+        return self.date.strftime("%Y-%m-%d") if self.date else "N/A"
 
     @property
     def display_time(self) -> str:
-        return self.time.strftime("%H:%M:%S")
+        return self.time.strftime("%H:%M:%S") if self.time else "N/A"
 
     def __repr__(self):
         return f"<StudentAttendance {self.uid} StudentID={self.student_id}>"
@@ -62,14 +63,15 @@ class TeacherAttendance(db.Model):
         return {
             "uid": self.uid,
             "date": self.display_date,
+            "time": self.display_time,
             "status": self.status.value,
             "teacher": self.teacher.to_dict(),
         }
 
     @property
     def display_date(self) -> str:
-        return self.date.strftime("%Y-%m-%d")
+        return self.date.strftime("%Y-%m-%d") if self.date else "N/A"
 
     @property
     def display_time(self) -> str:
-        return self.time.strftime("%H:%M:%S")
+        return self.time.strftime("%H:%M:%S") if self.time else "N/A"
