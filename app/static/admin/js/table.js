@@ -258,13 +258,13 @@ function addTableRow(tableElement, theadElement, tbodyElement, id) {
 
       trElement.dataset.id = id;
 
-      addCheckBox(trElement);
+      if (tableElement.dataset.deleteRow) addCheckBox(trElement);
 
       row.forEach((value, index) => {
         if (value !== undefined) {
           tdElement = document.createElement("td");
 
-          if (index == 1) {
+          if (index == 1 && tableElement.dataset.deleteRow) {
             tdElement.classList.value = "text-xs align-middle text-center";
           } else {
             tdElement.classList.add("text-xs");
@@ -319,7 +319,7 @@ function addTableRows(tableElement, tbodyElement, rows) {
     Array.from(rows).forEach((row) => {
       trElement = document.createElement("tr");
 
-      addCheckBox(trElement);
+      if (tableElement.dataset.deleteRow) addCheckBox(trElement);
 
       Array.from(row).forEach((item, index) => {
         tdElement = document.createElement("td");
@@ -347,10 +347,15 @@ function addTableRows(tableElement, tbodyElement, rows) {
 }
 
 function initTableHeader(theadElement, cols) {
+  let tableElement = theadElement.closest("table[data-type=dynamic]");
   let trElement = document.createElement("tr");
   let thElement;
 
-  cols = [["checkbox", null], ...cols, ["action", null]];
+  cols = [...cols, ["action", null]];
+
+  if (tableElement.dataset.deleteRow) {
+    cols = [["checkbox", null], ...cols];
+  }
 
   Array.from(cols).forEach(([id, name], index) => {
     thElement = document.createElement("th");
@@ -358,7 +363,7 @@ function initTableHeader(theadElement, cols) {
     thElement.classList.value =
       "text-uppercase text-secondary text-xxs font-weight-bolder opacity-7";
 
-    if (index <= 1) {
+    if ((tableElement.dataset.deleteRow && index <= 1) || index == 0) {
       thElement.classList.add("align-middle");
       thElement.classList.add("text-center");
     }
@@ -447,19 +452,23 @@ function initTableContol(
   });
 
   // Delete Multiple Rows
-  let deleteRowsContainerDivElement = document.createElement("div");
-  let deleteRowButtonElement = document.createElement("button");
-  let deleteRowIconElement = document.createElement("i");
+  if (tableElement.dataset.deleteRow) {
+    let deleteRowsContainerDivElement = document.createElement("div");
+    let deleteRowButtonElement = document.createElement("button");
+    let deleteRowIconElement = document.createElement("i");
 
-  deleteRowButtonElement.dataset.bsRole = "multiple-delete";
+    deleteRowButtonElement.dataset.bsRole = "multiple-delete";
 
-  deleteRowIconElement.classList.value = "material-symbols-rounded fs-5";
-  deleteRowIconElement.innerHTML = "delete";
+    deleteRowIconElement.classList.value = "material-symbols-rounded fs-5";
+    deleteRowIconElement.innerHTML = "delete";
 
-  deleteRowButtonElement.classList.value = "btn btn-danger m-0 mx-2";
+    deleteRowButtonElement.classList.value = "btn btn-danger m-0 mx-2";
 
-  deleteRowButtonElement.append(deleteRowIconElement);
-  deleteRowsContainerDivElement.append(deleteRowButtonElement);
+    deleteRowButtonElement.append(deleteRowIconElement);
+    deleteRowsContainerDivElement.append(deleteRowButtonElement);
+
+    tableControlElement.append(deleteRowsContainerDivElement);
+  }
 
   // Reload Button
   let reloadsContainerDivElement = document.createElement("div");
@@ -510,7 +519,6 @@ function initTableContol(
 
   // Append
   tableControlElement.append(addRowContainerDivElement);
-  tableControlElement.append(deleteRowsContainerDivElement);
   tableControlElement.append(reloadsContainerDivElement);
   tableControlElement.append(searchInputContainerDivElement);
 }
