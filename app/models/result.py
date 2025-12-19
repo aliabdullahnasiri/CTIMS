@@ -22,13 +22,17 @@ class Result(db.Model):
             "exam_id": self.exam_id,
             "student_id": self.student_id,
             "student_name": self.student.full_name,
-            "percentage": self.percentage,
+            "percentage": self.display_percentage,
             "status": self.status,
         }
 
     @property
     def percentage(self):
         return round((self.obtained_marks / self.exam.total_marks) * 100, 2)
+
+    @property
+    def display_percentage(self):
+        return f"{self.percentage}%"
 
     @property
     def status(self):
