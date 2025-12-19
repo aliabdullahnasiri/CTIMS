@@ -21,6 +21,6 @@ def teachers_attendances():
 def students_attendances():
     return render_template(
         "admin/pages/attendances/students.html",
-        title="Teachers Attendances",
+        title="Students Attendances",
         form={"a": AddStudentAttendanceForm()},
     )
