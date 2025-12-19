@@ -1,0 +1,37 @@
+{% with f = form.a %}
+<form
+  method="POST"
+  action="{{ url_for('api.add_student_attendance') }}"
+  enctype="multipart/form-data"
+>
+  {{ f.hidden_tag() }}
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="my-2">
+        <div class="input-group input-group-outline">
+          {{ f.student_id.label(class="form-label") }} {{
+          f.student_id(class="form-control") }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="my-2">
+        <div class="px-2 py-0 my-0">
+          {{ f.status.label(class="form-label") }}
+        </div>
+        <div class="input-group input-group-outline">
+          {{ f.status(class="form-control") }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center">
+    {{ f.submit(class="btn bg-gradient-info btn-lg w-100 mt-4 mb-0") }}
+  </div>
+</form>
+{% endwith %}
