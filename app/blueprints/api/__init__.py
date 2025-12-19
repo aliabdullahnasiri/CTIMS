@@ -8,6 +8,7 @@ from .routes import (
     employee,
     exam,
     job,
+    result,
     semester,
     student,
     subject,
