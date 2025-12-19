@@ -18,9 +18,6 @@ from app.types import ColumnID, ColumnName
 cols: List[Tuple[ColumnID, ColumnName]] = [
     (ColumnID("uid"), ColumnName("UID")),
     (ColumnID("temp_student"), ColumnName("Student")),
-    # (ColumnID("middle_name"), ColumnName("Middle Name")),
-    # (ColumnID("last_name"), ColumnName("Last Name")),
-    (ColumnID("email"), ColumnName("Email")),
     (ColumnID("birthday"), ColumnName("Birthday")),
 ]
 
