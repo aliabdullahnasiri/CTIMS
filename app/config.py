@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+import pathlib
 
 from dotenv import load_dotenv
 
@@ -25,3 +26,6 @@ class Config:
     DEFAULT_AVATAR = "admin/assets/img/default-avatar.png"
 
     APP_DIR = "app"
+
+    TD_DIR = f"{APP_DIR}/templates/admin/components/tables/td"
+    TD_TEMPS = [TEMP for TEMP in pathlib.Path(TD_DIR).glob("*html")]
