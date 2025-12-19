@@ -7,6 +7,7 @@ from flask_login import login_required
 from app.blueprints.api import bp
 from app.extensions import db
 from app.forms.attendance.student import AddStudentAttendanceForm
+from app.functions import render_td
 from app.models.attendance import StudentAttendance
 from app.types import ColumnID, ColumnName
 
@@ -33,13 +34,15 @@ def fetch_students_attendances_rows() -> Response:
 
     cols: List[Tuple[ColumnID, ColumnName]] = [
         (ColumnID("uid"), ColumnName("UID")),
+        (ColumnID("temp_student"), ColumnName("Student")),
+        (ColumnID("date"), ColumnName("Date")),
+        (ColumnID("temp_student_attandance_status"), ColumnName("Status")),
     ]
 
     rows: List[List] = []
 
-    for student_attendance in student_attendances:
-        dct = student_attendance.to_dict()
-        row = [dct.get(col_id, "N/A") for col_id, _ in cols]
+    for sa in student_attendances:
+        row = [render_td(col_id, sa) for col_id, _ in cols]
         rows.append(row)
 
     return Response(
