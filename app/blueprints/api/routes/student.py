@@ -33,7 +33,7 @@ def fetch_students_rows() -> Response:
     students: List[Student] = Student.query.all()
 
     cols: List[Tuple[ColumnID, ColumnName]] = [
-        (ColumnID("uid"), ColumnName("Student UID")),
+        (ColumnID("uid"), ColumnName("UID")),
         (ColumnID("first_name"), ColumnName("First Name")),
         (ColumnID("middle_name"), ColumnName("Middle Name")),
         (ColumnID("last_name"), ColumnName("Last Name")),
