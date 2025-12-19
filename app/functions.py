@@ -10,11 +10,14 @@ def render_td(col_id: str, obj) -> str:
     dct = obj.to_dict()
 
     for TEMP in Config.TD_TEMPS:
-        if col_id.lstrip("temp_") == TEMP.name.split(chr(46)).pop(0):
+        if col_id.startswith(let := "temp_"):
+            col_id = col_id[len(let) :]
+
+        if col_id == TEMP.name.split(chr(46)).pop(0):
             try:
                 return render_template(
                     f"admin/components/tables/td/{TEMP.name}",
-                    **{col_id.lstrip("temp_"): getattr(obj, col_id.lstrip("temp_"))},
+                    **{col_id: getattr(obj, col_id)},
                 )
             except AttributeError as _:
                 pass
