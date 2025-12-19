@@ -29,7 +29,7 @@ def fetch_results_rows() -> Response:
     results: List[Result] = Result.query.all()
 
     cols: List[Tuple[ColumnID, ColumnName]] = [
-        (ColumnID("uid"), ColumnName("Result UID")),
+        (ColumnID("uid"), ColumnName("UID")),
         (ColumnID("exam_id"), ColumnName("Exam UID")),
         (ColumnID("student_id"), ColumnName("Student UID")),
     ]
