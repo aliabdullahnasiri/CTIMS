@@ -7,8 +7,15 @@ from flask_login import login_required
 from app.blueprints.api import bp
 from app.extensions import db
 from app.forms.class_ import AddClassForm, UpdateClassForm
+from app.functions import render_td
 from app.models.class_ import Class
 from app.types import ColumnID, ColumnName
+
+cols: List[Tuple[ColumnID, ColumnName]] = [
+    (ColumnID("uid"), ColumnName("UID")),
+    (ColumnID("temp_teacher"), ColumnName("Teacher")),
+    (ColumnID("name"), ColumnName("Name")),
+]
 
 
 @bp.get("/fetch/classes")
@@ -28,16 +35,10 @@ def fetch_classes() -> Response:
 def fetch_classes_rows() -> Response:
     class_s: List[Class] = Class.query.all()
 
-    cols: List[Tuple[ColumnID, ColumnName]] = [
-        (ColumnID("uid"), ColumnName("UID")),
-        (ColumnID("name"), ColumnName("Name")),
-    ]
-
     rows: List[List] = []
 
     for class_ in class_s:
-        dct = class_.to_dict()
-        row = [dct.get(col_id, "N/A") for col_id, _ in cols]
+        row = [render_td(col_id, class_) for col_id, _ in cols]
         rows.append(row)
 
     return Response(
@@ -54,7 +55,15 @@ def fetch_class_row(uid: str) -> Response:
 
     if class_:
         return Response(
-            json.dumps(class_.to_dict()),
+            json.dumps(
+                {
+                    key: val
+                    for key, val in zip(
+                        [col_id for col_id, _ in cols],
+                        [render_td(col_id, class_) for col_id, _ in cols],
+                    )
+                }
+            ),
             status=200,
             headers={"Content-Type": "application/json"},
         )
