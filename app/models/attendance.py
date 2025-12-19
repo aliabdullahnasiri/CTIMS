@@ -16,6 +16,7 @@ class StudentAttendance(db.Model):
     date = db.Column(
         db.Date, default=lambda: datetime.now(timezone.utc), nullable=False
     )
+    time = db.Column(db.Time(), default=lambda: datetime.now().time())
     status = db.Column(db.Enum(AttendanceStatus), default=AttendanceStatus.PRESENT)
 
     student = db.relationship("Student", back_populates="attendances")
@@ -33,6 +34,10 @@ class StudentAttendance(db.Model):
     def display_date(self) -> str:
         return self.date.strftime("%Y-%m-%d")
 
+    @property
+    def display_time(self) -> str:
+        return self.time.strftime("%H:%M:%S")
+
     def __repr__(self):
         return f"<StudentAttendance {self.uid} StudentID={self.student_id}>"
 
@@ -45,6 +50,7 @@ class TeacherAttendance(db.Model):
         db.Date,
         default=lambda: datetime.now(timezone.utc),
     )
+    time = db.Column(db.Time(), default=lambda: datetime.now().time())
     status = db.Column(db.Enum(AttendanceStatus), default=AttendanceStatus.PRESENT)
 
     teacher = db.relationship("Teacher", back_populates="attendances")
@@ -63,3 +69,7 @@ class TeacherAttendance(db.Model):
     @property
     def display_date(self) -> str:
         return self.date.strftime("%Y-%m-%d")
+
+    @property
+    def display_time(self) -> str:
+        return self.time.strftime("%H:%M:%S")
