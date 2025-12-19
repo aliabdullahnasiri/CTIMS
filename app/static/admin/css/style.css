@@ -169,3 +169,11 @@ input[type="number"]::-webkit-outer-spin-button {
 textarea {
   height: 140px;
 }
+
+.bg-gradient-absent {
+  background-image: linear-gradient(195deg, #ef5350 0%, #e53935 100%);
+}
+
+.bg-gradient-present {
+  background-image: linear-gradient(195deg, #66bb6a 0%, #43a047 100%);
+}
