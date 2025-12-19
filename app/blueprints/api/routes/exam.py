@@ -29,7 +29,7 @@ def fetch_exams_rows() -> Response:
     exams: List[Exam] = Exam.query.all()
 
     cols: List[Tuple[ColumnID, ColumnName]] = [
-        (ColumnID("uid"), ColumnName("Exam UID")),
+        (ColumnID("uid"), ColumnName("UID")),
         (ColumnID("title"), ColumnName("Title")),
         (ColumnID("description"), ColumnName("Description")),
         (ColumnID("total_marks"), ColumnName("Total Marks")),
