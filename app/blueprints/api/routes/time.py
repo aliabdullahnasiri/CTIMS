@@ -1,7 +1,7 @@
 import json
 from typing import Dict, List, Tuple, Union
 
-from flask import Response, request
+from flask import Response
 from flask_login import login_required
 
 from app.blueprints.api import bp
