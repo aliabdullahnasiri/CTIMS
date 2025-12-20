@@ -5,8 +5,10 @@
   data-get-row="{{ url_for('api.fetch_time_row', uid='@')}}"
   data-update-row="{{ url_for('api.update_time')}}"
   data-delete-row="{{ url_for('api.delete_time', uid='@')}}"
+  data-view-row="{{ url_for('admin.view', entity='time', uid='@') }}"
   data-add-row-modal-id="#AddTimeModal"
   data-edit-row-modal-id="#EditTimeModal"
+  data-view-row-modal-id="#ViewTimeModal"
 >
   <thead></thead>
   <tbody></tbody>
