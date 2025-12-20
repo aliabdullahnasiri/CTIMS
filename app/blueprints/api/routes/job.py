@@ -7,8 +7,16 @@ from flask_login import login_required
 from app.blueprints.api import bp
 from app.extensions import db
 from app.forms.job import AddJobForm, UpdateJobForm
+from app.functions import render_td
 from app.models.job import Job
 from app.types import ColumnID, ColumnName
+
+cols: List[Tuple[ColumnID, ColumnName]] = [
+    (ColumnID("uid"), ColumnName("UID")),
+    (ColumnID("job_title"), ColumnName("Job Title")),
+    (ColumnID("min_salary"), ColumnName("Min Salary")),
+    (ColumnID("max_salary"), ColumnName("Max Salary")),
+]
 
 
 @bp.get("/fetch/jobs")
@@ -30,32 +38,11 @@ def fetch_jobs_rows() -> Response:
         headers={"Content-Type": "application/json"},
     )
 
-    cols: List[Tuple[ColumnID, ColumnName]] = [
-        (ColumnID("uid"), ColumnName("UID")),
-        (ColumnID("job_title"), ColumnName("Job Title")),
-        (ColumnID("min_salary"), ColumnName("Min Salary")),
-        (ColumnID("max_salary"), ColumnName("Max Salary")),
-    ]
-
     jobs: List[Job] = Job.query.all()
     rows: List[List] = []
 
     for job in jobs:
-        row: List = []
-
-        for col_id, _ in cols:
-            val = getattr(job, col_id)
-
-            match col_id:
-                case "min_salary":
-                    row.append(job.display_min_salary)
-
-                case "max_salary":
-                    row.append(job.display_max_salary)
-
-                case _:
-                    row.append(val)
-
+        row = [render_td(col_id, job) for col_id, _ in cols]
         rows.append(row)
 
     dct: Dict = {
@@ -76,7 +63,15 @@ def fetch_job_row(uid: str) -> Response:
 
     if job:
         return Response(
-            json.dumps(job.to_dict()),
+            json.dumps(
+                {
+                    key: val
+                    for key, val in zip(
+                        [col_id for col_id, _ in cols],
+                        [render_td(col_id, job) for col_id, _ in cols],
+                    )
+                }
+            ),
             status=200,
             headers={"Content-Type": "application/json"},
         )
