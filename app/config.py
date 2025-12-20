@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import os
 import pathlib
+import re
 
 from dotenv import load_dotenv
 
@@ -29,3 +30,8 @@ class Config:
 
     TD_DIR = f"{APP_DIR}/templates/admin/components/tables/td"
     TD_TEMPS = [TEMP for TEMP in pathlib.Path(TD_DIR).glob("*html")]
+
+    VIEWS_TEMPS_DIR = f"{APP_DIR}/templates/admin/views"
+    VIEWS_TEMPS = [TEMP for TEMP in pathlib.Path(VIEWS_TEMPS_DIR).glob("*html")]
+
+    UID_PATTERN: re.Pattern = re.compile(r"^(T).\d{6}$")
