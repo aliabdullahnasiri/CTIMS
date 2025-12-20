@@ -18,4 +18,5 @@ from .routes import (
     teacher,
     time,
     user,
+    view,
 )
