@@ -19,6 +19,7 @@ cols: List[Tuple[ColumnID, ColumnName]] = [
     (ColumnID("uid"), ColumnName("UID")),
     (ColumnID("temp_student"), ColumnName("Student")),
     (ColumnID("birthday"), ColumnName("Birthday")),
+    (ColumnID("age"), ColumnName("Age")),
 ]
 
 
