@@ -1,0 +1,165 @@
+<div class="card card-plain">
+  <div class="card-header">
+    <div class="row gx-4 mb-2">
+      <div class="col-auto my-auto">
+        <div class="h-100">
+          <h5 class="mb-1">{{ time.title }}</h5>
+          <p class="mb-0 font-weight-normal text-sm">{{ time.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body py-0">
+    <div class="row gx-3 my-1">
+      <div class="col-md-8">
+        <div class="row gx-0 mb-2">
+          <div class="card">
+            <div class="card-header pb-0">
+              <h5>Time Information</h5>
+            </div>
+            <hr class="bg-dark horizontal my-0 opacity-10" />
+            <div class="card-body p0">
+              <ul class="list-group">
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>UID:</strong> &nbsp;{{ time.uid }}
+                </li>
+
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Start Time:</strong> &nbsp;{{ time.display_start_time
+                  }}
+                </li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>End Time:</strong> &nbsp;{{ time.display_end_time }}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="row mb-3">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header ps-3">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <p class="text-sm mb-0 text-capitalize">Classes</p>
+                    <h4 class="mb-0">{{ time.display_number_of_classes }}</h4>
+                  </div>
+                  <div
+                    class="icon icon-md icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-lg"
+                  >
+                    <i class="material-symbols-rounded opacity-10">school</i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header ps-3">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <p class="text-sm mb-0 text-capitalize">Students</p>
+                    <h4 class="mb-0">{{ time.display_number_of_students }}</h4>
+                  </div>
+                  <div
+                    class="icon icon-md icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-lg"
+                  >
+                    <i class="material-symbols-rounded opacity-10">people</i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row gx-3 my-1">
+      <div class="col-md-12">
+        <div class="row gx-0 mb-2 mt-5">
+          <div class="card">
+            <div
+              class="bg-gradient-dark card-header mt-n4 mx-3 position-relative z-index-2 shadow-sm rounded-3 py-4"
+            >
+              <h5 class="mb-0 mx-2">Classes</h5>
+            </div>
+
+            <div class="card-body pb-0">
+              <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0 table-hover">
+                  <thead>
+                    <tr>
+                      <th
+                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center"
+                      >
+                        UID
+                      </th>
+                      <th
+                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                      >
+                        Teacher
+                      </th>
+                      <th
+                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                      >
+                        Name
+                      </th>
+                      <th
+                        class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                      >
+                        Students
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% if time.classes %} {% for class_ in time.classes %}
+                    <tr>
+                      <td class="text-xs text-center">{{ class_.uid }}</td>
+                      <td>
+                        <div class="d-flex px-0 py-1">
+                          <div>
+                            <img
+                              src="{{ class_.teacher.avatar_path }}"
+                              class="avatar avatar-sm me-3 border-radius-lg"
+                              alt="user1"
+                            />
+                          </div>
+                          <div
+                            class="d-flex flex-column justify-content-center"
+                          >
+                            <h6 class="mb-0 text-sm">
+                              {{ class_.teacher.full_name }}
+                            </h6>
+                            <p class="text-xs text-secondary mb-0">
+                              {{ class_.teacher.email }}
+                            </p>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="text-xs">{{ class_.name }}</td>
+                      <td class="align-middle text-center text-xs">
+                        {{ class_.display_number_of_students }}
+                      </td>
+                    </tr>
+                    {% endfor %} {% else %}
+                    <tr class="no-rows-label">
+                      <td colspan="4" class="py-4 text-center">
+                        <span>No classes yet :(</span>
+                      </td>
+                    </tr>
+                    {% endif %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer"></div>
+</div>

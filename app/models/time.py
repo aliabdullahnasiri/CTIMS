@@ -1,5 +1,7 @@
 from typing import Dict
 
+from numerize.numerize import numerize
+
 from app.extensions import db
 
 
@@ -33,3 +35,16 @@ class Time(db.Model):
     @property
     def display_end_time(self) -> str:
         return self.end.strftime("%H:%M") if self.end else "N/A"
+
+    @property
+    def display_number_of_classes(self) -> str:
+        return numerize(len(self.classes), decimals=2)
+
+    @property
+    def display_number_of_students(self) -> str:
+        n = 0
+
+        for class_ in self.classes:
+            n += class_.number_of_students
+
+        return numerize(n, decimals=2)
