@@ -7,8 +7,17 @@ from flask_login import login_required
 from app.blueprints.api import bp
 from app.extensions import db
 from app.forms.time import AddTimeForm, UpdateTimeForm
+from app.functions import render_td
 from app.models.time import Time
 from app.types import ColumnID, ColumnName
+
+cols: List[Tuple[ColumnID, ColumnName]] = [
+    (ColumnID("uid"), ColumnName("UID")),
+    (ColumnID("title"), ColumnName("Title")),
+    (ColumnID("description"), ColumnName("Description")),
+    (ColumnID("start"), ColumnName("Start Time")),
+    (ColumnID("end"), ColumnName("End Time")),
+]
 
 
 @bp.get("/fetch/times")
@@ -28,19 +37,10 @@ def fetch_times() -> Response:
 def fetch_times_rows() -> Response:
     times: List[Time] = Time.query.all()
 
-    cols: List[Tuple[ColumnID, ColumnName]] = [
-        (ColumnID("uid"), ColumnName("UID")),
-        (ColumnID("title"), ColumnName("Title")),
-        (ColumnID("description"), ColumnName("Description")),
-        (ColumnID("start"), ColumnName("Start Time")),
-        (ColumnID("end"), ColumnName("End Time")),
-    ]
-
     rows: List[List] = []
 
     for time in times:
-        dct = time.to_dict()
-        row = [dct.get(col_id, "N/A") for col_id, _ in cols]
+        row = [render_td(col_id, time) for col_id, _ in cols]
         rows.append(row)
 
     return Response(
@@ -57,7 +57,15 @@ def fetch_time_row(uid: str) -> Response:
 
     if time:
         return Response(
-            json.dumps(time.to_dict()),
+            json.dumps(
+                {
+                    key: val
+                    for key, val in zip(
+                        [col_id for col_id, _ in cols],
+                        [render_td(col_id, time) for col_id, _ in cols],
+                    )
+                }
+            ),
             status=200,
             headers={"Content-Type": "application/json"},
         )
