@@ -7,8 +7,15 @@ from flask_login import login_required
 from app.blueprints.api import bp
 from app.extensions import db
 from app.forms.semester import AddSemesterForm, UpdateSemesterForm
+from app.functions import render_td
 from app.models.semester import Semester
 from app.types import ColumnID, ColumnName
+
+cols: List[Tuple[ColumnID, ColumnName]] = [
+    (ColumnID("uid"), ColumnName("UID")),
+    (ColumnID("name"), ColumnName("Name")),
+    (ColumnID("number"), ColumnName("Number")),
+]
 
 
 @bp.get("/fetch/semesters")
@@ -28,17 +35,10 @@ def fetch_semesters() -> Response:
 def fetch_semesters_rows() -> Response:
     semesters: List[Semester] = Semester.query.all()
 
-    cols: List[Tuple[ColumnID, ColumnName]] = [
-        (ColumnID("uid"), ColumnName("UID")),
-        (ColumnID("name"), ColumnName("Name")),
-        (ColumnID("number"), ColumnName("Number")),
-    ]
-
     rows: List[List] = []
 
     for semester in semesters:
-        dct = semester.to_dict()
-        row = [dct.get(col_id, "N/A") for col_id, _ in cols]
+        row = [render_td(col_id, semester) for col_id, _ in cols]
         rows.append(row)
 
     return Response(
@@ -55,7 +55,15 @@ def fetch_semester_row(uid: str) -> Response:
 
     if semester:
         return Response(
-            json.dumps(semester.to_dict()),
+            json.dumps(
+                {
+                    key: val
+                    for key, val in zip(
+                        [col_id for col_id, _ in cols],
+                        [render_td(col_id, semester) for col_id, _ in cols],
+                    )
+                }
+            ),
             status=200,
             headers={"Content-Type": "application/json"},
         )
