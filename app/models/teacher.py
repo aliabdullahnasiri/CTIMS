@@ -96,7 +96,7 @@ class Teacher(db.Model):
             "email": self.email,
             "birthday": self.display_birthday,
             "age": self.age,
-            "salary": f"{self.salary:.2f}" if self.salary is not None else None,
+            "salary": self.display_salary,
             "avatar": self.avatar_path,
             "phones": [p.phone_number for p in self.phones],
             "subjects": [s.subject.uid for s in self.teachings],
