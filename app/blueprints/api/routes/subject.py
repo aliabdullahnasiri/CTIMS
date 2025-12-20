@@ -9,10 +9,18 @@ from sqlalchemy import and_
 from app.blueprints.api import bp
 from app.extensions import console, db
 from app.forms.subject import AddSubjectForm, UpdateSubjectForm
+from app.functions import render_td
 from app.models.file import File, SubjectFile
 from app.models.subject import Subject
 from app.models.teaching import Teaching
 from app.types import ColumnID, ColumnName
+
+cols: List[Tuple[ColumnID, ColumnName]] = [
+    (ColumnID("uid"), ColumnName("UID")),
+    (ColumnID("name"), ColumnName("Name")),
+    (ColumnID("description"), ColumnName("Description")),
+    (ColumnID("credit"), ColumnName("Credit")),
+]
 
 
 @bp.get("/fetch/subjects")
@@ -32,18 +40,10 @@ def fetch_subjects() -> Response:
 def fetch_subjects_rows() -> Response:
     subjects: List[Subject] = Subject.query.all()
 
-    cols: List[Tuple[ColumnID, ColumnName]] = [
-        (ColumnID("uid"), ColumnName("UID")),
-        (ColumnID("name"), ColumnName("Name")),
-        (ColumnID("description"), ColumnName("Description")),
-        (ColumnID("credit"), ColumnName("Credit")),
-    ]
-
     rows: List[List] = []
 
     for subject in subjects:
-        dct = subject.to_dict()
-        row = [val if (val := dct.get(col_id)) else "N/A" for col_id, _ in cols]
+        row = [render_td(col_id, subject) for col_id, _ in cols]
         rows.append(row)
 
     return Response(
@@ -60,7 +60,15 @@ def fetch_subject_row(uid: str) -> Response:
 
     if subject:
         return Response(
-            json.dumps(subject.to_dict()),
+            json.dumps(
+                {
+                    key: val
+                    for key, val in zip(
+                        [col_id for col_id, _ in cols],
+                        [render_td(col_id, subject) for col_id, _ in cols],
+                    )
+                }
+            ),
             status=200,
             headers={"Content-Type": "application/json"},
         )
