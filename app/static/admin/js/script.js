@@ -1,3 +1,16 @@
+(function () {
+  document.addEventListener("DOMContentLoaded", () => {
+    const loaderElement = document.querySelector("div[data-bs=loader]");
+
+    setTimeout(() => {
+      loaderElement.classList.add("fade");
+      setTimeout(() => {
+        loaderElement.remove();
+      }, 500);
+    }, 500);
+  });
+}).call(this);
+
 // Fixed Plugin
 (function () {
   const asideElement = document.querySelector("aside");
