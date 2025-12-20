@@ -10,11 +10,20 @@ from app.blueprints.api import bp
 from app.constants import DEFAULT_AVATAR
 from app.extensions import console, db
 from app.forms.teacher import AddTeacherForm, UpdateTeacherForm
+from app.functions import render_td
 from app.models.file import File, TeacherFile
 from app.models.phone import TeacherPhone
 from app.models.teacher import Teacher
 from app.models.teaching import Teaching
 from app.types import ColumnID, ColumnName
+
+cols: List[Tuple[ColumnID, ColumnName]] = [
+    (ColumnID("uid"), ColumnName("UID")),
+    (ColumnID("temp_teacher"), ColumnName("Teacher")),
+    (ColumnID("birthday"), ColumnName("Birthday")),
+    (ColumnID("age"), ColumnName("Age")),
+    (ColumnID("salary"), ColumnName("Salary")),
+]
 
 
 @bp.get("/fetch/teachers")
@@ -34,20 +43,11 @@ def fetch_teachers() -> Response:
 def fetch_teachers_rows() -> Response:
     teachers: List[Teacher] = Teacher.query.all()
 
-    cols: List[Tuple[ColumnID, ColumnName]] = [
-        (ColumnID("uid"), ColumnName("UID")),
-        (ColumnID("first_name"), ColumnName("First Name")),
-        (ColumnID("middle_name"), ColumnName("Middle Name")),
-        (ColumnID("last_name"), ColumnName("Last Name")),
-        (ColumnID("email"), ColumnName("Email")),
-        (ColumnID("birthday"), ColumnName("Birthday")),
-    ]
-
     rows: List[List] = []
 
     for teacher in teachers:
         dct = teacher.to_dict()
-        row = [dct.get(col_id, "N/A") for col_id, _ in cols]
+        row = [render_td(col_id, teacher) for col_id, _ in cols]
         rows.append(row)
 
     return Response(
@@ -64,7 +64,15 @@ def fetch_teacher_row(uid: str) -> Response:
 
     if teacher:
         return Response(
-            json.dumps(teacher.to_dict()),
+            json.dumps(
+                {
+                    key: val
+                    for key, val in zip(
+                        [col_id for col_id, _ in cols],
+                        [render_td(col_id, teacher) for col_id, _ in cols],
+                    )
+                }
+            ),
             status=200,
             headers={"Content-Type": "application/json"},
         )
