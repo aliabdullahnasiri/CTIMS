@@ -1,3 +1,5 @@
+from numerize.numerize import numerize
+
 from app.extensions import db
 
 
@@ -31,3 +33,11 @@ class Class(db.Model):
             "semester_id": self.semester_id,
             **super().to_dict(),
         }
+
+    @property
+    def number_of_students(self) -> int:
+        return len(self.students)
+
+    @property
+    def display_number_of_students(self) -> str:
+        return numerize(self.number_of_students, decimals=2)
