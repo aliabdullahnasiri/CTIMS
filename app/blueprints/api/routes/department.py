@@ -7,8 +7,15 @@ from flask_login import login_required
 from app.blueprints.api import bp
 from app.extensions import db
 from app.forms.department import AddDepartmentForm, UpdateDepartmentForm
+from app.functions import render_td
 from app.models.department import Department
 from app.types import ColumnID, ColumnName
+
+cols: List[Tuple[ColumnID, ColumnName]] = [
+    (ColumnID("uid"), ColumnName("UID")),
+    (ColumnID("name"), ColumnName("name")),
+    (ColumnID("description"), ColumnName("Description")),
+]
 
 
 @bp.get("/fetch/departments")
@@ -30,17 +37,11 @@ def fetch_departments() -> Response:
 def fetch_departments_rows() -> Response:
     departments: List[Department] = Department.query.all()
 
-    cols: List[Tuple[ColumnID, ColumnName]] = [
-        (ColumnID("uid"), ColumnName("UID")),
-        (ColumnID("name"), ColumnName("name")),
-        (ColumnID("description"), ColumnName("Description")),
-    ]
-
     rows: List[List] = []
 
     for department in departments:
         dct = department.to_dict()
-        row = [dct.get(col_id, "N/A") for col_id, _ in cols]
+        row = [render_td(col_id, department) for col_id, _ in cols]
         rows.append(row)
 
     return Response(
@@ -81,7 +82,15 @@ def fetch_department(uid: str) -> Response:
 
     if department:
         return Response(
-            json.dumps(department.to_dict()),
+            json.dumps(
+                {
+                    key: val
+                    for key, val in zip(
+                        [col_id for col_id, _ in cols],
+                        [render_td(col_id, department) for col_id, _ in cols],
+                    )
+                }
+            ),
             status=200,
             headers={"Content-Type": "application/json"},
         )
