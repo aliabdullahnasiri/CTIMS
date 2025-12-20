@@ -48,12 +48,13 @@ class Employee(db.Model):
             "first_name": self.first_name,
             "middle_name": self.middle_name,
             "last_name": self.last_name,
+            "full_name": self.full_name,
             "email": self.email,
             "birthday": self.display_birthday,
             "age": self.age,
             "avatar": self.avatar_path,
             "address": self.address,
-            "salary": f"{self.salary:.2f}" if self.salary else None,
+            "salary": self.display_salary,
             "hire_date": self.display_hire_date,
             "phones": [phone.phone_number for phone in self.phones],
             **super().to_dict(),
@@ -81,7 +82,6 @@ class Employee(db.Model):
 
         return self.salary > average_salary
 
-    # --- Display properties for templates ---
     @property
     def full_name(self) -> str:
         """Return full name with middle name if exists."""
