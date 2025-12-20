@@ -45,6 +45,7 @@ class User(UserMixin, db.Model):
             "middle_name": self.middle_name,
             "last_name": self.last_name,
             "user_name": self.user_name,
+            "full_name": self.full_name,
             "email": self.email,
             "birthday": self.display_birthday,
             "age": self.age,
@@ -65,6 +66,13 @@ class User(UserMixin, db.Model):
 
     def __repr__(self):
         return f"<User {self.user_name}>"
+
+    @property
+    def full_name(self) -> str:
+        """Return full name with middle name if exists."""
+        if self.middle_name:
+            return f"{self.first_name} {self.middle_name} {self.last_name}"
+        return f"{self.first_name} {self.last_name}"
 
     @property
     def age(self) -> int | None:

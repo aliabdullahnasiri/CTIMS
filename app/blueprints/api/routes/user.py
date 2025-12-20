@@ -8,8 +8,17 @@ from app.blueprints.api import bp
 from app.constants import DEFAULT_AVATAR
 from app.extensions import console, db
 from app.forms import AddUserForm, UpdateUserForm
+from app.functions import render_td
 from app.models.user import User
 from app.types import ColumnID, ColumnName
+
+cols: List[Tuple[ColumnID, ColumnName]] = [
+    (ColumnID("uid"), ColumnName("UID")),
+    (ColumnID("temp_user"), ColumnName("User")),
+    (ColumnID("user_name"), ColumnName("User Name")),
+    (ColumnID("birthday"), ColumnName("Birthday")),
+    (ColumnID("age"), ColumnName("Age")),
+]
 
 
 @bp.get("/fetch/users")
@@ -30,27 +39,10 @@ def fetch_users() -> Response:
 def fetch_users_rows() -> Response:
     users: List[User] = User.query.all()
 
-    cols: List[Tuple[ColumnID, ColumnName]] = [
-        (ColumnID("uid"), ColumnName("UID")),
-        (ColumnID("first_name"), ColumnName("First Name")),
-        (ColumnID("middle_name"), ColumnName("Middle Name")),
-        (ColumnID("last_name"), ColumnName("Last Name")),
-        (ColumnID("user_name"), ColumnName("User Name")),
-        (ColumnID("email"), ColumnName("Email")),
-        (ColumnID("birthday"), ColumnName("Birthday")),
-    ]
-
     rows: List[List] = []
 
     for user in users:
-        row: List = []
-        dct: Dict = user.to_dict()
-
-        for col_id, _ in cols:
-            val = dct.get(col_id, "N/A")
-
-            row.append(val)
-
+        row = [render_td(col_id, user) for col_id, _ in cols]
         rows.append(row)
 
     dct: Dict = {
@@ -75,7 +67,15 @@ def fetch_user_row(uid) -> Response:
     user: Union[User, None] = User.query.filter_by(uid=uid).first()
 
     if user:
-        response.response = json.dumps(user.to_dict())
+        response.response = json.dumps(
+            {
+                key: val
+                for key, val in zip(
+                    [col_id for col_id, _ in cols],
+                    [render_td(col_id, user) for col_id, _ in cols],
+                )
+            }
+        )
         response.status_code = 200
 
     else:
