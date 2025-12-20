@@ -1,0 +1,47 @@
+import json
+import re
+from typing import Dict, List, Union
+
+from flask import Response, render_template
+from jinja2 import Template
+
+from app.blueprints.admin import bp
+from app.config import Config
+from app.functions import validate_uid
+from app.models.time import Time
+
+entities: Dict = {"time": Time}
+
+
+@bp.get("/view/<string:entity>/<string:uid>")
+def view(entity: str, uid: str) -> Response:
+    response: Response = Response()
+
+    obj = entities.get(entity)
+
+    if not validate_uid(uid) or not obj:
+        response.headers.setdefault("Content-Type", "application/json")
+        response.response = json.dumps({"error": "Invalid UID/Entity :("})
+        response.status_code = 404
+
+        return response
+
+    for template in Config.VIEWS_TEMPS:
+        filename = template.name
+
+        if filename.startswith(entity):
+            with open(template) as f:
+                if row := obj.query.filter_by(uid=uid).first():
+                    response.response = render_template(
+                        Template(f.read()), **{entity: row}
+                    )
+                    response.status_code = 200
+                else:
+                    response.response = json.dumps({"error": "Row was not found :("})
+                    response.status_code = 404
+            break
+    else:
+        response.response = json.dumps({"error": "Template was not found :("})
+        response.status_code = 404
+
+    return response
