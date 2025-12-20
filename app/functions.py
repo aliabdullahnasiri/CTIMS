@@ -1,9 +1,12 @@
-import pathlib
+import re
 
 from flask import render_template
 
 from app.config import Config
-from app.extensions import console
+
+
+def validate_uid(uid: str) -> bool:
+    return bool(re.match(Config.UID_PATTERN, uid))
 
 
 def render_td(col_id: str, obj) -> str:
