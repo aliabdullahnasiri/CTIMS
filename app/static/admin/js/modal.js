@@ -132,6 +132,8 @@ import { createListSectionItem, resetForm } from "./form.js";
   document.addEventListener("show.bs.modal", (event) => {
     let modalDialog = event.target.querySelector(".modal-dialog");
 
+    if (event.relatedTarget.getAttribute("aria-label") !== "View Modal") return;
+
     let loaderElement = createLoader();
 
     modalDialog.append(loaderElement);
