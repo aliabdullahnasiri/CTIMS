@@ -1,8 +1,30 @@
+function activeTab(presentation) {
+  const aElement = presentation.querySelector("[aria-selected=true]");
+
+  if (aElement) {
+    const tab = document.querySelector(
+      "[data-tab-id='%s']".replace("%s", aElement.dataset.bsTarget),
+    );
+
+    if (tab) {
+      const tabContainer = tab.closest("[role=tab-container]");
+
+      tabContainer?.querySelectorAll("[role=tab]").forEach((element) => {
+        element.classList.add("d-none");
+      });
+
+      tab.classList.remove("d-none");
+      tab.classList.add("show");
+    }
+  }
+}
 export function transformMovingTab(movingTab, presentation) {
   movingTab.style.transform = "translate3d(%spx, 0px, 0px)".replace(
     "%s",
     presentation?.offsetLeft,
   );
+
+  if (presentation) activeTab(presentation);
 }
 
 export function createMovingTab(presentation) {
@@ -26,7 +48,10 @@ export function initAllMovingTabs() {
   for (const tabElement of document.querySelectorAll("[role=tablist]")) {
     let presentation = tabElement.querySelector("[role=presentation]");
 
-    if (presentation) tabElement.append(createMovingTab(presentation));
+    if (presentation) {
+      tabElement.append(createMovingTab(presentation));
+      activeTab(presentation);
+    }
   }
 }
 
