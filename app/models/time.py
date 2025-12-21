@@ -53,3 +53,7 @@ class Time(db.Model):
     @property
     def display_number_of_teachers(self) -> str:
         return numerize(len(self.teachers), decimals=2)
+
+    @property
+    def students(self):
+        return [student for c in self.classes for student in c.students]
