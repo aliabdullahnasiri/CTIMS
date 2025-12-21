@@ -15,6 +15,7 @@ class Time(db.Model):
     end = db.Column(db.Time, nullable=True)
 
     classes = db.relationship("Class", back_populates="time")
+    teachers = db.relationship("Teacher", back_populates="time")
 
     def to_dict(self) -> Dict:
         return {
