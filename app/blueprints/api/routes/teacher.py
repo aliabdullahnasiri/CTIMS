@@ -131,6 +131,9 @@ def add_teacher() -> Response:
         teacher.salary = form.salary.data
         teacher.avatar_path = url_for("static", filename=DEFAULT_AVATAR)
 
+        if form.time_id:
+            teacher.time_id = form.time_id.data
+
         db.session.add(teacher)
         db.session.commit()
 
@@ -227,6 +230,9 @@ def update_teacher() -> Response:
             teacher.email = form.email.data
             teacher.birthday = form.birthday.data
             teacher.salary = form.salary.data
+
+            if form.time_id:
+                teacher.time_id = form.time_id.data
 
             db.session.commit()
 
