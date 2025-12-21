@@ -1,9 +1,11 @@
 import re
+from operator import and_
 
 from flask_wtf import FlaskForm
 from wtforms import HiddenField, StringField, SubmitField, ValidationError
 from wtforms.validators import DataRequired, Length
 
+from app.extensions import db
 from app.models.class_ import Class
 from app.models.semester import Semester
 from app.models.teacher import Teacher
@@ -51,3 +53,11 @@ class UpdateClassForm(AddClassForm):
     uid = HiddenField("Class UID", validators=[DataRequired()])
 
     submit = SubmitField("Update Class")
+
+    def validate_name(self, name):
+        if (
+            db.session.query(Class)
+            .filter(and_(Class.uid != self.uid.data, Class.name == name.data))
+            .first()
+        ):
+            raise ValidationError("The class name must be unique :)")
