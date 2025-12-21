@@ -1,3 +1,35 @@
+export function transformMovingTab(movingTab, presentation) {
+  movingTab.style.transform = "translate3d(%spx, 0px, 0px)".replace(
+    "%s",
+    presentation?.offsetLeft,
+  );
+}
+
+export function createMovingTab(presentation) {
+  const divElement = document.createElement("div");
+
+  divElement.style.width = presentation.offsetWidth + "px";
+  divElement.style.height = presentation.offsetHeight + "px";
+  divElement.style.transition = "0.5s";
+  divElement.style.transform = "translate3d(%spx, 0px, 0px)".replace(
+    "%s",
+    presentation.offsetLeft,
+  );
+
+  divElement.classList.value =
+    "moving-tab position-absolute nav-link bg-gradient-dark";
+
+  return divElement;
+}
+
+export function initAllMovingTabs() {
+  for (const tabElement of document.querySelectorAll("[role=tablist]")) {
+    let presentation = tabElement.querySelector("[role=presentation]");
+
+    if (presentation) tabElement.append(createMovingTab(presentation));
+  }
+}
+
 (function () {
   document.addEventListener("DOMContentLoaded", () => {
     const loaderElement = document.querySelector("div[data-bs=loader]");
@@ -9,72 +41,19 @@
       }, 500);
     }, 500);
   });
-}).call(this);
 
-// Fixed Plugin
-(function () {
-  const asideElement = document.querySelector("aside");
-  const fixedPluginElement = document.querySelector(".fixed-plugin");
-  const badgeColorsElement = fixedPluginElement.querySelector(".badge-colors");
-  const sideNavTypeElement = fixedPluginElement.querySelector(".sidenav-type");
-  const darkVersionElement = fixedPluginElement.querySelector("#dark-version");
+  document.addEventListener("click", (event) => {
+    const tabListElement = event.target.closest("[role=tablist]");
 
-  badgeColorsElement.addEventListener("click", function (event) {
-    if (event.target.tagName == "SPAN")
-      localStorage.setItem("side-bar-color", event.target.dataset.color);
-  });
+    if (tabListElement) {
+      const presentation = event.target.closest("[role=presentation]");
+      const movingTab = tabListElement.querySelector("div.moving-tab");
 
-  sideNavTypeElement.addEventListener("click", function (event) {
-    if (event.target.tagName == "BUTTON") {
-      localStorage.setItem("side-nav-type", event.target.dataset.class);
-    }
-  });
-
-  darkVersionElement.addEventListener("change", function (event) {
-    localStorage.setItem("dark-version", event.target.checked);
-  });
-
-  document.addEventListener("DOMContentLoaded", () => {
-    Array.from(asideElement.querySelectorAll("a")).forEach((aElement) => {
-      const url = new URL(aElement.href);
-      if (url.pathname == location.pathname) aElement.classList.add("active");
-      else aElement.classList.remove("active");
-    });
-
-    const badgeColor = localStorage.getItem("side-bar-color");
-    const sideNavType = localStorage.getItem("side-nav-type");
-    const darkVersion = localStorage.getItem("dark-version");
-
-    try {
-      sidebarColor(
-        badgeColorsElement.querySelector(
-          "span[data-color='%s']".replace(
-            "%s",
-            badgeColor ? badgeColor : "dark",
-          ),
-        ),
-      );
-    } catch (error) {
-      console.error(error);
-    }
-
-    try {
-      sidebarType(
-        sideNavType
-          ? fixedPluginElement.querySelector(
-              `button[data-class='${sideNavType}']`,
-            )
-          : "bg-gradient-dark",
-      );
-    } catch (error) {}
-
-    try {
-      if (darkVersion == "true") {
-        darkVersionElement.checked = darkVersion;
-        darkMode(darkVersionElement);
+      if (!movingTab) {
+        tabListElement.append(createMovingTab(presentation));
+      } else {
+        transformMovingTab(movingTab, presentation);
       }
-    } catch (error) {
-      console.error(error);
     }
   });
 }).call();
