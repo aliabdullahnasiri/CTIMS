@@ -12,7 +12,7 @@
   <div class="card-body py-0">
     <div class="row gx-3 my-1">
       <div class="col-md-8">
-        <div class="row gx-0 mb-2">
+        <div class="row gx-0 mb-3">
           <div class="card">
             <div class="card-header pb-0">
               <h5>Time Information</h5>
@@ -161,66 +161,68 @@
               </div>
 
               <div class="card-body pb-0">
-                <table class="table align-items-center mb-0 table-hover">
-                  <thead>
-                    <tr>
-                      <th
-                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center"
-                      >
-                        UID
-                      </th>
-                      <th
-                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                      >
-                        Student
-                      </th>
-                      <th
-                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                      >
-                        Birthday
-                      </th>
-                      <th
-                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                      >
-                        Age
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {% if time.students %} {% for s in time.students %}
-                    <tr>
-                      <td class="text-xs text-center">{{ s.uid }}</td>
-                      <td>
-                        <div class="d-flex px-0 py-1">
-                          <div>
-                            <img
-                              src="{{ s.avatar_path }}"
-                              class="avatar avatar-sm me-3 border-radius-lg"
-                              alt="user1"
-                            />
+                <div class="table-responsive p-0">
+                  <table class="table align-items-center mb-0 table-hover">
+                    <thead>
+                      <tr>
+                        <th
+                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center"
+                        >
+                          UID
+                        </th>
+                        <th
+                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                        >
+                          Student
+                        </th>
+                        <th
+                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                        >
+                          Birthday
+                        </th>
+                        <th
+                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                        >
+                          Age
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% if time.students %} {% for s in time.students %}
+                      <tr>
+                        <td class="text-xs text-center">{{ s.uid }}</td>
+                        <td>
+                          <div class="d-flex px-0 py-1">
+                            <div>
+                              <img
+                                src="{{ s.avatar_path }}"
+                                class="avatar avatar-sm me-3 border-radius-lg"
+                                alt="user1"
+                              />
+                            </div>
+                            <div
+                              class="d-flex flex-column justify-content-center"
+                            >
+                              <h6 class="mb-0 text-sm">{{ s.full_name }}</h6>
+                              <p class="text-xs text-secondary mb-0">
+                                {{ s.email }}
+                              </p>
+                            </div>
                           </div>
-                          <div
-                            class="d-flex flex-column justify-content-center"
-                          >
-                            <h6 class="mb-0 text-sm">{{ s.full_name }}</h6>
-                            <p class="text-xs text-secondary mb-0">
-                              {{ s.email }}
-                            </p>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="text-xs">{{ s.display_birthday }}</td>
-                      <td class="text-xs">{{ s.age }}</td>
-                    </tr>
-                    {% endfor %} {% else %}
-                    <tr class="no-rows-label">
-                      <td colspan="4" class="py-4 text-center">
-                        <span>No students yet :(</span>
-                      </td>
-                    </tr>
-                    {% endif %}
-                  </tbody>
-                </table>
+                        </td>
+                        <td class="text-xs">{{ s.display_birthday }}</td>
+                        <td class="text-xs">{{ s.age }}</td>
+                      </tr>
+                      {% endfor %} {% else %}
+                      <tr class="no-rows-label">
+                        <td colspan="4" class="py-4 text-center">
+                          <span>No students yet :(</span>
+                        </td>
+                      </tr>
+                      {% endif %}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
 
@@ -232,66 +234,68 @@
               </div>
 
               <div class="card-body pb-0">
-                <table class="table align-items-center mb-0 table-hover">
-                  <thead>
-                    <tr>
-                      <th
-                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center"
-                      >
-                        UID
-                      </th>
-                      <th
-                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                      >
-                        Teacher
-                      </th>
-                      <th
-                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                      >
-                        Age
-                      </th>
-                      <th
-                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                      >
-                        Salary
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {% if time.teachers %} {% for t in time.teachers %}
-                    <tr>
-                      <td class="text-xs text-center">{{ t.uid }}</td>
-                      <td>
-                        <div class="d-flex px-0 py-1">
-                          <div>
-                            <img
-                              src="{{ t.avatar_path }}"
-                              class="avatar avatar-sm me-3 border-radius-lg"
-                              alt="user1"
-                            />
+                <div class="table-responsive p-0">
+                  <table class="table align-items-center mb-0 table-hover">
+                    <thead>
+                      <tr>
+                        <th
+                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center"
+                        >
+                          UID
+                        </th>
+                        <th
+                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                        >
+                          Teacher
+                        </th>
+                        <th
+                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                        >
+                          Age
+                        </th>
+                        <th
+                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                        >
+                          Salary
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% if time.teachers %} {% for t in time.teachers %}
+                      <tr>
+                        <td class="text-xs text-center">{{ t.uid }}</td>
+                        <td>
+                          <div class="d-flex px-0 py-1">
+                            <div>
+                              <img
+                                src="{{ t.avatar_path }}"
+                                class="avatar avatar-sm me-3 border-radius-lg"
+                                alt="user1"
+                              />
+                            </div>
+                            <div
+                              class="d-flex flex-column justify-content-center"
+                            >
+                              <h6 class="mb-0 text-sm">{{ t.full_name }}</h6>
+                              <p class="text-xs text-secondary mb-0">
+                                {{ t.email }}
+                              </p>
+                            </div>
                           </div>
-                          <div
-                            class="d-flex flex-column justify-content-center"
-                          >
-                            <h6 class="mb-0 text-sm">{{ t.full_name }}</h6>
-                            <p class="text-xs text-secondary mb-0">
-                              {{ t.email }}
-                            </p>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="text-xs">{{ t.age }}</td>
-                      <td class="text-xs">{{ t.display_salary }}</td>
-                    </tr>
-                    {% endfor %} {% else %}
-                    <tr class="no-rows-label">
-                      <td colspan="4" class="py-4 text-center">
-                        <span>No teachers yet :(</span>
-                      </td>
-                    </tr>
-                    {% endif %}
-                  </tbody>
-                </table>
+                        </td>
+                        <td class="text-xs">{{ t.age }}</td>
+                        <td class="text-xs">{{ t.display_salary }}</td>
+                      </tr>
+                      {% endfor %} {% else %}
+                      <tr class="no-rows-label">
+                        <td colspan="4" class="py-4 text-center">
+                          <span>No teachers yet :(</span>
+                        </td>
+                      </tr>
+                      {% endif %}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
             <div class="card d-none" role="tab" data-tab-id="#tab-classes">
