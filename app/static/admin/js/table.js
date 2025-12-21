@@ -1,3 +1,5 @@
+import { initAllMovingTabs } from "./script.js";
+
 async function fetchTableData(tableElement) {
   let URL = tableElement.dataset.getRows;
 
@@ -420,6 +422,9 @@ function viewRow(tableElement, row) {
     .then((response) => response.text())
     .then((data) => {
       viewModalBodyElement.innerHTML = data;
+      setTimeout(function () {
+        initAllMovingTabs();
+      }, 25);
     });
 }
 
