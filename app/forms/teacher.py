@@ -24,9 +24,11 @@ from wtforms.validators import (
 )
 
 from app.extensions import db
+from app.functions import validate_uid
 from app.models.phone import TeacherPhone
 from app.models.subject import Subject
 from app.models.teacher import Teacher
+from app.models.time import Time
 
 
 class AddTeacherForm(FlaskForm):
@@ -53,6 +55,8 @@ class AddTeacherForm(FlaskForm):
         validators=[FileAllowed(["jpg", "jpeg", "png"], "Images only!")],
     )
 
+    time_id = StringField("Time UID", validators=[Optional(), Length(8, 8)])
+
     phones = StringField("Phone", validators=[Optional()])
     subjects = StringField("Subject UID", validators=[Optional()])
 
@@ -62,6 +66,22 @@ class AddTeacherForm(FlaskForm):
     def validate_email(self, email):
         if Teacher.query.filter_by(email=email.data).first():
             raise ValidationError("Email already registered")
+
+    def validate_time_id(self, time_id) -> None:
+        uid = time_id.data
+
+        if not validate_uid(uid):
+            raise ValidationError(f"Not a valid Time UID {uid!r}.")
+
+        if not (
+            db.session.query(Time)
+            .filter(
+                Time.uid == uid,
+            )
+            .first()
+        ):
+
+            raise ValidationError("Time with the given ID was not found :(")
 
     def validate_subjects(self, subjects) -> None:
         pattern: re.Pattern = re.compile(r"^S.\d{6}$")
