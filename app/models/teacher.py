@@ -20,6 +20,10 @@ class Teacher(db.Model):
     avatar_path = db.Column(db.String(255), nullable=True)  # Path to avatar image
     salary = db.Column(db.Numeric(12, 2), nullable=True)
 
+    time_id = db.Column(db.String(8), db.ForeignKey("times.uid"), nullable=False)
+
+    time = db.relationship("Time", back_populates="teachers")
+
     teachings = db.relationship(
         "Teaching", back_populates="teacher", cascade="all, delete-orphan"
     )
