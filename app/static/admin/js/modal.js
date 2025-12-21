@@ -118,3 +118,37 @@ import { createListSectionItem, resetForm } from "./form.js";
     if (form) resetForm(form);
   });
 }).call();
+
+(function () {
+  function createLoader() {
+    let divElement = document.createElement("div");
+
+    divElement.classList.value =
+      "bg-gradient-dark position-absolute w-100 h-100 z-index-10000 rounded-2";
+
+    return divElement;
+  }
+
+  document.addEventListener("show.bs.modal", (event) => {
+    let modalDialog = event.target.querySelector(".modal-dialog");
+
+    let loaderElement = createLoader();
+
+    modalDialog.append(loaderElement);
+
+    setInterval(() => {
+      let modalBody = modalDialog.querySelector(".modal-body");
+
+      if (modalBody.innerHTML) {
+        loaderElement.classList.add("fade");
+        setTimeout(() => {
+          loaderElement.remove();
+        }, 50);
+      }
+    }, 1000);
+  });
+  document.addEventListener("hidden.bs.modal", (event) => {
+    event.target.closest("#ViewModal").querySelector(".modal-body").innerHTML =
+      "";
+  });
+}).call();
