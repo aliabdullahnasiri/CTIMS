@@ -183,3 +183,26 @@ textarea {
 .z-index-10000 {
   z-index: 10000 !important;
 }
+
+div[data-bs-role="loader"] {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes example {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+div[data-bs-role="loader"]::after {
+  content: "";
+  border: 15px solid white;
+  padding: 20px;
+  animation: example 2s linear 0s infinite normal;
+  transition: 0.32s;
+}
