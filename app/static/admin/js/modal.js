@@ -1,4 +1,5 @@
 import { createListSectionItem, resetForm } from "./form.js";
+import { createLoader } from "./script.js";
 
 (function () {
   document.addEventListener("show.bs.modal", (event) => {
@@ -120,15 +121,6 @@ import { createListSectionItem, resetForm } from "./form.js";
 }).call();
 
 (function () {
-  function createLoader() {
-    let divElement = document.createElement("div");
-
-    divElement.classList.value =
-      "bg-gradient-dark position-absolute w-100 h-100 z-index-10000 rounded-2";
-
-    return divElement;
-  }
-
   document.addEventListener("show.bs.modal", (event) => {
     let modalDialog = event.target.querySelector(".modal-dialog");
 
