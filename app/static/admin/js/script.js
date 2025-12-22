@@ -55,9 +55,20 @@ export function initAllMovingTabs() {
   }
 }
 
+export function createLoader() {
+  let divElement = document.createElement("div");
+
+  divElement.classList.value =
+    "bg-gradient-dark position-absolute w-100 h-100 z-index-10000 rounded-2";
+
+  divElement.dataset.bsRole = "loader";
+
+  return divElement;
+}
+
 (function () {
   document.addEventListener("DOMContentLoaded", () => {
-    const loaderElement = document.querySelector("div[data-bs=loader]");
+    const loaderElement = document.querySelector("div[data-bs-role=loader]");
 
     setTimeout(() => {
       loaderElement.classList.add("fade");
