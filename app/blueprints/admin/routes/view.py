@@ -1,6 +1,5 @@
 import json
-import re
-from typing import Dict, List, Union
+from typing import Dict
 
 from flask import Response, render_template
 from jinja2 import Template
@@ -8,9 +7,13 @@ from jinja2 import Template
 from app.blueprints.admin import bp
 from app.config import Config
 from app.functions import validate_uid
+from app.models.department import Department
 from app.models.time import Time
 
-entities: Dict = {"time": Time}
+entities: Dict = {
+    "time": Time,
+    "department": Department,
+}
 
 
 @bp.get("/view/<string:entity>/<string:uid>")
