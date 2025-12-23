@@ -1,3 +1,5 @@
+from numerize.numerize import numerize
+
 from app.extensions import db
 
 
@@ -29,3 +31,15 @@ class Semester(db.Model):
 
     def __repr__(self):
         return f"<Semester {self.name} ID={self.uid}>"
+
+    @property
+    def display_number_of_classes(self):
+        return numerize(len(self.classes), decimals=2)
+
+    @property
+    def display_number_of_subjects(self):
+        return numerize(len(self.subjects), decimals=2)
+
+    @property
+    def display_number_of_students(self):
+        return numerize(len([y for x in self.classes for y in x.students]), decimals=2)
