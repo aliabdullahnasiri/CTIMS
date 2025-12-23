@@ -1,8 +1,10 @@
-from typing import Dict
+from typing import Dict, Union
 
 from numerize.numerize import numerize
 
 from app.extensions import db
+from app.models.employee import Employee
+from app.models.teacher import Teacher
 
 
 class Department(db.Model):
@@ -29,6 +31,23 @@ class Department(db.Model):
 
     def __repr__(self):
         return f"<Department {self.name}>"
+
+    @property
+    def _head_of_department(self) -> Union[Employee, Teacher, None]:
+        obj = None
+
+        match self.head_of_department:
+            case val if val.startswith("E"):
+                obj = Employee.query.filter_by(uid=self.head_of_department).first()
+
+            case val if val.startswith("T"):
+                obj = Teacher.query.filter_by(uid=self.head_of_department).first()
+
+        return obj
+
+    @property
+    def display_head_of_department_uid(self):
+        return self.head_of_department if self.head_of_department else "N/A"
 
     @property
     def display_number_of_semesters(self):
