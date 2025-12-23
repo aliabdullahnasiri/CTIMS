@@ -277,7 +277,10 @@
               </div>
 
               <div class="card-body pb-0">
-                <div class="table-responsive p-0"></div>
+                <div class="table-responsive p-0">
+                  {% with semesters = department.semesters %} {% include
+                  "admin/views/tables/semesters.html" %}{% endwith %}
+                </div>
               </div>
             </div>
 
@@ -289,7 +292,10 @@
               </div>
 
               <div class="card-body pb-0">
-                <div class="table-responsive p-0"></div>
+                <div class="table-responsive p-0">
+                  {% with subjects = department.subjects %} {% include
+                  "admin/views/tables/subjects.html" %}{% endwith %}
+                </div>
               </div>
             </div>
             <div class="card d-none" role="tab" data-tab-id="#tab-students">
@@ -300,7 +306,10 @@
               </div>
 
               <div class="card-body pb-0">
-                <div class="table-responsive p-0"></div>
+                <div class="table-responsive p-0">
+                  {% with students = department.students %} {% include
+                  "admin/views/tables/students.html" %}{% endwith %}
+                </div>
               </div>
             </div>
 
@@ -312,7 +321,10 @@
               </div>
 
               <div class="card-body pb-0">
-                <div class="table-responsive p-0"></div>
+                <div class="table-responsive p-0">
+                  {% with teachers = department.teachers %} {% include
+                  "admin/views/tables/teachers.html" %}{% endwith %}
+                </div>
               </div>
             </div>
             <div class="card d-none" role="tab" data-tab-id="#tab-classes">
@@ -323,7 +335,10 @@
               </div>
 
               <div class="card-body pb-0">
-                <div class="table-responsive p-0"></div>
+                <div class="table-responsive p-0">
+                  {% with classes = department.classes %} {% include
+                  "admin/views/tables/classes.html" %}{% endwith %}
+                </div>
               </div>
             </div>
           </div>
