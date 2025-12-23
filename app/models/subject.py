@@ -1,5 +1,7 @@
 from typing import Dict
 
+from numerize.numerize import numerize
+
 from app.extensions import console, db
 
 
@@ -43,3 +45,7 @@ class Subject(db.Model):
 
     def __repr__(self):
         return f"<Subject {self.name}>"
+
+    @property
+    def display_number_of_teachers(self):
+        return numerize(len({t.teacher.uid for t in self.teachings}))
