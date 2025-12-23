@@ -206,3 +206,9 @@ div[data-bs-role="loader"]::after {
   animation: example 2s linear 0s infinite normal;
   transition: 0.32s;
 }
+
+@media (max-width: 480px) {
+  ul[role="tablist"] li[role="presentation"] a {
+    font-size: 14px !important;
+  }
+}
