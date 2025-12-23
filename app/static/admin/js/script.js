@@ -18,13 +18,28 @@ function activeTab(presentation) {
     }
   }
 }
+
 export function transformMovingTab(movingTab, presentation) {
   movingTab.style.transform = "translate3d(%spx, 0px, 0px)".replace(
     "%s",
-    presentation?.offsetLeft,
+    presentation?.offsetLeft - 4,
   );
+  movingTab.style.width = presentation.offsetWidth - 2 + "px";
+  movingTab.style.height = presentation.offsetHeight + "px";
 
   if (presentation) activeTab(presentation);
+}
+
+export function transformAllMovingTab() {
+  for (const tabElement of document.querySelectorAll("[role=tablist]")) {
+    let presentation = tabElement.querySelector("[role=presentation]");
+    let movingTab = tabElement.querySelector(".moving-tab");
+
+    if (presentation && movingTab) {
+      transformMovingTab(movingTab, presentation);
+      activeTab(presentation);
+    }
+  }
 }
 
 export function createMovingTab(presentation) {
@@ -49,7 +64,9 @@ export function initAllMovingTabs() {
     let presentation = tabElement.querySelector("[role=presentation]");
 
     if (presentation) {
-      tabElement.append(createMovingTab(presentation));
+      let movingTab = createMovingTab(presentation);
+      transformMovingTab(movingTab, presentation);
+      tabElement.append(movingTab);
       activeTab(presentation);
     }
   }
@@ -91,5 +108,13 @@ export function createLoader() {
         transformMovingTab(movingTab, presentation);
       }
     }
+  });
+
+  window.addEventListener("resize", () => {
+    transformAllMovingTab();
+  });
+
+  document.addEventListener("resize", () => {
+    transformAllMovingTab();
   });
 }).call();
