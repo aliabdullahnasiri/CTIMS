@@ -33,6 +33,28 @@ class Department(db.Model):
         return f"<Department {self.name}>"
 
     @property
+    def students(self):
+        return [
+            student
+            for semester in self.semesters
+            for _class in semester.classes
+            for student in _class.students
+        ]
+
+    @property
+    def teachers(self):
+        return [
+            teaching.teacher
+            for semester in self.semesters
+            for subject in semester.subjects
+            for teaching in subject.teachings
+        ]
+
+    @property
+    def classes(self):
+        return [_class for semester in self.semesters for _class in semester.classes]
+
+    @property
     def _head_of_department(self) -> Union[Employee, Teacher, None]:
         obj = None
 
