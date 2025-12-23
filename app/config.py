@@ -34,4 +34,4 @@ class Config:
     VIEWS_TEMPS_DIR = f"{APP_DIR}/templates/admin/views"
     VIEWS_TEMPS = [TEMP for TEMP in pathlib.Path(VIEWS_TEMPS_DIR).glob("*html")]
 
-    UID_PATTERN: re.Pattern = re.compile(r"^(T|D).\d{6}$")
+    UID_PATTERN: re.Pattern = re.compile(r"^..\d{6}$")
