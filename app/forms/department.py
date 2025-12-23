@@ -11,6 +11,7 @@ from wtforms import (
 from wtforms.validators import DataRequired, Length, Optional, Regexp
 
 from app.models.employee import Employee
+from app.models.teacher import Teacher
 
 
 class AddDepartmentForm(FlaskForm):
@@ -45,7 +46,7 @@ class AddDepartmentForm(FlaskForm):
             raise ValidationError("Not a valid head of department UID.")
         elif h.startswith("E") and not Employee.query.filter_by(uid=h).first():
             raise ValidationError("Employee with the given ID was not found :(")
-        elif h.startswith("T") and not Employee.query.filter_by(uid=h).first():
+        elif h.startswith("T") and not Teacher.query.filter_by(uid=h).first():
             raise ValidationError("Teacher with the given ID was not found :(")
 
 
