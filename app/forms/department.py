@@ -32,7 +32,7 @@ class AddDepartmentForm(FlaskForm):
     )
 
     head_of_department = StringField(
-        "Head of department UID",
+        "HOD UID",
         validators=[Optional(), Length(min=8, max=8)],
     )
 
