@@ -25,10 +25,16 @@ class Teacher(db.Model):
     time = db.relationship("Time", back_populates="teachers")
 
     teachings = db.relationship(
-        "Teaching", back_populates="teacher", cascade="all, delete-orphan"
+        "Teaching", back_populates="teacher", cascade="all, delete, delete-orphan"
     )
-    attendances = db.relationship("TeacherAttendance", back_populates="teacher")
-    classes = db.relationship("Class", back_populates="teacher")
+    attendances = db.relationship(
+        "TeacherAttendance",
+        back_populates="teacher",
+        cascade="all, delete, delete-orphan",
+    )
+    classes = db.relationship(
+        "Class", back_populates="teacher", cascade="all, delete, delete-orphan"
+    )
     phones = db.relationship(
         "TeacherPhone", back_populates="teacher", cascade="all, delete, delete-orphan"
     )
