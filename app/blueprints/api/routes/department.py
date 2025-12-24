@@ -58,7 +58,15 @@ def fetch_department_row(uid: str) -> Response:
 
     if department:
         return Response(
-            json.dumps(department.to_dict()),
+            json.dumps(
+                {
+                    key: val
+                    for key, val in zip(
+                        [col_id for col_id, _ in cols],
+                        [render_td(col_id, department) for col_id, _ in cols],
+                    )
+                }
+            ),
             status=200,
             headers={"Content-Type": "application/json"},
         )
@@ -82,15 +90,7 @@ def fetch_department(uid: str) -> Response:
 
     if department:
         return Response(
-            json.dumps(
-                {
-                    key: val
-                    for key, val in zip(
-                        [col_id for col_id, _ in cols],
-                        [render_td(col_id, department) for col_id, _ in cols],
-                    )
-                }
-            ),
+            json.dumps(department.to_dict()),
             status=200,
             headers={"Content-Type": "application/json"},
         )
