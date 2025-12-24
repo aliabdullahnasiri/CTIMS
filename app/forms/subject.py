@@ -38,7 +38,7 @@ class AddSubjectForm(FlaskForm):
         validators=[FileAllowed(["pdf"], "PDF only!")],
     )
 
-    submit = SubmitField("Add Semester")
+    submit = SubmitField("Add Subject")
 
     def validate_department_uid(self, department_uid) -> None:
         pattern: re.Pattern = re.compile(r"^..\d{6}$")
