@@ -43,3 +43,36 @@ class Semester(db.Model):
     @property
     def display_number_of_students(self):
         return numerize(len([y for x in self.classes for y in x.students]), decimals=2)
+
+    @property
+    def display_number_of_teachers(self):
+        return numerize(
+            len({t.teacher.uid for s in self.subjects for t in s.teachings}), decimals=2
+        )
+
+    @property
+    def display_number_of_exams(self):
+        return numerize(len([e for s in self.subjects for e in s.exams]), decimals=2)
+
+    @property
+    def teachers(self):
+        return [
+            teach.teacher for subject in self.subjects for teach in subject.teachings
+        ]
+
+    @property
+    def students(self):
+        return [student for class_ in self.classes for student in class_.students]
+
+    @property
+    def exams(self):
+        return [exam for subject in self.subjects for exam in subject.exams]
+
+    @property
+    def results(self):
+        return [
+            result
+            for subject in self.subjects
+            for exam in subject.exams
+            for result in exam.results
+        ]
