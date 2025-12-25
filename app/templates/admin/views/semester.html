@@ -1,0 +1,360 @@
+<div class="card card-plain">
+  <div class="card-header">
+    <div class="row gx-4 mb-1">
+      <div class="col-auto my-auto">
+        <div class="h-100">
+          <h4 class="mb-0">{{ semester.name }}</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body py-0">
+    <div class="row gx-3 my-1">
+      <div class="col-md-8">
+        <div class="row gx-0 mb-3">
+          <div class="card">
+            <div class="card-header pb-0">
+              <h5>Semester Information</h5>
+            </div>
+            <hr class="bg-dark horizontal my-0 opacity-10" />
+            <div class="card-body p0">
+              <ul class="list-group">
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>UID:</strong> &nbsp;{{ semester.uid }}
+                </li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Number:</strong> &nbsp;{{ semester.number }}
+                </li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Created At:</strong> &nbsp;{{
+                  semester.display_created_at }}
+                </li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Updated At:</strong> &nbsp;{{
+                  semester.display_updated_at }}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="row gx-0 mb-3">
+          <div class="card">
+            <div class="card-header pb-0">
+              <h5>Department Information</h5>
+            </div>
+            <hr class="bg-dark horizontal my-0 opacity-10" />
+            <div class="card-body p0">
+              <ul class="list-group">
+                {% with department = semester.department %}
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>UID:</strong> &nbsp;{{ department.uid }}
+                </li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>HOD UID:</strong> &nbsp;{{
+                  department.head_of_department }}
+                </li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Name:</strong> &nbsp;{{ department.name }}
+                </li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Created At:</strong> &nbsp;{{
+                  department.display_created_at }}
+                </li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Updated At:</strong> &nbsp;{{
+                  department.display_updated_at }}
+                </li>
+                {% endwith %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="row mb-3">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header ps-3">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <p class="text-sm mb-0 text-capitalize">Subjects</p>
+                    <h4 class="mb-0">
+                      {{ semester.display_number_of_subjects }}
+                    </h4>
+                  </div>
+                  <div
+                    class="icon icon-md icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-lg"
+                  >
+                    <i class="material-symbols-rounded opacity-10">info</i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header ps-3">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <p class="text-sm mb-0 text-capitalize">Classes</p>
+                    <h4 class="mb-0">
+                      {{ semester.display_number_of_classes }}
+                    </h4>
+                  </div>
+                  <div
+                    class="icon icon-md icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-lg"
+                  >
+                    <i class="material-symbols-rounded opacity-10">info</i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header ps-3">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <p class="text-sm mb-0 text-capitalize">Students</p>
+                    <h4 class="mb-0">
+                      {{ semester.display_number_of_students }}
+                    </h4>
+                  </div>
+                  <div
+                    class="icon icon-md icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-lg"
+                  >
+                    <i class="material-symbols-rounded opacity-10">people</i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header ps-3">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <p class="text-sm mb-0 text-capitalize">Teachers</p>
+                    <h4 class="mb-0">
+                      {{ semester.display_number_of_teachers }}
+                    </h4>
+                  </div>
+                  <div
+                    class="icon icon-md icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-lg"
+                  >
+                    <i class="material-symbols-rounded opacity-10">people</i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header ps-3">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <p class="text-sm mb-0 text-capitalize">Exams</p>
+                    <h4 class="mb-0">{{ semester.display_number_of_exams }}</h4>
+                  </div>
+                  <div
+                    class="icon icon-md icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-lg"
+                  >
+                    <i class="material-symbols-rounded opacity-10">info</i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row gx-3 my-1">
+      <div class="col-lg-8 mx-auto mt-3">
+        <div class="nav-wrapper position-relative end-0">
+          <ul class="nav nav-pills nav-fill p-1 bg-dark" role="tablist">
+            <li class="nav-item" role="presentation">
+              <a
+                class="nav-link mb-0 px-0 py-1 text-white"
+                data-bs-toggle="tab"
+                data-bs-target="#tab-subjects"
+                href="javascript:;"
+                role="tab"
+                aria-selected="true"
+              >
+                Subjects
+              </a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a
+                class="nav-link mb-0 px-0 py-1 text-white"
+                data-bs-toggle="tab"
+                data-bs-target="#tab-classes"
+                href="javascript:;"
+                role="tab"
+                aria-selected="true"
+              >
+                Classes
+              </a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a
+                class="nav-link mb-0 px-0 py-1 text-white"
+                data-bs-toggle="tab"
+                data-bs-target="#tab-teachers"
+                href="javascript:;"
+                role="tab"
+                aria-selected="false"
+              >
+                Teachers
+              </a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a
+                class="nav-link mb-0 px-0 py-1 text-white"
+                data-bs-toggle="tab"
+                data-bs-target="#tab-students"
+                href="javascript:;"
+                role="tab"
+                aria-selected="false"
+              >
+                Students
+              </a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a
+                class="nav-link mb-0 px-0 py-1 text-white"
+                data-bs-toggle="tab"
+                data-bs-target="#tab-exams"
+                href="javascript:;"
+                role="tab"
+                aria-selected="true"
+              >
+                Exams
+              </a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a
+                class="nav-link mb-0 px-0 py-1 text-white"
+                data-bs-toggle="tab"
+                data-bs-target="#tab-results"
+                href="javascript:;"
+                role="tab"
+                aria-selected="true"
+              >
+                Results
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row gx-3 my-1">
+      <div class="col-md-12">
+        <div class="row gx-0 mb-2 mt-5">
+          <div role="tab-container">
+            <div class="card d-none" role="tab" data-tab-id="#tab-subjects">
+              <div
+                class="bg-gradient-dark card-header mt-n4 mx-3 position-relative z-index-2 shadow-sm rounded-3 py-4"
+              >
+                <h5 class="mb-0 mx-2 text-white">Subjects</h5>
+              </div>
+
+              <div class="card-body pb-0">
+                <div class="table-responsive p-0">
+                  {% with subjects = semester.subjects %} {% include
+                  "admin/views/tables/subjects.html" %}{% endwith %}
+                </div>
+              </div>
+            </div>
+
+            <div class="card d-none" role="tab" data-tab-id="#tab-classes">
+              <div
+                class="bg-gradient-dark card-header mt-n4 mx-3 position-relative z-index-2 shadow-sm rounded-3 py-4"
+              >
+                <h5 class="mb-0 mx-2 text-white">Classes</h5>
+              </div>
+
+              <div class="card-body pb-0">
+                <div class="table-responsive p-0">
+                  {% with classes = semester.classes %} {% include
+                  "admin/views/tables/classes.html" %}{% endwith %}
+                </div>
+              </div>
+            </div>
+
+            <div class="card d-none" role="tab" data-tab-id="#tab-teachers">
+              <div
+                class="bg-gradient-dark card-header mt-n4 mx-3 position-relative z-index-2 shadow-sm rounded-3 py-4"
+              >
+                <h5 class="mb-0 mx-2 text-white">Teachers</h5>
+              </div>
+
+              <div class="card-body pb-0">
+                <div class="table-responsive p-0">
+                  {% with teachers = semester.teachers %} {% include
+                  "admin/views/tables/teachers.html" %}{% endwith %}
+                </div>
+              </div>
+            </div>
+
+            <div class="card d-none" role="tab" data-tab-id="#tab-students">
+              <div
+                class="bg-gradient-dark card-header mt-n4 mx-3 position-relative z-index-2 shadow-sm rounded-3 py-4"
+              >
+                <h5 class="mb-0 mx-2 text-white">Students</h5>
+              </div>
+
+              <div class="card-body pb-0">
+                <div class="table-responsive p-0">
+                  {% with students = semester.students %} {% include
+                  "admin/views/tables/students.html" %}{% endwith %}
+                </div>
+              </div>
+            </div>
+
+            <div class="card d-none" role="tab" data-tab-id="#tab-exams">
+              <div
+                class="bg-gradient-dark card-header mt-n4 mx-3 position-relative z-index-2 shadow-sm rounded-3 py-4"
+              >
+                <h5 class="mb-0 mx-2 text-white">Exams</h5>
+              </div>
+
+              <div class="card-body pb-0">
+                <div class="table-responsive p-0">
+                  {% with exams = semester.exams %} {% include
+                  "admin/views/tables/exams.html" %}{% endwith %}
+                </div>
+              </div>
+            </div>
+
+            <div class="card d-none" role="tab" data-tab-id="#tab-results">
+              <div
+                class="bg-gradient-dark card-header mt-n4 mx-3 position-relative z-index-2 shadow-sm rounded-3 py-4"
+              >
+                <h5 class="mb-0 mx-2 text-white">Results</h5>
+              </div>
+
+              <div class="card-body pb-0">
+                <div class="table-responsive p-0">
+                  {% with results = semester.results %} {% include
+                  "admin/views/tables/results.html" %}{% endwith %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer"></div>
+</div>
