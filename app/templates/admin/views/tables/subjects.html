@@ -24,9 +24,9 @@
     </tr>
   </thead>
   <tbody>
-    {% if department.subjects %} {% for s in department.subjects %}
+    {% if subjects %} {% for s in subjects %}
     <tr>
-      <td class="text-xs">{{ s.uid }}</td>
+      <td class="text-xs text-center">{{ s.uid }}</td>
       <td class="text-xs">{{ s.name }}</td>
       <td class="text-xs">{{ s.credit }}</td>
       <td class="text-xs">{{ s.display_number_of_teachers }}</td>
