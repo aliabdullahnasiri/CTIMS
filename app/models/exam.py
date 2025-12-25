@@ -30,9 +30,17 @@ class Exam(db.Model):
             "subject_id": self.subject_id,
             "title": self.title,
             "description": self.description,
-            "exam_date": self.exam_date.strftime("%Y-%m-%d"),
-            "exam_time": self.exam_time.strftime("%H:%M"),
+            "exam_date": self.display_exam_date,
+            "exam_time": self.display_exam_time,
             "total_marks": self.total_marks,
             "subject": self.subject.name,
             "class": self.class_.name,
         }
+
+    @property
+    def display_exam_date(self):
+        return self.exam_date.strftime("%Y-%m-%d")
+
+    @property
+    def display_exam_time(self):
+        return self.exam_time.strftime("%H:%M")
