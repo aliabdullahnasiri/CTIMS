@@ -10,6 +10,7 @@ from wtforms import (
 )
 from wtforms.validators import DataRequired, Length, Optional, Regexp
 
+from app.models.department import Department
 from app.models.employee import Employee
 from app.models.teacher import Teacher
 
@@ -36,6 +37,11 @@ class AddDepartmentForm(FlaskForm):
         validators=[Optional(), Length(min=8, max=8)],
     )
 
+    parent_department_uid = StringField(
+        "Parent Department UID",
+        validators=[Optional(), Length(min=8, max=8)],
+    )
+
     submit = SubmitField("Add Department")
 
     def validate_head_of_department(self, head_of_department) -> None:
@@ -48,6 +54,15 @@ class AddDepartmentForm(FlaskForm):
             raise ValidationError("Employee with the given ID was not found :(")
         elif h.startswith("T") and not Teacher.query.filter_by(uid=h).first():
             raise ValidationError("Teacher with the given ID was not found :(")
+
+    def validate_parent_department_uid(self, parent_department_uid) -> None:
+        uid: str = parent_department_uid.data
+        pattern: re.Pattern = re.compile(r"^(D).\d{6}$")
+
+        if not pattern.search(uid):
+            raise ValidationError("Not a valid head of department UID.")
+        elif not Department.query.filter_by(uid=uid).first():
+            raise ValidationError("Department with the given ID was not found :(")
 
 
 class UpdateDepartmentForm(AddDepartmentForm):
