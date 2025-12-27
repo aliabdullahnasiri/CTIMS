@@ -17,9 +17,6 @@ class Department(db.Model):
         db.String(8), db.ForeignKey("departments.uid"), nullable=True
     )
 
-    subjects = db.relationship(
-        "Subject", back_populates="department", cascade="all, delete, delete-orphan"
-    )
     semesters = db.relationship(
         "Semester", back_populates="department", cascade="all, delete, delete-orphan"
     )
@@ -36,6 +33,10 @@ class Department(db.Model):
 
     def __repr__(self):
         return f"<Department {self.name}>"
+
+    @property
+    def subjects(self):
+        return [subject for semester in self.semesters for subject in semester.subjects]
 
     @property
     def students(self):
