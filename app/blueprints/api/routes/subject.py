@@ -121,7 +121,6 @@ def add_subject() -> Response:
 
         subject.name = form.name.data
         subject.description = form.description.data
-        subject.department_id = form.department_uid.data
         subject.semester_id = form.semester_uid.data
         if form.credit:
             subject.credit = form.credit.data
@@ -208,7 +207,6 @@ def update_subject() -> Response:
         if subject:
             subject.name = form.name.data
             subject.description = form.description.data
-            subject.department_id = form.department_uid.data
             subject.semester_id = form.semester_uid.data
             if form.credit:
                 subject.credit = form.credit.data
