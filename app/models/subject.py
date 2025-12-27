@@ -12,14 +12,11 @@ class Subject(db.Model):
     description = db.Column(db.String(255))
     credit = db.Column(db.Integer)
 
-    department_id = db.Column(
-        db.String(8), db.ForeignKey("departments.uid"), nullable=False
-    )
     semester_id = db.Column(
         db.String(8), db.ForeignKey("semesters.uid"), nullable=False
     )
 
-    department = db.relationship("Department", back_populates="subjects")
+    # department = db.relationship("Department", back_populates="semesters")
     semester = db.relationship("Semester", back_populates="subjects")
     teachings = db.relationship(
         "Teaching", back_populates="subject", cascade="all, delete-orphan"
@@ -31,12 +28,16 @@ class Subject(db.Model):
         "Exam", back_populates="subject", cascade="all, delete, delete-orphan"
     )
 
+    @property
+    def department(self):
+        return self.semester.department
+
     def to_dict(self) -> Dict:
         return {
             "name": self.name,
             "description": self.description,
             "credit": self.credit if self.credit else None,
-            "department_uid": self.department_id,
+            "department_uid": self.department.uid,
             "semester_uid": self.semester_id,
             "teachers": [t.teacher_id for t in self.teachings],
             "files": [f.file.to_dict() for f in self.files],
