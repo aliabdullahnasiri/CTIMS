@@ -38,7 +38,7 @@ class Semester(db.Model):
 
     @property
     def display_number_of_subjects(self):
-        return numerize(len(self.subjects), decimals=2)
+        return numerize(len(self.get_all_subjects()), decimals=2)
 
     @property
     def display_number_of_students(self):
@@ -47,17 +47,22 @@ class Semester(db.Model):
     @property
     def display_number_of_teachers(self):
         return numerize(
-            len({t.teacher.uid for s in self.subjects for t in s.teachings}), decimals=2
+            len({t.teacher.uid for s in self.get_all_subjects() for t in s.teachings}),
+            decimals=2,
         )
 
     @property
     def display_number_of_exams(self):
-        return numerize(len([e for s in self.subjects for e in s.exams]), decimals=2)
+        return numerize(
+            len([e for s in self.get_all_subjects() for e in s.exams]), decimals=2
+        )
 
     @property
     def teachers(self):
         return [
-            teach.teacher for subject in self.subjects for teach in subject.teachings
+            teach.teacher
+            for subject in self.get_all_subjects()
+            for teach in subject.teachings
         ]
 
     @property
@@ -66,13 +71,23 @@ class Semester(db.Model):
 
     @property
     def exams(self):
-        return [exam for subject in self.subjects for exam in subject.exams]
+        return [exam for subject in self.get_all_subjects() for exam in subject.exams]
 
     @property
     def results(self):
         return [
             result
-            for subject in self.subjects
+            for subject in self.get_all_subjects()
             for exam in subject.exams
             for result in exam.results
         ]
+
+    def get_all_subjects(self):
+        subjects = [subject for subject in self.subjects]
+
+        for department in self.department.get_parent_departments():
+            for subject in department.subjects:
+                if subject.semester.number == self.number:
+                    subjects.append(subject)
+
+        return subjects
