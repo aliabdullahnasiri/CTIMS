@@ -83,6 +83,10 @@ class Department(db.Model):
         return self.head_of_department if self.head_of_department else "N/A"
 
     @property
+    def display_parent_department_uid(self):
+        return self.parent_department_uid if self.parent_department_uid else "N/A"
+
+    @property
     def display_number_of_semesters(self):
         return numerize(len(self.semesters), decimals=2)
 
