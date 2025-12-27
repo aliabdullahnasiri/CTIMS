@@ -28,7 +28,6 @@ class AddSubjectForm(FlaskForm):
     )
     credit = IntegerField("Credit", validators=[Optional()])
 
-    department_uid = StringField("Department UID", validators=[DataRequired()])
     semester_uid = StringField("Semester UID", validators=[DataRequired()])
 
     teachers = StringField("Teacher UID", validators=[Optional()])
@@ -39,14 +38,6 @@ class AddSubjectForm(FlaskForm):
     )
 
     submit = SubmitField("Add Subject")
-
-    def validate_department_uid(self, department_uid) -> None:
-        pattern: re.Pattern = re.compile(r"^..\d{6}$")
-
-        if not pattern.search(department_uid.data):
-            raise ValidationError("Not a valid Department UID.")
-        elif not Department.query.filter_by(uid=department_uid.data).first():
-            raise ValidationError("Department with the given ID was not found :(")
 
     def validate_semester_uid(self, semester_uid) -> None:
         pattern: re.Pattern = re.compile(r"^..\d{6}$")
