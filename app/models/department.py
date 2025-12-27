@@ -29,7 +29,7 @@ class Department(db.Model):
         return {
             "name": self.name,
             "description": self.description,
-            "head_of_department": self._head_of_department,
+            "head_of_department": self.head_of_department,
             "parent_department_uid": self.parent_department_uid,
             **super().to_dict(),
         }
