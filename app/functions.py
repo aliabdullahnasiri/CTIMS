@@ -27,4 +27,7 @@ def render_td(col_id: str, obj) -> str:
 
             return render_template(f"admin/components/tables/td/{TEMP.name}", **dct)
 
+    if hasattr(obj, attr := f"display_{col_id}"):
+        return getattr(obj, attr)
+
     return dct.get(col_id, "N/A")
