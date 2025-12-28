@@ -10,6 +10,7 @@ from app.models.department import Department
 from app.models.employee import Employee
 from app.models.job import Job
 from app.models.semester import Semester
+from app.models.subject import Subject
 from app.models.teacher import Teacher
 from app.models.time import Time
 
@@ -20,6 +21,7 @@ entities: Dict = {
     "job": Job,
     "employee": Employee,
     "teacher": Teacher,
+    "subject": Subject,
 }
 
 
