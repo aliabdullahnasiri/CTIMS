@@ -3,6 +3,7 @@ from datetime import datetime, timezone
 from typing import Optional, Self
 
 import humanize
+from numerize.numerize import numerize
 
 from app.constants import APP_DIR
 from app.extensions import db
@@ -55,6 +56,28 @@ class File(db.Model):
             if self.extension
             else self.file_name
         )
+
+    @property
+    def display_file_name(self):
+        s = slice(0, 15)
+        n = self.file_name
+
+        if len(n) > 15:
+            return f"{n[s]}...{n[-15:]}"
+
+        return self.file_name
+
+    @property
+    def display_file_description(self):
+        return self.file_description or "N/A"
+
+    @property
+    def display_file_for(self):
+        return self.file_for.upper() or "N/A"
+
+    @property
+    def display_uploaded_time(self):
+        return self.display_created_at
 
     def to_dict(self) -> dict:
         return {
