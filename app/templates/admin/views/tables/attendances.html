@@ -1,0 +1,47 @@
+<table class="table align-items-center mb-0 table-hover">
+  <thead>
+    <tr>
+      <th
+        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center"
+      >
+        UID
+      </th>
+      <th
+        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+      >
+        Date
+      </th>
+      <th
+        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+      >
+        Time
+      </th>
+      <th
+        class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+      >
+        Status
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if attendances %} {% for a in attendances %}
+    <tr>
+      <td class="text-xs text-center">{{ a.uid }}</td>
+      <td class="text-xs">{{ a.display_date }}</td>
+      <td class="text-xs">{{ a.display_time }}</td>
+      <td class="text-center text-xs">
+        <span
+          class="badge badge-sm bg-gradient-{{ a.status.value.lower() }} value"
+          >{{ a.status.value }}</span
+        >
+      </td>
+    </tr>
+    {% endfor %} {% else %}
+    <tr class="no-rows-label">
+      <td colspan="4" class="py-4 text-center">
+        <span>No classes yet :(</span>
+      </td>
+    </tr>
+    {% endif %}
+  </tbody>
+</table>
