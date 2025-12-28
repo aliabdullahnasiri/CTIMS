@@ -55,7 +55,7 @@ class AddTeacherForm(FlaskForm):
         validators=[FileAllowed(["jpg", "jpeg", "png"], "Images only!")],
     )
 
-    time_id = StringField("Time UID", validators=[Optional(), Length(8, 8)])
+    time_id = StringField("Time UID", validators=[DataRequired(), Length(8, 8)])
 
     phones = StringField("Phone", validators=[Optional()])
     subjects = StringField("Subject UID", validators=[Optional()])
