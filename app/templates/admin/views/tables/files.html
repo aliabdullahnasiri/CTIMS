@@ -1,0 +1,52 @@
+<table class="table align-items-center mb-0 table-hover">
+  <thead>
+    <tr>
+      <th
+        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center"
+      >
+        UID
+      </th>
+      <th
+        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+      >
+        Name
+      </th>
+      <th
+        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+      >
+        For
+      </th>
+      <th
+        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+      >
+        Size
+      </th>
+      <th
+        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+      >
+        Uploaded
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if files %} {% for f in files %}
+    <tr>
+      <td class="text-xs text-center">{{ f.file.uid }}</td>
+      <td class="text-xs">
+        <a href="{{ f.file.file_url }}" target="_blank"
+          >{{ f.file.display_file_name }}</a
+        >
+      </td>
+      <td class="text-xs">{{ f.file.display_file_for }}</td>
+      <td class="text-xs">{{ f.file.human_size }}</td>
+      <td class="text-xs">{{ f.file.display_uploaded_time }}</td>
+    </tr>
+    {% endfor %} {% else %}
+    <tr class="no-rows-label">
+      <td colspan="5" class="py-4 text-center">
+        <span>No files yet :(</span>
+      </td>
+    </tr>
+    {% endif %}
+  </tbody>
+</table>
