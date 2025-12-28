@@ -1,8 +1,9 @@
 from typing import Dict
 
+import humanize
 from numerize.numerize import numerize
 
-from app.extensions import console, db
+from app.extensions import db
 
 
 class Subject(db.Model):
@@ -48,5 +49,24 @@ class Subject(db.Model):
         return f"<Subject {self.name}>"
 
     @property
+    def teachers(self):
+        return [t.teacher for t in self.teachings]
+
+    @property
     def display_number_of_teachers(self):
         return numerize(len({t.teacher.uid for t in self.teachings}))
+
+    @property
+    def display_number_of_exams(self):
+        return numerize(len(self.exams))
+
+    @property
+    def total_file_size(self) -> str:
+        total: int = 0
+        for f in self.files:
+            total += f.file.size
+        return humanize.naturalsize(total)
+
+    @property
+    def display_number_of_files(self):
+        return numerize(len(self.files), decimals=2)
