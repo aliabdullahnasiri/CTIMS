@@ -17,7 +17,6 @@ class Subject(db.Model):
         db.String(8), db.ForeignKey("semesters.uid"), nullable=False
     )
 
-    # department = db.relationship("Department", back_populates="semesters")
     semester = db.relationship("Semester", back_populates="subjects")
     teachings = db.relationship(
         "Teaching", back_populates="subject", cascade="all, delete-orphan"
