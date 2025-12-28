@@ -5,8 +5,10 @@
   data-get-row="{{ url_for('api.fetch_job_row', uid='@')}}"
   data-update-row="{{ url_for('api.update_job')}}"
   data-delete-row="{{ url_for('api.delete_job', uid='@')}}"
+  data-view-row="{{ url_for('admin.view', entity='job', uid='@') }}"
   data-add-row-modal-id="#AddJobModal"
   data-edit-row-modal-id="#EditJobModal"
+  data-view-row-modal-id="#ViewModal"
 >
   <thead></thead>
   <tbody></tbody>
