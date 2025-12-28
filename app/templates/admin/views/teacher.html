@@ -290,66 +290,68 @@
         </div>
       </div>
     </div>
-  </div>
+    <div class="row gx-3 my-1">
+      <div class="col-md-12">
+        <div class="row gx-0 mb-2 mt-5">
+          <div role="tab-container">
+            <div class="card d-none" role="tab" data-tab-id="#tab-subjects">
+              <div
+                class="bg-gradient-dark card-header mt-n4 mx-3 position-relative z-index-2 shadow-sm rounded-3 py-4"
+              >
+                <h5 class="mb-0 mx-2 text-white">Subjects</h5>
+              </div>
 
-  <div class="row gx-3 my-1">
-    <div class="col-md-12">
-      <div class="row gx-0 mb-2 mt-5">
-        <div role="tab-container">
-          <div class="card d-none" role="tab" data-tab-id="#tab-subjects">
-            <div
-              class="bg-gradient-dark card-header mt-n4 mx-3 position-relative z-index-2 shadow-sm rounded-3 py-4"
-            >
-              <h5 class="mb-0 mx-2 text-white">Subjects</h5>
-            </div>
-
-            <div class="card-body pb-0">
-              <div class="table-responsive p-0">
-                {% with subjects = teacher.subjects %} {% include
-                "admin/views/tables/subjects.html" %}{% endwith %}
+              <div class="card-body pb-0">
+                <div class="table-responsive p-0">
+                  {% with subjects = teacher.subjects %} {% include
+                  "admin/views/tables/subjects.html" %}{% endwith %}
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="card d-none" role="tab" data-tab-id="#tab-classes">
-            <div
-              class="bg-gradient-dark card-header mt-n4 mx-3 position-relative z-index-2 shadow-sm rounded-3 py-4"
-            >
-              <h5 class="mb-0 mx-2 text-white">Classes</h5>
-            </div>
+            <div class="card d-none" role="tab" data-tab-id="#tab-classes">
+              <div
+                class="bg-gradient-dark card-header mt-n4 mx-3 position-relative z-index-2 shadow-sm rounded-3 py-4"
+              >
+                <h5 class="mb-0 mx-2 text-white">Classes</h5>
+              </div>
 
-            <div class="card-body pb-0">
-              <div class="table-responsive p-0">
-                {% with classes = teacher.classes %} {% include
-                "admin/views/tables/classes.html" %}{% endwith %}
+              <div class="card-body pb-0">
+                <div class="table-responsive p-0">
+                  {% with classes = teacher.classes %} {% include
+                  "admin/views/tables/classes.html" %}{% endwith %}
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="card d-none" role="tab" data-tab-id="#tab-attendances">
-            <div
-              class="bg-gradient-dark card-header mt-n4 mx-3 position-relative z-index-2 shadow-sm rounded-3 py-4"
-            >
-              <h5 class="mb-0 mx-2 text-white">Attendances</h5>
-            </div>
+            <div class="card d-none" role="tab" data-tab-id="#tab-attendances">
+              <div
+                class="bg-gradient-dark card-header mt-n4 mx-3 position-relative z-index-2 shadow-sm rounded-3 py-4"
+              >
+                <h5 class="mb-0 mx-2 text-white">Attendances</h5>
+              </div>
 
-            <div class="card-body pb-0">
-              <div class="table-responsive p-0">
-                {% with attendances= teacher.attendances %} {% include
-                "admin/views/tables/attendances.html" %}{% endwith %}
+              <div class="card-body pb-0">
+                <div class="table-responsive p-0">
+                  {% with attendances= teacher.attendances %} {% include
+                  "admin/views/tables/attendances.html" %}{% endwith %}
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="card d-none" role="tab" data-tab-id="#tab-files">
-            <div
-              class="bg-gradient-dark card-header mt-n4 mx-3 position-relative z-index-2 shadow-sm rounded-3 py-4"
-            >
-              <h5 class="mb-0 mx-2 text-white">Files</h5>
-            </div>
+            <div class="card d-none" role="tab" data-tab-id="#tab-files">
+              <div
+                class="bg-gradient-dark card-header mt-n4 mx-3 position-relative z-index-2 shadow-sm rounded-3 py-4"
+              >
+                <h5 class="mb-0 mx-2 text-white">Files</h5>
+              </div>
 
-            <div class="card-body pb-0">
-              <div class="table-responsive p-0"></div>
+              <div class="card-body pb-0">
+                <div class="table-responsive p-0">
+                  {% with files = teacher.files %} {% include
+                  "admin/views/tables/files.html" %}{% endwith %}
+                </div>
+              </div>
             </div>
           </div>
         </div>
