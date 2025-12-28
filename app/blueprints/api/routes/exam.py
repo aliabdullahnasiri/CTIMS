@@ -121,6 +121,7 @@ def add_exam() -> Response:
         exam.title = form.title.data
         exam.description = form.description.data
         exam.total_marks = form.total_marks.data
+        exam.min_marks = form.min_marks.data
         exam.exam_date = form.exam_date.data
         exam.exam_time = form.exam_time.data
         exam.subject_id = form.subject_id.data
@@ -159,6 +160,7 @@ def update_exam() -> Response:
             exam.title = form.title.data
             exam.description = form.description.data
             exam.total_marks = form.total_marks.data
+            exam.min_marks = form.min_marks.data
             exam.exam_date = form.exam_date.data
             exam.exam_time = form.exam_time.data
             exam.subject_id = form.subject_id.data
