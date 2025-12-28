@@ -1,0 +1,335 @@
+<div class="card card-plain">
+  <div class="card-header">
+    <div class="row gx-4 mb-2">
+      <div class="col-auto my-auto">
+        <div class="h-100">
+          <h5 class="mb-1">{{ subject.name }}</h5>
+          <p class="mb-0 font-weight-normal text-sm">
+            {{ subject.description }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body py-0">
+    <div class="row gx-3 my-1">
+      <div class="col-md-8">
+        <div class="row gx-0 mb-3">
+          <div class="card">
+            <div class="card-header pb-0">
+              <h5>Subject Information</h5>
+            </div>
+            <hr class="bg-dark horizontal my-0 opacity-10" />
+            <div class="card-body p0">
+              <ul class="list-group">
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>UID:</strong> &nbsp;{{ subject.uid }}
+                </li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Name:</strong> &nbsp;{{ subject.name }}
+                </li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Credit:</strong> &nbsp;{{ subject.credit}}
+                </li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Created At:</strong> &nbsp;{{
+                  subject.display_created_at }}
+                </li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Updated At:</strong> &nbsp;{{
+                  subject.display_updated_at }}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="row gx-0 mb-3">
+          <div class="card">
+            <div class="card-header pb-0">
+              <h5>Semester Information</h5>
+            </div>
+            <hr class="bg-dark horizontal my-0 opacity-10" />
+            <div class="card-body p0">
+              <ul class="list-group">
+                {% with semester = subject.semester %}
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>UID:</strong> &nbsp;{{ semester.uid }}
+                </li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Name:</strong> &nbsp;{{ semester.name }}
+                </li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Number:</strong> &nbsp;{{ semester.number }}
+                </li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Created At:</strong> &nbsp;{{
+                  semester.display_created_at }}
+                </li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Updated At:</strong> &nbsp;{{
+                  semester.display_updated_at }}
+                </li>
+                {% endwith %}
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="row gx-0 mb-3">
+          <div class="card">
+            <div class="card-header pb-0">
+              <h5>Department Information</h5>
+            </div>
+            <hr class="bg-dark horizontal my-0 opacity-10" />
+            <div class="card-body p0">
+              <ul class="list-group">
+                {% with department = subject.department %}
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>UID:</strong> &nbsp;{{ department.uid }}
+                </li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Name:</strong> &nbsp;{{ department.name }}
+                </li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Description:</strong> &nbsp;{{ department.description
+                  }}
+                </li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Created At:</strong> &nbsp;{{
+                  department.display_created_at }}
+                </li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Updated At:</strong> &nbsp;{{
+                  department.display_updated_at }}
+                </li>
+                {% endwith %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="row mb-2">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header p-2 ps-3">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <p class="text-sm mb-0 text-capitalize">Subject</p>
+                    <h4 class="mb-0">{{ subject.uid }}</h4>
+                  </div>
+                  <div
+                    class="icon icon-md icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-lg"
+                  >
+                    <i class="material-symbols-rounded opacity-10">info</i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header p-2 ps-3">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <p class="text-sm mb-0 text-capitalize">Semester</p>
+                    <h4 class="mb-0">{{ subject.semester.uid }}</h4>
+                  </div>
+                  <div
+                    class="icon icon-md icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-lg"
+                  >
+                    <i class="material-symbols-rounded opacity-10">info</i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header p-2 ps-3">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <p class="text-sm mb-0 text-capitalize">Department</p>
+                    <h4 class="mb-0">{{ subject.department.uid }}</h4>
+                  </div>
+                  <div
+                    class="icon icon-md icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-lg"
+                  >
+                    <i class="material-symbols-rounded opacity-10">info</i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header p-2 ps-3">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <p class="text-sm mb-0 text-capitalize">Teachers</p>
+                    <h4 class="mb-0">
+                      {{ subject.display_number_of_teachers }}
+                    </h4>
+                  </div>
+                  <div
+                    class="icon icon-md icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-lg"
+                  >
+                    <i class="material-symbols-rounded opacity-10">people</i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header p-2 ps-3">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <p class="text-sm mb-0 text-capitalize">Exams</p>
+                    <h4 class="mb-0">{{ subject.display_number_of_exams }}</h4>
+                  </div>
+                  <div
+                    class="icon icon-md icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-lg"
+                  >
+                    <i class="material-symbols-rounded opacity-10">info</i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header p-2 ps-3">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <p class="text-sm mb-0 text-capitalize">Files</p>
+                    <h4 class="mb-0">{{ subject.display_number_of_files }}</h4>
+                  </div>
+                  <div
+                    class="icon icon-md icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-lg"
+                  >
+                    <i class="material-symbols-rounded opacity-10">files</i>
+                  </div>
+                </div>
+              </div>
+              <hr class="bg-dark horizontal my-0 opacity-10" />
+              <div class="card-footer py-2 px-1">
+                <span class="font-weight-bolder text-sm ms-2">Storage: </span>
+
+                <span class="text-sm font-weight-normal"
+                  >{{ subject.total_file_size }}</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row gx-3 my-1">
+      <div class="col-lg-8 mx-auto mt-3">
+        <div class="nav-wrapper position-relative end-0">
+          <ul class="nav nav-pills nav-fill p-1 bg-dark" role="tablist">
+            <li class="nav-item" role="presentation">
+              <a
+                class="nav-link mb-0 px-0 py-1 text-white"
+                data-bs-toggle="tab"
+                data-bs-target="#tab-teachers"
+                href="javascript:;"
+                role="tab"
+                aria-selected="true"
+              >
+                Teachers
+              </a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a
+                class="nav-link mb-0 px-0 py-1 text-white"
+                data-bs-toggle="tab"
+                data-bs-target="#tab-exams"
+                href="javascript:;"
+                role="tab"
+                aria-selected="true"
+              >
+                Exams
+              </a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a
+                class="nav-link mb-0 px-0 py-1 text-white"
+                data-bs-toggle="tab"
+                data-bs-target="#tab-files"
+                href="javascript:;"
+                role="tab"
+                aria-selected="false"
+              >
+                Files
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row gx-3 my-1">
+      <div class="col-md-12">
+        <div class="row gx-0 mb-2 mt-5">
+          <div role="tab-container">
+            <div class="card d-none" role="tab" data-tab-id="#tab-teachers">
+              <div
+                class="bg-gradient-dark card-header mt-n4 mx-3 position-relative z-index-2 shadow-sm rounded-3 py-4"
+              >
+                <h5 class="mb-0 mx-2 text-white">Teachers</h5>
+              </div>
+
+              <div class="card-body pb-0">
+                <div class="table-responsive p-0">
+                  {% with teachers = subject.teachers %} {% include
+                  "admin/views/tables/teachers.html" %}{% endwith %}
+                </div>
+              </div>
+            </div>
+
+            <div class="card d-none" role="tab" data-tab-id="#tab-exams">
+              <div
+                class="bg-gradient-dark card-header mt-n4 mx-3 position-relative z-index-2 shadow-sm rounded-3 py-4"
+              >
+                <h5 class="mb-0 mx-2 text-white">Exams</h5>
+              </div>
+
+              <div class="card-body pb-0">
+                <div class="table-responsive p-0">
+                  {% with exams = subject.exams %} {% include
+                  "admin/views/tables/exams.html" %}{% endwith %}
+                </div>
+              </div>
+            </div>
+
+            <div class="card d-none" role="tab" data-tab-id="#tab-files">
+              <div
+                class="bg-gradient-dark card-header mt-n4 mx-3 position-relative z-index-2 shadow-sm rounded-3 py-4"
+              >
+                <h5 class="mb-0 mx-2 text-white">Files</h5>
+              </div>
+
+              <div class="card-body pb-0">
+                <div class="table-responsive p-0">
+                  {% with files = subject.files %} {% include
+                  "admin/views/tables/files.html" %}{% endwith %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
