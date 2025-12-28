@@ -9,6 +9,7 @@ from app.functions import validate_uid
 from app.models.class_ import Class
 from app.models.department import Department
 from app.models.employee import Employee
+from app.models.exam import Exam
 from app.models.job import Job
 from app.models.semester import Semester
 from app.models.student import Student
@@ -26,6 +27,7 @@ entities: Dict = {
     "subject": Subject,
     "class": Class,
     "student": Student,
+    "exam": Exam,
 }
 
 
