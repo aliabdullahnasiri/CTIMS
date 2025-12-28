@@ -2,12 +2,12 @@ import json
 from typing import Dict
 
 from flask import Response, current_app, render_template
-from jinja2 import Template
 
 from app.blueprints.admin import bp
 from app.config import Config
 from app.functions import validate_uid
 from app.models.department import Department
+from app.models.employee import Employee
 from app.models.job import Job
 from app.models.semester import Semester
 from app.models.time import Time
@@ -17,6 +17,7 @@ entities: Dict = {
     "department": Department,
     "semester": Semester,
     "job": Job,
+    "employee": Employee,
 }
 
 
