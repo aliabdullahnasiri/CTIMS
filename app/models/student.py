@@ -2,6 +2,7 @@ from datetime import date, datetime, timezone
 
 import humanize
 from flask import url_for
+from numerize.numerize import numerize
 
 from app.constants import DEFAULT_AVATAR
 from app.extensions import db
@@ -33,6 +34,17 @@ class Student(db.Model):
     results = db.relationship(
         "Result", back_populates="student", cascade="all, delete, delete-orphan"
     )
+
+    @property
+    def total_file_size(self) -> str:
+        total: int = 0
+        for f in self.files:
+            total += f.file.size
+        return humanize.naturalsize(total)
+
+    @property
+    def display_number_of_files(self):
+        return numerize(len(self.files), decimals=2)
 
     @property
     def full_name(self) -> str:
@@ -68,6 +80,10 @@ class Student(db.Model):
             return self.avatar_path
 
         return url_for("static", filename=DEFAULT_AVATAR)
+
+    @property
+    def display_number_of_phone_nums(self):
+        return numerize(len(self.phones), decimals=2)
 
     def to_dict(self) -> dict:
         return {
