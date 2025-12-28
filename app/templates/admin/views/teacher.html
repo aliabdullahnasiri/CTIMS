@@ -1,0 +1,359 @@
+<div class="card card-plain">
+  <div class="card-header">
+    <div class="row gx-4 mb-2">
+      <div class="col-auto my-auto">
+        <div class="d-flex px-0 py-1">
+          <div>
+            <img
+              src="{{ teacher.avatar_path }}"
+              class="avatar avatar-lg me-3 border-radius-lg"
+              alt="user1"
+            />
+          </div>
+          <div class="d-flex flex-column justify-content-center">
+            <h5 class="mb-0">{{ teacher.full_name }}</h5>
+            <p class="mb-0 mt-0 font-weight-normal text-sm">
+              {{ teacher.email }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body py-0">
+    <div class="row gx-3 my-1">
+      <div class="col-md-8">
+        <div class="row gx-0 mb-3">
+          <div class="card">
+            <div class="card-header pb-0">
+              <h5>Teacher Information</h5>
+            </div>
+            <hr class="bg-dark horizontal my-0 opacity-10" />
+            <div class="card-body p0">
+              <ul class="list-group">
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>UID:</strong> &nbsp;{{ teacher.uid }}
+                </li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>First Name:</strong> &nbsp;{{ teacher.first_name }}
+                </li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Middle Name:</strong> &nbsp;{{ teacher.middle_name }}
+                </li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Last Name:</strong> &nbsp;{{ teacher.last_name }}
+                </li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Email:</strong> &nbsp;{{ teacher.email }}
+                </li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Birthday:</strong> &nbsp;{{ teacher.display_birthday
+                  }}
+                </li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Age:</strong> &nbsp;{{ teacher.age }}
+                </li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Created At:</strong> &nbsp;{{
+                  teacher.display_created_at }}
+                </li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Updated At:</strong> &nbsp;{{
+                  teacher.display_updated_at }}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="row gx-0 mb-3">
+          <div class="card">
+            <div class="card-header pb-0">
+              <h5>Time Information</h5>
+            </div>
+            <hr class="bg-dark horizontal my-0 opacity-10" />
+            <div class="card-body p0">
+              <ul class="list-group">
+                {% with time = teacher.time %}
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>UID:</strong> &nbsp;{{ time.uid }}
+                </li>
+
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Start Time:</strong> &nbsp;{{ time.display_start_time
+                  }}
+                </li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>End Time:</strong> &nbsp;{{ time.display_end_time }}
+                </li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Created At:</strong> &nbsp;{{ time.display_created_at
+                  }}
+                </li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Updated At:</strong> &nbsp;{{ time.display_updated_at
+                  }}
+                </li>
+                {% endwith %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="row mb-2">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header p-2 ps-3">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <p class="text-sm mb-0 text-capitalize">Salary</p>
+                    <h4 class="mb-0">{{ teacher.display_salary }}</h4>
+                  </div>
+                  <div
+                    class="icon icon-md icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-lg"
+                  >
+                    <i class="material-symbols-rounded opacity-10">money</i>
+                  </div>
+                </div>
+              </div>
+              <hr class="bg-dark horizontal my-0 opacity-10" />
+              <div class="card-footer p-2">
+                <p class="mb-0 text-sm">
+                  {% if teacher.is_salary_gt_avg %}
+                  <span class="text-success font-weight-bolder">Greater</span>
+                  {% else %}
+                  <span class="text-danger font-weight-bolder">Less</span>
+                  {% endif %} than average salary.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header p-2 ps-3">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <p class="text-sm mb-0 text-capitalize">Phone</p>
+                    <h4 class="mb-0">
+                      {{ teacher.display_number_of_phone_nums }}
+                    </h4>
+                  </div>
+                  <div
+                    class="icon icon-md icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-lg"
+                  >
+                    <i class="material-symbols-rounded opacity-10">phone</i>
+                  </div>
+                </div>
+              </div>
+              <hr class="bg-dark horizontal my-0 opacity-10" />
+              <div class="card-footer py-2 px-1">
+                <div class="values d-flex flex-wrap justify-content-center">
+                  {% for phone in teacher.phones %}
+                  <span
+                    class="badge badge-sm bg-gradient-secondary mx-1 my-1 cursor-pointer"
+                    data-role="value"
+                    >{{ phone.phone_number }}</span
+                  >
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header p-2 ps-3">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <p class="text-sm mb-0 text-capitalize">Classes</p>
+                    <h4 class="mb-0">
+                      {{ teacher.display_number_of_classes }}
+                    </h4>
+                  </div>
+                  <div
+                    class="icon icon-md icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-lg"
+                  >
+                    <i class="material-symbols-rounded opacity-10">info</i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header p-2 ps-3">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <p class="text-sm mb-0 text-capitalize">Teachings</p>
+                    <h4 class="mb-0">
+                      {{ teacher.display_number_of_teachings }}
+                    </h4>
+                  </div>
+                  <div
+                    class="icon icon-md icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-lg"
+                  >
+                    <i class="material-symbols-rounded opacity-10">info</i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header p-2 ps-3">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <p class="text-sm mb-0 text-capitalize">Files</p>
+                    <h4 class="mb-0">{{ teacher.display_number_of_files }}</h4>
+                  </div>
+                  <div
+                    class="icon icon-md icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-lg"
+                  >
+                    <i class="material-symbols-rounded opacity-10">files</i>
+                  </div>
+                </div>
+              </div>
+              <hr class="bg-dark horizontal my-0 opacity-10" />
+              <div class="card-footer py-2 px-1">
+                <span class="font-weight-bolder text-sm ms-2">Storage: </span>
+
+                <span class="text-sm font-weight-normal"
+                  >{{ teacher.total_file_size }}</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row gx-3 my-1">
+      <div class="col-lg-8 mx-auto mt-3">
+        <div class="nav-wrapper position-relative end-0">
+          <ul class="nav nav-pills nav-fill p-1 bg-dark" role="tablist">
+            <li class="nav-item" role="presentation">
+              <a
+                class="nav-link mb-0 px-0 py-1 text-white"
+                data-bs-toggle="tab"
+                data-bs-target="#tab-classes"
+                href="javascript:;"
+                role="tab"
+                aria-selected="true"
+              >
+                Classes
+              </a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a
+                class="nav-link mb-0 px-0 py-1 text-white"
+                data-bs-toggle="tab"
+                data-bs-target="#tab-subjects"
+                href="javascript:;"
+                role="tab"
+                aria-selected="true"
+              >
+                Subjects
+              </a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a
+                class="nav-link mb-0 px-0 py-1 text-white"
+                data-bs-toggle="tab"
+                data-bs-target="#tab-attendances"
+                href="javascript:;"
+                role="tab"
+                aria-selected="false"
+              >
+                Attendances
+              </a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a
+                class="nav-link mb-0 px-0 py-1 text-white"
+                data-bs-toggle="tab"
+                data-bs-target="#tab-files"
+                href="javascript:;"
+                role="tab"
+                aria-selected="false"
+              >
+                Files
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row gx-3 my-1">
+    <div class="col-md-12">
+      <div class="row gx-0 mb-2 mt-5">
+        <div role="tab-container">
+          <div class="card d-none" role="tab" data-tab-id="#tab-subjects">
+            <div
+              class="bg-gradient-dark card-header mt-n4 mx-3 position-relative z-index-2 shadow-sm rounded-3 py-4"
+            >
+              <h5 class="mb-0 mx-2 text-white">Subjects</h5>
+            </div>
+
+            <div class="card-body pb-0">
+              <div class="table-responsive p-0">
+                {% with subjects = teacher.subjects %} {% include
+                "admin/views/tables/subjects.html" %}{% endwith %}
+              </div>
+            </div>
+          </div>
+
+          <div class="card d-none" role="tab" data-tab-id="#tab-classes">
+            <div
+              class="bg-gradient-dark card-header mt-n4 mx-3 position-relative z-index-2 shadow-sm rounded-3 py-4"
+            >
+              <h5 class="mb-0 mx-2 text-white">Classes</h5>
+            </div>
+
+            <div class="card-body pb-0">
+              <div class="table-responsive p-0">
+                {% with classes = teacher.classes %} {% include
+                "admin/views/tables/classes.html" %}{% endwith %}
+              </div>
+            </div>
+          </div>
+
+          <div class="card d-none" role="tab" data-tab-id="#tab-attendances">
+            <div
+              class="bg-gradient-dark card-header mt-n4 mx-3 position-relative z-index-2 shadow-sm rounded-3 py-4"
+            >
+              <h5 class="mb-0 mx-2 text-white">Attendances</h5>
+            </div>
+
+            <div class="card-body pb-0">
+              <div class="table-responsive p-0">
+                {% with attendances= teacher.attendances %} {% include
+                "admin/views/tables/attendances.html" %}{% endwith %}
+              </div>
+            </div>
+          </div>
+
+          <div class="card d-none" role="tab" data-tab-id="#tab-files">
+            <div
+              class="bg-gradient-dark card-header mt-n4 mx-3 position-relative z-index-2 shadow-sm rounded-3 py-4"
+            >
+              <h5 class="mb-0 mx-2 text-white">Files</h5>
+            </div>
+
+            <div class="card-body pb-0">
+              <div class="table-responsive p-0"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
