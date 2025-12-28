@@ -25,6 +25,7 @@ class AddExamForm(FlaskForm):
     exam_time = TimeField("Exam Time", validators=[DataRequired()])
 
     total_marks = IntegerField("Total Marks", validators=[DataRequired()], default=100)
+    min_marks = IntegerField("Minimum Marks", validators=[DataRequired()], default=50)
 
     subject_id = StringField("Subject UID", validators=[DataRequired(), Length(8, 8)])
     class_id = StringField("Class UID", validators=[DataRequired(), Length(8, 8)])
