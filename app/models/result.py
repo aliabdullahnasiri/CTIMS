@@ -36,4 +36,4 @@ class Result(db.Model):
 
     @property
     def status(self):
-        return "Pass" if self.percentage >= 40 else "Fail"
+        return "Pass" if self.percentage >= self.exam.min_percentage else "Fail"
