@@ -1,0 +1,188 @@
+<div class="card card-plain">
+  <div class="card-header">
+    <div class="row gx-4 mb-2">
+      <div class="col-auto my-auto">
+        <div class="d-flex px-0 py-1">
+          <div>
+            <img
+              src="{{ employee.avatar_path }}"
+              class="avatar avatar-lg me-3 border-radius-lg"
+              alt="user1"
+            />
+          </div>
+          <div class="d-flex flex-column justify-content-center">
+            <h5 class="mb-0">{{ employee.full_name }}</h5>
+            <p class="mb-0 mt-0 font-weight-normal text-sm">
+              {{ employee.email }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body py-0">
+    <div class="row gx-3 my-1">
+      <div class="col-md-8">
+        <div class="row gx-0 mb-3">
+          <div class="card">
+            <div class="card-header pb-0">
+              <h5>Employee Information</h5>
+            </div>
+            <hr class="bg-dark horizontal my-0 opacity-10" />
+            <div class="card-body p0">
+              <ul class="list-group">
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>UID:</strong> &nbsp;{{ employee.uid }}
+                </li>
+
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>First Name:</strong> &nbsp;{{ employee.first_name }}
+                </li>
+
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Middle Name:</strong> &nbsp;{{ employee.middle_name }}
+                </li>
+
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Last Name:</strong> &nbsp;{{ employee.last_name }}
+                </li>
+
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Email:</strong> &nbsp;{{ employee.email }}
+                </li>
+
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Birthday:</strong> &nbsp;{{ employee.display_birthday
+                  }}
+                </li>
+
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Age:</strong> &nbsp;{{ employee.age }}
+                </li>
+
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Hire Date:</strong> &nbsp;{{
+                  employee.display_hire_date }}
+                </li>
+
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Created At:</strong> &nbsp;{{
+                  employee.display_created_at }}
+                </li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Updated At:</strong> &nbsp;{{
+                  employee.display_updated_at }}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="row gx-0 mb-3">
+          <div class="card">
+            <div class="card-header pb-0">
+              <h5>Job Information</h5>
+            </div>
+            <hr class="bg-dark horizontal my-0 opacity-10" />
+            <div class="card-body p0">
+              <ul class="list-group">
+                {% with job = employee.job %}
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>UID:</strong> &nbsp;{{ job.uid }}
+                </li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Title:</strong> &nbsp;{{ job.job_title }}
+                </li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Description:</strong> &nbsp;{{ job.job_description }}
+                </li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Min Salary:</strong> &nbsp;{{ job.display_min_salary
+                  }}
+                </li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Max Salary:</strong> &nbsp;{{ job.display_max_salary
+                  }}
+                </li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Created At:</strong> &nbsp;{{ job.display_created_at
+                  }}
+                </li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong>Updated At:</strong> &nbsp;{{ job.display_updated_at
+                  }}
+                </li>
+                {% endwith %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="row mb-2">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header p-2 ps-3">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <p class="text-sm mb-0 text-capitalize">Salary</p>
+                    <h4 class="mb-0">{{ employee.display_salary }}</h4>
+                  </div>
+                  <div
+                    class="icon icon-md icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-lg"
+                  >
+                    <i class="material-symbols-rounded opacity-10">check</i>
+                  </div>
+                </div>
+              </div>
+              <hr class="bg-dark horizontal my-0 opacity-10" />
+              <div class="card-footer p-2">
+                <p class="mb-0 text-sm">
+                  {% if employee.is_salary_gt_avg %}
+                  <span class="text-success font-weight-bolder">Greater</span>
+                  {% else %}
+                  <span class="text-danger font-weight-bolder">Less</span>
+                  {% endif %} than average salary.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header p-2 ps-3">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <p class="text-sm mb-0 text-capitalize">Phone</p>
+                    <h4 class="mb-0">
+                      {{ employee.display_number_of_phone_nums }}
+                    </h4>
+                  </div>
+                  <div
+                    class="icon icon-md icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-lg"
+                  >
+                    <i class="material-symbols-rounded opacity-10">phone</i>
+                  </div>
+                </div>
+              </div>
+              <hr class="bg-dark horizontal my-0 opacity-10" />
+              <div class="card-footer py-2 px-1">
+                <div class="values d-flex flex-wrap justify-content-center">
+                  {% for phone in employee.phones %}
+                  <span
+                    class="badge badge-sm bg-gradient-secondary mx-1 my-1 cursor-pointer"
+                    data-role="value"
+                    >{{ phone.phone_number }}</span
+                  >
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer"></div>
+  </div>
+</div>
