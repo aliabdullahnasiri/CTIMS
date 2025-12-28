@@ -1,4 +1,3 @@
-from datetime import datetime, timezone
 from decimal import Decimal
 from typing import Dict
 
@@ -26,8 +25,8 @@ class Job(db.Model):
             "job_id": self.uid,
             "job_title": self.job_title,
             "job_description": self.job_description,
-            "min_salary": self.display_min_salary,
-            "max_salary": self.display_max_salary,
+            "min_salary": float(self.min_salary) if self.min_salary else None,
+            "max_salary": float(self.max_salary) if self.max_salary else None,
             **super().to_dict(),
         }
 
