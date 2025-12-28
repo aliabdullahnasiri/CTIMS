@@ -35,9 +35,37 @@ class Class(db.Model):
         }
 
     @property
+    def subjects(self):
+        return self.semester.get_all_subjects()
+
+    @property
+    def attendances(self):
+        return [
+            attendance
+            for student in self.students
+            for attendance in student.attendances
+        ]
+
+    @property
+    def number_of_subjects(self):
+        return len(self.subjects)
+
+    @property
+    def number_of_exams(self):
+        return len(self.exams)
+
+    @property
     def number_of_students(self) -> int:
         return len(self.students)
 
     @property
     def display_number_of_students(self) -> str:
         return numerize(self.number_of_students, decimals=2)
+
+    @property
+    def display_number_of_all_subjects(self):
+        return numerize(self.number_of_subjects, decimals=2)
+
+    @property
+    def display_number_of_exams(self):
+        return numerize(self.number_of_exams, decimals=2)

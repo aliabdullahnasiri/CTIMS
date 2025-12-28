@@ -75,6 +75,16 @@ class Department(db.Model):
         return obj
 
     @property
+    def head_of_department_entity_label(self) -> Union[str, None]:
+        if self.head_of_department:
+            match self.head_of_department:
+                case val if val.startswith("E"):
+                    return "Employee"
+
+                case val if val.startswith("T"):
+                    return "Teacher"
+
+    @property
     def _head_of_department_uid(self):
         return self.head_of_department
 

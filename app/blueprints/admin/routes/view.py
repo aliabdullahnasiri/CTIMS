@@ -6,6 +6,7 @@ from flask import Response, current_app, render_template
 from app.blueprints.admin import bp
 from app.config import Config
 from app.functions import validate_uid
+from app.models.class_ import Class
 from app.models.department import Department
 from app.models.employee import Employee
 from app.models.job import Job
@@ -22,6 +23,7 @@ entities: Dict = {
     "employee": Employee,
     "teacher": Teacher,
     "subject": Subject,
+    "class": Class,
 }
 
 

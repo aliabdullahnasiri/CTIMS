@@ -1,11 +1,8 @@
 <div class="card card-plain">
-  <div class="card-header">
-    <div class="row gx-4 mb-1">
-      <div class="col-auto my-auto">
-        <div class="h-100">
-          <h4 class="mb-0">{{ semester.name }}</h4>
-        </div>
-      </div>
+  <div class="card-header mx-1">
+    <div class="row gx-4 mb-0">
+      <h4 class="mb-0">Semester</h4>
+      <p class="mb-0 mt-0 font-weight-normal text-sm">{{ semester.name }}</p>
     </div>
   </div>
   <div class="card-body py-0">
@@ -18,22 +15,7 @@
             </div>
             <hr class="bg-dark horizontal my-0 opacity-10" />
             <div class="card-body p0">
-              <ul class="list-group">
-                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
-                  <strong>UID:</strong> &nbsp;{{ semester.uid }}
-                </li>
-                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
-                  <strong>Number:</strong> &nbsp;{{ semester.number }}
-                </li>
-                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
-                  <strong>Created At:</strong> &nbsp;{{
-                  semester.display_created_at }}
-                </li>
-                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
-                  <strong>Updated At:</strong> &nbsp;{{
-                  semester.display_updated_at }}
-                </li>
-              </ul>
+              {% include "admin/views/information/semester.html" %}
             </div>
           </div>
         </div>
@@ -45,32 +27,8 @@
             </div>
             <hr class="bg-dark horizontal my-0 opacity-10" />
             <div class="card-body p0">
-              <ul class="list-group">
-                {% with department = semester.department %}
-                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
-                  <strong>UID:</strong> &nbsp;{{ department.uid }}
-                </li>
-                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
-                  <strong>PUID:</strong> &nbsp;{{
-                  department.display_parent_department_uid }}
-                </li>
-                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
-                  <strong>HUID:</strong> &nbsp;{{
-                  department.display_head_of_department_uid }}
-                </li>
-                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
-                  <strong>Name:</strong> &nbsp;{{ department.name }}
-                </li>
-                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
-                  <strong>Created At:</strong> &nbsp;{{
-                  department.display_created_at }}
-                </li>
-                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
-                  <strong>Updated At:</strong> &nbsp;{{
-                  department.display_updated_at }}
-                </li>
-                {% endwith %}
-              </ul>
+              {% with department = semester.department %} {% include
+              "admin/views/information/department.html" %} {% endwith %}
             </div>
           </div>
         </div>
@@ -266,95 +224,24 @@
       <div class="col-md-12">
         <div class="row gx-0 mb-2 mt-5">
           <div role="tab-container">
-            <div class="card d-none" role="tab" data-tab-id="#tab-subjects">
-              <div
-                class="bg-gradient-dark card-header mt-n4 mx-3 position-relative z-index-2 shadow-sm rounded-3 py-4"
-              >
-                <h5 class="mb-0 mx-2 text-white">Subjects</h5>
-              </div>
-
-              <div class="card-body pb-0">
-                <div class="table-responsive p-0">
-                  {% with subjects = semester.get_all_subjects() %} {% include
-                  "admin/views/tables/subjects.html" %}{% endwith %}
-                </div>
-              </div>
-            </div>
-
-            <div class="card d-none" role="tab" data-tab-id="#tab-classes">
-              <div
-                class="bg-gradient-dark card-header mt-n4 mx-3 position-relative z-index-2 shadow-sm rounded-3 py-4"
-              >
-                <h5 class="mb-0 mx-2 text-white">Classes</h5>
-              </div>
-
-              <div class="card-body pb-0">
-                <div class="table-responsive p-0">
-                  {% with classes = semester.classes %} {% include
-                  "admin/views/tables/classes.html" %}{% endwith %}
-                </div>
-              </div>
-            </div>
-
-            <div class="card d-none" role="tab" data-tab-id="#tab-teachers">
-              <div
-                class="bg-gradient-dark card-header mt-n4 mx-3 position-relative z-index-2 shadow-sm rounded-3 py-4"
-              >
-                <h5 class="mb-0 mx-2 text-white">Teachers</h5>
-              </div>
-
-              <div class="card-body pb-0">
-                <div class="table-responsive p-0">
-                  {% with teachers = semester.teachers %} {% include
-                  "admin/views/tables/teachers.html" %}{% endwith %}
-                </div>
-              </div>
-            </div>
-
-            <div class="card d-none" role="tab" data-tab-id="#tab-students">
-              <div
-                class="bg-gradient-dark card-header mt-n4 mx-3 position-relative z-index-2 shadow-sm rounded-3 py-4"
-              >
-                <h5 class="mb-0 mx-2 text-white">Students</h5>
-              </div>
-
-              <div class="card-body pb-0">
-                <div class="table-responsive p-0">
-                  {% with students = semester.students %} {% include
-                  "admin/views/tables/students.html" %}{% endwith %}
-                </div>
-              </div>
-            </div>
-
-            <div class="card d-none" role="tab" data-tab-id="#tab-exams">
-              <div
-                class="bg-gradient-dark card-header mt-n4 mx-3 position-relative z-index-2 shadow-sm rounded-3 py-4"
-              >
-                <h5 class="mb-0 mx-2 text-white">Exams</h5>
-              </div>
-
-              <div class="card-body pb-0">
-                <div class="table-responsive p-0">
-                  {% with exams = semester.exams %} {% include
-                  "admin/views/tables/exams.html" %}{% endwith %}
-                </div>
-              </div>
-            </div>
-
-            <div class="card d-none" role="tab" data-tab-id="#tab-results">
-              <div
-                class="bg-gradient-dark card-header mt-n4 mx-3 position-relative z-index-2 shadow-sm rounded-3 py-4"
-              >
-                <h5 class="mb-0 mx-2 text-white">Results</h5>
-              </div>
-
-              <div class="card-body pb-0">
-                <div class="table-responsive p-0">
-                  {% with results = semester.results %} {% include
-                  "admin/views/tables/results.html" %}{% endwith %}
-                </div>
-              </div>
-            </div>
+            <!--Subjects-->
+            {% with subjects = semester.get_all_subjects() %} {% include
+            "admin/views/tabs/subjects.html" %}{% endwith %}
+            <!--Classes-->
+            {% with classes = semester.classes %} {% include
+            "admin/views/tabs/classes.html" %}{% endwith %}
+            <!--Teachers-->
+            {% with teachers = semester.teachers %} {% include
+            "admin/views/tabs/teachers.html" %}{% endwith %}
+            <!--Students-->
+            {% with students = semester.students %} {% include
+            "admin/views/tabs/students.html" %}{% endwith %}
+            <!--Exams-->
+            {% with exams = semester.exams %} {% include
+            "admin/views/tabs/exams.html" %}{% endwith %}
+            <!--Results-->
+            {% with results = semester.results %} {% include
+            "admin/views/tabs/results.html" %}{% endwith %}
           </div>
         </div>
       </div>

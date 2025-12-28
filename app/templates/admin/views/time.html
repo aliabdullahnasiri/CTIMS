@@ -19,27 +19,7 @@
             </div>
             <hr class="bg-dark horizontal my-0 opacity-10" />
             <div class="card-body p0">
-              <ul class="list-group">
-                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
-                  <strong>UID:</strong> &nbsp;{{ time.uid }}
-                </li>
-
-                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
-                  <strong>Start Time:</strong> &nbsp;{{ time.display_start_time
-                  }}
-                </li>
-                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
-                  <strong>End Time:</strong> &nbsp;{{ time.display_end_time }}
-                </li>
-                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
-                  <strong>Created At:</strong> &nbsp;{{ time.display_created_at
-                  }}
-                </li>
-                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
-                  <strong>Updated At:</strong> &nbsp;{{ time.display_updated_at
-                  }}
-                </li>
-              </ul>
+              {% include "admin/views/information/time.html" %}
             </div>
           </div>
         </div>
@@ -153,49 +133,15 @@
       <div class="col-md-12">
         <div class="row gx-0 mb-2 mt-5">
           <div role="tab-container">
-            <div class="card d-none" role="tab" data-tab-id="#tab-students">
-              <div
-                class="bg-gradient-dark card-header mt-n4 mx-3 position-relative z-index-2 shadow-sm rounded-3 py-4"
-              >
-                <h5 class="mb-0 mx-2 text-white">Students</h5>
-              </div>
-
-              <div class="card-body pb-0">
-                <div class="table-responsive p-0">
-                  {% with students = time.students %} {% include
-                  "admin/views/tables/students.html" %}{% endwith %}
-                </div>
-              </div>
-            </div>
-
-            <div class="card d-none" role="tab" data-tab-id="#tab-teachers">
-              <div
-                class="bg-gradient-dark card-header mt-n4 mx-3 position-relative z-index-2 shadow-sm rounded-3 py-4"
-              >
-                <h5 class="mb-0 mx-2 text-white">Teachers</h5>
-              </div>
-
-              <div class="card-body pb-0">
-                <div class="table-responsive p-0">
-                  {% with teachers = time.teachers %} {% include
-                  "admin/views/tables/teachers.html" %}{% endwith %}
-                </div>
-              </div>
-            </div>
-            <div class="card d-none" role="tab" data-tab-id="#tab-classes">
-              <div
-                class="bg-gradient-dark card-header mt-n4 mx-3 position-relative z-index-2 shadow-sm rounded-3 py-4"
-              >
-                <h5 class="mb-0 mx-2 text-white">Classes</h5>
-              </div>
-
-              <div class="card-body pb-0">
-                <div class="table-responsive p-0">
-                  {% with classes = time.classes %} {% include
-                  "admin/views/tables/classes.html" %}{% endwith %}
-                </div>
-              </div>
-            </div>
+            <!--Students-->
+            {% with students = time.students %} {% include
+            "admin/views/tabs/students.html" %}{% endwith %}
+            <!--Teachers-->
+            {% with teachers = time.teachers %} {% include
+            "admin/views/tabs/teachers.html" %}{% endwith %}
+            <!--Classes-->
+            {% with classes = time.classes %} {% include
+            "admin/views/tabs/classes.html" %}{% endwith %}
           </div>
         </div>
       </div>

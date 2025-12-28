@@ -21,27 +21,7 @@
             </div>
             <hr class="bg-dark horizontal my-0 opacity-10" />
             <div class="card-body p0">
-              <ul class="list-group">
-                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
-                  <strong>UID:</strong> &nbsp;{{ department.uid }}
-                </li>
-                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
-                  <strong>PUID:</strong> &nbsp;{{
-                  department.display_parent_department_uid }}
-                </li>
-                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
-                  <strong>HUID:</strong> &nbsp;{{
-                  department.display_head_of_department_uid }}
-                </li>
-                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
-                  <strong>Created At:</strong> &nbsp;{{
-                  department.display_created_at }}
-                </li>
-                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
-                  <strong>Updated At:</strong> &nbsp;{{
-                  department.display_updated_at }}
-                </li>
-              </ul>
+              {% include "admin/views/information/department.html" %}
             </div>
           </div>
         </div>
@@ -49,48 +29,17 @@
         <div class="row gx-0 mb-3">
           <div class="card">
             <div class="card-header pb-0">
-              <h5>HOD Information</h5>
+              <h5>
+                {{ department.head_of_department_entity_label }} Information
+              </h5>
             </div>
             <hr class="bg-dark horizontal my-0 opacity-10" />
             <div class="card-body p0">
-              <ul class="list-group">
-                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
-                  <strong>UID:</strong> &nbsp;{{
-                  department.display_head_of_department_uid }}
-                </li>
-                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
-                  <strong>First Name:</strong> &nbsp;{{
-                  department._head_of_department.first_name }}
-                </li>
-                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
-                  <strong>Middle Name:</strong> &nbsp;{{
-                  department._head_of_department.middle_name }}
-                </li>
-                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
-                  <strong>Last Name:</strong> &nbsp;{{
-                  department._head_of_department.last_name }}
-                </li>
-                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
-                  <strong>Email:</strong> &nbsp;{{
-                  department._head_of_department.email }}
-                </li>
-                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
-                  <strong>Hire Date:</strong> &nbsp;{{
-                  department._head_of_department.display_hire_date }}
-                </li>
-                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
-                  <strong>Salary:</strong> &nbsp;{{
-                  department._head_of_department.display_salary }}
-                </li>
-                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
-                  <strong>Created At:</strong> &nbsp;{{
-                  department._head_of_department.display_created_at }}
-                </li>
-                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
-                  <strong>Updated At:</strong> &nbsp;{{
-                  department._head_of_department.display_updated_at }}
-                </li>
-              </ul>
+              {% if department.head_of_department_entity_label == "Employee" %}
+              {% with employee = department._head_of_department %} {% include
+              "admin/views/information/employee.html" %} {% endwith %} {% else%}
+              {% with employee = department._head_of_department %} {% include
+              "admin/views/information/teacher.html" %} {% endwith %} {% endif%}
             </div>
           </div>
         </div>
@@ -277,78 +226,21 @@
       <div class="col-md-12">
         <div class="row gx-0 mb-2 mt-5">
           <div role="tab-container">
-            <div class="card d-none" role="tab" data-tab-id="#tab-semesters">
-              <div
-                class="bg-gradient-dark card-header mt-n4 mx-3 position-relative z-index-2 shadow-sm rounded-3 py-4"
-              >
-                <h5 class="mb-0 mx-2 text-white">Semesters</h5>
-              </div>
-
-              <div class="card-body pb-0">
-                <div class="table-responsive p-0">
-                  {% with semesters = department.get_all_semesters() %} {%
-                  include "admin/views/tables/semesters.html" %}{% endwith %}
-                </div>
-              </div>
-            </div>
-
-            <div class="card d-none" role="tab" data-tab-id="#tab-subjects">
-              <div
-                class="bg-gradient-dark card-header mt-n4 mx-3 position-relative z-index-2 shadow-sm rounded-3 py-4"
-              >
-                <h5 class="mb-0 mx-2 text-white">Subjects</h5>
-              </div>
-
-              <div class="card-body pb-0">
-                <div class="table-responsive p-0">
-                  {% with subjects = department.get_all_subjects() %} {% include
-                  "admin/views/tables/subjects.html" %}{% endwith %}
-                </div>
-              </div>
-            </div>
-            <div class="card d-none" role="tab" data-tab-id="#tab-students">
-              <div
-                class="bg-gradient-dark card-header mt-n4 mx-3 position-relative z-index-2 shadow-sm rounded-3 py-4"
-              >
-                <h5 class="mb-0 mx-2 text-white">Students</h5>
-              </div>
-
-              <div class="card-body pb-0">
-                <div class="table-responsive p-0">
-                  {% with students = department.get_all_students() %} {% include
-                  "admin/views/tables/students.html" %}{% endwith %}
-                </div>
-              </div>
-            </div>
-
-            <div class="card d-none" role="tab" data-tab-id="#tab-teachers">
-              <div
-                class="bg-gradient-dark card-header mt-n4 mx-3 position-relative z-index-2 shadow-sm rounded-3 py-4"
-              >
-                <h5 class="mb-0 mx-2 text-white">Teachers</h5>
-              </div>
-
-              <div class="card-body pb-0">
-                <div class="table-responsive p-0">
-                  {% with teachers = department.get_all_teachers() %} {% include
-                  "admin/views/tables/teachers.html" %}{% endwith %}
-                </div>
-              </div>
-            </div>
-            <div class="card d-none" role="tab" data-tab-id="#tab-classes">
-              <div
-                class="bg-gradient-dark card-header mt-n4 mx-3 position-relative z-index-2 shadow-sm rounded-3 py-4"
-              >
-                <h5 class="mb-0 mx-2 text-white">Classes</h5>
-              </div>
-
-              <div class="card-body pb-0">
-                <div class="table-responsive p-0">
-                  {% with classes = department.get_all_classes() %} {% include
-                  "admin/views/tables/classes.html" %}{% endwith %}
-                </div>
-              </div>
-            </div>
+            <!--Semesters-->
+            {% with semesters = department.get_all_semesters() %} {% include
+            "admin/views/tabs/semesters.html" %}{% endwith %}
+            <!--Subjects-->
+            {% with subjects = department.get_all_subjects() %} {% include
+            "admin/views/tabs/subjects.html" %}{% endwith %}
+            <!--Students-->
+            {% with students = department.get_all_students() %} {% include
+            "admin/views/tabs/students.html" %}{% endwith %}
+            <!--Department-->
+            {% with teachers = department.get_all_teachers() %} {% include
+            "admin/views/tabs/teachers.html" %}{% endwith %}
+            <!--Classes-->
+            {% with classes = department.get_all_classes() %} {% include
+            "admin/views/tabs/classes.html" %}{% endwith %}
           </div>
         </div>
       </div>
