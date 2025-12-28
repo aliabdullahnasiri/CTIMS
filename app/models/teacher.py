@@ -2,6 +2,7 @@ from datetime import date
 
 import humanize
 from flask import url_for
+from numerize.numerize import numerize
 
 from app.constants import CURRENCY_SYMBOL, DEFAULT_AVATAR
 from app.extensions import db
@@ -41,6 +42,10 @@ class Teacher(db.Model):
     files = db.relationship(
         "TeacherFile", back_populates="teacher", cascade="all, delete, delete-orphan"
     )
+
+    @property
+    def subjects(self):
+        return [teaching.subject for teaching in self.teachings]
 
     @property
     def full_name(self) -> str:
@@ -95,6 +100,22 @@ class Teacher(db.Model):
             return self.avatar_path
 
         return url_for("static", filename=DEFAULT_AVATAR)
+
+    @property
+    def display_number_of_phone_nums(self):
+        return numerize(len(self.phones), decimals=2)
+
+    @property
+    def display_number_of_classes(self):
+        return numerize(len(self.classes), decimals=2)
+
+    @property
+    def display_number_of_files(self):
+        return numerize(len(self.files), decimals=2)
+
+    @property
+    def display_number_of_teachings(self):
+        return numerize(len(self.teachings), decimals=2)
 
     def to_dict(self):
         dct = {
