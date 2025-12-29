@@ -1,9 +1,15 @@
 import { initAllMovingTabs } from "./script.js";
 
-async function fetchTableData(tableElement) {
-  let URL = tableElement.dataset.getRows;
+async function fetchTableData(tableElement, page, limit) {
+  let url = tableElement.dataset.getRows;
+  let params = new URLSearchParams();
 
-  let response = await fetch(URL);
+  params.set("page", page || tableElement.dataset.page || 1);
+  params.set("limit", limit || tableElement.dataset.limit || 50);
+
+  url = url.concat(String.fromCharCode(63)).concat(params.toString());
+
+  let response = await fetch(url);
 
   if (response.ok) {
     let data = await response.json();
@@ -28,7 +34,59 @@ async function initTable(tableElement, theadElement, tbodyElement) {
       tbodyElement.innerHTML = "";
       addTableRows(tableElement, tbodyElement, rows);
     }
+
+    tableElement.dataset.page = 1 + +tableElement.dataset.page;
   }
+}
+
+async function loadRows() {
+  if (window.tableLoading) return;
+
+  window.tableLoading = true;
+
+  let table = document.querySelector("table[data-type=dynamic]");
+
+  if (table) {
+    let tbody = table.querySelector("tbody");
+    showSkeletonRow(tbody);
+
+    let data = await fetchTableData(
+      table,
+      table.dataset.page,
+      table.dataset.limit,
+    );
+
+    removeSkeletonRow(tbody);
+
+    let rows = data?.rows;
+
+    if (rows.length === 0) {
+      window.removeEventListener("scroll", handleScroll);
+      return;
+    }
+
+    addTableRows(table, tbody, rows, false);
+
+    table.dataset.page = 1 + +table.dataset.page;
+    window.tableLoading = false;
+  }
+}
+
+function handleScroll() {
+  if (window.scrollY > window.document.body.offsetHeight - 350) loadRows();
+}
+
+function showSkeletonRow(tbody) {
+  let sk = document.createElement("tr");
+  sk.classList.value = "row-skeleton";
+
+  tbody.append(sk);
+}
+
+function removeSkeletonRow(tbody) {
+  tbody.querySelectorAll("tr[data-role=skeleton]").forEach((element) => {
+    element.remove();
+  });
 }
 
 function addActionButtons(tableElement, trElement) {
@@ -314,11 +372,11 @@ function reloadRow(tableElement, theadElement, rowElement) {
     });
 }
 
-function addTableRows(tableElement, tbodyElement, rows) {
+function addTableRows(tableElement, tbodyElement, rows, empty = true) {
   let trElement;
   let tdElement;
 
-  tbodyElement.innerHTML = "";
+  if (empty) tbodyElement.innerHTML = "";
 
   if (rows.length > 0) {
     Array.from(rows).forEach((row) => {
@@ -532,23 +590,22 @@ function initTableContol(
 }
 
 (function () {
-  document
-    .querySelectorAll("table[data-type=dynamic]")
-    .forEach(function (tableElement) {
-      const theadElement = tableElement.querySelector("thead");
-      const tbodyElement = tableElement.querySelector("tbody");
-      const cardElement = tableElement.closest("div.card");
-      const tableControlDivElement =
-        cardElement.querySelector("div.table-control");
+  let tableElement = document.querySelector("table[data-type=dynamic]");
 
-      initTableContol(
-        tableElement,
-        tableControlDivElement,
-        tbodyElement,
-        theadElement,
-      );
-      initTable(tableElement, theadElement, tbodyElement);
-    });
+  const theadElement = tableElement.querySelector("thead");
+  const tbodyElement = tableElement.querySelector("tbody");
+  const cardElement = tableElement.closest("div.card");
+  const tableControlDivElement = cardElement.querySelector("div.table-control");
+
+  initTableContol(
+    tableElement,
+    tableControlDivElement,
+    tbodyElement,
+    theadElement,
+  );
+  initTable(tableElement, theadElement, tbodyElement);
+
+  window.addEventListener("scroll", handleScroll);
 
   document.addEventListener("click", (event) => {
     const target = event.target;
