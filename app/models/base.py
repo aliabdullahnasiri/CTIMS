@@ -149,7 +149,7 @@ def all(self):
         limit = int(request.args.get("limit", 100))
         offset = (page - 1) * limit
 
-        return self.offset(offset).limit(limit)
+        return self.offset(offset).limit(abs(limit))
     except Exception as err:
         console.print(err)
 
