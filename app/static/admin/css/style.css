@@ -212,3 +212,8 @@ div[data-bs-role="loader"]::after {
     font-size: 14px !important;
   }
 }
+
+tr[data-role="skeleton"] {
+  background: transparent;
+  height: 64px;
+}
