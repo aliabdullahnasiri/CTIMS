@@ -19,7 +19,7 @@ async function fetchTableData(tableElement, page, limit) {
 }
 
 async function initTable(tableElement, theadElement, tbodyElement) {
-  let data = await fetchTableData(tableElement);
+  let data = await fetchTableData(tableElement, 1, tableElement.dataset.limit);
 
   if (data) {
     let cols = data?.cols;
@@ -35,7 +35,7 @@ async function initTable(tableElement, theadElement, tbodyElement) {
       addTableRows(tableElement, tbodyElement, rows);
     }
 
-    tableElement.dataset.page = 1 + +tableElement.dataset.page;
+    tableElement.dataset.page = 2;
   }
 }
 
@@ -60,20 +60,19 @@ async function loadRows() {
 
     let rows = data?.rows;
 
-    if (rows.length === 0) {
-      window.removeEventListener("scroll", handleScroll);
-      return;
+    if (rows.length !== 0) {
+      addTableRows(table, tbody, rows, false);
+
+      table.dataset.page = 1 + +table.dataset.page;
     }
 
-    addTableRows(table, tbody, rows, false);
-
-    table.dataset.page = 1 + +table.dataset.page;
     window.tableLoading = false;
   }
 }
 
 function handleScroll() {
-  if (window.scrollY > window.document.body.offsetHeight - 350) loadRows();
+  if (window.scrollY > document.body.scrollHeight - window.innerHeight)
+    loadRows();
 }
 
 function showSkeletonRow(tbody) {
