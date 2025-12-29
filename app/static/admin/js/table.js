@@ -1,11 +1,14 @@
 import { initAllMovingTabs } from "./script.js";
 
+const LIMIT = 50;
+const FIRST_PAGE = 1;
+
 async function fetchTableData(tableElement, page, limit) {
   let url = tableElement.dataset.getRows;
   let params = new URLSearchParams();
 
-  params.set("page", page || tableElement.dataset.page || 1);
-  params.set("limit", limit || tableElement.dataset.limit || 50);
+  params.set("page", page || tableElement.dataset.page || FIRST_PAGE);
+  params.set("limit", limit || tableElement.dataset.limit || LIMIT);
 
   url = url.concat(String.fromCharCode(63)).concat(params.toString());
 
@@ -19,7 +22,7 @@ async function fetchTableData(tableElement, page, limit) {
 }
 
 async function initTable(tableElement, theadElement, tbodyElement) {
-  let data = await fetchTableData(tableElement, 1, tableElement.dataset.limit);
+  let data = await fetchTableData(tableElement, FIRST_PAGE);
 
   if (data) {
     let cols = data?.cols;
