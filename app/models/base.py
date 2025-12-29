@@ -1,11 +1,12 @@
 import random
 from datetime import datetime, timedelta, timezone
 
+from flask import request
 from numerize import numerize
 from sqlalchemy import Column, String, event, extract, func
 from sqlalchemy.ext.declarative import declared_attr
 
-from app.extensions import db
+from app.extensions import console, db
 
 
 class Base(db.Model):
@@ -142,4 +143,18 @@ def generate_uid(mapper, connection, target):
     target.uid = f"{prefix}-{random_number}"
 
 
+def all(self):
+    try:
+        page = int(request.args.get("page", 1))
+        limit = int(request.args.get("limit", 100))
+        offset = (page - 1) * limit
+
+        return self.offset(offset).limit(limit)
+    except Exception as err:
+        console.print(err)
+
+    return self
+
+
+db.Model.query_class.all = all
 db.Model = Base
