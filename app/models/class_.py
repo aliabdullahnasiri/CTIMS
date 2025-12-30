@@ -47,6 +47,10 @@ class Class(db.Model):
         ]
 
     @property
+    def results(self):
+        return [result for exam in self.exams for result in exam.results]
+
+    @property
     def number_of_subjects(self):
         return len(self.subjects)
 
