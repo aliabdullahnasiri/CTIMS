@@ -594,6 +594,8 @@ function initTableContol(
 (function () {
   let tableElement = document.querySelector("table[data-type=dynamic]");
 
+  if (!tableElement) return;
+
   const theadElement = tableElement.querySelector("thead");
   const tbodyElement = tableElement.querySelector("tbody");
   const cardElement = tableElement.closest("div.card");
