@@ -54,7 +54,6 @@
     } catch (error) {}
 
     try {
-      console.log(darkVersionElement);
       if (darkVersion == "true") {
         darkVersionElement.checked = darkVersion;
 
