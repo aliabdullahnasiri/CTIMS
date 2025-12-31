@@ -92,7 +92,7 @@ export function createLoader() {
       setTimeout(() => {
         loaderElement.remove();
       }, 500);
-    }, 500);
+    }, 2000);
   });
 
   document.addEventListener("click", (event) => {
