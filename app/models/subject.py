@@ -19,7 +19,7 @@ class Subject(db.Model):
 
     semester = db.relationship("Semester", back_populates="subjects")
     teachings = db.relationship(
-        "Teaching", back_populates="subject", cascade="all, delete-orphan"
+        "Teaching", back_populates="subject", cascade="all, delete, delete-orphan"
     )
     files = db.relationship(
         "SubjectFile", back_populates="subject", cascade="all, delete, delete-orphan"
