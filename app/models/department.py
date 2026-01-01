@@ -20,7 +20,7 @@ class Department(db.Model):
     semesters = db.relationship(
         "Semester", back_populates="department", cascade="all, delete, delete-orphan"
     )
-    departments = db.relationship("Department")
+    departments = db.relationship("Department", cascade="all, delete, delete-orphan")
 
     def to_dict(self) -> Dict:
         return {
