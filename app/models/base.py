@@ -1,9 +1,9 @@
-import random
+import uuid
 from datetime import datetime, timedelta, timezone
 
 from flask import request
 from numerize import numerize
-from sqlalchemy import Column, String, event, extract, func
+from sqlalchemy import Column, Integer, String, event, extract, func
 from sqlalchemy.ext.declarative import declared_attr
 
 from app.extensions import console, db
@@ -13,8 +13,12 @@ class Base(db.Model):
     __abstract__ = True
 
     @declared_attr
+    def id(cls):
+        return Column(Integer, primary_key=True, autoincrement=True)
+
+    @declared_attr
     def uid(cls):
-        return Column(String(8), primary_key=True)
+        return Column(String(8), primary_key=False, unique=True)
 
     # Timestamps
     created_at = db.Column(
@@ -138,9 +142,8 @@ class Base(db.Model):
 
 @event.listens_for(Base, "before_insert", propagate=True)
 def generate_uid(mapper, connection, target):
-    prefix = target.__class__.__name__[0].upper()  # First letter of class name
-    random_number = random.randint(100000, 999999)
-    target.uid = f"{prefix}-{random_number}"
+    prefix = target.__class__.__name__[0].upper()
+    target.uid = f"{prefix}-{str(uuid.uuid4().time_low).__getitem__(slice(6))}"
 
 
 def all(self):
