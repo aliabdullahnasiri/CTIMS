@@ -1,0 +1,208 @@
+<div class="row px-2 gx-4 mb-4">
+  <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+    <div class="card">
+      <div class="card-header p-2 ps-3">
+        <div class="d-flex justify-content-between">
+          <div>
+            <p class="text-sm mb-0 text-capitalize">Times</p>
+            <h4 class="mb-0">{{ Time.count() }}</h4>
+          </div>
+          <div
+            class="icon icon-md icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-lg"
+          >
+            <i class="material-symbols-rounded opacity-10">schedule</i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+    <div class="card">
+      <div class="card-header p-2 ps-3">
+        <div class="d-flex justify-content-between">
+          <div>
+            <p class="text-sm mb-0 text-capitalize">Departments</p>
+            <h4 class="mb-0">{{ Department.count() }}</h4>
+          </div>
+          <div
+            class="icon icon-md icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-lg"
+          >
+            <i class="material-symbols-rounded opacity-10">info</i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+    <div class="card">
+      <div class="card-header p-2 ps-3">
+        <div class="d-flex justify-content-between">
+          <div>
+            <p class="text-sm mb-0 text-capitalize">Subjects</p>
+            <h4 class="mb-0">{{ Subject.count() }}</h4>
+          </div>
+          <div
+            class="icon icon-md icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-lg"
+          >
+            <i class="material-symbols-rounded opacity-10">book</i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row px-2 gx-4 my-2">
+  <div class="col-xl-2 col-sm-4 mb-xl-0 mb-4">
+    <div class="card">
+      <div class="card-header p-2 ps-3">
+        <div class="d-flex justify-content-between">
+          <div>
+            <p class="text-sm mb-0 text-capitalize">Users</p>
+            <h4 class="mb-0">{{ User.count() }}</h4>
+          </div>
+          <div
+            class="icon icon-md icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-lg"
+          >
+            <i class="material-symbols-rounded opacity-10">people</i>
+          </div>
+        </div>
+      </div>
+      <hr class="horizontal my-0 light" />
+      <div class="card-footer p-2 ps-3">
+        <p class="mb-0 text-sm">
+          <span class="text-{{ User.monthly_growth_clr() }} font-weight-bolder"
+            >{{ User.display_monthly_growth() }} </span
+          >than last month
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-2 col-sm-4 mb-xl-0 mb-4">
+    <div class="card">
+      <div class="card-header p-2 ps-3">
+        <div class="d-flex justify-content-between">
+          <div>
+            <p class="text-sm mb-0 text-capitalize">Employees</p>
+            <h4 class="mb-0">{{ Employee.count() }}</h4>
+          </div>
+          <div
+            class="icon icon-md icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-lg"
+          >
+            <i class="material-symbols-rounded opacity-10">people</i>
+          </div>
+        </div>
+      </div>
+      <hr class="horizontal my-0 light" />
+      <div class="card-footer p-2 ps-3">
+        <p class="mb-0 text-sm">
+          <span
+            class="text-{{ Employee.monthly_growth_clr() }} font-weight-bolder"
+            >{{ Employee.display_monthly_growth() }} </span
+          >than last month
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-2 col-sm-4 mb-xl-0 mb-4">
+    <div class="card">
+      <div class="card-header p-2 ps-3">
+        <div class="d-flex justify-content-between">
+          <div>
+            <p class="text-sm mb-0 text-capitalize">Teachers</p>
+            <h4 class="mb-0">{{ Teacher.count() }}</h4>
+          </div>
+          <div
+            class="icon icon-md icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-lg"
+          >
+            <i class="material-symbols-rounded opacity-10">people</i>
+          </div>
+        </div>
+      </div>
+      <hr class="horizontal my-0 light" />
+      <div class="card-footer p-2 ps-3">
+        <p class="mb-0 text-sm">
+          <span
+            class="text-{{ Teacher.monthly_growth_clr() }} font-weight-bolder"
+            >{{ Teacher.display_monthly_growth() }} </span
+          >than last month
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-2 col-sm-4 mb-xl-0 mb-4">
+    <div class="card">
+      <div class="card-header p-2 ps-3">
+        <div class="d-flex justify-content-between">
+          <div>
+            <p class="text-sm mb-0 text-capitalize">Students</p>
+            <h4 class="mb-0">{{ Student.count() }}</h4>
+          </div>
+          <div
+            class="icon icon-md icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-lg"
+          >
+            <i class="material-symbols-rounded opacity-10">people</i>
+          </div>
+        </div>
+      </div>
+      <hr class="horizontal my-0 light" />
+      <div class="card-footer p-2 ps-3">
+        <p class="mb-0 text-sm">
+          <span
+            class="text-{{ Student.monthly_growth_clr() }} font-weight-bolder"
+            >{{ Student.display_monthly_growth() }} </span
+          >than last month
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-2 col-sm-4 mb-xl-0 mb-4">
+    <div class="card">
+      <div class="card-header p-2 ps-3">
+        <div class="d-flex justify-content-between">
+          <div>
+            <p class="text-sm mb-0 text-capitalize">Classes</p>
+            <h4 class="mb-0">{{ Class.count() }}</h4>
+          </div>
+          <div
+            class="icon icon-md icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-lg"
+          >
+            <i class="material-symbols-rounded opacity-10">info</i>
+          </div>
+        </div>
+      </div>
+      <hr class="horizontal my-0 light" />
+      <div class="card-footer p-2 ps-3">
+        <p class="mb-0 text-sm">
+          <span class="text-{{ Class.monthly_growth_clr() }} font-weight-bolder"
+            >{{ Class.display_monthly_growth() }} </span
+          >than last month
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-2 col-sm-4 mb-xl-0 mb-4">
+    <div class="card">
+      <div class="card-header p-2 ps-3">
+        <div class="d-flex justify-content-between">
+          <div>
+            <p class="text-sm mb-0 text-capitalize">Exams</p>
+            <h4 class="mb-0">{{ Exam.count() }}</h4>
+          </div>
+          <div
+            class="icon icon-md icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-lg"
+          >
+            <i class="material-symbols-rounded opacity-10">info</i>
+          </div>
+        </div>
+      </div>
+      <hr class="horizontal my-0 light" />
+      <div class="card-footer p-2 ps-3">
+        <p class="mb-0 text-sm">
+          <span class="text-{{ Exam.monthly_growth_clr() }} font-weight-bolder"
+            >{{ Exam.display_monthly_growth() }} </span
+          >than last month
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
