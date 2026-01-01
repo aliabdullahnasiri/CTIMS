@@ -1,8 +1,9 @@
 import os
 from typing import Dict
 
-from flask import Flask, current_app, redirect, request, url_for
-from flask_login import current_user
+from flask import Flask, current_app, request, url_for
+
+from app.models.view import View
 
 from .blueprints.admin import bp as admin_bp
 from .blueprints.api import bp as api_bp
@@ -43,12 +44,14 @@ def create_app(config_class: type[Config] | None = None) -> Flask:
 
     @app.before_request
     def _():
-        if not current_user.is_authenticated:
-            if request.endpoint not in ["auth.login", "auth.signup", "static"]:
-                return redirect(url_for("auth.login"))
+        if request.endpoint not in ["static"]:
+            view = View()
+            view.path = request.path
+            view.ip_address = (request.remote_addr,)
+            view.user_agent = request.headers.get("User-Agent")
 
-        if not request.endpoint:
-            return redirect(url_for("auth.login"))
+            db.session.add(view)
+            db.session.commit()
 
     app.register_blueprint(api_bp, url_prefix="/api")
     app.register_blueprint(auth_bp, url_prefix="/auth")
