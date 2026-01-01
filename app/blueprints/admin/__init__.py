@@ -1,22 +1,7 @@
-from flask import Blueprint, redirect, url_for
+from flask import Blueprint
+
+from app.functions import __import_all__
 
 bp = Blueprint("admin", __name__)
 
-from .routes import (
-    attendance,
-    class_,
-    dashboard,
-    department,
-    employee,
-    exam,
-    job,
-    profile,
-    result,
-    semester,
-    student,
-    subject,
-    teacher,
-    time,
-    user,
-    view,
-)
+__import_all__("app/blueprints/admin/routes")
