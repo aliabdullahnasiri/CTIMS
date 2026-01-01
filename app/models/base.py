@@ -38,11 +38,37 @@ class Base(db.Model):
         return "N/A" if value is None else value
 
     @classmethod
+    def yearly_growth_clr(cls):
+        if cls.yearly_growth() > 0:
+            return "success"
+
+        return "danger"
+
+    @classmethod
     def weekly_growth_clr(cls):
         if cls.weekly_growth() > 0:
             return "success"
 
         return "danger"
+
+    @classmethod
+    def yearly_growth(cls):
+        current_year = datetime.now().year
+        last_year = current_year - 1
+
+        current_count = (
+            db.session.query(func.count(cls.created_at))
+            .filter(extract("year", cls.created_at) == current_year)
+            .scalar()
+        )
+
+        previous_count = (
+            db.session.query(func.count(cls.created_at))
+            .filter(extract("year", cls.created_at) == last_year)
+            .scalar()
+        )
+
+        return cls._percent_change(current_count, previous_count)
 
     @classmethod
     def weekly_growth(cls):
@@ -74,6 +100,13 @@ class Base(db.Model):
     def display_weekly_growth(cls):
         sign = chr(43) if cls.weekly_growth() > 0 else chr(45)
         growth = f"{sign}{abs(cls.weekly_growth())}{chr(37)}"
+
+        return growth
+
+    @classmethod
+    def display_yearly_growth(cls):
+        sign = chr(43) if cls.yearly_growth() > 0 else chr(45)
+        growth = f"{sign}{abs(cls.yearly_growth())}{chr(37)}"
 
         return growth
 
