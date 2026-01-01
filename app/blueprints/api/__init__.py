@@ -1,20 +1,7 @@
 from flask import Blueprint
 
+from app.functions import __import_all__
+
 bp = Blueprint("api", __name__)
 
-from .routes import (
-    attendance,
-    class_,
-    department,
-    employee,
-    exam,
-    job,
-    result,
-    semester,
-    student,
-    subject,
-    teacher,
-    time,
-    upload,
-    user,
-)
+__import_all__("app/blueprints/api/routes")
