@@ -105,7 +105,7 @@ class Base(db.Model):
 
     @classmethod
     def display_monthly_growth(cls):
-        sign = chr(43) if cls.monthly_growth() > 0 else chr(45)
+        sign = chr(43) if cls.monthly_growth() >= 0 else chr(45)
         growth = f"{sign}{abs(cls.monthly_growth())}{chr(37)}"
 
         return growth
