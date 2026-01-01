@@ -11,7 +11,7 @@ from app.extensions import bcrypt, db, login_manager
 
 @login_manager.user_loader
 def load_user(uid: str):
-    return User.query.get(uid)
+    return User.query.filter_by(uid=uid).first()
 
 
 class Role(enum.Enum):
