@@ -32,7 +32,9 @@ export function transformMovingTab(movingTab, presentation) {
 
 export function transformAllMovingTab() {
   for (const tabElement of document.querySelectorAll("[role=tablist]")) {
-    let presentation = tabElement.querySelector("[role=presentation]");
+    let presentation = tabElement.querySelector(
+      "[role=presentation]:has(a[aria-selected=true])",
+    );
     let movingTab = tabElement.querySelector(".moving-tab");
 
     if (presentation && movingTab) {
