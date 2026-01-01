@@ -14,8 +14,12 @@ class Time(db.Model):
     start = db.Column(db.Time, nullable=True)
     end = db.Column(db.Time, nullable=True)
 
-    classes = db.relationship("Class", back_populates="time")
-    teachers = db.relationship("Teacher", back_populates="time")
+    classes = db.relationship(
+        "Class", back_populates="time", cascade="all, delete, delete-orphan"
+    )
+    teachers = db.relationship(
+        "Teacher", back_populates="time", cascade="all, delete, delete-orphan"
+    )
 
     def to_dict(self) -> Dict:
         return {
