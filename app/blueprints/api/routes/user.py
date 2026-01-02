@@ -7,7 +7,7 @@ from flask_login import login_required
 from app.blueprints.api import bp
 from app.constants import DEFAULT_AVATAR
 from app.extensions import console, db
-from app.forms import AddUserForm, UpdateUserForm
+from app.forms.user import AddUserForm, UpdateUserForm
 from app.functions import render_td
 from app.models.user import User
 from app.types import ColumnID, ColumnName
