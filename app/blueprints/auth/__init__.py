@@ -3,7 +3,8 @@ from flask_bcrypt import check_password_hash
 from flask_login import current_user, login_required, login_user, logout_user
 
 from app.extensions import db
-from app.forms import LoginForm, SignupForm
+from app.forms.login import LoginForm
+from app.forms.signup import SignupForm
 from app.models.user import Role, User
 
 bp = Blueprint("auth", __name__)
