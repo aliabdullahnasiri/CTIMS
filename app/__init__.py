@@ -44,7 +44,7 @@ def create_app(config_class: type[Config] | None = None) -> Flask:
 
     @app.before_request
     def _():
-        if request.endpoint not in ["static"]:
+        if request.endpoint not in ["static", "api.weekly_views"]:
             view = View()
             view.path = request.path
             view.ip_address = (request.remote_addr,)
