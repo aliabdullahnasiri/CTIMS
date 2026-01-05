@@ -38,20 +38,6 @@ class Base(db.Model):
         return "N/A" if value is None else value
 
     @classmethod
-    def yearly_growth_clr(cls):
-        if cls.yearly_growth() > 0:
-            return "success"
-
-        return "danger"
-
-    @classmethod
-    def weekly_growth_clr(cls):
-        if cls.weekly_growth() > 0:
-            return "success"
-
-        return "danger"
-
-    @classmethod
     def yearly_growth(cls):
         current_year = datetime.now().year
         last_year = current_year - 1
@@ -69,6 +55,27 @@ class Base(db.Model):
         )
 
         return cls._percent_change(current_count, previous_count)
+
+    @classmethod
+    def yearly_growth_clr(cls):
+        if cls.yearly_growth() > 0:
+            return "success"
+
+        return "danger"
+
+    @classmethod
+    def yearly_growth_icon(cls):
+        if cls.yearly_growth() > 0:
+            return "arrow_upward"
+
+        return "arrow_downward"
+
+    @classmethod
+    def display_yearly_growth(cls):
+        sign = chr(43) if cls.yearly_growth() > 0 else chr(45)
+        growth = f"{sign}{abs(cls.yearly_growth())}{chr(37)}"
+
+        return growth
 
     @classmethod
     def weekly_growth(cls):
@@ -97,6 +104,13 @@ class Base(db.Model):
         return cls._percent_change(current_week, previous_week)
 
     @classmethod
+    def weekly_growth_clr(cls):
+        if cls.weekly_growth() > 0:
+            return "success"
+
+        return "danger"
+
+    @classmethod
     def display_weekly_growth(cls):
         sign = chr(43) if cls.weekly_growth() > 0 else chr(45)
         growth = f"{sign}{abs(cls.weekly_growth())}{chr(37)}"
@@ -104,11 +118,11 @@ class Base(db.Model):
         return growth
 
     @classmethod
-    def display_yearly_growth(cls):
-        sign = chr(43) if cls.yearly_growth() > 0 else chr(45)
-        growth = f"{sign}{abs(cls.yearly_growth())}{chr(37)}"
+    def weekly_growth_icon(cls):
+        if cls.weekly_growth() > 0:
+            return "arrow_upward"
 
-        return growth
+        return "arrow_downward"
 
     @classmethod
     def monthly_growth(cls):
