@@ -128,55 +128,14 @@ def add_subject() -> Response:
         db.session.add(subject)
         db.session.commit()
 
-        try:
-            links = request.form["links"]
-            links = json.loads(links)
-
-            if hasattr(links, "items"):
-                for name, link in links.items():
-                    match name:
-                        case "files":
-                            if type(link) == list:
-                                files: List[File] = []
-
-                                for l in link:
-                                    if File.query.filter_by(file_url=l).first():
-                                        continue
-
-                                    path: pathlib.Path = pathlib.Path(l)
-
-                                    file: File = File()
-
-                                    file.file_name = path.name
-                                    file.file_url = path
-                                    file.file_for = name
-
-                                    db.session.add(file)
-                                    files.append(file)
-
-                                db.session.commit()
-
-                                for file in files:
-                                    subject_file: SubjectFile = SubjectFile()
-                                    subject_file.file_id = file.uid
-                                    subject_file.subject_id = subject.uid
-
-                                    db.session.add(subject_file)
-
-                                db.session.commit()
-
-        except Exception as e:
-            print(e)
-
         if form.teachers.data:
-            for uid in json.loads(form.teachers.data):
-                t = Teaching()
-                t.subject_id = subject.uid
-                t.teacher_id = uid
+            subject.update_teachers(json.loads(form.teachers.data))
 
-                db.session.add(t)
-
-            db.session.commit()
+        if files := request.form.get("files"):
+            try:
+                subject.update_files(json.loads(files))
+            except json.JSONDecodeError as err:
+                console.print(err)
 
         response["message"] = "Subject added successfully"
         response["category"] = "success"
@@ -214,91 +173,13 @@ def update_subject() -> Response:
             db.session.commit()
 
             if form.teachers.data:
-                nteachers = json.loads(form.teachers.data)
-                oteachers = subject.teachings
+                subject.update_teachers(json.loads(form.teachers.data))
 
-                for oteacher in oteachers:
-                    if oteacher.teacher_id not in nteachers:
-                        db.session.delete(oteacher)
-
-                for nteacher in nteachers:
-                    if (
-                        not db.session.query(Teaching)
-                        .filter(
-                            and_(
-                                Teaching.teacher_id == nteacher,
-                                Teaching.subject_id == subject.uid,
-                            )
-                        )
-                        .first()
-                    ):
-                        t = Teaching()
-                        t.teacher_id = nteacher
-                        t.subject_id = form.uid.data
-
-                        db.session.add(t)
-
-                db.session.commit()
-
-            else:
-                for t in subject.teachings:
-                    db.session.delete(t)
-                    db.session.commit()
-
-            try:
-                links = request.form["links"]
-                links = json.loads(links)
-
-                if hasattr(links, "items"):
-                    for name, link in links.items():
-                        match name:
-                            case "files":
-                                st: set = set(link)
-
-                                for f in [
-                                    f
-                                    for f in subject.files
-                                    if f.file.file_for == "files"
-                                ]:
-                                    if f.file.file_url not in st:
-                                        db.session.delete(f)
-                                        db.session.delete(f.file)
-
-                                db.session.commit()
-
-                                files: List[File] = []
-                                for l in st:
-                                    if File.query.filter_by(file_url=l).first():
-                                        continue
-
-                                    path: pathlib.Path = pathlib.Path(l)
-                                    file: File = File()
-                                    file.file_name = path.name
-                                    file.file_url = path
-                                    file.file_for = "resume"
-
-                                    files.append(file)
-                                    db.session.add(file)
-
-                                db.session.commit()
-
-                                for f in files:
-                                    tf: SubjectFile = SubjectFile()
-
-                                    tf.subject_id = subject.subject_id
-                                    tf.file_id = f.uid
-
-                                    db.session.add(tf)
-
-                                if not len(st):
-                                    for f in subject.files:
-                                        if f.file.file_for == name:
-                                            db.session.delete(f.file)
-                                            db.session.delete(f)
-
-                                db.session.commit()
-            except Exception as err:
-                console.print(err)
+            if files := request.form.get("files"):
+                try:
+                    subject.update_files(json.loads(files))
+                except json.JSONDecodeError as err:
+                    console.print(err)
 
             response["title"] = "Updated!"
             response["category"] = "success"
