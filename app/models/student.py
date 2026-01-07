@@ -1,4 +1,5 @@
 from datetime import date, datetime, timezone
+from typing import Dict, List, Union
 
 import humanize
 from flask import url_for
@@ -6,6 +7,9 @@ from numerize.numerize import numerize
 
 from app.constants import DEFAULT_AVATAR
 from app.extensions import db
+from app.functions import get_file_url
+from app.models.file import StudentFile
+from app.models.phone import StudentPhone
 
 
 class Student(db.Model):
@@ -108,3 +112,52 @@ class Student(db.Model):
 
     def __repr__(self):
         return f"<Student {self.full_name} ID={self.uid}>"
+
+    def update_phones(self, phones: List[str]):
+        for phone in self.phones:
+            if phone.phone_number not in phones:
+                db.session.delete(phone)
+
+        db.session.commit()
+
+        for p in phones:
+            if StudentPhone.query.filter_by(
+                student_id=self.uid, phone_number=p
+            ).first():
+                continue
+
+            phone = StudentPhone()
+            phone.student_id = self.uid
+            phone.phone_number = p
+
+            db.session.add(phone)
+
+        db.session.commit()
+
+    def update_files(self, files: Dict[str, Union[str, List[str]]]) -> None:
+        for key, value in files.items():
+            match key:
+                case "avatar" if type(value) == str:
+                    self.avatar_path = get_file_url(value)
+                    db.session.commit()
+                case "files" if type(value) == list:
+                    for file in self.files:
+                        if file.file.uid not in value:
+                            db.session.delete(file)
+                            db.session.delete(file.file)
+
+                    db.session.commit()
+
+                    for val in value:
+                        if StudentFile.query.filter_by(
+                            student_id=self.uid, file_id=val
+                        ).first():
+                            continue
+
+                        sf: StudentFile = StudentFile()
+                        sf.student_id = self.uid
+                        sf.file_id = val
+
+                        db.session.add(sf)
+
+                    db.session.commit()
