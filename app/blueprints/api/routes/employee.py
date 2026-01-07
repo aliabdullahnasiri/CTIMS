@@ -204,49 +204,14 @@ def update_employee() -> Response:
 
             db.session.commit()
 
-            try:
-                links = json.loads(request.form.get("links", "{}"))
-
-                if type(links) == dict:
-                    for key, value in links.items():
-                        match key:
-                            case "avatar":
-                                if value:
-                                    employee.avatar_path = value
-
-            except Exception as err:
-                console.print(err)
-
             if form.phones.data:
+                employee.update_phones(json.loads(form.phones.data))
+
+            if files := request.form.get("files"):
                 try:
-                    nphones = json.loads(form.phones.data)
-                    ophones = employee.phones
-
-                    for ophone in ophones:
-                        if ophone.phone_number not in nphones:
-                            db.session.delete(ophone)
-
-                    for nphone in nphones:
-                        if (
-                            not db.session.query(EmployeePhone)
-                            .filter(EmployeePhone.phone_number == nphone)
-                            .first()
-                        ):
-                            phone = EmployeePhone()
-                            phone.employee_id = form.uid.data
-                            phone.phone_number = nphone
-
-                            db.session.add(phone)
-
-                    db.session.commit()
-                except Exception as err:
+                    employee.update_files(json.loads(files))
+                except json.JSONDecodeError as err:
                     console.print(err)
-
-            else:
-                for phone in employee.phones:
-                    db.session.delete(phone)
-
-                db.session.commit()
 
             response.response = json.dumps(
                 {
