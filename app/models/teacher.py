@@ -6,8 +6,8 @@ from flask import url_for
 from numerize.numerize import numerize
 
 from app.constants import CURRENCY_SYMBOL, DEFAULT_AVATAR
-from app.extensions import console, db
-from app.functions import get_file, get_file_url
+from app.extensions import db
+from app.functions import get_file_url
 from app.models.file import TeacherFile
 from app.models.phone import TeacherPhone
 from app.models.teaching import Teaching
