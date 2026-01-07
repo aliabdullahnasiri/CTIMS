@@ -9,8 +9,8 @@ from app.extensions import db
 class Subject(db.Model):
     __tablename__ = "subjects"
 
-    name = db.Column(db.String(50))
-    description = db.Column(db.String(255))
+    name = db.Column(db.String(255))
+    description = db.Column(db.String(1024))
     credit = db.Column(db.Integer)
 
     semester_id = db.Column(
