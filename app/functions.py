@@ -35,10 +35,10 @@ def render_td(col_id: str, obj, max_length: int = 64) -> str:
 
     val = dct.get(col_id, "N/A")
 
-    if len(val) < max_length:
-        return val
+    if type(val) == str and len(val) > max_length:
+        return "{}...".format(val[slice(max_length)])
 
-    return "{}...".format(val[slice(max_length)])
+    return val
 
 
 def __import_all__(path: str) -> None:
