@@ -15,7 +15,6 @@ from wtforms import (
 from wtforms.validators import DataRequired, Length, Optional
 
 from app.extensions import db
-from app.models.department import Department
 from app.models.semester import Semester
 from app.models.teacher import Teacher
 
@@ -32,10 +31,7 @@ class AddSubjectForm(FlaskForm):
 
     teachers = StringField("Teacher UID", validators=[Optional()])
 
-    files = MultipleFileField(
-        "Files",
-        validators=[FileAllowed(["pdf"], "PDF only!")],
-    )
+    files = MultipleFileField("Files")
 
     submit = SubmitField("Add Subject")
 
