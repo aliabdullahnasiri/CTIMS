@@ -1,6 +1,4 @@
 import json
-import pathlib
-from operator import and_
 from typing import Dict, List, Tuple, Union
 
 from flask import Response, request, url_for
@@ -11,10 +9,7 @@ from app.constants import DEFAULT_AVATAR
 from app.extensions import console, db
 from app.forms.teacher import AddTeacherForm, UpdateTeacherForm
 from app.functions import render_td
-from app.models.file import File, TeacherFile
-from app.models.phone import TeacherPhone
 from app.models.teacher import Teacher
-from app.models.teaching import Teaching
 from app.types import ColumnID, ColumnName
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
@@ -46,7 +41,6 @@ def fetch_teachers_rows() -> Response:
     rows: List[List] = []
 
     for teacher in teachers:
-        dct = teacher.to_dict()
         row = [render_td(col_id, teacher) for col_id, _ in cols]
         rows.append(row)
 
@@ -130,75 +124,22 @@ def add_teacher() -> Response:
         teacher.birthday = form.birthday.data
         teacher.salary = form.salary.data
         teacher.avatar_path = url_for("static", filename=DEFAULT_AVATAR)
-
-        if form.time_id:
-            teacher.time_id = form.time_id.data
+        teacher.time_id = form.time_id.data
 
         db.session.add(teacher)
         db.session.commit()
 
-        try:
-            links = request.form["links"]
-            links = json.loads(links)
-
-            if hasattr(links, "items"):
-                for name, link in links.items():
-                    match name:
-                        case "avatar":
-                            teacher.avatar_path = link
-
-                        case "resume":
-                            if type(link) == list:
-                                files: List[File] = []
-
-                                for l in link:
-                                    if File.query.filter_by(file_url=l).first():
-                                        continue
-
-                                    path: pathlib.Path = pathlib.Path(l)
-
-                                    file: File = File()
-
-                                    file.file_name = path.name
-                                    file.file_url = path
-                                    file.file_for = name
-
-                                    db.session.add(file)
-                                    files.append(file)
-
-                                db.session.commit()
-
-                                for file in files:
-                                    teacher_file: TeacherFile = TeacherFile()
-                                    teacher_file.file_id = file.uid
-                                    teacher_file.teacher_id = teacher.uid
-
-                                    db.session.add(teacher_file)
-
-                                db.session.commit()
-
-        except Exception as e:
-            print(e)
+        if form.subjects.data:
+            teacher.update_subjects(json.loads(form.subjects.data))
 
         if form.phones.data:
-            for phone in json.loads(form.phones.data):
-                teacher_phone = TeacherPhone()
-                teacher_phone.teacher_id = teacher.uid
-                teacher_phone.phone_number = phone
+            teacher.update_phones(json.loads(form.phones.data))
 
-                db.session.add(teacher_phone)
-
-            db.session.commit()
-
-        if form.subjects.data:
-            for uid in json.loads(form.subjects.data):
-                t = Teaching()
-                t.teacher_id = teacher.uid
-                t.subject_id = uid
-
-                db.session.add(t)
-
-            db.session.commit()
+        if files := request.form.get("files"):
+            try:
+                teacher.update_files(json.loads(files))
+            except json.JSONDecodeError as err:
+                console.print(err)
 
         response["message"] = "Teacher added successfully."
         response["title"] = "Added!"
@@ -230,126 +171,21 @@ def update_teacher() -> Response:
             teacher.email = form.email.data
             teacher.birthday = form.birthday.data
             teacher.salary = form.salary.data
-
-            if form.time_id:
-                teacher.time_id = form.time_id.data
+            teacher.time_id = form.time_id.data
 
             db.session.commit()
 
             if form.subjects.data:
-                nsubjects = json.loads(form.subjects.data)
-                osubjects = teacher.teachings
-
-                for osubject in osubjects:
-                    if osubject.subject_id not in nsubjects:
-                        db.session.delete(osubject)
-
-                for nsubject in nsubjects:
-                    if (
-                        not db.session.query(Teaching)
-                        .filter(
-                            and_(
-                                Teaching.subject_id == nsubject,
-                                Teaching.teacher_id == teacher.uid,
-                            )
-                        )
-                        .first()
-                    ):
-                        t = Teaching()
-                        t.subject_id = nsubject
-                        t.teacher_id = form.uid.data
-
-                        db.session.add(t)
-
-                db.session.commit()
-
-            else:
-                for t in teacher.teachings:
-                    db.session.delete(t)
-                    db.session.commit()
+                teacher.update_subjects(json.loads(form.subjects.data))
 
             if form.phones.data:
-                nphones = json.loads(form.phones.data)
-                ophones = teacher.phones
+                teacher.update_phones(json.loads(form.phones.data))
 
-                for ophone in ophones:
-                    if ophone.phone_number not in nphones:
-                        db.session.delete(ophone)
-
-                for nphone in nphones:
-                    if (
-                        not db.session.query(TeacherPhone)
-                        .filter(TeacherPhone.phone_number == nphone)
-                        .first()
-                    ):
-                        phone = TeacherPhone()
-                        phone.teacher_id = form.uid.data
-                        phone.phone_number = nphone
-
-                        db.session.add(phone)
-
-                db.session.commit()
-            else:
-                for phone in teacher.phones:
-                    db.session.delete(phone)
-
-            try:
-                links = request.form["links"]
-                links = json.loads(links)
-
-                if hasattr(links, "items"):
-                    for name, link in links.items():
-                        match name:
-                            case "avatar":
-                                teacher.avatar_path = link
-
-                            case "resume":
-                                st: set = set(link)
-
-                                for f in [
-                                    f
-                                    for f in teacher.files
-                                    if f.file.file_for == "resume"
-                                ]:
-                                    if f.file.file_url not in st:
-                                        db.session.delete(f)
-                                        db.session.delete(f.file)
-
-                                db.session.commit()
-
-                                files: List[File] = []
-                                for l in st:
-                                    if File.query.filter_by(file_url=l).first():
-                                        continue
-
-                                    path: pathlib.Path = pathlib.Path(l)
-                                    file: File = File()
-                                    file.file_name = path.name
-                                    file.file_url = path
-                                    file.file_for = "resume"
-
-                                    files.append(file)
-                                    db.session.add(file)
-
-                                db.session.commit()
-
-                                for f in files:
-                                    tf: TeacherFile = TeacherFile()
-
-                                    tf.teacher_id = teacher.uid
-                                    tf.file_id = f.uid
-
-                                    db.session.add(tf)
-
-                                if not len(st):
-                                    for f in teacher.files:
-                                        if f.file.file_for == name:
-                                            db.session.delete(f.file)
-                                            db.session.delete(f)
-
-                                db.session.commit()
-            except Exception as err:
-                console.print(err)
+            if files := request.form.get("files"):
+                try:
+                    teacher.update_files(json.loads(files))
+                except json.JSONDecodeError as err:
+                    console.print(err)
 
             response.response = json.dumps(
                 {
