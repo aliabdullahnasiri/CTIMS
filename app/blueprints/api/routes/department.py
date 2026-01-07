@@ -13,6 +13,7 @@ from app.types import ColumnID, ColumnName
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
     (ColumnID("uid"), ColumnName("UID")),
+    (ColumnID("temp_hod"), ColumnName("Head of department")),
     (ColumnID("name"), ColumnName("name")),
     (ColumnID("description"), ColumnName("Description")),
 ]
