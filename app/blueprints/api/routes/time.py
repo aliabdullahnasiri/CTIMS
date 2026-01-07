@@ -14,7 +14,7 @@ from app.types import ColumnID, ColumnName
 cols: List[Tuple[ColumnID, ColumnName]] = [
     (ColumnID("uid"), ColumnName("UID")),
     (ColumnID("title"), ColumnName("Title")),
-    (ColumnID("description"), ColumnName("Description")),
+    # (ColumnID("description"), ColumnName("Description")),
     (ColumnID("start"), ColumnName("Start Time")),
     (ColumnID("end"), ColumnName("End Time")),
 ]
