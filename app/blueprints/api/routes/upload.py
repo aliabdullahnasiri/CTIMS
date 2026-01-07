@@ -9,6 +9,9 @@ from flask import Response, current_app, request, url_for
 from flask_login import login_required
 from werkzeug.utils import secure_filename
 
+from app.extensions import db
+from app.models.file import File
+
 from .. import bp
 
 
@@ -30,19 +33,8 @@ def upload() -> Response:
         ext = (
             lst.pop()
             if len(lst := re.findall(r".[a-zA-Z]{1,}$", f"{file.filename}")) > 0
-            else str()
+            else str(".txt")
         )
-
-        if not ext:
-            lst.append(
-                {
-                    "message": "File doesn't have extension, yet!",
-                    "category": "error",
-                    "status": 500,
-                }
-            )
-
-            continue
 
         filename = f"{uuid.uuid4()}{ext}"
 
@@ -53,14 +45,19 @@ def upload() -> Response:
             )
         )
 
+        file = File()
+        file.file_description = request.form.get("file_description")
+        file.file_for = request.form.get("file_for")
+        file.file_url = url_for("static", filename=f"uploads/{today}/{filename}")
+
+        db.session.add(file)
+        db.session.commit()
+
         lst.append(
             {
                 "message": "File successfully uploaded.",
                 "category": "success",
-                "file": {
-                    "name": file.filename,
-                    "url": url_for("static", filename=f"uploads/{today}/{filename}"),
-                },
+                "file": file.to_dict(),
                 "status": 200,
             }
         )
