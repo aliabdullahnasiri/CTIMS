@@ -46,6 +46,7 @@ def upload() -> Response:
         )
 
         file = File()
+        file.file_name = request.form.get("filename", filename)
         file.file_description = request.form.get("file_description")
         file.file_for = request.form.get("file_for")
         file.file_url = url_for("static", filename=f"uploads/{today}/{filename}")
