@@ -2,7 +2,6 @@ import json
 import re
 
 from flask_wtf import FlaskForm
-from flask_wtf.file import FileAllowed
 from sqlalchemy import and_
 from wtforms import (
     DateField,
@@ -45,15 +44,8 @@ class AddTeacherForm(FlaskForm):
         "Salary", places=2, validators=[Optional(), NumberRange(min=0)]
     )
 
-    resume = MultipleFileField(
-        "Resume",
-        validators=[FileAllowed(["pdf"], "PDF only!")],
-    )
-
-    avatar = FileField(
-        "Avatar",
-        validators=[FileAllowed(["jpg", "jpeg", "png"], "Images only!")],
-    )
+    files = MultipleFileField("Files")
+    avatar = FileField("Avatar")
 
     time_id = StringField("Time UID", validators=[DataRequired(), Length(8, 8)])
 
