@@ -1,5 +1,4 @@
 import json
-import pathlib
 from typing import Dict, List, Tuple, Union
 
 from flask import Response, request, url_for
@@ -10,7 +9,6 @@ from app.constants import DEFAULT_AVATAR
 from app.extensions import console, db
 from app.forms.student import AddStudentForm, UpdateStudentForm
 from app.functions import render_td
-from app.models.file import File, StudentFile
 from app.models.phone import StudentPhone
 from app.models.student import Student
 from app.types import ColumnID, ColumnName
@@ -130,28 +128,14 @@ def add_student() -> Response:
         db.session.add(student)
         db.session.commit()
 
-        try:
-            links = request.form["links"]
-            links = json.loads(links)
-
-            if hasattr(links, "items"):
-                for name, link in links.items():
-                    match name:
-                        case "avatar":
-                            student.avatar_path = link
-
-        except Exception as e:
-            print(e)
-
         if form.phones.data:
-            for phone in json.loads(form.phones.data):
-                student_phone = StudentPhone()
-                student_phone.student_id = student.uid
-                student_phone.phone_number = phone
+            student.update_phones(json.loads(form.phones.data))
 
-                db.session.add(student_phone)
-
-            db.session.commit()
+        if files := request.form.get("files"):
+            try:
+                student.update_files(json.loads(files))
+            except json.JSONDecodeError as err:
+                console.print(err)
 
         response["message"] = "Student added successfully"
         response["category"] = "success"
@@ -190,83 +174,13 @@ def update_student() -> Response:
             db.session.commit()
 
             if form.phones.data:
-                nphones = json.loads(form.phones.data)
-                ophones = student.phones
+                student.update_phones(json.loads(form.phones.data))
 
-                for ophone in ophones:
-                    if ophone.phone_number not in nphones:
-                        db.session.delete(ophone)
-
-                for nphone in nphones:
-                    if (
-                        not db.session.query(StudentPhone)
-                        .filter(StudentPhone.phone_number == nphone)
-                        .first()
-                    ):
-                        phone = StudentPhone()
-                        phone.student_id = form.uid.data
-                        phone.phone_number = nphone
-
-                        db.session.add(phone)
-            else:
-                for phone in student.phones:
-                    db.session.delete(phone)
-
-            try:
-                links = request.form["links"]
-                links = json.loads(links)
-
-                print(links)
-
-                if hasattr(links, "items"):
-                    for name, link in links.items():
-                        match name:
-                            case "avatar":
-                                student.avatar_path = link
-
-                            case "files":
-                                st: set = set(link)
-
-                                for f in [f for f in student.files]:
-                                    if f.file.file_url not in st:
-                                        db.session.delete(f)
-                                        db.session.delete(f.file)
-
-                                db.session.commit()
-
-                                files: List[File] = []
-                                for l in st:
-                                    if File.query.filter_by(file_url=l).first():
-                                        continue
-
-                                    path: pathlib.Path = pathlib.Path(l)
-                                    file: File = File()
-                                    file.file_name = path.name
-                                    file.file_url = path
-
-                                    files.append(file)
-                                    db.session.add(file)
-
-                                db.session.commit()
-
-                                for f in files:
-                                    tf: StudentFile = StudentFile()
-
-                                    tf.student_id = student.uid
-                                    tf.file_id = f.uid
-
-                                    db.session.add(tf)
-
-                                if not len(st):
-                                    for f in student.files:
-                                        if f.file.file_for == name:
-                                            db.session.delete(f.file)
-                                            db.session.delete(f)
-
-                                db.session.commit()
-
-            except Exception as err:
-                console.print(err)
+            if files := request.form.get("files"):
+                try:
+                    student.update_files(json.loads(files))
+                except json.JSONDecodeError as err:
+                    console.print(err)
 
             response["title"] = "Updated!"
             response["category"] = "success"
