@@ -128,7 +128,7 @@
 
   <div class="row">
     <div class="col-md-12">
-      <div class="mx-2">{{ f.resume.label(class="form-label") }}</div>
+      <div class="mx-2">{{ f.files.label(class="form-label") }}</div>
       <div class="card drop-zone position-relative">
         <div
           class="d-grid align-item-center align-content-center justify-content-center w-100 h-100 py-5"
@@ -139,7 +139,7 @@
           <span
             ><strong
               class="open-default-file-input-modal cursor-pointer"
-              data-id="{{ f.resume.id }}"
+              data-id="{{ f.files.id }}"
               >Choose a file</strong
             >
             or drag it here</span
@@ -151,7 +151,7 @@
           <div class="list-title fs-5 m-2">Uploaded Files</div>
           <ul class="list-unstyled d-flex flex-wrap mt-4 mx-2"></ul>
         </div>
-        {{ f.resume(class="form-control d-none") }}
+        {{ f.files(class="form-control d-none") }}
       </div>
     </div>
   </div>
