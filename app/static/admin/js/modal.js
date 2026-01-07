@@ -38,7 +38,7 @@ import { createLoader } from "./script.js";
                     if (data.files)
                       for (const f of data.files) {
                         if (f.file_for == input.id || input.id == "files") {
-                          let selector = "li[data-url='%s']";
+                          let selector = "li[data-uid='%s']";
                           if (
                             !ulElement.querySelector(
                               selector.replace("%s", f.link),
@@ -49,6 +49,7 @@ import { createLoader } from "./script.js";
                               f.human_size,
                               true,
                               f.file_url,
+                              f.uid,
                             );
                             ulElement.append(item);
                           }
@@ -63,9 +64,7 @@ import { createLoader } from "./script.js";
                       let fileOutput =
                         input.parentElement.querySelector(".output");
 
-                      if (fileOutput) {
-                        fileOutput.src = val;
-                      }
+                      if (fileOutput) fileOutput.src = val;
                     }
                   }
                 }
