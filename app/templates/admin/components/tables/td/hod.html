@@ -1,4 +1,5 @@
-{% if obj_department %} {% with h = obj_department._head_of_department %}
+{% if obj_department %} {% with h = obj_department._head_of_department %} {% if
+h %}
 <div class="d-flex px-0 py-1">
   <div>
     <img
@@ -12,4 +13,4 @@
     <p class="text-xs text-secondary mb-0">{{ h.email }}</p>
   </div>
 </div>
-{% endwith %} {% endif %}
+{% else %} N/A {% endif %} {% endwith %} {% endif %}
