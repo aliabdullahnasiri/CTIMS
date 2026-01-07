@@ -31,10 +31,8 @@ class AddStudentForm(FlaskForm):
         validators=[DataRequired(), Email(message="Enter a valid email address")],
     )
     birthday = DateField("Birthday", format="%Y-%m-%d", validators=[Optional()])
-    avatar = FileField(
-        "Upload new profile picture",
-        validators=[FileAllowed(["jpg", "jpeg", "png"], "Images only!")],
-    )
+    avatar = FileField("Upload new profile picture")
+    files = MultipleFileField("Files")
     phones = StringField("Phone", validators=[Optional()])
     class_id = StringField("Class UID", validators=[DataRequired(), Length(8, 8)])
     submit = SubmitField("Add")
