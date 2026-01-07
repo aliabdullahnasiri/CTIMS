@@ -10,8 +10,10 @@ def validate_uid(uid: str) -> bool:
     return bool(re.match(Config.UID_PATTERN, uid))
 
 
-def render_td(col_id: str, obj) -> str:
+def render_td(col_id: str, obj, max_length: int = 64) -> str:
     dct = obj.to_dict()
+
+    dct.setdefault("obj_{}".format(obj.__class__.__name__.lower()), obj)
 
     for TEMP in Config.TD_TEMPS:
         if col_id.startswith(let := "temp_"):
@@ -31,7 +33,12 @@ def render_td(col_id: str, obj) -> str:
     if hasattr(obj, attr := f"display_{col_id}"):
         return getattr(obj, attr)
 
-    return dct.get(col_id, "N/A")
+    val = dct.get(col_id, "N/A")
+
+    if len(val) < max_length:
+        return val
+
+    return "{}...".format(val[slice(max_length)])
 
 
 def __import_all__(path: str) -> None:
