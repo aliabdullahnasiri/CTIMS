@@ -1,13 +1,26 @@
 import pathlib
 import re
+from typing import Union
 
 from flask import render_template
 
 from app.config import Config
+from app.models.file import File
 
 
 def validate_uid(uid: str) -> bool:
     return bool(re.match(Config.UID_PATTERN, uid))
+
+
+def get_file(uid: str) -> Union[File, None]:
+    return File.query.filter_by(uid=uid).first()
+
+
+def get_file_url(uid: str) -> Union[str, None]:
+    file = File.query.filter_by(uid=uid).first()
+
+    if file:
+        return file.file_url
 
 
 def render_td(col_id: str, obj, max_length: int = 64) -> str:
