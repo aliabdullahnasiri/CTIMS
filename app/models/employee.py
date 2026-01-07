@@ -1,10 +1,13 @@
 from datetime import date, datetime, timezone
+from typing import Dict, List, Union
 
 from flask import url_for
 from numerize.numerize import numerize
 
 from app.constants import CURRENCY_SYMBOL, DEFAULT_AVATAR
 from app.extensions import db
+from app.functions import get_file_url
+from app.models.phone import EmployeePhone
 
 
 class Employee(db.Model):
@@ -124,3 +127,31 @@ class Employee(db.Model):
     @property
     def display_number_of_phone_nums(self):
         return numerize(len(self.phones), decimals=2)
+
+    def update_phones(self, phones: List[str]):
+        for phone in self.phones:
+            if phone.phone_number not in phones:
+                db.session.delete(phone)
+
+        db.session.commit()
+
+        for p in phones:
+            if EmployeePhone.query.filter_by(
+                employee_id=self.uid, phone_number=p
+            ).first():
+                continue
+
+            phone = EmployeePhone()
+            phone.employee_id = self.uid
+            phone.phone_number = p
+
+            db.session.add(phone)
+
+        db.session.commit()
+
+    def update_files(self, files: Dict[str, Union[str, List[str]]]) -> None:
+        for key, value in files.items():
+            match key:
+                case "avatar" if type(value) == str:
+                    self.avatar_path = get_file_url(value)
+                    db.session.commit()
