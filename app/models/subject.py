@@ -1,9 +1,11 @@
-from typing import Dict
+from typing import Dict, List, Union
 
 import humanize
 from numerize.numerize import numerize
 
 from app.extensions import db
+from app.models.file import SubjectFile
+from app.models.teaching import Teaching
 
 
 class Subject(db.Model):
@@ -69,3 +71,47 @@ class Subject(db.Model):
     @property
     def display_number_of_files(self):
         return numerize(len(self.files), decimals=2)
+
+    def update_teachers(self, teachers: List[str]):
+        for t in self.teachings:
+            if t.teacher.uid not in teachers:
+                db.session.delete(t)
+
+        db.session.commit()
+
+        for t in teachers:
+            if Teaching.query.filter_by(subject_id=self.uid, teacher_id=t).first():
+                continue
+
+            teaching = Teaching()
+            teaching.subject_id = self.uid
+            teaching.teacher_id = t
+
+            db.session.add(teaching)
+
+        db.session.commit()
+
+    def update_files(self, files: Dict[str, Union[str, List[str]]]) -> None:
+        for key, value in files.items():
+            match key:
+                case "files" if type(value) == list:
+                    for file in self.files:
+                        if file.file.uid not in value:
+                            db.session.delete(file)
+                            db.session.delete(file.file)
+
+                    db.session.commit()
+
+                    for val in value:
+                        if SubjectFile.query.filter_by(
+                            subject_id=self.uid, file_id=val
+                        ).first():
+                            continue
+
+                        sf: SubjectFile = SubjectFile()
+                        sf.subject_id = self.uid
+                        sf.file_id = val
+
+                        db.session.add(sf)
+
+                    db.session.commit()
