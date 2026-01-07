@@ -41,7 +41,7 @@ export function resetForm(formElement) {
 async function submitForm(formElement) {
   const formData = new FormData(formElement);
 
-  const links = {};
+  const files = {};
 
   let inputElement, dropZone, ulElement, liElements, liElement, outputElement;
   for (const [key, value] of formData.entries()) {
@@ -56,21 +56,21 @@ async function submitForm(formElement) {
           outputElement = dropZone.querySelector(".output");
 
           if (outputElement) {
-            if (!(key in links)) {
+            if (!(key in files)) {
               if (outputElement.tagName == "IMG") {
-                links[key] = outputElement.dataset.url;
+                files[key] = outputElement.dataset.uid;
               }
             }
           } else {
-            if (!(key in links)) links[key] = new Array();
+            if (!(key in files)) files[key] = new Array();
             ulElement = dropZone.querySelector(".list-section ul");
 
             if (ulElement) {
               liElements = ulElement.querySelectorAll("li");
 
               for (liElement of liElements) {
-                if (!links[key].includes(liElement.dataset.url))
-                  links[key].push(liElement.dataset.url);
+                if (!files[key].includes(liElement.dataset.uid))
+                  files[key].push(liElement.dataset.uid);
               }
             }
           }
@@ -79,13 +79,15 @@ async function submitForm(formElement) {
     }
   }
 
+  console.log(files);
+
   for (const [key, val] of formData.entries()) {
     if (typeof val == "object") {
       formData.delete(key);
     }
   }
 
-  formData.append("links", JSON.stringify(links));
+  formData.append("files", JSON.stringify(files));
 
   formElement.querySelectorAll("div.multi-value-input").forEach((element) => {
     const valuesElement = element.querySelector("div.values");
@@ -194,7 +196,7 @@ export function shortFileType(type) {
 
 export function validateFileType(file) {}
 
-export function createListSectionItem(extension, size, uploaded, link) {
+export function createListSectionItem(extension, size, uploaded, link, uid) {
   let liElement = document.createElement("li");
   let divHeaderElement = document.createElement("div");
   let divFooterElement = document.createElement("div");
@@ -207,6 +209,7 @@ export function createListSectionItem(extension, size, uploaded, link) {
 
   if (uploaded && link) {
     liElement.dataset.url = link;
+    liElement.dataset.uid = uid;
   }
 
   liElement.classList.value =
@@ -283,7 +286,7 @@ function u(file, ulElement, formElement, submitElement) {
         let data = JSON.parse(e.target.response);
 
         for (let d of data) {
-          if (d?.file?.url) item.dataset.url = d.file.url;
+          if (d?.file?.uid) item.dataset.uid = d.file.uid;
 
           break;
         }
@@ -291,12 +294,12 @@ function u(file, ulElement, formElement, submitElement) {
         console.log(err);
       }
     },
-    (e) => {
+    () => {
       if (formElement) {
         submitElement.disabled = true;
       }
     },
-    (e) => {
+    () => {
       if (formElement) {
         submitElement.disabled = false;
       }
@@ -368,9 +371,10 @@ export function upload(files, dropZone) {
 
                   if (outputElement) {
                     for (const d of data) {
-                      if (d?.file?.url) {
-                        outputElement.dataset.url = d.file.url;
-                        outputElement.src = d.file.url;
+                      if (d?.file?.file_url) {
+                        outputElement.dataset.url = d.file.file_url;
+                        outputElement.dataset.uid = d.file.uid;
+                        outputElement.src = d.file.file_url;
                       }
 
                       break;
