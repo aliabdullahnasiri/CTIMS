@@ -38,7 +38,7 @@
               {% if department.head_of_department_entity_label == "Employee" %}
               {% with employee = department._head_of_department %} {% include
               "admin/views/information/employee.html" %} {% endwith %} {% else%}
-              {% with employee = department._head_of_department %} {% include
+              {% with teacher = department._head_of_department %} {% include
               "admin/views/information/teacher.html" %} {% endwith %} {% endif%}
             </div>
           </div>
