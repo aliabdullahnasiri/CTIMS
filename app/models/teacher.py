@@ -1,11 +1,16 @@
 from datetime import date
+from typing import Dict, List, Union
 
 import humanize
 from flask import url_for
 from numerize.numerize import numerize
 
 from app.constants import CURRENCY_SYMBOL, DEFAULT_AVATAR
-from app.extensions import db
+from app.extensions import console, db
+from app.functions import get_file, get_file_url
+from app.models.file import TeacherFile
+from app.models.phone import TeacherPhone
+from app.models.teaching import Teaching
 
 
 class Teacher(db.Model):
@@ -138,6 +143,76 @@ class Teacher(db.Model):
         }
 
         return dct
+
+    def update_subjects(self, subjects: List[str]):
+        for teaching in self.teachings:
+            if teaching.subject_id not in subjects:
+                db.session.delete(teaching)
+
+        db.session.commit()
+
+        for subject in subjects:
+            if Teaching.query.filter_by(
+                subject_id=subject, teacher_id=self.uid
+            ).first():
+                continue
+
+            teaching = Teaching()
+            teaching.teacher_id = self.uid
+            teaching.subject_id = subject
+
+            db.session.add(teaching)
+
+        db.session.commit()
+
+    def update_phones(self, phones: List[str]):
+        for phone in self.phones:
+            if phone.phone_number not in phones:
+                db.session.delete(phone)
+
+        db.session.commit()
+
+        for p in phones:
+            if TeacherPhone.query.filter_by(
+                teacher_id=self.uid, phone_number=p
+            ).first():
+                continue
+
+            phone = TeacherPhone()
+            phone.teacher_id = self.uid
+            phone.phone_number = p
+
+            db.session.add(phone)
+
+        db.session.commit()
+
+    def update_files(self, files: Dict[str, Union[str, List[str]]]) -> None:
+        for key, value in files.items():
+            match key:
+                case "avatar" if type(value) == str:
+                    self.avatar_path = get_file_url(value)
+                    db.session.commit()
+                case "files" if type(value) == list:
+                    for file in self.files:
+                        if file.file.uid not in value:
+                            db.session.delete(file)
+                            db.session.delete(file.file)
+
+                    db.session.commit()
+
+                    for val in value:
+                        if TeacherFile.query.filter_by(
+                            teacher_id=self.uid, file_id=val
+                        ).first():
+                            continue
+
+                        tf: TeacherFile = TeacherFile()
+                        tf.file_id = val
+                        tf.teacher_id = self.uid
+
+                        db.session.add(tf)
+
+                    db.session.commit()
 
     def __repr__(self):
         return f"<Teacher {self.full_name} ID={self.uid}>"
