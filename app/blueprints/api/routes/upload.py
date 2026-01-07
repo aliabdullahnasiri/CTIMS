@@ -1,6 +1,7 @@
 import json
-import math
 import os
+import re
+import uuid
 from datetime import datetime as dt
 from typing import Dict, List
 
@@ -26,26 +27,43 @@ def upload() -> Response:
 
         os.makedirs(dst, exist_ok=True)
 
-        if file.filename:
-            file.save(
-                os.path.join(
-                    dst,
-                    filename := f"{math.floor(dt.now().timestamp())}_{secure_filename(file.filename)}",
-                )
-            )
+        ext = (
+            lst.pop()
+            if len(lst := re.findall(r".[a-zA-Z]{1,}$", f"{file.filename}")) > 0
+            else str()
+        )
 
+        if not ext:
             lst.append(
                 {
-                    "message": "File successfully uploaded.",
-                    "file": {
-                        "name": file.filename,
-                        "url": url_for(
-                            "static", filename=f"uploads/{today}/{filename}"
-                        ),
-                    },
-                    "status": 200,
+                    "message": "File doesn't have extension, yet!",
+                    "category": "error",
+                    "status": 500,
                 }
             )
+
+            continue
+
+        filename = f"{uuid.uuid4()}{ext}"
+
+        file.save(
+            os.path.join(
+                dst,
+                secure_filename(filename),
+            )
+        )
+
+        lst.append(
+            {
+                "message": "File successfully uploaded.",
+                "category": "success",
+                "file": {
+                    "name": file.filename,
+                    "url": url_for("static", filename=f"uploads/{today}/{filename}"),
+                },
+                "status": 200,
+            }
+        )
 
     response.response = json.dumps(lst)
 
