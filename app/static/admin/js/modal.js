@@ -142,7 +142,7 @@ import { createLoader } from "./script.js";
     }, 1000);
   });
   document.addEventListener("hidden.bs.modal", (event) => {
-    event.target.closest("#ViewModal").querySelector(".modal-body").innerHTML =
-      "";
+    let b = event.target.closest("#ViewModal")?.querySelector(".modal-body");
+    if (b) b.innerHTML = "";
   });
 }).call();
