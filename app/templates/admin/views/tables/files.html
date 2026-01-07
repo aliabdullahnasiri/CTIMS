@@ -37,7 +37,7 @@
           >{{ f.file.display_file_name }}</a
         >
       </td>
-      <td class="text-xs">{{ f.file.display_file_for }}</td>
+      <td class="text-xs">{{ f.file.display_file_for or 'N/A' }}</td>
       <td class="text-xs">{{ f.file.human_size }}</td>
       <td class="text-xs">{{ f.file.display_uploaded_time }}</td>
     </tr>
