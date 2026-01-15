@@ -189,8 +189,11 @@ class Base(db.Model):
 
 @event.listens_for(Base, "before_insert", propagate=True)
 def generate_uid(mapper, connection, target):
+    cls = target.__class__
+    obj = cls.query.order_by(cls.id.desc()).first()
     prefix = target.__class__.__name__[0].upper()
-    target.uid = f"{prefix}-{str(uuid.uuid4().time_low).__getitem__(slice(6))}"
+
+    target.uid = "{}-{:>06}".format(prefix, (obj.id if obj else 0) + 1)
 
 
 def all(self):
