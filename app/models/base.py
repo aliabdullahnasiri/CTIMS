@@ -72,10 +72,12 @@ class Base(db.Model):
 
     @classmethod
     def display_yearly_growth(cls):
-        sign = chr(43) if cls.yearly_growth() > 0 else chr(45)
-        growth = f"{sign}{abs(cls.yearly_growth())}{chr(37)}"
+        sign = chr(43) if (g := cls.yearly_growth()) > 0 else chr(45)
 
-        return growth
+        if g == 0:
+            sign = str()
+
+        return f"{sign}{abs(g)}{chr(37)}"
 
     @classmethod
     def weekly_growth(cls):
@@ -112,10 +114,12 @@ class Base(db.Model):
 
     @classmethod
     def display_weekly_growth(cls):
-        sign = chr(43) if cls.weekly_growth() > 0 else chr(45)
-        growth = f"{sign}{abs(cls.weekly_growth())}{chr(37)}"
+        sign = chr(43) if (g := cls.weekly_growth()) > 0 else chr(45)
 
-        return growth
+        if g == 0:
+            sign = str()
+
+        return f"{sign}{abs(g)}{chr(37)}"
 
     @classmethod
     def weekly_growth_icon(cls):
