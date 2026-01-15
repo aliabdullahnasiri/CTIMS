@@ -192,8 +192,8 @@ def generate_uid(mapper, connection, target):
     cls = target.__class__
     obj = cls.query.order_by(cls.id.desc()).first()
     prefix = target.__class__.__name__[0].upper()
-
-    target.uid = "{}-{:>06}".format(prefix, (obj.id if obj else 0) + 1)
+    val = "{}-{:>06}".format(prefix, (obj.id if obj else 0) + 1)
+    target.uid = val if not len(val) > 8 else None
 
 
 def all(self):
