@@ -18,6 +18,7 @@ cols: List[Tuple[ColumnID, ColumnName]] = [
     (ColumnID("user_name"), ColumnName("User Name")),
     (ColumnID("birthday"), ColumnName("Birthday")),
     (ColumnID("age"), ColumnName("Age")),
+    (ColumnID("temp_role"), ColumnName("Role")),
 ]
 
 
@@ -134,18 +135,11 @@ def update_user() -> Response:
             user.email = form.email.data
             user.birthday = form.birthday.data
 
-            try:
-                links = request.form["links"]
-                links = json.loads(links)
-
-                if type(links) == dict:
-                    for name, link in links.items():
-                        match name:
-                            case "avatar":
-                                user.avatar_path = link
-
-            except Exception as err:
-                console.print(err)
+            if files := request.form.get("files"):
+                try:
+                    user.update_files(json.loads(files))
+                except json.JSONDecodeError as err:
+                    console.print(err)
 
             db.session.commit()
 
@@ -206,18 +200,11 @@ def add_user() -> Response:
         user.birthday = form.birthday.data
         user.avatar_path = url_for("static", filename=DEFAULT_AVATAR)
 
-        try:
-            links = request.form["links"]
-            links = json.loads(links)
-
-            if type(links) == dict:
-                for name, link in links.items():
-                    match name:
-                        case "avatar":
-                            user.avatar_path = link
-
-        except Exception as err:
-            console.print(err)
+        if files := request.form.get("files"):
+            try:
+                user.update_files(json.loads(files))
+            except json.JSONDecodeError as err:
+                console.print(err)
 
         if passwd := form.password.data:
             user.set_password(passwd)
