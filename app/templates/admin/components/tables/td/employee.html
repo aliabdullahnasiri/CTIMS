@@ -8,10 +8,10 @@
   </div>
   <div class="d-flex flex-column justify-content-center">
     <h6 class="mb-0 text-sm">
-      {{ employee and employee.full_name or full_name}}
+      {{ employee and employee.user.full_name or full_name}}
     </h6>
     <p class="text-xs text-secondary mb-0">
-      {{ employee and employee.email or email}}
+      {{ employee and employee.user.email or email}}
     </p>
   </div>
 </div>
