@@ -1,12 +1,10 @@
 from flask import render_template
-from flask_login import login_required
 
 from app.blueprints.admin import bp
 from app.forms.teacher import AddTeacherForm, UpdateTeacherForm
 
 
 @bp.get("/teachers")
-@login_required
 def teachers():
     return render_template(
         "admin/pages/teachers.html",

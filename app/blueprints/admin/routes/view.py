@@ -2,7 +2,6 @@ import json
 from typing import Dict
 
 from flask import Response, current_app, render_template
-from flask_login import login_required
 
 from app.blueprints.admin import bp
 from app.config import Config
@@ -33,7 +32,6 @@ entities: Dict = {
 
 
 @bp.get("/view/<string:entity>/<string:uid>")
-@login_required
 def view(entity: str, uid: str) -> Response:
     response: Response = Response()
 
