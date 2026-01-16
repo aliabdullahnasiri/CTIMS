@@ -6,7 +6,7 @@
     
     <div class="input-box">
       {{ form.email(size=32, placeholder=form.email.label.text) }}
-      <i class="bx bxs-lock-alt"></i>
+      <i class="bx bxs-envelope"></i>
       <div class="error">
         {% for error in form.email.errors %}
           <span style="color:red">{{ error }}</span>
