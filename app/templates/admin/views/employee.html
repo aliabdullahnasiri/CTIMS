@@ -5,15 +5,15 @@
         <div class="d-flex px-0 py-1">
           <div>
             <img
-              src="{{ employee.avatar_path }}"
+              src="{{ employee.user.avatar_path }}"
               class="avatar avatar-lg me-3 border-radius-lg"
               alt="user1"
             />
           </div>
           <div class="d-flex flex-column justify-content-center">
-            <h5 class="mb-0">{{ employee.full_name }}</h5>
+            <h5 class="mb-0">{{ employee.user.full_name }}</h5>
             <p class="mb-0 mt-0 font-weight-normal text-sm">
-              {{ employee.email }}
+              {{ employee.user.email }}
             </p>
           </div>
         </div>
@@ -34,6 +34,7 @@
             </div>
           </div>
         </div>
+        {% with job = employee.job %} {% if job %}
         <div class="row gx-0 mb-3">
           <div class="card">
             <div class="card-header pb-0">
@@ -41,11 +42,11 @@
             </div>
             <hr class="bg-dark horizontal my-0 opacity-10" />
             <div class="card-body p0">
-              {% with job = employee.job %} {% include
-              "admin/views/information/job.html" %} {% endwith %}
+              {% include "admin/views/information/job.html" %}
             </div>
           </div>
         </div>
+        {% endif %} {% endwith %}
       </div>
 
       <div class="col-lg-4">
