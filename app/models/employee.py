@@ -1,5 +1,5 @@
 from datetime import datetime, timezone
-from typing import Any, Dict, List, Union
+from typing import Dict, List, Union
 
 from flask import url_for
 from numerize.numerize import numerize
@@ -15,7 +15,9 @@ class Employee(db.Model):
 
     # Foreign Keys
     job_uid = db.Column(db.String(8), db.ForeignKey("jobs.uid"), nullable=True)
-    user_uid = db.Column(db.String(8), db.ForeignKey("users.uid"), nullable=False)
+    user_uid = db.Column(
+        db.String(8), db.ForeignKey("users.uid"), nullable=False, unique=True
+    )
 
     # Employment Info
     address = db.Column(db.String(255), nullable=True)
