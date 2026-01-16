@@ -1,12 +1,13 @@
 import enum
 from datetime import date
-from typing import Dict
+from typing import Dict, List, Union
 
 from flask import url_for
 from flask_login import UserMixin
 
 from app.constants import DEFAULT_AVATAR
 from app.extensions import bcrypt, db, login_manager
+from app.functions import get_file_url
 
 
 @login_manager.user_loader
@@ -55,6 +56,7 @@ class User(UserMixin, db.Model):
             "birthday": self.display_birthday,
             "age": self.age,
             "avatar": self.avatar_src,
+            "role": self.role.value,
             **super().to_dict(),
         }
 
@@ -77,7 +79,7 @@ class User(UserMixin, db.Model):
         """Return full name with middle name if exists."""
         if self.middle_name:
             return f"{self.first_name} {self.middle_name} {self.last_name}"
-        return f"{self.first_name} {self.last_name}"
+        return f"{self.first_name or 'N/A'} {self.last_name or 'N/A'}"
 
     @property
     def age(self) -> int | None:
@@ -103,3 +105,10 @@ class User(UserMixin, db.Model):
             return self.avatar_path
 
         return url_for("static", filename=DEFAULT_AVATAR)
+
+    def update_files(self, files: Dict[str, Union[str, List[str]]]) -> None:
+        for key, value in files.items():
+            match key:
+                case "avatar" if type(value) == str:
+                    self.avatar_path = get_file_url(value)
+                    db.session.commit()
