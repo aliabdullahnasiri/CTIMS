@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from flask_wtf.file import FileAllowed, FileField
+from flask_wtf.file import FileField
 from sqlalchemy import and_
 from wtforms import (
     DateField,
@@ -26,10 +26,7 @@ class AddUserForm(FlaskForm):
     )
     password = PasswordField("Password", validators=[DataRequired()])
     birthday = DateField("Birthday", format="%Y-%m-%d", validators=[Optional()])
-    avatar = FileField(
-        "Upload new profile picture",
-        validators=[FileAllowed(["jpg", "jpeg", "png"], "Images only!")],
-    )
+    avatar = FileField("Upload new profile picture.")
 
     submit = SubmitField("Add")
 
@@ -44,29 +41,27 @@ class AddUserForm(FlaskForm):
             raise ValidationError("Email already registered")
 
 
-class UpdateUserForm(FlaskForm):
+class UpdateUserForm(AddUserForm):
     uid = HiddenField("UID", validators=[DataRequired()])
-    first_name = StringField("First Name", validators=[Length(max=50)])
-    middle_name = StringField("Middle Name", validators=[Length(max=50)])
-    last_name = StringField("Last Name", validators=[Length(max=50)])
-    user_name = StringField("User Name", validators=[DataRequired(), Length(max=50)])
-    email = StringField(
-        "Email",
-        validators=[DataRequired(), Email(message="Enter a valid email address")],
-    )
-    birthday = DateField("Birthday", format="%Y-%m-%d", validators=[Optional()])
+    password = PasswordField("Password")
 
-    avatar = FileField(
-        "Upload new profile picture",
-        validators=[FileAllowed(["jpg", "jpeg", "png"], "Images only!")],
-    )
     submit = SubmitField("Update")
 
-    # Check if username already exists
-    def validate_user_name(self, user_name):
+    def validate_user_name(self, user_name, uid=None):
+        if uid is None:
+            uid = self.uid.data
+
         if (
             db.session.query(User)
-            .filter(and_(User.uid != self.uid.data, User.user_name == user_name.data))
+            .filter(and_(User.uid != uid, User.user_name == user_name.data))
             .first()
         ):
-            raise ValidationError("Username already taken")
+            raise ValidationError("Username already taken!")
+
+    # Check if email already exists
+    def validate_email(self, email, uid=None):
+        if uid is None:
+            uid = self.uid.data
+
+        if User.query.filter(and_(User.uid != uid, User.email == email.data)).first():
+            raise ValidationError("Email already registered!")
