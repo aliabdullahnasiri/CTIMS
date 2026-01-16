@@ -1,5 +1,5 @@
-from datetime import date, datetime, timezone
-from typing import Dict, List, Union
+from datetime import datetime, timezone
+from typing import Any, Dict, List, Union
 
 from flask import url_for
 from numerize.numerize import numerize
@@ -14,20 +14,8 @@ class Employee(db.Model):
     __tablename__ = "employees"
 
     # Foreign Keys
-    job_id = db.Column(db.String(8), db.ForeignKey("jobs.uid"), nullable=True)
-
-    # Personal Info
-    first_name = db.Column(db.String(50), nullable=False)
-    middle_name = db.Column(db.String(50))
-    last_name = db.Column(db.String(50), nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=True, index=True)
-    birthday = db.Column(db.Date, nullable=True)
-
-    # Files
-    avatar_path = db.Column(
-        db.String(255),
-        nullable=True,
-    )  # Path to avatar image
+    job_uid = db.Column(db.String(8), db.ForeignKey("jobs.uid"), nullable=True)
+    user_uid = db.Column(db.String(8), db.ForeignKey("users.uid"), nullable=False)
 
     # Employment Info
     address = db.Column(db.String(255), nullable=True)
@@ -38,25 +26,27 @@ class Employee(db.Model):
 
     # Relationships
     job = db.relationship("Job", back_populates="employees")
+    user = db.relationship("User", back_populates="employee")
     phones = db.relationship(
         "EmployeePhone", back_populates="employee", cascade="all, delete, delete-orphan"
     )
 
     def __repr__(self):
-        return f"<Employee {self.first_name} {self.last_name} ID={self.uid}>"
+        return f"<Employee {self.user.first_name} {self.user.last_name} ID={self.uid}>"
 
     def to_dict(self):
         dct = {
-            "employee_id": self.uid,
-            "job_id": self.job_id,
-            "first_name": self.first_name,
-            "middle_name": self.middle_name,
-            "last_name": self.last_name,
-            "full_name": self.full_name,
-            "email": self.email,
-            "birthday": self.display_birthday,
-            "age": self.age,
-            "avatar": self.avatar_path,
+            "employee_uid": self.uid,
+            "job_uid": self.job_uid,
+            "first_name": self.user.first_name,
+            "middle_name": self.user.middle_name,
+            "last_name": self.user.last_name,
+            "full_name": self.user.full_name,
+            "user_name": self.user.user_name,
+            "email": self.user.email,
+            "birthday": self.user.display_birthday,
+            "age": self.user.age,
+            "avatar": self.user.avatar_path,
             "address": self.address,
             "salary": f"{self.salary:.2f}" if self.salary is not None else None,
             "display_salary": self.display_salary,
@@ -67,18 +57,6 @@ class Employee(db.Model):
 
         return dct
 
-    # Derived attribute (not stored in DB)
-    @property
-    def age(self) -> int | None:
-        if self.birthday is None:
-            return None
-        today = date.today()
-        return (
-            today.year
-            - self.birthday.year
-            - ((today.month, today.day) < (self.birthday.month, self.birthday.day))
-        )
-
     @property
     def is_salary_gt_avg(self) -> bool:
         employees = self.query.all()
@@ -86,13 +64,6 @@ class Employee(db.Model):
         average_salary = sum(lst) / len(lst)
 
         return self.salary > average_salary
-
-    @property
-    def full_name(self) -> str:
-        """Return full name with middle name if exists."""
-        if self.middle_name:
-            return f"{self.first_name} {self.middle_name} {self.last_name}"
-        return f"{self.first_name} {self.last_name}"
 
     @property
     def display_salary(self) -> str:
@@ -106,21 +77,13 @@ class Employee(db.Model):
         return self.hire_date.strftime("%Y-%m-%d") if self.hire_date else "N/A"
 
     @property
-    def display_birthday(self) -> str:
-        return self.birthday.strftime("%Y-%m-%d") if self.birthday else "N/A"
-
-    @property
     def display_address(self) -> str:
         return self.address or "N/A"
 
     @property
-    def display_email(self) -> str:
-        return self.email or "N/A"
-
-    @property
     def avatar_src(self) -> str:
-        if self.avatar_path:
-            return self.avatar_path
+        if self.user.avatar_path:
+            return self.user.avatar_path
 
         return url_for("static", filename=DEFAULT_AVATAR)
 
@@ -153,5 +116,5 @@ class Employee(db.Model):
         for key, value in files.items():
             match key:
                 case "avatar" if type(value) == str:
-                    self.avatar_path = get_file_url(value)
+                    self.user.avatar_path = get_file_url(value)
                     db.session.commit()
