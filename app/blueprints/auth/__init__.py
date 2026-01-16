@@ -1,11 +1,11 @@
-from flask import Blueprint, flash, redirect, render_template, url_for
+from flask import Blueprint, current_app, flash, redirect, render_template, url_for
 from flask_bcrypt import check_password_hash
 from flask_login import current_user, login_required, login_user, logout_user
 
 from app.extensions import db
 from app.forms.login import LoginForm
 from app.forms.signup import SignupForm
-from app.models.user import Role, User
+from app.models.user import Role, RoleEnum, User
 
 bp = Blueprint("auth", __name__)
 
@@ -25,33 +25,35 @@ def login():
 
             flash(f"Welcome back, {user.user_name}!", category="success")
 
-            return redirect(url_for("admin.dashboard"))
+            if current_user.is_administrator():
+                return redirect(url_for("admin.dashboard"))
 
     return render_template("auth/login.html", form=form, title="Login")
 
 
 @bp.route("/signup", methods=["GET", "POST"])
 def signup():
-    """
-    Route URL: /auth/signup (because blueprint has url_prefix='/auth')
-    Template: signup.html (can be in templates folder)
-    """
-    if current_user.is_authenticated:
-        return redirect(url_for("main.home"))
-
-    # # First-time signup logic
-    # if User.query.first():
-    #     flash("Registration is closed.", "warning")
-    #     return redirect(url_for("auth.login"))
-
     form = SignupForm()
+
     if form.validate_on_submit():
         user = User()
+
         user.user_name = form.user_name.data
         user.email = form.email.data
-        user.role = Role.USER if User.query.first() else Role.ADMIN
 
         user.set_password(form.password.data)
+
+        if user.email == current_app.config["FLASKY_ADMIN"]:
+            r = Role.query.filter_by(
+                permissions=RoleEnum.ADMINISTRATOR.value.__getitem__(0)
+            ).first()
+
+            user.role_uid = r.uid
+
+        if user.role is None:
+            r = Role.query.filter_by(default=True).first()
+
+            user.role_uid = r.uid
 
         db.session.add(user)
         db.session.commit()
