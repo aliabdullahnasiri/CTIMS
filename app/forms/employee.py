@@ -1,59 +1,39 @@
 import json
 import re
 
-from flask_wtf import FlaskForm
-from flask_wtf.file import FileAllowed
 from sqlalchemy import and_
 from wtforms import (
     DateField,
     DecimalField,
-    FileField,
     HiddenField,
+    PasswordField,
     StringField,
     SubmitField,
 )
 from wtforms.validators import (
     DataRequired,
-    Email,
     Length,
     NumberRange,
     Optional,
     ValidationError,
 )
 
+from app.extensions import db
+from app.forms.user import AddUserForm, UpdateUserForm
+from app.models.employee import Employee
+from app.models.job import Job
 from app.models.phone import EmployeePhone
 
-from ..extensions import db
-from ..models.employee import Employee
-from ..models.job import Job
 
-
-class AddEmployeeForm(FlaskForm):
-    first_name = StringField("First Name", validators=[DataRequired(), Length(max=50)])
-    middle_name = StringField("Middle Name", validators=[Length(max=50)])
-    last_name = StringField("Last Name", validators=[DataRequired(), Length(max=50)])
-    email = StringField(
-        "Email",
-        validators=[Optional(), Email(message="Enter a valid email address")],
-    )
-    birthday = DateField("Birthday", format="%Y-%m-%d", validators=[Optional()])
+class AddEmployeeForm(AddUserForm):
     address = StringField("Address", validators=[Length(max=255)])
     salary = DecimalField(
         "Salary", places=2, validators=[Optional(), NumberRange(min=0)]
     )
     hire_date = DateField("Hire Date", format="%Y-%m-%d")
-    job_id = StringField("Job ID", validators=[Optional(), Length(8, 8)])
-    avatar = FileField(
-        "Upload new profile picture",
-        validators=[FileAllowed(["jpg", "jpeg", "png"], "Images only!")],
-    )
+    job_uid = StringField("Job UID", validators=[Optional(), Length(8, 8)])
     phones = StringField("Phone", validators=[Optional()])
     submit = SubmitField("Add")
-
-    # Check if email already exists
-    def validate_email(self, email):
-        if Employee.query.filter_by(email=email.data).first():
-            raise ValidationError("Email already registered")
 
     def validate_phones(self, phones):
         nums = json.loads(phones.data)
@@ -69,32 +49,19 @@ class AddEmployeeForm(FlaskForm):
 
                 raise ValidationError(f"Duplicate entry {num!r} for phone number!")
 
-    def validate_job_id(self, job_id) -> None:
+    def validate_job_uid(self, job_uid) -> None:
         pattern: re.Pattern = re.compile(r"^..\d{6}$")
 
-        if not pattern.search(job_id.data):
+        if not pattern.search(job_uid.data):
             raise ValidationError("Not a valid Job ID.")
-        elif not Job.query.filter_by(uid=job_id.data).first():
+        elif not Job.query.filter_by(uid=job_uid.data).first():
             raise ValidationError("Job with the given ID was not found :(")
 
 
-class UpdateEmployeeForm(AddEmployeeForm):
-    uid = HiddenField("Employee ID", validators=[DataRequired()])
+class UpdateEmployeeForm(UpdateUserForm, AddEmployeeForm):
+    uid = HiddenField("Employee UID", validators=[DataRequired()])
+    password = PasswordField("Password")
     submit = SubmitField("Update")
-
-    # Check if email already exists
-    def validate_email(self, email):
-        if (
-            db.session.query(Employee)
-            .filter(
-                and_(
-                    Employee.uid != self.uid.data,
-                    Employee.email == email.data,
-                )
-            )
-            .first()
-        ):
-            raise ValidationError("Email already registered")
 
     def validate_phones(self, phones):
         nums = json.loads(phones.data)
@@ -115,3 +82,31 @@ class UpdateEmployeeForm(AddEmployeeForm):
                 ):
 
                     raise ValidationError(f"Duplicate entry {num!r} for phone number!")
+
+    def validate_user_name(self, user_name, uid=None):
+        return super().validate_user_name(
+            user_name,
+            (
+                employee.user.uid
+                if (
+                    employee := db.session.query(Employee)
+                    .filter_by(uid=self.uid.data)
+                    .first()
+                )
+                else uid
+            ),
+        )
+
+    def validate_email(self, email, uid=None):
+        return super().validate_email(
+            email,
+            (
+                employee.user.uid
+                if (
+                    employee := db.session.query(Employee)
+                    .filter_by(uid=self.uid.data)
+                    .first()
+                )
+                else uid
+            ),
+        )
