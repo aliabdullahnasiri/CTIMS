@@ -16,7 +16,10 @@ def load_user(uid: str):
 
 class Role(enum.Enum):
     ADMIN = "admin"
-    USER = "user"
+    TEACHER = "teacher"
+    STUDENT = "student"
+    EMPLOYEE = "employee"
+    GUEST = "guest"
 
 
 class User(UserMixin, db.Model):
@@ -31,13 +34,15 @@ class User(UserMixin, db.Model):
     password_hash = db.Column(db.String(128), nullable=False)
 
     birthday = db.Column(db.Date)
-    role = db.Column(db.Enum(Role), default=Role.USER, nullable=False)
+    role = db.Column(db.Enum(Role), default=Role.GUEST, nullable=False)
 
     # Files
     avatar_path = db.Column(
         db.String(255),
         nullable=True,
     )  # Path to avatar image
+
+    employee = db.relationship("Employee", back_populates="user", cascade="delete")
 
     def to_dict(self) -> Dict:
         dct = {
