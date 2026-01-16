@@ -54,8 +54,29 @@
     <div class="col-md-12">
       <div class="my-2">
         <div class="input-group input-group-outline">
+          {{ f.user_name.label(class="form-label") }} {{
+          f.user_name(class="form-control") }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="my-2">
+        <div class="input-group input-group-outline">
           {{ f.email.label(class="form-label") }} {{
           f.email(class="form-control") }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="my-2">
+        <div class="input-group input-group-outline">
+          {{ f.password.label(class="form-label") }} {{
+          f.password(class="form-control") }}
         </div>
       </div>
     </div>
@@ -114,8 +135,8 @@
     <div class="col-md-12">
       <div class="my-2">
         <div class="input-group input-group-outline">
-          {{ f.job_id.label(class="form-label") }} {{
-          f.job_id(class="form-control") }}
+          {{ f.job_uid.label(class="form-label") }} {{
+          f.job_uid(class="form-control") }}
         </div>
       </div>
     </div>
