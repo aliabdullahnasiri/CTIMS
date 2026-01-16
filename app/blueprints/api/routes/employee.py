@@ -10,7 +10,7 @@ from app.extensions import console, db
 from app.forms.employee import AddEmployeeForm, UpdateEmployeeForm
 from app.functions import render_td
 from app.models.employee import Employee
-from app.models.phone import EmployeePhone
+from app.models.user import Role, User
 from app.types import ColumnID, ColumnName
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
@@ -117,54 +117,42 @@ def add_employee() -> Response:
     response: Dict = {}
 
     if form.validate_on_submit():
+        user: User = User()
+
+        user.first_name = form.first_name.data
+        user.middle_name = form.middle_name.data
+        user.last_name = form.last_name.data
+        user.email = form.email.data
+        user.user_name = form.user_name.data
+        user.birthday = form.birthday.data
+        user.role = Role.EMPLOYEE
+
+        if form.password.data:
+            user.set_password(form.password.data)
+
+        db.session.add(user)
+        db.session.commit()
+
         employee: Employee = Employee()
-
-        employee.first_name = form.first_name.data
-        employee.middle_name = form.middle_name.data
-        employee.last_name = form.last_name.data
-
-        if form.email.data:
-            employee.email = form.email.data
-
-        employee.birthday = form.birthday.data
+        employee.user_uid = user.uid
         employee.address = form.address.data
         employee.salary = form.salary.data
 
-        if form.job_id.data:
-            employee.job_id = form.job_id.data
+        if form.job_uid.data:
+            employee.job_uid = form.job_uid.data
 
-        employee.avatar_path = url_for("static", filename=DEFAULT_AVATAR)
-
-        try:
-            links = json.loads(request.form.get("links", "{}"))
-
-            if type(links) == dict:
-                for key, value in links.items():
-                    match key:
-                        case "avatar":
-                            if value:
-                                employee.avatar_path = value
-
-        except Exception as err:
-            console.print(err)
+        user.avatar_path = url_for("static", filename=DEFAULT_AVATAR)
 
         db.session.add(employee)
         db.session.commit()
 
         if form.phones.data:
+            employee.update_phones(json.loads(form.phones.data))
+
+        if files := request.form.get("files"):
             try:
-                for phone in json.loads(form.phones.data):
-                    if EmployeePhone.query.filter_by(phone_number=phone).first():
-                        continue
-
-                    employee_phone = EmployeePhone()
-                    employee_phone.employee_id = employee.uid
-                    employee_phone.phone_number = phone
-
-                    db.session.add(employee_phone)
-
-                db.session.commit()
-            except Exception as err:
+                employee.update_files(json.loads(files))
+            except json.JSONDecodeError as err:
                 console.print(err)
 
         response["message"] = "Employee added successfully."
@@ -191,16 +179,19 @@ def update_employee() -> Response:
         ).first()
 
         if employee:
-            employee.first_name = form.first_name.data
-            employee.middle_name = form.middle_name.data
-            employee.last_name = form.last_name.data
-            employee.email = form.email.data
-            employee.birthday = form.birthday.data
+            employee.user.first_name = form.first_name.data
+            employee.user.middle_name = form.middle_name.data
+            employee.user.last_name = form.last_name.data
+            employee.user.email = form.email.data
+            employee.user.birthday = form.birthday.data
             employee.address = form.address.data
             employee.salary = form.salary.data
 
-            if form.job_id.data:
-                employee.job_id = form.job_id.data
+            if form.job_uid.data:
+                employee.job_uid = form.job_uid.data
+
+            if form.password.data:
+                employee.user.set_password(form.password.data)
 
             db.session.commit()
 
@@ -235,6 +226,7 @@ def delete_employee(uid: str) -> Response:
     employee: Union[Employee, None] = Employee.query.filter_by(uid=uid).first()
     if employee:
         db.session.delete(employee)
+        db.session.delete(employee.user)
         db.session.commit()
 
         response["title"] = "Deleted!"
