@@ -43,18 +43,6 @@ def signup():
 
         user.set_password(form.password.data)
 
-        if user.email == current_app.config["FLASKY_ADMIN"]:
-            r = Role.query.filter_by(
-                permissions=RoleEnum.ADMINISTRATOR.value.__getitem__(0)
-            ).first()
-
-            user.role_uid = r.uid
-
-        if user.role is None:
-            r = Role.query.filter_by(default=True).first()
-
-            user.role_uid = r.uid
-
         db.session.add(user)
         db.session.commit()
 
