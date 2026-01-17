@@ -3,6 +3,19 @@ import { createLoader } from "./script.js";
 
 (function () {
   document.addEventListener("show.bs.modal", (event) => {
+    let label = event.target.getAttribute("aria-labelledby");
+    if (!label?.search(/^Add/)) {
+      Array.from(
+        event.target.querySelectorAll(
+          "form div.input-group.focused.is-focused",
+        ),
+      ).forEach((input) => {
+        input?.classList.remove("focused");
+        input?.classList.remove("is-focused");
+      });
+    }
+  });
+  document.addEventListener("show.bs.modal", (event) => {
     const form = event.target.querySelector("form[data-get]");
 
     if (form) {
