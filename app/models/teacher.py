@@ -1,34 +1,24 @@
-from datetime import date
-from typing import Dict, List, Union
+from typing import List
 
-import humanize
-from flask import url_for
 from numerize.numerize import numerize
 
-from app.constants import CURRENCY_SYMBOL, DEFAULT_AVATAR
+from app.constants import CURRENCY_SYMBOL
 from app.extensions import db
-from app.functions import get_file_url
-from app.models.file import TeacherFile
-from app.models.phone import TeacherPhone
 from app.models.teaching import Teaching
 
 
 class Teacher(db.Model):
     __tablename__ = "teachers"
 
-    # Personal Info
-    first_name = db.Column(db.String(50), nullable=False)
-    middle_name = db.Column(db.String(50))
-    last_name = db.Column(db.String(50), nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False, index=True)
-    birthday = db.Column(db.Date, nullable=True)
+    time_id = db.Column(db.String(8), db.ForeignKey("times.uid"), nullable=False)
+    user_uid = db.Column(
+        db.String(8), db.ForeignKey("users.uid"), nullable=False, unique=True
+    )
 
-    avatar_path = db.Column(db.String(255), nullable=True)  # Path to avatar image
     salary = db.Column(db.Numeric(12, 2), nullable=True)
 
-    time_id = db.Column(db.String(8), db.ForeignKey("times.uid"), nullable=False)
-
     time = db.relationship("Time", back_populates="teachers")
+    user = db.relationship("User")
 
     teachings = db.relationship(
         "Teaching", back_populates="teacher", cascade="all, delete, delete-orphan"
@@ -41,39 +31,10 @@ class Teacher(db.Model):
     classes = db.relationship(
         "Class", back_populates="teacher", cascade="all, delete, delete-orphan"
     )
-    phones = db.relationship(
-        "TeacherPhone", back_populates="teacher", cascade="all, delete, delete-orphan"
-    )
-    files = db.relationship(
-        "TeacherFile", back_populates="teacher", cascade="all, delete, delete-orphan"
-    )
 
     @property
     def subjects(self):
         return [teaching.subject for teaching in self.teachings]
-
-    @property
-    def full_name(self) -> str:
-        parts = [self.first_name]
-        if self.middle_name:
-            parts.append(self.middle_name)
-        parts.append(self.last_name)
-        return " ".join(parts)
-
-    @property
-    def age(self) -> int | None:
-        if self.birthday is None:
-            return None
-        today = date.today()
-        return (
-            today.year
-            - self.birthday.year
-            - ((today.month, today.day) < (self.birthday.month, self.birthday.day))
-        )
-
-    @property
-    def display_birthday(self) -> str:
-        return self.birthday.strftime("%Y-%m-%d") if self.birthday else "N/A"
 
     @property
     def display_salary(self) -> str:
@@ -82,13 +43,6 @@ class Teacher(db.Model):
             if self.salary is not None
             else "N/A"
         )
-
-    @property
-    def total_file_size(self) -> str:
-        total: int = 0
-        for f in self.files:
-            total += f.file.size
-        return humanize.naturalsize(total)
 
     @property
     def is_salary_gt_avg(self) -> bool:
@@ -100,23 +54,8 @@ class Teacher(db.Model):
         return float(self.salary) > avg_salary
 
     @property
-    def avatar_src(self) -> str:
-        if self.avatar_path:
-            return self.avatar_path
-
-        return url_for("static", filename=DEFAULT_AVATAR)
-
-    @property
-    def display_number_of_phone_nums(self):
-        return numerize(len(self.phones), decimals=2)
-
-    @property
     def display_number_of_classes(self):
         return numerize(len(self.classes), decimals=2)
-
-    @property
-    def display_number_of_files(self):
-        return numerize(len(self.files), decimals=2)
 
     @property
     def display_number_of_teachings(self):
@@ -126,19 +65,19 @@ class Teacher(db.Model):
         dct = {
             "teacher_id": self.uid,
             "time_id": self.time_id,
-            "full_name": self.full_name,
-            "first_name": self.first_name,
-            "middle_name": self.middle_name,
-            "last_name": self.last_name,
-            "email": self.email,
-            "birthday": self.display_birthday,
-            "age": self.age,
+            "full_name": self.user.full_name,
+            "first_name": self.user.first_name,
+            "middle_name": self.user.middle_name,
+            "last_name": self.user.last_name,
+            "email": self.user.email,
+            "birthday": self.user.display_birthday,
+            "age": self.user.age,
             "salary": f"{self.salary:.2f}" if self.salary is not None else None,
             "display_salary": self.display_salary,
-            "avatar": self.avatar_path,
-            "phones": [p.phone_number for p in self.phones],
+            "avatar": self.user.avatar_path,
+            "phones": [p.number for p in self.user.phones],
             "subjects": [s.subject.uid for s in self.teachings],
-            "files": [f.file.to_dict() for f in self.files],
+            "files": [f.file.to_dict() for f in self.user.files],
             **super().to_dict(),
         }
 
@@ -165,54 +104,5 @@ class Teacher(db.Model):
 
         db.session.commit()
 
-    def update_phones(self, phones: List[str]):
-        for phone in self.phones:
-            if phone.phone_number not in phones:
-                db.session.delete(phone)
-
-        db.session.commit()
-
-        for p in phones:
-            if TeacherPhone.query.filter_by(
-                teacher_id=self.uid, phone_number=p
-            ).first():
-                continue
-
-            phone = TeacherPhone()
-            phone.teacher_id = self.uid
-            phone.phone_number = p
-
-            db.session.add(phone)
-
-        db.session.commit()
-
-    def update_files(self, files: Dict[str, Union[str, List[str]]]) -> None:
-        for key, value in files.items():
-            match key:
-                case "avatar" if type(value) == str:
-                    self.avatar_path = get_file_url(value)
-                    db.session.commit()
-                case "files" if type(value) == list:
-                    for file in self.files:
-                        if file.file.uid not in value:
-                            db.session.delete(file)
-                            db.session.delete(file.file)
-
-                    db.session.commit()
-
-                    for val in value:
-                        if TeacherFile.query.filter_by(
-                            teacher_id=self.uid, file_id=val
-                        ).first():
-                            continue
-
-                        tf: TeacherFile = TeacherFile()
-                        tf.file_id = val
-                        tf.teacher_id = self.uid
-
-                        db.session.add(tf)
-
-                    db.session.commit()
-
     def __repr__(self):
-        return f"<Teacher {self.full_name} ID={self.uid}>"
+        return f"<Teacher {self.user.full_name} ID={self.uid}>"
