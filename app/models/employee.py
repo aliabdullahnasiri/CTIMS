@@ -1,13 +1,7 @@
 from datetime import datetime, timezone
-from typing import Dict, List, Union
 
-from flask import url_for
-from numerize.numerize import numerize
-
-from app.constants import CURRENCY_SYMBOL, DEFAULT_AVATAR
+from app.constants import CURRENCY_SYMBOL
 from app.extensions import db
-from app.functions import get_file_url
-from app.models.phone import EmployeePhone
 
 
 class Employee(db.Model):
@@ -28,10 +22,7 @@ class Employee(db.Model):
 
     # Relationships
     job = db.relationship("Job", back_populates="employees")
-    user = db.relationship("User", back_populates="employee")
-    phones = db.relationship(
-        "EmployeePhone", back_populates="employee", cascade="all, delete, delete-orphan"
-    )
+    user = db.relationship("User")
 
     def __repr__(self):
         return f"<Employee {self.user.first_name} {self.user.last_name} ID={self.uid}>"
@@ -53,7 +44,7 @@ class Employee(db.Model):
             "salary": f"{self.salary:.2f}" if self.salary is not None else None,
             "display_salary": self.display_salary,
             "hire_date": self.display_hire_date,
-            "phones": [phone.phone_number for phone in self.phones],
+            "phones": [phone.number for phone in self.user.phones],
             **super().to_dict(),
         }
 
@@ -81,42 +72,3 @@ class Employee(db.Model):
     @property
     def display_address(self) -> str:
         return self.address or "N/A"
-
-    @property
-    def avatar_src(self) -> str:
-        if self.user.avatar_path:
-            return self.user.avatar_path
-
-        return url_for("static", filename=DEFAULT_AVATAR)
-
-    @property
-    def display_number_of_phone_nums(self):
-        return numerize(len(self.phones), decimals=2)
-
-    def update_phones(self, phones: List[str]):
-        for phone in self.phones:
-            if phone.phone_number not in phones:
-                db.session.delete(phone)
-
-        db.session.commit()
-
-        for p in phones:
-            if EmployeePhone.query.filter_by(
-                employee_id=self.uid, phone_number=p
-            ).first():
-                continue
-
-            phone = EmployeePhone()
-            phone.employee_id = self.uid
-            phone.phone_number = p
-
-            db.session.add(phone)
-
-        db.session.commit()
-
-    def update_files(self, files: Dict[str, Union[str, List[str]]]) -> None:
-        for key, value in files.items():
-            match key:
-                case "avatar" if type(value) == str:
-                    self.user.avatar_path = get_file_url(value)
-                    db.session.commit()
