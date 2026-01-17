@@ -1,4 +1,5 @@
 from app.extensions import db
+from app.models.file import File
 
 
 class Student(db.Model):
@@ -19,6 +20,10 @@ class Student(db.Model):
 
     user = db.relationship("User")
 
+    @property
+    def files(self):
+        return [file for file in File.query.filter_by(file_for=self.user.uid).all()]
+
     def to_dict(self) -> dict:
         return {
             "user_id": self.user.uid,
@@ -32,7 +37,7 @@ class Student(db.Model):
             "age": self.user.age,
             "avatar": self.user.avatar_path,
             "phones": [phone.number for phone in self.user.phones],
-            "files": [f.to_dict() for f in self.user.files],
+            "files": [f.to_dict() for f in self.files],
             **super().to_dict(),
         }
 
