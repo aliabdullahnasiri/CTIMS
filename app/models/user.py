@@ -10,6 +10,7 @@ from sqlalchemy import event
 from app.constants import DEFAULT_AVATAR
 from app.extensions import bcrypt, db, login_manager
 from app.functions import get_file_url
+from app.models.file import File
 from app.models.phone import Phone
 
 
@@ -288,6 +289,10 @@ class User(UserMixin, db.Model):
                     for file in self.files:
                         if file.uid not in value:
                             db.session.delete(file)
+
+                    for val in value:
+                        if file := File.query.filter_by(uid=val).first():
+                            file.file_for = self.uid
 
         db.session.commit()
 
