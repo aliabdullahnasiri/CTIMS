@@ -9,6 +9,7 @@ from app.extensions import db
 from app.forms.job import AddJobForm, UpdateJobForm
 from app.functions import render_td
 from app.models.job import Job
+from app.models.user import PermissionEnum, permission_required
 from app.types import ColumnID, ColumnName
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
@@ -21,6 +22,7 @@ cols: List[Tuple[ColumnID, ColumnName]] = [
 
 @bp.get("/fetch/jobs")
 @login_required
+@permission_required(PermissionEnum.FETCH_JOBS.value)
 def fetch_jobs() -> Response:
     jobs: List[Dict] = [job.to_dict() for job in Job.query.all()]
 
@@ -33,6 +35,7 @@ def fetch_jobs() -> Response:
 
 @bp.get("/fetch/rows/jobs")
 @login_required
+@permission_required(PermissionEnum.FETCH_JOBS.value)
 def fetch_jobs_rows() -> Response:
     response: Response = Response(
         headers={"Content-Type": "application/json"},
@@ -58,6 +61,7 @@ def fetch_jobs_rows() -> Response:
 
 @bp.get("/fetch/row/job/<string:uid>")
 @login_required
+@permission_required(PermissionEnum.FETCH_JOB.value)
 def fetch_job_row(uid: str) -> Response:
     job: Union[Job, None] = Job.query.filter_by(uid=uid).first()
 
@@ -90,6 +94,7 @@ def fetch_job_row(uid: str) -> Response:
 
 @bp.get("/fetch/job/<string:uid>")
 @login_required
+@permission_required(PermissionEnum.FETCH_JOB.value)
 def fetch_job(uid: str) -> Response:
     job: Union[Job, None] = Job.query.filter_by(uid=uid).first()
 
@@ -114,6 +119,7 @@ def fetch_job(uid: str) -> Response:
 
 @bp.post("/add/job")
 @login_required
+@permission_required(PermissionEnum.CREATE_JOB.value)
 def add_job() -> Response:
     response: Dict = {}
 
@@ -147,6 +153,7 @@ def add_job() -> Response:
 
 @bp.post("/update/job")
 @login_required
+@permission_required(PermissionEnum.UPDATE_JOB.value)
 def update_job() -> Response:
     response: Dict = {}
 
@@ -183,6 +190,7 @@ def update_job() -> Response:
 
 @bp.delete("/delete/job/<string:uid>")
 @login_required
+@permission_required(PermissionEnum.DELETE_JOB.value)
 def delete_job(uid: str) -> Response:
     response: Dict = {}
 
