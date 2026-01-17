@@ -280,22 +280,27 @@ class User(UserMixin, db.Model):
 
         db.session.commit()
 
-    def update_files(self, files: Dict[str, Union[str, List[str]]]) -> None:
+    def update_files(self, files: Dict[str, Union[int, List[int]]]) -> None:
         for key, value in files.items():
             match key:
-                case "avatar" if type(value) == str:
-                    self.avatar_path = get_file_url(value)
+                case "avatar" if type(value) == int:
+                    self.avatar_path = (
+                        src
+                        if (src := get_file_url(value)) is not None
+                        else url_for("static", filename=DEFAULT_AVATAR)
+                    )
+                    db.session.commit()
 
                 case "files" if type(value) == list:
-                    for file in self.files:
-                        if file.uid not in value:
+                    for file in File.query.filter_by(file_for=self.uid).all():
+                        if file.id not in value:
                             db.session.delete(file)
+                            db.session.commit()
 
                     for val in value:
-                        if file := File.query.filter_by(uid=val).first():
+                        if file := File.query.filter_by(id=val).first():
                             file.file_for = self.uid
-
-        db.session.commit()
+                            db.session.commit()
 
 
 class AnonymousUser(AnonymousUserMixin):
