@@ -4,7 +4,7 @@
       <th
         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center"
       >
-        UID
+        ID
       </th>
       <th
         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
@@ -31,15 +31,13 @@
   <tbody>
     {% if files %} {% for f in files %}
     <tr>
-      <td class="text-xs text-center">{{ f.file.uid }}</td>
+      <td class="text-xs text-center">{{ f.id }}</td>
       <td class="text-xs">
-        <a href="{{ f.file.file_url }}" target="_blank"
-          >{{ f.file.display_file_name }}</a
-        >
+        <a href="{{ f.file_url }}" target="_blank">{{ f.display_file_name }}</a>
       </td>
-      <td class="text-xs">{{ f.file.display_file_for or 'N/A' }}</td>
-      <td class="text-xs">{{ f.file.human_size }}</td>
-      <td class="text-xs">{{ f.file.display_uploaded_time }}</td>
+      <td class="text-xs">{{ f.display_file_for or 'N/A' }}</td>
+      <td class="text-xs">{{ f.human_size }}</td>
+      <td class="text-xs">{{ f.display_uploaded_time }}</td>
     </tr>
     {% endfor %} {% else %}
     <tr class="no-rows-label">
