@@ -10,6 +10,7 @@ from sqlalchemy import event
 from app.constants import DEFAULT_AVATAR
 from app.extensions import bcrypt, db, login_manager
 from app.functions import get_file_url
+from app.models.phone import Phone
 
 
 @enum.unique
@@ -98,15 +99,20 @@ class PermissionEnum(enum.Enum):
     FETCH_STUDENT_ATTENDANCE = 0x100000000000000000
     FETCH_STUDENT_ATTENDANCES = 0x200000000000000000
 
+    UPLOAD_FILE = 0x400000000000000000
+    DELETE_FILE = 0x800000000000000000
+    UPDATE_FILE = 0x1000000000000000000
+    DOWNLOAD_FILE = 0x2000000000000000000
+
     ADMINISTER = 0x8000000000000000000000
 
 
 class RoleEnum(enum.Enum):
-    ANONYMOUS = 0x0000000, True
-    EMPLOYEE = 0x0000000, False
-    TEACHER = 0x0000000, False
-    STUDENT = 0x0000000, False
-    ADMINISTRATOR = 0xFFFFFFFFFFFFFFFFFFFFFF, False
+    ANONYMOUS = 0x0000000, True, 0
+    EMPLOYEE = 0x0000000, False, 1
+    TEACHER = 0x0000000, False, 2
+    STUDENT = 0x0000000, False, 3
+    ADMINISTRATOR = 0xFFFFFFFFFFFFFFFFFFFFFF, False, 4
 
 
 class Role(db.Model):
@@ -142,7 +148,7 @@ class Role(db.Model):
                     role = Role()
 
                 role.name = r.name
-                permission, default = r.value
+                permission, default, num = r.value
 
                 role.permissions, role.default = hex(permission), default
 
@@ -172,8 +178,14 @@ class User(UserMixin, db.Model):
         nullable=True,
     )
 
-    employee = db.relationship("Employee", back_populates="user", cascade="delete")
     role = db.relationship("Role", back_populates="users")
+
+    phones = db.relationship(
+        "Phone", back_populates="user", cascade="all, delete, delete-orphan"
+    )
+    files = db.relationship(
+        "File", back_populates="user", cascade="all, delete, delete-orphan"
+    )
 
     def __init__(self) -> None:
         super().__init__()
@@ -247,12 +259,37 @@ class User(UserMixin, db.Model):
 
         return url_for("static", filename=DEFAULT_AVATAR)
 
+    def update_phones(self, phones: List[str]):
+        for phone in self.phones:
+            if phone.number not in phones:
+                db.session.delete(phone)
+
+        db.session.commit()
+
+        for p in phones:
+            if Phone.query.filter_by(user_id=self.uid, number=p).first():
+                continue
+
+            phone = Phone()
+            phone.user_id = self.uid
+            phone.number = p
+
+            db.session.add(phone)
+
+        db.session.commit()
+
     def update_files(self, files: Dict[str, Union[str, List[str]]]) -> None:
         for key, value in files.items():
             match key:
                 case "avatar" if type(value) == str:
                     self.avatar_path = get_file_url(value)
-                    db.session.commit()
+
+                case "files" if type(value) == list:
+                    for file in self.files:
+                        if file.uid not in value:
+                            db.session.delete(file)
+
+        db.session.commit()
 
 
 class AnonymousUser(AnonymousUserMixin):
