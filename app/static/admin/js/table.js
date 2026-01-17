@@ -688,7 +688,7 @@ function initTableContol(
               addTableRow(tableElement, theadElement, tbodyElement, d.id);
             }
           } else {
-            const id = form.querySelector("input[id$=uid]")?.value;
+            const id = form.querySelector("input[id=uid]")?.value;
 
             if (id) {
               const row = tableElement.querySelector(

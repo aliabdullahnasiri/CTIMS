@@ -58,7 +58,7 @@ async function submitForm(formElement) {
           if (outputElement) {
             if (!(key in files)) {
               if (outputElement.tagName == "IMG") {
-                files[key] = outputElement.dataset.uid;
+                files[key] = +outputElement.dataset.uid;
               }
             }
           } else {
@@ -70,7 +70,7 @@ async function submitForm(formElement) {
 
               for (liElement of liElements) {
                 if (!files[key].includes(liElement.dataset.uid))
-                  files[key].push(liElement.dataset.uid);
+                  files[key].push(+liElement.dataset.uid);
               }
             }
           }
@@ -286,7 +286,7 @@ function u(file, ulElement, formElement, submitElement) {
         let data = JSON.parse(e.target.response);
 
         for (let d of data) {
-          if (d?.file?.uid) item.dataset.uid = d.file.uid;
+          if (d?.file?.id) item.dataset.uid = d.file.id;
 
           break;
         }
@@ -373,7 +373,7 @@ export function upload(files, dropZone) {
                     for (const d of data) {
                       if (d?.file?.file_url) {
                         outputElement.dataset.url = d.file.file_url;
-                        outputElement.dataset.uid = d.file.uid;
+                        outputElement.dataset.uid = d.file.id;
                         outputElement.src = d.file.file_url;
                       }
 

@@ -62,7 +62,7 @@ import { createLoader } from "./script.js";
                               f.human_size,
                               true,
                               f.file_url,
-                              f.uid,
+                              f.id,
                             );
                             ulElement.append(item);
                           }
