@@ -154,11 +154,11 @@ def add_employee() -> Response:
         db.session.commit()
 
         if form.phones.data:
-            employee.update_phones(json.loads(form.phones.data))
+            employee.user.update_phones(json.loads(form.phones.data))
 
         if files := request.form.get("files"):
             try:
-                employee.update_files(json.loads(files))
+                employee.user.update_files(json.loads(files))
             except json.JSONDecodeError as err:
                 console.print(err)
 
@@ -175,7 +175,9 @@ def add_employee() -> Response:
 
 @bp.post("/update/employee")
 @login_required
-@permission_required(PermissionEnum.UPDATE_EMPLOYEE.value)
+@permission_required(
+    PermissionEnum.UPDATE_EMPLOYEE.value | PermissionEnum.FETCH_EMPLOYEE.value
+)
 def update_employee() -> Response:
     form: UpdateEmployeeForm = UpdateEmployeeForm()
 
@@ -204,11 +206,11 @@ def update_employee() -> Response:
             db.session.commit()
 
             if form.phones.data:
-                employee.update_phones(json.loads(form.phones.data))
+                employee.user.update_phones(json.loads(form.phones.data))
 
             if files := request.form.get("files"):
                 try:
-                    employee.update_files(json.loads(files))
+                    employee.user.update_files(json.loads(files))
                 except json.JSONDecodeError as err:
                     console.print(err)
 
@@ -228,7 +230,9 @@ def update_employee() -> Response:
 
 @bp.delete("/delete/employee/<string:uid>")
 @login_required
-@permission_required(PermissionEnum.DELETE_EMPLOYEE.value)
+@permission_required(
+    PermissionEnum.DELETE_EMPLOYEE.value | PermissionEnum.FETCH_EMPLOYEE.value
+)
 def delete_employee(uid: str) -> Response:
     response: Dict = {}
 
