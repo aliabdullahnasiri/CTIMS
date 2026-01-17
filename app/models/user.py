@@ -202,6 +202,7 @@ class User(UserMixin, db.Model):
 
     def to_dict(self) -> Dict:
         dct = {
+            "user_uid": self.uid,
             "first_name": self.first_name,
             "middle_name": self.middle_name,
             "last_name": self.last_name,
