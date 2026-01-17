@@ -1,7 +1,6 @@
 import json
 import re
 
-from sqlalchemy import Time
 from wtforms import DecimalField, HiddenField, StringField, SubmitField, ValidationError
 from wtforms.validators import DataRequired, Length, NumberRange, Optional
 
@@ -9,6 +8,7 @@ from app.extensions import db
 from app.forms.user import AddUserForm, UpdateUserForm
 from app.functions import validate_uid
 from app.models.subject import Subject
+from app.models.time import Time
 
 
 class AddTeacherForm(AddUserForm):
@@ -25,14 +25,7 @@ class AddTeacherForm(AddUserForm):
         if not validate_uid(uid):
             raise ValidationError(f"Not a valid Time UID {uid!r}.")
 
-        if not (
-            db.session.query(Time)
-            .filter(
-                Time.uid == uid,
-            )
-            .first()
-        ):
-
+        if not Time.query.filter_by(uid=uid).first():
             raise ValidationError("Time with the given ID was not found :(")
 
     def validate_subjects(self, subjects) -> None:
