@@ -6,17 +6,19 @@ from datetime import datetime as dt
 from typing import Dict, List
 
 from flask import Response, current_app, request, url_for
-from flask_login import login_required
+from flask_login import current_user, login_required
 from werkzeug.utils import secure_filename
 
 from app.extensions import db
 from app.models.file import File
+from app.models.user import PermissionEnum, permission_required
 
 from .. import bp
 
 
 @bp.post("/upload")
 @login_required
+@permission_required(PermissionEnum.UPLOAD_FILE.value)
 def upload() -> Response:
     response: Response = Response(headers={"Content-Type": "application/app"})
 
@@ -46,6 +48,7 @@ def upload() -> Response:
         )
 
         file = File()
+        file.user_id = current_user.uid
         file.file_name = request.form.get("filename", filename)
         file.file_description = request.form.get("file_description")
         file.file_for = request.form.get("file_for")
