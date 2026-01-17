@@ -5,6 +5,7 @@ from typing import Dict, List, Union
 
 from flask import abort, current_app, url_for
 from flask_login import AnonymousUserMixin, UserMixin, current_user
+from sqlalchemy import event
 
 from app.constants import DEFAULT_AVATAR
 from app.extensions import bcrypt, db, login_manager
@@ -19,7 +20,85 @@ class PermissionEnum(enum.Enum):
     FETCH_USER = 0x0000008
     FETCH_USERS = 0x0000010
 
-    ADMINISTER = 0x8000000
+    CREATE_TIME = 0x0000020
+    UPDATE_TIME = 0x0000040
+    DELETE_TIME = 0x0000080
+    FETCH_TIME = 0x0000100
+    FETCH_TIMES = 0x0000200
+
+    CREATE_DEPARTMENT = 0x0000400
+    UPDATE_DEPARTMENT = 0x0000800
+    DELETE_DEPARTMENT = 0x0001000
+    FETCH_DEPARTMENT = 0x0002000
+    FETCH_DEPARTMENTS = 0x0004000
+
+    CREATE_SEMESTER = 0x0008000
+    UPDATE_SEMESTER = 0x0010000
+    DELETE_SEMESTER = 0x0020000
+    FETCH_SEMESTER = 0x0040000
+    FETCH_SEMESTERS = 0x0080000
+
+    CREATE_JOB = 0x0100000
+    UPDATE_JOB = 0x0200000
+    DELETE_JOB = 0x0400000
+    FETCH_JOB = 0x0800000
+    FETCH_JOBS = 0x1000000
+
+    CREATE_EMPLOYEE = 0x2000000
+    UPDATE_EMPLOYEE = 0x4000000
+    DELETE_EMPLOYEE = 0x8000000
+    FETCH_EMPLOYEE = 0x10000000
+    FETCH_EMPLOYEES = 0x20000000
+
+    CREATE_TEACHER = 0x40000000
+    UPDATE_TEACHER = 0x80000000
+    DELETE_TEACHER = 0x100000000
+    FETCH_TEACHER = 0x200000000
+    FETCH_TEACHERS = 0x400000000
+
+    CREATE_SUBJECT = 0x800000000
+    UPDATE_SUBJECT = 0x1000000000
+    DELETE_SUBJECT = 0x2000000000
+    FETCH_SUBJECT = 0x4000000000
+    FETCH_SUBJECTS = 0x8000000000
+
+    CREATE_CLASS = 0x10000000000
+    UPDATE_CLASS = 0x20000000000
+    DELETE_CLASS = 0x40000000000
+    FETCH_CLASS = 0x80000000000
+    FETCH_CLASSES = 0x100000000000
+
+    CREATE_STUDENT = 0x200000000000
+    UPDATE_STUDENT = 0x400000000000
+    DELETE_STUDENT = 0x800000000000
+    FETCH_STUDENT = 0x1000000000000
+    FETCH_STUDENTS = 0x2000000000000
+
+    CREATE_EXAM = 0x4000000000000
+    UPDATE_EXAM = 0x8000000000000
+    DELETE_EXAM = 0x10000000000000
+    FETCH_EXAM = 0x20000000000000
+    FETCH_EXAMS = 0x40000000000000
+
+    CREATE_RESULT = 0x80000000000000
+    UPDATE_RESULT = 0x100000000000000
+    DELETE_RESULT = 0x200000000000000
+    FETCH_RESULT = 0x400000000000000
+    FETCH_RESULTS = 0x800000000000000
+
+    CREATE_TEACHER_ATTENDANCE = 0x1000000000000000
+    UPDATE_TEACHER_ATTENDANCE = 0x2000000000000000
+    DELETE_TEACHER_ATTENDANCE = 0x4000000000000000
+    FETCH_TEACHER_ATTENDANCE = 0x8000000000000000
+    FETCH_TEACHER_ATTENDANCES = 0x10000000000000000
+
+    CREATE_STUDENT_ATTENDANCE = 0x20000000000000000
+    UPDATE_STUDENT_ATTENDANCE = 0x40000000000000000
+    DELETE_STUDENT_ATTENDANCE = 0x80000000000000000
+    FETCH_STUDENT_ATTENDANCE = 0x100000000000000000
+    FETCH_STUDENT_ATTENDANCES = 0x200000000000000000
+
+    ADMINISTER = 0x8000000000000000000000
 
 
 class RoleEnum(enum.Enum):
@@ -27,7 +106,7 @@ class RoleEnum(enum.Enum):
     EMPLOYEE = 0x0000000, False
     TEACHER = 0x0000000, False
     STUDENT = 0x0000000, False
-    ADMINISTRATOR = 0xFFFFFFF, False
+    ADMINISTRATOR = 0xFFFFFFFFFFFFFFFFFFFFFF, False
 
 
 class Role(db.Model):
@@ -35,9 +114,16 @@ class Role(db.Model):
 
     name = db.Column(db.String(64), unique=True)
     default = db.Column(db.Boolean, default=False, index=True)
-    permissions = db.Column(db.Integer)
+    permissions = db.Column(db.String(25))
 
     users = db.relationship("User", back_populates="role")
+
+    @property
+    def _permissions(self) -> int:
+        return eval(self.permissions)
+
+    def __init__(self) -> None:
+        super().__init__()
 
     @staticmethod
     def insert_roles():
@@ -56,7 +142,9 @@ class Role(db.Model):
                     role = Role()
 
                 role.name = r.name
-                role.permissions, role.default = r.value
+                permission, default = r.value
+
+                role.permissions, role.default = hex(permission), default
 
                 db.session.add(role)
                 db.session.commit()
@@ -90,19 +178,10 @@ class User(UserMixin, db.Model):
     def __init__(self) -> None:
         super().__init__()
 
-        if self.role is None:
-            if self.email == current_app.config["FLASKY_ADMIN"]:
-                self.role = Role.query.filter_by(
-                    permissions=RoleEnum.ADMINISTRATOR.value
-                ).first()
-
-            if self.role is None:
-                self.role = Role.query.filter_by(default=True).first()
-
     def can(self, permissions):
         return (
             self.role is not None
-            and (self.role.permissions & permissions) == permissions
+            and (self.role._permissions & permissions) == permissions
         )
 
     def is_administrator(self):
@@ -182,6 +261,20 @@ class AnonymousUser(AnonymousUserMixin):
 
     def is_administrator(self):
         return False
+
+
+@event.listens_for(User, "before_insert")
+def generate_uid(*_, target):
+    if target.role_uid is None:
+        if target.email == current_app.config["FLASKY_ADMIN"]:
+            if role := Role.query.filter_by(
+                permissions=hex(RoleEnum.ADMINISTRATOR.value.__getitem__(0))
+            ).first():
+                target.role_uid = role.uid
+
+        if target.role_uid is None:
+            if role := Role.query.filter_by(default=True).first():
+                target.role_uid = role.uid
 
 
 @login_manager.user_loader
