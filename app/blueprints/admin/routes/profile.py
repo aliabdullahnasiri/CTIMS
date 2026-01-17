@@ -1,4 +1,5 @@
 from flask import render_template
+from flask_login import current_user
 
 from app.blueprints.admin import bp
 from app.forms.user import UpdateUserForm

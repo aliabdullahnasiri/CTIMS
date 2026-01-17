@@ -1,11 +1,11 @@
-from flask import Blueprint, current_app, flash, redirect, render_template, url_for
+from flask import Blueprint, flash, redirect, render_template, url_for
 from flask_bcrypt import check_password_hash
 from flask_login import current_user, login_required, login_user, logout_user
 
 from app.extensions import db
 from app.forms.login import LoginForm
 from app.forms.signup import SignupForm
-from app.models.user import Role, RoleEnum, User
+from app.models.user import User
 
 bp = Blueprint("auth", __name__)
 
@@ -27,6 +27,8 @@ def login():
 
             if current_user.is_administrator():
                 return redirect(url_for("admin.dashboard"))
+
+        flash("Email or password is incorrect!", category="error")
 
     return render_template("auth/login.html", form=form, title="Login")
 
