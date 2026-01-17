@@ -86,3 +86,23 @@ class UpdateUserForm(AddUserForm):
             and_(User.uid != self.user_uid.data, User.email == email.data)
         ).first():
             raise ValidationError("Email already registered!")
+
+    def validate_phones(self, phones):
+        nums = json.loads(phones.data)
+
+        if hasattr(self, "user_uid"):
+            uid = self.user_uid.data
+
+            for num in nums:
+                if (
+                    db.session.query(Phone)
+                    .filter(
+                        and_(
+                            Phone.user_id != uid,
+                            Phone.number == num,
+                        )
+                    )
+                    .first()
+                ):
+
+                    raise ValidationError(f"Duplicate entry {num!r} for phone number!")
