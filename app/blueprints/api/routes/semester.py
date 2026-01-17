@@ -9,6 +9,7 @@ from app.extensions import db
 from app.forms.semester import AddSemesterForm, UpdateSemesterForm
 from app.functions import render_td
 from app.models.semester import Semester
+from app.models.user import PermissionEnum, permission_required
 from app.types import ColumnID, ColumnName
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
@@ -20,6 +21,7 @@ cols: List[Tuple[ColumnID, ColumnName]] = [
 
 @bp.get("/fetch/semesters")
 @login_required
+@permission_required(PermissionEnum.FETCH_SEMESTERS.value)
 def fetch_semesters() -> Response:
     semesters: List[Dict] = [semester.to_dict() for semester in Semester.query.all()]
 
@@ -32,6 +34,7 @@ def fetch_semesters() -> Response:
 
 @bp.get("/fetch/rows/semesters")
 @login_required
+@permission_required(PermissionEnum.FETCH_SEMESTERS.value)
 def fetch_semesters_rows() -> Response:
     semesters: List[Semester] = Semester.query.all()
 
@@ -50,6 +53,7 @@ def fetch_semesters_rows() -> Response:
 
 @bp.get("/fetch/row/semester/<string:uid>")
 @login_required
+@permission_required(PermissionEnum.FETCH_SEMESTER.value)
 def fetch_semester_row(uid: str) -> Response:
     semester: Union[Semester, None] = Semester.query.filter_by(uid=uid).first()
 
@@ -82,6 +86,7 @@ def fetch_semester_row(uid: str) -> Response:
 
 @bp.get("/fetch/semester/<string:uid>")
 @login_required
+@permission_required(PermissionEnum.FETCH_SEMESTER.value)
 def fetch_semester(uid: str) -> Response:
     semester: Union[Semester, None] = Semester.query.filter_by(uid=uid).first()
 
@@ -106,6 +111,7 @@ def fetch_semester(uid: str) -> Response:
 
 @bp.post("/add/semester")
 @login_required
+@permission_required(PermissionEnum.CREATE_SEMESTER.value)
 def add_semester() -> Response:
     response: Dict = {}
 
@@ -138,6 +144,7 @@ def add_semester() -> Response:
 
 @bp.post("/update/semester")
 @login_required
+@permission_required(PermissionEnum.UPDATE_SEMESTER.value)
 def update_semester() -> Response:
     response: Dict = {}
 
@@ -173,6 +180,7 @@ def update_semester() -> Response:
 
 @bp.delete("/delete/semester/<string:uid>")
 @login_required
+@permission_required(PermissionEnum.DELETE_SEMESTER.value)
 def delete_semester(uid: str) -> Response:
     response: Dict = {}
 
