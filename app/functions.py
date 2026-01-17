@@ -12,12 +12,12 @@ def validate_uid(uid: str) -> bool:
     return bool(re.match(Config.UID_PATTERN, uid))
 
 
-def get_file(uid: str) -> Union[File, None]:
-    return File.query.filter_by(uid=uid).first()
+def get_file(id: int) -> Union[File, None]:
+    return File.query.filter_by(id=id).first()
 
 
-def get_file_url(uid: str) -> Union[str, None]:
-    file = File.query.filter_by(uid=uid).first()
+def get_file_url(id: int) -> Union[str, None]:
+    file = File.query.filter_by(id=id).first()
 
     if file:
         return file.file_url
