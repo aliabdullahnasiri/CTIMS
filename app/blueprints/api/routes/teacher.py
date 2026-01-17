@@ -10,6 +10,7 @@ from app.extensions import console, db
 from app.forms.teacher import AddTeacherForm, UpdateTeacherForm
 from app.functions import render_td
 from app.models.teacher import Teacher
+from app.models.user import PermissionEnum, Role, RoleEnum, User, permission_required
 from app.types import ColumnID, ColumnName
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
@@ -23,6 +24,7 @@ cols: List[Tuple[ColumnID, ColumnName]] = [
 
 @bp.get("/fetch/teachers")
 @login_required
+@permission_required(PermissionEnum.FETCH_TEACHERS.value)
 def fetch_teachers() -> Response:
     teachers: List[Dict] = [teacher.to_dict() for teacher in Teacher.query.all()]
 
@@ -35,6 +37,7 @@ def fetch_teachers() -> Response:
 
 @bp.get("/fetch/rows/teachers")
 @login_required
+@permission_required(PermissionEnum.FETCH_TEACHERS.value)
 def fetch_teachers_rows() -> Response:
     teachers: List[Teacher] = Teacher.query.all()
 
@@ -53,6 +56,7 @@ def fetch_teachers_rows() -> Response:
 
 @bp.get("/fetch/row/teacher/<string:uid>")
 @login_required
+@permission_required(PermissionEnum.FETCH_TEACHER.value)
 def fetch_teacher_row(uid: str) -> Response:
     teacher: Union[Teacher, None] = Teacher.query.filter_by(uid=uid).first()
 
@@ -85,6 +89,7 @@ def fetch_teacher_row(uid: str) -> Response:
 
 @bp.get("/fetch/teacher/<string:uid>")
 @login_required
+@permission_required(PermissionEnum.FETCH_TEACHER.value)
 def fetch_teacher(uid: str) -> Response:
     teacher: Union[Teacher, None] = Teacher.query.filter_by(uid=uid).first()
 
@@ -109,21 +114,36 @@ def fetch_teacher(uid: str) -> Response:
 
 @bp.post("/add/teacher")
 @login_required
+@permission_required(PermissionEnum.CREATE_TEACHER.value)
 def add_teacher() -> Response:
     form: AddTeacherForm = AddTeacherForm()
 
     response: Dict = {}
 
     if form.validate_on_submit():
+        user: User = User()
+
+        user.first_name = form.first_name.data
+        user.middle_name = form.middle_name.data
+        user.last_name = form.last_name.data
+        user.email = form.email.data
+        user.user_name = form.user_name.data
+        user.birthday = form.birthday.data
+        user.avatar_path = url_for("static", filename=DEFAULT_AVATAR)
+
+        if role := Role.query.filter_by(name=RoleEnum.TEACHER.name).first():
+            user.role_uid = role.uid
+
+        if form.password.data:
+            user.set_password(form.password.data)
+
+        db.session.add(user)
+        db.session.commit()
+
         teacher: Teacher = Teacher()
 
-        teacher.first_name = form.first_name.data
-        teacher.middle_name = form.middle_name.data
-        teacher.last_name = form.last_name.data
-        teacher.email = form.email.data
-        teacher.birthday = form.birthday.data
+        teacher.user_uid = user.uid
         teacher.salary = form.salary.data
-        teacher.avatar_path = url_for("static", filename=DEFAULT_AVATAR)
         teacher.time_id = form.time_id.data
 
         db.session.add(teacher)
@@ -133,11 +153,11 @@ def add_teacher() -> Response:
             teacher.update_subjects(json.loads(form.subjects.data))
 
         if form.phones.data:
-            teacher.update_phones(json.loads(form.phones.data))
+            teacher.user.update_phones(json.loads(form.phones.data))
 
         if files := request.form.get("files"):
             try:
-                teacher.update_files(json.loads(files))
+                teacher.user.update_files(json.loads(files))
             except json.JSONDecodeError as err:
                 console.print(err)
 
@@ -154,6 +174,9 @@ def add_teacher() -> Response:
 
 @bp.post("/update/teacher")
 @login_required
+@permission_required(
+    PermissionEnum.UPDATE_TEACHER.value | PermissionEnum.FETCH_TEACHER.value
+)
 def update_teacher() -> Response:
     form: UpdateTeacherForm = UpdateTeacherForm()
 
@@ -165,11 +188,12 @@ def update_teacher() -> Response:
         ).first()
 
         if teacher:
-            teacher.first_name = form.first_name.data
-            teacher.middle_name = form.middle_name.data
-            teacher.last_name = form.last_name.data
-            teacher.email = form.email.data
-            teacher.birthday = form.birthday.data
+            teacher.user.first_name = form.first_name.data
+            teacher.user.middle_name = form.middle_name.data
+            teacher.user.last_name = form.last_name.data
+            teacher.user.email = form.email.data
+            teacher.user.birthday = form.birthday.data
+
             teacher.salary = form.salary.data
             teacher.time_id = form.time_id.data
 
@@ -179,11 +203,11 @@ def update_teacher() -> Response:
                 teacher.update_subjects(json.loads(form.subjects.data))
 
             if form.phones.data:
-                teacher.update_phones(json.loads(form.phones.data))
+                teacher.user.update_phones(json.loads(form.phones.data))
 
             if files := request.form.get("files"):
                 try:
-                    teacher.update_files(json.loads(files))
+                    teacher.user.update_files(json.loads(files))
                 except json.JSONDecodeError as err:
                     console.print(err)
 
@@ -203,12 +227,16 @@ def update_teacher() -> Response:
 
 @bp.delete("/delete/teacher/<string:uid>")
 @login_required
+@permission_required(
+    PermissionEnum.DELETE_TEACHER.value | PermissionEnum.FETCH_TEACHER.value
+)
 def delete_teacher(uid: str) -> Response:
     response: Dict = {}
 
     teacher: Union[Teacher, None] = Teacher.query.filter_by(uid=uid).first()
     if teacher:
         db.session.delete(teacher)
+        db.session.delete(teacher.user)
         db.session.commit()
 
         response["title"] = "Deleted!"
