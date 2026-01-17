@@ -264,12 +264,10 @@ class AnonymousUser(AnonymousUserMixin):
 
 
 @event.listens_for(User, "before_insert")
-def generate_uid(*_, target):
+def generate_uid(mapper, connection, target):
     if target.role_uid is None:
         if target.email == current_app.config["FLASKY_ADMIN"]:
-            if role := Role.query.filter_by(
-                permissions=hex(RoleEnum.ADMINISTRATOR.value.__getitem__(0))
-            ).first():
+            if role := Role.query.filter_by(name=RoleEnum.ADMINISTRATOR.name).first():
                 target.role_uid = role.uid
 
         if target.role_uid is None:
