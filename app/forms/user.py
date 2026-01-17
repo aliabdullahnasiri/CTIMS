@@ -1,4 +1,5 @@
 import json
+from operator import and_
 
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField
@@ -64,6 +65,24 @@ class AddUserForm(FlaskForm):
 
 class UpdateUserForm(AddUserForm):
     uid = HiddenField("UID", validators=[DataRequired()])
+    user_uid = HiddenField("User UID", validators=[DataRequired()])
+
     password = PasswordField("Password")
 
     submit = SubmitField("Update")
+
+    def validate_user_name(self, user_name):
+        if (
+            db.session.query(User)
+            .filter(
+                and_(User.uid != self.user_uid.data, User.user_name == user_name.data)
+            )
+            .first()
+        ):
+            raise ValidationError("Username already taken!")
+
+    def validate_email(self, email):
+        if User.query.filter(
+            and_(User.uid != self.user_uid.data, User.email == email.data)
+        ).first():
+            raise ValidationError("Email already registered!")
