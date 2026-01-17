@@ -1,17 +1,21 @@
+import json
+
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField
-from sqlalchemy import and_
 from wtforms import (
     DateField,
     FileField,
     HiddenField,
+    MultipleFileField,
     PasswordField,
     StringField,
     SubmitField,
+    ValidationError,
 )
-from wtforms.validators import DataRequired, Email, Length, Optional, ValidationError
+from wtforms.validators import DataRequired, Email, Length, Optional
 
 from app.extensions import db
+from app.models.phone import Phone
 from app.models.user import User
 
 
@@ -28,17 +32,34 @@ class AddUserForm(FlaskForm):
     birthday = DateField("Birthday", format="%Y-%m-%d", validators=[Optional()])
     avatar = FileField("Upload new profile picture.")
 
+    files = MultipleFileField("Files")
+    phones = StringField("Phone", validators=[Optional()])
+
     submit = SubmitField("Add")
 
     # Check if username already exists
     def validate_user_name(self, user_name):
         if User.query.filter_by(user_name=user_name.data).first():
-            raise ValidationError("Username already taken")
+            raise ValidationError("Username already taken.")
 
     # Check if email already exists
     def validate_email(self, email):
         if User.query.filter_by(email=email.data).first():
-            raise ValidationError("Email already registered")
+            raise ValidationError("Email already registered.")
+
+    def validate_phones(self, phones):
+        nums = json.loads(phones.data)
+
+        for num in nums:
+            if (
+                db.session.query(Phone)
+                .filter(
+                    Phone.number == num,
+                )
+                .first()
+            ):
+
+                raise ValidationError(f"Duplicate entry {num!r} for phone number!")
 
 
 class UpdateUserForm(AddUserForm):
@@ -46,22 +67,3 @@ class UpdateUserForm(AddUserForm):
     password = PasswordField("Password")
 
     submit = SubmitField("Update")
-
-    def validate_user_name(self, user_name, uid=None):
-        if uid is None:
-            uid = self.uid.data
-
-        if (
-            db.session.query(User)
-            .filter(and_(User.uid != uid, User.user_name == user_name.data))
-            .first()
-        ):
-            raise ValidationError("Username already taken!")
-
-    # Check if email already exists
-    def validate_email(self, email, uid=None):
-        if uid is None:
-            uid = self.uid.data
-
-        if User.query.filter(and_(User.uid != uid, User.email == email.data)).first():
-            raise ValidationError("Email already registered!")
