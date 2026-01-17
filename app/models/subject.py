@@ -23,12 +23,13 @@ class Subject(db.Model):
     teachings = db.relationship(
         "Teaching", back_populates="subject", cascade="all, delete, delete-orphan"
     )
-    files = db.relationship(
-        "SubjectFile", back_populates="subject", cascade="all, delete, delete-orphan"
-    )
     exams = db.relationship(
         "Exam", back_populates="subject", cascade="all, delete, delete-orphan"
     )
+
+    @property
+    def files(self):
+        return [file for file in File.query.filter_by(file_for=self.uid).all()]
 
     @property
     def department(self):
