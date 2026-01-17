@@ -10,7 +10,7 @@ from app.extensions import console, db
 from app.forms.employee import AddEmployeeForm, UpdateEmployeeForm
 from app.functions import render_td
 from app.models.employee import Employee
-from app.models.user import Role, User
+from app.models.user import PermissionEnum, Role, RoleEnum, User, permission_required
 from app.types import ColumnID, ColumnName
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
@@ -25,6 +25,7 @@ cols: List[Tuple[ColumnID, ColumnName]] = [
 
 @bp.get("/fetch/employees")
 @login_required
+@permission_required(PermissionEnum.FETCH_EMPLOYEES.value)
 def fetch_employees() -> Response:
     employees: List[Dict] = [employee.to_dict() for employee in Employee.query.all()]
 
@@ -37,6 +38,7 @@ def fetch_employees() -> Response:
 
 @bp.get("/fetch/rows/employees")
 @login_required
+@permission_required(PermissionEnum.FETCH_EMPLOYEES.value)
 def fetch_employees_rows() -> Response:
     employees: List[Employee] = Employee.query.all()
 
@@ -55,6 +57,7 @@ def fetch_employees_rows() -> Response:
 
 @bp.get("/fetch/row/employee/<string:uid>")
 @login_required
+@permission_required(PermissionEnum.FETCH_EMPLOYEE.value)
 def fetch_employee_row(uid: str) -> Response:
     employee: Union[Employee, None] = Employee.query.filter_by(uid=uid).first()
 
@@ -87,6 +90,7 @@ def fetch_employee_row(uid: str) -> Response:
 
 @bp.get("/fetch/employee/<string:uid>")
 @login_required
+@permission_required(PermissionEnum.FETCH_EMPLOYEE.value)
 def fetch_employee(uid: str) -> Response:
     employee: Union[Employee, None] = Employee.query.filter_by(uid=uid).first()
 
@@ -111,6 +115,7 @@ def fetch_employee(uid: str) -> Response:
 
 @bp.post("/add/employee")
 @login_required
+@permission_required(PermissionEnum.CREATE_EMPLOYEE.value)
 def add_employee() -> Response:
     form: AddEmployeeForm = AddEmployeeForm()
 
@@ -125,7 +130,9 @@ def add_employee() -> Response:
         user.email = form.email.data
         user.user_name = form.user_name.data
         user.birthday = form.birthday.data
-        user.role = Role.EMPLOYEE
+
+        if role := Role.query.filter_by(name=RoleEnum.EMPLOYEE.name).first():
+            user.role_uid = role.uid
 
         if form.password.data:
             user.set_password(form.password.data)
@@ -168,6 +175,7 @@ def add_employee() -> Response:
 
 @bp.post("/update/employee")
 @login_required
+@permission_required(PermissionEnum.UPDATE_EMPLOYEE.value)
 def update_employee() -> Response:
     form: UpdateEmployeeForm = UpdateEmployeeForm()
 
@@ -220,6 +228,7 @@ def update_employee() -> Response:
 
 @bp.delete("/delete/employee/<string:uid>")
 @login_required
+@permission_required(PermissionEnum.DELETE_EMPLOYEE.value)
 def delete_employee(uid: str) -> Response:
     response: Dict = {}
 
