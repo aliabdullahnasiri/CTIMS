@@ -9,6 +9,7 @@ from app.extensions import db
 from app.forms.department import AddDepartmentForm, UpdateDepartmentForm
 from app.functions import render_td
 from app.models.department import Department
+from app.models.user import PermissionEnum, permission_required
 from app.types import ColumnID, ColumnName
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
@@ -21,6 +22,7 @@ cols: List[Tuple[ColumnID, ColumnName]] = [
 
 @bp.get("/fetch/departments")
 @login_required
+@permission_required(PermissionEnum.FETCH_DEPARTMENTS.value)
 def fetch_departments() -> Response:
     departments: List[Dict] = [
         department.to_dict() for department in Department.query.all()
@@ -35,6 +37,7 @@ def fetch_departments() -> Response:
 
 @bp.get("/fetch/rows/departments")
 @login_required
+@permission_required(PermissionEnum.FETCH_DEPARTMENTS.value)
 def fetch_departments_rows() -> Response:
     departments: List[Department] = Department.query.all()
 
@@ -54,6 +57,7 @@ def fetch_departments_rows() -> Response:
 
 @bp.get("/fetch/row/department/<string:uid>")
 @login_required
+@permission_required(PermissionEnum.FETCH_DEPARTMENT.value)
 def fetch_department_row(uid: str) -> Response:
     department: Union[Department, None] = Department.query.filter_by(uid=uid).first()
 
@@ -86,6 +90,7 @@ def fetch_department_row(uid: str) -> Response:
 
 @bp.get("/fetch/department/<string:uid>")
 @login_required
+@permission_required(PermissionEnum.FETCH_DEPARTMENT.value)
 def fetch_department(uid: str) -> Response:
     department: Union[Department, None] = Department.query.filter_by(uid=uid).first()
 
@@ -110,6 +115,7 @@ def fetch_department(uid: str) -> Response:
 
 @bp.post("/add/department")
 @login_required
+@permission_required(PermissionEnum.CREATE_DEPARTMENT.value)
 def add_department() -> Response:
     response: Dict = {}
 
@@ -148,6 +154,7 @@ def add_department() -> Response:
 
 @bp.post("/update/department")
 @login_required
+@permission_required(PermissionEnum.UPDATE_DEPARTMENT.value)
 def update_department() -> Response:
     response: Dict = {}
 
@@ -191,6 +198,7 @@ def update_department() -> Response:
 
 @bp.delete("/delete/department/<string:uid>")
 @login_required
+@permission_required(PermissionEnum.DELETE_DEPARTMENT.value)
 def delete_department(uid: str) -> Response:
     response: Dict = {}
 
