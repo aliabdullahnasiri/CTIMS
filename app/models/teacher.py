@@ -64,6 +64,7 @@ class Teacher(db.Model):
     def to_dict(self):
         dct = {
             "teacher_id": self.uid,
+            "user_uid": self.user.uid,
             "time_id": self.time_id,
             "full_name": self.user.full_name,
             "first_name": self.user.first_name,
