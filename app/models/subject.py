@@ -6,6 +6,7 @@ from numerize.numerize import numerize
 from app.extensions import db
 from app.models.file import File
 from app.models.teaching import Teaching
+from app.models.user import User
 
 
 class Subject(db.Model):
@@ -43,7 +44,7 @@ class Subject(db.Model):
             "department_uid": self.department.uid,
             "semester_uid": self.semester_id,
             "teachers": [t.teacher_id for t in self.teachings],
-            "files": [f.file.to_dict() for f in self.files],
+            "files": [f.to_dict() for f in self.files],
             **super().to_dict(),
         }
 
@@ -92,18 +93,5 @@ class Subject(db.Model):
 
         db.session.commit()
 
-    def update_files(self, files: Dict[str, Union[str, List[str]]]) -> None:
-        for key, value in files.items():
-            match key:
-                case "files" if type(value) == list:
-                    for file in self.files:
-                        if file.uid not in value:
-                            db.session.delete(file)
-
-                    db.session.commit()
-
-                    for val in value:
-                        if file := File.query.filter_by(file_id=val).first():
-                            file.file_for = self.uid
-
-                    db.session.commit()
+    def update_files(self, files: Dict[str, Union[int, List[int]]]) -> None:
+        return User.update_files(self, files)
