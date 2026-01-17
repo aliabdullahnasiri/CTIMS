@@ -30,6 +30,7 @@ class Employee(db.Model):
     def to_dict(self):
         dct = {
             "employee_uid": self.uid,
+            "user_uid": self.user.uid,
             "job_uid": self.job_uid,
             "first_name": self.user.first_name,
             "middle_name": self.user.middle_name,
