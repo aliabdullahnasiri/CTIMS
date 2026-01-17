@@ -4,6 +4,7 @@ from numerize.numerize import numerize
 
 from app.constants import CURRENCY_SYMBOL
 from app.extensions import db
+from app.models.file import File
 from app.models.teaching import Teaching
 
 
@@ -31,6 +32,10 @@ class Teacher(db.Model):
     classes = db.relationship(
         "Class", back_populates="teacher", cascade="all, delete, delete-orphan"
     )
+
+    @property
+    def files(self):
+        return [file for file in File.query.filter_by(file_for=self.user.uid).all()]
 
     @property
     def subjects(self):
@@ -70,6 +75,7 @@ class Teacher(db.Model):
             "first_name": self.user.first_name,
             "middle_name": self.user.middle_name,
             "last_name": self.user.last_name,
+            "user_name": self.user.user_name,
             "email": self.user.email,
             "birthday": self.user.display_birthday,
             "age": self.user.age,
@@ -78,7 +84,7 @@ class Teacher(db.Model):
             "avatar": self.user.avatar_path,
             "phones": [p.number for p in self.user.phones],
             "subjects": [s.subject.uid for s in self.teachings],
-            "files": [f.file.to_dict() for f in self.user.files],
+            "files": [f.to_dict() for f in self.files],
             **super().to_dict(),
         }
 
