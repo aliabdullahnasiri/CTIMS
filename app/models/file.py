@@ -11,6 +11,7 @@ from app.extensions import db
 class File(db.Model):
     __tablename__ = "files"
 
+    uid = None
     user_id = db.Column(db.String(8), db.ForeignKey("users.uid"), nullable=False)
 
     # File Info
@@ -80,7 +81,7 @@ class File(db.Model):
 
     def to_dict(self) -> dict:
         return {
-            "file_id": self.uid,
+            "id": self.id,
             "file_name": self.file_name,
             "file_description": self.file_description,
             "file_for": self.file_for,
