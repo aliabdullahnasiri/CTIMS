@@ -79,8 +79,6 @@ async function submitForm(formElement) {
     }
   }
 
-  console.log(files);
-
   for (const [key, val] of formData.entries()) {
     if (typeof val == "object") {
       formData.delete(key);
