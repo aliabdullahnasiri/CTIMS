@@ -1,18 +1,14 @@
 import json
-import pathlib
 from typing import Dict, List, Tuple, Union
 
 from flask import Response, request
 from flask_login import login_required
-from sqlalchemy import and_
 
 from app.blueprints.api import bp
 from app.extensions import console, db
 from app.forms.subject import AddSubjectForm, UpdateSubjectForm
 from app.functions import render_td
-from app.models.file import File, SubjectFile
 from app.models.subject import Subject
-from app.models.teaching import Teaching
 from app.types import ColumnID, ColumnName
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
