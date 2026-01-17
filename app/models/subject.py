@@ -4,7 +4,7 @@ import humanize
 from numerize.numerize import numerize
 
 from app.extensions import db
-from app.models.file import SubjectFile
+from app.models.file import File
 from app.models.teaching import Teaching
 
 
@@ -96,22 +96,13 @@ class Subject(db.Model):
             match key:
                 case "files" if type(value) == list:
                     for file in self.files:
-                        if file.file.uid not in value:
+                        if file.uid not in value:
                             db.session.delete(file)
-                            db.session.delete(file.file)
 
                     db.session.commit()
 
                     for val in value:
-                        if SubjectFile.query.filter_by(
-                            subject_id=self.uid, file_id=val
-                        ).first():
-                            continue
-
-                        sf: SubjectFile = SubjectFile()
-                        sf.subject_id = self.uid
-                        sf.file_id = val
-
-                        db.session.add(sf)
+                        if file := File.query.filter_by(file_id=val).first():
+                            file.file_for = self.uid
 
                     db.session.commit()
