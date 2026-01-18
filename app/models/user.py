@@ -3,9 +3,10 @@ from datetime import date
 from functools import wraps
 from typing import Dict, List, Union
 
+import humanize
 from flask import abort, current_app, url_for
 from flask_login import AnonymousUserMixin, UserMixin, current_user
-from numerize.numerize import numerize
+from numerize import numerize
 from sqlalchemy import event
 
 from app.constants import DEFAULT_AVATAR
@@ -273,8 +274,32 @@ class User(UserMixin, db.Model):
         return url_for("static", filename=DEFAULT_AVATAR)
 
     @property
+    def all_files(self):
+        return (
+            getattr(e, "files")
+            if hasattr(e := (self.employee or self.teacher or self.student), "files")
+            else []
+        )
+
+    @property
     def display_number_of_phone_nums(self):
-        return numerize(len(self.phones), decimals=2)
+        return numerize.numerize(len(self.phones), decimals=2)
+
+    @property
+    def display_number_of_files(self):
+        return numerize.numerize(
+            len(self.all_files),
+            decimals=2,
+        )
+
+    @property
+    def total_file_size(self) -> str:
+        total: int = 0
+
+        for f in self.all_files:
+            total += f.size
+
+        return humanize.naturalsize(total)
 
     def update_phones(self, phones: List[str]):
         for phone in self.phones:
