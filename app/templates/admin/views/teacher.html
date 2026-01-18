@@ -5,15 +5,15 @@
         <div class="d-flex px-0 py-1">
           <div>
             <img
-              src="{{ teacher.avatar_path }}"
+              src="{{ teacher.user.avatar_path }}"
               class="avatar avatar-lg me-3 border-radius-lg"
               alt="user1"
             />
           </div>
           <div class="d-flex flex-column justify-content-center">
-            <h5 class="mb-0">{{ teacher.full_name }}</h5>
+            <h5 class="mb-0">{{ teacher.user.full_name }}</h5>
             <p class="mb-0 mt-0 font-weight-normal text-sm">
-              {{ teacher.email }}
+              {{ teacher.user.email }}
             </p>
           </div>
         </div>
@@ -86,7 +86,7 @@
                   <div>
                     <p class="text-sm mb-0 text-capitalize">Phone</p>
                     <h4 class="mb-0">
-                      {{ teacher.display_number_of_phone_nums }}
+                      {{ teacher.user.display_number_of_phone_nums }}
                     </h4>
                   </div>
                   <div
@@ -99,11 +99,11 @@
               <hr class="bg-dark horizontal my-0 opacity-10" />
               <div class="card-footer py-2 px-1">
                 <div class="values d-flex flex-wrap justify-content-center">
-                  {% for phone in teacher.phones %}
+                  {% for phone in teacher.user.phones %}
                   <span
                     class="badge badge-sm bg-gradient-secondary mx-1 my-1 cursor-pointer"
                     data-role="value"
-                    >{{ phone.phone_number }}</span
+                    >{{ phone.number }}</span
                   >
                   {% endfor %}
                 </div>
