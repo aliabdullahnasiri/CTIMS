@@ -202,8 +202,12 @@ def update_department() -> Response:
 def delete_department(uid: str) -> Response:
     response: Dict = {}
 
-    department: Union[Department, None] = Department.query.filter_by(uid=uid).first()
+    department = Department.query.filter_by(uid=uid).scalar()
     if department:
+        if department.uid == department.parent_department_uid:
+            department.parent_department_uid = None
+            db.session.commit()
+
         db.session.delete(department)
         db.session.commit()
 
