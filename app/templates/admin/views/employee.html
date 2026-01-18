@@ -87,7 +87,7 @@
                   <div>
                     <p class="text-sm mb-0 text-capitalize">Phone</p>
                     <h4 class="mb-0">
-                      {{ employee.display_number_of_phone_nums }}
+                      {{ employee.user.display_number_of_phone_nums }}
                     </h4>
                   </div>
                   <div
@@ -100,11 +100,11 @@
               <hr class="bg-dark horizontal my-0 opacity-10" />
               <div class="card-footer py-2 px-1">
                 <div class="values d-flex flex-wrap justify-content-center">
-                  {% for phone in employee.phones %}
+                  {% for phone in employee.user.phones %}
                   <span
                     class="badge badge-sm bg-gradient-secondary mx-1 my-1 cursor-pointer"
                     data-role="value"
-                    >{{ phone.phone_number }}</span
+                    >{{ phone.number }}</span
                   >
                   {% endfor %}
                 </div>
