@@ -160,7 +160,9 @@
                 <div class="d-flex justify-content-between">
                   <div>
                     <p class="text-sm mb-0 text-capitalize">Files</p>
-                    <h4 class="mb-0">{{ teacher.display_number_of_files }}</h4>
+                    <h4 class="mb-0">
+                      {{ teacher.user.display_number_of_files }}
+                    </h4>
                   </div>
                   <div
                     class="icon icon-md icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-lg"
@@ -174,7 +176,7 @@
                 <span class="font-weight-bolder text-sm ms-2">Storage: </span>
 
                 <span class="text-sm font-weight-normal"
-                  >{{ teacher.total_file_size }}</span
+                  >{{ teacher.user.total_file_size }}</span
                 >
               </div>
             </div>

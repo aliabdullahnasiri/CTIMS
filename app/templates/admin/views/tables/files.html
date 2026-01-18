@@ -14,11 +14,6 @@
       <th
         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
       >
-        For
-      </th>
-      <th
-        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-      >
         Size
       </th>
       <th
@@ -35,9 +30,8 @@
       <td class="text-xs">
         <a href="{{ f.file_url }}" target="_blank">{{ f.display_file_name }}</a>
       </td>
-      <td class="text-xs">{{ f.display_file_for or 'N/A' }}</td>
       <td class="text-xs">{{ f.human_size }}</td>
-      <td class="text-xs">{{ f.display_uploaded_time }}</td>
+      <td class="text-xs">{{ f.display_natural_created_at }}</td>
     </tr>
     {% endfor %} {% else %}
     <tr class="no-rows-label">
