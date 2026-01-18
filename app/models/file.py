@@ -73,11 +73,7 @@ class File(db.Model):
 
     @property
     def display_file_for(self):
-        return self.file_for.upper() or "N/A"
-
-    @property
-    def display_uploaded_time(self):
-        return self.display_created_at
+        return self.file_for or "N/A"
 
     def to_dict(self) -> dict:
         return {
