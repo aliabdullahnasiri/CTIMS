@@ -83,11 +83,11 @@ class Semester(db.Model):
         ]
 
     def get_all_subjects(self):
-        subjects = [subject for subject in self.subjects]
+        subjects = {subject for subject in self.subjects}
 
         for department in self.department.get_parent_departments():
             for subject in department.subjects:
                 if subject.semester.number == self.number:
-                    subjects.append(subject)
+                    subjects.add(subject)
 
         return subjects
