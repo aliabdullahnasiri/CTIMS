@@ -18,7 +18,7 @@ class Student(db.Model):
         "Result", back_populates="student", cascade="all, delete, delete-orphan"
     )
 
-    user = db.relationship("User")
+    user = db.relationship("User", cascade="delete")
 
     @property
     def files(self):

@@ -22,7 +22,7 @@ class Employee(db.Model):
 
     # Relationships
     job = db.relationship("Job", back_populates="employees")
-    user = db.relationship("User")
+    user = db.relationship("User", cascade="delete")
 
     def __repr__(self):
         return f"<Employee {self.user.first_name} {self.user.last_name} ID={self.uid}>"

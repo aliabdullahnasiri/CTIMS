@@ -239,7 +239,6 @@ def delete_employee(uid: str) -> Response:
     employee: Union[Employee, None] = Employee.query.filter_by(uid=uid).first()
     if employee:
         db.session.delete(employee)
-        db.session.delete(employee.user)
         db.session.commit()
 
         response["title"] = "Deleted!"

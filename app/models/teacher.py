@@ -19,7 +19,7 @@ class Teacher(db.Model):
     salary = db.Column(db.Numeric(12, 2), nullable=True)
 
     time = db.relationship("Time", back_populates="teachers")
-    user = db.relationship("User")
+    user = db.relationship("User", cascade="delete")
 
     teachings = db.relationship(
         "Teaching", back_populates="teacher", cascade="all, delete, delete-orphan"

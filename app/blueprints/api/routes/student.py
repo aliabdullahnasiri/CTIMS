@@ -232,7 +232,6 @@ def delete_student(uid: str) -> Response:
     student: Union[Student, None] = Student.query.filter_by(uid=uid).first()
     if student:
         db.session.delete(student)
-        db.session.delete(student.user)
         db.session.commit()
 
         response["title"] = "Deleted!"

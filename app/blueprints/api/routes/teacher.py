@@ -236,7 +236,6 @@ def delete_teacher(uid: str) -> Response:
     teacher: Union[Teacher, None] = Teacher.query.filter_by(uid=uid).first()
     if teacher:
         db.session.delete(teacher)
-        db.session.delete(teacher.user)
         db.session.commit()
 
         response["title"] = "Deleted!"
