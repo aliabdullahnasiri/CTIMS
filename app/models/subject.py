@@ -74,6 +74,15 @@ class Subject(db.Model):
     def display_number_of_files(self):
         return numerize(len(self.files), decimals=2)
 
+    @property
+    def total_file_size(self) -> str:
+        total: int = 0
+
+        for f in self.files:
+            total += f.size
+
+        return humanize.naturalsize(total)
+
     def update_teachers(self, teachers: List[str]):
         for t in self.teachings:
             if t.teacher.uid not in teachers:
