@@ -23,13 +23,13 @@ class Base(db.Model):
     # Timestamps
     created_at = db.Column(
         db.DateTime(timezone=True),
-        default=lambda: datetime.now(timezone.utc),
+        default=lambda: datetime.now(),
         nullable=False,
     )
     updated_at = db.Column(
         db.DateTime(timezone=True),
-        default=lambda: datetime.now(timezone.utc),
-        onupdate=lambda: datetime.now(timezone.utc),
+        default=lambda: datetime.now(),
+        onupdate=lambda: datetime.now(),
         nullable=False,
     )
 
