@@ -179,9 +179,15 @@ class User(UserMixin, db.Model):
         nullable=True,
     )
 
-    employee = db.relationship("Employee", back_populates="user", cascade="delete")
-    teacher = db.relationship("Teacher", back_populates="user", cascade="delete")
-    student = db.relationship("Student", back_populates="user", cascade="delete")
+    employee = db.relationship(
+        "Employee", back_populates="user", cascade="delete", uselist=False
+    )
+    teacher = db.relationship(
+        "Teacher", back_populates="user", cascade="delete", uselist=False
+    )
+    student = db.relationship(
+        "Student", back_populates="user", cascade="delete", uselist=False
+    )
 
     role = db.relationship("Role", back_populates="users")
 
