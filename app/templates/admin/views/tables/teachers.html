@@ -31,18 +31,18 @@
         <div class="d-flex px-0 py-1">
           <div>
             <img
-              src="{{ t.avatar_path }}"
+              src="{{ t.user.avatar_path }}"
               class="avatar avatar-sm me-3 border-radius-lg"
               alt="user1"
             />
           </div>
           <div class="d-flex flex-column justify-content-center">
-            <h6 class="mb-0 text-sm">{{ t.full_name }}</h6>
-            <p class="text-xs text-secondary mb-0">{{ t.email }}</p>
+            <h6 class="mb-0 text-sm">{{ t.user.full_name }}</h6>
+            <p class="text-xs text-secondary mb-0">{{ t.user.email }}</p>
           </div>
         </div>
       </td>
-      <td class="text-xs">{{ t.age }}</td>
+      <td class="text-xs">{{ t.user.age }}</td>
       <td class="text-xs">{{ t.display_salary }}</td>
     </tr>
     {% endfor %} {% else %}

@@ -31,14 +31,16 @@
         <div class="d-flex px-0 py-1">
           <div>
             <img
-              src="{{ c.teacher.avatar_path }}"
+              src="{{ c.teacher.user.avatar_path }}"
               class="avatar avatar-sm me-3 border-radius-lg"
               alt="user1"
             />
           </div>
           <div class="d-flex flex-column justify-content-center">
-            <h6 class="mb-0 text-sm">{{ c.teacher.full_name }}</h6>
-            <p class="text-xs text-secondary mb-0">{{ c.teacher.email }}</p>
+            <h6 class="mb-0 text-sm">{{ c.teacher.user.full_name }}</h6>
+            <p class="text-xs text-secondary mb-0">
+              {{ c.teacher.user.email }}
+            </p>
           </div>
         </div>
       </td>
