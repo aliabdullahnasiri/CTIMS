@@ -1,6 +1,7 @@
 from typing import Dict, Union
 
 from numerize.numerize import numerize
+from sqlalchemy import and_
 
 from app.extensions import db
 from app.models.employee import Employee
@@ -175,16 +176,27 @@ class Department(db.Model):
             )
 
     def get_parent_departments(self, department=None) -> list:
+        if department and self.uid == department.uid:
+            return []
+
         return list(
             filter(
                 lambda item: item is not None,
                 [
                     parent := db.session.query(Department)
-                    .filter_by(
-                        uid=(
-                            self.parent_department_uid
-                            if not department
-                            else department.parent_department_uid
+                    .filter(
+                        and_(
+                            (
+                                (Department.uid != department.uid)
+                                if department
+                                else True
+                            ),
+                            Department.uid
+                            == (
+                                self.parent_department_uid
+                                if not department
+                                else department.parent_department_uid
+                            ),
                         )
                     )
                     .first()
