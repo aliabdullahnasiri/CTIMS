@@ -5,15 +5,15 @@
         <div class="d-flex px-0 py-1">
           <div>
             <img
-              src="{{ class.teacher.avatar_path }}"
+              src="{{ class.teacher.user.avatar_path }}"
               class="avatar avatar-lg me-3 border-radius-lg"
               alt="user1"
             />
           </div>
           <div class="d-flex flex-column justify-content-center">
-            <h5 class="mb-0">{{ class.teacher.full_name }}</h5>
+            <h5 class="mb-0">{{ class.teacher.user.full_name }}</h5>
             <p class="mb-0 mt-0 font-weight-normal text-sm">
-              {{ class.teacher.email }}
+              {{ class.teacher.user.email }}
             </p>
           </div>
         </div>
