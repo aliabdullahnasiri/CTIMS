@@ -215,10 +215,10 @@ class Department(db.Model):
         return sorted(semesters.values(), key=lambda i: i.number, reverse=False)
 
     def get_all_subjects(self):
-        subjects = [subject for subject in self.subjects]
+        subjects = {subject for subject in self.subjects}
 
         for department in self.get_parent_departments():
-            subjects.extend(department.subjects)
+            subjects |= set(department.subjects)
 
         return subjects
 

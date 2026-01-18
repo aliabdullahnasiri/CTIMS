@@ -14,6 +14,12 @@ import { createLoader } from "./script.js";
         input?.classList.remove("is-focused");
       });
     }
+
+    Array.from(event.target.querySelectorAll("ul li[data-uid]")).forEach(
+      (element) => {
+        element?.remove();
+      },
+    );
   });
   document.addEventListener("show.bs.modal", (event) => {
     const form = event.target.querySelector("form[data-get]");
