@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta, timezone
 
+import humanize
 from flask import request
 from numerize import numerize
 from sqlalchemy import Column, Integer, String, event, extract, func
@@ -181,6 +182,14 @@ class Base(db.Model):
         return (
             self.updated_at.strftime("%Y-%m-%d %H:%M:%S") if self.updated_at else "N/A"
         )
+
+    @property
+    def display_natural_created_at(self) -> str:
+        return humanize.naturaltime(self.updated_at)
+
+    @property
+    def display_natural_updated_at(self) -> str:
+        return humanize.naturaltime(self.updated_at)
 
     def to_dict(self):
         return {
