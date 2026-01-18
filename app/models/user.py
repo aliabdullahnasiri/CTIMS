@@ -5,6 +5,7 @@ from typing import Dict, List, Union
 
 from flask import abort, current_app, url_for
 from flask_login import AnonymousUserMixin, UserMixin, current_user
+from numerize.numerize import numerize
 from sqlalchemy import event
 
 from app.constants import DEFAULT_AVATAR
@@ -270,6 +271,10 @@ class User(UserMixin, db.Model):
             return self.avatar_path
 
         return url_for("static", filename=DEFAULT_AVATAR)
+
+    @property
+    def display_number_of_phone_nums(self):
+        return numerize(len(self.phones), decimals=2)
 
     def update_phones(self, phones: List[str]):
         for phone in self.phones:
