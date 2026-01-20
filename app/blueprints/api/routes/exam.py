@@ -9,11 +9,14 @@ from app.extensions import db
 from app.forms.exam import AddExamForm, UpdateExamForm
 from app.functions import render_td
 from app.models.exam import Exam
+from app.models.permission import Permission
+from app.models.user import permission_required
 from app.types import ColumnID, ColumnName
 
 
 @bp.get("/fetch/exams")
 @login_required
+@permission_required(Permission.get("FETCH_EXAMS"))
 def fetch_exams() -> Response:
     exams: List[Dict] = [exam.to_dict() for exam in Exam.query.all()]
 
@@ -35,6 +38,7 @@ cols: List[Tuple[ColumnID, ColumnName]] = [
 
 
 @bp.get("/fetch/rows/exams")
+@permission_required(Permission.get("FETCH_EXAMS"))
 @login_required
 def fetch_exams_rows() -> Response:
     exams: List[Exam] = Exam.query.all()
@@ -54,6 +58,7 @@ def fetch_exams_rows() -> Response:
 
 @bp.get("/fetch/row/exam/<string:uid>")
 @login_required
+@permission_required(Permission.get("FETCH_EXAM"))
 def fetch_exam_row(uid: str) -> Response:
     exam: Union[Exam, None] = Exam.query.filter_by(uid=uid).first()
 
@@ -86,6 +91,7 @@ def fetch_exam_row(uid: str) -> Response:
 
 @bp.get("/fetch/exam/<string:uid>")
 @login_required
+@permission_required(Permission.get("FETCH_EXAM"))
 def fetch_exam(uid: str) -> Response:
     exam: Union[Exam, None] = Exam.query.filter_by(uid=uid).first()
 
@@ -110,6 +116,7 @@ def fetch_exam(uid: str) -> Response:
 
 @bp.post("/add/exam")
 @login_required
+@permission_required(Permission.get("CREATE_EXAM"))
 def add_exam() -> Response:
     response: Dict = {}
 
@@ -147,6 +154,7 @@ def add_exam() -> Response:
 
 @bp.post("/update/exam")
 @login_required
+@permission_required(Permission.get("UPDATE_EXAM") | Permission.get("FETCH_EXAM"))
 def update_exam() -> Response:
     response: Dict = {}
 
@@ -187,6 +195,7 @@ def update_exam() -> Response:
 
 @bp.delete("/delete/exam/<string:uid>")
 @login_required
+@permission_required(Permission.get("DELETE_EXAM") | Permission.get("FETCH_EXAM"))
 def delete_exam(uid: str) -> Response:
     response: Dict = {}
 
