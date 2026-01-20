@@ -45,7 +45,11 @@ class Role(db.Model):
         return permissions
 
     @classmethod
-    def insert_roles(cls):
+    def update(cls):
+        cls.administrator()
+
+    @classmethod
+    def insert(cls):
         for name, (permissions, default) in cls.roles.items():
             role = Role.query.filter_by(name=name).first()
 
