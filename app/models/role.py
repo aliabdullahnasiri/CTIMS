@@ -31,6 +31,8 @@ class Role(db.Model):
         if name == "ADMINISTRATOR":
             return cls.administrator()
 
+        cls.insert()
+
         return cls.roles.get(name, cls.default).__getitem__(0)
 
     @classmethod
@@ -45,19 +47,16 @@ class Role(db.Model):
         return permissions
 
     @classmethod
-    def update(cls):
-        cls.administrator()
-
-    @classmethod
     def insert(cls):
-        for name, (permissions, default) in cls.roles.items():
-            role = Role.query.filter_by(name=name).first()
+        if cls.administrator():
+            for name, (permissions, default) in cls.roles.items():
+                role = Role.query.filter_by(name=name).first()
 
-            if role is None:
-                role = Role()
+                if role is None:
+                    role = Role()
 
-            role.name = name
-            role.permissions, role.default = hex(permissions), default
+                role.name = name
+                role.permissions, role.default = hex(permissions), default
 
-            db.session.add(role)
-            db.session.commit()
+                db.session.add(role)
+                db.session.commit()
