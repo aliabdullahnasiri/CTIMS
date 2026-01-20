@@ -9,8 +9,10 @@ from app.constants import DEFAULT_AVATAR
 from app.extensions import console, db
 from app.forms.student import AddStudentForm, UpdateStudentForm
 from app.functions import render_td
+from app.models.permission import Permission
+from app.models.role import Role
 from app.models.student import Student
-from app.models.user import PermissionEnum, Role, RoleEnum, User, permission_required
+from app.models.user import User, permission_required
 from app.types import ColumnID, ColumnName
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
@@ -23,7 +25,7 @@ cols: List[Tuple[ColumnID, ColumnName]] = [
 
 @bp.get("/fetch/students")
 @login_required
-@permission_required(PermissionEnum.FETCH_STUDENTS.value)
+@permission_required(Permission.get("FETCH_STUDENTS"))
 def fetch_students() -> Response:
     students: List[Dict] = [student.to_dict() for student in Student.query.all()]
 
@@ -36,7 +38,7 @@ def fetch_students() -> Response:
 
 @bp.get("/fetch/rows/students")
 @login_required
-@permission_required(PermissionEnum.FETCH_STUDENTS.value)
+@permission_required(Permission.get("FETCH_STUDENTS"))
 def fetch_students_rows() -> Response:
     students: List[Student] = Student.query.all()
 
@@ -55,7 +57,7 @@ def fetch_students_rows() -> Response:
 
 @bp.get("/fetch/row/student/<string:uid>")
 @login_required
-@permission_required(PermissionEnum.FETCH_STUDENT.value)
+@permission_required(Permission.get("FETCH_STUDENT"))
 def fetch_student_row(uid: str) -> Response:
     student: Union[Student, None] = Student.query.filter_by(uid=uid).first()
 
@@ -88,7 +90,7 @@ def fetch_student_row(uid: str) -> Response:
 
 @bp.get("/fetch/student/<string:uid>")
 @login_required
-@permission_required(PermissionEnum.FETCH_STUDENT.value)
+@permission_required(Permission.get("FETCH_STUDENT"))
 def fetch_student(uid: str) -> Response:
     student: Union[Student, None] = Student.query.filter_by(uid=uid).first()
 
@@ -113,7 +115,7 @@ def fetch_student(uid: str) -> Response:
 
 @bp.post("/add/student")
 @login_required
-@permission_required(PermissionEnum.CREATE_STUDENT.value)
+@permission_required(Permission.get("CREATE_STUDENT"))
 def add_student() -> Response:
     response: Dict = {}
 
@@ -130,7 +132,7 @@ def add_student() -> Response:
         user.birthday = form.birthday.data
         user.avatar_path = url_for("static", filename=DEFAULT_AVATAR)
 
-        if role := Role.query.filter_by(name=RoleEnum.STUDENT.name).first():
+        if role := Role.query.filter_by(name=Role.get("STUDENT")).first():
             user.role_uid = role.uid
 
         if form.password.data:
@@ -173,9 +175,7 @@ def add_student() -> Response:
 
 @bp.post("/update/student")
 @login_required
-@permission_required(
-    PermissionEnum.UPDATE_STUDENT.value | PermissionEnum.FETCH_STUDENT.value
-)
+@permission_required(Permission.get("UPDATE_STUDENT") | Permission.get("FETCH_STUDENT"))
 def update_student() -> Response:
     response: Dict = {}
 
@@ -223,9 +223,7 @@ def update_student() -> Response:
 
 @bp.delete("/delete/student/<string:uid>")
 @login_required
-@permission_required(
-    PermissionEnum.DELETE_STUDENT.value | PermissionEnum.FETCH_STUDENT.value
-)
+@permission_required(Permission.get("DELETE_STUDENT") | Permission.get("FETCH_STUDENT"))
 def delete_student(uid: str) -> Response:
     response: Dict = {}
 

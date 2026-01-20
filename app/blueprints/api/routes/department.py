@@ -9,7 +9,8 @@ from app.extensions import db
 from app.forms.department import AddDepartmentForm, UpdateDepartmentForm
 from app.functions import render_td
 from app.models.department import Department
-from app.models.user import PermissionEnum, permission_required
+from app.models.permission import Permission
+from app.models.user import permission_required
 from app.types import ColumnID, ColumnName
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
@@ -22,7 +23,7 @@ cols: List[Tuple[ColumnID, ColumnName]] = [
 
 @bp.get("/fetch/departments")
 @login_required
-@permission_required(PermissionEnum.FETCH_DEPARTMENTS.value)
+@permission_required(Permission.get("FETCH_DEPARTMENTS"))
 def fetch_departments() -> Response:
     departments: List[Dict] = [
         department.to_dict() for department in Department.query.all()
@@ -37,7 +38,7 @@ def fetch_departments() -> Response:
 
 @bp.get("/fetch/rows/departments")
 @login_required
-@permission_required(PermissionEnum.FETCH_DEPARTMENTS.value)
+@permission_required(Permission.get("FETCH_DEPARTMENTS"))
 def fetch_departments_rows() -> Response:
     departments: List[Department] = Department.query.all()
 
@@ -57,7 +58,7 @@ def fetch_departments_rows() -> Response:
 
 @bp.get("/fetch/row/department/<string:uid>")
 @login_required
-@permission_required(PermissionEnum.FETCH_DEPARTMENT.value)
+@permission_required(Permission.get("FETCH_DEPARTMENT"))
 def fetch_department_row(uid: str) -> Response:
     department: Union[Department, None] = Department.query.filter_by(uid=uid).first()
 
@@ -90,7 +91,7 @@ def fetch_department_row(uid: str) -> Response:
 
 @bp.get("/fetch/department/<string:uid>")
 @login_required
-@permission_required(PermissionEnum.FETCH_DEPARTMENT.value)
+@permission_required(Permission.get("FETCH_DEPARTMENT"))
 def fetch_department(uid: str) -> Response:
     department: Union[Department, None] = Department.query.filter_by(uid=uid).first()
 
@@ -115,7 +116,7 @@ def fetch_department(uid: str) -> Response:
 
 @bp.post("/add/department")
 @login_required
-@permission_required(PermissionEnum.CREATE_DEPARTMENT.value)
+@permission_required(Permission.get("CREATE_DEPARTMENT"))
 def add_department() -> Response:
     response: Dict = {}
 
@@ -154,7 +155,7 @@ def add_department() -> Response:
 
 @bp.post("/update/department")
 @login_required
-@permission_required(PermissionEnum.UPDATE_DEPARTMENT.value)
+@permission_required(Permission.get("UPDATE_DEPARTMENT"))
 def update_department() -> Response:
     response: Dict = {}
 
@@ -198,7 +199,7 @@ def update_department() -> Response:
 
 @bp.delete("/delete/department/<string:uid>")
 @login_required
-@permission_required(PermissionEnum.DELETE_DEPARTMENT.value)
+@permission_required(Permission.get("DELETE_DEPARTMENT"))
 def delete_department(uid: str) -> Response:
     response: Dict = {}
 

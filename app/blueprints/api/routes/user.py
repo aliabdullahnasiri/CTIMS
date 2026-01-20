@@ -9,7 +9,8 @@ from app.constants import DEFAULT_AVATAR
 from app.extensions import console, db
 from app.forms.user import AddUserForm, UpdateUserForm
 from app.functions import render_td
-from app.models.user import PermissionEnum, User, permission_required
+from app.models.permission import Permission
+from app.models.user import User, permission_required
 from app.types import ColumnID, ColumnName
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
@@ -24,7 +25,7 @@ cols: List[Tuple[ColumnID, ColumnName]] = [
 
 @bp.get("/fetch/users")
 @login_required
-@permission_required(PermissionEnum.FETCH_USERS.value)
+@permission_required(Permission.get("FETCH_USERS"))
 def fetch_users() -> Response:
     users: List[User] = [user.to_dict() for user in User.query.all()]
 
@@ -38,7 +39,7 @@ def fetch_users() -> Response:
 
 @bp.get("/fetch/rows/users")
 @login_required
-@permission_required(PermissionEnum.FETCH_USERS.value)
+@permission_required(Permission.get("FETCH_USERS"))
 def fetch_users_rows() -> Response:
     users: List[User] = User.query.all()
 
@@ -64,7 +65,7 @@ def fetch_users_rows() -> Response:
 
 @bp.get("/fetch/row/user/<string:uid>")
 @login_required
-@permission_required(PermissionEnum.FETCH_USER.value)
+@permission_required(Permission.get("FETCH_USER"))
 def fetch_user_row(uid) -> Response:
     response: Response = Response()
 
@@ -96,7 +97,7 @@ def fetch_user_row(uid) -> Response:
 
 @bp.get("/fetch/user/<string:uid>")
 @login_required
-@permission_required(PermissionEnum.FETCH_USER.value)
+@permission_required(Permission.get("FETCH_USER"))
 def fetch_user(uid) -> Response:
     user = User.query.filter_by(uid=uid).first()
 
@@ -123,7 +124,7 @@ def fetch_user(uid) -> Response:
 
 @bp.post("/update/user")
 @login_required
-@permission_required(PermissionEnum.FETCH_USER.value | PermissionEnum.UPDATE_USER.value)
+@permission_required(Permission.get("FETCH_USER") | Permission.get("UPDATE_USER"))
 def update_user() -> Response:
     form = UpdateUserForm()
 
@@ -162,7 +163,7 @@ def update_user() -> Response:
 
 @bp.delete("/delete/user/<string:uid>")
 @login_required
-@permission_required(PermissionEnum.FETCH_USER.value | PermissionEnum.DELETE_USER.value)
+@permission_required(Permission.get("FETCH_USER") | Permission.get("DELETE_USER"))
 def delete_user(uid):
     response = {}
 
@@ -190,7 +191,7 @@ def delete_user(uid):
 
 @bp.post("/add/user")
 @login_required
-@permission_required(PermissionEnum.CREATE_USER.value)
+@permission_required(Permission.get("CREATE_USER"))
 def add_user() -> Response:
     form = AddUserForm()
 

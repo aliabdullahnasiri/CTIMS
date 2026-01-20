@@ -8,8 +8,9 @@ from app.blueprints.api import bp
 from app.extensions import db
 from app.forms.time import AddTimeForm, UpdateTimeForm
 from app.functions import render_td
+from app.models.permission import Permission
 from app.models.time import Time
-from app.models.user import PermissionEnum, permission_required
+from app.models.user import permission_required
 from app.types import ColumnID, ColumnName
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
@@ -22,7 +23,7 @@ cols: List[Tuple[ColumnID, ColumnName]] = [
 
 @bp.get("/fetch/times")
 @login_required
-@permission_required(PermissionEnum.FETCH_TIMES.value)
+@permission_required(Permission.get("FETCH_TIMES"))
 def fetch_times() -> Response:
     times: List[Dict] = [time.to_dict() for time in Time.query.all()]
 
@@ -35,7 +36,7 @@ def fetch_times() -> Response:
 
 @bp.get("/fetch/rows/times")
 @login_required
-@permission_required(PermissionEnum.FETCH_TIMES.value)
+@permission_required(Permission.get("FETCH_TIMES"))
 def fetch_times_rows() -> Response:
     times: List[Time] = Time.query.all()
 
@@ -54,7 +55,7 @@ def fetch_times_rows() -> Response:
 
 @bp.get("/fetch/row/time/<string:uid>")
 @login_required
-@permission_required(PermissionEnum.FETCH_TIME.value)
+@permission_required(Permission.get("FETCH_TIME"))
 def fetch_time_row(uid: str) -> Response:
     time: Union[Time, None] = Time.query.filter_by(uid=uid).first()
 
@@ -87,7 +88,7 @@ def fetch_time_row(uid: str) -> Response:
 
 @bp.get("/fetch/time/<string:uid>")
 @login_required
-@permission_required(PermissionEnum.FETCH_TIME.value)
+@permission_required(Permission.get("FETCH_TIME"))
 def fetch_time(uid: str) -> Response:
     time: Union[Time, None] = Time.query.filter_by(uid=uid).first()
 
@@ -112,7 +113,7 @@ def fetch_time(uid: str) -> Response:
 
 @bp.post("/add/time")
 @login_required
-@permission_required(PermissionEnum.CREATE_TIME.value)
+@permission_required(Permission.get("CREATE_TIME"))
 def add_time() -> Response:
     response: Dict = {}
 
@@ -146,7 +147,7 @@ def add_time() -> Response:
 
 @bp.post("/update/time")
 @login_required
-@permission_required(PermissionEnum.UPDATE_TIME.value)
+@permission_required(Permission.get("UPDATE_TIME"))
 def update_time() -> Response:
     response: Dict = {}
 
@@ -183,7 +184,7 @@ def update_time() -> Response:
 
 @bp.delete("/delete/time/<string:uid>")
 @login_required
-@permission_required(PermissionEnum.DELETE_TIME.value)
+@permission_required(Permission.get("DELETE_TIME"))
 def delete_time(uid: str) -> Response:
     response: Dict = {}
 
