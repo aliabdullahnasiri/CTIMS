@@ -192,6 +192,7 @@ def update_student() -> Response:
             student.user.email = form.email.data
             student.user.birthday = form.birthday.data
             student.class_id = form.class_id.data
+            student.user.set_password(form.password.data)
 
             db.session.commit()
 

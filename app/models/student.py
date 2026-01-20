@@ -26,7 +26,7 @@ class Student(db.Model):
 
     def to_dict(self) -> dict:
         return {
-            "user_id": self.user.uid,
+            "user_uid": self.user.uid,
             "class_id": self.class_id,
             "first_name": self.user.first_name,
             "middle_name": self.user.middle_name,
