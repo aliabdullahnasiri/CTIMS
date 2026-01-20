@@ -1,4 +1,3 @@
-import enum
 from datetime import date
 from functools import wraps
 from typing import Dict, List, Union
@@ -13,153 +12,9 @@ from app.constants import DEFAULT_AVATAR
 from app.extensions import bcrypt, db, login_manager
 from app.functions import get_file_url
 from app.models.file import File
+from app.models.permission import Permission
 from app.models.phone import Phone
-
-
-@enum.unique
-class PermissionEnum(enum.Enum):
-    CREATE_USER = 0x0000001
-    UPDATE_USER = 0x0000002
-    DELETE_USER = 0x0000004
-    FETCH_USER = 0x0000008
-    FETCH_USERS = 0x0000010
-
-    CREATE_TIME = 0x0000020
-    UPDATE_TIME = 0x0000040
-    DELETE_TIME = 0x0000080
-    FETCH_TIME = 0x0000100
-    FETCH_TIMES = 0x0000200
-
-    CREATE_DEPARTMENT = 0x0000400
-    UPDATE_DEPARTMENT = 0x0000800
-    DELETE_DEPARTMENT = 0x0001000
-    FETCH_DEPARTMENT = 0x0002000
-    FETCH_DEPARTMENTS = 0x0004000
-
-    CREATE_SEMESTER = 0x0008000
-    UPDATE_SEMESTER = 0x0010000
-    DELETE_SEMESTER = 0x0020000
-    FETCH_SEMESTER = 0x0040000
-    FETCH_SEMESTERS = 0x0080000
-
-    CREATE_JOB = 0x0100000
-    UPDATE_JOB = 0x0200000
-    DELETE_JOB = 0x0400000
-    FETCH_JOB = 0x0800000
-    FETCH_JOBS = 0x1000000
-
-    CREATE_EMPLOYEE = 0x2000000
-    UPDATE_EMPLOYEE = 0x4000000
-    DELETE_EMPLOYEE = 0x8000000
-    FETCH_EMPLOYEE = 0x10000000
-    FETCH_EMPLOYEES = 0x20000000
-
-    CREATE_TEACHER = 0x40000000
-    UPDATE_TEACHER = 0x80000000
-    DELETE_TEACHER = 0x100000000
-    FETCH_TEACHER = 0x200000000
-    FETCH_TEACHERS = 0x400000000
-
-    CREATE_SUBJECT = 0x800000000
-    UPDATE_SUBJECT = 0x1000000000
-    DELETE_SUBJECT = 0x2000000000
-    FETCH_SUBJECT = 0x4000000000
-    FETCH_SUBJECTS = 0x8000000000
-
-    CREATE_CLASS = 0x10000000000
-    UPDATE_CLASS = 0x20000000000
-    DELETE_CLASS = 0x40000000000
-    FETCH_CLASS = 0x80000000000
-    FETCH_CLASSES = 0x100000000000
-
-    CREATE_STUDENT = 0x200000000000
-    UPDATE_STUDENT = 0x400000000000
-    DELETE_STUDENT = 0x800000000000
-    FETCH_STUDENT = 0x1000000000000
-    FETCH_STUDENTS = 0x2000000000000
-
-    CREATE_EXAM = 0x4000000000000
-    UPDATE_EXAM = 0x8000000000000
-    DELETE_EXAM = 0x10000000000000
-    FETCH_EXAM = 0x20000000000000
-    FETCH_EXAMS = 0x40000000000000
-
-    CREATE_RESULT = 0x80000000000000
-    UPDATE_RESULT = 0x100000000000000
-    DELETE_RESULT = 0x200000000000000
-    FETCH_RESULT = 0x400000000000000
-    FETCH_RESULTS = 0x800000000000000
-
-    CREATE_TEACHER_ATTENDANCE = 0x1000000000000000
-    UPDATE_TEACHER_ATTENDANCE = 0x2000000000000000
-    DELETE_TEACHER_ATTENDANCE = 0x4000000000000000
-    FETCH_TEACHER_ATTENDANCE = 0x8000000000000000
-    FETCH_TEACHER_ATTENDANCES = 0x10000000000000000
-
-    CREATE_STUDENT_ATTENDANCE = 0x20000000000000000
-    UPDATE_STUDENT_ATTENDANCE = 0x40000000000000000
-    DELETE_STUDENT_ATTENDANCE = 0x80000000000000000
-    FETCH_STUDENT_ATTENDANCE = 0x100000000000000000
-    FETCH_STUDENT_ATTENDANCES = 0x200000000000000000
-
-    UPLOAD_FILE = 0x400000000000000000
-    DELETE_FILE = 0x800000000000000000
-    UPDATE_FILE = 0x1000000000000000000
-    DOWNLOAD_FILE = 0x2000000000000000000
-
-    ADMINISTER = 0x8000000000000000000000
-
-
-class RoleEnum(enum.Enum):
-    ANONYMOUS = 0x0000000, True, 0
-    EMPLOYEE = 0x0000000, False, 1
-    TEACHER = 0x0000000, False, 2
-    STUDENT = 0x0000000, False, 3
-    ADMINISTRATOR = 0xFFFFFFFFFFFFFFFFFFFFFF, False, 4
-
-
-class Role(db.Model):
-    __tablename__ = "roles"
-
-    name = db.Column(db.String(64), unique=True)
-    default = db.Column(db.Boolean, default=False, index=True)
-    permissions = db.Column(db.String(25))
-
-    users = db.relationship("User", back_populates="role")
-
-    @property
-    def _permissions(self) -> int:
-        return eval(self.permissions)
-
-    def __init__(self) -> None:
-        super().__init__()
-
-    @staticmethod
-    def insert_roles():
-        try:
-            for r in sorted(
-                [
-                    e
-                    for attr in dir(RoleEnum)
-                    if attr.isupper() and type(e := getattr(RoleEnum, attr)) == RoleEnum
-                ],
-                key=lambda role: role.value.__getitem__(0),
-            ):
-                role = Role.query.filter_by(name=r.name).first()
-
-                if role is None:
-                    role = Role()
-
-                role.name = r.name
-                permission, default, num = r.value
-
-                role.permissions, role.default = hex(permission), default
-
-                db.session.add(role)
-                db.session.commit()
-
-        except Exception as err:
-            print(f"ERROR: {err}")
+from app.models.role import Role
 
 
 class User(UserMixin, db.Model):
@@ -210,7 +65,7 @@ class User(UserMixin, db.Model):
         )
 
     def is_administrator(self):
-        return self.can(PermissionEnum.ADMINISTER.value)
+        return self.can(Permission.administer())
 
     def to_dict(self) -> Dict:
         dct = {
@@ -344,7 +199,7 @@ class User(UserMixin, db.Model):
 
 
 class AnonymousUser(AnonymousUserMixin):
-    def can(self, permissions):
+    def can(self, _):
         return False
 
     def is_administrator(self):
@@ -355,7 +210,7 @@ class AnonymousUser(AnonymousUserMixin):
 def generate_uid(mapper, connection, target):
     if target.role_uid is None:
         if target.email == current_app.config["FLASKY_ADMIN"]:
-            if role := Role.query.filter_by(name=RoleEnum.ADMINISTRATOR.name).first():
+            if role := Role.query.filter_by(name=Role.administrator()).first():
                 target.role_uid = role.uid
 
         if target.role_uid is None:
@@ -383,4 +238,4 @@ def permission_required(permission):
 
 
 def admin_required(f):
-    return permission_required(PermissionEnum.ADMINISTER.value)(f)
+    return permission_required(Permission.administer())(f)
