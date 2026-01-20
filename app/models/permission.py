@@ -66,9 +66,12 @@ class Permission(db.Model):
         return cls.get("ADMINISTER")
 
     @staticmethod
-    def insert_permissions():
+    def insert():
         for name in Permission.permissions.keys():
-            p: Permission = Permission()
+            p = Permission.query.filter_by(name=name).scalar()
+
+            if not p:
+                p = Permission()
 
             p.name = name
             p.permission = hex(Permission.get(name))
