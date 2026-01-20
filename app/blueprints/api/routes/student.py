@@ -132,7 +132,7 @@ def add_student() -> Response:
         user.birthday = form.birthday.data
         user.avatar_path = url_for("static", filename=DEFAULT_AVATAR)
 
-        if role := Role.query.filter_by(name=Role.get("STUDENT")).first():
+        if role := Role.get("STUDENT"):
             user.role_uid = role.uid
 
         if form.password.data:

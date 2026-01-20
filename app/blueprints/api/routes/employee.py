@@ -133,7 +133,7 @@ def add_employee() -> Response:
         user.user_name = form.user_name.data
         user.birthday = form.birthday.data
 
-        if role := Role.query.filter_by(name=Role.get("EMPLOYEE")).first():
+        if role := Role.get("EMPLOYEE"):
             user.role_uid = role.uid
 
         if form.password.data:

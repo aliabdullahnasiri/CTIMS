@@ -26,14 +26,19 @@ class Role(db.Model):
 
     @classmethod
     def get(cls, name: str) -> Any:
-        cls.roles.setdefault(name, cls.default)
+        role = cls.query.filter_by(name=name).scalar()
 
-        if name == "ADMINISTRATOR":
-            return cls.administrator()
+        if not role:
+            role = cls()
 
-        cls.insert()
+        role.name = name
+        permissions, default = cls.default
+        role.permissions, role.default = hex(permissions), default
 
-        return cls.roles.get(name, cls.default).__getitem__(0)
+        db.session.add(role)
+        db.session.commit()
+
+        return role
 
     @classmethod
     def administrator(cls):
@@ -56,7 +61,7 @@ class Role(db.Model):
                     role = Role()
 
                 role.name = name
-                role.permissions, role.default = hex(permissions), default
+                role.permissions, role.default = hex(permissions), default or False
 
                 db.session.add(role)
                 db.session.commit()
