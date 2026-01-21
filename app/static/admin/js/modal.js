@@ -25,6 +25,16 @@ import { createLoader } from "./script.js";
     const form = event.target.querySelector("form[data-get]");
 
     if (form) {
+      form?.reset();
+
+      Array.from(form.querySelectorAll("input")).forEach((element) => {
+        let groupElement = element.closest(".input-group");
+
+        if (groupElement) {
+          groupElement.classList.value = "input-group input-group-outline";
+        }
+      });
+
       const get = form.dataset.get;
       const id =
         event.relatedTarget.dataset.id ||
