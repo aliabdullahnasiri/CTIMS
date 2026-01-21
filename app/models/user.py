@@ -61,7 +61,7 @@ class User(UserMixin, db.Model):
     def can(self, permissions):
         return (
             self.role is not None
-            and (self.role._permissions & permissions) == permissions
+            and (self.role.hex_permissions & permissions) == permissions
         )
 
     def is_administrator(self):
@@ -210,7 +210,7 @@ class AnonymousUser(AnonymousUserMixin):
 def generate_uid(mapper, connection, target):
     if target.role_uid is None:
         if target.email == current_app.config["FLASKY_ADMIN"]:
-            if role := Role.query.filter_by(name=Role.administrator()).first():
+            if role := Role.administrator():
                 target.role_uid = role.uid
 
         if target.role_uid is None:
@@ -235,7 +235,3 @@ def permission_required(permission):
         return decorated_function
 
     return decorator
-
-
-def admin_required(f):
-    return permission_required(Permission.administer())(f)

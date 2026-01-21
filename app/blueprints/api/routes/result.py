@@ -8,7 +8,9 @@ from app.blueprints.api import bp
 from app.extensions import db
 from app.forms.result import AddResultForm, UpdateResultForm
 from app.functions import render_td
+from app.models.permission import Permission
 from app.models.result import Result
+from app.models.user import permission_required
 from app.types import ColumnID, ColumnName
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
@@ -21,6 +23,7 @@ cols: List[Tuple[ColumnID, ColumnName]] = [
 
 @bp.get("/fetch/results")
 @login_required
+@permission_required(Permission.get("FETCH_RESULTS"))
 def fetch_results() -> Response:
     results: List[Dict] = [result.to_dict() for result in Result.query.all()]
 
@@ -33,6 +36,7 @@ def fetch_results() -> Response:
 
 @bp.get("/fetch/rows/results")
 @login_required
+@permission_required(Permission.get("FETCH_RESULTS"))
 def fetch_results_rows() -> Response:
     results: List[Result] = Result.query.all()
 
@@ -51,6 +55,7 @@ def fetch_results_rows() -> Response:
 
 @bp.get("/fetch/row/result/<string:uid>")
 @login_required
+@permission_required(Permission.get("FETCH_RESULT"))
 def fetch_result_row(uid: str) -> Response:
     result: Union[Result, None] = Result.query.filter_by(uid=uid).first()
 
@@ -83,6 +88,7 @@ def fetch_result_row(uid: str) -> Response:
 
 @bp.get("/fetch/result/<string:uid>")
 @login_required
+@permission_required(Permission.get("FETCH_RESULT"))
 def fetch_result(uid: str) -> Response:
     result: Union[Result, None] = Result.query.filter_by(uid=uid).first()
 
@@ -107,6 +113,7 @@ def fetch_result(uid: str) -> Response:
 
 @bp.post("/add/result")
 @login_required
+@permission_required(Permission.get("FETCH_RESULT") | Permission.get("CREATE_RESULT"))
 def add_result() -> Response:
     response: Dict = {}
 
@@ -139,6 +146,7 @@ def add_result() -> Response:
 
 @bp.post("/update/result")
 @login_required
+@permission_required(Permission.get("FETCH_RESULT") | Permission.get("UPDATE_RESULT"))
 def update_result() -> Response:
     response: Dict = {}
 
@@ -174,6 +182,7 @@ def update_result() -> Response:
 
 @bp.delete("/delete/result/<string:uid>")
 @login_required
+@permission_required(Permission.get("FETCH_RESULT") | Permission.get("DELETE_RESULT"))
 def delete_result(uid: str) -> Response:
     response: Dict = {}
 

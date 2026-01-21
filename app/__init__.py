@@ -3,6 +3,7 @@ from typing import Dict
 
 from flask import Flask, current_app, request, url_for
 
+from app.models.permission import Permission
 from app.models.view import View
 
 from .blueprints.admin import bp as admin_bp
@@ -44,6 +45,8 @@ def create_app(config_class: type[Config] | None = None) -> Flask:
 
     @app.before_request
     def _():
+        Permission.refresh()
+
         if request.endpoint not in ["static", "api.weekly", "api.yearly"]:
             view = View()
             view.path = request.path
@@ -56,12 +59,5 @@ def create_app(config_class: type[Config] | None = None) -> Flask:
     app.register_blueprint(api_bp, url_prefix="/api")
     app.register_blueprint(auth_bp, url_prefix="/auth")
     app.register_blueprint(admin_bp, url_prefix="/admin")
-
-    with app.app_context():
-        from app.models.permission import Permission
-        from app.models.role import Role
-
-        Permission.insert()
-        Role.insert()
 
     return app

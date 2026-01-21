@@ -11,6 +11,8 @@ from app.models.department import Department
 from app.models.employee import Employee
 from app.models.exam import Exam
 from app.models.job import Job
+from app.models.permission import Permission
+from app.models.role import Role
 from app.models.semester import Semester
 from app.models.student import Student
 from app.models.subject import Subject
@@ -28,6 +30,8 @@ entities: Dict = {
     "class": Class,
     "student": Student,
     "exam": Exam,
+    "permission": Permission,
+    "role": Role,
 }
 
 

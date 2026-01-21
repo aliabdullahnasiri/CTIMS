@@ -7,12 +7,13 @@ class Permission(db.Model):
     __tablename__ = "permissions"
 
     name = db.Column(db.String(64), unique=True)
+    description = db.Column(db.String(2500), nullable=True)
     permission = db.Column(db.String(32))
 
-    permissions: Dict[str, int] = {"ADMINISTER": 0xFFFF}
+    permissions: Dict[str, int] = {}
 
     @property
-    def _permission(self):
+    def hex_permission(self):
         return eval(self.permission)
 
     @classmethod
@@ -66,7 +67,7 @@ class Permission(db.Model):
         return cls.get("ADMINISTER")
 
     @staticmethod
-    def insert():
+    def refresh():
         for name in Permission.permissions.keys():
             p = Permission.query.filter_by(name=name).scalar()
 
@@ -78,3 +79,12 @@ class Permission(db.Model):
 
             db.session.add(p)
             db.session.commit()
+
+    def to_dict(self) -> dict:
+        return {
+            "id": self.id,
+            "name": self.name,
+            "description": self.description,
+            "permission": self.permission,
+            **super().to_dict(),
+        }

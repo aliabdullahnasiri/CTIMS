@@ -38,8 +38,8 @@ cols: List[Tuple[ColumnID, ColumnName]] = [
 
 
 @bp.get("/fetch/rows/exams")
-@permission_required(Permission.get("FETCH_EXAMS"))
 @login_required
+@permission_required(Permission.get("FETCH_EXAMS"))
 def fetch_exams_rows() -> Response:
     exams: List[Exam] = Exam.query.all()
 

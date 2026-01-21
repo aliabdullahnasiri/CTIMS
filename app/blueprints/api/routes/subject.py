@@ -8,7 +8,9 @@ from app.blueprints.api import bp
 from app.extensions import console, db
 from app.forms.subject import AddSubjectForm, UpdateSubjectForm
 from app.functions import render_td
+from app.models.permission import Permission
 from app.models.subject import Subject
+from app.models.user import permission_required
 from app.types import ColumnID, ColumnName
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
@@ -21,6 +23,7 @@ cols: List[Tuple[ColumnID, ColumnName]] = [
 
 @bp.get("/fetch/subjects")
 @login_required
+@permission_required(Permission.get("FETCH_SUBJECTS"))
 def fetch_subjects() -> Response:
     subjects: List[Dict] = [subject.to_dict() for subject in Subject.query.all()]
 
@@ -33,6 +36,7 @@ def fetch_subjects() -> Response:
 
 @bp.get("/fetch/rows/subjects")
 @login_required
+@permission_required(Permission.get("FETCH_SUBJECTS"))
 def fetch_subjects_rows() -> Response:
     subjects: List[Subject] = Subject.query.all()
 
@@ -51,6 +55,7 @@ def fetch_subjects_rows() -> Response:
 
 @bp.get("/fetch/row/subject/<string:uid>")
 @login_required
+@permission_required(Permission.get("FETCH_SUBJECT"))
 def fetch_subject_row(uid: str) -> Response:
     subject: Union[Subject, None] = Subject.query.filter_by(uid=uid).first()
 
@@ -83,6 +88,7 @@ def fetch_subject_row(uid: str) -> Response:
 
 @bp.get("/fetch/subject/<string:uid>")
 @login_required
+@permission_required(Permission.get("FETCH_SUBJECT"))
 def fetch_subject(uid: str) -> Response:
     subject: Union[Subject, None] = Subject.query.filter_by(uid=uid).first()
 
@@ -107,6 +113,7 @@ def fetch_subject(uid: str) -> Response:
 
 @bp.post("/add/subject")
 @login_required
+@permission_required(Permission.get("CREATE_SUBJECT"))
 def add_subject() -> Response:
     response: Dict = {}
 
@@ -150,6 +157,7 @@ def add_subject() -> Response:
 
 @bp.post("/update/subject")
 @login_required
+@permission_required(Permission.get("FETCH_SUBJECT") | Permission.get("UPDATE_SUBJECT"))
 def update_subject() -> Response:
     response: Dict = {}
 
@@ -196,6 +204,7 @@ def update_subject() -> Response:
 
 @bp.delete("/delete/subject/<string:uid>")
 @login_required
+@permission_required(Permission.get("FETCH_SUBJECT") | Permission.get("DELETE_SUBJECT"))
 def delete_subject(uid: str) -> Response:
     response: Dict = {}
 

@@ -55,6 +55,11 @@ import { createLoader } from "./script.js";
             let val = data[input.id];
 
             switch (input.type) {
+              case "checkbox":
+                input.checked = val ? true : false;
+
+                break;
+
               case "file":
                 let dropZone = input.closest("div.drop-zone");
 

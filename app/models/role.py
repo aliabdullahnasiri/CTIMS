@@ -1,4 +1,4 @@
-from typing import Any, Dict, Tuple
+from typing import Any
 
 from app.extensions import db
 from app.models.permission import Permission
@@ -8,21 +8,29 @@ class Role(db.Model):
     __tablename__ = "roles"
 
     name = db.Column(db.String(64), unique=True)
+    description = db.Column(db.String(2500), nullable=True)
     default = db.Column(db.Boolean, default=False, index=True)
-    permissions = db.Column(db.String(25))
 
+    permissions = db.relationship(
+        "Permission",
+        secondary="roles_permissions",
+        backref=db.backref("roles", lazy="dynamic"),
+        lazy="dynamic",
+    )
     users = db.relationship("User", back_populates="role")
 
-    roles: Dict[str, Tuple[int, bool]] = {
-        "ANONYMOUS": (0x0000, True),
-        "ADMINISTRATOR": (0xFFFF, False),
-    }
-
-    default = (0x0000, False)
-
     @property
-    def _permissions(self) -> int:
-        return eval(self.permissions)
+    def hex_permissions(self) -> int:
+        permissions = 0x0001
+
+        for permission in (
+            Permission.permissions.values()
+            if self.name == "ADMINISTRATOR"
+            else [p.hex_permission for p in self.permissions.all()]
+        ):
+            permissions |= permission
+
+        return permissions
 
     @classmethod
     def get(cls, name: str) -> Any:
@@ -32,8 +40,6 @@ class Role(db.Model):
             role = cls()
 
         role.name = name
-        permissions, default = cls.default
-        role.permissions, role.default = hex(permissions), default
 
         db.session.add(role)
         db.session.commit()
@@ -42,26 +48,22 @@ class Role(db.Model):
 
     @classmethod
     def administrator(cls):
-        permissions = 1
+        return cls.query.filter_by(name="ADMINISTRATOR").scalar()
 
-        for permission in Permission.permissions.values():
-            permissions |= permission
-
-        cls.roles.__setitem__("ADMINISTRATOR", (permissions, False))
-
-        return permissions
-
-    @classmethod
-    def insert(cls):
-        if cls.administrator():
-            for name, (permissions, default) in cls.roles.items():
-                role = Role.query.filter_by(name=name).first()
-
-                if role is None:
-                    role = Role()
-
-                role.name = name
-                role.permissions, role.default = hex(permissions), default or False
-
-                db.session.add(role)
-                db.session.commit()
+    def to_dict(self) -> dict:
+        return {
+            "id": self.id,
+            "uid": self.uid,
+            "name": self.name,
+            "description": self.description,
+            "default": self.default,
+            "permissions": [
+                p.uid
+                for p in (
+                    Permission.query.all()
+                    if self.name == "ADMINISTRATOR"
+                    else self.permissions.all()
+                )
+            ],
+            **super().to_dict(),
+        }

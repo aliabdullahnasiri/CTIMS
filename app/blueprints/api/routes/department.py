@@ -45,7 +45,6 @@ def fetch_departments_rows() -> Response:
     rows: List[List] = []
 
     for department in departments:
-        dct = department.to_dict()
         row = [render_td(col_id, department) for col_id, _ in cols]
         rows.append(row)
 

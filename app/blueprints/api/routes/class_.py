@@ -9,6 +9,8 @@ from app.extensions import db
 from app.forms.class_ import AddClassForm, UpdateClassForm
 from app.functions import render_td
 from app.models.class_ import Class
+from app.models.permission import Permission
+from app.models.user import permission_required
 from app.types import ColumnID, ColumnName
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
@@ -20,6 +22,7 @@ cols: List[Tuple[ColumnID, ColumnName]] = [
 
 @bp.get("/fetch/classes")
 @login_required
+@permission_required(Permission.get("FETCH_CLASSES"))
 def fetch_classes() -> Response:
     class_s: List[Dict] = [class_.to_dict() for class_ in Class.query.all()]
 
@@ -32,6 +35,7 @@ def fetch_classes() -> Response:
 
 @bp.get("/fetch/rows/classes")
 @login_required
+@permission_required(Permission.get("FETCH_CLASSES"))
 def fetch_classes_rows() -> Response:
     class_s: List[Class] = Class.query.all()
 
@@ -50,6 +54,7 @@ def fetch_classes_rows() -> Response:
 
 @bp.get("/fetch/row/class/<string:uid>")
 @login_required
+@permission_required(Permission.get("FETCH_CLASS"))
 def fetch_class_row(uid: str) -> Response:
     class_: Union[Class, None] = Class.query.filter_by(uid=uid).first()
 
@@ -82,6 +87,7 @@ def fetch_class_row(uid: str) -> Response:
 
 @bp.get("/fetch/class/<string:uid>")
 @login_required
+@permission_required(Permission.get("FETCH_CLASS"))
 def fetch_class(uid: str) -> Response:
     class_: Union[Class, None] = Class.query.filter_by(uid=uid).first()
 
@@ -106,6 +112,7 @@ def fetch_class(uid: str) -> Response:
 
 @bp.post("/add/class")
 @login_required
+@permission_required(Permission.get("CREATE_CLASS"))
 def add_class() -> Response:
     form: AddClassForm = AddClassForm()
 
@@ -135,6 +142,7 @@ def add_class() -> Response:
 
 @bp.post("/update/class")
 @login_required
+@permission_required(Permission.get("FETCH_CLASS") | Permission.get("UPDATE_CLASS"))
 def update_class() -> Response:
     form: UpdateClassForm = UpdateClassForm()
 
@@ -167,6 +175,7 @@ def update_class() -> Response:
 
 @bp.delete("/delete/class/<string:uid>")
 @login_required
+@permission_required(Permission.get("FETCH_CLASS") | Permission.get("DELETE_CLASS"))
 def delete_class(uid: str) -> Response:
     response: Dict = {}
 

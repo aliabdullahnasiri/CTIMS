@@ -494,30 +494,34 @@ function initTableContol(
   tbodyElement,
   theadElement,
 ) {
-  // Add Row
-  let addRowContainerDivElement = document.createElement("div");
-  let addRowButtonElement = document.createElement("button");
-  let addRowIconElement = document.createElement("i");
+  let addRowContainerDivElement;
 
-  addRowIconElement.classList.value = "material-symbols-rounded fs-5";
-  addRowIconElement.innerHTML = "add";
+  if (tableElement.dataset.addRowModalId) {
+    // Add Row
+    addRowContainerDivElement = document.createElement("div");
+    let addRowButtonElement = document.createElement("button");
+    let addRowIconElement = document.createElement("i");
 
-  addRowButtonElement.classList.value = "btn btn-info m-0 mx-2";
-  addRowButtonElement.dataset.bsToggle = "modal";
-  addRowButtonElement.dataset.bsPlacement = "top";
-  addRowButtonElement.dataset.bsTarget = tableElement.dataset.addRowModalId;
-  addRowButtonElement.dataset.bsAdd = "add";
+    addRowIconElement.classList.value = "material-symbols-rounded fs-5";
+    addRowIconElement.innerHTML = "add";
 
-  addRowButtonElement.append(addRowIconElement);
-  addRowContainerDivElement.append(addRowButtonElement);
+    addRowButtonElement.classList.value = "btn btn-info m-0 mx-2";
+    addRowButtonElement.dataset.bsToggle = "modal";
+    addRowButtonElement.dataset.bsPlacement = "top";
+    addRowButtonElement.dataset.bsTarget = tableElement.dataset.addRowModalId;
+    addRowButtonElement.dataset.bsAdd = "add";
 
-  addRowButtonElement.addEventListener("click", function () {
-    resetForm(
-      document.querySelector(
-        addRowButtonElement.dataset.bsTarget.concat(" form"),
-      ),
-    );
-  });
+    addRowButtonElement.append(addRowIconElement);
+    addRowContainerDivElement.append(addRowButtonElement);
+
+    addRowButtonElement.addEventListener("click", function () {
+      resetForm(
+        document.querySelector(
+          addRowButtonElement.dataset.bsTarget.concat(" form"),
+        ),
+      );
+    });
+  }
 
   // Delete Multiple Rows
   if (tableElement.dataset.deleteRow) {
@@ -586,7 +590,9 @@ function initTableContol(
   searchInputContainerDivElement.append(searchInputElement);
 
   // Append
-  tableControlElement.append(addRowContainerDivElement);
+  if (addRowContainerDivElement)
+    tableControlElement.append(addRowContainerDivElement);
+
   tableControlElement.append(reloadsContainerDivElement);
   tableControlElement.append(searchInputContainerDivElement);
 }
