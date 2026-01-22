@@ -5,7 +5,7 @@ from flask import Response
 from flask_login import login_required
 
 from app.blueprints.api import bp
-from app.extensions import db
+from app.extensions import console, db
 from app.forms.role import UpdateRoleForm
 from app.functions import render_td
 from app.models.permission import Permission
@@ -133,6 +133,22 @@ def update_role() -> Response:
             role.name = form.name.data
             role.description = form.description.data
             role.default = form.default.data
+
+            if permissions := form.permissions.data:
+                try:
+                    permissions = json.loads(permissions)
+
+                    for p in role.permissions.all():
+                        if p.uid not in permissions:
+                            role.permissions.remove(p)
+
+                    for permission in permissions:
+                        if (
+                            obj := Permission.query.filter_by(uid=permission).scalar()
+                        ) not in role.permissions:
+                            role.permissions.add(obj)
+                except json.JSONDecodeError as err:
+                    print("ERROR: ", err)
 
             db.session.commit()
 
