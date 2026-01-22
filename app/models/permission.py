@@ -8,7 +8,7 @@ class Permission(db.Model):
 
     name = db.Column(db.String(64), unique=True)
     description = db.Column(db.String(2500), nullable=True)
-    permission = db.Column(db.String(32))
+    permission = db.Column(db.String(32), unique=False)
 
     permissions: Dict[str, int] = {}
 
