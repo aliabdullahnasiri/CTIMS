@@ -10,7 +10,7 @@ from .blueprints.admin import bp as admin_bp
 from .blueprints.api import bp as api_bp
 from .blueprints.auth import bp as auth_bp
 from .config import Config
-from .extensions import bcrypt, db, login_manager, migrate
+from .extensions import bcrypt, console, db, login_manager, migrate
 
 
 def ctx() -> Dict:
@@ -43,21 +43,12 @@ def create_app(config_class: type[Config] | None = None) -> Flask:
         dct = ctx()
         return {"CURRENT_APP": current_app, "CTX": dct, **dct}
 
-    @app.before_request
-    def _():
-        Permission.refresh()
-
-        if request.endpoint not in ["static", "api.weekly", "api.yearly"]:
-            view = View()
-            view.path = request.path
-            view.ip_address = (request.remote_addr,)
-            view.user_agent = request.headers.get("User-Agent")
-
-            db.session.add(view)
-            db.session.commit()
-
     app.register_blueprint(api_bp, url_prefix="/api")
     app.register_blueprint(auth_bp, url_prefix="/auth")
     app.register_blueprint(admin_bp, url_prefix="/admin")
+
+    with app.app_context():
+        if Permission.administer():
+            Permission.refresh()
 
     return app
