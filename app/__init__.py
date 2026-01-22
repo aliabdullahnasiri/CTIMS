@@ -1,16 +1,15 @@
 import os
 from typing import Dict
 
-from flask import Flask, current_app, request, url_for
+from flask import Flask, current_app, url_for
 
 from app.models.permission import Permission
-from app.models.view import View
 
 from .blueprints.admin import bp as admin_bp
 from .blueprints.api import bp as api_bp
 from .blueprints.auth import bp as auth_bp
 from .config import Config
-from .extensions import bcrypt, console, db, login_manager, migrate
+from .extensions import bcrypt, db, login_manager, migrate
 
 
 def ctx() -> Dict:
