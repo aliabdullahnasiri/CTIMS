@@ -72,7 +72,6 @@ def yearly(index: int) -> Response:
             func.count(model.uid).label("students"),
         )
         .filter(model.created_at >= year_ago)
-        .filter(model.created_at < today.replace(day=1))
         .group_by("month")
         .all()
     )
