@@ -51,6 +51,11 @@ class Role(db.Model):
         return cls.query.filter_by(name="ADMINISTRATOR").scalar()
 
     def to_dict(self) -> dict:
+        readonly = []
+
+        if self == self.administrator():
+            readonly.append("permissions")
+
         return {
             "id": self.id,
             "uid": self.uid,
@@ -65,5 +70,6 @@ class Role(db.Model):
                     else self.permissions.all()
                 )
             ],
+            "readonly": readonly,
             **super().to_dict(),
         }

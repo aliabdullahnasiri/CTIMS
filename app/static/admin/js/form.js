@@ -467,7 +467,12 @@ export function upload(files, dropZone) {
       event.target.closest("div.multi-value-input") &&
       event.target.dataset.role == "value"
     ) {
-      event.target.remove();
+      if (
+        !event.target
+          .closest("div.multi-value-input")
+          .classList.contains("readonly")
+      )
+        event.target.remove();
     } else if (
       (event.target.tagName == "BUTTON" &&
         event.target.closest("div.drop-zone") &&

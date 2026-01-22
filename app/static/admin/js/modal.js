@@ -47,6 +47,8 @@ import { createLoader } from "./script.js";
       })
         .then((response) => response.json())
         .then((data) => {
+          let readonly = data?.readonly;
+
           let names = ["input", "textarea", "select"];
 
           Array.from(
@@ -119,6 +121,14 @@ import { createLoader } from "./script.js";
                   let multiValueInput = input.closest("div.multi-value-input");
 
                   if (multiValueInput) {
+                    input.disabled = false;
+                    multiValueInput.classList.remove("readonly");
+
+                    if (Array.from(readonly).includes(input.id)) {
+                      input.disabled = true;
+                      multiValueInput.classList.add("readonly");
+                    }
+
                     const valuesElement =
                       multiValueInput.querySelector("div.values");
 
