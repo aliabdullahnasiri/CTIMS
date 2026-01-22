@@ -9,6 +9,8 @@ from app.extensions import db
 from app.forms.attendance.student import AddStudentAttendanceForm
 from app.functions import render_td
 from app.models.attendance import StudentAttendance
+from app.models.permission import Permission
+from app.models.user import permission_required
 from app.types import ColumnID, ColumnName
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
@@ -22,6 +24,7 @@ cols: List[Tuple[ColumnID, ColumnName]] = [
 
 @bp.get("/fetch/students/attendances")
 @login_required
+@permission_required(Permission.get("FETCH_STUDENTS_ATTENDANCES"))
 def fetch_students_attendances() -> Response:
     student_attendances: List[Dict] = [
         student_attendance.to_dict()
@@ -37,6 +40,7 @@ def fetch_students_attendances() -> Response:
 
 @bp.get("/fetch/rows/students/attendances")
 @login_required
+@permission_required(Permission.get("FETCH_STUDENTS_ATTENDANCES"))
 def fetch_students_attendances_rows() -> Response:
     student_attendances: List[StudentAttendance] = StudentAttendance.query.all()
 
@@ -55,6 +59,7 @@ def fetch_students_attendances_rows() -> Response:
 
 @bp.get("/fetch/row/student/attendance/<string:uid>")
 @login_required
+@permission_required(Permission.get("FETCH_STUDENT_ATTENDANCE"))
 def fetch_student_attendance_row(uid: str) -> Response:
     sa: Union[StudentAttendance, None] = StudentAttendance.query.filter_by(
         uid=uid
@@ -89,6 +94,7 @@ def fetch_student_attendance_row(uid: str) -> Response:
 
 @bp.get("/fetch/student/attendance/<string:uid>")
 @login_required
+@permission_required(Permission.get("FETCH_STUDENT_ATTENDANCE"))
 def fetch_student_attendance(uid: str) -> Response:
     student_attendance: Union[StudentAttendance, None] = (
         StudentAttendance.query.filter_by(uid=uid).first()
@@ -115,6 +121,7 @@ def fetch_student_attendance(uid: str) -> Response:
 
 @bp.post("/add/student/attendance")
 @login_required
+@permission_required(Permission.get("FETCH_STUDENT_ATTENDANCES"))
 def add_student_attendance() -> Response:
     response: Dict = {}
 
