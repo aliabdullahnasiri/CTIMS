@@ -9,6 +9,8 @@ from app.extensions import db
 from app.forms.attendance.teacher import AddTeacherAttendanceForm
 from app.functions import render_td
 from app.models.attendance import TeacherAttendance
+from app.models.permission import Permission
+from app.models.user import permission_required
 from app.types import ColumnID, ColumnName
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
@@ -22,6 +24,7 @@ cols: List[Tuple[ColumnID, ColumnName]] = [
 
 @bp.get("/fetch/teachers/attendances")
 @login_required
+@permission_required(Permission.get("FETCH_TEACHERS_ATTENDANCES"))
 def fetch_teachers_attendances() -> Response:
     teacher_attendances: List[Dict] = [
         teacher_attendance.to_dict()
@@ -37,6 +40,7 @@ def fetch_teachers_attendances() -> Response:
 
 @bp.get("/fetch/rows/teachers/attendances")
 @login_required
+@permission_required(Permission.get("FETCH_TEACHERS_ATTENDANCES"))
 def fetch_teachers_attendances_rows() -> Response:
     teacher_attendances: List[TeacherAttendance] = TeacherAttendance.query.all()
 
@@ -55,6 +59,7 @@ def fetch_teachers_attendances_rows() -> Response:
 
 @bp.get("/fetch/row/teacher/attendance/<string:uid>")
 @login_required
+@permission_required(Permission.get("FETCH_TEACHER_ATTENDANCE"))
 def fetch_teacher_attendance_row(uid: str) -> Response:
     teacher_attendance: Union[TeacherAttendance, None] = (
         TeacherAttendance.query.filter_by(uid=uid).first()
@@ -89,6 +94,7 @@ def fetch_teacher_attendance_row(uid: str) -> Response:
 
 @bp.get("/fetch/teacher/attendance/<string:uid>")
 @login_required
+@permission_required(Permission.get("FETCH_TEACHER_ATTENDANCE"))
 def fetch_teacher_attendance(uid: str) -> Response:
     teacher_attendance: Union[TeacherAttendance, None] = (
         TeacherAttendance.query.filter_by(uid=uid).first()
@@ -115,6 +121,7 @@ def fetch_teacher_attendance(uid: str) -> Response:
 
 @bp.post("/add/teacher/attendance")
 @login_required
+@permission_required(Permission.get("CREATE_TEACHER_ATTENDANCE"))
 def add_teacher_attendance() -> Response:
     response: Dict = {}
 
