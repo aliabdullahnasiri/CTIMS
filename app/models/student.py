@@ -1,5 +1,6 @@
+from operator import call
+
 from app.extensions import db
-from app.models.file import File
 
 
 class Student(db.Model):
@@ -8,21 +9,17 @@ class Student(db.Model):
     user_id = db.Column(db.String(8), db.ForeignKey("users.uid"))
     class_id = db.Column(db.String(8), db.ForeignKey("classes.uid"))
 
+    class_ = db.relationship("Class", back_populates="students")
     attendances = db.relationship(
         "StudentAttendance",
         back_populates="student",
         cascade="all, delete, delete-orphan",
     )
-    class_ = db.relationship("Class", back_populates="students")
     results = db.relationship(
         "Result", back_populates="student", cascade="all, delete, delete-orphan"
     )
 
     user = db.relationship("User", cascade="delete")
-
-    @property
-    def files(self):
-        return [file for file in File.query.filter_by(file_for=self.user.uid).all()]
 
     def to_dict(self) -> dict:
         return {
@@ -36,10 +33,10 @@ class Student(db.Model):
             "birthday": self.user.display_birthday,
             "age": self.user.age,
             "avatar": self.user.avatar_path,
-            "phones": [phone.number for phone in self.user.phones],
-            "files": [f.to_dict() for f in self.files],
-            **super().to_dict(),
+            "phones": [phone.number for phone in self.user.phones.all()],
+            "files": [f.to_dict() for f in self.user.files.all()],
+            **call(getattr(super(), "to_dict")),
         }
 
     def __repr__(self):
-        return f"<Student {self.user.full_name} ID={self.uid}>"
+        return f"<Student full_name={self.user.full_name!r}>"
