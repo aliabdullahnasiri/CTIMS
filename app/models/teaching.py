@@ -1,3 +1,5 @@
+from operator import call
+
 from sqlalchemy import UniqueConstraint
 
 from app.extensions import db
@@ -9,9 +11,6 @@ class Teaching(db.Model):
     teacher_id = db.Column(db.String(8), db.ForeignKey("teachers.uid"), nullable=False)
     subject_id = db.Column(db.String(8), db.ForeignKey("subjects.uid"), nullable=False)
 
-    teacher = db.relationship("Teacher", back_populates="teachings")
-    subject = db.relationship("Subject", back_populates="teachings")
-
     __table_args__ = (
         UniqueConstraint("teacher_id", "subject_id", name="uix_teacher_subject"),
     )
@@ -20,9 +19,7 @@ class Teaching(db.Model):
         return {
             "teacher_id": self.teacher_id,
             "subject_id": self.subject_id,
-            "teacher": self.teacher.to_dict(),
-            "subject": self.subject.to_dict(),
-            **super().to_dict(),
+            **call(getattr(super(), "to_dict")),
         }
 
     def __repr__(self):
