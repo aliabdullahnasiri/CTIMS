@@ -1,3 +1,5 @@
+from operator import call
+
 from numerize.numerize import numerize
 
 from app.extensions import db
@@ -15,23 +17,25 @@ class Class(db.Model):
 
     time = db.relationship("Time", back_populates="classes")
     teacher = db.relationship("Teacher", back_populates="classes")
-    students = db.relationship("Student", back_populates="class_")
     semester = db.relationship("Semester", back_populates="classes")
+    students = db.relationship("Student", back_populates="class_", lazy="dynamic")
     exams = db.relationship(
-        "Exam", back_populates="class_", cascade="all, delete, delete-orphan"
+        "Exam",
+        back_populates="class_",
+        cascade="all, delete, delete-orphan",
+        lazy="dynamic",
     )
 
     def __repr__(self):
-        return f"<Class {self.name} Teacher={self.teacher_id}>"
+        return f"<Class name={self.name!r}>"
 
     def to_dict(self):
         return {
-            "uid": self.uid,
             "time_id": self.time_id,
             "name": self.name,
             "teacher_id": self.teacher_id,
             "semester_id": self.semester_id,
-            **super().to_dict(),
+            **call(getattr(super(), "to_dict")),
         }
 
     @property
@@ -42,13 +46,13 @@ class Class(db.Model):
     def attendances(self):
         return [
             attendance
-            for student in self.students
-            for attendance in student.attendances
+            for student in self.students.all()
+            for attendance in student.attendances.all()
         ]
 
     @property
     def results(self):
-        return [result for exam in self.exams for result in exam.results]
+        return [result for exam in self.exams.all() for result in exam.results.all()]
 
     @property
     def number_of_subjects(self):
@@ -56,20 +60,20 @@ class Class(db.Model):
 
     @property
     def number_of_exams(self):
-        return len(self.exams)
+        return self.exams.count()
 
     @property
-    def number_of_students(self) -> int:
-        return len(self.students)
+    def number_of_students(self) -> str:
+        return self.students.count()
 
     @property
     def display_number_of_students(self) -> str:
-        return numerize(self.number_of_students, decimals=2)
+        return numerize(self.number_of_students)
 
     @property
     def display_number_of_all_subjects(self):
-        return numerize(self.number_of_subjects, decimals=2)
+        return numerize(self.number_of_subjects)
 
     @property
     def display_number_of_exams(self):
-        return numerize(self.number_of_exams, decimals=2)
+        return numerize(self.number_of_exams)
