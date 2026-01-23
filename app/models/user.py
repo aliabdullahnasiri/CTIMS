@@ -1,5 +1,6 @@
 from datetime import date
 from functools import wraps
+from operator import call
 from typing import Dict, List, Union
 
 import humanize
@@ -10,7 +11,6 @@ from numerize import numerize
 from app.constants import DEFAULT_AVATAR
 from app.extensions import bcrypt, db, login_manager
 from app.functions import get_file_url
-from app.models.file import File
 from app.models.permission import Permission
 from app.models.phone import Phone
 from app.models.role import Role
@@ -45,10 +45,16 @@ class User(UserMixin, db.Model):
     )
 
     phones = db.relationship(
-        "Phone", back_populates="user", cascade="all, delete, delete-orphan"
+        "Phone",
+        back_populates="user",
+        cascade="all, delete, delete-orphan",
+        lazy="dynamic",
     )
     files = db.relationship(
-        "File", back_populates="user", cascade="all, delete, delete-orphan"
+        "File",
+        back_populates="user",
+        cascade="all, delete, delete-orphan",
+        lazy="dynamic",
     )
     roles = db.relationship(
         "Role",
@@ -74,7 +80,7 @@ class User(UserMixin, db.Model):
 
     def to_dict(self) -> Dict:
         dct = {
-            "user_uid": self.uid,
+            "user_uid": getattr(self, "uid"),
             "first_name": self.first_name,
             "middle_name": self.middle_name,
             "last_name": self.last_name,
@@ -84,13 +90,15 @@ class User(UserMixin, db.Model):
             "birthday": self.display_birthday,
             "age": self.age,
             "avatar": self.avatar_src,
-            **super().to_dict(),
+            "files": [f.to_dict() for f in self.files.all()],
+            "phones": [p.number for p in self.phones.all()],
+            **call(getattr(super(), "to_dict")),
         }
 
         return dct
 
     def get_id(self):
-        return str(self.uid)
+        return str(self.__getattribute__("uid"))
 
     def set_password(self, password: str) -> None:
         self.password_hash = bcrypt.generate_password_hash(password).decode()
@@ -134,51 +142,30 @@ class User(UserMixin, db.Model):
         return url_for("static", filename=DEFAULT_AVATAR)
 
     @property
-    def all_files(self):
-        return (
-            getattr(e, "files")
-            if hasattr(e := (self.employee or self.teacher or self.student), "files")
-            else []
-        )
-
-    @property
     def display_number_of_phone_nums(self):
-        return numerize.numerize(len(self.phones), decimals=2)
+        return numerize.numerize(self.phones.count())
 
     @property
     def display_number_of_files(self):
-        return numerize.numerize(
-            len(self.all_files),
-            decimals=2,
-        )
+        return numerize.numerize(self.files.count())
 
     @property
     def total_file_size(self) -> str:
-        total: int = 0
-
-        for f in self.all_files:
-            total += f.size
-
-        return humanize.naturalsize(total)
+        return humanize.naturalsize(sum(f.size for f in self.files.all()))
 
     def update_phones(self, phones: List[str]):
-        for phone in self.phones:
+        for phone in self.phones.all():
             if phone.number not in phones:
                 db.session.delete(phone)
 
-        db.session.commit()
-
         for p in phones:
-            if Phone.query.filter_by(user_id=self.uid, number=p).first():
+            if self.phones.filter_by(number=p).scalar():
                 continue
 
             phone = Phone()
-            phone.user_id = self.uid
             phone.number = p
 
-            db.session.add(phone)
-
-        db.session.commit()
+            self.phones.append(phone)
 
     def update_files(self, files: Dict[str, Union[int, List[int]]]) -> None:
         for key, value in files.items():
@@ -189,18 +176,17 @@ class User(UserMixin, db.Model):
                         if (src := get_file_url(value)) is not None
                         else url_for("static", filename=DEFAULT_AVATAR)
                     )
-                    db.session.commit()
 
                 case "files" if type(value) == list:
-                    for file in File.query.filter_by(file_for=self.uid).all():
+                    for file in self.files.filter_by(
+                        file_for=getattr(self, "uid")
+                    ).all():
                         if file.id not in value:
                             db.session.delete(file)
-                            db.session.commit()
 
                     for val in value:
-                        if file := File.query.filter_by(id=val).first():
-                            file.file_for = self.uid
-                            db.session.commit()
+                        if file := self.files.filter_by(id=val).scalar():
+                            file.file_for = getattr(self, "uid")
 
     def update_roles(self, roles: Union[List[Role], None] = None):
         if self.email == current_app.config["FLASKY_ADMIN"]:
