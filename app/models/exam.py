@@ -1,3 +1,4 @@
+from operator import call
 from typing import Dict
 
 from numerize.numerize import numerize
@@ -24,12 +25,14 @@ class Exam(db.Model):
     subject = db.relationship("Subject", back_populates="exams")
     class_ = db.relationship("Class", back_populates="exams")
     results = db.relationship(
-        "Result", back_populates="exam", cascade="all, delete, delete-orphan"
+        "Result",
+        back_populates="exam",
+        cascade="all, delete, delete-orphan",
+        lazy="dynamic",
     )
 
     def to_dict(self) -> Dict:
         return {
-            "uid": self.uid,
             "class_id": self.class_id,
             "subject_id": self.subject_id,
             "title": self.title,
@@ -40,6 +43,7 @@ class Exam(db.Model):
             "min_marks": self.min_marks,
             "subject": self.subject.name,
             "class": self.class_.name,
+            **call(getattr(super(), "to_dict")),
         }
 
     @property
@@ -72,7 +76,7 @@ class Exam(db.Model):
 
     @property
     def display_number_of_results(self):
-        return numerize(len(self.results), decimals=2)
+        return numerize(self.results.count())
 
     @property
     def display_number_of_passed(self):
