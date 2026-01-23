@@ -1,3 +1,4 @@
+from operator import call
 from typing import Dict
 
 from app.extensions import db
@@ -17,13 +18,13 @@ class Result(db.Model):
 
     def to_dict(self) -> Dict:
         return {
-            "uid": self.uid,
             "obtained_marks": self.obtained_marks,
             "exam_id": self.exam_id,
             "student_id": self.student_id,
             "student_name": self.student.full_name,
             "percentage": self.display_percentage,
             "status": self.status,
+            **call(getattr(super(), "to_dict")),
         }
 
     @property
