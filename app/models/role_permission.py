@@ -1,3 +1,5 @@
+from operator import call
+
 from sqlalchemy import UniqueConstraint
 
 from app.extensions import db
@@ -19,8 +21,8 @@ class RolePermission(db.Model):
         return {
             "role_uid": self.role_uid,
             "permission_uid": self.permission_uid,
-            **super().to_dict(),
+            **call(getattr(super(), "to_dict")),
         }
 
     def __repr__(self):
-        return f"<RolePermission role_uid='{self.role_uid}' permission_uid='{self.permission_uid}'>"
+        return f"<RolePermission role_uid='{self.role_uid!r}' permission_uid='{self.permission_uid!r}'>"
