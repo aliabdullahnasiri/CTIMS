@@ -1,4 +1,5 @@
 from datetime import datetime, timezone
+from operator import call
 
 from app.constants import CURRENCY_SYMBOL
 from app.extensions import db
@@ -25,11 +26,11 @@ class Employee(db.Model):
     user = db.relationship("User", cascade="delete")
 
     def __repr__(self):
-        return f"<Employee {self.user.first_name} {self.user.last_name} ID={self.uid}>"
+        return f"<Employee full_name={self.user.full_name!r}>"
 
     def to_dict(self):
         dct = {
-            "employee_uid": self.uid,
+            "employee_uid": getattr(self, "uid"),
             "user_uid": self.user.uid,
             "job_uid": self.job_uid,
             "first_name": self.user.first_name,
@@ -45,8 +46,8 @@ class Employee(db.Model):
             "salary": f"{self.salary:.2f}" if self.salary is not None else None,
             "display_salary": self.display_salary,
             "hire_date": self.display_hire_date,
-            "phones": [phone.number for phone in self.user.phones],
-            **super().to_dict(),
+            "phones": [p.number for p in self.user.phones.all()],
+            **call(getattr(super(), "to_dict")),
         }
 
         return dct
