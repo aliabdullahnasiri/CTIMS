@@ -1,3 +1,4 @@
+from operator import call
 from typing import Dict, Union
 
 from numerize.numerize import numerize
@@ -19,9 +20,41 @@ class Department(db.Model):
     )
 
     semesters = db.relationship(
-        "Semester", back_populates="department", cascade="all, delete, delete-orphan"
+        "Semester",
+        back_populates="department",
+        cascade="all, delete, delete-orphan",
+        lazy="dynamic",
     )
-    departments = db.relationship("Department", cascade="all, delete, delete-orphan")
+    departments = db.relationship(
+        "Department",
+        cascade="all, delete, delete-orphan",
+        lazy="dynamic",
+    )
+    subjects = db.relationship(
+        "Subject",
+        secondary="semesters",
+        backref="subjects",
+        lazy="dynamic",
+        viewonly=True,
+    )
+    classes = db.relationship(
+        "Class",
+        secondary="semesters",
+        lazy="dynamic",
+        viewonly=True,
+    )
+
+    @property
+    def teachers(self):
+        return {
+            teacher
+            for subject in self.subjects.all()
+            for teacher in subject.teachers.all()
+        }
+
+    @property
+    def students(self):
+        return {student for cls in self.classes.all() for student in cls.students.all()}
 
     def to_dict(self) -> Dict:
         return {
@@ -29,37 +62,11 @@ class Department(db.Model):
             "description": self.description,
             "head_of_department": self.head_of_department,
             "parent_department_uid": self.parent_department_uid,
-            **super().to_dict(),
+            **call(getattr(super(), "to_dict")),
         }
 
     def __repr__(self):
-        return f"<Department {self.name}>"
-
-    @property
-    def subjects(self):
-        return [subject for semester in self.semesters for subject in semester.subjects]
-
-    @property
-    def students(self):
-        return [
-            student
-            for semester in self.semesters
-            for _class in semester.classes
-            for student in _class.students
-        ]
-
-    @property
-    def teachers(self):
-        return [
-            teaching.teacher
-            for semester in self.semesters
-            for subject in semester.subjects
-            for teaching in subject.teachings
-        ]
-
-    @property
-    def classes(self):
-        return [_class for semester in self.semesters for _class in semester.classes]
+        return f"<Department name={self.name!r}>"
 
     @property
     def _head_of_department(self) -> Union[Employee, Teacher, None]:
@@ -99,73 +106,65 @@ class Department(db.Model):
 
     @property
     def display_number_of_semesters(self):
-        return numerize(len(self.semesters), decimals=2)
+        return numerize(self.semesters.count())
 
     @property
     def display_number_of_all_semesters(self):
-        return numerize(len(self.get_all_semesters()), decimals=2)
-
-    @property
-    def display_number_of_classes(self):
-        return numerize(len([c for s in self.semesters for c in s.classes]), decimals=2)
+        return numerize(len(self.get_all_semesters()))
 
     @property
     def display_number_of_all_classes(self):
         return numerize(
-            len([c for s in self.get_all_semesters() for c in s.classes]), decimals=2
+            sum(semester.classes.count() for semester in self.get_all_semesters())
         )
-
-    @property
-    def display_number_of_students(self):
-        return numerize(len([y for x in self.semesters for y in x.classes]), decimals=2)
 
     @property
     def display_number_of_all_students(self):
         return numerize(
-            len([y for x in self.get_all_semesters() for y in x.classes]), decimals=2
-        )
-
-    @property
-    def display_number_of_teachers(self):
-        return numerize(
-            len(
-                set(
-                    [
-                        z.teacher.uid
-                        for y in self.semesters
-                        for x in y.subjects
-                        for z in x.teachings
-                    ]
-                )
-            ),
-            decimals=2,
+            sum(semester.classes.count() for semester in self.get_all_semesters())
         )
 
     @property
     def display_number_of_all_teachers(self):
         return numerize(
-            len(
-                set(
-                    [
-                        z.teacher.uid
-                        for y in self.get_all_semesters()
-                        for x in y.subjects
-                        for z in x.teachings
-                    ]
-                )
-            ),
-            decimals=2,
+            sum(
+                subject.teachers.count()
+                for semester in self.get_all_semesters()
+                for subject in semester.subjects.all()
+            )
+        )
+
+    @property
+    def display_number_of_classes(self):
+        return numerize(self.classes.count())
+
+    @property
+    def display_number_of_students(self):
+        count = 0
+
+        for cls in self.classes.all():
+            count += cls.students.count()
+
+        return count
+
+    @property
+    def display_number_of_teachers(self):
+        return numerize(
+            sum(subject.teachers.count() for subject in self.subjects.all())
         )
 
     @property
     def display_number_of_subjects(self):
-        return numerize(
-            len([y for x in self.semesters for y in x.subjects]), decimals=2
-        )
+        return numerize(self.subjects.count())
 
     @property
     def display_number_of_all_subjects(self):
-        return numerize(len(self.get_all_subjects()), decimals=2)
+        count = self.subjects.count()
+
+        for department in self.get_parent_departments():
+            count += department.subjects.count()
+
+        return count
 
     def get_parent_department(self):
         if self.parent_department_uid:
@@ -176,49 +175,51 @@ class Department(db.Model):
             )
 
     def get_parent_departments(self, department=None) -> list:
-        if department and self.uid == department.uid:
+        if getattr(self, "uid") == self.parent_department_uid:
             return []
 
         return list(
             filter(
                 lambda item: item is not None,
                 [
-                    parent := db.session.query(Department)
-                    .filter(
-                        and_(
-                            (
-                                (Department.uid != department.uid)
-                                if department
-                                else True
-                            ),
-                            Department.uid
-                            == (
-                                self.parent_department_uid
-                                if not department
-                                else department.parent_department_uid
-                            ),
+                    (
+                        parent := db.session.query(Department)
+                        .filter(
+                            and_(
+                                (
+                                    (getattr(Department, "uid") != department.uid)
+                                    if department
+                                    else True
+                                ),
+                                getattr(Department, "uid")
+                                == (
+                                    self.parent_department_uid
+                                    if not department
+                                    else department.parent_department_uid
+                                ),
+                            )
                         )
+                        .scalar()
                     )
-                    .first()
                 ]
                 + (self.get_parent_departments(parent) if parent else []),
             )
         )
 
     def get_all_semesters(self):
-        semesters = {semester.number: semester for semester in self.semesters}
+        semesters = {semester.number: semester for semester in self.semesters.all()}
 
         for department in self.get_parent_departments():
-            for semester in department.semesters:
+            for semester in department.semesters.all():
                 semesters.setdefault(semester.number, semester)
 
         return sorted(semesters.values(), key=lambda i: i.number, reverse=False)
 
     def get_all_subjects(self):
-        subjects = {subject for subject in self.subjects}
+        subjects = {subject for subject in self.subjects.all()}
 
         for department in self.get_parent_departments():
-            subjects |= set(department.subjects)
+            subjects |= set(department.subjects.all())
 
         return subjects
 
@@ -226,21 +227,21 @@ class Department(db.Model):
         return [
             student
             for semester in self.get_all_semesters()
-            for _class in semester.classes
-            for student in _class.students
+            for _class in semester.classes.all()
+            for student in _class.students.all()
         ]
 
     def get_all_teachers(self):
         return [
-            teaching.teacher
+            teacher
             for semester in self.get_all_semesters()
-            for subject in semester.subjects
-            for teaching in subject.teachings
+            for subject in semester.subjects.all()
+            for teacher in subject.teachers
         ]
 
     def get_all_classes(self):
         return [
             _class
             for semester in self.get_all_semesters()
-            for _class in semester.classes
+            for _class in semester.classes.all()
         ]
