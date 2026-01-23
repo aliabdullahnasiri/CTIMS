@@ -1,3 +1,4 @@
+from operator import call
 from typing import Any
 
 from app.extensions import db
@@ -56,8 +57,6 @@ class Role(db.Model):
             readonly.append("permissions")
 
         return {
-            "id": self.id,
-            "uid": self.uid,
             "name": self.name,
             "description": self.description,
             "default": self.default,
@@ -70,5 +69,5 @@ class Role(db.Model):
                 )
             ],
             "readonly": readonly,
-            **super().to_dict(),
+            **call(getattr(super(), "to_dict")),
         }
