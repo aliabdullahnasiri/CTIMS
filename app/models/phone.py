@@ -1,3 +1,5 @@
+from operator import call
+
 from app.extensions import db
 
 
@@ -13,7 +15,7 @@ class Phone(db.Model):
         return {
             "number": self.number,
             "user_id": self.user_id,
-            **super().to_dict(),
+            **call(getattr(super(), "to_dict")),
         }
 
     def __repr__(self):
