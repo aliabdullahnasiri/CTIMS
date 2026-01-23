@@ -149,7 +149,6 @@ def add_teacher() -> Response:
         teacher.time_id = form.time_id.data
 
         db.session.add(teacher)
-        db.session.commit()
 
         if form.subjects.data:
             teacher.update_subjects(json.loads(form.subjects.data))
@@ -162,6 +161,8 @@ def add_teacher() -> Response:
                 teacher.user.update_files(json.loads(files))
             except json.JSONDecodeError as err:
                 console.print(err)
+
+        db.session.commit()
 
         response["message"] = "Teacher added successfully."
         response["title"] = "Added!"
@@ -193,11 +194,8 @@ def update_teacher() -> Response:
             teacher.user.last_name = form.last_name.data
             teacher.user.email = form.email.data
             teacher.user.birthday = form.birthday.data
-
             teacher.salary = form.salary.data
             teacher.time_id = form.time_id.data
-
-            db.session.commit()
 
             if form.subjects.data:
                 teacher.update_subjects(json.loads(form.subjects.data))
@@ -210,6 +208,8 @@ def update_teacher() -> Response:
                     teacher.user.update_files(json.loads(files))
                 except json.JSONDecodeError as err:
                     console.print(err)
+
+            db.session.commit()
 
             response.response = json.dumps(
                 {

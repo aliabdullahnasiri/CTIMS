@@ -205,7 +205,9 @@ def add_user() -> Response:
         user.user_name = form.user_name.data
         user.email = form.email.data
         user.birthday = form.birthday.data
-        user.avatar_path = url_for("static", filename=DEFAULT_AVATAR)
+
+        if form.phones.data:
+            user.update_phones(json.loads(form.phones.data))
 
         if files := request.form.get("files"):
             try:

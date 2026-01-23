@@ -205,9 +205,7 @@ def update_employee() -> Response:
 
             if form.password.data:
                 employee.user.set_password(form.password.data)
-
-            db.session.commit()
-
+                
             if form.phones.data:
                 employee.user.update_phones(json.loads(form.phones.data))
 
@@ -216,6 +214,9 @@ def update_employee() -> Response:
                     employee.user.update_files(json.loads(files))
                 except json.JSONDecodeError as err:
                     console.print(err)
+
+            db.session.commit()
+
 
             response.response = json.dumps(
                 {
