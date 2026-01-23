@@ -1,3 +1,4 @@
+from operator import call
 from typing import Any, Dict
 
 from app.extensions import db
@@ -82,9 +83,8 @@ class Permission(db.Model):
 
     def to_dict(self) -> dict:
         return {
-            "id": self.id,
             "name": self.name,
             "description": self.description,
             "permission": self.permission,
-            **super().to_dict(),
+            **call(getattr(super(), "to_dict")),
         }
