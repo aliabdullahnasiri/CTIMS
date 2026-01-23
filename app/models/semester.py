@@ -1,3 +1,5 @@
+from operator import call
+
 from numerize.numerize import numerize
 
 from app.extensions import db
@@ -15,10 +17,22 @@ class Semester(db.Model):
 
     department = db.relationship("Department", back_populates="semesters")
     subjects = db.relationship(
-        "Subject", back_populates="semester", cascade="all, delete, delete-orphan"
+        "Subject",
+        back_populates="semester",
+        cascade="all, delete, delete-orphan",
+        lazy="dynamic",
     )
     classes = db.relationship(
-        "Class", back_populates="semester", cascade="all, delete, delete-orphan"
+        "Class",
+        back_populates="semester",
+        cascade="all, delete, delete-orphan",
+        lazy="dynamic",
+    )
+    students = db.relationship(
+        "Student",
+        secondary="classes",
+        lazy="dynamic",
+        viewonly=True,
     )
 
     def to_dict(self) -> dict:
@@ -26,15 +40,15 @@ class Semester(db.Model):
             "name": self.name,
             "number": self.number,
             "department_uid": self.department_id,
-            **super().to_dict(),
+            **call(getattr(super(), "to_dict")),
         }
 
     def __repr__(self):
-        return f"<Semester {self.name} ID={self.uid}>"
+        return f"<Semester name={self.name!r}>"
 
     @property
     def display_number_of_classes(self):
-        return numerize(len(self.classes), decimals=2)
+        return numerize(self.classes.count(), decimals=2)
 
     @property
     def display_number_of_subjects(self):
@@ -42,7 +56,9 @@ class Semester(db.Model):
 
     @property
     def display_number_of_students(self):
-        return numerize(len([y for x in self.classes for y in x.students]), decimals=2)
+        return numerize(
+            len([y for x in self.classes.all() for y in x.students]), decimals=2
+        )
 
     @property
     def display_number_of_teachers(self):
@@ -66,10 +82,6 @@ class Semester(db.Model):
         ]
 
     @property
-    def students(self):
-        return [student for class_ in self.classes for student in class_.students]
-
-    @property
     def exams(self):
         return [exam for subject in self.get_all_subjects() for exam in subject.exams]
 
@@ -83,7 +95,7 @@ class Semester(db.Model):
         ]
 
     def get_all_subjects(self):
-        subjects = {subject for subject in self.subjects}
+        subjects = {subject for subject in self.subjects.all()}
 
         for department in self.department.get_parent_departments():
             for subject in department.subjects:
