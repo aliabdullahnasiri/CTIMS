@@ -47,7 +47,7 @@ import { createLoader } from "./script.js";
       })
         .then((response) => response.json())
         .then((data) => {
-          let readonly = data?.readonly;
+          let readonly = data?.readonly || new Array();
 
           let names = ["input", "textarea", "select"];
 
