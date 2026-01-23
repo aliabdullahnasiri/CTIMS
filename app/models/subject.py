@@ -1,3 +1,4 @@
+from operator import call
 from typing import Dict, List, Union
 
 import humanize
@@ -15,22 +16,29 @@ class Subject(db.Model):
     name = db.Column(db.String(255))
     description = db.Column(db.String(1024))
     credit = db.Column(db.Integer)
-
     semester_id = db.Column(
         db.String(8), db.ForeignKey("semesters.uid"), nullable=False
     )
 
     semester = db.relationship("Semester", back_populates="subjects")
-    teachings = db.relationship(
-        "Teaching", back_populates="subject", cascade="all, delete, delete-orphan"
+    teachers = db.relationship(
+        "Teacher",
+        secondary="teachings",
+        backref=db.backref("subjects", lazy="dynamic"),
+        lazy="dynamic",
     )
     exams = db.relationship(
-        "Exam", back_populates="subject", cascade="all, delete, delete-orphan"
+        "Exam",
+        back_populates="subject",
+        cascade="all, delete, delete-orphan",
+        lazy="dynamic",
     )
 
     @property
     def files(self):
-        return [file for file in File.query.filter_by(file_for=self.uid).all()]
+        return [
+            file for file in File.query.filter_by(file_for=getattr(self, "uid")).all()
+        ]
 
     @property
     def department(self):
@@ -40,35 +48,24 @@ class Subject(db.Model):
         return {
             "name": self.name,
             "description": self.description,
-            "credit": self.credit if self.credit else None,
+            "credit": self.credit,
             "department_uid": self.department.uid,
             "semester_uid": self.semester_id,
-            "teachers": [t.teacher_id for t in self.teachings],
+            "teachers": [t.uid for t in self.teachers.all()],
             "files": [f.to_dict() for f in self.files],
-            **super().to_dict(),
+            **call(getattr(super(), "to_dict")),
         }
 
     def __repr__(self):
-        return f"<Subject {self.name}>"
-
-    @property
-    def teachers(self):
-        return [t.teacher for t in self.teachings]
+        return f"<Subject name={self.name!r}>"
 
     @property
     def display_number_of_teachers(self):
-        return numerize(len({t.teacher.uid for t in self.teachings}))
+        return numerize(self.teachers.count())
 
     @property
     def display_number_of_exams(self):
-        return numerize(len(self.exams))
-
-    @property
-    def total_file_size(self) -> str:
-        total: int = 0
-        for f in self.files:
-            total += f.file.size
-        return humanize.naturalsize(total)
+        return numerize(self.exams.count())
 
     @property
     def display_number_of_files(self):
@@ -84,23 +81,18 @@ class Subject(db.Model):
         return humanize.naturalsize(total)
 
     def update_teachers(self, teachers: List[str]):
-        for t in self.teachings:
-            if t.teacher.uid not in teachers:
-                db.session.delete(t)
-
-        db.session.commit()
+        for t in self.teachers.all():
+            if t.uid not in teachers:
+                self.teachers.remove(t)
 
         for t in teachers:
-            if Teaching.query.filter_by(subject_id=self.uid, teacher_id=t).first():
+            if self.teachers.filter_by(uid=t).scalar():
                 continue
 
             teaching = Teaching()
-            teaching.subject_id = self.uid
             teaching.teacher_id = t
 
-            db.session.add(teaching)
-
-        db.session.commit()
+            self.teachers.add(teaching)
 
     def update_files(self, files: Dict[str, Union[int, List[int]]]) -> None:
-        return User.update_files(self, files)
+        return call(getattr(User, "update_files"), self, files)
