@@ -1,5 +1,6 @@
 import pathlib
 from datetime import datetime, timezone
+from operator import call
 from typing import Optional, Self
 
 import humanize
@@ -77,7 +78,6 @@ class File(db.Model):
 
     def to_dict(self) -> dict:
         return {
-            "id": self.id,
             "file_name": self.file_name,
             "file_description": self.file_description,
             "file_for": self.file_for,
@@ -86,7 +86,7 @@ class File(db.Model):
             "size": self.size,
             "human_size": self.human_size,
             "exists": self.exists,
-            **super().to_dict(),
+            **call(getattr(super(), "to_dict")),
         }
 
     def __repr__(self):
