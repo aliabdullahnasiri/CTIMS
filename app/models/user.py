@@ -6,7 +6,6 @@ import humanize
 from flask import abort, current_app, url_for
 from flask_login import AnonymousUserMixin, UserMixin, current_user
 from numerize import numerize
-from sqlalchemy import event
 
 from app.constants import DEFAULT_AVATAR
 from app.extensions import bcrypt, db, login_manager
@@ -29,7 +28,6 @@ class User(UserMixin, db.Model):
     password_hash = db.Column(db.String(128), nullable=False)
 
     birthday = db.Column(db.Date)
-    role_uid = db.Column(db.String(8), db.ForeignKey("roles.uid"))
 
     avatar_path = db.Column(
         db.String(255),
@@ -46,23 +44,30 @@ class User(UserMixin, db.Model):
         "Student", back_populates="user", cascade="delete", uselist=False
     )
 
-    role = db.relationship("Role", back_populates="users")
-
     phones = db.relationship(
         "Phone", back_populates="user", cascade="all, delete, delete-orphan"
     )
     files = db.relationship(
         "File", back_populates="user", cascade="all, delete, delete-orphan"
     )
+    roles = db.relationship(
+        "Role",
+        secondary="users_roles",
+        backref=db.backref("users", lazy="dynamic"),
+        lazy="dynamic",
+    )
 
-    def __init__(self) -> None:
-        super().__init__()
+    @property
+    def permissions(self):
+        permissions = 0x0001
+
+        for role in self.roles.all():
+            permissions |= role.hex_permissions
+
+        return permissions
 
     def can(self, permissions):
-        return (
-            self.role is not None
-            and (self.role.hex_permissions & permissions) == permissions
-        )
+        return (self.permissions & permissions) == permissions
 
     def is_administrator(self):
         return self.can(Permission.administer())
@@ -197,6 +202,19 @@ class User(UserMixin, db.Model):
                             file.file_for = self.uid
                             db.session.commit()
 
+    def update_roles(self, roles: Union[List[Role], None] = None):
+        if self.email == current_app.config["FLASKY_ADMIN"]:
+            if role := Role.administrator():
+                if role not in self.roles.all():
+                    self.roles.append(role)
+        elif role := Role.query.filter_by(default=True).first():
+            if role not in self.roles.all():
+                self.roles.append(role)
+        elif roles:
+            for role in roles:
+                if role not in self.roles.all():
+                    self.roles.append(role)
+
 
 class AnonymousUser(AnonymousUserMixin):
     def can(self, _):
@@ -204,18 +222,6 @@ class AnonymousUser(AnonymousUserMixin):
 
     def is_administrator(self):
         return False
-
-
-@event.listens_for(User, "before_insert")
-def generate_uid(mapper, connection, target):
-    if target.role_uid is None:
-        if target.email == current_app.config["FLASKY_ADMIN"]:
-            if role := Role.administrator():
-                target.role_uid = role.uid
-
-        if target.role_uid is None:
-            if role := Role.query.filter_by(default=True).first():
-                target.role_uid = role.uid
 
 
 @login_manager.user_loader
