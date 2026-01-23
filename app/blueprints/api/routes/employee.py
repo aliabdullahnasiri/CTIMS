@@ -134,7 +134,7 @@ def add_employee() -> Response:
         user.birthday = form.birthday.data
 
         if role := Role.get("EMPLOYEE"):
-            user.role_uid = role.uid
+            user.update_roles([role])
 
         if form.password.data:
             user.set_password(form.password.data)
@@ -152,9 +152,6 @@ def add_employee() -> Response:
 
         user.avatar_path = url_for("static", filename=DEFAULT_AVATAR)
 
-        db.session.add(employee)
-        db.session.commit()
-
         if form.phones.data:
             employee.user.update_phones(json.loads(form.phones.data))
 
@@ -163,6 +160,10 @@ def add_employee() -> Response:
                 employee.user.update_files(json.loads(files))
             except json.JSONDecodeError as err:
                 console.print(err)
+                
+        db.session.add(employee)
+        db.session.commit()
+
 
         response["message"] = "Employee added successfully."
         response["title"] = "Added!"

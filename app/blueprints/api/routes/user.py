@@ -19,7 +19,6 @@ cols: List[Tuple[ColumnID, ColumnName]] = [
     (ColumnID("user_name"), ColumnName("User Name")),
     (ColumnID("birthday"), ColumnName("Birthday")),
     (ColumnID("age"), ColumnName("Age")),
-    (ColumnID("temp_role"), ColumnName("Role")),
 ]
 
 

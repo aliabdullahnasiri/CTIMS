@@ -44,6 +44,7 @@ def signup():
         user.email = form.email.data
 
         user.set_password(form.password.data)
+        user.update_roles()
 
         db.session.add(user)
         db.session.commit()

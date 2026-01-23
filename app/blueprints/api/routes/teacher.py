@@ -134,7 +134,7 @@ def add_teacher() -> Response:
         user.avatar_path = url_for("static", filename=DEFAULT_AVATAR)
 
         if role := Role.get("TEACHER"):
-            user.role_uid = role.uid
+            user.update_roles([role])
 
         if form.password.data:
             user.set_password(form.password.data)
