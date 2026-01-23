@@ -1,3 +1,4 @@
+from operator import call
 from typing import Dict
 
 from numerize.numerize import numerize
@@ -15,10 +16,16 @@ class Time(db.Model):
     end = db.Column(db.Time, nullable=True)
 
     classes = db.relationship(
-        "Class", back_populates="time", cascade="all, delete, delete-orphan"
+        "Class",
+        back_populates="time",
+        cascade="all, delete, delete-orphan",
+        lazy="dynamic",
     )
     teachers = db.relationship(
-        "Teacher", back_populates="time", cascade="all, delete, delete-orphan"
+        "Teacher",
+        back_populates="time",
+        cascade="all, delete, delete-orphan",
+        lazy="dynamic",
     )
 
     def to_dict(self) -> Dict:
@@ -27,7 +34,7 @@ class Time(db.Model):
             "description": self.description,
             "start": self.display_start_time,
             "end": self.display_end_time,
-            **super().to_dict(),
+            **call(getattr(super(), "to_dict")),
         }
 
     def __repr__(self):
@@ -43,21 +50,21 @@ class Time(db.Model):
 
     @property
     def display_number_of_classes(self) -> str:
-        return numerize(len(self.classes), decimals=2)
+        return numerize(self.classes.count(), decimals=2)
 
     @property
     def display_number_of_students(self) -> str:
         n = 0
 
-        for class_ in self.classes:
+        for class_ in self.classes.all():
             n += class_.number_of_students
 
         return numerize(n, decimals=2)
 
     @property
     def display_number_of_teachers(self) -> str:
-        return numerize(len(self.teachers), decimals=2)
+        return numerize(self.teachers.count())
 
     @property
     def students(self):
-        return [student for c in self.classes for student in c.students]
+        return [s for c in self.classes.all() for s in c.students]
