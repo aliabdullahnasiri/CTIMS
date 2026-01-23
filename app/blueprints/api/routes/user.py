@@ -216,6 +216,8 @@ def add_user() -> Response:
         if passwd := form.password.data:
             user.set_password(passwd)
 
+        user.update_roles()
+
         db.session.add(user)
         db.session.commit()
 
