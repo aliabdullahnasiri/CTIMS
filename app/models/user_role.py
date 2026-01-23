@@ -1,3 +1,5 @@
+from operator import call
+
 from sqlalchemy import UniqueConstraint
 
 from app.extensions import db
@@ -15,7 +17,7 @@ class UserRole(db.Model):
         return {
             "role_uid": self.role_uid,
             "user_uid": self.user_uid,
-            **super().to_dict(),
+            **call(getattr(super(), "to_dict")),
         }
 
     def __repr__(self):
