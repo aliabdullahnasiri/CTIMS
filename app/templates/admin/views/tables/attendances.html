@@ -24,7 +24,7 @@
     </tr>
   </thead>
   <tbody>
-    {% if attendances %} {% for a in attendances %}
+    {% if attendances.count() %} {% for a in attendances %}
     <tr>
       <td class="text-xs text-center">{{ a.uid }}</td>
       <td class="text-xs">{{ a.display_date }}</td>

@@ -24,7 +24,7 @@
     </tr>
   </thead>
   <tbody>
-    {% for e in employees %}
+    {% if employees.count() %} {% for e in employees %}
     <tr>
       <td class="text-center">
         <span class="text-xs">{{ e.uid }}</span>
@@ -51,6 +51,12 @@
         >
       </td>
     </tr>
-    {% endfor %}
+    {% endfor %} {% else %}
+    <tr class="no-rows-label">
+      <td colspan="4" class="py-4 text-center">
+        <span>No employees yet :(</span>
+      </td>
+    </tr>
+    {% endif %}
   </tbody>
 </table>

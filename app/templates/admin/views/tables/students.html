@@ -24,7 +24,7 @@
     </tr>
   </thead>
   <tbody>
-    {% if students %} {% for s in students %}
+    {% if students.count() %} {% for s in students %}
     <tr>
       <td class="text-xs text-center">{{ s.uid }}</td>
       <td>

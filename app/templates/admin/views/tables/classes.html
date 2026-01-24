@@ -24,7 +24,7 @@
     </tr>
   </thead>
   <tbody>
-    {% if classes %} {% for c in classes %}
+    {% if classes.count() %} {% for c in classes %}
     <tr>
       <td class="text-xs text-center">{{ c.uid }}</td>
       <td>

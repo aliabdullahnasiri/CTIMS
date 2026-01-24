@@ -24,7 +24,7 @@
     </tr>
   </thead>
   <tbody>
-    {% if files %} {% for f in files %}
+    {% if files.count() %} {% for f in files %}
     <tr>
       <td class="text-xs text-center">{{ f.id }}</td>
       <td class="text-xs">

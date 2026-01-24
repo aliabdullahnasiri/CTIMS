@@ -29,7 +29,7 @@
     </tr>
   </thead>
   <tbody>
-    {% if exams %} {% for s in exams %}
+    {% if exams.count() %} {% for s in exams %}
     <tr>
       <td class="text-xs text-center">{{ s.uid }}</td>
       <td class="text-xs">{{ s.title }}</td>
