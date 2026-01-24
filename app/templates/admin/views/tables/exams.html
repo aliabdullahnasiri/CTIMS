@@ -29,7 +29,7 @@
     </tr>
   </thead>
   <tbody>
-    {% if exams.count() %} {% for s in exams %}
+    {% for s in exams %}
     <tr>
       <td class="text-xs text-center">{{ s.uid }}</td>
       <td class="text-xs">{{ s.title }}</td>
@@ -37,12 +37,12 @@
       <td class="text-xs">{{ s.display_exam_date }}</td>
       <td class="text-xs">{{ s.display_exam_time }}</td>
     </tr>
-    {% endfor %} {% else %}
+    {% else %}
     <tr class="no-rows-label">
       <td colspan="5" class="py-4 text-center">
         <span>No exams yet :(</span>
       </td>
     </tr>
-    {% endif %}
+    {% endfor %}
   </tbody>
 </table>

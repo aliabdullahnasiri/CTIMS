@@ -24,7 +24,7 @@
     </tr>
   </thead>
   <tbody>
-    {% if teachers.count() %} {% for t in teachers %}
+    {% for t in teachers %}
     <tr>
       <td class="text-xs text-center">{{ t.uid }}</td>
       <td>
@@ -45,12 +45,12 @@
       <td class="text-xs">{{ t.user.age }}</td>
       <td class="text-xs">{{ t.display_salary }}</td>
     </tr>
-    {% endfor %} {% else %}
+    {% else %}
     <tr class="no-rows-label">
       <td colspan="4" class="py-4 text-center">
         <span>No teachers yet :(</span>
       </td>
     </tr>
-    {% endif %}
+    {% endfor %}
   </tbody>
 </table>

@@ -24,19 +24,19 @@
     </tr>
   </thead>
   <tbody>
-    {% if subjects.count() %} {% for s in subjects %}
+    {% for s in subjects %}
     <tr>
       <td class="text-xs text-center">{{ s.uid }}</td>
       <td class="text-xs">{{ s.name }}</td>
       <td class="text-xs">{{ s.credit }}</td>
       <td class="text-xs">{{ s.display_number_of_teachers }}</td>
     </tr>
-    {% endfor %} {% else %}
+    {% else %}
     <tr class="no-rows-label">
       <td colspan="4" class="py-4 text-center">
         <span>No subjects yet :(</span>
       </td>
     </tr>
-    {% endif %}
+    {% endfor %}
   </tbody>
 </table>

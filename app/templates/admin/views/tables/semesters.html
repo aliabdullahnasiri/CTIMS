@@ -34,7 +34,7 @@
     </tr>
   </thead>
   <tbody>
-    {% if semesters.count() %} {% for s in semesters %}
+    {% for s in semesters %}
     <tr>
       <td class="text-xs text-center">{{ s.uid }}</td>
       <td class="text-xs">{{ s.name }}</td>
@@ -43,12 +43,12 @@
       <td class="text-xs">{{ s.display_number_of_subjects }}</td>
       <td class="text-xs">{{ s.display_number_of_students }}</td>
     </tr>
-    {% endfor %} {% else %}
+    {% else %}
     <tr class="no-rows-label">
       <td colspan="6" class="py-4 text-center">
         <span>No semesters yet :(</span>
       </td>
     </tr>
-    {% endif %}
+    {% endfor %}
   </tbody>
 </table>

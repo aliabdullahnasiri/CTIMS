@@ -24,7 +24,7 @@
     </tr>
   </thead>
   <tbody>
-    {% if classes.count() %} {% for c in classes %}
+    {% for c in classes %}
     <tr>
       <td class="text-xs text-center">{{ c.uid }}</td>
       <td>
@@ -49,12 +49,12 @@
         {{ c.display_number_of_students }}
       </td>
     </tr>
-    {% endfor %} {% else %}
+    {% else %}
     <tr class="no-rows-label">
       <td colspan="4" class="py-4 text-center">
         <span>No classes yet :(</span>
       </td>
     </tr>
-    {% endif %}
+    {% endfor %}
   </tbody>
 </table>

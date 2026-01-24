@@ -24,7 +24,7 @@
     </tr>
   </thead>
   <tbody>
-    {% if attendances.count() %} {% for a in attendances %}
+    {% for a in attendances %}
     <tr>
       <td class="text-xs text-center">{{ a.uid }}</td>
       <td class="text-xs">{{ a.display_date }}</td>
@@ -36,12 +36,12 @@
         >
       </td>
     </tr>
-    {% endfor %} {% else %}
+    {% else %}
     <tr class="no-rows-label">
       <td colspan="4" class="py-4 text-center">
         <span>No classes yet :(</span>
       </td>
     </tr>
-    {% endif %}
+    {% endfor %}
   </tbody>
 </table>
