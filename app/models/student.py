@@ -29,6 +29,7 @@ class Student(db.Model):
             "middle_name": self.user.middle_name,
             "last_name": self.user.last_name,
             "full_name": self.user.full_name,
+            "user_name": self.user.user_name,
             "email": self.user.email,
             "birthday": self.user.display_birthday,
             "age": self.user.age,
