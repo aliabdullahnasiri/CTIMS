@@ -67,4 +67,12 @@ class Time(db.Model):
 
     @property
     def students(self):
-        return [s for c in self.classes.all() for s in c.students]
+        students = None
+
+        for cls in self.classes.all():
+            if students is None:
+                students = cls.students
+            else:
+                students.union(cls.students)
+
+        return students
