@@ -4,6 +4,7 @@ from typing import Dict
 from numerize.numerize import numerize
 
 from app.extensions import db
+from app.models.student import Student
 
 
 class Time(db.Model):
@@ -67,7 +68,7 @@ class Time(db.Model):
 
     @property
     def students(self):
-        students = None
+        students = db.session.query(Student)
 
         for cls in self.classes.all():
             if students is None:
