@@ -39,16 +39,16 @@ class Role(db.Model):
         if not role:
             role = cls()
 
-        role.name = name
+            role.name = name
 
-        db.session.add(role)
-        db.session.commit()
+            db.session.add(role)
+            db.session.commit()
 
         return role
 
     @classmethod
     def administrator(cls):
-        return cls.query.filter_by(name="ADMINISTRATOR").scalar()
+        return cls.get(name="ADMINISTRATOR")
 
     def to_dict(self) -> dict:
         readonly = []
