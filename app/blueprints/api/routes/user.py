@@ -1,11 +1,10 @@
 import json
 from typing import Dict, List, Tuple, Union
 
-from flask import Response, request, url_for
+from flask import Response, request
 from flask_login import login_required
 
 from app.blueprints.api import bp
-from app.constants import DEFAULT_AVATAR
 from app.extensions import console, db
 from app.forms.user import AddUserForm, UpdateUserForm
 from app.functions import render_td
