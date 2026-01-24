@@ -134,13 +134,13 @@
         <div class="row gx-0 mb-2 mt-5">
           <div role="tab-container">
             <!--Students-->
-            {% with students = time.students %} {% include
+            {% with students = time.students.all() %} {% include
             "admin/views/tabs/students.html" %}{% endwith %}
             <!--Teachers-->
-            {% with teachers = time.teachers %} {% include
+            {% with teachers = time.teachers.all() %} {% include
             "admin/views/tabs/teachers.html" %}{% endwith %}
             <!--Classes-->
-            {% with classes = time.classes %} {% include
+            {% with classes = time.classes.all() %} {% include
             "admin/views/tabs/classes.html" %}{% endwith %}
           </div>
         </div>
