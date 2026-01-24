@@ -92,6 +92,7 @@ class User(UserMixin, db.Model):
             "avatar": self.avatar_src,
             "files": [f.to_dict() for f in self.files.all()],
             "phones": [p.number for p in self.phones.all()],
+            "roles": [r.uid for r in self.roles.all()],
             **call(getattr(super(), "to_dict")),
         }
 
@@ -196,10 +197,15 @@ class User(UserMixin, db.Model):
         elif role := Role.query.filter_by(default=True).first():
             if role not in self.roles.all():
                 self.roles.append(role)
-        elif roles:
+        elif type(roles) is list:
+            for r in self.roles.all():
+                if r.uid not in roles:
+                    self.roles.remove(r)
+
             for role in roles:
-                if role not in self.roles.all():
-                    self.roles.append(role)
+                if not self.roles.filter_by(uid=role).count():
+                    if r := Role.query.filter_by(uid=role).scalar():
+                        self.roles.append(r)
 
 
 class AnonymousUser(AnonymousUserMixin):
