@@ -203,9 +203,8 @@ class User(UserMixin, db.Model):
                     self.roles.remove(r)
 
             for role in roles:
-                if not self.roles.filter_by(uid=role).count():
-                    if r := Role.query.filter_by(uid=role).scalar():
-                        self.roles.append(r)
+                if role not in self.roles.all():
+                    self.roles.append(role)
 
 
 class AnonymousUser(AnonymousUserMixin):
