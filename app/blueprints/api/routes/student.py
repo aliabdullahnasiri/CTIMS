@@ -132,18 +132,17 @@ def add_student() -> Response:
         user.birthday = form.birthday.data
         user.avatar_path = url_for("static", filename=DEFAULT_AVATAR)
 
-        if role := Role.get("STUDENT"):
-            user.update_roles([role])
-
         if form.password.data:
             user.set_password(form.password.data)
+
+        if role := Role.get("STUDENT"):
+            user.update_roles([role])
 
         db.session.add(user)
         db.session.commit()
 
         student = Student()
-
-        student.user_id = user.uid
+        student.user_id = getattr(user, "uid")
         student.class_id = form.class_id.data
 
         db.session.add(student)
@@ -158,10 +157,12 @@ def add_student() -> Response:
             except json.JSONDecodeError as err:
                 console.print(err)
 
+        db.session.commit()
+
         response["message"] = "Student added successfully"
         response["category"] = "success"
         response["title"] = "Student Added"
-        response["id"] = student.uid
+        response["id"] = getattr(user, "uid")
 
     else:
         response["errors"] = form.errors
@@ -192,9 +193,9 @@ def update_student() -> Response:
             student.user.email = form.email.data
             student.user.birthday = form.birthday.data
             student.class_id = form.class_id.data
-            student.user.set_password(form.password.data)
 
-            db.session.commit()
+            if form.password.data:
+                student.user.set_password(form.password.data)
 
             if form.phones.data:
                 student.user.update_phones(json.loads(form.phones.data))
@@ -204,6 +205,8 @@ def update_student() -> Response:
                     student.user.update_files(json.loads(files))
                 except json.JSONDecodeError as err:
                     console.print(err)
+
+            db.session.commit()
 
             response["title"] = "Updated!"
             response["category"] = "success"
