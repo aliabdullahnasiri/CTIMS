@@ -193,6 +193,7 @@ class Base(db.Model):
 
     def to_dict(self):
         return {
+            "id": self.id,
             "uid": self.uid,
             "created_at": self.display_created_at,
             "updated_at": self.display_updated_at,
