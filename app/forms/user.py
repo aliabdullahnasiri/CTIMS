@@ -1,4 +1,5 @@
 import json
+import re
 from operator import and_
 
 from flask_wtf import FlaskForm
@@ -17,6 +18,7 @@ from wtforms.validators import DataRequired, Email, Length, Optional
 
 from app.extensions import db
 from app.models.phone import Phone
+from app.models.role import Role
 from app.models.user import User
 
 
@@ -35,6 +37,7 @@ class AddUserForm(FlaskForm):
 
     files = MultipleFileField("Files")
     phones = StringField("Phone", validators=[Optional()])
+    roles = StringField("Roles", validators=[Optional()])
 
     submit = SubmitField("Add")
 
@@ -62,6 +65,16 @@ class AddUserForm(FlaskForm):
 
                 raise ValidationError(f"Duplicate entry {num!r} for phone number!")
 
+    def validate_roles(self, roles):
+        roles = json.loads(roles.data)
+        pattern: re.Pattern = re.compile(r"^R.\d{6}$")
+
+        for role in roles:
+            if not pattern.search(role):
+                raise ValidationError(f"Not a valid Role ID.")
+            elif not Role.query.filter_by(uid=role).first():
+                raise ValidationError("Role with the given ID was not found :(")
+
 
 class UpdateUserForm(AddUserForm):
     uid = HiddenField("UID", validators=[DataRequired()])
@@ -75,7 +88,10 @@ class UpdateUserForm(AddUserForm):
         if (
             db.session.query(User)
             .filter(
-                and_(User.uid != self.user_uid.data, User.user_name == user_name.data)
+                and_(
+                    getattr(User, "uid") != self.user_uid.data,
+                    User.user_name == user_name.data,
+                )
             )
             .first()
         ):
@@ -83,7 +99,7 @@ class UpdateUserForm(AddUserForm):
 
     def validate_email(self, email):
         if User.query.filter(
-            and_(User.uid != self.user_uid.data, User.email == email.data)
+            and_(getattr(User, "uid") != self.user_uid.data, User.email == email.data)
         ).first():
             raise ValidationError("Email already registered!")
 
