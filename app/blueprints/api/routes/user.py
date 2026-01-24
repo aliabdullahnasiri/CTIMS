@@ -145,6 +145,12 @@ def update_user() -> Response:
                 except json.JSONDecodeError as err:
                     console.print(err)
 
+            if form.phones.data:
+                user.update_phones(json.loads(form.phones.data))
+
+            if form.roles.data:
+                user.update_roles(json.loads(form.roles.data))
+
             db.session.commit()
 
             response["title"] = "Good job!"
@@ -225,7 +231,7 @@ def add_user() -> Response:
         response["message"] = "User added successfully"
         response["category"] = "success"
         response["title"] = "User Added"
-        response["id"] = user.uid
+        response["id"] = getattr(user, "uid")
 
     else:
         response["errors"] = form.errors
