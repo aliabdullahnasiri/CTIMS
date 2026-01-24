@@ -68,7 +68,7 @@ class Time(db.Model):
 
     @property
     def students(self):
-        students = db.session.query(Student)
+        students = None
 
         for cls in self.classes.all():
             if students is None:
@@ -76,4 +76,4 @@ class Time(db.Model):
             else:
                 students.union(cls.students)
 
-        return students
+        return students or db.session.query(self.__class__).filter_by(id=False)
