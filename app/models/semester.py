@@ -63,8 +63,7 @@ class Semester(db.Model):
     @property
     def display_number_of_teachers(self):
         return numerize(
-            len({t.teacher.uid for s in self.get_all_subjects() for t in s.teachings}),
-            decimals=2,
+            sum({subject.teachers.count() for subject in self.get_all_subjects()})
         )
 
     @property

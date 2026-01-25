@@ -37,15 +37,8 @@ class AddTeacherForm(AddUserForm):
             if not pattern.search(uid):
                 raise ValidationError(f"Not a valid Subject UID {uid!r}.")
 
-            if not (
-                db.session.query(Subject)
-                .filter(
-                    Subject.uid == uid,
-                )
-                .first()
-            ):
-
-                raise ValidationError("Teacher with the given ID was not found :(")
+            if not db.session.query(Subject).filter_by(uid=uid).count():
+                raise ValidationError("Subject with the given ID was not found :(")
 
 
 class UpdateTeacherForm(UpdateUserForm, AddTeacherForm):
