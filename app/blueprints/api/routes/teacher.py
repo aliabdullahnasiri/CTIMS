@@ -144,7 +144,7 @@ def add_teacher() -> Response:
 
         teacher: Teacher = Teacher()
 
-        teacher.user_uid = user.uid
+        teacher.user_uid = getattr(user, "uid")
         teacher.salary = form.salary.data
         teacher.time_id = form.time_id.data
 
@@ -167,7 +167,7 @@ def add_teacher() -> Response:
         response["message"] = "Teacher added successfully."
         response["title"] = "Added!"
         response["category"] = "success"
-        response["id"] = teacher.uid
+        response["id"] = getattr(teacher, "uid")
 
     else:
         response["errors"] = form.errors

@@ -1,6 +1,8 @@
 from operator import call
 from typing import List
 
+from numerize.numerize import numerize
+
 from app.constants import CURRENCY_SYMBOL
 from app.extensions import db
 from app.models.subject import Subject
@@ -47,6 +49,14 @@ class Teacher(db.Model):
             return False
         avg_salary = sum(salaries) / len(salaries)
         return float(self.salary) > avg_salary
+
+    @property
+    def display_number_of_classes(self):
+        return numerize(self.classes.count())
+
+    @property
+    def display_number_of_subjects(self):
+        return numerize(getattr(self, "subjects").count())
 
     def to_dict(self):
         dct = {
