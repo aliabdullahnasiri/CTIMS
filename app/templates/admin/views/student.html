@@ -55,10 +55,11 @@
                   </div>
                 </div>
               </div>
+              {% if student.user.phones.count() > 0 %}
               <hr class="bg-dark horizontal my-0 opacity-10" />
               <div class="card-footer py-2 px-1">
                 <div class="values d-flex flex-wrap justify-content-center">
-                  {% for phone in student.user.phones %}
+                  {% for phone in student.user.phones.all() %}
                   <span
                     class="badge badge-sm bg-gradient-secondary mx-1 my-1 cursor-pointer"
                     data-role="value"
@@ -67,6 +68,7 @@
                   {% endfor %}
                 </div>
               </div>
+              {% endif %}
             </div>
           </div>
         </div>
