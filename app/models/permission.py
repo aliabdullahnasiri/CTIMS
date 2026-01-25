@@ -1,6 +1,7 @@
 from operator import call
 from typing import Any, Dict
 
+from app.constants import ADMINISTER
 from app.extensions import db
 
 
@@ -44,7 +45,7 @@ class Permission(db.Model):
                                 else 0
                             ),
                         )
-                        if key == "ADMINISTER"
+                        if key == ADMINISTER
                         else (key, value)
                     )
                     for key, value in Permission.permissions.items()
@@ -55,7 +56,7 @@ class Permission(db.Model):
 
         return (permission := cls.permissions.get(name, 0x0)) << (
             1
-            if name == "ADMINISTER"
+            if name == ADMINISTER
             and permission
             <= max(
                 {value for key, value in cls.permissions.items() if key != name} | {0x0}
@@ -65,7 +66,7 @@ class Permission(db.Model):
 
     @classmethod
     def administer(cls):
-        return cls.get("ADMINISTER")
+        return cls.get(ADMINISTER)
 
     @staticmethod
     def refresh():

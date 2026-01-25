@@ -56,6 +56,11 @@ import { createLoader } from "./script.js";
           ).forEach((input) => {
             let val = data[input.id];
 
+            input.disabled = false;
+            if (Array.from(readonly).includes(input.id)) {
+              input.disabled = true;
+            }
+
             switch (input.type) {
               case "checkbox":
                 input.checked = val ? true : false;
@@ -121,11 +126,8 @@ import { createLoader } from "./script.js";
                   let multiValueInput = input.closest("div.multi-value-input");
 
                   if (multiValueInput) {
-                    input.disabled = false;
                     multiValueInput.classList.remove("readonly");
-
                     if (Array.from(readonly).includes(input.id)) {
-                      input.disabled = true;
                       multiValueInput.classList.add("readonly");
                     }
 
@@ -135,7 +137,7 @@ import { createLoader } from "./script.js";
                     Array.from(val).forEach((v) => {
                       const spanElement = document.createElement("span");
                       spanElement.classList.value =
-                        "badge badge-sm bg-gradient-secondary mx-2 my-2 cursor-pointer";
+                        "badge badge-sm bg-gradient-secondary mx-2 my-2";
                       spanElement.innerHTML = v;
                       spanElement.dataset.role = "value";
 

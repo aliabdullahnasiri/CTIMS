@@ -39,3 +39,7 @@ class Config:
     UID_PATTERN: re.Pattern = re.compile(r"^..\d{6}$")
 
     FLASKY_ADMIN: str = "nasiri.aliabdullah@gmail.com"
+
+    ADMINISTRATOR: str = "ADMINISTRATOR"
+
+    ADMINISTER: str = "ADMINISTER"

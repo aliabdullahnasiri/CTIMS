@@ -257,3 +257,11 @@ div[data-bs-role="loader"]::after {
       50% 50%;
   }
 }
+
+.multi-value-input:has(:not(.readonly)) span[data-role="value"] {
+  cursor: pointer;
+}
+
+.multi-value-input.readonly span[data-role="value"] {
+  cursor: not-allowed;
+}

@@ -1,6 +1,9 @@
 from operator import call
 from typing import Any
 
+from flask import current_app
+
+from app.constants import ADMINISTRATOR
 from app.extensions import db
 from app.models.permission import Permission
 
@@ -25,7 +28,7 @@ class Role(db.Model):
 
         for permission in (
             Permission.permissions.values()
-            if self.name == "ADMINISTRATOR"
+            if self.name == ADMINISTRATOR
             else [p.hex_permission for p in self.permissions.all()]
         ):
             permissions |= permission
@@ -48,13 +51,15 @@ class Role(db.Model):
 
     @classmethod
     def administrator(cls):
-        return cls.get(name="ADMINISTRATOR")
+        return cls.get(name=ADMINISTRATOR)
 
     def to_dict(self) -> dict:
         readonly = []
 
         if self == self.administrator():
             readonly.append("permissions")
+            readonly.append("name")
+            readonly.append("default")
 
         return {
             "name": self.name,
@@ -64,7 +69,7 @@ class Role(db.Model):
                 p.uid
                 for p in (
                     Permission.query.all()
-                    if self.name == "ADMINISTRATOR"
+                    if self.name == ADMINISTRATOR
                     else self.permissions.all()
                 )
             ],
