@@ -132,6 +132,7 @@ def add_employee() -> Response:
         user.email = form.email.data
         user.user_name = form.user_name.data
         user.birthday = form.birthday.data
+        user.avatar_path = url_for("static", filename=DEFAULT_AVATAR)
 
         if role := Role.get("EMPLOYEE"):
             user.update_roles([role])
@@ -143,14 +144,13 @@ def add_employee() -> Response:
         db.session.commit()
 
         employee: Employee = Employee()
-        employee.user_uid = user.uid
+        employee.user_uid = getattr(user, "uid")
         employee.address = form.address.data
         employee.salary = form.salary.data
+        employee.job_uid = form.job_uid.data if form.job_uid.data else None
 
-        if form.job_uid.data:
-            employee.job_uid = form.job_uid.data
-
-        user.avatar_path = url_for("static", filename=DEFAULT_AVATAR)
+        db.session.add(employee)
+        db.session.commit()
 
         if form.phones.data:
             employee.user.update_phones(json.loads(form.phones.data))
@@ -160,15 +160,13 @@ def add_employee() -> Response:
                 employee.user.update_files(json.loads(files))
             except json.JSONDecodeError as err:
                 console.print(err)
-                
-        db.session.add(employee)
-        db.session.commit()
 
+        db.session.commit()
 
         response["message"] = "Employee added successfully."
         response["title"] = "Added!"
         response["category"] = "success"
-        response["id"] = employee.uid
+        response["id"] = getattr(employee, "uid")
 
     else:
         response["errors"] = form.errors
@@ -205,7 +203,7 @@ def update_employee() -> Response:
 
             if form.password.data:
                 employee.user.set_password(form.password.data)
-                
+
             if form.phones.data:
                 employee.user.update_phones(json.loads(form.phones.data))
 
@@ -216,7 +214,6 @@ def update_employee() -> Response:
                     console.print(err)
 
             db.session.commit()
-
 
             response.response = json.dumps(
                 {
