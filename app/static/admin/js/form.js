@@ -473,15 +473,8 @@ export function upload(files, dropZone) {
           .classList.contains("readonly")
       )
         event.target.remove();
-    } else if (
-      (event.target.tagName == "BUTTON" &&
-        event.target.closest("div.drop-zone") &&
-        event.target.classList.contains("delete-item")) ||
-      (event.target.tagName == "I" &&
-        event.target.closest("button.delete-item") &&
-        event.target.closest("div.drop-zone"))
-    ) {
-      let liElement = event.target.closest("li[data-url]");
+    } else if (event.target.closest("button[data-role=delete-file]")) {
+      let liElement = event.target.closest("li[data-url],li[data-uid]");
 
       if (liElement) liElement.remove();
     } else if (
