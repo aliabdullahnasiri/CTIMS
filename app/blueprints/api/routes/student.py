@@ -190,6 +190,7 @@ def update_student() -> Response:
             student.user.first_name = form.first_name.data
             student.user.middle_name = form.middle_name.data
             student.user.last_name = form.last_name.data
+            student.user.user_name = form.user_name.data
             student.user.email = form.email.data
             student.user.birthday = form.birthday.data
             student.class_id = form.class_id.data
