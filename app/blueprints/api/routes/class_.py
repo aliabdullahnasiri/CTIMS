@@ -132,7 +132,7 @@ def add_class() -> Response:
         response["message"] = "Class added successfully."
         response["title"] = "Added!"
         response["category"] = "success"
-        response["id"] = class_.uid
+        response["id"] = getattr(class_, "uid")
 
     else:
         response["errors"] = form.errors
