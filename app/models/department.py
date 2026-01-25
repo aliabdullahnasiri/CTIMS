@@ -127,10 +127,13 @@ class Department(db.Model):
     @property
     def display_number_of_all_teachers(self):
         return numerize(
-            sum(
-                subject.teachers.count()
-                for semester in self.get_all_semesters()
-                for subject in semester.subjects.all()
+            len(
+                {
+                    teacher
+                    for semester in self.get_all_semesters()
+                    for subject in semester.subjects.all()
+                    for teacher in subject.teachers
+                }
             )
         )
 
@@ -150,7 +153,13 @@ class Department(db.Model):
     @property
     def display_number_of_teachers(self):
         return numerize(
-            sum(subject.teachers.count() for subject in self.subjects.all())
+            len(
+                {
+                    teacher
+                    for subject in self.subjects.all()
+                    for teacher in subject.teachers.all()
+                }
+            )
         )
 
     @property
@@ -224,24 +233,24 @@ class Department(db.Model):
         return subjects
 
     def get_all_students(self):
-        return [
+        return {
             student
             for semester in self.get_all_semesters()
             for _class in semester.classes.all()
             for student in _class.students.all()
-        ]
+        }
 
     def get_all_teachers(self):
-        return [
+        return {
             teacher
             for semester in self.get_all_semesters()
             for subject in semester.subjects.all()
             for teacher in subject.teachers
-        ]
+        }
 
     def get_all_classes(self):
-        return [
+        return {
             _class
             for semester in self.get_all_semesters()
             for _class in semester.classes.all()
-        ]
+        }
