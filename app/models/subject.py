@@ -6,7 +6,6 @@ from numerize.numerize import numerize
 
 from app.extensions import db
 from app.models.file import File
-from app.models.teaching import Teaching
 from app.models.user import User
 
 
@@ -79,20 +78,6 @@ class Subject(db.Model):
             total += f.size
 
         return humanize.naturalsize(total)
-
-    def update_teachers(self, teachers: List[str]):
-        for t in self.teachers.all():
-            if t.uid not in teachers:
-                self.teachers.remove(t)
-
-        for t in teachers:
-            if self.teachers.filter_by(uid=t).scalar():
-                continue
-
-            teaching = Teaching()
-            teaching.teacher_id = t
-
-            self.teachers.add(teaching)
 
     def update_files(self, files: Dict[str, Union[int, List[int]]]) -> None:
         return call(getattr(User, "update_files"), self, files)
