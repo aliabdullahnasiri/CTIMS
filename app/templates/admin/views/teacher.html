@@ -245,16 +245,16 @@
         <div class="row gx-0 mb-2 mt-5">
           <div role="tab-container">
             <!--TEACHERS-->
-            {% with subjects = teacher.subjects %} {% include
+            {% with subjects = teacher.subjects.all() %} {% include
             "admin/views/tabs/subjects.html" %}{% endwith %}
             <!--CLASSES-->
-            {% with classes = teacher.classes %} {% include
+            {% with classes = teacher.classes.all() %} {% include
             "admin/views/tabs/classes.html" %}{% endwith %}
             <!--ATTENDANCES-->
-            {% with attendances= teacher.attendances %} {% include
+            {% with attendances= teacher.attendances.all() %} {% include
             "admin/views/tabs/attendances.html" %}{% endwith %}
             <!--FILES-->
-            {% with files = teacher.files %} {% include
+            {% with files = teacher.user.files.all() %} {% include
             "admin/views/tabs/files.html" %}{% endwith %}
           </div>
         </div>

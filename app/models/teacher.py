@@ -85,7 +85,6 @@ class Teacher(db.Model):
     def update_subjects(self, subjects: List[str]):
         __subjects__ = getattr(self, "subjects")
 
-        print(list(__subjects__.all()))
         for subject in __subjects__.all():
             if subject.uid not in subjects:
                 __subjects__.remove(subject)

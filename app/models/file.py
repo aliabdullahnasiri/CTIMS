@@ -24,7 +24,6 @@ class File(db.Model):
     file_description = db.Column(db.String(255))
     file_for = db.Column(db.String(8))
     file_url = db.Column(db.String(255), nullable=False)
-    hexdigest = db.Column(db.String(64), nullable=False, index=True)
 
     user = db.relationship("User", back_populates="files")
 

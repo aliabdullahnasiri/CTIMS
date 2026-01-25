@@ -11,6 +11,7 @@ from numerize import numerize
 from app.constants import DEFAULT_AVATAR
 from app.extensions import bcrypt, db, login_manager
 from app.functions import get_file_url
+from app.models.file import File
 from app.models.permission import Permission
 from app.models.phone import Phone
 from app.models.role import Role
@@ -186,8 +187,8 @@ class User(UserMixin, db.Model):
                             db.session.delete(file)
 
                     for val in value:
-                        if file := self.files.filter_by(id=val).scalar():
-                            file.file_for = getattr(self, "uid")
+                        if file := File.query.filter_by(id=int(val)).scalar():
+                            file.user = self
 
     def update_roles(self, roles: Union[List[Role], None] = None):
         if self.email == current_app.config["FLASKY_ADMIN"]:

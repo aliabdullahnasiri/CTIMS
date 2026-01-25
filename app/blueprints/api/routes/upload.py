@@ -1,4 +1,3 @@
-import hashlib
 import json
 import os
 import re
@@ -42,26 +41,20 @@ def upload() -> Response:
 
         filename = f"{uuid.uuid4()}{ext}"
 
-        hexdigest = hashlib.file_digest(file, "sha256").hexdigest()
-
-        if f := File.query.filter_by(hexdigest=hexdigest).first():
-            file_url = f.file_url
-        else:
-            file.save(
-                os.path.join(
-                    dst,
-                    secure_filename(filename),
-                )
+        file.save(
+            os.path.join(
+                dst,
+                secure_filename(filename),
             )
-            file_url = url_for("static", filename=f"uploads/{today}/{filename}")
+        )
 
         f = File()
+
         f.user_id = current_user.uid
         f.file_name = request.form.get("filename", filename)
         f.file_description = request.form.get("file_description")
         f.file_for = request.form.get("file_for")
-        f.file_url = file_url
-        f.hexdigest = hexdigest
+        f.file_url = url_for("static", filename=f"uploads/{today}/{filename}")
 
         db.session.add(f)
         db.session.commit()
