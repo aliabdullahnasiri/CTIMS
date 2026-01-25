@@ -1,12 +1,12 @@
 from operator import call
-from typing import Dict, List, Union
+from typing import Dict, List
 
 import humanize
 from numerize.numerize import numerize
+from sqlalchemy import func
 
 from app.extensions import db
 from app.models.file import File
-from app.models.user import User
 
 
 class Subject(db.Model):
@@ -32,12 +32,12 @@ class Subject(db.Model):
         cascade="all, delete, delete-orphan",
         lazy="dynamic",
     )
-
-    @property
-    def files(self):
-        return [
-            file for file in File.query.filter_by(file_for=getattr(self, "uid")).all()
-        ]
+    files = db.relationship(
+        "File",
+        secondary="subjects_files",
+        backref=db.backref("subjects", lazy="dynamic"),
+        lazy="dynamic",
+    )
 
     @property
     def department(self):
@@ -51,7 +51,7 @@ class Subject(db.Model):
             "department_uid": self.department.uid,
             "semester_uid": self.semester_id,
             "teachers": [t.uid for t in self.teachers.all()],
-            "files": [f.to_dict() for f in self.files],
+            "files": [f.to_dict() for f in self.files.all()],
             **call(getattr(super(), "to_dict")),
         }
 
@@ -68,16 +68,25 @@ class Subject(db.Model):
 
     @property
     def display_number_of_files(self):
-        return numerize(len(self.files), decimals=2)
+        return numerize(self.files.count())
 
     @property
     def total_file_size(self) -> str:
         total: int = 0
 
-        for f in self.files:
+        for f in self.files.all():
             total += f.size
 
         return humanize.naturalsize(total)
 
-    def update_files(self, files: Dict[str, Union[int, List[int]]]) -> None:
-        return call(getattr(User, "update_files"), self, files)
+    def update_files(self, files: Dict[str, List[int]]) -> None:
+        for key, vals in files.items():
+            match key:
+                case "files" if type(vals) == list:
+                    for file in self.files.all():
+                        if file.id not in vals:
+                            db.session.delete(file)
+
+                    for val in vals:
+                        if file := File.query.filter_by(id=int(val)).scalar():
+                            self.files.append(file)

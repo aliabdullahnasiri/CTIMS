@@ -91,3 +91,19 @@ class File(db.Model):
 
     def __repr__(self):
         return f"<File name={self.file_name!r} size={self.human_size!r}>"
+
+
+class SubjectFile(db.Model):
+    __tablename__ = "subjects_files"
+
+    uid = None
+    file_id = db.Column(db.Integer, db.ForeignKey("files.id"), nullable=False)
+    subject_id = db.Column(db.String(8), db.ForeignKey("subjects.uid"), nullable=False)
+
+    def to_dict(self) -> dict:
+        return {
+            **call(getattr(super(), "to_dict")),
+        }
+
+    def __repr__(self):
+        return f"<SubjectFile {self.file_id!r} {self.subject_id!r}>"

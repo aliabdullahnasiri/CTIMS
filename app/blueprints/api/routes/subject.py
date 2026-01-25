@@ -129,10 +129,6 @@ def add_subject() -> Response:
             subject.credit = form.credit.data
 
         db.session.add(subject)
-        db.session.commit()
-
-        if form.teachers.data:
-            subject.update_teachers(json.loads(form.teachers.data))
 
         if files := request.form.get("files"):
             try:
@@ -140,10 +136,12 @@ def add_subject() -> Response:
             except json.JSONDecodeError as err:
                 console.print(err)
 
+        db.session.commit()
+
         response["message"] = "Subject added successfully"
         response["category"] = "success"
         response["title"] = "Subject Added"
-        response["id"] = subject.uid
+        response["id"] = getattr(subject, "uid")
 
     else:
         response["errors"] = form.errors
@@ -174,16 +172,13 @@ def update_subject() -> Response:
             if form.credit:
                 subject.credit = form.credit.data
 
-            db.session.commit()
-
-            if form.teachers.data:
-                subject.update_teachers(json.loads(form.teachers.data))
-
             if files := request.form.get("files"):
                 try:
                     subject.update_files(json.loads(files))
                 except json.JSONDecodeError as err:
                     console.print(err)
+
+            db.session.commit()
 
             response["title"] = "Updated!"
             response["category"] = "success"
