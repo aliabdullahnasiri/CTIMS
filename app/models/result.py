@@ -21,7 +21,7 @@ class Result(db.Model):
             "obtained_marks": self.obtained_marks,
             "exam_id": self.exam_id,
             "student_id": self.student_id,
-            "student_name": self.student.full_name,
+            "student_name": self.student.user.full_name,
             "percentage": self.display_percentage,
             "status": self.status,
             **call(getattr(super(), "to_dict")),
