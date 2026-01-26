@@ -1,5 +1,5 @@
 from operator import call
-from typing import Any
+from typing import Any, List
 
 from flask import current_app
 
@@ -54,11 +54,10 @@ class Role(db.Model):
         return cls.get(name=ADMINISTRATOR)
 
     def to_dict(self) -> dict:
-        readonly = []
+        readonly: List[str] = ["name"]
 
         if self == self.administrator():
             readonly.append("permissions")
-            readonly.append("name")
             readonly.append("default")
 
         return {
