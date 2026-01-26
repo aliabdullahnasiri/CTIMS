@@ -9,6 +9,7 @@ from app.extensions import console, db
 from app.forms.user import AddUserForm, UpdateUserForm
 from app.functions import render_td
 from app.models.permission import Permission
+from app.models.role import Role
 from app.models.user import User, permission_required
 from app.types import ColumnID, ColumnName
 
@@ -149,7 +150,13 @@ def update_user() -> Response:
                 user.update_phones(json.loads(form.phones.data))
 
             if form.roles.data:
-                user.update_roles(json.loads(form.roles.data))
+                user.update_roles(
+                    [
+                        role
+                        for uid in json.loads(form.roles.data)
+                        if (role := Role.query.filter_by(uid=uid).scalar())
+                    ]
+                )
 
             db.session.commit()
 
