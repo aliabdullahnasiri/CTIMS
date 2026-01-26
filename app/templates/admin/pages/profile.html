@@ -87,7 +87,9 @@
 
 {% block modal %}
 {{ super() }}
+{% with profile = True  %}
 {% include "admin/components/modals/update/user.html" %}
+{% endwith %}
 {% endblock %}
 
 
