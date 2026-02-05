@@ -195,6 +195,10 @@ tr[data-role="skeleton"] {
   height: 64px;
 }
 
+body:has(div[data-bs-role="loader"]) {
+  overflow: hidden;
+}
+
 div[data-bs-role="loader"] {
   display: grid;
   justify-content: center;
