@@ -1,4 +1,4 @@
-<div class="col-lg-4 col-md-6 mt-4 mb-4">
+<div class="col-lg-8 col-md-6 mt-4 mb-4">
   <div class="card">
     <div class="card-body">
       <h6 class="mb-0">Students</h6>
@@ -9,7 +9,7 @@
             id="yearly-students"
             class="chart-canvas"
             height="170"
-            data-get="{{ url_for('api.yearly_students') }}"
+            data-get="{{ url_for('api.yearly', index=0) }}"
           ></canvas>
         </div>
       </div>
