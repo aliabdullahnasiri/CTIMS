@@ -4,9 +4,9 @@ import re
 from wtforms import DecimalField, HiddenField, StringField, SubmitField, ValidationError
 from wtforms.validators import DataRequired, Length, NumberRange, Optional
 
-from app.extensions import db
+from app.extensions.db import db
 from app.forms.user import AddUserForm, UpdateUserForm
-from app.functions import validate_uid
+from app.func import validate_uid
 from app.models.subject import Subject
 from app.models.time import Time
 

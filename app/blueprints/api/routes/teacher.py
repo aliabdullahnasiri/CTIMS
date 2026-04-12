@@ -8,12 +8,12 @@ from app.blueprints.api import bp
 from app.const import DEFAULT_AVATAR
 from app.extensions import console, db
 from app.forms.teacher import AddTeacherForm, UpdateTeacherForm
-from app.functions import render_td
+from app.func import render_td
 from app.models.permission import Permission
 from app.models.role import Role
 from app.models.teacher import Teacher
 from app.models.user import User, permission_required
-from app.types import ColumnID, ColumnName
+from app.cls import ColumnID, ColumnName
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
     (ColumnID("uid"), ColumnName("UID")),

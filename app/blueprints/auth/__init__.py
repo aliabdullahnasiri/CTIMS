@@ -2,7 +2,7 @@ from flask import Blueprint, flash, redirect, render_template, url_for
 from flask_bcrypt import check_password_hash
 from flask_login import current_user, login_required, login_user, logout_user
 
-from app.extensions import db
+from app.extensions.db import db
 from app.forms.login import LoginForm
 from app.forms.signup import SignupForm
 from app.models.user import User

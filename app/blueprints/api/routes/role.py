@@ -6,13 +6,13 @@ from flask_login import login_required
 
 from app.blueprints.api import bp
 from app.const import ADMINISTRATOR
-from app.extensions import db
+from app.extensions.db import db
 from app.forms.role import UpdateRoleForm
-from app.functions import render_td
+from app.func import render_td
 from app.models.permission import Permission
 from app.models.role import Role
 from app.models.user import permission_required
-from app.types import ColumnID, ColumnName
+from app.cls import ColumnID, ColumnName
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
     (ColumnID("uid"), ColumnName("UID")),

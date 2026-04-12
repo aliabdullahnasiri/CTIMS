@@ -5,7 +5,7 @@ from flask_wtf import FlaskForm
 from wtforms import HiddenField, StringField, SubmitField, ValidationError
 from wtforms.validators import DataRequired, Length
 
-from app.extensions import db
+from app.extensions.db import db
 from app.models.class_ import Class
 from app.models.semester import Semester
 from app.models.teacher import Teacher

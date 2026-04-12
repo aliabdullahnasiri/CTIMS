@@ -6,7 +6,7 @@ from flask_login import login_required
 from sqlalchemy import extract, func
 
 from app.blueprints.api import bp
-from app.extensions import db
+from app.extensions.db import db
 from app.models.class_ import Class
 from app.models.student import Student
 from app.models.user import User

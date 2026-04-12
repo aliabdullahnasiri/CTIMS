@@ -9,7 +9,7 @@ from flask import Response, current_app, request, url_for
 from flask_login import current_user, login_required
 from werkzeug.utils import secure_filename
 
-from app.extensions import db
+from app.extensions.db import db
 from app.models.file import File
 from app.models.permission import Permission
 from app.models.user import permission_required

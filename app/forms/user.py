@@ -16,7 +16,7 @@ from wtforms import (
 )
 from wtforms.validators import DataRequired, Email, Length, Optional
 
-from app.extensions import db
+from app.extensions.db import db
 from app.models.phone import Phone
 from app.models.role import Role
 from app.models.user import User
