@@ -1,6 +1,6 @@
 from flask import Blueprint
 
-from app.functions import __import_all__
+from app.func import __import_all__
 
 bp = Blueprint("api", __name__)
 

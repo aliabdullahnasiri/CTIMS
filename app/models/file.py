@@ -5,7 +5,7 @@ from typing import Optional, Self
 
 import humanize
 
-from app.constants import APP_DIR
+from app.const import APP_DIR
 from app.extensions.db import db
 
 

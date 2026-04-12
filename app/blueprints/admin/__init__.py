@@ -1,7 +1,7 @@
 from flask import Blueprint, abort
 from flask_login import current_user, login_required
 
-from app.functions import __import_all__
+from app.func import __import_all__
 from app.models.permission import Permission
 
 bp = Blueprint("admin", __name__)

@@ -3,7 +3,7 @@ from typing import Any, List
 
 from flask import current_app
 
-from app.constants import ADMINISTRATOR
+from app.const import ADMINISTRATOR
 from app.extensions.db import db
 from app.models.permission import Permission
 

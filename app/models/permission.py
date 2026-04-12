@@ -1,7 +1,7 @@
 from operator import call
 from typing import Any, Dict
 
-from app.constants import ADMINISTER
+from app.const import ADMINISTER
 from app.extensions.db import db
 
 

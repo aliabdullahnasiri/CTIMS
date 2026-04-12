@@ -5,7 +5,7 @@ from flask import Response
 from flask_login import login_required
 
 from app.blueprints.api import bp
-from app.constants import ADMINISTRATOR
+from app.const import ADMINISTRATOR
 from app.extensions import db
 from app.forms.role import UpdateRoleForm
 from app.functions import render_td

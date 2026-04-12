@@ -5,7 +5,7 @@ from typing import Dict
 from numerize.numerize import numerize
 from sqlalchemy import func
 
-from app.constants import CURRENCY_SYMBOL
+from app.const import CURRENCY_SYMBOL
 from app.extensions.db import db
 from app.models.employee import Employee
 

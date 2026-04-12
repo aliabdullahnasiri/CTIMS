@@ -5,7 +5,7 @@ from flask import Response, request, url_for
 from flask_login import login_required
 
 from app.blueprints.api import bp
-from app.constants import DEFAULT_AVATAR
+from app.const import DEFAULT_AVATAR
 from app.extensions import console, db
 from app.forms.employee import AddEmployeeForm, UpdateEmployeeForm
 from app.functions import render_td
