@@ -8,9 +8,11 @@ from flask import abort, current_app, url_for
 from flask_login import AnonymousUserMixin, UserMixin, current_user
 from numerize import numerize
 
-from app.constants import DEFAULT_AVATAR
-from app.extensions import bcrypt, db, login_manager
-from app.functions import get_file_url
+from app.const import DEFAULT_AVATAR
+from app.extensions.bcrypt import bcrypt
+from app.extensions.db import db
+from app.extensions.login_manager import login_manager
+from app.func import get_file_url
 from app.models.file import File
 from app.models.permission import Permission
 from app.models.phone import Phone
