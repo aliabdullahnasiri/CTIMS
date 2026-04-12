@@ -4,7 +4,7 @@ from typing import Any, Literal
 import humanize
 from flask import request
 from numerize import numerize
-from sqlalchemy import Column, Integer, event, extract, func
+from sqlalchemy import Column, Integer, String, event, extract, func
 from sqlalchemy.ext.declarative import declared_attr
 from sqlalchemy.ext.hybrid import hybrid_property
 
@@ -19,6 +19,10 @@ class Base(db.Model):
     def id(cls):
         return Column(Integer, primary_key=True, autoincrement=True, index=True)
 
+    @declared_attr
+    def uid(cls):
+        return Column(String(8), primary_key=False, unique=True)
+
     # Timestamps
     created_at = db.Column(
         db.DateTime(timezone=True),
@@ -31,10 +35,6 @@ class Base(db.Model):
         onupdate=lambda: datetime.now(),
         nullable=False,
     )
-
-    @hybrid_property
-    def uid(self):
-        return f"U-{self.id:08d}"
 
     @classmethod
     def yearly_growth(cls):
@@ -220,6 +220,15 @@ def before_insert(mapper, connection, target) -> None: ...
 
 @event.listens_for(Base, "after_insert", propagate=True)
 def after_insert(mapper, connection, target) -> None: ...
+
+
+@event.listens_for(Base, "before_insert", propagate=True)
+def generate_uid(mapper, connection, target):
+    cls = target.__class__
+    obj = cls.query.order_by(cls.id.desc()).first()
+    prefix = target.__class__.__name__[0].upper()
+    val = "{}-{:>06}".format(prefix, (obj.id if obj else 0) + 1)
+    target.uid = val if not len(val) > 8 else None
 
 
 def all(self):
