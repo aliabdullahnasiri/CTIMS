@@ -1,0 +1,56 @@
+# Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+bin/
+lib/
+include/
+
+# Cache Files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / Build
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Environment Variables
+.env
+.env.*
+*.env
+
+# Dependency Lock Files (optional)
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Database Files (if using SQLite)
+*.sqlite3
+*.db
+
+# Logs
+*.log
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Security / Secrets
+secrets.json
+config.local.py
+
+
+migrations/
+app/static/uploads/
+
