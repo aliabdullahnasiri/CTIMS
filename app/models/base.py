@@ -1,10 +1,10 @@
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 from typing import Any, Literal
 
 import humanize
 from flask import request
 from numerize import numerize
-from sqlalchemy import Column, Integer, event
+from sqlalchemy import Column, Integer, event, extract, func
 from sqlalchemy.ext.declarative import declared_attr
 from sqlalchemy.ext.hybrid import hybrid_property
 
@@ -35,6 +35,136 @@ class Base(db.Model):
     @hybrid_property
     def uid(self):
         return f"U-{self.id:08d}"
+
+    @classmethod
+    def yearly_growth(cls):
+        current_year = datetime.now().year
+        last_year = current_year - 1
+
+        current_count = (
+            db.session.query(func.count(cls.created_at))
+            .filter(extract("year", cls.created_at) == current_year)
+            .scalar()
+        )
+
+        previous_count = (
+            db.session.query(func.count(cls.created_at))
+            .filter(extract("year", cls.created_at) == last_year)
+            .scalar()
+        )
+
+        return cls._percent_change(current_count, previous_count)
+
+    @classmethod
+    def yearly_growth_clr(cls):
+        if cls.yearly_growth() > 0:
+            return "success"
+
+        return "danger"
+
+    @classmethod
+    def yearly_growth_icon(cls):
+        if cls.yearly_growth() > 0:
+            return "arrow_upward"
+
+        return "arrow_downward"
+
+    @classmethod
+    def display_yearly_growth(cls):
+        sign = chr(43) if (g := cls.yearly_growth()) > 0 else chr(45)
+
+        if g == 0:
+            sign = str()
+
+        return f"{sign}{abs(g)}{chr(37)}"
+
+    @classmethod
+    def weekly_growth(cls):
+        now = datetime.now(timezone.utc)
+
+        start_of_week = datetime.combine(
+            (now - timedelta(days=now.weekday())).date(),
+            datetime.min.time(),
+            tzinfo=timezone.utc,
+        )
+        start_of_last_week = start_of_week - timedelta(weeks=1)
+        end_of_last_week = start_of_week
+
+        current_week = (
+            db.session.query(cls).filter(cls.created_at >= start_of_week).count()
+        )
+
+        previous_week = (
+            db.session.query(cls)
+            .filter(
+                cls.created_at >= start_of_last_week, cls.created_at < end_of_last_week
+            )
+            .count()
+        )
+
+        return cls._percent_change(current_week, previous_week)
+
+    @classmethod
+    def weekly_growth_clr(cls):
+        if cls.weekly_growth() > 0:
+            return "success"
+
+        return "danger"
+
+    @classmethod
+    def display_weekly_growth(cls):
+        sign = chr(43) if (g := cls.weekly_growth()) > 0 else chr(45)
+
+        if g == 0:
+            sign = str()
+
+        return f"{sign}{abs(g)}{chr(37)}"
+
+    @classmethod
+    def weekly_growth_icon(cls):
+        if cls.weekly_growth() > 0:
+            return "arrow_upward"
+
+        return "arrow_downward"
+
+    @classmethod
+    def monthly_growth(cls):
+        current_month = datetime.now().month
+        last_month = current_month - 1 if current_month > 1 else 12
+
+        current_count = (
+            db.session.query(func.count(cls.created_at))
+            .filter(extract("month", cls.created_at) == current_month)
+            .scalar()
+        )
+
+        previous_count = (
+            db.session.query(func.count(cls.created_at))
+            .filter(extract("month", cls.created_at) == last_month)
+            .scalar()
+        )
+
+        return cls._percent_change(current_count, previous_count)
+
+    @classmethod
+    def monthly_growth_clr(cls):
+        if cls.monthly_growth() > 0:
+            return "success"
+
+        return "danger"
+
+    @classmethod
+    def display_monthly_growth(cls):
+        sign = chr(43) if cls.monthly_growth() >= 0 else chr(45)
+        growth = f"{sign}{abs(cls.monthly_growth())}{chr(37)}"
+
+        return growth
+
+    @staticmethod
+    def _percent_change(current, previous):
+        if previous == 0:
+            return 100 if current > 0 else 0
+        return round(((current - previous) / previous) * 100, 2)
 
     @classmethod
     def count(cls):
