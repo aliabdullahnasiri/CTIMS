@@ -6,7 +6,8 @@ from flask_login import login_required
 
 from app.blueprints.api import bp
 from app.const import DEFAULT_AVATAR
-from app.extensions import console, db
+from app.extensions.console import console
+from app.extensions.db import db
 from app.forms.teacher import AddTeacherForm, UpdateTeacherForm
 from app.func import render_td
 from app.models.permission import Permission
