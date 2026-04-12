@@ -1,0 +1,54 @@
+<table class="table align-items-center mb-0 table-hover">
+  <thead>
+    <tr>
+      <th
+        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center"
+      >
+        UID
+      </th>
+      <th
+        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+      >
+        Name
+      </th>
+      <th
+        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+      >
+        Number
+      </th>
+      <th
+        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+      >
+        Classes
+      </th>
+      <th
+        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+      >
+        Subjects
+      </th>
+      <th
+        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+      >
+        Students
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for s in semesters %}
+    <tr>
+      <td class="text-xs text-center">{{ s.uid }}</td>
+      <td class="text-xs">{{ s.name }}</td>
+      <td class="text-xs">{{ s.number }}</td>
+      <td class="text-xs">{{ s.display_number_of_classes }}</td>
+      <td class="text-xs">{{ s.display_number_of_subjects }}</td>
+      <td class="text-xs">{{ s.display_number_of_students }}</td>
+    </tr>
+    {% else %}
+    <tr class="no-rows-label">
+      <td colspan="6" class="py-4 text-center">
+        <span>No semesters yet :(</span>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

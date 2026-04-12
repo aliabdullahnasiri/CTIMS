@@ -1,0 +1,61 @@
+<table class="table align-items-center mb-0 table-hover">
+  <thead>
+    <tr>
+      <th
+        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center"
+      >
+        UID
+      </th>
+      <th
+        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+      >
+        Student
+      </th>
+      <th
+        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+      >
+        Percentage
+      </th>
+      <th
+        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+      >
+        Status
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for r in results %}
+    <tr>
+      <td class="text-xs text-center">{{ r.uid }}</td>
+      <td>
+        <div class="d-flex px-0 py-1">
+          <div>
+            <img
+              src="{{ r.student.user.avatar_path }}"
+              class="avatar avatar-sm me-3 border-radius-lg"
+              alt="user1"
+            />
+          </div>
+          <div class="d-flex flex-column justify-content-center">
+            <h6 class="mb-0 text-sm">{{ r.student.user.full_name }}</h6>
+            <p class="text-xs text-secondary mb-0">
+              {{ r.student.user.email }}
+            </p>
+          </div>
+        </div>
+      </td>
+      <td class="text-xs">{{ r.display_percentage }}</td>
+      <td class="text-xs">
+        {% with status = r.status %} {% include
+        "admin/components/tables/td/result_status.html" %} {% endwith %}
+      </td>
+    </tr>
+    {% else %}
+    <tr class="no-rows-label">
+      <td colspan="4" class="py-4 text-center">
+        <span>No results yet :(</span>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

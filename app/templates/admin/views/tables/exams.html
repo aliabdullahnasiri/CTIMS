@@ -1,0 +1,48 @@
+<table class="table align-items-center mb-0 table-hover">
+  <thead>
+    <tr>
+      <th
+        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center"
+      >
+        UID
+      </th>
+      <th
+        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+      >
+        Title
+      </th>
+      <th
+        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+      >
+        Total Marks
+      </th>
+      <th
+        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+      >
+        Exam Date
+      </th>
+      <th
+        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+      >
+        Exam Time
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for s in exams %}
+    <tr>
+      <td class="text-xs text-center">{{ s.uid }}</td>
+      <td class="text-xs">{{ s.title }}</td>
+      <td class="text-xs">{{ s.total_marks }}</td>
+      <td class="text-xs">{{ s.display_exam_date }}</td>
+      <td class="text-xs">{{ s.display_exam_time }}</td>
+    </tr>
+    {% else %}
+    <tr class="no-rows-label">
+      <td colspan="5" class="py-4 text-center">
+        <span>No exams yet :(</span>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

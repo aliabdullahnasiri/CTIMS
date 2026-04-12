@@ -1,0 +1,30 @@
+<div class="col-lg-8 col-md-6 mt-4 mb-4">
+  <div class="card">
+    <div class="card-body">
+      <h6 class="mb-0">Students</h6>
+      <p class="text-sm">Last 12 Month</p>
+      <div class="pe-2">
+        <div class="chart">
+          <canvas
+            id="yearly-students"
+            class="chart-canvas"
+            height="170"
+            data-get="{{ url_for('api.yearly', index=0) }}"
+          ></canvas>
+        </div>
+      </div>
+      <hr class="dark horizontal" />
+      <div class="d-flex">
+        <i class="material-symbols-rounded text-sm my-auto me-1"
+          >{{ Student.yearly_growth_icon() }}</i
+        >
+        <p class="mb-0 text-sm">
+          <span
+            class="text-{{ Student.yearly_growth_clr() }} font-weight-bolder"
+            >{{ Student.display_yearly_growth() }} </span
+          >than last year
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

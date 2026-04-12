@@ -1,0 +1,15 @@
+<table
+  class="table align-items-center mb-0 table-hover"
+  data-type="dynamic"
+  data-get-rows="{{ url_for('api.fetch_semesters_rows') }}"
+  data-get-row="{{ url_for('api.fetch_semester_row', uid='@')}}"
+  data-update-row="{{ url_for('api.update_semester')}}"
+  data-delete-row="{{ url_for('api.delete_semester', uid='@')}}"
+  data-view-row="{{ url_for('admin.view', entity='semester', uid='@') }}"
+  data-add-row-modal-id="#AddSemesterModal"
+  data-edit-row-modal-id="#EditSemesterModal"
+  data-view-row-modal-id="#ViewModal"
+>
+  <thead></thead>
+  <tbody></tbody>
+</table>

@@ -1,0 +1,13 @@
+<table
+  class="table align-items-center mb-0 table-hover"
+  data-type="dynamic"
+  data-get-rows="{{ url_for('api.fetch_users_rows') }}"
+  data-get-row="{{ url_for('api.fetch_user_row', uid='@')}}"
+  data-update-row="{{ url_for('api.update_user')}}"
+  data-delete-row="{{ url_for('api.delete_user', uid='@')}}"
+  data-add-row-modal-id="#AddUserModal"
+  data-edit-row-modal-id="#EditUserModal"
+>
+  <thead></thead>
+  <tbody></tbody>
+</table>

@@ -1,0 +1,12 @@
+<table
+  class="table align-items-center mb-0 table-hover"
+  data-type="dynamic"
+  data-get-rows="{{ url_for('api.fetch_roles_rows') }}"
+  data-get-row="{{ url_for('api.fetch_role_row', uid='@')}}"
+  data-update-row="{{ url_for('api.update_role')}}"
+  data-view-row="{{ url_for('admin.view', entity='role', uid='@') }}"
+  data-edit-row-modal-id="#EditRoleModal"
+>
+  <thead></thead>
+  <tbody></tbody>
+</table>
