@@ -1,21 +1,10 @@
-import re
+from wtforms import HiddenField, StringField, SubmitField, TextAreaField
+from wtforms.validators import DataRequired, Length, Optional
 
-from flask_wtf import FlaskForm
-from wtforms import (
-    HiddenField,
-    StringField,
-    SubmitField,
-    TextAreaField,
-    ValidationError,
-)
-from wtforms.validators import DataRequired, Length, Optional, Regexp
-
-from app.models.department import Department
-from app.models.employee import Employee
-from app.models.teacher import Teacher
+from app.forms import Form
 
 
-class AddDepartmentForm(FlaskForm):
+class AddDepartmentForm(Form):
     name = StringField(
         "Name",
         validators=[
@@ -43,26 +32,6 @@ class AddDepartmentForm(FlaskForm):
     )
 
     submit = SubmitField("Add Department")
-
-    def validate_head_of_department(self, head_of_department) -> None:
-        h: str = head_of_department.data
-        pattern: re.Pattern = re.compile(r"^(E|T).\d{6}$")
-
-        if not pattern.search(h):
-            raise ValidationError("Not a valid head of department UID.")
-        elif h.startswith("E") and not Employee.query.filter_by(uid=h).first():
-            raise ValidationError("Employee with the given ID was not found :(")
-        elif h.startswith("T") and not Teacher.query.filter_by(uid=h).first():
-            raise ValidationError("Teacher with the given ID was not found :(")
-
-    def validate_parent_department_uid(self, parent_department_uid) -> None:
-        uid: str = parent_department_uid.data
-        pattern: re.Pattern = re.compile(r"^(D).\d{6}$")
-
-        if not pattern.search(uid):
-            raise ValidationError("Not a valid head of department UID.")
-        elif not Department.query.filter_by(uid=uid).first():
-            raise ValidationError("Department with the given ID was not found :(")
 
 
 class UpdateDepartmentForm(AddDepartmentForm):
