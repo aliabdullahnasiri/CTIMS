@@ -5,16 +5,17 @@ from flask import Response
 from flask_login import login_required
 
 from app.blueprints.api import bp
+from app.cls import ColumnID, ColumnName
 from app.const import ADMINISTRATOR
 from app.extensions.db import db
-from app.forms.role import UpdateRoleForm
+from app.forms.role import AddRoleForm, UpdateRoleForm
 from app.func import render_td
 from app.models.permission import Permission
 from app.models.role import Role
 from app.models.user import permission_required
-from app.cls import ColumnID, ColumnName
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
+    (ColumnID("is_deletable"), ColumnName("IS_DELETABLE")),
     (ColumnID("uid"), ColumnName("UID")),
     (ColumnID("name"), ColumnName("Name")),
 ]
@@ -134,6 +135,7 @@ def update_role() -> Response:
             role.description = form.description.data
 
             if role.name != ADMINISTRATOR:
+                role.name = form.name.data
                 role.default = form.default.data
 
                 if permissions := form.permissions.data:
@@ -171,3 +173,79 @@ def update_role() -> Response:
         status=200,
         headers={"Content-Type": "application/json"},
     )
+
+
+@bp.delete("/delete/role/<string:uid>")
+@login_required
+@permission_required(Permission.get("DELETE_ROLE"))
+def delete_role(uid: str):
+    response = {}
+
+    if role := Role.query.filter_by(uid=uid).scalar():
+        if not role.primary:
+            db.session.delete(role)
+            db.session.commit()
+
+            response["title"] = "Deleted!"
+            response["message"] = "Role has been deleted successfully."
+            response["category"] = "success"
+            response["status"] = 200
+        else:
+            response["title"] = "Warning!"
+            response["message"] = "Primary roles cannot be deleted."
+            response["category"] = "success"
+            response["status"] = 403
+
+    else:
+        response["title"] = "Error :("
+        response["message"] = "User not found"
+        response["category"] = "error"
+        response["status"] = 404
+
+    return Response(
+        json.dumps(response),
+        status=response["status"],
+        headers={"Content-Type": "application/json"},
+    )
+
+
+@bp.post("/add/role")
+@login_required
+@permission_required(Permission.get("CREATE_ROLE"))
+def add_role():
+    form = AddRoleForm()
+
+    response: Dict = {}
+
+    if form.validate_on_submit():
+        role: Role = Role()
+
+        role.name = form.name.data
+        role.description = form.description.data
+        role.default = form.default.data
+        role.primary = False
+
+        db.session.add(role)
+        db.session.commit()
+
+        if permissions := form.permissions.data:
+            permissions = [
+                Permission.query.filter_by(uid=permission).scalar()
+                for permission in json.loads(permissions)
+            ]
+
+            for permission in permissions:
+                if permission not in role.permissions:
+                    role.permissions.append(permission)
+
+        db.session.commit()
+
+        response["message"] = "User added successfully"
+        response["category"] = "success"
+        response["title"] = "User Added"
+        response["id"] = getattr(role, "uid")
+
+    else:
+        response["errors"] = form.errors
+
+    return Response(json.dumps(response))
