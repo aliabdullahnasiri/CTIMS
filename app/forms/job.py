@@ -1,9 +1,10 @@
-from flask_wtf import FlaskForm
 from wtforms import DecimalField, HiddenField, StringField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, Length, NumberRange, Optional
 
+from app.forms import Form
 
-class AddJobForm(FlaskForm):
+
+class AddJobForm(Form):
     job_title = StringField("Job Title", validators=[DataRequired(), Length(max=255)])
 
     job_description = TextAreaField(

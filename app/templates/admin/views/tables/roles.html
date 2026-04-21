@@ -1,0 +1,30 @@
+<table class="table align-items-center mb-0 table-hover">
+  <thead>
+    <tr>
+      <th
+        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center"
+      >
+        UID
+      </th>
+      <th
+        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+      >
+        Name
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for r in roles %}
+    <tr>
+      <td class="text-xs text-center">{{ r.uid }}</td>
+      <td class="text-xs">{{ r.name }}</td>
+    </tr>
+    {% else %}
+    <tr class="no-rows-label">
+      <td colspan="2" class="py-4 text-center">
+        <span>No roles yet :(</span>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

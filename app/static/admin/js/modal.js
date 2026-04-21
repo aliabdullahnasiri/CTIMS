@@ -1,8 +1,10 @@
 import { createListSectionItem, resetForm } from "./form.js";
-import { createLoader } from "./script.js";
+import { createLoader, transformAllMovingTab } from "./script.js";
 
 (function () {
   document.addEventListener("show.bs.modal", (event) => {
+    transformAllMovingTab();
+
     let label = event.target.getAttribute("aria-labelledby");
     if (!label?.search(/^Add/)) {
       Array.from(
@@ -62,6 +64,12 @@ import { createLoader } from "./script.js";
             }
 
             switch (input.type) {
+              case "select-one":
+                input
+                  ?.querySelector("option[value='%s']".replace("%s", val))
+                  ?.setAttribute("selected", true);
+                break;
+
               case "checkbox":
                 input.checked = val ? true : false;
 
@@ -76,24 +84,23 @@ import { createLoader } from "./script.js";
                   if (ulElement) {
                     ulElement.innerHTML = "";
 
-                    if (data.files)
-                      for (const f of data.files) {
-                        if (f.file_for == input.id || input.id == "files") {
-                          let selector = "li[data-uid='%s']";
-                          if (
-                            !ulElement.querySelector(
-                              selector.replace("%s", f.link),
-                            )
-                          ) {
-                            let item = createListSectionItem(
-                              f.extension,
-                              f.human_size,
-                              true,
-                              f.file_url,
-                              f.id,
-                            );
-                            ulElement.append(item);
-                          }
+                    if (data[input.id])
+                      for (const f of data[input.id]) {
+                        if (f == null) continue;
+                        let selector = "li[data-uid='%s']";
+                        if (
+                          !ulElement.querySelector(
+                            selector.replace("%s", f.link),
+                          )
+                        ) {
+                          let item = createListSectionItem(
+                            f.extension,
+                            f.human_size,
+                            true,
+                            f.file_url,
+                            f.id,
+                          );
+                          ulElement.append(item);
                         }
 
                         if (!input.multiple) break;
@@ -105,7 +112,7 @@ import { createLoader } from "./script.js";
                       let fileOutput =
                         input.parentElement.querySelector(".output");
 
-                      if (fileOutput) fileOutput.src = val;
+                      if (fileOutput) fileOutput.src = val || "";
                     }
                   }
                 }
@@ -137,7 +144,7 @@ import { createLoader } from "./script.js";
                     Array.from(val).forEach((v) => {
                       const spanElement = document.createElement("span");
                       spanElement.classList.value =
-                        "badge badge-sm bg-gradient-secondary mx-2 my-2";
+                        "badge badge-sm bg-gradient-secondary mx-2 my-1 cursor-pointer tt-none";
                       spanElement.innerHTML = v;
                       spanElement.dataset.role = "value";
 

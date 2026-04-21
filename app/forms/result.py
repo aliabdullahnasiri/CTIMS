@@ -1,6 +1,5 @@
 import re
 
-from flask_wtf import FlaskForm
 from wtforms import (
     HiddenField,
     IntegerField,
@@ -11,11 +10,12 @@ from wtforms import (
 )
 from wtforms.validators import DataRequired, Length
 
+from app.forms import Form
 from app.models.exam import Exam
 from app.models.student import Student
 
 
-class AddResultForm(FlaskForm):
+class AddResultForm(Form):
     exam_id = StringField("Exam UID", validators=[DataRequired(), Length(8, 8)])
     student_id = StringField("Student UID", validators=[DataRequired(), Length(8, 8)])
     obtained_marks = IntegerField("Obtained Marks", validators=[DataRequired()])

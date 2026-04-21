@@ -67,8 +67,8 @@ export function initAllMovingTabs() {
 
     if (presentation) {
       let movingTab = createMovingTab(presentation);
-      transformMovingTab(movingTab, presentation);
       tabElement.append(movingTab);
+      transformMovingTab(movingTab, presentation);
       activeTab(presentation);
     }
   }

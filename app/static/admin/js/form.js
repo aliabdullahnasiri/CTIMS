@@ -6,11 +6,17 @@ export function uploadFile(
   on_load,
   on_loadstart,
   on_loadend,
+  user_uid,
+  file_for,
 ) {
   let http = new XMLHttpRequest();
   let data = new FormData();
 
   data.append("file", file);
+  if (user_uid != undefined) data.append("user_uid", user_uid);
+  if (file_for != undefined) {
+    data.append("file_for", file_for);
+  }
 
   http.upload.addEventListener("progress", on_progress);
   http.upload.addEventListener("abort", on_abort);
@@ -153,6 +159,10 @@ async function submitForm(formElement) {
         title: data.title,
         text: data.message,
         icon: data.category,
+      }).then(() => {
+        if (data?.redirect) {
+          window.location.replace(data.redirect);
+        }
       });
     }
   } catch (err) {
@@ -259,6 +269,7 @@ function u(file, ulElement, formElement, submitElement) {
   let item = createListSectionItem(type, size);
   let progressBar = item.querySelector("div.progress-bar");
   let abortButton = item.querySelector("div.header button");
+  let uidInput = formElement.querySelector("input[type=hidden][name=user_uid]");
 
   ulElement.append(item);
 
@@ -302,6 +313,7 @@ function u(file, ulElement, formElement, submitElement) {
         submitElement.disabled = false;
       }
     },
+    uidInput?.value,
   );
 
   abortButton.addEventListener("click", () => {
@@ -357,6 +369,9 @@ export function upload(files, dropZone) {
             u(file, ulElement, formElement, submitElement);
           } else if (file?.type.includes("image")) {
             let outputElement = dropZone.querySelector("img.output");
+            let uidInput = formElement.querySelector(
+              "input[type=hidden][name=uid], input[type=hidden][name=user_uid]",
+            );
 
             uploadFile(
               file,
@@ -382,6 +397,10 @@ export function upload(files, dropZone) {
                   console.log(err);
                 }
               }, // on load
+              undefined,
+              undefined,
+              uidInput?.value,
+              "AVATAR",
             );
           }
 
@@ -457,7 +476,7 @@ export function upload(files, dropZone) {
     if (event.target.tagName == "IMG") {
       if (event.target.classList.contains("output")) {
         let fileOutput = event.target;
-        let dropZone = event.target.closest("div.drop-zone.avatar");
+        let dropZone = event.target.closest("div.drop-zone");
         let fileInput = dropZone.querySelector("input[type=file]");
 
         if (fileInput && fileOutput) fileInput.click();
@@ -519,7 +538,7 @@ export function upload(files, dropZone) {
         let spanElement = document.createElement("span");
 
         spanElement.classList.value =
-          "badge badge-sm bg-gradient-secondary mx-2 my-2 cursor-pointer";
+          "badge badge-sm bg-gradient-secondary mx-2 my-1 cursor-pointer tt-none";
         spanElement.innerHTML = event.target.value;
         spanElement.dataset.role = "value";
 

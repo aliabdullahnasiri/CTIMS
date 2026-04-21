@@ -8,21 +8,21 @@ from app.extensions.db import db
 class RolePermission(db.Model):
     __tablename__ = "roles_permissions"
 
-    role_uid = db.Column(db.String(8), db.ForeignKey("roles.uid"), nullable=False)
-    permission_uid = db.Column(
-        db.String(8), db.ForeignKey("permissions.uid"), nullable=False
+    role_id = db.Column(db.Integer, db.ForeignKey("roles.id"), nullable=False)
+    permission_id = db.Column(
+        db.Integer, db.ForeignKey("permissions.id"), nullable=False
     )
 
     __table_args__ = (
-        UniqueConstraint("role_uid", "permission_uid", name="uix_role_permission"),
+        UniqueConstraint("role_id", "permission_id", name="uix_role_permission"),
     )
 
     def to_dict(self) -> dict:
         return {
-            "role_uid": self.role_uid,
-            "permission_uid": self.permission_uid,
+            "role_id": self.role_id,
+            "permission_id": self.permission_id,
             **call(getattr(super(), "to_dict")),
         }
 
     def __repr__(self):
-        return f"<RolePermission role_uid='{self.role_uid!r}' permission_uid='{self.permission_uid!r}'>"
+        return f"<RolePermission role_id='{self.role_id!r}' permission_id='{self.permission_id!r}'>"

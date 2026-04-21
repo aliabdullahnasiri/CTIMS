@@ -1,9 +1,10 @@
-from flask_wtf import FlaskForm
 from wtforms import HiddenField, StringField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, Length, Optional
 
+from app.forms import Form
 
-class UpdatePermissionForm(FlaskForm):
+
+class UpdatePermissionForm(Form):
     uid = HiddenField("Permission UID", validators=[DataRequired()])
 
     name = StringField("Name", validators=[DataRequired(), Length(max=255)])

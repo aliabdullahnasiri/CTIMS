@@ -14,19 +14,32 @@ async function fetchTableData(tableElement, page, limit) {
 
   let response = await fetch(url);
 
+  if (response.status == 403) throw Error("403 ERROR");
+
   if (response.ok) {
     let data = await response.json();
 
-    return data;
+    return [data, response.status];
   }
+
+  return [undefined, response.status];
 }
 
 async function initTable(tableElement, theadElement, tbodyElement) {
-  let data = await fetchTableData(tableElement, FIRST_PAGE);
+  let [data] = await fetchTableData(tableElement, FIRST_PAGE);
 
   if (data) {
     let cols = data?.cols;
     let rows = data?.rows;
+
+    for (const [id, _] of cols) {
+      if (id == "is_deletable") {
+        document.is_deletable_column_exists = true;
+
+        cols = cols.slice(1);
+      }
+      break;
+    }
 
     if (cols) {
       theadElement.innerHTML = "";
@@ -53,29 +66,28 @@ async function loadRows() {
     let tbody = table.querySelector("tbody");
     showSkeletonRow(tbody);
 
-    let data = await fetchTableData(
-      table,
-      table.dataset.page,
-      table.dataset.limit,
-    );
+    try {
+      let [data] = await fetchTableData(
+        table,
+        table.dataset.page,
+        table.dataset.limit,
+      );
 
-    removeSkeletonRow(tbody);
+      removeSkeletonRow(tbody);
 
-    let rows = data?.rows;
+      let rows = data?.rows;
 
-    if (rows.length !== 0) {
-      addTableRows(table, tbody, rows, false);
+      if (rows.length !== 0) {
+        addTableRows(table, tbody, rows, false);
 
-      table.dataset.page = 1 + +table.dataset.page;
+        table.dataset.page = 1 + +table.dataset.page;
+      }
+
+      window.tableLoading = false;
+    } catch (error) {
+      table.dataset.completed = "true";
     }
-
-    window.tableLoading = false;
   }
-}
-
-function handleScroll() {
-  if (window.scrollY > document.body.scrollHeight - window.innerHeight)
-    loadRows();
 }
 
 function showSkeletonRow(tbody) {
@@ -91,7 +103,7 @@ function removeSkeletonRow(tbody) {
   });
 }
 
-function addActionButtons(tableElement, trElement) {
+function addActionButtons(tableElement, trElement, is_deletable = true) {
   let tdElement = document.createElement("td");
 
   tdElement.classList.value = "align-middle";
@@ -101,6 +113,8 @@ function addActionButtons(tableElement, trElement) {
 
     deleteLinkElement.dataset.role = "delete";
     deleteLinkElement.innerHTML = "Delete";
+
+    deleteLinkElement.setAttribute("aria-disabled", is_deletable);
 
     tdElement.append(deleteLinkElement);
   }
@@ -138,7 +152,7 @@ function addActionButtons(tableElement, trElement) {
   trElement.append(tdElement);
 }
 
-function addCheckBox(trElement) {
+function addCheckBox(trElement, disabled = true) {
   let tdElement = document.createElement("td");
   let divElement = document.createElement("div");
   let inputElement = document.createElement("input");
@@ -151,6 +165,8 @@ function addCheckBox(trElement) {
   inputElement.name = "delete";
   inputElement.dataset.role = "multiple-delete";
   inputElement.classList.add("form-check-input");
+
+  if (disabled) inputElement.setAttribute("disabled", disabled);
 
   divElement.append(inputElement);
   tdElement.append(divElement);
@@ -308,6 +324,7 @@ function addTableRow(tableElement, theadElement, tbodyElement, id) {
     .then((response) => response.json())
     .then((data) => {
       let row = [];
+      let is_deletable = data?.is_deletable || true;
 
       Array.from(
         theadElement.querySelector("tr").querySelectorAll("th"),
@@ -320,7 +337,7 @@ function addTableRow(tableElement, theadElement, tbodyElement, id) {
 
       trElement.dataset.id = id;
 
-      if (tableElement.dataset.deleteRow) addCheckBox(trElement);
+      if (tableElement.dataset.deleteRow) addCheckBox(trElement, !is_deletable);
 
       row.forEach((value, index) => {
         if (value !== undefined) {
@@ -341,7 +358,7 @@ function addTableRow(tableElement, theadElement, tbodyElement, id) {
         }
       });
 
-      addActionButtons(tableElement, trElement);
+      addActionButtons(tableElement, trElement, is_deletable);
 
       tbodyElement.append(trElement);
     });
@@ -381,10 +398,17 @@ function addTableRows(tableElement, tbodyElement, rows, empty = true) {
   if (empty) tbodyElement.innerHTML = "";
 
   if (rows.length > 0) {
+    let deletable = true;
+
     Array.from(rows).forEach((row) => {
+      if (document.is_deletable_column_exists) {
+        deletable = row[0];
+        row = row.slice(1);
+      }
+
       trElement = document.createElement("tr");
 
-      if (tableElement.dataset.deleteRow) addCheckBox(trElement);
+      if (tableElement.dataset.deleteRow) addCheckBox(trElement, !deletable);
 
       Array.from(row).forEach((item, index) => {
         tdElement = document.createElement("td");
@@ -402,7 +426,7 @@ function addTableRows(tableElement, tbodyElement, rows, empty = true) {
         trElement.append(tdElement);
       });
 
-      addActionButtons(tableElement, trElement);
+      addActionButtons(tableElement, trElement, deletable);
 
       tbodyElement.append(trElement);
     });
@@ -614,8 +638,6 @@ function initTableContol(
     theadElement,
   );
   initTable(tableElement, theadElement, tbodyElement);
-
-  window.addEventListener("scroll", handleScroll);
 
   document.addEventListener("click", (event) => {
     const target = event.target;

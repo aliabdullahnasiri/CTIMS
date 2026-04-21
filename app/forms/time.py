@@ -1,9 +1,10 @@
-from flask_wtf import FlaskForm
 from wtforms import HiddenField, StringField, SubmitField, TextAreaField, TimeField
 from wtforms.validators import DataRequired, Length, Optional
 
+from app.forms import Form
 
-class AddTimeForm(FlaskForm):
+
+class AddTimeForm(Form):
     """Form to add a new Time record."""
 
     title = StringField(

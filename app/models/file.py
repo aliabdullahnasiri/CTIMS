@@ -1,5 +1,6 @@
 import pathlib
 from datetime import datetime, timezone
+from enum import Enum
 from operator import call
 from typing import Optional, Self
 
@@ -7,6 +8,11 @@ import humanize
 
 from app.const import APP_DIR
 from app.extensions.db import db
+
+
+class FileForEnum(str, Enum):
+    AVATAR = "avatar"
+    REGULAR = "regular"
 
 
 class File(db.Model):
@@ -22,7 +28,9 @@ class File(db.Model):
         default=lambda: datetime.now(timezone.utc).date(),
     )
     file_description = db.Column(db.String(255))
-    file_for = db.Column(db.String(8))
+    file_for = db.Column(
+        db.Enum(FileForEnum), nullable=False, default=FileForEnum.REGULAR
+    )
     file_url = db.Column(db.String(255), nullable=False)
 
     user = db.relationship("User", back_populates="files")

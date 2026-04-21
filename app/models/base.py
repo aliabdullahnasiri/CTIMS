@@ -230,18 +230,4 @@ def generate_uid(mapper, connection, target):
     target.uid = val if not len(val) > 8 else None
 
 
-def all(self):
-    try:
-        page = int(request.args.get("page", 1))
-        limit = int(request.args.get("limit", 100))
-        offset = (page - 1) * limit
-
-        return self.offset(offset).limit(abs(limit))
-    except Exception as err:
-        console.print(err)
-
-    return self
-
-
-db.Model.query_class.all = all
 db.Model = Base

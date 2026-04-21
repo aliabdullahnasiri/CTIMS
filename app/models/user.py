@@ -5,7 +5,7 @@ from typing import Dict, List, Union
 
 import humanize
 from flask import abort, current_app, url_for
-from flask_login import AnonymousUserMixin, UserMixin, current_user
+from flask_login import AnonymousUserMixin, UserMixin, current_user, login_required
 from numerize import numerize
 
 from app.const import DEFAULT_AVATAR
@@ -13,7 +13,7 @@ from app.extensions.bcrypt import bcrypt
 from app.extensions.db import db
 from app.extensions.login_manager import login_manager
 from app.func import get_file_url
-from app.models.file import File
+from app.models.file import File, FileForEnum
 from app.models.permission import Permission
 from app.models.phone import Phone
 from app.models.role import Role
@@ -68,7 +68,7 @@ class User(UserMixin, db.Model):
 
     @property
     def permissions(self):
-        permissions = 0x0001
+        permissions = 0
 
         for role in self.roles.all():
             permissions |= role.hex_permissions
@@ -83,7 +83,6 @@ class User(UserMixin, db.Model):
 
     def to_dict(self) -> Dict:
         dct = {
-            "user_uid": getattr(self, "uid"),
             "first_name": self.first_name,
             "middle_name": self.middle_name,
             "last_name": self.last_name,
@@ -93,16 +92,20 @@ class User(UserMixin, db.Model):
             "birthday": self.display_birthday,
             "age": self.age,
             "avatar": self.avatar_src,
-            "files": [f.to_dict() for f in self.files.all()],
             "phones": [p.number for p in self.phones.all()],
             "roles": [r.uid for r in self.roles.all()],
+            "is_deletable": not (
+                self.is_administrator()
+                and Role.administrator().users.count() == 1
+                and self.get_id() == current_user.get_id()
+            ),
             **call(getattr(super(), "to_dict")),
         }
 
         return dct
 
     def get_id(self):
-        return str(self.__getattribute__("uid"))
+        return str(self.__getattribute__("id"))
 
     def set_password(self, password: str) -> None:
         self.password_hash = bcrypt.generate_password_hash(password).decode()
@@ -139,13 +142,6 @@ class User(UserMixin, db.Model):
         return "N/A"
 
     @property
-    def avatar_src(self) -> str:
-        if self.avatar_path:
-            return self.avatar_path
-
-        return url_for("static", filename=DEFAULT_AVATAR)
-
-    @property
     def display_number_of_phone_nums(self):
         return numerize.numerize(self.phones.count())
 
@@ -156,6 +152,19 @@ class User(UserMixin, db.Model):
     @property
     def total_file_size(self) -> str:
         return humanize.naturalsize(sum(f.size for f in self.files.all()))
+
+    @property
+    def avatar_src(self) -> str:
+        u = url_for("static", filename=DEFAULT_AVATAR)
+
+        if (
+            f := self.files.filter_by(file_for=FileForEnum.AVATAR)
+            .order_by(getattr(File, "created_at").desc())
+            .first()
+        ):
+            u = f.file_url
+
+        return u
 
     def update_phones(self, phones: List[str]):
         for phone in self.phones.all():
@@ -192,14 +201,15 @@ class User(UserMixin, db.Model):
                         if file := File.query.filter_by(id=int(val)).scalar():
                             file.user = self
 
-    def update_roles(self, roles: Union[List[Role], None] = None):
-        if self.email == current_app.config["FLASKY_ADMIN"]:
-            if role := Role.administrator():
-                if role not in self.roles.all():
-                    self.roles.append(role)
-        elif role := Role.query.filter_by(default=True).first():
-            if role not in self.roles.all():
-                self.roles.append(role)
+    def update_roles(self, roles: Union[List[int], None] = None):
+        role = (
+            Role.administrator()
+            if self.email == current_app.config["FLASKY_ADMIN"]
+            else Role.query.filter_by(default=True).first()
+        )
+
+        if role and not self.roles.filter_by(id=role.id).count():
+            self.roles.append(role)
         elif type(roles) is list:
             for r in self.roles.all():
                 if r.uid not in roles:
@@ -219,8 +229,8 @@ class AnonymousUser(AnonymousUserMixin):
 
 
 @login_manager.user_loader
-def load_user(uid: str):
-    return User.query.filter_by(uid=uid).first()
+def load_user(id: str):
+    return User.query.filter_by(id=id).first()
 
 
 def permission_required(permission):
@@ -235,3 +245,15 @@ def permission_required(permission):
         return decorated_function
 
     return decorator
+
+
+def admin_required(f):
+    @wraps(f)
+    @login_required
+    def decorated_function(*args, **kwargs):
+        if not current_user.can(Permission.administer()):
+            abort(403)
+
+        return f(*args, **kwargs)
+
+    return decorated_function

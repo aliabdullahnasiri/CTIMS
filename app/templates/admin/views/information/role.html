@@ -1,0 +1,17 @@
+<ul class="list-group">
+  <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+    <strong>UID:</strong> &nbsp;{{ role.uid }}
+  </li>
+  <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+    <strong>Name:</strong> &nbsp;{{ role.name }}
+  </li>
+  <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+    <strong>Description:</strong> &nbsp;{{ role.description or 'N/A' }}
+  </li>
+  <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+    <strong>Created At:</strong> &nbsp;{{ role.display_created_at }}
+  </li>
+  <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+    <strong>Updated At:</strong> &nbsp;{{ role.display_updated_at }}
+  </li>
+</ul>

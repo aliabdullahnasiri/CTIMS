@@ -1,8 +1,3 @@
-import json
-import re
-
-from flask_wtf import FlaskForm
-from flask_wtf.file import FileAllowed
 from wtforms import (
     HiddenField,
     IntegerField,
@@ -10,14 +5,13 @@ from wtforms import (
     StringField,
     SubmitField,
     TextAreaField,
-    ValidationError,
 )
 from wtforms.validators import DataRequired, Length, Optional
 
-from app.models.semester import Semester
+from app.forms import Form
 
 
-class AddSubjectForm(FlaskForm):
+class AddSubjectForm(Form):
     name = StringField("Subject Name", validators=[DataRequired(), Length(max=255)])
 
     description = TextAreaField(
@@ -30,14 +24,6 @@ class AddSubjectForm(FlaskForm):
     files = MultipleFileField("Files")
 
     submit = SubmitField("Add Subject")
-
-    def validate_semester_uid(self, semester_uid) -> None:
-        pattern: re.Pattern = re.compile(r"^..\d{6}$")
-
-        if not pattern.search(semester_uid.data):
-            raise ValidationError("Not a valid Semester UID.")
-        elif not Semester.query.filter_by(uid=semester_uid.data).first():
-            raise ValidationError("Semester with the given ID was not found :(")
 
 
 class UpdateSubjectForm(AddSubjectForm):

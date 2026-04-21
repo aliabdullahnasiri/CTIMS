@@ -1,0 +1,65 @@
+{% with f = form.a %}
+<form
+  method="POST"
+  action="{{ url_for('api.add_role') }}"
+  enctype="multipart/form-data"
+>
+  {{ f.hidden_tag() }}
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="my-2">
+        <div class="input-group input-group-outline">
+          {{ f.name.label(class="form-label") }} {{ f.name(class="form-control")
+          }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="my-2">
+        <div class="px-2 py-0 my-0">
+          {{ f.description.label(class="form-label") }}
+        </div>
+        <div class="input-group input-group-outline">
+          {{ f.description(class="form-control") }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="my-2">
+        <div class="multi-value-input card">
+          <div class="input-group input-group-outline">
+            {{ f.permissions.label(class="form-label") }} {{
+            f.permissions(class="form-control") }}
+          </div>
+          <div class="values d-flex flex-wrap"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="my-2 mx-2">
+        <div class="form-check form-check-info text-start ps-0">
+          {{ f.default(class="form-check-input") }} {{
+          f.default.label(class="form-check-label") }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row my-3">
+    <div class="col-md-12">
+      <div class="text-center">
+        {{ f.submit(class="btn bg-gradient-info btn-lg w-100 mt-4 mb-0") }}
+      </div>
+    </div>
+  </div>
+</form>
+{% endwith %}

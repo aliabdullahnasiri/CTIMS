@@ -12,6 +12,7 @@ class Role(db.Model):
     name = db.Column(db.String(64), unique=True)
     description = db.Column(db.String(2500), nullable=True)
     default = db.Column(db.Boolean, default=False, index=True)
+    primary = db.Column(db.Boolean, default=True)
 
     permissions = db.relationship(
         "Permission",
@@ -22,41 +23,40 @@ class Role(db.Model):
 
     @property
     def hex_permissions(self) -> int:
-        permissions = 0x0001
+        permissions = 0x0000
 
-        for permission in (
-            Permission.permissions.values()
-            if self.name == ADMINISTRATOR
-            else [p.hex_permission for p in self.permissions.all()]
-        ):
-            permissions |= permission
+        for p in self.permissions.all():
+            permissions |= p.hex_permission
 
         return permissions
 
     @classmethod
-    def get(cls, name: str) -> Any:
+    def get(cls, name: str, primary: bool = False) -> Any:
         role = cls.query.filter_by(name=name).scalar()
 
         if not role:
             role = cls()
 
             role.name = name
+            role.primary = primary
 
             db.session.add(role)
-            db.session.commit()
+
+        role.primary = primary
+
+        db.session.commit()
 
         return role
 
     @classmethod
     def administrator(cls):
-        return cls.get(name=ADMINISTRATOR)
+        return cls.get(name=ADMINISTRATOR, primary=True)
 
     def to_dict(self) -> dict:
-        readonly: List[str] = ["name"]
+        readonly: List[str] = []
 
         if self == self.administrator():
-            readonly.append("permissions")
-            readonly.append("default")
+            readonly.extend(["name", "permissions", "default"])
 
         return {
             "name": self.name,
@@ -71,5 +71,6 @@ class Role(db.Model):
                 )
             ],
             "readonly": readonly,
+            "is_deletable": self.name != ADMINISTRATOR,
             **call(getattr(super(), "to_dict")),
         }

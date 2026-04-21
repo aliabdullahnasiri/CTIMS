@@ -1,0 +1,36 @@
+<table class="table align-items-center mb-0 table-hover">
+  <thead>
+    <tr>
+      <th
+        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center"
+      >
+        UID
+      </th>
+      <th
+        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+      >
+        Name
+      </th>
+      <th
+        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+      >
+        Code
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for p in permissions %}
+    <tr>
+      <td class="text-xs text-center">{{ p.uid }}</td>
+      <td class="text-xs">{{ p.name }}</td>
+      <td class="text-xs">{{ p.hex_permission }}</td>
+    </tr>
+    {% else %}
+    <tr class="no-rows-label">
+      <td colspan="3" class="py-4 text-center">
+        <span>No permissions yet :(</span>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

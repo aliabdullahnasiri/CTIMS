@@ -265,3 +265,77 @@ div[data-bs-role="loader"]::after {
 .multi-value-input.readonly span[data-role="value"] {
   cursor: not-allowed;
 }
+
+input:-webkit-autofill {
+  -webkit-text-fill-color: #ffffff !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+a[aria-disabled="false"] {
+  pointer-events: none;
+  color: gray;
+  cursor: not-allowed;
+  text-decoration: none;
+  opacity: 0.6;
+}
+
+div.multi-value-input div.values:has(span) {
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+}
+
+.input-group select {
+  cursor: pointer;
+}
+
+.input-group:has(select)::after {
+  content: "🢓";
+  right: 0;
+  position: absolute;
+  margin: 10px 13px;
+  font-size: 25px;
+}
+
+body.dark-version select {
+  background: #1d1d1d !important;
+  color: #c9d1d9;
+  border: 1px solid #262626;
+}
+
+body.dark-version input::-webkit-calendar-picker-indicator {
+  filter: invert(0.5) !important;
+}
+
+body input::-webkit-calendar-picker-indicator {
+  filter: invert(0.35) !important;
+}
+
+.company-icon {
+  width: 172px;
+  height: 94px;
+  margin: 0;
+  background: #4444;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.drag-over-effect.company-icon::after {
+  font-size: 2rem;
+  top: 0;
+}
+
+.company-icon:has(img:not([src]), img[src=""]):after {
+  content: "🖼";
+  font-size: 2.8rem;
+}
+
+img:not([src]),
+img[src=""] {
+  display: none !important;
+}
+
+.tt-none {
+  text-transform: none !important;
+}
