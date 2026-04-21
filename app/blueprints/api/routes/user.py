@@ -15,6 +15,7 @@ from app.models.role import Role
 from app.models.user import User, permission_required
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
+    (ColumnID("is_deletable"), ColumnName("IS_DELETABLE")),
     (ColumnID("uid"), ColumnName("UID")),
     (ColumnID("temp_user"), ColumnName("User")),
     (ColumnID("user_name"), ColumnName("User Name")),
@@ -141,6 +142,9 @@ def update_user() -> Response:
             user.email = form.email.data
             user.birthday = form.birthday.data
 
+            if passwd := form.password.data:
+                user.set_password(passwd)
+
             if files := request.form.get("files"):
                 try:
                     user.update_files(json.loads(files))
@@ -219,6 +223,10 @@ def add_user() -> Response:
         user.email = form.email.data
         user.birthday = form.birthday.data
 
+        user.set_password(form.password.data)
+
+        db.session.add(user)
+
         if form.phones.data:
             user.update_phones(json.loads(form.phones.data))
 
@@ -233,7 +241,6 @@ def add_user() -> Response:
 
         user.update_roles()
 
-        db.session.add(user)
         db.session.commit()
 
         response["message"] = "User added successfully"
