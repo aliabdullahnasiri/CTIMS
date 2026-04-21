@@ -1,6 +1,3 @@
-import re
-
-from flask_wtf import FlaskForm
 from wtforms import (
     DateField,
     HiddenField,
@@ -11,13 +8,12 @@ from wtforms import (
     TextAreaField,
     TimeField,
 )
-from wtforms.validators import DataRequired, Length, ValidationError
+from wtforms.validators import DataRequired, Length
 
-from app.models.class_ import Class
-from app.models.subject import Subject
+from app.forms import Form
 
 
-class AddExamForm(FlaskForm):
+class AddExamForm(Form):
     title = StringField("Title", validators=[DataRequired(), Length(max=50)])
     description = TextAreaField("Description", validators=[Length(max=50)])
 
@@ -29,22 +25,6 @@ class AddExamForm(FlaskForm):
 
     subject_id = StringField("Subject UID", validators=[DataRequired(), Length(8, 8)])
     class_id = StringField("Class UID", validators=[DataRequired(), Length(8, 8)])
-
-    def validate_subject_id(self, subject_id) -> None:
-        pattern: re.Pattern = re.compile(r"^S.\d{6}$")
-
-        if not pattern.search(subject_id.data):
-            raise ValidationError("Not a valid Subject UID.")
-        elif not Subject.query.filter_by(uid=subject_id.data).first():
-            raise ValidationError("Subject with the given ID was not found :(")
-
-    def validate_class_id(self, class_id) -> None:
-        pattern: re.Pattern = re.compile(r"^C.\d{6}$")
-
-        if not pattern.search(class_id.data):
-            raise ValidationError("Not a valid Class UID.")
-        elif not Class.query.filter_by(uid=class_id.data).first():
-            raise ValidationError("Class with the given ID was not found :(")
 
     submit = SubmitField("Add Exam")
 
