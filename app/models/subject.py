@@ -3,8 +3,8 @@ from typing import Dict, List
 
 import humanize
 from numerize.numerize import numerize
-from sqlalchemy import func
 
+from app.extensions.console import console
 from app.extensions.db import db
 from app.models.file import File
 
@@ -35,7 +35,7 @@ class Subject(db.Model):
     files = db.relationship(
         "File",
         secondary="subjects_files",
-        backref=db.backref("subjects", lazy="dynamic"),
+        backref=db.backref("subject", uselist=False),
         lazy="dynamic",
     )
 
@@ -87,6 +87,6 @@ class Subject(db.Model):
                         if file.id not in vals:
                             db.session.delete(file)
 
-                    for val in vals:
+                    for val in set(vals):
                         if file := File.query.filter_by(id=int(val)).scalar():
-                            self.files.append(file)
+                            self.files.add(file)
