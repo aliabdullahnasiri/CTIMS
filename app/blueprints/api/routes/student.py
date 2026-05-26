@@ -5,6 +5,7 @@ from flask import Response, request, url_for
 from flask_login import login_required
 
 from app.blueprints.api import bp
+from app.cls import ColumnID, ColumnName
 from app.const import DEFAULT_AVATAR
 from app.extensions.console import console
 from app.extensions.db import db
@@ -14,7 +15,6 @@ from app.models.permission import Permission
 from app.models.role import Role
 from app.models.student import Student
 from app.models.user import User, permission_required
-from app.cls import ColumnID, ColumnName
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
     (ColumnID("uid"), ColumnName("UID")),
@@ -136,10 +136,11 @@ def add_student() -> Response:
         if form.password.data:
             user.set_password(form.password.data)
 
+        db.session.add(user)
+
         if role := Role.get("STUDENT"):
             user.update_roles([role])
 
-        db.session.add(user)
         db.session.commit()
 
         student = Student()

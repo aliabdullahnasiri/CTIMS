@@ -13,7 +13,7 @@ from app.extensions.bcrypt import bcrypt
 from app.extensions.db import db
 from app.extensions.login_manager import login_manager
 from app.func import get_file_url
-from app.models.file import File, FileForEnum
+from app.models.file import File
 from app.models.permission import Permission
 from app.models.phone import Phone
 from app.models.role import Role
@@ -155,16 +155,7 @@ class User(UserMixin, db.Model):
 
     @property
     def avatar_src(self) -> str:
-        u = url_for("static", filename=DEFAULT_AVATAR)
-
-        if (
-            f := self.files.filter_by(file_for=FileForEnum.AVATAR)
-            .order_by(getattr(File, "created_at").desc())
-            .first()
-        ):
-            u = f.file_url
-
-        return u
+        return self.avatar_path
 
     def update_phones(self, phones: List[str]):
         for phone in self.phones.all():
