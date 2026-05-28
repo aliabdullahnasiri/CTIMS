@@ -2,7 +2,7 @@ import os
 import sys
 from typing import Dict
 
-from flask import Flask, current_app, url_for
+from flask import Flask, current_app, redirect, url_for
 from sqlalchemy import inspect
 
 import app.const as const
@@ -67,5 +67,10 @@ def create_app(config_class: type[Config] | None = None) -> Flask:
                         administrator.permissions.append(p)
 
                 db.session.commit()
+
+    # Handle 404 errors
+    @app.errorhandler(404)
+    def _(_):
+        return redirect(url_for("admin.dashboard"))
 
     return app
