@@ -1,5 +1,5 @@
 from wtforms import BooleanField, HiddenField, StringField, SubmitField, TextAreaField
-from wtforms.validators import DataRequired, Length, Optional, ReadOnly
+from wtforms.validators import DataRequired, Length, Optional
 
 from app.forms import Form
 
@@ -24,7 +24,7 @@ class AddRoleForm(Form):
 
 class UpdateRoleForm(AddRoleForm):
     uid = HiddenField("Role UID", validators=[DataRequired()])
-    name = StringField("Name", validators=[ReadOnly(), Length(max=255)])
+    name = StringField("Name", validators=[Length(max=255)])
 
     description = TextAreaField(
         "Description", validators=[Optional(), Length(max=2500)]
