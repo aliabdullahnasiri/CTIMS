@@ -11,15 +11,12 @@ from werkzeug.utils import secure_filename
 
 from app.extensions.db import db
 from app.models.file import File
-from app.models.permission import Permission
-from app.models.user import permission_required
 
 from .. import bp
 
 
 @bp.post("/upload")
 @login_required
-@permission_required(Permission.get("UPLOAD_FILE"))
 def upload() -> Response:
     response: Response = Response(headers={"Content-Type": "application/app"})
 
