@@ -5,13 +5,13 @@ from flask import Response
 from flask_login import login_required
 
 from app.blueprints.api import bp
+from app.cls import ColumnID, ColumnName
 from app.extensions.db import db
 from app.forms.class_ import AddClassForm, UpdateClassForm
 from app.func import render_td
 from app.models.class_ import Class
 from app.models.permission import Permission
 from app.models.user import permission_required
-from app.cls import ColumnID, ColumnName
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
     (ColumnID("uid"), ColumnName("UID")),
@@ -121,7 +121,7 @@ def add_class() -> Response:
     if form.validate_on_submit():
         class_: Class = Class()
 
-        class_.name = form.name.data
+        class_.name = form.cls_name.data
         class_.teacher_id = form.teacher_id.data
         class_.semester_id = form.semester_id.data
         class_.time_id = form.time_id.data
@@ -152,7 +152,7 @@ def update_class() -> Response:
         class_: Union[Class, None] = Class.query.filter_by(uid=form.uid.data).first()
 
         if class_:
-            class_.name = form.name.data
+            class_.name = form.cls_name.data
             class_.teacher_id = form.teacher_id.data
             class_.semester_id = form.semester_id.data
             class_.time_id = form.time_id.data
