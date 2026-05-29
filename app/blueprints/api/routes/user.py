@@ -156,7 +156,7 @@ def update_user(user=None) -> Response:
 
             if form.roles.data:
                 user.update_roles(
-                    [
+                    roles=[
                         role
                         for uid in json.loads(form.roles.data)
                         if (role := Role.query.filter_by(uid=uid).scalar())
