@@ -172,11 +172,11 @@ def build_navbar(current_user, dct: Dict = {}) -> List:
 
     lst = list(
         filter(
-            lambda item: (
-                type(item["for"]) is str
+            lambda f_item: (
+                type(f_item["for"]) is str
                 and current_user.primary_role_uid
-                == getattr(Role.get(item["for"]), "uid")
-                if item and item.get("for")
+                == getattr(Role.get(f_item["for"]), "uid")
+                if f_item and f_item.get("for")
                 else True
             ),
             [
