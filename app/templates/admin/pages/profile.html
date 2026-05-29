@@ -40,7 +40,7 @@
                 <a
                   href="javascript:;"
                   data-bs-toggle="modal"
-                  data-bs-target="#EditUserModal"
+                  data-bs-target="#EditProfileModal"
                   data-id="{{ user.uid }}"
                   class="position-absolute end-0 btn btn-info btn-sm px-2 py-2 btn-rounded"
                 >
@@ -88,7 +88,7 @@
 {% block modal %}
 {{ super() }}
 {% with profile = True  %}
-{% include "admin/components/modals/update/user.html" %}
+{% include "admin/components/modals/update/profile.html" %}
 {% endwith %}
 {% endblock %}
 
