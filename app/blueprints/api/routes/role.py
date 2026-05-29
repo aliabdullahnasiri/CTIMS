@@ -132,29 +132,29 @@ def update_role() -> Response:
         role: Union[Role, None] = Role.query.filter_by(uid=uid).first()
 
         if role:
+            dct = role.to_dict()
+            readonly = dct["readonly"]
+
             role.description = form.description.data
 
-            if role.name != ADMINISTRATOR:
-                role.name = form.name.data
+            if "default" not in readonly:
                 role.default = form.default.data
 
-                if permissions := form.permissions.data:
-                    try:
-                        permissions = json.loads(permissions)
+            if "permissions" not in readonly and (permissions := form.permissions.data):
+                try:
+                    permissions = json.loads(permissions)
 
-                        for p in role.permissions.all():
-                            if p.uid not in permissions:
-                                role.permissions.remove(p)
+                    for p in role.permissions.all():
+                        if p.uid not in permissions:
+                            role.permissions.remove(p)
 
-                        for permission in permissions:
-                            if (
-                                obj := Permission.query.filter_by(
-                                    uid=permission
-                                ).scalar()
-                            ) not in role.permissions:
-                                role.permissions.add(obj)
-                    except json.JSONDecodeError as err:
-                        print("ERROR: ", err)
+                    for permission in permissions:
+                        if (
+                            obj := Permission.query.filter_by(uid=permission).scalar()
+                        ) not in role.permissions:
+                            role.permissions.add(obj)
+                except json.JSONDecodeError as err:
+                    print("ERROR: ", err)
 
             db.session.commit()
 
