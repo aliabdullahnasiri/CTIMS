@@ -164,9 +164,6 @@ ITEMS: List[Dict] = [
 
 
 def build_navbar(current_user, dct: Dict = {}) -> List:
-    from app.extensions.console import console
-
-    console.print(dct)
     if current_user.id in dct:
         return dct[current_user.id]
 
