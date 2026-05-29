@@ -126,7 +126,7 @@ def fetch_user(uid) -> Response:
 @bp.post("/update/user")
 @login_required
 @permission_required(Permission.get("FETCH_USER") | Permission.get("UPDATE_USER"))
-def update_user() -> Response:
+def update_user(user=None) -> Response:
     form = UpdateUserForm()
 
     response: Dict = {}
