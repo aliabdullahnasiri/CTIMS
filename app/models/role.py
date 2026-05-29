@@ -53,10 +53,10 @@ class Role(db.Model):
         return cls.get(name=ADMINISTRATOR, primary=True)
 
     def to_dict(self) -> dict:
-        readonly: List[str] = []
+        readonly: List[str] = ["name"]
 
         if self == self.administrator():
-            readonly.extend(["name", "permissions", "default"])
+            readonly.extend(["permissions", "default"])
 
         return {
             "name": self.name,
@@ -71,6 +71,5 @@ class Role(db.Model):
                 )
             ],
             "readonly": readonly,
-            "is_deletable": self.name != ADMINISTRATOR,
             **call(getattr(super(), "to_dict")),
         }
