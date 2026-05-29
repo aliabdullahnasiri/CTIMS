@@ -11,6 +11,18 @@ from app.forms.profile import UpdateProfileForm
 from app.models.role import Role
 
 
+@bp.get("/fetch/profile")
+@login_required
+def fetch_profile():
+    response: Response = Response(
+        json.dumps(current_user.to_dict()),
+        status=200,
+        headers={"Content-Type": "application/json"},
+    )
+
+    return response
+
+
 @bp.post("/update/profile")
 @login_required
 def update_profile():
