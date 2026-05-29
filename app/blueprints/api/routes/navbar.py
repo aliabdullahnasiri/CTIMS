@@ -4,7 +4,6 @@ from flask import jsonify, url_for
 from flask_login import current_user, login_required
 
 from app.blueprints.api import bp
-from app.const import TEACHER
 from app.models.permission import Permission
 from app.models.role import Role
 
