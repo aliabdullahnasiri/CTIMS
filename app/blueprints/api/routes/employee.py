@@ -141,7 +141,7 @@ def add_employee() -> Response:
         db.session.add(user)
 
         if role := Role.get(EMPLOYEE):
-            user.primary_role_uid = role.uid
+            user.update_roles(primary_role=role)
 
         db.session.commit()
 
