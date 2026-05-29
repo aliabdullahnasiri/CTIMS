@@ -160,19 +160,6 @@ ITEMS: List[Dict] = [
             },
         ],
     },
-    {
-        "type": "section",
-        "title": "Teacher",
-        "for": TEACHER,
-        "items": [
-            {
-                "type": "item",
-                "title": "Profile",
-                "icon": "person",
-                "endpoint": "admin.profile",
-            },
-        ],
-    },
 ]
 
 
