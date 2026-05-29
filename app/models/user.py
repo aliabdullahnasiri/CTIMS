@@ -37,6 +37,8 @@ class User(UserMixin, db.Model):
         nullable=True,
     )
 
+    primary_role_uid = db.Column(db.String(8), db.ForeignKey("roles.uid"))
+
     employee = db.relationship(
         "Employee", back_populates="user", cascade="delete", uselist=False
     )
@@ -65,6 +67,7 @@ class User(UserMixin, db.Model):
         backref=db.backref("users", lazy="dynamic"),
         lazy="dynamic",
     )
+    primary_role = db.relationship("Role", back_populates="users")
 
     @property
     def permissions(self):
@@ -99,6 +102,7 @@ class User(UserMixin, db.Model):
                 and Role.administrator().users.count() == 1
                 and self.get_id() == current_user.get_id()
             ),
+            "primary_role_uid": self.primary_role_uid,
             **call(getattr(super(), "to_dict")),
         }
 
