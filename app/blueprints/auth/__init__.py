@@ -5,6 +5,7 @@ from flask_login import current_user, login_required, login_user, logout_user
 from app.extensions.db import db
 from app.forms.login import LoginForm
 from app.forms.signup import SignupForm
+from app.models.permission import Permission
 from app.models.user import User
 
 bp = Blueprint("auth", __name__)
@@ -25,8 +26,11 @@ def login():
 
             flash(f"Welcome back, {user.user_name}!", category="success")
 
-            if current_user.is_administrator():
-                return redirect(url_for("admin.dashboard"))
+            return redirect(
+                url_for("admin.dashboard")
+                if user.can(Permission.get("VIEW_DASHBOARD"))
+                else url_for("admin.profile")
+            )
 
         flash("Email or password is incorrect!", category="error")
 
