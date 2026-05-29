@@ -3,6 +3,7 @@ from __future__ import annotations
 import os
 import pathlib
 import re
+from typing import Dict
 
 from dotenv import load_dotenv
 
@@ -44,6 +45,11 @@ class Config:
 
     FLASKY_ADMIN: str = "nasiri.aliabdullah@gmail.com"
 
-    ADMINISTRATOR: str = "ADMINISTRATOR"
-
     ADMINISTER: str = "ADMINISTER"
+
+    ROLE: Dict = {
+        "ADMINISTRATOR": "ADMINISTRATOR",
+        "TEACHER": "TEACHER",
+        "STUDENT": "STUDENT",
+        "EMPLOYEE": "EMPLOYEE",
+    }
