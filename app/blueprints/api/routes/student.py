@@ -139,7 +139,7 @@ def add_student() -> Response:
         db.session.add(user)
 
         if role := Role.get(STUDENT):
-            user.update_roles([role])
+            user.primary_role_uid = role.uid
 
         db.session.commit()
 
