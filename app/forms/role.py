@@ -24,5 +24,6 @@ class AddRoleForm(Form):
 
 class UpdateRoleForm(AddRoleForm):
     uid = HiddenField("Role UID", validators=[DataRequired()])
+    name = None
 
     submit = SubmitField("Update Role")
