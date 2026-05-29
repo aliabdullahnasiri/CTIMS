@@ -5,7 +5,7 @@ from app.forms import Form
 
 
 class AddClassForm(Form):
-    name = StringField("Class Name", validators=[DataRequired(), Length(max=255)])
+    cls_name = StringField("Class Name", validators=[DataRequired(), Length(max=255)])
     teacher_id = StringField("Teacher UID", validators=[DataRequired(), Length(8, 8)])
     semester_id = StringField("Semester UID", validators=[DataRequired(), Length(8, 8)])
     time_id = StringField("Time UID", validators=[DataRequired(), Length(8, 8)])
