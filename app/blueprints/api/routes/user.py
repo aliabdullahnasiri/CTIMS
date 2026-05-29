@@ -223,7 +223,8 @@ def add_user() -> Response:
         user.email = form.email.data
         user.birthday = form.birthday.data
 
-        user.set_password(form.password.data)
+        if form.password.data:
+            user.set_password(form.password.data)
 
         db.session.add(user)
 
