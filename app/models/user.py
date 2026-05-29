@@ -71,7 +71,7 @@ class User(UserMixin, db.Model):
 
     @property
     def permissions(self):
-        permissions = 0
+        permissions = self.primary_role.hex_permissions if self.primary_role else 0
 
         for role in self.roles.all():
             permissions |= role.hex_permissions
@@ -196,16 +196,15 @@ class User(UserMixin, db.Model):
                         if file := File.query.filter_by(id=int(val)).scalar():
                             file.user = self
 
-    def update_roles(self, roles: Union[List[int], None] = None):
-        role = (
-            Role.administrator()
-            if self.email == current_app.config["FLASKY_ADMIN"]
-            else Role.query.filter_by(default=True).first()
-        )
+    def update_roles(
+        self,
+        primary_role: Union[Role, None] = None,
+        roles: Union[List[int], None] = None,
+    ):
+        if primary_role:
+            self.primary_role_uid = getattr(primary_role, "uid")
 
-        if role and not self.roles.filter_by(id=role.id).count():
-            self.roles.append(role)
-        elif type(roles) is list:
+        if type(roles) is list:
             for r in self.roles.all():
                 if r.uid not in roles:
                     self.roles.remove(r)
