@@ -6,7 +6,7 @@ from flask_login import login_required
 
 from app.blueprints.api import bp
 from app.cls import ColumnID, ColumnName
-from app.const import DEFAULT_AVATAR
+from app.const import DEFAULT_AVATAR, TEACHER
 from app.extensions.console import console
 from app.extensions.db import db
 from app.forms.teacher import AddTeacherForm, UpdateTeacherForm
@@ -139,7 +139,7 @@ def add_teacher() -> Response:
 
         db.session.add(user)
 
-        if role := Role.get("TEACHER"):
+        if role := Role.get(TEACHER):
             user.update_roles([role])
 
         db.session.commit()

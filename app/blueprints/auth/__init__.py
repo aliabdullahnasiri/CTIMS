@@ -43,7 +43,9 @@ def signup():
         user.user_name = form.user_name.data
         user.email = form.email.data
 
-        user.set_password(form.password.data)
+        if passwd := form.password.data:
+            user.set_password(passwd)
+
         user.update_roles()
 
         db.session.add(user)
