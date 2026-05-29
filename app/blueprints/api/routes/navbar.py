@@ -4,7 +4,9 @@ from flask import jsonify, url_for
 from flask_login import current_user, login_required
 
 from app.blueprints.api import bp
+from app.const import TEACHER
 from app.models.permission import Permission
+from app.models.role import Role
 
 ITEMS: List[Dict] = [
     {
@@ -158,25 +160,53 @@ ITEMS: List[Dict] = [
             },
         ],
     },
+    {
+        "type": "section",
+        "title": "Teacher",
+        "for": TEACHER,
+        "items": [
+            {
+                "type": "item",
+                "title": "Profile",
+                "icon": "person",
+                "endpoint": "admin.profile",
+            },
+        ],
+    },
 ]
 
 
-def build_navbar(current_user, users=[]) -> List:
-    return list(
+def build_navbar(current_user, dct: Dict = {}) -> List:
+    from app.extensions.console import console
+
+    console.print(dct)
+    if current_user.id in dct:
+        return dct[current_user.id]
+
+    lst = list(
         filter(
-            lambda _: _,
+            lambda item: (
+                type(item["for"]) is str
+                and current_user.primary_role_uid
+                == getattr(Role.get(item["for"]), "uid")
+                if item and item.get("for")
+                else True
+            ),
             [
                 (
                     {
-                        "type": item["type"],
-                        "title": item["title"],
+                        "type": item.get("type"),
+                        "title": item.get("title"),
+                        "for": item.get("for"),
+                        "icon": item.get("icon"),
                         "items": list(
                             map(
                                 lambda m_item: {
-                                    "type": m_item["type"],
-                                    "title": m_item["title"],
-                                    "icon": m_item["icon"],
-                                    "url": url_for(m_item["endpoint"]),
+                                    "type": m_item.get("type"),
+                                    "title": m_item.get("title"),
+                                    "icon": m_item.get("icon"),
+                                    "url": url_for(m_item.get("endpoint")),
+                                    "for": item.get("for"),
                                 },
                                 filter(
                                     lambda i: current_user.can(i.get("permissions", 0)),
@@ -188,9 +218,10 @@ def build_navbar(current_user, users=[]) -> List:
                     if item.get("type") == "section"
                     else (
                         {
-                            "type": "item",
-                            "title": item["title"],
-                            "icon": item["icon"],
+                            "type": item.get("type"),
+                            "title": item.get("title"),
+                            "for": item.get("for"),
+                            "icon": item.get("icon"),
                             "url": url_for(item["endpoint"]),
                         }
                         if current_user.can(item.get("permissions", 0))
@@ -201,6 +232,10 @@ def build_navbar(current_user, users=[]) -> List:
             ],
         )
     )
+
+    dct.setdefault(current_user.id, lst)
+
+    return lst
 
 
 @bp.route("/navbar")
