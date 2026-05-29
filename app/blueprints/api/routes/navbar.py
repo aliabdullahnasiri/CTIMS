@@ -1,0 +1,209 @@
+from typing import Dict, List
+
+from flask import jsonify, url_for
+from flask_login import current_user, login_required
+
+from app.blueprints.api import bp
+from app.models.permission import Permission
+
+ITEMS: List[Dict] = [
+    {
+        "type": "item",
+        "title": "Dashboard",
+        "icon": "dashboard",
+        "endpoint": "admin.dashboard",
+        "permissions": Permission.get("VIEW_DASHBOARD"),
+    },
+    {
+        "type": "item",
+        "title": "Users",
+        "icon": "groups",
+        "endpoint": "admin.users",
+        "permissions": Permission.get("FETCH_USERS") | Permission.get("FETCH_USER"),
+    },
+    {
+        "type": "item",
+        "title": "Permissions",
+        "icon": "lock_open_circle",
+        "endpoint": "admin.permissions",
+        "permissions": Permission.get("FETCH_PERMISSIONS")
+        | Permission.get("FETCH_PERMISSION"),
+    },
+    {
+        "type": "item",
+        "title": "Roles",
+        "icon": "supervised_user_circle",
+        "endpoint": "admin.roles",
+        "permissions": Permission.get("FETCH_ROLES") | Permission.get("FETCH_ROLE"),
+    },
+    {
+        "type": "section",
+        "title": "CTI Management",
+        "items": [
+            {
+                "type": "item",
+                "title": "Times",
+                "icon": None,
+                "endpoint": "admin.times",
+                "permissions": Permission.get("FETCH_TIMES")
+                | Permission.get("FETCH_TIME"),
+            },
+            {
+                "type": "item",
+                "title": "Departments",
+                "icon": None,
+                "endpoint": "admin.departments",
+                "permissions": Permission.get("FETCH_DEPARTMENTS")
+                | Permission.get("FETCH_DEPARTMENT"),
+            },
+            {
+                "type": "item",
+                "title": "Semesters",
+                "icon": None,
+                "endpoint": "admin.semesters",
+                "permissions": Permission.get("FETCH_SEMESTERS")
+                | Permission.get("FETCH_SEMESTER"),
+            },
+            {
+                "type": "item",
+                "title": "Jobs",
+                "icon": None,
+                "endpoint": "admin.jobs",
+                "permissions": Permission.get("FETCH_JOBS")
+                | Permission.get("FETCH_JOB"),
+            },
+            {
+                "type": "item",
+                "title": "Employees",
+                "icon": None,
+                "endpoint": "admin.employees",
+                "permissions": Permission.get("FETCH_EMPLOYEES")
+                | Permission.get("FETCH_EMPLOYEE"),
+            },
+            {
+                "type": "item",
+                "title": "Teacher",
+                "icon": None,
+                "endpoint": "admin.teachers",
+                "permissions": Permission.get("FETCH_TEACHERS")
+                | Permission.get("FETCH_TEACHER"),
+            },
+            {
+                "type": "item",
+                "title": "Subjects",
+                "icon": None,
+                "endpoint": "admin.subjects",
+                "permissions": Permission.get("FETCH_SUBJECTS")
+                | Permission.get("FETCH_SUBJECT"),
+            },
+            {
+                "type": "item",
+                "title": "Classes",
+                "icon": None,
+                "endpoint": "admin.classes",
+                "permissions": Permission.get("FETCH_CLASSES")
+                | Permission.get("FETCH_CLASS"),
+            },
+            {
+                "type": "item",
+                "title": "Students",
+                "icon": None,
+                "endpoint": "admin.students",
+                "permissions": Permission.get("FETCH_STUDENTS")
+                | Permission.get("FETCH_STUDENT"),
+            },
+            {
+                "type": "item",
+                "title": "Exams",
+                "icon": None,
+                "endpoint": "admin.exams",
+                "permissions": Permission.get("FETCH_EXAMS")
+                | Permission.get("FETCH_EXAM"),
+            },
+            {
+                "type": "item",
+                "title": "Results",
+                "icon": None,
+                "endpoint": "admin.results",
+                "permissions": Permission.get("FETCH_RESULTS")
+                | Permission.get("FETCH_RESULT"),
+            },
+            {
+                "type": "item",
+                "title": "Teachers Attendances",
+                "icon": None,
+                "endpoint": "admin.teachers_attendances",
+                "permissions": Permission.get("FETCH_TEACHERS_ATTENDANCES")
+                | Permission.get("FETCH_TEACHER_ATTENDANCE"),
+            },
+            {
+                "type": "item",
+                "title": "Students Attendances",
+                "icon": None,
+                "endpoint": "admin.students_attendances",
+                "permissions": Permission.get("FETCH_STUDENTS_ATTENDANCES")
+                | Permission.get("FETCH_STUDENT_ATTENDANCE"),
+            },
+        ],
+    },
+    {
+        "type": "section",
+        "title": "Account",
+        "items": [
+            {
+                "type": "item",
+                "title": "Profile",
+                "icon": "person",
+                "endpoint": "admin.profile",
+            },
+        ],
+    },
+]
+
+
+def build_navbar(current_user, users=[]) -> List:
+    return list(
+        filter(
+            lambda _: _,
+            [
+                (
+                    {
+                        "type": item["type"],
+                        "title": item["title"],
+                        "items": list(
+                            map(
+                                lambda m_item: {
+                                    "type": m_item["type"],
+                                    "title": m_item["title"],
+                                    "icon": m_item["icon"],
+                                    "url": url_for(m_item["endpoint"]),
+                                },
+                                filter(
+                                    lambda i: current_user.can(i.get("permissions", 0)),
+                                    item.get("items", []),
+                                ),
+                            )
+                        ),
+                    }
+                    if item.get("type") == "section"
+                    else (
+                        {
+                            "type": "item",
+                            "title": item["title"],
+                            "icon": item["icon"],
+                            "url": url_for(item["endpoint"]),
+                        }
+                        if current_user.can(item.get("permissions", 0))
+                        else None
+                    )
+                )
+                for item in ITEMS
+            ],
+        )
+    )
+
+
+@bp.route("/navbar")
+@login_required
+def navbar():
+    return jsonify(build_navbar(current_user))

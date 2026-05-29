@@ -242,7 +242,9 @@ def admin_required(f):
     @wraps(f)
     @login_required
     def decorated_function(*args, **kwargs):
-        if not current_user.can(Permission.administer()):
+        if not current_user.can(Permission.administer()) or not current_user.can(
+            Permission.get("VIEW_DASHBOARD")
+        ):
             abort(403)
 
         return f(*args, **kwargs)
