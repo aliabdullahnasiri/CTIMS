@@ -1,11 +1,12 @@
 import json
 from typing import Dict, List, Tuple, Union
 
-from flask import Response, request
+from flask import Response, request, url_for
 from flask_login import login_required
 
 from app.blueprints.api import bp
 from app.cls import ColumnID, ColumnName
+from app.const import DEFAULT_AVATAR
 from app.extensions.console import console
 from app.extensions.db import db
 from app.forms.user import AddUserForm, UpdateUserForm
@@ -222,6 +223,7 @@ def add_user() -> Response:
         user.user_name = form.user_name.data
         user.email = form.email.data
         user.birthday = form.birthday.data
+        user.avatar_path = url_for("static", filename=DEFAULT_AVATAR)
 
         if form.password.data:
             user.set_password(form.password.data)
