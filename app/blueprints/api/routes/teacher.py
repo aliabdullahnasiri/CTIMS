@@ -140,7 +140,7 @@ def add_teacher() -> Response:
         db.session.add(user)
 
         if role := Role.get(TEACHER):
-            user.primary_role_uid = role.uid
+            user.update_roles(primary_role=role)
 
         db.session.commit()
 
