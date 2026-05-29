@@ -230,6 +230,7 @@ def load_user(id: str):
 def permission_required(permission):
     def decorator(f):
         @wraps(f)
+        @login_required
         def decorated_function(*args, **kwargs):
             if not current_user.can(permission):
                 abort(403)
