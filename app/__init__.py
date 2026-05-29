@@ -48,9 +48,7 @@ def create_app(config_class: type[Config] | None = None) -> Flask:
 
     app.register_blueprint(api_bp, url_prefix="/api")
     app.register_blueprint(auth_bp, url_prefix="/auth")
-    app.register_blueprint(admin_bp, url_prefix="/admin", name="admin")
-    app.register_blueprint(admin_bp, url_prefix="/student", name="student_panel")
-    app.register_blueprint(admin_bp, url_prefix="/teacher", name="teacher_panel")
+    app.register_blueprint(admin_bp, url_prefix="/", name="admin")
 
     if "db" not in sys.argv:
         with app.app_context(), app.test_request_context():
