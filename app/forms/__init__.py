@@ -165,5 +165,6 @@ class Form(FlaskForm):
 
     # Check if email already exists
     def validate_email(self, email):
-        if User.query.filter_by(email=email.data).first():
-            raise ValidationError("Email already registered")
+        if self.__class__.__name__ == "SignupForm":
+            if User.query.filter_by(email=email.data).first():
+                raise ValidationError("Email already registered")
