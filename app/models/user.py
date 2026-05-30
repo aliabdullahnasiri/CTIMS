@@ -4,11 +4,11 @@ from operator import call
 from typing import Dict, List, Union
 
 import humanize
-from flask import abort, current_app, url_for
+from flask import abort, url_for
 from flask_login import AnonymousUserMixin, UserMixin, current_user, login_required
 from numerize import numerize
 
-from app.const import DEFAULT_AVATAR
+from app.const import DEFAULT_AVATAR, EMPLOYEE, STUDENT, TEACHER
 from app.extensions.bcrypt import bcrypt
 from app.extensions.db import db
 from app.extensions.login_manager import login_manager
@@ -83,6 +83,18 @@ class User(UserMixin, db.Model):
 
     def is_administrator(self):
         return self.can(Permission.administer())
+
+    @property
+    def is_teacher(self) -> bool:
+        return self.primary_role == Role.get(TEACHER)
+
+    @property
+    def is_student(self) -> bool:
+        return self.primary_role == Role.get(STUDENT)
+
+    @property
+    def is_employee(self) -> bool:
+        return self.primary_role == Role.get(EMPLOYEE)
 
     def to_dict(self) -> Dict:
         dct = {
