@@ -162,11 +162,8 @@ ITEMS: List[Dict] = [
 ]
 
 
-def build_navbar(current_user, dct: Dict = {}) -> List:
-    if current_user.id in dct:
-        return dct[current_user.id]
-
-    lst = list(
+def build_navbar(current_user) -> List:
+    return list(
         filter(
             lambda f_item: (
                 type(f_item["for"]) is str
@@ -215,10 +212,6 @@ def build_navbar(current_user, dct: Dict = {}) -> List:
             ],
         )
     )
-
-    dct.setdefault(current_user.id, lst)
-
-    return lst
 
 
 @bp.route("/navbar")

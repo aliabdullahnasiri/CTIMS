@@ -6,7 +6,6 @@ from flask_login import login_required
 
 from app.blueprints.api import bp
 from app.cls import ColumnID, ColumnName
-from app.const import ADMINISTRATOR
 from app.extensions.db import db
 from app.forms.role import AddRoleForm, UpdateRoleForm
 from app.func import render_td
@@ -157,6 +156,9 @@ def update_role() -> Response:
                     print("ERROR: ", err)
 
             db.session.commit()
+
+            for user in role.users.all():
+                dct.remove(user.id)
 
             response["title"] = "Updated!"
             response["category"] = "success"
