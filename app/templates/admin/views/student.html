@@ -160,7 +160,7 @@
             "admin/views/tabs/attendances.html" %}{% endwith %}
 
             <!--FILES-->
-            {% with files = student.files %} {% include
+            {% with files = student.user.files %} {% include
             "admin/views/tabs/files.html" %}{% endwith %}
           </div>
         </div>
