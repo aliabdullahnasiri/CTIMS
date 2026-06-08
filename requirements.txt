@@ -21,4 +21,4 @@ pillow==12.1.1
 pypdf==6.7.5
 pytesseract
 flask_socketio
-
+flask-babel
