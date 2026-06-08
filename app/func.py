@@ -1,9 +1,10 @@
 import pathlib
 import re
 
-from flask import render_template
+from flask import render_template, request, session
 
 from app.config import Config
+from app.const import LANGUAGES
 
 
 def validate_uid(uid: str) -> bool:
@@ -66,3 +67,18 @@ def __import_all__(path: str) -> None:
                 f"{path.replace(chr(47), chr(46))}{chr(46)}{module.name}",
             )
         )
+
+
+def get_locale():
+    # 1. Check if the user explicitly requested a language via URL parameter (?lang=es)
+    lang = request.args.get("lang")
+    if lang in LANGUAGES:
+        session["lang"] = lang
+        return lang
+
+    # 2. Check if a language is already saved in the user's session
+    if "lang" in session:
+        return session["lang"]
+
+    # 3. Fall back to the browser's preferred language
+    return request.accept_languages.best_match(LANGUAGES)
