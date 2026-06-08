@@ -5,13 +5,13 @@ from flask import Response
 from flask_login import login_required
 
 from app.blueprints.api import bp
+from app.cls import ColumnID, ColumnName
 from app.extensions.db import db
 from app.forms.attendance.student import AddStudentAttendanceForm
 from app.func import render_td
 from app.models.attendance import StudentAttendance
 from app.models.permission import Permission
 from app.models.user import permission_required
-from app.cls import ColumnID, ColumnName
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
     (ColumnID("uid"), ColumnName("UID")),
@@ -139,7 +139,7 @@ def add_student_attendance() -> Response:
         response["message"] = "Student attendance added successfully"
         response["category"] = "success"
         response["title"] = "Attendance Added"
-        response["id"] = student_attendance.uid
+        response["id"] = getattr(student_attendance, "uid")
 
     else:
         response["errors"] = form.errors
