@@ -10,10 +10,12 @@ from app.blueprints.admin import bp as admin_bp
 from app.blueprints.api import bp as api_bp
 from app.blueprints.auth import bp as auth_bp
 from app.config import Config
+from app.extensions.babel import babel
 from app.extensions.bcrypt import bcrypt
 from app.extensions.db import db
 from app.extensions.login_manager import login_manager
 from app.extensions.migrate import migrate
+from app.func import get_locale
 
 
 def ctx() -> Dict:
@@ -40,6 +42,7 @@ def create_app(config_class: type[Config] | None = None) -> Flask:
     migrate.init_app(app, db)
     bcrypt.init_app(app)
     login_manager.init_app(app)
+    babel.init_app(app, locale_selector=get_locale)
 
     @app.context_processor
     def _():
