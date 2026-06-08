@@ -25,6 +25,10 @@ class Config:
 
     FLASKY_ADMIN: str = "nasiri.aliabdullah@gmail.com"
 
+    BABEL_DEFAULT_LOCALE = "en"
+
+    BABEL_TRANSLATION_DIRECTORIES = "../translations/"
+
     CURRENCY_SYMBOL = chr(36)
 
     DEFAULT_AVATAR = "admin/assets/img/default-avatar.png"
@@ -42,8 +46,6 @@ class Config:
     VIEWS_TEMPS = [TEMP for TEMP in pathlib.Path(VIEWS_TEMPS_DIR).glob("*html")]
 
     UID_PATTERN: re.Pattern = re.compile(r"^..\d{6}$")
-
-    FLASKY_ADMIN: str = "nasiri.aliabdullah@gmail.com"
 
     ADMINISTER: str = "ADMINISTER"
 
