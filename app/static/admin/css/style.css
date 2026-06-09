@@ -339,3 +339,12 @@ img[src=""] {
 .tt-none {
   text-transform: none !important;
 }
+
+.rtl td .avatar {
+  margin-left: 10px;
+}
+
+td .avatar {
+  margin-left: 0px;
+  margin-right: 10px;
+}
