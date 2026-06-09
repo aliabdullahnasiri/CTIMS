@@ -47,7 +47,7 @@ def create_app(config_class: type[Config] | None = None) -> Flask:
     @app.context_processor
     def _():
         dct = ctx()
-        return {"CURRENT_APP": current_app, "CTX": dct, **dct}
+        return {"CURRENT_APP": current_app, "CTX": dct, "lang": get_locale(), **dct}
 
     app.register_blueprint(api_bp, url_prefix="/api")
     app.register_blueprint(auth_bp, url_prefix="/auth")
