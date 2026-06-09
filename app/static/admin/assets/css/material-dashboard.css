@@ -25758,7 +25758,7 @@ hr.horizontal.gray-light {
   }
 
   .g-sidenav-show:not(.rtl) .sidenav {
-    transform: translateX(-15.5rem);
+    transform: translateX(15.5rem);
   }
 
   .g-sidenav-show .sidenav.fixed-start+.main-content {
@@ -26326,7 +26326,7 @@ hr.horizontal.gray-light {
 
 .rtl .sidenav .navbar-nav {
   width: 100%;
-  padding-right: 0;
+  padding-right: 0 !important;
 }
 
 .rtl .fixed-plugin .fixed-plugin-button {
