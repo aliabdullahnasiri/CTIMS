@@ -26321,7 +26321,7 @@ hr.horizontal.gray-light {
 .rtl .breadcrumb .breadcrumb-item+.breadcrumb-item::before {
   float: right;
   padding-left: 0.5rem;
-  padding-right: 0;
+  padding-right: 0.5rem;
 }
 
 .rtl .sidenav .navbar-nav {
