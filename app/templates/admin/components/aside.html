@@ -1,5 +1,5 @@
 <aside
-  class="sidenav navbar navbar-vertical navbar-expand-xs border-radius-lg fixed-start ms-2 bg-white my-2"
+  class="sidenav navbar navbar-vertical navbar-expand-xs border-radius-lg {{ 'fixed-end me-2' if lang in ['fa', 'ps'] else 'fixed-start ms-2' }} bg-white my-2"
 >
   <div class="sidenav-header">
     <i
@@ -29,14 +29,14 @@
       <li class="nav-item">
         <a class="nav-link text-dark opacity-8" href="{{ item['url'] }}">
           <i class="material-symbols-rounded opacity-5">{{ item["icon"] }}</i>
-          <span class="nav-link-text ms-1">{{ item["title"] }}</span>
+          <span class="nav-link-text mx-1">{{ item["title"] }}</span>
         </a>
       </li>
 
       {% else %} {% if item["items"] %}
       <li class="nav-item mt-3">
         <h6
-          class="ps-4 ms-2 text-uppercase text-xs text-dark font-weight-bolder opacity-5"
+          class="ps-4 ms-2 text-uppercase text-xs text-dark font-weight-bolder opacity-5 mx-2 px-2"
         >
           {{item["title"]}}
         </h6>
