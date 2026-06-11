@@ -1,6 +1,6 @@
 import json
 import re
-from typing import Any, Self
+from typing import Self
 
 from flask_babel import gettext as _
 from flask_babel import lazy_gettext as _l
@@ -37,6 +37,19 @@ class Form(FlaskForm):
             except Exception:
                 # Keep going if any field is missing a label or translation fails
                 pass
+
+    def validate(self, *args, **kwargs):
+        # Run the standard WTForms validation
+        success = super().validate(*args, **kwargs)
+
+        # If validation fails, intercept and translate the error messages
+        if not success:
+            for field in self:
+                if field.errors:
+                    # Pass each raw string error through gettext
+                    field.errors = [_(error) for error in field.errors]
+
+        return success
 
     def validate_role_name(self, name):
         if Role.query.filter_by(name=name.data).first():
