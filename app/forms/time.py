@@ -1,6 +1,6 @@
+from flask_babel import gettext as _
 from wtforms import HiddenField, StringField, SubmitField, TextAreaField, TimeField
 from wtforms.validators import DataRequired, Length, Optional
-from flask_babel import gettext as _
 
 from app.forms import Form
 
@@ -26,13 +26,13 @@ class AddTimeForm(Form):
 
     start = TimeField(
         _("Start Time"),
-        validators=[DataRequired()],
+        validators=[DataRequired(message=_("This field is required."))],
         format="%H:%M",
     )
 
     end = TimeField(
         _("End Time"),
-        validators=[DataRequired()],
+        validators=[DataRequired(message=_("This field is required."))],
         format="%H:%M",
     )
 

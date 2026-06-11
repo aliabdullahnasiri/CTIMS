@@ -10,10 +10,10 @@ from app.models.teacher import Teacher
 
 
 class AddTeacherAttendanceForm(FlaskForm):
-    teacher_id = StringField(_("Teacher UID"), validators=[DataRequired(), Length(8, 8)])
+    teacher_id = StringField(_("Teacher UID"), validators=[DataRequired(message=_("This field is required.")), Length(min=8, max=8, message=_("This field must be 8 characters."))])
     status = SelectField(
         _("Status"),
-        validators=[DataRequired()],
+        validators=[DataRequired(message=_("This field is required."))],
         choices=[AttendanceStatus.ABSENT.value, AttendanceStatus.PRESENT.value],
         default=AttendanceStatus.PRESENT.value,
     )

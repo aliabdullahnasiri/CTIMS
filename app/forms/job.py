@@ -1,29 +1,51 @@
+from flask_babel import gettext as _
 from wtforms import DecimalField, HiddenField, StringField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, Length, NumberRange, Optional
-from flask_babel import gettext as _
 
 from app.forms import Form
 
 
 class AddJobForm(Form):
-    job_title = StringField(_("Job Title"), validators=[DataRequired(), Length(max=255)])
+    job_title = StringField(
+        _("Job Title"),
+        validators=[
+            DataRequired(message=_("This field is required.")),
+            Length(max=255, message=_("This field cannot exceed 255 characters.")),
+        ],
+    )
 
     job_description = TextAreaField(
-        _("Job Description"), validators=[Optional(), Length(max=2000)]
+        _("Job Description"),
+        validators=[
+            Optional(),
+            Length(max=2000, message=_("This field cannot exceed 2000 characters.")),
+        ],
     )
 
     min_salary = DecimalField(
-        _("Minimum Salary"), places=2, validators=[DataRequired(), NumberRange(min=0)]
+        _("Minimum Salary"),
+        places=2,
+        validators=[
+            DataRequired(message=_("This field is required.")),
+            NumberRange(min=0, message=_("Value must be at least %(min)s.")),
+        ],
     )
 
     max_salary = DecimalField(
-        _("Maximum Salary"), places=2, validators=[DataRequired(), NumberRange(min=0)]
+        _("Maximum Salary"),
+        places=2,
+        validators=[
+            DataRequired(message=_("This field is required.")),
+            NumberRange(min=0, message=_("Value must be at least %(min)s.")),
+        ],
     )
 
     submit = SubmitField(_("Add Job"))
 
 
 class UpdateJobForm(AddJobForm):
-    uid = HiddenField(_("Job UID"), validators=[DataRequired()])
+    uid = HiddenField(
+        _("Job UID"), validators=[DataRequired(message=_("This field is required."))]
+    )
 
     submit = SubmitField(_("Update Job"))

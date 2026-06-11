@@ -1,3 +1,4 @@
+from flask_babel import gettext as _
 from wtforms import (
     DateField,
     HiddenField,
@@ -9,29 +10,65 @@ from wtforms import (
     TimeField,
 )
 from wtforms.validators import DataRequired, Length
-from flask_babel import gettext as _
 
 from app.forms import Form
 
 
 class AddExamForm(Form):
-    title = StringField(_("Title"), validators=[DataRequired(), Length(max=50)])
-    description = TextAreaField(_("Description"), validators=[Length(max=50)])
+    title = StringField(
+        _("Title"),
+        validators=[
+            DataRequired(message=_("This field is required.")),
+            Length(max=50, message=_("This field cannot exceed 50 characters.")),
+        ],
+    )
+    description = TextAreaField(
+        _("Description"),
+        validators=[
+            Length(max=50, message=_("This field cannot exceed 50 characters."))
+        ],
+    )
 
-    exam_date = DateField(_("Exam Date"), validators=[DataRequired()])
-    exam_time = TimeField(_("Exam Time"), validators=[DataRequired()])
+    exam_date = DateField(
+        _("Exam Date"), validators=[DataRequired(message=_("This field is required."))]
+    )
+    exam_time = TimeField(
+        _("Exam Time"), validators=[DataRequired(message=_("This field is required."))]
+    )
 
-    total_marks = IntegerField(_("Total Marks"), validators=[DataRequired()], default=100)
-    min_marks = IntegerField(_("Minimum Marks"), validators=[DataRequired()], default=50)
+    total_marks = IntegerField(
+        _("Total Marks"),
+        validators=[DataRequired(message=_("This field is required."))],
+        default=100,
+    )
+    min_marks = IntegerField(
+        _("Minimum Marks"),
+        validators=[DataRequired(message=_("This field is required."))],
+        default=50,
+    )
 
-    subject_id = StringField(_("Subject UID"), validators=[DataRequired(), Length(8, 8)])
-    class_id = StringField(_("Class UID"), validators=[DataRequired(), Length(8, 8)])
+    subject_id = StringField(
+        _("Subject UID"),
+        validators=[
+            DataRequired(message=_("This field is required.")),
+            Length(min=8, max=8, message=_("This field must be 8 characters.")),
+        ],
+    )
+    class_id = StringField(
+        _("Class UID"),
+        validators=[
+            DataRequired(message=_("This field is required.")),
+            Length(min=8, max=8, message=_("This field must be 8 characters.")),
+        ],
+    )
 
     submit = SubmitField(_("Add Exam"))
 
 
 class UpdateExamForm(AddExamForm):
-    uid = HiddenField(_("Exam UID"), validators=[DataRequired()])
+    uid = HiddenField(
+        _("Exam UID"), validators=[DataRequired(message=_("This field is required."))]
+    )
     files = MultipleFileField(
         _("Files"),
         validators=[],

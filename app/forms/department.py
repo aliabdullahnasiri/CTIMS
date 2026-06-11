@@ -1,6 +1,6 @@
+from flask_babel import gettext as _
 from wtforms import HiddenField, StringField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, Length, Optional
-from flask_babel import gettext as _
 
 from app.forms import Form
 
@@ -24,12 +24,18 @@ class AddDepartmentForm(Form):
 
     head_of_department = StringField(
         _("HOD UID"),
-        validators=[Optional(), Length(min=8, max=8)],
+        validators=[
+            Optional(),
+            Length(min=8, max=8, message=_("This field must be 8 characters.")),
+        ],
     )
 
     parent_department_uid = StringField(
         _("Parent Department UID"),
-        validators=[Optional(), Length(min=8, max=8)],
+        validators=[
+            Optional(),
+            Length(min=8, max=8, message=_("This field must be 8 characters.")),
+        ],
     )
 
     submit = SubmitField(_("Add Department"))

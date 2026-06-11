@@ -1,6 +1,6 @@
+from flask_babel import gettext as _
 from wtforms import PasswordField, SubmitField
 from wtforms.validators import Optional
-from flask_babel import gettext as _
 
 from app.forms.user import AddUserForm
 

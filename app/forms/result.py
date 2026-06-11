@@ -17,11 +17,24 @@ from app.models.student import Student
 
 
 class AddResultForm(Form):
-    exam_id = StringField(_("Exam UID"), validators=[DataRequired(), Length(8, 8)])
-    student_id = StringField(
-        _("Student UID"), validators=[DataRequired(), Length(8, 8)]
+    exam_id = StringField(
+        _("Exam UID"),
+        validators=[
+            DataRequired(message=_("This field is required.")),
+            Length(min=8, max=8, message=_("This field must be 8 characters.")),
+        ],
     )
-    obtained_marks = IntegerField(_("Obtained Marks"), validators=[DataRequired()])
+    student_id = StringField(
+        _("Student UID"),
+        validators=[
+            DataRequired(message=_("This field is required.")),
+            Length(min=8, max=8, message=_("This field must be 8 characters.")),
+        ],
+    )
+    obtained_marks = IntegerField(
+        _("Obtained Marks"),
+        validators=[DataRequired(message=_("This field is required."))],
+    )
 
     def validate_obtained_marks(self, obtained_marks) -> None:
         if uid := self.exam_id.data:
@@ -37,23 +50,25 @@ class AddResultForm(Form):
         pattern: re.Pattern = re.compile(r"^E.\d{6}$")
 
         if not pattern.search(exam_id.data):
-            raise ValidationError("Not a valid Exam UID.")
+            raise ValidationError(_("Not a valid Exam UID."))
         elif not Exam.query.filter_by(uid=exam_id.data).first():
-            raise ValidationError("Exam with the given ID was not found :(")
+            raise ValidationError(_("Exam with the given ID was not found :("))
 
     def validate_student_id(self, student_id) -> None:
         pattern: re.Pattern = re.compile(r"^S.\d{6}$")
 
         if not pattern.search(student_id.data):
-            raise ValidationError("Not a valid Student UID.")
+            raise ValidationError(_("Not a valid Student UID."))
         elif not Student.query.filter_by(uid=student_id.data).first():
-            raise ValidationError("Student with the given ID was not found :(")
+            raise ValidationError(_("Student with the given ID was not found :("))
 
     submit = SubmitField(_("Add Result"))
 
 
 class UpdateResultForm(AddResultForm):
-    uid = HiddenField(_("Result UID"), validators=[DataRequired()])
+    uid = HiddenField(
+        _("Result UID"), validators=[DataRequired(message=_("This field is required."))]
+    )
     files = MultipleFileField(
         _("Files"),
         validators=[],

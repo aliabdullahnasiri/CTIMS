@@ -13,17 +13,17 @@ from app.forms.user import AddUserForm, UpdateUserForm
 
 
 class AddEmployeeForm(AddUserForm):
-    job_uid = StringField(_("Job UID"), validators=[Optional(), Length(8, 8)])
+    job_uid = StringField(_("Job UID"), validators=[Optional(), Length(min=8, max=8, message=_("This field must be 8 characters."))])
 
-    address = StringField(_("Address"), validators=[Length(max=255)])
+    address = StringField(_("Address"), validators=[Length(max=255, message=_("This field cannot exceed 255 characters."))])
     salary = DecimalField(
-        _("Salary"), places=2, validators=[Optional(), NumberRange(min=0)]
+        _("Salary"), places=2, validators=[Optional(), NumberRange(min=0, message=_("Value must be at least %(min)s."))]
     )
     hire_date = DateField(_("Hire Date"), format="%Y-%m-%d")
     submit = SubmitField(_("Add"))
 
 
 class UpdateEmployeeForm(UpdateUserForm, AddEmployeeForm):
-    uid = HiddenField(_("Employee UID"), validators=[DataRequired()])
+    uid = HiddenField(_("Employee UID"), validators=[DataRequired(message=_("This field is required."))])
     password = PasswordField(_("Password"))
     submit = SubmitField(_("Update"))

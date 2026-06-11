@@ -1,3 +1,4 @@
+from flask_babel import gettext as _
 from flask_wtf.file import FileField
 from wtforms import (
     DateField,
@@ -9,21 +10,46 @@ from wtforms import (
     SubmitField,
 )
 from wtforms.validators import DataRequired, Email, Length, Optional
-from flask_babel import gettext as _
 
 from app.forms import Form
 
 
 class AddUserForm(Form):
-    first_name = StringField(_("First Name"), validators=[Length(max=50)])
-    middle_name = StringField(_("Middle Name"), validators=[Length(max=50)])
-    last_name = StringField(_("Last Name"), validators=[Length(max=50)])
-    user_name = StringField(_("Username"), validators=[DataRequired(), Length(max=50)])
+    first_name = StringField(
+        _("First Name"),
+        validators=[
+            Length(max=50, message=_("This field cannot exceed 50 characters."))
+        ],
+    )
+    middle_name = StringField(
+        _("Middle Name"),
+        validators=[
+            Length(max=50, message=_("This field cannot exceed 50 characters."))
+        ],
+    )
+    last_name = StringField(
+        _("Last Name"),
+        validators=[
+            Length(max=50, message=_("This field cannot exceed 50 characters."))
+        ],
+    )
+    user_name = StringField(
+        _("Username"),
+        validators=[
+            DataRequired(message=_("This field is required.")),
+            Length(max=50, message=_("This field cannot exceed 50 characters.")),
+        ],
+    )
     email = StringField(
         _("Email"),
-        validators=[DataRequired(), Email(message=_("Enter a valid email address"))],
+        validators=[
+            DataRequired(message=_("This field is required.")),
+            Email(message=_("Enter a valid email address")),
+        ],
     )
-    password = PasswordField(_("Password"), validators=[DataRequired()])
+    password = PasswordField(
+        _("Password"), validators=[DataRequired(message=_("This field is required."))]
+    )
     birthday = DateField(_("Birthday"), format="%Y-%m-%d", validators=[Optional()])
     avatar = FileField(_("Upload new profile picture."))
 
@@ -35,7 +61,9 @@ class AddUserForm(Form):
 
 
 class UpdateUserForm(AddUserForm):
-    uid = HiddenField(_("UID"), validators=[DataRequired()])
+    uid = HiddenField(
+        _("UID"), validators=[DataRequired(message=_("This field is required."))]
+    )
 
     password = PasswordField(_("Password"), validators=[Optional()])
 
