@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-11 10:23+0430\n"
+"POT-Creation-Date: 2026-06-11 11:18+0430\n"
 "PO-Revision-Date: 2026-06-11 10:23+0430\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fa\n"
@@ -31,14 +31,14 @@ msgstr "داشبورد"
 msgid "Users"
 msgstr "کاربران"
 
-#: app/forms/role.py:21 app/templates/admin/views/roles.html:31
+#: app/forms/role.py:31 app/templates/admin/views/roles.html:31
 #: app/templates/admin/views/roles.html:91
 #: app/templates/admin/views/tabs/permissions.html:5
 #: app/translations_stub.py:13
 msgid "Permissions"
 msgstr "مجوزها"
 
-#: app/forms/user.py:32 app/templates/admin/views/permissions.html:31
+#: app/forms/user.py:58 app/templates/admin/views/permissions.html:31
 #: app/templates/admin/views/permissions.html:91
 #: app/templates/admin/views/tabs/roles.html:5 app/translations_stub.py:14
 msgid "Roles"
@@ -268,37 +268,73 @@ msgstr "نام کاربری قبلاً گرفته شده است"
 msgid "Email already registered"
 msgstr "ایمیل قبلاً ثبت شده است"
 
-#: app/forms/class_.py:9
+#: app/forms/class_.py:10
 msgid "Class Name"
 msgstr "نام کلاس"
 
-#: app/forms/attendance/teacher.py:13 app/forms/class_.py:10
+#: app/forms/attendance/student.py:13 app/forms/attendance/student.py:16
+#: app/forms/attendance/teacher.py:13 app/forms/attendance/teacher.py:16
+#: app/forms/class_.py:12 app/forms/class_.py:19 app/forms/class_.py:26
+#: app/forms/class_.py:33 app/forms/class_.py:43 app/forms/employee.py:27
+#: app/forms/exam.py:21 app/forms/exam.py:33 app/forms/exam.py:36
+#: app/forms/exam.py:41 app/forms/exam.py:46 app/forms/exam.py:53
+#: app/forms/exam.py:60 app/forms/exam.py:70 app/forms/job.py:12
+#: app/forms/job.py:29 app/forms/job.py:38 app/forms/job.py:48
+#: app/forms/login.py:12 app/forms/login.py:17 app/forms/permission.py:11
+#: app/forms/permission.py:17 app/forms/result.py:23 app/forms/result.py:30
+#: app/forms/result.py:36 app/forms/result.py:70 app/forms/role.py:12
+#: app/forms/role.py:38 app/forms/semester.py:12 app/forms/semester.py:19
+#: app/forms/semester.py:24 app/forms/semester.py:33 app/forms/signup.py:12
+#: app/forms/signup.py:19 app/forms/signup.py:26 app/forms/signup.py:33
+#: app/forms/student.py:15 app/forms/subject.py:19 app/forms/subject.py:35
+#: app/forms/subject.py:46 app/forms/teacher.py:12 app/forms/teacher.py:30
+#: app/forms/time.py:29 app/forms/time.py:35 app/forms/user.py:39
+#: app/forms/user.py:46 app/forms/user.py:51 app/forms/user.py:65
+msgid "This field is required."
+msgstr "این فیلد الزامی است."
+
+#: app/forms/class_.py:13 app/forms/employee.py:18 app/forms/job.py:13
+#: app/forms/permission.py:18 app/forms/role.py:13 app/forms/role.py:21
+#: app/forms/role.py:44 app/forms/semester.py:13 app/forms/subject.py:20
+msgid "This field cannot exceed 255 characters."
+msgstr "این فیلد نمی‌تواند بیشتر از ۲۵۵ کاراکتر باشد."
+
+#: app/forms/attendance/teacher.py:13 app/forms/class_.py:17
 msgid "Teacher UID"
 msgstr "شناسه (UID) استاد"
 
-#: app/forms/class_.py:11 app/forms/semester.py:19 app/forms/subject.py:23
+#: app/forms/attendance/student.py:13 app/forms/attendance/teacher.py:13
+#: app/forms/class_.py:20 app/forms/class_.py:27 app/forms/class_.py:34
+#: app/forms/department.py:29 app/forms/department.py:37
+#: app/forms/employee.py:16 app/forms/exam.py:54 app/forms/exam.py:61
+#: app/forms/result.py:24 app/forms/result.py:31 app/forms/student.py:19
+#: app/forms/teacher.py:13
+msgid "This field must be 8 characters."
+msgstr "این فیلد باید ۸ کاراکتر باشد."
+
+#: app/forms/class_.py:24 app/forms/semester.py:32 app/forms/subject.py:34
 msgid "Semester UID"
 msgstr "شناسه (UID) ترم"
 
-#: app/forms/class_.py:12 app/forms/teacher.py:9
+#: app/forms/class_.py:31 app/forms/teacher.py:10
 msgid "Time UID"
 msgstr "شناسه (UID) زمان"
 
-#: app/forms/class_.py:14
+#: app/forms/class_.py:38
 msgid "Add Class"
 msgstr "افزودن کلاس"
 
-#: app/forms/class_.py:18 app/forms/exam.py:28 app/forms/student.py:14
+#: app/forms/class_.py:43 app/forms/exam.py:58 app/forms/student.py:18
 #: app/templates/admin/views/information/student.html:6
 msgid "Class UID"
 msgstr "شناسه (UID) کلاس"
 
-#: app/forms/class_.py:20
+#: app/forms/class_.py:46
 msgid "Update Class"
 msgstr "به‌روزرسانی کلاس"
 
-#: app/forms/department.py:10 app/forms/permission.py:11 app/forms/role.py:9
-#: app/forms/role.py:28 app/templates/admin/views/information/class.html:6
+#: app/forms/department.py:10 app/forms/permission.py:15 app/forms/role.py:10
+#: app/forms/role.py:41 app/templates/admin/views/information/class.html:6
 #: app/templates/admin/views/information/department.html:6
 #: app/templates/admin/views/information/permission.html:6
 #: app/templates/admin/views/information/role.html:6
@@ -320,8 +356,8 @@ msgstr "نام الزامی است."
 msgid "Name cannot exceed 50 characters."
 msgstr "نام نمی‌تواند بیشتر از ۵۰ کاراکتر باشد."
 
-#: app/forms/department.py:18 app/forms/exam.py:19 app/forms/permission.py:14
-#: app/forms/role.py:12 app/forms/time.py:20
+#: app/forms/department.py:18 app/forms/exam.py:26 app/forms/permission.py:23
+#: app/forms/role.py:18 app/forms/time.py:20
 #: app/templates/admin/views/information/department.html:9
 #: app/templates/admin/views/information/exam.html:9
 #: app/templates/admin/views/information/job.html:9
@@ -338,15 +374,15 @@ msgstr "توضیحات نمی‌تواند بیشتر از ۲۵۵ کاراکتر
 msgid "HOD UID"
 msgstr "شناسه (UID) مدیر گروه"
 
-#: app/forms/department.py:31
+#: app/forms/department.py:34
 msgid "Parent Department UID"
 msgstr "شناسه (UID) دپارتمان والد"
 
-#: app/forms/department.py:35
+#: app/forms/department.py:41
 msgid "Add Department"
 msgstr "افزودن دپارتمان"
 
-#: app/forms/department.py:41 app/forms/time.py:45 app/forms/user.py:38
+#: app/forms/department.py:47 app/forms/time.py:45 app/forms/user.py:65
 #: app/templates/admin/views/information/class.html:3
 #: app/templates/admin/views/information/department.html:3
 #: app/templates/admin/views/information/employee.html:3
@@ -371,11 +407,11 @@ msgstr "افزودن دپارتمان"
 msgid "UID"
 msgstr "شناسه (UID)"
 
-#: app/forms/department.py:43
+#: app/forms/department.py:49
 msgid "Update Department"
 msgstr "به‌روزرسانی دپارتمان"
 
-#: app/forms/employee.py:16 app/forms/job.py:27
+#: app/forms/employee.py:16 app/forms/job.py:48
 msgid "Job UID"
 msgstr "شناسه (UID) شغل"
 
@@ -383,7 +419,7 @@ msgstr "شناسه (UID) شغل"
 msgid "Address"
 msgstr "آدرس"
 
-#: app/forms/employee.py:20 app/forms/teacher.py:11
+#: app/forms/employee.py:20 app/forms/teacher.py:17
 #: app/templates/admin/views/employee.html:60
 #: app/templates/admin/views/tables/employees.html:17
 #: app/templates/admin/views/tables/teachers.html:22
@@ -391,13 +427,19 @@ msgstr "آدرس"
 msgid "Salary"
 msgstr "حقوق"
 
+#: app/forms/employee.py:20 app/forms/job.py:30 app/forms/job.py:39
+#: app/forms/teacher.py:21
+#, python-format
+msgid "Value must be at least %(min)s."
+msgstr "مقدار باید حداقل %(min)s باشد."
+
 #: app/forms/employee.py:22
 #: app/templates/admin/views/information/employee.html:33
 #: app/templates/admin/views/tables/employees.html:22
 msgid "Hire Date"
 msgstr "تاریخ استخدام"
 
-#: app/forms/employee.py:23 app/forms/student.py:9 app/forms/user.py:34
+#: app/forms/employee.py:23 app/forms/student.py:9 app/forms/user.py:60
 msgid "Add"
 msgstr "افزودن"
 
@@ -405,53 +447,59 @@ msgstr "افزودن"
 msgid "Employee UID"
 msgstr "شناسه (UID) کارمند"
 
-#: app/forms/employee.py:28 app/forms/login.py:13 app/forms/profile.py:9
-#: app/forms/signup.py:11 app/forms/user.py:26 app/forms/user.py:40
+#: app/forms/employee.py:28 app/forms/login.py:17 app/forms/profile.py:9
+#: app/forms/signup.py:24 app/forms/user.py:51 app/forms/user.py:68
 msgid "Password"
 msgstr "رمز عبور"
 
-#: app/forms/employee.py:29 app/forms/profile.py:10 app/forms/user.py:42
+#: app/forms/employee.py:29 app/forms/profile.py:10 app/forms/user.py:70
 msgid "Update"
 msgstr "به‌روزرسانی"
 
-#: app/forms/exam.py:18 app/forms/time.py:12
+#: app/forms/exam.py:19 app/forms/time.py:12
 #: app/templates/admin/views/information/exam.html:6
 #: app/templates/admin/views/information/job.html:6
 #: app/templates/admin/views/tables/exams.html:12
 msgid "Title"
 msgstr "عنوان"
 
-#: app/forms/exam.py:21 app/templates/admin/views/tables/exams.html:22
+#: app/forms/exam.py:22 app/forms/exam.py:28 app/forms/signup.py:13
+#: app/forms/user.py:21 app/forms/user.py:27 app/forms/user.py:33
+#: app/forms/user.py:40
+msgid "This field cannot exceed 50 characters."
+msgstr "این فیلد نمی‌تواند بیشتر از ۵۰ کاراکتر باشد."
+
+#: app/forms/exam.py:33 app/templates/admin/views/tables/exams.html:22
 msgid "Exam Date"
 msgstr "تاریخ امتحان"
 
-#: app/forms/exam.py:22 app/templates/admin/views/tables/exams.html:27
+#: app/forms/exam.py:36 app/templates/admin/views/tables/exams.html:27
 msgid "Exam Time"
 msgstr "زمان امتحان"
 
-#: app/forms/exam.py:24 app/templates/admin/views/information/exam.html:12
+#: app/forms/exam.py:40 app/templates/admin/views/information/exam.html:12
 #: app/templates/admin/views/tables/exams.html:17
 msgid "Total Marks"
 msgstr "نمره کل"
 
-#: app/forms/exam.py:25
+#: app/forms/exam.py:45
 msgid "Minimum Marks"
 msgstr "حداقل نمره"
 
-#: app/forms/exam.py:27 app/forms/subject.py:31 app/forms/teacher.py:13
+#: app/forms/exam.py:51 app/forms/subject.py:45 app/forms/teacher.py:24
 msgid "Subject UID"
 msgstr "شناسه (UID) درس"
 
-#: app/forms/exam.py:30
+#: app/forms/exam.py:65
 msgid "Add Exam"
 msgstr "افزودن امتحان"
 
-#: app/forms/exam.py:34 app/forms/result.py:20
+#: app/forms/exam.py:70 app/forms/result.py:21
 msgid "Exam UID"
 msgstr "شناسه (UID) امتحان"
 
-#: app/forms/exam.py:36 app/forms/result.py:58 app/forms/subject.py:25
-#: app/forms/user.py:30 app/templates/admin/views/student.html:81
+#: app/forms/exam.py:73 app/forms/result.py:73 app/forms/subject.py:38
+#: app/forms/user.py:56 app/templates/admin/views/student.html:81
 #: app/templates/admin/views/student.html:145
 #: app/templates/admin/views/subject.html:124
 #: app/templates/admin/views/subject.html:186
@@ -461,35 +509,39 @@ msgstr "شناسه (UID) امتحان"
 msgid "Files"
 msgstr "فایل‌ها"
 
-#: app/forms/exam.py:39
+#: app/forms/exam.py:76
 msgid "Update Exam"
 msgstr "به‌روزرسانی امتحان"
 
-#: app/forms/job.py:9
+#: app/forms/job.py:10
 msgid "Job Title"
 msgstr "عنوان شغل"
 
-#: app/forms/job.py:12
+#: app/forms/job.py:18
 msgid "Job Description"
 msgstr "توضیحات شغل"
 
-#: app/forms/job.py:16 app/templates/admin/views/job.html:38
+#: app/forms/job.py:21 app/forms/subject.py:28
+msgid "This field cannot exceed 2000 characters."
+msgstr "این فیلد نمی‌تواند بیشتر از ۲۰۰۰ کاراکتر باشد."
+
+#: app/forms/job.py:26 app/templates/admin/views/job.html:38
 msgid "Minimum Salary"
 msgstr "حداقل حقوق"
 
-#: app/forms/job.py:20 app/templates/admin/views/job.html:66
+#: app/forms/job.py:35 app/templates/admin/views/job.html:66
 msgid "Maximum Salary"
 msgstr "حداکثر حقوق"
 
-#: app/forms/job.py:23
+#: app/forms/job.py:43
 msgid "Add Job"
 msgstr "افزودن شغل"
 
-#: app/forms/job.py:29
+#: app/forms/job.py:51
 msgid "Update Job"
 msgstr "به‌روزرسانی شغل"
 
-#: app/forms/login.py:10 app/forms/signup.py:10 app/forms/user.py:23
+#: app/forms/login.py:10 app/forms/signup.py:17 app/forms/user.py:44
 #: app/templates/admin/pages/profile.html:70
 #: app/templates/admin/views/information/employee.html:20
 #: app/templates/admin/views/information/student.html:19
@@ -497,134 +549,158 @@ msgstr "به‌روزرسانی شغل"
 msgid "Email"
 msgstr "ایمیل"
 
-#: app/forms/login.py:11 app/forms/user.py:24
+#: app/forms/login.py:13 app/forms/signup.py:20 app/forms/user.py:47
 msgid "Enter a valid email address"
 msgstr "یک آدرس ایمیل معتبر وارد کنید"
 
-#: app/forms/login.py:14
+#: app/forms/login.py:19
 msgid "Log In"
 msgstr "ورود"
 
-#: app/forms/permission.py:9
+#: app/forms/permission.py:10
 msgid "Permission UID"
 msgstr "شناسه (UID) مجوز"
 
-#: app/forms/permission.py:17
+#: app/forms/permission.py:26
+msgid "This field cannot exceed 2500 characters."
+msgstr "این فیلد نمی‌تواند بیشتر از ۲۵۰۰ کاراکتر باشد."
+
+#: app/forms/permission.py:30
 msgid "Update Permission"
 msgstr "به‌روزرسانی مجوز"
 
-#: app/forms/attendance/student.py:13 app/forms/result.py:22
-#: app/forms/student.py:13
+#: app/forms/attendance/student.py:13 app/forms/result.py:28
+#: app/forms/student.py:14
 msgid "Student UID"
 msgstr "شناسه (UID) دانشجو"
 
-#: app/forms/result.py:24
+#: app/forms/result.py:35
 msgid "Obtained Marks"
 msgstr "نمره کسب‌شده"
 
-#: app/forms/result.py:32
+#: app/forms/result.py:45
 #, python-format
 msgid "The obtained marks should be between 0 and %s."
 msgstr "نمره کسب‌شده باید بین ۰ و %s باشد."
 
-#: app/forms/result.py:52
+#: app/forms/result.py:53
+msgid "Not a valid Exam UID."
+msgstr "شناسه (UID) امتحان نامعتبر است."
+
+#: app/forms/result.py:55
+msgid "Exam with the given ID was not found :("
+msgstr "امتحان با شناسه داده شده پیدا نشد :("
+
+#: app/forms/attendance/student.py:25 app/forms/result.py:61
+msgid "Not a valid Student UID."
+msgstr "شناسه (UID) دانشجو نامعتبر است."
+
+#: app/forms/attendance/student.py:27 app/forms/result.py:63
+msgid "Student with the given ID was not found :("
+msgstr "دانشجو با شناسه داده شده پیدا نشد :("
+
+#: app/forms/result.py:65
 msgid "Add Result"
 msgstr "افزودن نتیجه"
 
-#: app/forms/result.py:56
+#: app/forms/result.py:70
 msgid "Result UID"
 msgstr "شناسه (UID) نتیجه"
 
-#: app/forms/result.py:61
+#: app/forms/result.py:76
 msgid "Update Result"
 msgstr "به‌روزرسانی نتیجه"
 
-#: app/forms/role.py:16
+#: app/forms/role.py:26
 msgid "Default Role (assigned automatically to new users)"
 msgstr "نقش پیش‌فرض (تخصیص خودکار به کاربران جدید)"
 
-#: app/forms/role.py:23
+#: app/forms/role.py:33
 msgid "Add Role"
 msgstr "افزودن نقش"
 
-#: app/forms/role.py:27
+#: app/forms/role.py:38
 msgid "Role UID"
 msgstr "شناسه (UID) نقش"
 
-#: app/forms/role.py:30
+#: app/forms/role.py:48
 msgid "Update Role"
 msgstr "به‌روزرسانی نقش"
 
-#: app/forms/semester.py:9
+#: app/forms/semester.py:10
 msgid "Semester Name"
 msgstr "نام ترم"
 
-#: app/forms/semester.py:11
+#: app/forms/semester.py:18
 msgid "Semester Number"
 msgstr "شماره ترم"
 
-#: app/forms/semester.py:13
+#: app/forms/semester.py:23
 msgid "Department UID"
 msgstr "شناسه (UID) دپارتمان"
 
-#: app/forms/semester.py:15
+#: app/forms/semester.py:27
 msgid "Add Semester"
 msgstr "افزودن ترم"
 
-#: app/forms/semester.py:21
+#: app/forms/semester.py:36
 msgid "Update Semester"
 msgstr "به‌روزرسانی ترم"
 
-#: app/forms/signup.py:9 app/forms/user.py:21
+#: app/forms/signup.py:10 app/forms/user.py:37
 #: app/templates/admin/views/tables/users.html:17
 msgid "Username"
 msgstr "نام کاربری"
 
-#: app/forms/signup.py:13
+#: app/forms/signup.py:27
+msgid "This field must be at least 6 characters."
+msgstr "این فیلد باید حداقل ۶ کاراکتر باشد."
+
+#: app/forms/signup.py:31
 msgid "Confirm Password"
 msgstr "تأیید رمز عبور"
 
-#: app/forms/signup.py:16
+#: app/forms/signup.py:34
 msgid "Passwords must match"
 msgstr "رمزهای عبور باید مطابقت داشته باشند"
 
-#: app/forms/signup.py:19
+#: app/forms/signup.py:37
 msgid "Sign Up"
 msgstr "ثبت‌نام"
 
-#: app/forms/student.py:15
+#: app/forms/student.py:21
 msgid "Update Student"
 msgstr "به‌روزرسانی دانشجو"
 
-#: app/forms/subject.py:16
+#: app/forms/subject.py:17
 msgid "Subject Name"
 msgstr "نام درس"
 
-#: app/forms/subject.py:19
+#: app/forms/subject.py:25
 msgid "Subject Description"
 msgstr "توضیحات درس"
 
-#: app/forms/subject.py:21 app/templates/admin/views/tables/subjects.html:17
+#: app/forms/subject.py:31 app/templates/admin/views/tables/subjects.html:17
 msgid "Credit"
 msgstr "واحد"
 
-#: app/forms/subject.py:27
+#: app/forms/subject.py:40
 msgid "Add Subject"
 msgstr "افزودن درس"
 
-#: app/forms/subject.py:33
+#: app/forms/subject.py:49
 msgid "Update Subject"
 msgstr "به‌روزرسانی درس"
 
-#: app/forms/teacher.py:14
+#: app/forms/teacher.py:25
 msgid "Add Teacher"
 msgstr "افزودن استاد"
 
-#: app/forms/teacher.py:18
+#: app/forms/teacher.py:30
 msgid "Teacher ID"
 msgstr "شناسه استاد"
 
-#: app/forms/teacher.py:19
+#: app/forms/teacher.py:32
 msgid "Update Teacher"
 msgstr "به‌روزرسانی استاد"
 
@@ -652,28 +728,28 @@ msgstr "افزودن زمان"
 msgid "Update Time"
 msgstr "به‌روزرسانی زمان"
 
-#: app/forms/user.py:18 app/templates/admin/pages/profile.html:55
+#: app/forms/user.py:19 app/templates/admin/pages/profile.html:55
 #: app/templates/admin/views/information/employee.html:7
 #: app/templates/admin/views/information/student.html:9
 #: app/templates/admin/views/information/teacher.html:6
 msgid "First Name"
 msgstr "نام"
 
-#: app/forms/user.py:19 app/templates/admin/pages/profile.html:60
+#: app/forms/user.py:25 app/templates/admin/pages/profile.html:60
 #: app/templates/admin/views/information/employee.html:11
 #: app/templates/admin/views/information/student.html:12
 #: app/templates/admin/views/information/teacher.html:9
 msgid "Middle Name"
 msgstr "نام میانی"
 
-#: app/forms/user.py:20 app/templates/admin/pages/profile.html:65
+#: app/forms/user.py:31 app/templates/admin/pages/profile.html:65
 #: app/templates/admin/views/information/employee.html:16
 #: app/templates/admin/views/information/student.html:16
 #: app/templates/admin/views/information/teacher.html:13
 msgid "Last Name"
 msgstr "نام خانوادگی"
 
-#: app/forms/user.py:27 app/templates/admin/pages/profile.html:74
+#: app/forms/user.py:53 app/templates/admin/pages/profile.html:74
 #: app/templates/admin/views/information/employee.html:24
 #: app/templates/admin/views/information/student.html:22
 #: app/templates/admin/views/information/teacher.html:19
@@ -682,11 +758,11 @@ msgstr "نام خانوادگی"
 msgid "Birthday"
 msgstr "تاریخ تولد"
 
-#: app/forms/user.py:28
+#: app/forms/user.py:54
 msgid "Upload new profile picture."
 msgstr "آپلود عکس پروفایل جدید."
 
-#: app/forms/user.py:31 app/templates/admin/views/employee.html:94
+#: app/forms/user.py:57 app/templates/admin/views/employee.html:94
 #: app/templates/admin/views/student.html:46
 #: app/templates/admin/views/teacher.html:93
 msgid "Phone"
@@ -697,14 +773,6 @@ msgstr "تلفن"
 #: app/templates/admin/views/tables/results.html:22
 msgid "Status"
 msgstr "وضعیت"
-
-#: app/forms/attendance/student.py:25
-msgid "Not a valid Student UID."
-msgstr "شناسه (UID) دانشجو نامعتبر است."
-
-#: app/forms/attendance/student.py:27
-msgid "Student with the given ID was not found :("
-msgstr "دانشجو با شناسه داده شده پیدا نشد :("
 
 #: app/forms/attendance/student.py:29 app/forms/attendance/teacher.py:29
 msgid "Add Attendance"

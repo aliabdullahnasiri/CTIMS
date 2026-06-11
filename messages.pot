@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-11 10:23+0430\n"
+"POT-Creation-Date: 2026-06-11 11:18+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,14 +30,14 @@ msgstr ""
 msgid "Users"
 msgstr ""
 
-#: app/forms/role.py:21 app/templates/admin/views/roles.html:31
+#: app/forms/role.py:31 app/templates/admin/views/roles.html:31
 #: app/templates/admin/views/roles.html:91
 #: app/templates/admin/views/tabs/permissions.html:5
 #: app/translations_stub.py:13
 msgid "Permissions"
 msgstr ""
 
-#: app/forms/user.py:32 app/templates/admin/views/permissions.html:31
+#: app/forms/user.py:58 app/templates/admin/views/permissions.html:31
 #: app/templates/admin/views/permissions.html:91
 #: app/templates/admin/views/tabs/roles.html:5 app/translations_stub.py:14
 msgid "Roles"
@@ -267,37 +267,73 @@ msgstr ""
 msgid "Email already registered"
 msgstr ""
 
-#: app/forms/class_.py:9
+#: app/forms/class_.py:10
 msgid "Class Name"
 msgstr ""
 
-#: app/forms/attendance/teacher.py:13 app/forms/class_.py:10
+#: app/forms/attendance/student.py:13 app/forms/attendance/student.py:16
+#: app/forms/attendance/teacher.py:13 app/forms/attendance/teacher.py:16
+#: app/forms/class_.py:12 app/forms/class_.py:19 app/forms/class_.py:26
+#: app/forms/class_.py:33 app/forms/class_.py:43 app/forms/employee.py:27
+#: app/forms/exam.py:21 app/forms/exam.py:33 app/forms/exam.py:36
+#: app/forms/exam.py:41 app/forms/exam.py:46 app/forms/exam.py:53
+#: app/forms/exam.py:60 app/forms/exam.py:70 app/forms/job.py:12
+#: app/forms/job.py:29 app/forms/job.py:38 app/forms/job.py:48
+#: app/forms/login.py:12 app/forms/login.py:17 app/forms/permission.py:11
+#: app/forms/permission.py:17 app/forms/result.py:23 app/forms/result.py:30
+#: app/forms/result.py:36 app/forms/result.py:70 app/forms/role.py:12
+#: app/forms/role.py:38 app/forms/semester.py:12 app/forms/semester.py:19
+#: app/forms/semester.py:24 app/forms/semester.py:33 app/forms/signup.py:12
+#: app/forms/signup.py:19 app/forms/signup.py:26 app/forms/signup.py:33
+#: app/forms/student.py:15 app/forms/subject.py:19 app/forms/subject.py:35
+#: app/forms/subject.py:46 app/forms/teacher.py:12 app/forms/teacher.py:30
+#: app/forms/time.py:29 app/forms/time.py:35 app/forms/user.py:39
+#: app/forms/user.py:46 app/forms/user.py:51 app/forms/user.py:65
+msgid "This field is required."
+msgstr ""
+
+#: app/forms/class_.py:13 app/forms/employee.py:18 app/forms/job.py:13
+#: app/forms/permission.py:18 app/forms/role.py:13 app/forms/role.py:21
+#: app/forms/role.py:44 app/forms/semester.py:13 app/forms/subject.py:20
+msgid "This field cannot exceed 255 characters."
+msgstr ""
+
+#: app/forms/attendance/teacher.py:13 app/forms/class_.py:17
 msgid "Teacher UID"
 msgstr ""
 
-#: app/forms/class_.py:11 app/forms/semester.py:19 app/forms/subject.py:23
+#: app/forms/attendance/student.py:13 app/forms/attendance/teacher.py:13
+#: app/forms/class_.py:20 app/forms/class_.py:27 app/forms/class_.py:34
+#: app/forms/department.py:29 app/forms/department.py:37
+#: app/forms/employee.py:16 app/forms/exam.py:54 app/forms/exam.py:61
+#: app/forms/result.py:24 app/forms/result.py:31 app/forms/student.py:19
+#: app/forms/teacher.py:13
+msgid "This field must be 8 characters."
+msgstr ""
+
+#: app/forms/class_.py:24 app/forms/semester.py:32 app/forms/subject.py:34
 msgid "Semester UID"
 msgstr ""
 
-#: app/forms/class_.py:12 app/forms/teacher.py:9
+#: app/forms/class_.py:31 app/forms/teacher.py:10
 msgid "Time UID"
 msgstr ""
 
-#: app/forms/class_.py:14
+#: app/forms/class_.py:38
 msgid "Add Class"
 msgstr ""
 
-#: app/forms/class_.py:18 app/forms/exam.py:28 app/forms/student.py:14
+#: app/forms/class_.py:43 app/forms/exam.py:58 app/forms/student.py:18
 #: app/templates/admin/views/information/student.html:6
 msgid "Class UID"
 msgstr ""
 
-#: app/forms/class_.py:20
+#: app/forms/class_.py:46
 msgid "Update Class"
 msgstr ""
 
-#: app/forms/department.py:10 app/forms/permission.py:11 app/forms/role.py:9
-#: app/forms/role.py:28 app/templates/admin/views/information/class.html:6
+#: app/forms/department.py:10 app/forms/permission.py:15 app/forms/role.py:10
+#: app/forms/role.py:41 app/templates/admin/views/information/class.html:6
 #: app/templates/admin/views/information/department.html:6
 #: app/templates/admin/views/information/permission.html:6
 #: app/templates/admin/views/information/role.html:6
@@ -319,8 +355,8 @@ msgstr ""
 msgid "Name cannot exceed 50 characters."
 msgstr ""
 
-#: app/forms/department.py:18 app/forms/exam.py:19 app/forms/permission.py:14
-#: app/forms/role.py:12 app/forms/time.py:20
+#: app/forms/department.py:18 app/forms/exam.py:26 app/forms/permission.py:23
+#: app/forms/role.py:18 app/forms/time.py:20
 #: app/templates/admin/views/information/department.html:9
 #: app/templates/admin/views/information/exam.html:9
 #: app/templates/admin/views/information/job.html:9
@@ -337,15 +373,15 @@ msgstr ""
 msgid "HOD UID"
 msgstr ""
 
-#: app/forms/department.py:31
+#: app/forms/department.py:34
 msgid "Parent Department UID"
 msgstr ""
 
-#: app/forms/department.py:35
+#: app/forms/department.py:41
 msgid "Add Department"
 msgstr ""
 
-#: app/forms/department.py:41 app/forms/time.py:45 app/forms/user.py:38
+#: app/forms/department.py:47 app/forms/time.py:45 app/forms/user.py:65
 #: app/templates/admin/views/information/class.html:3
 #: app/templates/admin/views/information/department.html:3
 #: app/templates/admin/views/information/employee.html:3
@@ -370,11 +406,11 @@ msgstr ""
 msgid "UID"
 msgstr ""
 
-#: app/forms/department.py:43
+#: app/forms/department.py:49
 msgid "Update Department"
 msgstr ""
 
-#: app/forms/employee.py:16 app/forms/job.py:27
+#: app/forms/employee.py:16 app/forms/job.py:48
 msgid "Job UID"
 msgstr ""
 
@@ -382,12 +418,18 @@ msgstr ""
 msgid "Address"
 msgstr ""
 
-#: app/forms/employee.py:20 app/forms/teacher.py:11
+#: app/forms/employee.py:20 app/forms/teacher.py:17
 #: app/templates/admin/views/employee.html:60
 #: app/templates/admin/views/tables/employees.html:17
 #: app/templates/admin/views/tables/teachers.html:22
 #: app/templates/admin/views/teacher.html:59
 msgid "Salary"
+msgstr ""
+
+#: app/forms/employee.py:20 app/forms/job.py:30 app/forms/job.py:39
+#: app/forms/teacher.py:21
+#, python-format
+msgid "Value must be at least %(min)s."
 msgstr ""
 
 #: app/forms/employee.py:22
@@ -396,7 +438,7 @@ msgstr ""
 msgid "Hire Date"
 msgstr ""
 
-#: app/forms/employee.py:23 app/forms/student.py:9 app/forms/user.py:34
+#: app/forms/employee.py:23 app/forms/student.py:9 app/forms/user.py:60
 msgid "Add"
 msgstr ""
 
@@ -404,53 +446,59 @@ msgstr ""
 msgid "Employee UID"
 msgstr ""
 
-#: app/forms/employee.py:28 app/forms/login.py:13 app/forms/profile.py:9
-#: app/forms/signup.py:11 app/forms/user.py:26 app/forms/user.py:40
+#: app/forms/employee.py:28 app/forms/login.py:17 app/forms/profile.py:9
+#: app/forms/signup.py:24 app/forms/user.py:51 app/forms/user.py:68
 msgid "Password"
 msgstr ""
 
-#: app/forms/employee.py:29 app/forms/profile.py:10 app/forms/user.py:42
+#: app/forms/employee.py:29 app/forms/profile.py:10 app/forms/user.py:70
 msgid "Update"
 msgstr ""
 
-#: app/forms/exam.py:18 app/forms/time.py:12
+#: app/forms/exam.py:19 app/forms/time.py:12
 #: app/templates/admin/views/information/exam.html:6
 #: app/templates/admin/views/information/job.html:6
 #: app/templates/admin/views/tables/exams.html:12
 msgid "Title"
 msgstr ""
 
-#: app/forms/exam.py:21 app/templates/admin/views/tables/exams.html:22
+#: app/forms/exam.py:22 app/forms/exam.py:28 app/forms/signup.py:13
+#: app/forms/user.py:21 app/forms/user.py:27 app/forms/user.py:33
+#: app/forms/user.py:40
+msgid "This field cannot exceed 50 characters."
+msgstr ""
+
+#: app/forms/exam.py:33 app/templates/admin/views/tables/exams.html:22
 msgid "Exam Date"
 msgstr ""
 
-#: app/forms/exam.py:22 app/templates/admin/views/tables/exams.html:27
+#: app/forms/exam.py:36 app/templates/admin/views/tables/exams.html:27
 msgid "Exam Time"
 msgstr ""
 
-#: app/forms/exam.py:24 app/templates/admin/views/information/exam.html:12
+#: app/forms/exam.py:40 app/templates/admin/views/information/exam.html:12
 #: app/templates/admin/views/tables/exams.html:17
 msgid "Total Marks"
 msgstr ""
 
-#: app/forms/exam.py:25
+#: app/forms/exam.py:45
 msgid "Minimum Marks"
 msgstr ""
 
-#: app/forms/exam.py:27 app/forms/subject.py:31 app/forms/teacher.py:13
+#: app/forms/exam.py:51 app/forms/subject.py:45 app/forms/teacher.py:24
 msgid "Subject UID"
 msgstr ""
 
-#: app/forms/exam.py:30
+#: app/forms/exam.py:65
 msgid "Add Exam"
 msgstr ""
 
-#: app/forms/exam.py:34 app/forms/result.py:20
+#: app/forms/exam.py:70 app/forms/result.py:21
 msgid "Exam UID"
 msgstr ""
 
-#: app/forms/exam.py:36 app/forms/result.py:58 app/forms/subject.py:25
-#: app/forms/user.py:30 app/templates/admin/views/student.html:81
+#: app/forms/exam.py:73 app/forms/result.py:73 app/forms/subject.py:38
+#: app/forms/user.py:56 app/templates/admin/views/student.html:81
 #: app/templates/admin/views/student.html:145
 #: app/templates/admin/views/subject.html:124
 #: app/templates/admin/views/subject.html:186
@@ -460,35 +508,39 @@ msgstr ""
 msgid "Files"
 msgstr ""
 
-#: app/forms/exam.py:39
+#: app/forms/exam.py:76
 msgid "Update Exam"
 msgstr ""
 
-#: app/forms/job.py:9
+#: app/forms/job.py:10
 msgid "Job Title"
 msgstr ""
 
-#: app/forms/job.py:12
+#: app/forms/job.py:18
 msgid "Job Description"
 msgstr ""
 
-#: app/forms/job.py:16 app/templates/admin/views/job.html:38
+#: app/forms/job.py:21 app/forms/subject.py:28
+msgid "This field cannot exceed 2000 characters."
+msgstr ""
+
+#: app/forms/job.py:26 app/templates/admin/views/job.html:38
 msgid "Minimum Salary"
 msgstr ""
 
-#: app/forms/job.py:20 app/templates/admin/views/job.html:66
+#: app/forms/job.py:35 app/templates/admin/views/job.html:66
 msgid "Maximum Salary"
 msgstr ""
 
-#: app/forms/job.py:23
+#: app/forms/job.py:43
 msgid "Add Job"
 msgstr ""
 
-#: app/forms/job.py:29
+#: app/forms/job.py:51
 msgid "Update Job"
 msgstr ""
 
-#: app/forms/login.py:10 app/forms/signup.py:10 app/forms/user.py:23
+#: app/forms/login.py:10 app/forms/signup.py:17 app/forms/user.py:44
 #: app/templates/admin/pages/profile.html:70
 #: app/templates/admin/views/information/employee.html:20
 #: app/templates/admin/views/information/student.html:19
@@ -496,134 +548,158 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
-#: app/forms/login.py:11 app/forms/user.py:24
+#: app/forms/login.py:13 app/forms/signup.py:20 app/forms/user.py:47
 msgid "Enter a valid email address"
 msgstr ""
 
-#: app/forms/login.py:14
+#: app/forms/login.py:19
 msgid "Log In"
 msgstr ""
 
-#: app/forms/permission.py:9
+#: app/forms/permission.py:10
 msgid "Permission UID"
 msgstr ""
 
-#: app/forms/permission.py:17
+#: app/forms/permission.py:26
+msgid "This field cannot exceed 2500 characters."
+msgstr ""
+
+#: app/forms/permission.py:30
 msgid "Update Permission"
 msgstr ""
 
-#: app/forms/attendance/student.py:13 app/forms/result.py:22
-#: app/forms/student.py:13
+#: app/forms/attendance/student.py:13 app/forms/result.py:28
+#: app/forms/student.py:14
 msgid "Student UID"
 msgstr ""
 
-#: app/forms/result.py:24
+#: app/forms/result.py:35
 msgid "Obtained Marks"
 msgstr ""
 
-#: app/forms/result.py:32
+#: app/forms/result.py:45
 #, python-format
 msgid "The obtained marks should be between 0 and %s."
 msgstr ""
 
-#: app/forms/result.py:52
+#: app/forms/result.py:53
+msgid "Not a valid Exam UID."
+msgstr ""
+
+#: app/forms/result.py:55
+msgid "Exam with the given ID was not found :("
+msgstr ""
+
+#: app/forms/attendance/student.py:25 app/forms/result.py:61
+msgid "Not a valid Student UID."
+msgstr ""
+
+#: app/forms/attendance/student.py:27 app/forms/result.py:63
+msgid "Student with the given ID was not found :("
+msgstr ""
+
+#: app/forms/result.py:65
 msgid "Add Result"
 msgstr ""
 
-#: app/forms/result.py:56
+#: app/forms/result.py:70
 msgid "Result UID"
 msgstr ""
 
-#: app/forms/result.py:61
+#: app/forms/result.py:76
 msgid "Update Result"
 msgstr ""
 
-#: app/forms/role.py:16
+#: app/forms/role.py:26
 msgid "Default Role (assigned automatically to new users)"
 msgstr ""
 
-#: app/forms/role.py:23
+#: app/forms/role.py:33
 msgid "Add Role"
 msgstr ""
 
-#: app/forms/role.py:27
+#: app/forms/role.py:38
 msgid "Role UID"
 msgstr ""
 
-#: app/forms/role.py:30
+#: app/forms/role.py:48
 msgid "Update Role"
 msgstr ""
 
-#: app/forms/semester.py:9
+#: app/forms/semester.py:10
 msgid "Semester Name"
 msgstr ""
 
-#: app/forms/semester.py:11
+#: app/forms/semester.py:18
 msgid "Semester Number"
 msgstr ""
 
-#: app/forms/semester.py:13
+#: app/forms/semester.py:23
 msgid "Department UID"
 msgstr ""
 
-#: app/forms/semester.py:15
+#: app/forms/semester.py:27
 msgid "Add Semester"
 msgstr ""
 
-#: app/forms/semester.py:21
+#: app/forms/semester.py:36
 msgid "Update Semester"
 msgstr ""
 
-#: app/forms/signup.py:9 app/forms/user.py:21
+#: app/forms/signup.py:10 app/forms/user.py:37
 #: app/templates/admin/views/tables/users.html:17
 msgid "Username"
 msgstr ""
 
-#: app/forms/signup.py:13
+#: app/forms/signup.py:27
+msgid "This field must be at least 6 characters."
+msgstr ""
+
+#: app/forms/signup.py:31
 msgid "Confirm Password"
 msgstr ""
 
-#: app/forms/signup.py:16
+#: app/forms/signup.py:34
 msgid "Passwords must match"
 msgstr ""
 
-#: app/forms/signup.py:19
+#: app/forms/signup.py:37
 msgid "Sign Up"
 msgstr ""
 
-#: app/forms/student.py:15
+#: app/forms/student.py:21
 msgid "Update Student"
 msgstr ""
 
-#: app/forms/subject.py:16
+#: app/forms/subject.py:17
 msgid "Subject Name"
 msgstr ""
 
-#: app/forms/subject.py:19
+#: app/forms/subject.py:25
 msgid "Subject Description"
 msgstr ""
 
-#: app/forms/subject.py:21 app/templates/admin/views/tables/subjects.html:17
+#: app/forms/subject.py:31 app/templates/admin/views/tables/subjects.html:17
 msgid "Credit"
 msgstr ""
 
-#: app/forms/subject.py:27
+#: app/forms/subject.py:40
 msgid "Add Subject"
 msgstr ""
 
-#: app/forms/subject.py:33
+#: app/forms/subject.py:49
 msgid "Update Subject"
 msgstr ""
 
-#: app/forms/teacher.py:14
+#: app/forms/teacher.py:25
 msgid "Add Teacher"
 msgstr ""
 
-#: app/forms/teacher.py:18
+#: app/forms/teacher.py:30
 msgid "Teacher ID"
 msgstr ""
 
-#: app/forms/teacher.py:19
+#: app/forms/teacher.py:32
 msgid "Update Teacher"
 msgstr ""
 
@@ -651,28 +727,28 @@ msgstr ""
 msgid "Update Time"
 msgstr ""
 
-#: app/forms/user.py:18 app/templates/admin/pages/profile.html:55
+#: app/forms/user.py:19 app/templates/admin/pages/profile.html:55
 #: app/templates/admin/views/information/employee.html:7
 #: app/templates/admin/views/information/student.html:9
 #: app/templates/admin/views/information/teacher.html:6
 msgid "First Name"
 msgstr ""
 
-#: app/forms/user.py:19 app/templates/admin/pages/profile.html:60
+#: app/forms/user.py:25 app/templates/admin/pages/profile.html:60
 #: app/templates/admin/views/information/employee.html:11
 #: app/templates/admin/views/information/student.html:12
 #: app/templates/admin/views/information/teacher.html:9
 msgid "Middle Name"
 msgstr ""
 
-#: app/forms/user.py:20 app/templates/admin/pages/profile.html:65
+#: app/forms/user.py:31 app/templates/admin/pages/profile.html:65
 #: app/templates/admin/views/information/employee.html:16
 #: app/templates/admin/views/information/student.html:16
 #: app/templates/admin/views/information/teacher.html:13
 msgid "Last Name"
 msgstr ""
 
-#: app/forms/user.py:27 app/templates/admin/pages/profile.html:74
+#: app/forms/user.py:53 app/templates/admin/pages/profile.html:74
 #: app/templates/admin/views/information/employee.html:24
 #: app/templates/admin/views/information/student.html:22
 #: app/templates/admin/views/information/teacher.html:19
@@ -681,11 +757,11 @@ msgstr ""
 msgid "Birthday"
 msgstr ""
 
-#: app/forms/user.py:28
+#: app/forms/user.py:54
 msgid "Upload new profile picture."
 msgstr ""
 
-#: app/forms/user.py:31 app/templates/admin/views/employee.html:94
+#: app/forms/user.py:57 app/templates/admin/views/employee.html:94
 #: app/templates/admin/views/student.html:46
 #: app/templates/admin/views/teacher.html:93
 msgid "Phone"
@@ -695,14 +771,6 @@ msgstr ""
 #: app/templates/admin/views/tables/attendances.html:22
 #: app/templates/admin/views/tables/results.html:22
 msgid "Status"
-msgstr ""
-
-#: app/forms/attendance/student.py:25
-msgid "Not a valid Student UID."
-msgstr ""
-
-#: app/forms/attendance/student.py:27
-msgid "Student with the given ID was not found :("
 msgstr ""
 
 #: app/forms/attendance/student.py:29 app/forms/attendance/teacher.py:29
