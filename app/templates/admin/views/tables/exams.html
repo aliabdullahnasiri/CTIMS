@@ -4,27 +4,27 @@
       <th
         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center"
       >
-        UID
+        {{ _("UID") }}
       </th>
       <th
         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
       >
-        Title
+        {{ _("Title") }}
       </th>
       <th
         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
       >
-        Total Marks
+        {{ _("Total Marks") }}
       </th>
       <th
         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
       >
-        Exam Date
+        {{ _("Exam Date") }}
       </th>
       <th
         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
       >
-        Exam Time
+        {{ _("Exam Time") }}
       </th>
     </tr>
   </thead>
@@ -40,7 +40,7 @@
     {% else %}
     <tr class="no-rows-label">
       <td colspan="5" class="py-4 text-center">
-        <span>No exams yet :(</span>
+        <span>{{ _("No exams yet :(") }}</span>
       </td>
     </tr>
     {% endfor %}

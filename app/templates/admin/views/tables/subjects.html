@@ -4,22 +4,22 @@
       <th
         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center"
       >
-        UID
+        {{ _("UID") }}
       </th>
       <th
         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
       >
-        Name
+        {{ _("Name") }}
       </th>
       <th
         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
       >
-        Credit
+        {{ _("Credit") }}
       </th>
       <th
         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
       >
-        Teachers
+        {{ _("Teachers") }}
       </th>
     </tr>
   </thead>
@@ -34,7 +34,7 @@
     {% else %}
     <tr class="no-rows-label">
       <td colspan="4" class="py-4 text-center">
-        <span>No subjects yet :(</span>
+        <span>{{ _("No subjects yet :(") }}</span>
       </td>
     </tr>
     {% endfor %}

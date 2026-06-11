@@ -1,40 +1,45 @@
 <ul class="list-group">
   <li class="list-group-item border-0 ps-0 pt-0 text-sm">
-    <strong>UID:</strong> &nbsp;{{ employee.uid }}
+    <strong>{{ _("UID") }}:</strong> &nbsp;{{ employee.uid }}
   </li>
 
   <li class="list-group-item border-0 ps-0 pt-0 text-sm">
-    <strong>First Name:</strong> &nbsp;{{ employee.user.first_name }}
+    <strong>{{ _("First Name") }}:</strong> &nbsp;{{ employee.user.first_name }}
   </li>
 
   <li class="list-group-item border-0 ps-0 pt-0 text-sm">
-    <strong>Middle Name:</strong> &nbsp;{{ employee.user.middle_name }}
+    <strong>{{ _("Middle Name") }}:</strong> &nbsp;{{ employee.user.middle_name
+    }}
   </li>
 
   <li class="list-group-item border-0 ps-0 pt-0 text-sm">
-    <strong>Last Name:</strong> &nbsp;{{ employee.user.last_name }}
+    <strong>{{ _("Last Name") }}:</strong> &nbsp;{{ employee.user.last_name }}
   </li>
 
   <li class="list-group-item border-0 ps-0 pt-0 text-sm">
-    <strong>Email:</strong> &nbsp;{{ employee.user.email }}
+    <strong>{{ _("Email") }}:</strong> &nbsp;{{ employee.user.email }}
   </li>
 
   <li class="list-group-item border-0 ps-0 pt-0 text-sm">
-    <strong>Birthday:</strong> &nbsp;{{ employee.user.display_birthday }}
+    <strong>{{ _("Birthday") }}:</strong> &nbsp;{{
+    employee.user.display_birthday }}
   </li>
 
   <li class="list-group-item border-0 ps-0 pt-0 text-sm">
-    <strong>Age:</strong> &nbsp;{{ employee.user.age }}
+    <strong>{{ _("Age") }}:</strong> &nbsp;{{ employee.user.age }}
   </li>
 
   <li class="list-group-item border-0 ps-0 pt-0 text-sm">
-    <strong>Hire Date:</strong> &nbsp;{{ employee.display_hire_date }}
+    <strong>{{ _("Hire Date") }}:</strong> &nbsp;{{ employee.display_hire_date
+    }}
   </li>
 
   <li class="list-group-item border-0 ps-0 pt-0 text-sm">
-    <strong>Created At:</strong> &nbsp;{{ employee.display_created_at }}
+    <strong>{{ _("Created At") }}:</strong> &nbsp;{{ employee.display_created_at
+    }}
   </li>
   <li class="list-group-item border-0 ps-0 pt-0 text-sm">
-    <strong>Updated At:</strong> &nbsp;{{ employee.display_updated_at }}
+    <strong>{{ _("Updated At") }}:</strong> &nbsp;{{ employee.display_updated_at
+    }}
   </li>
 </ul>

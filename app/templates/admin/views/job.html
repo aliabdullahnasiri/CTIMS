@@ -17,7 +17,7 @@
         <div class="row gx-0 mb-3">
           <div class="card">
             <div class="card-header pb-0">
-              <h5>Job Information</h5>
+              <h5>{{ _("Job Information") }}</h5>
             </div>
             <hr class="bg-dark horizontal my-0 opacity-10" />
             <div class="card-body p0">
@@ -31,10 +31,12 @@
         <div class="row mb-2">
           <div class="col-12">
             <div class="card">
-              <div class="card-header p-2 ps-3">
+              <div class="card-header">
                 <div class="d-flex justify-content-between">
                   <div>
-                    <p class="text-sm mb-0 text-capitalize">Minimum Salary</p>
+                    <p class="text-sm mb-0 text-capitalize">
+                      {{ _("Minimum Salary") }}
+                    </p>
                     <h4 class="mb-0">{{ job.display_min_salary }}</h4>
                   </div>
                   <div
@@ -46,7 +48,9 @@
               </div>
               <hr class="bg-dark horizontal my-0 opacity-10" />
               <div class="card-footer p-2">
-                <span class="text-sm">Minimum salary in this job.</span>
+                <span class="text-sm"
+                  >{{ _("Minimum salary in this job.") }}</span
+                >
               </div>
             </div>
           </div>
@@ -55,10 +59,12 @@
         <div class="row mb-2">
           <div class="col-12">
             <div class="card">
-              <div class="card-header p-2 ps-3">
+              <div class="card-header">
                 <div class="d-flex justify-content-between">
                   <div>
-                    <p class="text-sm mb-0 text-capitalize">Maximum Salary</p>
+                    <p class="text-sm mb-0 text-capitalize">
+                      {{ _("Maximum Salary") }}
+                    </p>
                     <h4 class="mb-0">{{ job.display_max_salary }}</h4>
                   </div>
                   <div
@@ -70,7 +76,9 @@
               </div>
               <hr class="bg-dark horizontal my-0 opacity-10" />
               <div class="card-footer p-2">
-                <span class="text-sm">Maximum salary in this job.</span>
+                <span class="text-sm"
+                  >{{ _("Maximum salary in this job.") }}</span
+                >
               </div>
             </div>
           </div>
@@ -79,10 +87,12 @@
         <div class="row mb-2">
           <div class="col-12">
             <div class="card">
-              <div class="card-header p-2 ps-3">
+              <div class="card-header">
                 <div class="d-flex justify-content-between">
                   <div>
-                    <p class="text-sm mb-0 text-capitalize">Employees</p>
+                    <p class="text-sm mb-0 text-capitalize">
+                      {{ _("Employees") }}
+                    </p>
                     <h4 class="mb-0">{{ job.employees.count() }}</h4>
                   </div>
                   <div
@@ -94,7 +104,7 @@
               </div>
               <hr class="bg-dark horizontal my-0 opacity-10" />
               <div class="card-footer p-2">
-                <span class="text-sm">Active staff count</span>
+                <span class="text-sm">{{ _("Active staff count") }}</span>
               </div>
             </div>
           </div>
@@ -108,7 +118,7 @@
               <div
                 class="bg-gradient-dark card-header mt-n4 mx-3 position-relative z-index-2 shadow-sm rounded-3 py-4"
               >
-                <h5 class="mb-0 mx-2">Employees</h5>
+                <h5 class="mb-0 mx-2">{{ _("Employees") }}</h5>
               </div>
 
               <div class="card-body">

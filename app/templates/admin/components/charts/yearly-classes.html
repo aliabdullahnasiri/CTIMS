@@ -1,8 +1,8 @@
 <div class="col-lg-8 col-md-6 mt-2 mb-4">
   <div class="card">
     <div class="card-body">
-      <h6 class="mb-0">Classes</h6>
-      <p class="text-sm">Last 12 Month</p>
+      <h6 class="mb-0">{{ _("Classes") }}</h6>
+      <p class="text-sm">{{ _("Last 12 Month") }}</p>
       <div class="pe-2">
         <div class="chart">
           <canvas
@@ -21,7 +21,7 @@
         <p class="mb-0 text-sm">
           <span class="text-{{ Class.yearly_growth_clr() }} font-weight-bolder"
             >{{ Class.display_yearly_growth() }} </span
-          >than last year
+          >{{ _("than last year") }}
         </p>
       </div>
     </div>

@@ -9,22 +9,21 @@
             © 2025 -
             <script>
               document.write(new Date().getFullYear());
-              document.write(",");
             </script>
-            made with
+            {{ _("made with") }}
           </span>
           <i class="material-symbols-rounded link-danger fs-4 mx-1">favorite</i>
           <span>
-            by
+            {{ _("by") }}
             <a href="#" class="font-weight-bold" target="_blank"
-              >{{ DEVELOPER }}</a
+              >{{ _(DEVELOPER ) }}</a
             >
-            for
+            {{ _("for") }}
             <a
               href="{{ url_for('admin.dashboard') }}"
               class="font-weight-bold"
               target="_blank"
-              >{{ PROJECT_TITLE }}</a
+              >{{ _(PROJECT_TITLE) }}</a
             >
             .
           </span>

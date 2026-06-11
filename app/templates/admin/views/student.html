@@ -10,7 +10,7 @@
               alt="user1"
             />
           </div>
-          <div class="d-flex flex-column justify-content-center">
+          <div class="d-flex flex-column justify-content-center mx-2">
             <h5 class="mb-0">{{ student.user.full_name }}</h5>
             <p class="mb-0 mt-0 font-weight-normal text-sm">
               {{ student.user.email }}
@@ -26,7 +26,7 @@
         <div class="row gx-0 mb-3">
           <div class="card">
             <div class="card-header pb-0">
-              <h5>Student Information</h5>
+              <h5>{{ _("Student Information") }}</h5>
             </div>
             <hr class="bg-dark horizontal my-0 opacity-10" />
             <div class="card-body p0">
@@ -40,10 +40,10 @@
         <div class="row mb-2">
           <div class="col-12">
             <div class="card">
-              <div class="card-header p-2 ps-3">
+              <div class="card-header">
                 <div class="d-flex justify-content-between">
                   <div>
-                    <p class="text-sm mb-0 text-capitalize">Phone</p>
+                    <p class="text-sm mb-0 text-capitalize">{{ _("Phone") }}</p>
                     <h4 class="mb-0">
                       {{ student.user.display_number_of_phone_nums }}
                     </h4>
@@ -57,7 +57,7 @@
               </div>
               {% if student.user.phones.count() > 0 %}
               <hr class="bg-dark horizontal my-0 opacity-10" />
-              <div class="card-footer py-2 px-1">
+              <div class="card-footer py-2">
                 <div class="values d-flex flex-wrap justify-content-center">
                   {% for phone in student.user.phones.all() %}
                   <span
@@ -75,10 +75,10 @@
         <div class="row mb-2">
           <div class="col-12">
             <div class="card">
-              <div class="card-header p-2 ps-3">
+              <div class="card-header">
                 <div class="d-flex justify-content-between">
                   <div>
-                    <p class="text-sm mb-0 text-capitalize">Files</p>
+                    <p class="text-sm mb-0 text-capitalize">{{ _("Files") }}</p>
                     <h4 class="mb-0">
                       {{ student.user.display_number_of_files }}
                     </h4>
@@ -91,8 +91,10 @@
                 </div>
               </div>
               <hr class="bg-dark horizontal my-0 opacity-10" />
-              <div class="card-footer py-2 px-1">
-                <span class="font-weight-bolder text-sm ms-2">Storage: </span>
+              <div class="card-footer py-2">
+                <span class="font-weight-bolder text-sm"
+                  >{{ _("Storage:") }}
+                </span>
 
                 <span class="text-sm font-weight-normal"
                   >{{ student.user.total_file_size }}</span
@@ -116,7 +118,7 @@
                 role="tab"
                 aria-selected="true"
               >
-                Results
+                {{ _("Results") }}
               </a>
             </li>
             <li class="nav-item" role="presentation">
@@ -128,7 +130,7 @@
                 role="tab"
                 aria-selected="true"
               >
-                Attendances
+                {{ _("Attendances") }}
               </a>
             </li>
             <li class="nav-item" role="presentation">
@@ -140,7 +142,7 @@
                 role="tab"
                 aria-selected="true"
               >
-                Files
+                {{ _("Files") }}
               </a>
             </li>
           </ul>

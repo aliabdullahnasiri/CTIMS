@@ -29,7 +29,7 @@
       <li class="nav-item">
         <a class="nav-link text-dark opacity-8" href="{{ item['url'] }}">
           <i class="material-symbols-rounded opacity-5">{{ item["icon"] }}</i>
-          <span class="nav-link-text mx-1">{{ item["title"] }}</span>
+          <span class="nav-link-text mx-1">{{ _(item["title"]) }}</span>
         </a>
       </li>
 
@@ -38,14 +38,14 @@
         <h6
           class="ps-4 ms-2 text-uppercase text-xs text-dark font-weight-bolder opacity-5 mx-2 px-2"
         >
-          {{item["title"]}}
+          {{ _(item["title"]) }}
         </h6>
       </li>
 
       {% for item in item["items"] %}
       <li class="nav-item">
         <a class="nav-link text-dark opacity-8" href="{{ item['url'] }}">
-          <span class="nav-link-text ms-1">{{ item["title"] }}</span>
+          <span class="nav-link-text ms-1">{{ _(item["title"]) }}</span>
         </a>
       </li>
       {% endfor %} {% endif %} {% endif %} {% endfor %} {% endif %}
@@ -58,7 +58,7 @@
         class="btn bg-gradient-dark w-100"
         href="{{ url_for('auth.logout') }}"
         type="button"
-        >Logout</a
+        >{{ _("Logout") }}</a
       >
     </div>
   </div>

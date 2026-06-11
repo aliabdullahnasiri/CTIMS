@@ -15,7 +15,7 @@
         <div class="row gx-0 mb-3">
           <div class="card">
             <div class="card-header pb-0">
-              <h5>Time Information</h5>
+              <h5>{{ _("Time Information") }}</h5>
             </div>
             <hr class="bg-dark horizontal my-0 opacity-10" />
             <div class="card-body p0">
@@ -32,7 +32,7 @@
               <div class="card-header ps-3">
                 <div class="d-flex justify-content-between">
                   <div>
-                    <p class="text-sm mb-0 text-capitalize">Classes</p>
+                    <p class="text-sm mb-0 text-capitalize">{{ _("Classes") }}</p>
                     <h4 class="mb-0">{{ time.display_number_of_classes }}</h4>
                   </div>
                   <div
@@ -51,7 +51,7 @@
               <div class="card-header ps-3">
                 <div class="d-flex justify-content-between">
                   <div>
-                    <p class="text-sm mb-0 text-capitalize">Students</p>
+                    <p class="text-sm mb-0 text-capitalize">{{ _("Students") }}</p>
                     <h4 class="mb-0">{{ time.display_number_of_students }}</h4>
                   </div>
                   <div
@@ -70,7 +70,7 @@
               <div class="card-header ps-3">
                 <div class="d-flex justify-content-between">
                   <div>
-                    <p class="text-sm mb-0 text-capitalize">Teachers</p>
+                    <p class="text-sm mb-0 text-capitalize">{{ _("Teachers") }}</p>
                     <h4 class="mb-0">{{ time.display_number_of_teachers }}</h4>
                   </div>
                   <div
@@ -98,7 +98,7 @@
                 role="tab"
                 aria-selected="true"
               >
-                Classes
+                {{ _("Classes") }}
               </a>
             </li>
             <li class="nav-item" role="presentation">
@@ -110,7 +110,7 @@
                 role="tab"
                 aria-selected="false"
               >
-                Teachers
+                {{ _("Teachers") }}
               </a>
             </li>
             <li class="nav-item" role="presentation">
@@ -122,7 +122,7 @@
                 role="tab"
                 aria-selected="false"
               >
-                Students
+                {{ _("Students") }}
               </a>
             </li>
           </ul>

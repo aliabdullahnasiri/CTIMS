@@ -1,8 +1,8 @@
 <div class="col-lg-4 col-md-6 mt-4 mb-4">
   <div class="card">
     <div class="card-body">
-      <h6 class="mb-0">Weeekly Website Views</h6>
-      <p class="text-sm">Last 7 Days</p>
+      <h6 class="mb-0">{{ _("Weeekly Website Views") }}</h6>
+      <p class="text-sm">{{ _("Last 7 Days") }}</p>
       <div class="pe-2">
         <div class="chart">
           <canvas
@@ -21,7 +21,7 @@
         <p class="mb-0 text-sm">
           <span class="text-{{ View.weekly_growth_clr() }} font-weight-bolder"
             >{{ View.display_weekly_growth() }} </span
-          >than last week
+          >{{ _("than last week") }}
         </p>
       </div>
     </div>

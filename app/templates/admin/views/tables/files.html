@@ -4,22 +4,22 @@
       <th
         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center"
       >
-        ID
+        {{ _("ID") }}
       </th>
       <th
         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
       >
-        Name
+        {{ _("Name") }}
       </th>
       <th
         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
       >
-        Size
+        {{ _("Size") }}
       </th>
       <th
         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
       >
-        Uploaded
+        {{ _("Uploaded") }}
       </th>
     </tr>
   </thead>
@@ -36,7 +36,7 @@
     {% else %}
     <tr class="no-rows-label">
       <td colspan="5" class="py-4 text-center">
-        <span>No files yet :(</span>
+        <span>{{ _("No files yet :(") }}</span>
       </td>
     </tr>
     {% endfor %}

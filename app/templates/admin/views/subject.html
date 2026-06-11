@@ -27,7 +27,7 @@
                     role="tab"
                     aria-selected="true"
                   >
-                    Subject
+                    {{ _("Subject") }}
                   </a>
                 </li>
                 <li class="nav-item" role="presentation">
@@ -39,7 +39,7 @@
                     role="tab"
                     aria-selected="false"
                   >
-                    Semester
+                    {{ _("Semester") }}
                   </a>
                 </li>
                 <li class="nav-item" role="presentation">
@@ -51,7 +51,7 @@
                     role="tab"
                     aria-selected="false"
                   >
-                    Department
+                    {{ _("Department") }}
                   </a>
                 </li>
               </ul>
@@ -76,10 +76,12 @@
         <div class="row mb-2">
           <div class="col-12">
             <div class="card">
-              <div class="card-header p-2 ps-3">
+              <div class="card-header">
                 <div class="d-flex justify-content-between">
                   <div>
-                    <p class="text-sm mb-0 text-capitalize">Teachers</p>
+                    <p class="text-sm mb-0 text-capitalize">
+                      {{ _("Teachers") }}
+                    </p>
                     <h4 class="mb-0">
                       {{ subject.display_number_of_teachers }}
                     </h4>
@@ -97,10 +99,10 @@
         <div class="row mb-2">
           <div class="col-12">
             <div class="card">
-              <div class="card-header p-2 ps-3">
+              <div class="card-header">
                 <div class="d-flex justify-content-between">
                   <div>
-                    <p class="text-sm mb-0 text-capitalize">Exams</p>
+                    <p class="text-sm mb-0 text-capitalize">{{ _("Exams") }}</p>
                     <h4 class="mb-0">{{ subject.display_number_of_exams }}</h4>
                   </div>
                   <div
@@ -116,10 +118,10 @@
         <div class="row mb-2">
           <div class="col-12">
             <div class="card">
-              <div class="card-header p-2 ps-3">
+              <div class="card-header">
                 <div class="d-flex justify-content-between">
                   <div>
-                    <p class="text-sm mb-0 text-capitalize">Files</p>
+                    <p class="text-sm mb-0 text-capitalize">{{ _("Files") }}</p>
                     <h4 class="mb-0">{{ subject.display_number_of_files }}</h4>
                   </div>
                   <div
@@ -130,8 +132,10 @@
                 </div>
               </div>
               <hr class="bg-dark horizontal my-0 opacity-10" />
-              <div class="card-footer py-2 px-1">
-                <span class="font-weight-bolder text-sm ms-2">Storage: </span>
+              <div class="card-footer py-2">
+                <span class="font-weight-bolder text-sm"
+                  >{{ _("Storage:") }}
+                </span>
 
                 <span class="text-sm font-weight-normal"
                   >{{ subject.total_file_size }}</span
@@ -155,7 +159,7 @@
                 role="tab"
                 aria-selected="true"
               >
-                Teachers
+                {{ _("Teachers") }}
               </a>
             </li>
             <li class="nav-item" role="presentation">
@@ -167,7 +171,7 @@
                 role="tab"
                 aria-selected="true"
               >
-                Exams
+                {{ _("Exams") }}
               </a>
             </li>
             <li class="nav-item" role="presentation">
@@ -179,7 +183,7 @@
                 role="tab"
                 aria-selected="false"
               >
-                Files
+                {{ _("Files") }}
               </a>
             </li>
           </ul>

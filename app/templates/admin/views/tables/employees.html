@@ -4,22 +4,22 @@
       <th
         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center"
       >
-        ID
+        {{ _("ID") }}
       </th>
       <th
         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
       >
-        Employee
+        {{ _("Employee") }}
       </th>
       <th
         class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
       >
-        Salary
+        {{ _("Salary") }}
       </th>
       <th
         class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
       >
-        Hire Date
+        {{ _("Hire Date") }}
       </th>
     </tr>
   </thead>
@@ -54,7 +54,7 @@
     {% else %}
     <tr class="no-rows-label">
       <td colspan="4" class="py-4 text-center">
-        <span>No employees yet :(</span>
+        <span>{{ _("No employees yet :(") }}</span>
       </td>
     </tr>
     {% endfor %}
