@@ -16,7 +16,7 @@ from app.models.user import permission_required
 cols: List[Tuple[ColumnID, ColumnName]] = [
     (ColumnID("uid"), ColumnName("UID")),
     (ColumnID("temp_teacher"), ColumnName("Teacher")),
-    (ColumnID("name"), ColumnName("Name")),
+    (ColumnID("cls_name"), ColumnName("Name")),
 ]
 
 
