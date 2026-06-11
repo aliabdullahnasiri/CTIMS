@@ -112,7 +112,7 @@ function addActionButtons(tableElement, trElement, is_deletable = true) {
     let deleteLinkElement = document.createElement("a");
 
     deleteLinkElement.dataset.role = "delete";
-    deleteLinkElement.innerHTML = "Delete";
+    deleteLinkElement.innerHTML = `<i class="material-symbols-rounded fs-5">delete</i>`;
 
     deleteLinkElement.setAttribute("aria-disabled", is_deletable);
 
@@ -126,7 +126,7 @@ function addActionButtons(tableElement, trElement, is_deletable = true) {
     editLinkElement.ariaLabel = "Edit Modal";
     editLinkElement.dataset.bsOriginalTitle = "Edit Modal";
     editLinkElement.dataset.bsTarget = tableElement.dataset.editRowModalId;
-    editLinkElement.innerHTML = "Edit";
+    editLinkElement.innerHTML = `<i class="material-symbols-rounded fs-5">edit</i>`;
 
     tdElement.append(editLinkElement);
   }
@@ -139,13 +139,19 @@ function addActionButtons(tableElement, trElement, is_deletable = true) {
     viewLinkElement.ariaLabel = "View Modal";
     viewLinkElement.dataset.bsOriginalTitle = "View Modal";
     viewLinkElement.dataset.bsTarget = tableElement.dataset.viewRowModalId;
-    viewLinkElement.innerHTML = "View";
+    viewLinkElement.innerHTML = `<i class="material-symbols-rounded fs-5">visibility</i>`;
 
     tdElement.append(viewLinkElement);
   }
 
   tdElement.querySelectorAll("a").forEach((element) => {
-    element.classList.value = "text-secondary font-weight-bold text-xs m-1";
+    element.classList.value =
+      "text-secondary font-weight-bold text-xs m-1 btn btn-sm text-white";
+
+    element.classList.add(
+      element.dataset.role == "delete" ? "btn-danger" : "btn-info",
+    );
+
     element.href = "javascript:;";
   });
 
@@ -646,11 +652,11 @@ function initTableContol(
     if (!document.ids) document.ids = [];
 
     if (table) {
-      const allowedTags = ["A", "INPUT"];
+      const allowedTags = ["A", "INPUT", "I"];
       if (!allowedTags.includes(target.tagName)) return;
 
       const row = target.closest("tr");
-      const role = target.dataset.role;
+      const role = target.closest("[data-role]")?.dataset?.role;
 
       switch (role) {
         case "delete":

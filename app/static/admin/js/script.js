@@ -20,12 +20,11 @@ function activeTab(presentation) {
 }
 
 export function transformMovingTab(movingTab, presentation) {
-  movingTab.style.transform = "translate3d(%spx, 0px, 0px)".replace(
-    "%s",
-    presentation?.offsetLeft - 4,
-  );
-  movingTab.style.width = presentation.offsetWidth - 2 + "px";
-  movingTab.style.height = presentation.offsetHeight + "px";
+  const presentationRect = presentation.getBoundingClientRect();
+
+  movingTab.style.width = `${presentationRect.width}px`;
+  movingTab.style.height = `${presentationRect.height}px`;
+  movingTab.style.left = `${presentation.offsetLeft}px`;
 
   if (presentation) activeTab(presentation);
 }
@@ -50,10 +49,6 @@ export function createMovingTab(presentation) {
   divElement.style.width = presentation.offsetWidth + "px";
   divElement.style.height = presentation.offsetHeight + "px";
   divElement.style.transition = "0.5s";
-  divElement.style.transform = "translate3d(%spx, 0px, 0px)".replace(
-    "%s",
-    presentation.offsetLeft,
-  );
 
   divElement.classList.value =
     "moving-tab position-absolute nav-link bg-gradient-dark";

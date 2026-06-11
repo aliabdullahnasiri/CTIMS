@@ -25757,8 +25757,12 @@ hr.horizontal.gray-light {
     transform: translateX(15.5rem);
   }
 
-  .g-sidenav-show:not(.rtl) .sidenav {
+  .g-sidenav-show.rtl .sidenav {
     transform: translateX(15.5rem);
+  }
+
+  .g-sidenav-show.ltr .sidenav {
+    transform: translateX(-15.5rem);
   }
 
   .g-sidenav-show .sidenav.fixed-start+.main-content {
