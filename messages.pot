@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-11 09:43+0430\n"
+"POT-Creation-Date: 2026-06-11 10:23+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,14 +30,14 @@ msgstr ""
 msgid "Users"
 msgstr ""
 
-#: app/templates/admin/views/roles.html:31
+#: app/forms/role.py:21 app/templates/admin/views/roles.html:31
 #: app/templates/admin/views/roles.html:91
 #: app/templates/admin/views/tabs/permissions.html:5
 #: app/translations_stub.py:13
 msgid "Permissions"
 msgstr ""
 
-#: app/templates/admin/views/permissions.html:31
+#: app/forms/user.py:32 app/templates/admin/views/permissions.html:31
 #: app/templates/admin/views/permissions.html:91
 #: app/templates/admin/views/tabs/roles.html:5 app/translations_stub.py:14
 msgid "Roles"
@@ -194,6 +194,7 @@ msgid "Employee with the given ID was not found :("
 msgstr ""
 
 #: app/forms/__init__.py:88 app/forms/__init__.py:117
+#: app/forms/attendance/teacher.py:27
 msgid "Teacher with the given ID was not found :("
 msgstr ""
 
@@ -209,7 +210,7 @@ msgstr ""
 msgid "The class name must be unique :)"
 msgstr ""
 
-#: app/forms/__init__.py:115
+#: app/forms/__init__.py:115 app/forms/attendance/teacher.py:25
 msgid "Not a valid Teacher UID."
 msgstr ""
 
@@ -266,8 +267,446 @@ msgstr ""
 msgid "Email already registered"
 msgstr ""
 
-#: app/forms/class_.py:10
+#: app/forms/class_.py:9
 msgid "Class Name"
+msgstr ""
+
+#: app/forms/attendance/teacher.py:13 app/forms/class_.py:10
+msgid "Teacher UID"
+msgstr ""
+
+#: app/forms/class_.py:11 app/forms/semester.py:19 app/forms/subject.py:23
+msgid "Semester UID"
+msgstr ""
+
+#: app/forms/class_.py:12 app/forms/teacher.py:9
+msgid "Time UID"
+msgstr ""
+
+#: app/forms/class_.py:14
+msgid "Add Class"
+msgstr ""
+
+#: app/forms/class_.py:18 app/forms/exam.py:28 app/forms/student.py:14
+#: app/templates/admin/views/information/student.html:6
+msgid "Class UID"
+msgstr ""
+
+#: app/forms/class_.py:20
+msgid "Update Class"
+msgstr ""
+
+#: app/forms/department.py:10 app/forms/permission.py:11 app/forms/role.py:9
+#: app/forms/role.py:28 app/templates/admin/views/information/class.html:6
+#: app/templates/admin/views/information/department.html:6
+#: app/templates/admin/views/information/permission.html:6
+#: app/templates/admin/views/information/role.html:6
+#: app/templates/admin/views/information/semester.html:6
+#: app/templates/admin/views/tables/classes.html:17
+#: app/templates/admin/views/tables/files.html:12
+#: app/templates/admin/views/tables/permissions.html:12
+#: app/templates/admin/views/tables/roles.html:12
+#: app/templates/admin/views/tables/semesters.html:12
+#: app/templates/admin/views/tables/subjects.html:12
+msgid "Name"
+msgstr ""
+
+#: app/forms/department.py:12
+msgid "Name is required."
+msgstr ""
+
+#: app/forms/department.py:13
+msgid "Name cannot exceed 50 characters."
+msgstr ""
+
+#: app/forms/department.py:18 app/forms/exam.py:19 app/forms/permission.py:14
+#: app/forms/role.py:12 app/forms/time.py:20
+#: app/templates/admin/views/information/department.html:9
+#: app/templates/admin/views/information/exam.html:9
+#: app/templates/admin/views/information/job.html:9
+#: app/templates/admin/views/information/permission.html:9
+#: app/templates/admin/views/information/role.html:9
+msgid "Description"
+msgstr ""
+
+#: app/forms/department.py:21 app/forms/time.py:23
+msgid "Description cannot exceed 255 characters."
+msgstr ""
+
+#: app/forms/department.py:26
+msgid "HOD UID"
+msgstr ""
+
+#: app/forms/department.py:31
+msgid "Parent Department UID"
+msgstr ""
+
+#: app/forms/department.py:35
+msgid "Add Department"
+msgstr ""
+
+#: app/forms/department.py:41 app/forms/time.py:45 app/forms/user.py:38
+#: app/templates/admin/views/information/class.html:3
+#: app/templates/admin/views/information/department.html:3
+#: app/templates/admin/views/information/employee.html:3
+#: app/templates/admin/views/information/exam.html:3
+#: app/templates/admin/views/information/job.html:3
+#: app/templates/admin/views/information/permission.html:3
+#: app/templates/admin/views/information/role.html:3
+#: app/templates/admin/views/information/semester.html:3
+#: app/templates/admin/views/information/student.html:3
+#: app/templates/admin/views/information/teacher.html:3
+#: app/templates/admin/views/information/time.html:3
+#: app/templates/admin/views/tables/attendances.html:7
+#: app/templates/admin/views/tables/classes.html:7
+#: app/templates/admin/views/tables/exams.html:7
+#: app/templates/admin/views/tables/permissions.html:7
+#: app/templates/admin/views/tables/results.html:7
+#: app/templates/admin/views/tables/roles.html:7
+#: app/templates/admin/views/tables/semesters.html:7
+#: app/templates/admin/views/tables/students.html:7
+#: app/templates/admin/views/tables/subjects.html:7
+#: app/templates/admin/views/tables/teachers.html:7
+msgid "UID"
+msgstr ""
+
+#: app/forms/department.py:43
+msgid "Update Department"
+msgstr ""
+
+#: app/forms/employee.py:16 app/forms/job.py:27
+msgid "Job UID"
+msgstr ""
+
+#: app/forms/employee.py:18
+msgid "Address"
+msgstr ""
+
+#: app/forms/employee.py:20 app/forms/teacher.py:11
+#: app/templates/admin/views/employee.html:60
+#: app/templates/admin/views/tables/employees.html:17
+#: app/templates/admin/views/tables/teachers.html:22
+#: app/templates/admin/views/teacher.html:59
+msgid "Salary"
+msgstr ""
+
+#: app/forms/employee.py:22
+#: app/templates/admin/views/information/employee.html:33
+#: app/templates/admin/views/tables/employees.html:22
+msgid "Hire Date"
+msgstr ""
+
+#: app/forms/employee.py:23 app/forms/student.py:9 app/forms/user.py:34
+msgid "Add"
+msgstr ""
+
+#: app/forms/employee.py:27
+msgid "Employee UID"
+msgstr ""
+
+#: app/forms/employee.py:28 app/forms/login.py:13 app/forms/profile.py:9
+#: app/forms/signup.py:11 app/forms/user.py:26 app/forms/user.py:40
+msgid "Password"
+msgstr ""
+
+#: app/forms/employee.py:29 app/forms/profile.py:10 app/forms/user.py:42
+msgid "Update"
+msgstr ""
+
+#: app/forms/exam.py:18 app/forms/time.py:12
+#: app/templates/admin/views/information/exam.html:6
+#: app/templates/admin/views/information/job.html:6
+#: app/templates/admin/views/tables/exams.html:12
+msgid "Title"
+msgstr ""
+
+#: app/forms/exam.py:21 app/templates/admin/views/tables/exams.html:22
+msgid "Exam Date"
+msgstr ""
+
+#: app/forms/exam.py:22 app/templates/admin/views/tables/exams.html:27
+msgid "Exam Time"
+msgstr ""
+
+#: app/forms/exam.py:24 app/templates/admin/views/information/exam.html:12
+#: app/templates/admin/views/tables/exams.html:17
+msgid "Total Marks"
+msgstr ""
+
+#: app/forms/exam.py:25
+msgid "Minimum Marks"
+msgstr ""
+
+#: app/forms/exam.py:27 app/forms/subject.py:31 app/forms/teacher.py:13
+msgid "Subject UID"
+msgstr ""
+
+#: app/forms/exam.py:30
+msgid "Add Exam"
+msgstr ""
+
+#: app/forms/exam.py:34 app/forms/result.py:20
+msgid "Exam UID"
+msgstr ""
+
+#: app/forms/exam.py:36 app/forms/result.py:58 app/forms/subject.py:25
+#: app/forms/user.py:30 app/templates/admin/views/student.html:81
+#: app/templates/admin/views/student.html:145
+#: app/templates/admin/views/subject.html:124
+#: app/templates/admin/views/subject.html:186
+#: app/templates/admin/views/tabs/files.html:5
+#: app/templates/admin/views/teacher.html:174
+#: app/templates/admin/views/teacher.html:250
+msgid "Files"
+msgstr ""
+
+#: app/forms/exam.py:39
+msgid "Update Exam"
+msgstr ""
+
+#: app/forms/job.py:9
+msgid "Job Title"
+msgstr ""
+
+#: app/forms/job.py:12
+msgid "Job Description"
+msgstr ""
+
+#: app/forms/job.py:16 app/templates/admin/views/job.html:38
+msgid "Minimum Salary"
+msgstr ""
+
+#: app/forms/job.py:20 app/templates/admin/views/job.html:66
+msgid "Maximum Salary"
+msgstr ""
+
+#: app/forms/job.py:23
+msgid "Add Job"
+msgstr ""
+
+#: app/forms/job.py:29
+msgid "Update Job"
+msgstr ""
+
+#: app/forms/login.py:10 app/forms/signup.py:10 app/forms/user.py:23
+#: app/templates/admin/pages/profile.html:70
+#: app/templates/admin/views/information/employee.html:20
+#: app/templates/admin/views/information/student.html:19
+#: app/templates/admin/views/information/teacher.html:16
+msgid "Email"
+msgstr ""
+
+#: app/forms/login.py:11 app/forms/user.py:24
+msgid "Enter a valid email address"
+msgstr ""
+
+#: app/forms/login.py:14
+msgid "Log In"
+msgstr ""
+
+#: app/forms/permission.py:9
+msgid "Permission UID"
+msgstr ""
+
+#: app/forms/permission.py:17
+msgid "Update Permission"
+msgstr ""
+
+#: app/forms/attendance/student.py:13 app/forms/result.py:22
+#: app/forms/student.py:13
+msgid "Student UID"
+msgstr ""
+
+#: app/forms/result.py:24
+msgid "Obtained Marks"
+msgstr ""
+
+#: app/forms/result.py:32
+#, python-format
+msgid "The obtained marks should be between 0 and %s."
+msgstr ""
+
+#: app/forms/result.py:52
+msgid "Add Result"
+msgstr ""
+
+#: app/forms/result.py:56
+msgid "Result UID"
+msgstr ""
+
+#: app/forms/result.py:61
+msgid "Update Result"
+msgstr ""
+
+#: app/forms/role.py:16
+msgid "Default Role (assigned automatically to new users)"
+msgstr ""
+
+#: app/forms/role.py:23
+msgid "Add Role"
+msgstr ""
+
+#: app/forms/role.py:27
+msgid "Role UID"
+msgstr ""
+
+#: app/forms/role.py:30
+msgid "Update Role"
+msgstr ""
+
+#: app/forms/semester.py:9
+msgid "Semester Name"
+msgstr ""
+
+#: app/forms/semester.py:11
+msgid "Semester Number"
+msgstr ""
+
+#: app/forms/semester.py:13
+msgid "Department UID"
+msgstr ""
+
+#: app/forms/semester.py:15
+msgid "Add Semester"
+msgstr ""
+
+#: app/forms/semester.py:21
+msgid "Update Semester"
+msgstr ""
+
+#: app/forms/signup.py:9 app/forms/user.py:21
+#: app/templates/admin/views/tables/users.html:17
+msgid "Username"
+msgstr ""
+
+#: app/forms/signup.py:13
+msgid "Confirm Password"
+msgstr ""
+
+#: app/forms/signup.py:16
+msgid "Passwords must match"
+msgstr ""
+
+#: app/forms/signup.py:19
+msgid "Sign Up"
+msgstr ""
+
+#: app/forms/student.py:15
+msgid "Update Student"
+msgstr ""
+
+#: app/forms/subject.py:16
+msgid "Subject Name"
+msgstr ""
+
+#: app/forms/subject.py:19
+msgid "Subject Description"
+msgstr ""
+
+#: app/forms/subject.py:21 app/templates/admin/views/tables/subjects.html:17
+msgid "Credit"
+msgstr ""
+
+#: app/forms/subject.py:27
+msgid "Add Subject"
+msgstr ""
+
+#: app/forms/subject.py:33
+msgid "Update Subject"
+msgstr ""
+
+#: app/forms/teacher.py:14
+msgid "Add Teacher"
+msgstr ""
+
+#: app/forms/teacher.py:18
+msgid "Teacher ID"
+msgstr ""
+
+#: app/forms/teacher.py:19
+msgid "Update Teacher"
+msgstr ""
+
+#: app/forms/time.py:14
+msgid "Title is required."
+msgstr ""
+
+#: app/forms/time.py:15
+msgid "Title cannot exceed 50 characters."
+msgstr ""
+
+#: app/forms/time.py:28 app/templates/admin/views/information/time.html:6
+msgid "Start Time"
+msgstr ""
+
+#: app/forms/time.py:34 app/templates/admin/views/information/time.html:9
+msgid "End Time"
+msgstr ""
+
+#: app/forms/time.py:39
+msgid "Add Time"
+msgstr ""
+
+#: app/forms/time.py:47
+msgid "Update Time"
+msgstr ""
+
+#: app/forms/user.py:18 app/templates/admin/pages/profile.html:55
+#: app/templates/admin/views/information/employee.html:7
+#: app/templates/admin/views/information/student.html:9
+#: app/templates/admin/views/information/teacher.html:6
+msgid "First Name"
+msgstr ""
+
+#: app/forms/user.py:19 app/templates/admin/pages/profile.html:60
+#: app/templates/admin/views/information/employee.html:11
+#: app/templates/admin/views/information/student.html:12
+#: app/templates/admin/views/information/teacher.html:9
+msgid "Middle Name"
+msgstr ""
+
+#: app/forms/user.py:20 app/templates/admin/pages/profile.html:65
+#: app/templates/admin/views/information/employee.html:16
+#: app/templates/admin/views/information/student.html:16
+#: app/templates/admin/views/information/teacher.html:13
+msgid "Last Name"
+msgstr ""
+
+#: app/forms/user.py:27 app/templates/admin/pages/profile.html:74
+#: app/templates/admin/views/information/employee.html:24
+#: app/templates/admin/views/information/student.html:22
+#: app/templates/admin/views/information/teacher.html:19
+#: app/templates/admin/views/tables/students.html:17
+#: app/templates/admin/views/tables/users.html:22
+msgid "Birthday"
+msgstr ""
+
+#: app/forms/user.py:28
+msgid "Upload new profile picture."
+msgstr ""
+
+#: app/forms/user.py:31 app/templates/admin/views/employee.html:94
+#: app/templates/admin/views/student.html:46
+#: app/templates/admin/views/teacher.html:93
+msgid "Phone"
+msgstr ""
+
+#: app/forms/attendance/student.py:15 app/forms/attendance/teacher.py:15
+#: app/templates/admin/views/tables/attendances.html:22
+#: app/templates/admin/views/tables/results.html:22
+msgid "Status"
+msgstr ""
+
+#: app/forms/attendance/student.py:25
+msgid "Not a valid Student UID."
+msgstr ""
+
+#: app/forms/attendance/student.py:27
+msgid "Student with the given ID was not found :("
+msgstr ""
+
+#: app/forms/attendance/student.py:29 app/forms/attendance/teacher.py:29
+msgid "Add Attendance"
 msgstr ""
 
 #: app/templates/admin/components/aside.html:61
@@ -690,43 +1129,6 @@ msgstr ""
 msgid "Profile Information"
 msgstr ""
 
-#: app/templates/admin/pages/profile.html:55
-#: app/templates/admin/views/information/employee.html:7
-#: app/templates/admin/views/information/student.html:9
-#: app/templates/admin/views/information/teacher.html:6
-msgid "First Name"
-msgstr ""
-
-#: app/templates/admin/pages/profile.html:60
-#: app/templates/admin/views/information/employee.html:11
-#: app/templates/admin/views/information/student.html:12
-#: app/templates/admin/views/information/teacher.html:9
-msgid "Middle Name"
-msgstr ""
-
-#: app/templates/admin/pages/profile.html:65
-#: app/templates/admin/views/information/employee.html:16
-#: app/templates/admin/views/information/student.html:16
-#: app/templates/admin/views/information/teacher.html:13
-msgid "Last Name"
-msgstr ""
-
-#: app/templates/admin/pages/profile.html:70
-#: app/templates/admin/views/information/employee.html:20
-#: app/templates/admin/views/information/student.html:19
-#: app/templates/admin/views/information/teacher.html:16
-msgid "Email"
-msgstr ""
-
-#: app/templates/admin/pages/profile.html:74
-#: app/templates/admin/views/information/employee.html:24
-#: app/templates/admin/views/information/student.html:22
-#: app/templates/admin/views/information/teacher.html:19
-#: app/templates/admin/views/tables/students.html:17
-#: app/templates/admin/views/tables/users.html:22
-msgid "Birthday"
-msgstr ""
-
 #: app/templates/admin/views/class.html:39
 #: app/templates/admin/views/exam.html:52
 msgid "Class"
@@ -771,13 +1173,6 @@ msgstr ""
 msgid "Job Information"
 msgstr ""
 
-#: app/templates/admin/views/employee.html:60
-#: app/templates/admin/views/tables/employees.html:17
-#: app/templates/admin/views/tables/teachers.html:22
-#: app/templates/admin/views/teacher.html:59
-msgid "Salary"
-msgstr ""
-
 #: app/templates/admin/views/employee.html:76
 #: app/templates/admin/views/teacher.html:75
 msgid "Greater"
@@ -786,12 +1181,6 @@ msgstr ""
 #: app/templates/admin/views/employee.html:80
 #: app/templates/admin/views/teacher.html:79
 msgid "Less"
-msgstr ""
-
-#: app/templates/admin/views/employee.html:94
-#: app/templates/admin/views/student.html:46
-#: app/templates/admin/views/teacher.html:93
-msgid "Phone"
 msgstr ""
 
 #: app/templates/admin/views/exam.html:28
@@ -811,16 +1200,8 @@ msgstr ""
 msgid "Failed"
 msgstr ""
 
-#: app/templates/admin/views/job.html:38
-msgid "Minimum Salary"
-msgstr ""
-
 #: app/templates/admin/views/job.html:52
 msgid "Minimum salary in this job."
-msgstr ""
-
-#: app/templates/admin/views/job.html:66
-msgid "Maximum Salary"
 msgstr ""
 
 #: app/templates/admin/views/job.html:80
@@ -856,16 +1237,6 @@ msgstr ""
 msgid "Student Information"
 msgstr ""
 
-#: app/templates/admin/views/student.html:81
-#: app/templates/admin/views/student.html:145
-#: app/templates/admin/views/subject.html:124
-#: app/templates/admin/views/subject.html:186
-#: app/templates/admin/views/tabs/files.html:5
-#: app/templates/admin/views/teacher.html:174
-#: app/templates/admin/views/teacher.html:250
-msgid "Files"
-msgstr ""
-
 #: app/templates/admin/views/student.html:96
 #: app/templates/admin/views/subject.html:137
 #: app/templates/admin/views/teacher.html:189
@@ -881,44 +1252,6 @@ msgstr ""
 #: app/templates/admin/views/teacher.html:40
 #: app/templates/admin/views/time.html:18
 msgid "Time Information"
-msgstr ""
-
-#: app/templates/admin/views/information/class.html:3
-#: app/templates/admin/views/information/department.html:3
-#: app/templates/admin/views/information/employee.html:3
-#: app/templates/admin/views/information/exam.html:3
-#: app/templates/admin/views/information/job.html:3
-#: app/templates/admin/views/information/permission.html:3
-#: app/templates/admin/views/information/role.html:3
-#: app/templates/admin/views/information/semester.html:3
-#: app/templates/admin/views/information/student.html:3
-#: app/templates/admin/views/information/teacher.html:3
-#: app/templates/admin/views/information/time.html:3
-#: app/templates/admin/views/tables/attendances.html:7
-#: app/templates/admin/views/tables/classes.html:7
-#: app/templates/admin/views/tables/exams.html:7
-#: app/templates/admin/views/tables/permissions.html:7
-#: app/templates/admin/views/tables/results.html:7
-#: app/templates/admin/views/tables/roles.html:7
-#: app/templates/admin/views/tables/semesters.html:7
-#: app/templates/admin/views/tables/students.html:7
-#: app/templates/admin/views/tables/subjects.html:7
-#: app/templates/admin/views/tables/teachers.html:7
-msgid "UID"
-msgstr ""
-
-#: app/templates/admin/views/information/class.html:6
-#: app/templates/admin/views/information/department.html:6
-#: app/templates/admin/views/information/permission.html:6
-#: app/templates/admin/views/information/role.html:6
-#: app/templates/admin/views/information/semester.html:6
-#: app/templates/admin/views/tables/classes.html:17
-#: app/templates/admin/views/tables/files.html:12
-#: app/templates/admin/views/tables/permissions.html:12
-#: app/templates/admin/views/tables/roles.html:12
-#: app/templates/admin/views/tables/semesters.html:12
-#: app/templates/admin/views/tables/subjects.html:12
-msgid "Name"
 msgstr ""
 
 #: app/templates/admin/views/information/class.html:9
@@ -949,36 +1282,12 @@ msgstr ""
 msgid "Updated At"
 msgstr ""
 
-#: app/templates/admin/views/information/department.html:9
-#: app/templates/admin/views/information/exam.html:9
-#: app/templates/admin/views/information/job.html:9
-#: app/templates/admin/views/information/permission.html:9
-#: app/templates/admin/views/information/role.html:9
-msgid "Description"
-msgstr ""
-
 #: app/templates/admin/views/information/employee.html:29
 #: app/templates/admin/views/information/student.html:26
 #: app/templates/admin/views/information/teacher.html:23
 #: app/templates/admin/views/tables/students.html:22
 #: app/templates/admin/views/tables/teachers.html:17
 msgid "Age"
-msgstr ""
-
-#: app/templates/admin/views/information/employee.html:33
-#: app/templates/admin/views/tables/employees.html:22
-msgid "Hire Date"
-msgstr ""
-
-#: app/templates/admin/views/information/exam.html:6
-#: app/templates/admin/views/information/job.html:6
-#: app/templates/admin/views/tables/exams.html:12
-msgid "Title"
-msgstr ""
-
-#: app/templates/admin/views/information/exam.html:12
-#: app/templates/admin/views/tables/exams.html:17
-msgid "Total Marks"
 msgstr ""
 
 #: app/templates/admin/views/information/exam.html:15
@@ -1001,10 +1310,6 @@ msgstr ""
 #: app/templates/admin/views/information/semester.html:9
 #: app/templates/admin/views/tables/semesters.html:17
 msgid "Number"
-msgstr ""
-
-#: app/templates/admin/views/information/student.html:6
-msgid "Class UID"
 msgstr ""
 
 #: app/templates/admin/views/information/subject.html:3
@@ -1031,19 +1336,6 @@ msgstr ""
 msgid "Updated At:"
 msgstr ""
 
-#: app/templates/admin/views/information/time.html:6
-msgid "Start Time"
-msgstr ""
-
-#: app/templates/admin/views/information/time.html:9
-msgid "End Time"
-msgstr ""
-
-#: app/templates/admin/views/tables/attendances.html:22
-#: app/templates/admin/views/tables/results.html:22
-msgid "Status"
-msgstr ""
-
 #: app/templates/admin/views/tables/attendances.html:42
 #: app/templates/admin/views/tables/classes.html:55
 msgid "No classes yet :("
@@ -1061,14 +1353,6 @@ msgstr ""
 
 #: app/templates/admin/views/tables/employees.html:57
 msgid "No employees yet :("
-msgstr ""
-
-#: app/templates/admin/views/tables/exams.html:22
-msgid "Exam Date"
-msgstr ""
-
-#: app/templates/admin/views/tables/exams.html:27
-msgid "Exam Time"
 msgstr ""
 
 #: app/templates/admin/views/tables/exams.html:43
@@ -1120,10 +1404,6 @@ msgstr ""
 msgid "No students yet :("
 msgstr ""
 
-#: app/templates/admin/views/tables/subjects.html:17
-msgid "Credit"
-msgstr ""
-
 #: app/templates/admin/views/tables/subjects.html:37
 msgid "No subjects yet :("
 msgstr ""
@@ -1134,10 +1414,6 @@ msgstr ""
 
 #: app/templates/admin/views/tables/users.html:12
 msgid "User"
-msgstr ""
-
-#: app/templates/admin/views/tables/users.html:17
-msgid "Username"
 msgstr ""
 
 #: app/templates/admin/views/tables/users.html:53
