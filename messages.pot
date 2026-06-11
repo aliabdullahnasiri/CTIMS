@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-11 07:00+0430\n"
+"POT-Creation-Date: 2026-06-11 09:43+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -158,6 +158,116 @@ msgstr ""
 
 #: app/translations_stub.py:34
 msgid "Profile"
+msgstr ""
+
+#: app/forms/__init__.py:43
+msgid "A role with this name already exists."
+msgstr ""
+
+#: app/forms/__init__.py:58
+#, python-format
+msgid "Duplicate entry %(num)r for phone number!"
+msgstr ""
+
+#: app/forms/__init__.py:67
+msgid "Not a valid Role ID."
+msgstr ""
+
+#: app/forms/__init__.py:69
+msgid "Role with the given ID was not found :("
+msgstr ""
+
+#: app/forms/__init__.py:75
+msgid "Not a valid Department UID."
+msgstr ""
+
+#: app/forms/__init__.py:77
+msgid "Department with the given ID was not found :("
+msgstr ""
+
+#: app/forms/__init__.py:84
+msgid "Not a valid head of department UID."
+msgstr ""
+
+#: app/forms/__init__.py:86
+msgid "Employee with the given ID was not found :("
+msgstr ""
+
+#: app/forms/__init__.py:88 app/forms/__init__.py:117
+msgid "Teacher with the given ID was not found :("
+msgstr ""
+
+#: app/forms/__init__.py:103
+msgid "Not a valid Job ID."
+msgstr ""
+
+#: app/forms/__init__.py:105
+msgid "Job with the given ID was not found :("
+msgstr ""
+
+#: app/forms/__init__.py:109
+msgid "The class name must be unique :)"
+msgstr ""
+
+#: app/forms/__init__.py:115
+msgid "Not a valid Teacher UID."
+msgstr ""
+
+#: app/forms/__init__.py:123 app/forms/__init__.py:147
+msgid "Not a valid Semester UID."
+msgstr ""
+
+#: app/forms/__init__.py:125 app/forms/__init__.py:149
+msgid "Semester with the given ID was not found :("
+msgstr ""
+
+#: app/forms/__init__.py:131
+msgid "Not a valid Time UID."
+msgstr ""
+
+#: app/forms/__init__.py:133
+msgid "Time with the given ID was not found :("
+msgstr ""
+
+#: app/forms/__init__.py:139
+msgid "Not a valid Subject UID."
+msgstr ""
+
+#: app/forms/__init__.py:141 app/forms/__init__.py:184
+msgid "Subject with the given ID was not found :("
+msgstr ""
+
+#: app/forms/__init__.py:155
+msgid "Not a valid Class UID."
+msgstr ""
+
+#: app/forms/__init__.py:157
+msgid "Class with the given ID was not found :("
+msgstr ""
+
+#: app/forms/__init__.py:164
+msgid "Not a valid Permission UID."
+msgstr ""
+
+#: app/forms/__init__.py:169
+msgid "Permission with the given ID was not found :("
+msgstr ""
+
+#: app/forms/__init__.py:180
+#, python-format
+msgid "Not a valid Subject UID %(uid)r."
+msgstr ""
+
+#: app/forms/__init__.py:189
+msgid "Username already taken"
+msgstr ""
+
+#: app/forms/__init__.py:195
+msgid "Email already registered"
+msgstr ""
+
+#: app/forms/class_.py:10
+msgid "Class Name"
 msgstr ""
 
 #: app/templates/admin/components/aside.html:61
