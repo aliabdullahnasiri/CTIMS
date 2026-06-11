@@ -1,0 +1,1155 @@
+# Persian translations for PROJECT.
+# Copyright (C) 2026 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-06-11 07:00+0430\n"
+"PO-Revision-Date: 2026-06-09 12:35+0430\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: fa\n"
+"Language-Team: fa <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: app/templates/admin/pages/dashboard.html:6 app/translations_stub.py:11
+msgid "Dashboard"
+msgstr "داشبورد"
+
+#: app/templates/admin/components/rows/dashboard-stats.html:85
+#: app/templates/admin/views/permissions.html:50
+#: app/templates/admin/views/permissions.html:79
+#: app/templates/admin/views/roles.html:50
+#: app/templates/admin/views/roles.html:79
+#: app/templates/admin/views/tabs/users.html:5 app/translations_stub.py:12
+msgid "Users"
+msgstr "کاربران"
+
+#: app/templates/admin/views/roles.html:31
+#: app/templates/admin/views/roles.html:91
+#: app/templates/admin/views/tabs/permissions.html:5
+#: app/translations_stub.py:13
+msgid "Permissions"
+msgstr "دسترسی‌ها"
+
+#: app/templates/admin/views/permissions.html:31
+#: app/templates/admin/views/permissions.html:91
+#: app/templates/admin/views/tabs/roles.html:5 app/translations_stub.py:14
+msgid "Roles"
+msgstr "نقش‌ها"
+
+#: app/translations_stub.py:17
+msgid "CTI Management"
+msgstr "مدیریت CTI"
+
+#: app/templates/admin/components/rows/dashboard-stats.html:7
+#: app/translations_stub.py:18
+msgid "Times"
+msgstr "زمان‌ها"
+
+#: app/templates/admin/components/rows/dashboard-stats.html:24
+#: app/translations_stub.py:19
+msgid "Departments"
+msgstr "دپارتمان‌ها"
+
+#: app/templates/admin/views/department.html:56
+#: app/templates/admin/views/department.html:170
+#: app/templates/admin/views/tabs/semesters.html:5 app/translations_stub.py:20
+msgid "Semesters"
+msgstr "نیم‌سال‌ها"
+
+#: app/translations_stub.py:21
+msgid "Jobs"
+msgstr "مشاغل"
+
+#: app/templates/admin/components/rows/dashboard-stats.html:110
+#: app/templates/admin/views/job.html:94 app/templates/admin/views/job.html:121
+#: app/translations_stub.py:22
+msgid "Employees"
+msgstr "کارمندان"
+
+#: app/templates/admin/views/class.html:51
+#: app/templates/admin/views/tables/classes.html:12
+#: app/templates/admin/views/tables/teachers.html:12
+#: app/translations_stub.py:23
+msgid "Teacher"
+msgstr "استاد"
+
+#: app/templates/admin/components/rows/dashboard-stats.html:41
+#: app/templates/admin/views/class.html:141
+#: app/templates/admin/views/class.html:203
+#: app/templates/admin/views/department.html:77
+#: app/templates/admin/views/department.html:182
+#: app/templates/admin/views/semester.html:44
+#: app/templates/admin/views/semester.html:156
+#: app/templates/admin/views/tables/semesters.html:27
+#: app/templates/admin/views/tabs/subjects.html:5
+#: app/templates/admin/views/teacher.html:152
+#: app/templates/admin/views/teacher.html:226 app/translations_stub.py:24
+msgid "Subjects"
+msgstr "دروس"
+
+#: app/templates/admin/components/charts/yearly-classes.html:4
+#: app/templates/admin/components/rows/dashboard-stats.html:188
+#: app/templates/admin/views/department.html:98
+#: app/templates/admin/views/department.html:194
+#: app/templates/admin/views/semester.html:65
+#: app/templates/admin/views/semester.html:168
+#: app/templates/admin/views/tables/semesters.html:22
+#: app/templates/admin/views/tabs/classes.html:5
+#: app/templates/admin/views/teacher.html:129
+#: app/templates/admin/views/teacher.html:214
+#: app/templates/admin/views/time.html:35
+#: app/templates/admin/views/time.html:101 app/translations_stub.py:25
+msgid "Classes"
+msgstr "کلاس‌ها"
+
+#: app/templates/admin/components/charts/yearly-students.html:4
+#: app/templates/admin/components/rows/dashboard-stats.html:162
+#: app/templates/admin/views/class.html:120
+#: app/templates/admin/views/class.html:191
+#: app/templates/admin/views/department.html:119
+#: app/templates/admin/views/department.html:218
+#: app/templates/admin/views/semester.html:86
+#: app/templates/admin/views/semester.html:192
+#: app/templates/admin/views/tables/classes.html:22
+#: app/templates/admin/views/tables/semesters.html:32
+#: app/templates/admin/views/tabs/students.html:5
+#: app/templates/admin/views/time.html:54
+#: app/templates/admin/views/time.html:125 app/translations_stub.py:26
+msgid "Students"
+msgstr "دانشجویان"
+
+#: app/templates/admin/views/class.html:163
+#: app/templates/admin/views/class.html:215
+#: app/templates/admin/views/semester.html:128
+#: app/templates/admin/views/semester.html:204
+#: app/templates/admin/views/subject.html:105
+#: app/templates/admin/views/subject.html:174
+#: app/templates/admin/views/tabs/exams.html:5 app/translations_stub.py:27
+msgid "Exams"
+msgstr "امتحانات"
+
+#: app/templates/admin/views/class.html:227
+#: app/templates/admin/views/exam.html:81
+#: app/templates/admin/views/exam.html:147
+#: app/templates/admin/views/semester.html:216
+#: app/templates/admin/views/student.html:121
+#: app/templates/admin/views/tabs/results.html:5 app/translations_stub.py:28
+msgid "Results"
+msgstr "نتایج"
+
+#: app/translations_stub.py:29
+msgid "Teachers Attendances"
+msgstr "حضور و غیاب اساتید"
+
+#: app/translations_stub.py:30
+msgid "Students Attendances"
+msgstr "حضور و غیاب دانشجویان"
+
+#: app/translations_stub.py:33
+msgid "Account"
+msgstr "حساب کاربری"
+
+#: app/translations_stub.py:34
+msgid "Profile"
+msgstr "پروفایل"
+
+#: app/templates/admin/components/aside.html:61
+msgid "Logout"
+msgstr "خروج"
+
+#: app/templates/admin/components/fixed-plugin.html:8
+msgid "UI Configurator"
+msgstr "پیکربندی رابط کاربری"
+
+#: app/templates/admin/components/fixed-plugin.html:9
+msgid "See our dashboard options."
+msgstr "گزینه‌های داشبورد ما را مشاهده کنید."
+
+#: app/templates/admin/components/fixed-plugin.html:22
+msgid "Sidebar Colors"
+msgstr "رنگ‌های نوار کناری"
+
+#: app/templates/admin/components/fixed-plugin.html:60
+msgid "Sidenav Type"
+msgstr "نوع منوی کناری"
+
+#: app/templates/admin/components/fixed-plugin.html:61
+msgid "Choose between different sidenav types."
+msgstr "از بین انواع مختلف منوی کناری انتخاب کنید."
+
+#: app/templates/admin/components/fixed-plugin.html:69
+msgid "Dark"
+msgstr "تاریک"
+
+#: app/templates/admin/components/fixed-plugin.html:76
+msgid "Transparent"
+msgstr "شفاف"
+
+#: app/templates/admin/components/fixed-plugin.html:83
+msgid "White"
+msgstr "سفید"
+
+#: app/templates/admin/components/fixed-plugin.html:87
+msgid "You can change the sidenav type just on desktop view."
+msgstr "شما می‌توانید نوع منوی کناری را فقط در نمای دسکتاپ تغییر دهید."
+
+#: app/templates/admin/components/fixed-plugin.html:91
+msgid "Light / Dark"
+msgstr "روشن / تاریک"
+
+#: app/templates/admin/components/footer.html:13
+msgid "made with"
+msgstr "ساخته شده با"
+
+#: app/templates/admin/components/footer.html:17
+msgid "by"
+msgstr "توسط"
+
+#: app/templates/admin/components/footer.html:21
+msgid "for"
+msgstr "برای"
+
+#: app/templates/admin/components/nav.html:7
+msgid "Pages"
+msgstr "صفحات"
+
+#: app/templates/admin/components/charts/weekly-users.html:4
+msgid "Weeekly Website Users"
+msgstr "کاربران هفتگی وب‌سایت"
+
+#: app/templates/admin/components/charts/weekly-users.html:5
+#: app/templates/admin/components/charts/weekly-views.html:5
+msgid "Last 7 Days"
+msgstr "۷ روز گذشته"
+
+#: app/templates/admin/components/charts/weekly-users.html:24
+#: app/templates/admin/components/charts/weekly-views.html:24
+#: app/templates/admin/components/rows/dashboard-stats.html:75
+msgid "than last week"
+msgstr "نسبت به هفته گذشته"
+
+#: app/templates/admin/components/charts/weekly-views.html:4
+msgid "Weeekly Website Views"
+msgstr "بازدیدهای هفتگی وب‌سایت"
+
+#: app/templates/admin/components/charts/yearly-classes.html:5
+#: app/templates/admin/components/charts/yearly-students.html:5
+msgid "Last 12 Month"
+msgstr "۱۲ ماه گذشته"
+
+#: app/templates/admin/components/charts/yearly-classes.html:24
+#: app/templates/admin/components/charts/yearly-students.html:25
+msgid "than last year"
+msgstr "نسبت به سال گذشته"
+
+#: app/templates/admin/components/forms/add/student.html:128
+#: app/templates/admin/components/forms/add/subject.html:59
+#: app/templates/admin/components/forms/add/teacher.html:164
+#: app/templates/admin/components/forms/update/student.html:140
+#: app/templates/admin/components/forms/update/subject.html:63
+#: app/templates/admin/components/forms/update/teacher.html:165
+msgid "Choose a file"
+msgstr "انتخاب یک فایل"
+
+#: app/templates/admin/components/forms/add/student.html:130
+#: app/templates/admin/components/forms/add/subject.html:61
+#: app/templates/admin/components/forms/add/teacher.html:166
+#: app/templates/admin/components/forms/update/student.html:142
+#: app/templates/admin/components/forms/update/subject.html:65
+#: app/templates/admin/components/forms/update/teacher.html:167
+msgid "or drag it here"
+msgstr "یا آن را به اینجا بکشید"
+
+#: app/templates/admin/components/forms/add/student.html:136
+#: app/templates/admin/components/forms/add/subject.html:67
+#: app/templates/admin/components/forms/add/teacher.html:172
+#: app/templates/admin/components/forms/update/student.html:148
+#: app/templates/admin/components/forms/update/subject.html:71
+#: app/templates/admin/components/forms/update/teacher.html:173
+msgid "Uploaded Files"
+msgstr "فایل‌های آپلود شده"
+
+#: app/templates/admin/components/modals/add/class.html:14
+msgid "Add New Class"
+msgstr "افزودن کلاس جدید"
+
+#: app/templates/admin/components/modals/add/class.html:16
+msgid "Fill in the Class’s details below to create a new class."
+msgstr "برای ایجاد کلاس جدید، جزئیات کلاس را در زیر وارد کنید."
+
+#: app/templates/admin/components/modals/add/department.html:14
+msgid "Add New Department"
+msgstr "افزودن دپارتمان جدید"
+
+#: app/templates/admin/components/modals/add/department.html:16
+msgid "Fill in the department’s details below to create a new department."
+msgstr "برای ایجاد دپارتمان جدید، جزئیات دپارتمان را در زیر وارد کنید."
+
+#: app/templates/admin/components/modals/add/employee.html:14
+msgid "Add New Employee"
+msgstr "افزودن کارمند جدید"
+
+#: app/templates/admin/components/modals/add/employee.html:16
+msgid "Fill in the employee’s details below to create a new employee."
+msgstr "برای ایجاد کارمند جدید، جزئیات کارمند را در زیر وارد کنید."
+
+#: app/templates/admin/components/modals/add/exam.html:14
+msgid "Add New Exam"
+msgstr "افزودن امتحان جدید"
+
+#: app/templates/admin/components/modals/add/exam.html:16
+msgid "Fill in the Exam’s details below to create a new exam."
+msgstr "برای ایجاد امتحان جدید، جزئیات امتحان را در زیر وارد کنید."
+
+#: app/templates/admin/components/modals/add/job.html:14
+msgid "Add New Job"
+msgstr "افزودن شغل جدید"
+
+#: app/templates/admin/components/modals/add/job.html:16
+msgid "Fill in the job’s details below to create a new job."
+msgstr "برای ایجاد شغل جدید، جزئیات شغل را در زیر وارد کنید."
+
+#: app/templates/admin/components/modals/add/result.html:14
+msgid "Add New Result"
+msgstr "افزودن نتیجه جدید"
+
+#: app/templates/admin/components/modals/add/result.html:16
+msgid "Fill in the Result’s details below to create a new result."
+msgstr "برای ایجاد نتیجه جدید، جزئیات نتیجه را در زیر وارد کنید."
+
+#: app/templates/admin/components/modals/add/role.html:14
+msgid "Add New Role"
+msgstr "افزودن نقش جدید"
+
+#: app/templates/admin/components/modals/add/role.html:16
+msgid "Fill in the role’s details below to create a new role."
+msgstr "برای ایجاد نقش جدید، جزئیات نقش را در زیر وارد کنید."
+
+#: app/templates/admin/components/modals/add/semester.html:14
+msgid "Add New Semester"
+msgstr "افزودن نیم‌سال جدید"
+
+#: app/templates/admin/components/modals/add/semester.html:16
+msgid "Fill in the semester’s details below to create a new semester."
+msgstr "برای ایجاد نیم‌سال جدید، جزئیات نیم‌سال را در زیر وارد کنید."
+
+#: app/templates/admin/components/modals/add/student.html:14
+msgid "Add New Student"
+msgstr "افزودن دانشجوی جدید"
+
+#: app/templates/admin/components/modals/add/student.html:16
+msgid "Fill in the Student’s details below to create a new student."
+msgstr "برای ایجاد دانشجوی جدید، جزئیات دانشجو را در زیر وارد کنید."
+
+#: app/templates/admin/components/modals/add/subject.html:14
+msgid "Add New Subject"
+msgstr "افزودن درس جدید"
+
+#: app/templates/admin/components/modals/add/subject.html:16
+msgid "Fill in the subject’s details below to create a new subject."
+msgstr "برای ایجاد درس جدید، جزئیات درس را در زیر وارد کنید."
+
+#: app/templates/admin/components/modals/add/teacher.html:14
+msgid "Add New Teacher"
+msgstr "افزودن استاد جدید"
+
+#: app/templates/admin/components/modals/add/teacher.html:16
+msgid "Fill in the teacher’s details below to create a new teacher."
+msgstr "برای ایجاد استاد جدید، جزئیات استاد را در زیر وارد کنید."
+
+#: app/templates/admin/components/modals/add/time.html:14
+msgid "Add New Time"
+msgstr "افزودن زمان جدید"
+
+#: app/templates/admin/components/modals/add/time.html:16
+msgid "Fill in the time’s details below to create a new time."
+msgstr "برای ایجاد زمان جدید، جزئیات زمان را در زیر وارد کنید."
+
+#: app/templates/admin/components/modals/add/user.html:14
+msgid "Add New User"
+msgstr "افزودن کاربر جدید"
+
+#: app/templates/admin/components/modals/add/user.html:16
+msgid "Fill in the user’s details below to create a new account."
+msgstr "برای ایجاد حساب کاربری جدید، جزئیات کاربر را در زیر وارد کنید."
+
+#: app/templates/admin/components/modals/add/attendance/student.html:14
+msgid "Add Student Attendance"
+msgstr "افزودن حضور و غیاب دانشجو"
+
+#: app/templates/admin/components/modals/add/attendance/student.html:16
+msgid ""
+"Fill in the student attendance’s details below to create a new\n"
+"              student attendance."
+msgstr ""
+"برای ایجاد حضور و غیاب جدید دانشجو، جزئیات حضور و غیاب\n"
+"              دانشجو را در زیر وارد کنید."
+
+#: app/templates/admin/components/modals/add/attendance/teacher.html:14
+msgid "Add Teacher Attendance"
+msgstr "افزودن حضور و غیاب استاد"
+
+#: app/templates/admin/components/modals/add/attendance/teacher.html:16
+msgid ""
+"Fill in the teacher attendance’s details below to create a new\n"
+"              teacher attendance."
+msgstr ""
+"برای ایجاد حضور و غیاب جدید استاد، جزئیات حضور و غیاب\n"
+"              استاد را در زیر وارد کنید."
+
+#: app/templates/admin/components/modals/update/class.html:14
+msgid "Update Class Information"
+msgstr "به‌روزرسانی اطلاعات کلاس"
+
+#: app/templates/admin/components/modals/update/class.html:16
+msgid ""
+"Modify the details of this class. After saving, the updated\n"
+"              information will be stored in the database."
+msgstr ""
+"جزئیات این کلاس را تغییر دهید. پس از ذخیره‌سازی، اطلاعات\n"
+"              به‌روزرسانی‌شده در پایگاه داده ذخیره خواهد شد."
+
+#: app/templates/admin/components/modals/update/department.html:14
+msgid "Update Department Information"
+msgstr "به‌روزرسانی اطلاعات دپارتمان"
+
+#: app/templates/admin/components/modals/update/department.html:16
+msgid ""
+"Modify the details of this department. After saving, the updated\n"
+"              information will be stored in the database."
+msgstr ""
+"جزئیات این دپارتمان را تغییر دهید. پس از ذخیره‌سازی، اطلاعات\n"
+"              به‌روزرسانی‌شده در پایگاه داده ذخیره خواهد شد."
+
+#: app/templates/admin/components/modals/update/employee.html:14
+msgid "Update Employee Information"
+msgstr "به‌روزرسانی اطلاعات کارمند"
+
+#: app/templates/admin/components/modals/update/employee.html:16
+msgid ""
+"Modify the details of this employee. After saving, the updated\n"
+"              information will be stored in the database."
+msgstr ""
+"جزئیات این کارمند را تغییر دهید. پس از ذخیره‌سازی، اطلاعات\n"
+"              به‌روزرسانی‌شده در پایگاه داده ذخیره خواهد شد."
+
+#: app/templates/admin/components/modals/update/exam.html:14
+msgid "Update Exam Information"
+msgstr "به‌روزرسانی اطلاعات امتحان"
+
+#: app/templates/admin/components/modals/update/exam.html:16
+msgid ""
+"Modify the details of this exam. After saving, the updated\n"
+"              information will be stored in the database."
+msgstr ""
+"جزئیات این امتحان را تغییر دهید. پس از ذخیره‌سازی، اطلاعات\n"
+"              به‌روزرسانی‌شده در پایگاه داده ذخیره خواهد شد."
+
+#: app/templates/admin/components/modals/update/job.html:14
+msgid "Update Job Information"
+msgstr "به‌روزرسانی اطلاعات شغل"
+
+#: app/templates/admin/components/modals/update/job.html:16
+msgid ""
+"Modify the details of this job. After saving, the updated\n"
+"              information will be stored in the database."
+msgstr ""
+"جزئیات این شغل را تغییر دهید. پس از ذخیره‌سازی، اطلاعات\n"
+"              به‌روزرسانی‌شده در پایگاه داده ذخیره خواهد شد."
+
+#: app/templates/admin/components/modals/update/permission.html:14
+msgid "Update Permission Information"
+msgstr "به‌روزرسانی اطلاعات دسترسی"
+
+#: app/templates/admin/components/modals/update/permission.html:16
+msgid ""
+"Modify the details of this permission. After saving, the updated\n"
+"              information will be stored in the database."
+msgstr ""
+"جزئیات این دسترسی را تغییر دهید. پس از ذخیره‌سازی، اطلاعات\n"
+"              به‌روزرسانی‌شده در پایگاه داده ذخیره خواهد شد."
+
+#: app/templates/admin/components/modals/update/profile.html:14
+msgid "Update Profile Information"
+msgstr "به‌روزرسانی اطلاعات پروفایل"
+
+#: app/templates/admin/components/modals/update/profile.html:16
+msgid ""
+"Modify the details of this profile. After saving, the updated\n"
+"              information will be stored in the database."
+msgstr ""
+"جزئیات این پروفایل را تغییر دهید. پس از ذخیره‌سازی، اطلاعات\n"
+"              به‌روزرسانی‌شده در پایگاه داده ذخیره خواهد شد."
+
+#: app/templates/admin/components/modals/update/result.html:14
+msgid "Update Result Information"
+msgstr "به‌روزرسانی اطلاعات نتیجه"
+
+#: app/templates/admin/components/modals/update/result.html:16
+msgid ""
+"Modify the details of this result. After saving, the updated\n"
+"              information will be stored in the database."
+msgstr ""
+"جزئیات این نتیجه را تغییر دهید. پس از ذخیره‌سازی، اطلاعات\n"
+"              به‌روزرسانی‌شده در پایگاه داده ذخیره خواهد شد."
+
+#: app/templates/admin/components/modals/update/role.html:14
+msgid "Update Role Information"
+msgstr "به‌روزرسانی اطلاعات نقش"
+
+#: app/templates/admin/components/modals/update/role.html:16
+msgid ""
+"Modify the details of this role. After saving, the updated\n"
+"              information will be stored in the database."
+msgstr ""
+"جزئیات این نقش را تغییر دهید. پس از ذخیره‌سازی، اطلاعات\n"
+"              به‌روزرسانی‌شده در پایگاه داده ذخیره خواهد شد."
+
+#: app/templates/admin/components/modals/update/semester.html:14
+msgid "Update Semester Information"
+msgstr "به‌روزرسانی اطلاعات نیم‌سال"
+
+#: app/templates/admin/components/modals/update/semester.html:16
+msgid ""
+"Modify the details of this semester. After saving, the updated\n"
+"              information will be stored in the database."
+msgstr ""
+"جزئیات این نیم‌سال را تغییر دهید. پس از ذخیره‌سازی، اطلاعات\n"
+"              به‌روزرسانی‌شده در پایگاه داده ذخیره خواهد شد."
+
+#: app/templates/admin/components/modals/update/student.html:14
+msgid "Update Student Information"
+msgstr "به‌روزرسانی اطلاعات دانشجو"
+
+#: app/templates/admin/components/modals/update/student.html:16
+msgid ""
+"Modify the details of this student. After saving, the updated\n"
+"              information will be stored in the database."
+msgstr ""
+"جزئیات این دانشجو را تغییر دهید. پس از ذخیره‌سازی، اطلاعات\n"
+"              به‌روزرسانی‌شده در پایگاه داده ذخیره خواهد شد."
+
+#: app/templates/admin/components/modals/update/subject.html:14
+msgid "Update Subject Information"
+msgstr "به‌روزرسانی اطلاعات درس"
+
+#: app/templates/admin/components/modals/update/subject.html:16
+msgid ""
+"Modify the details of this subject. After saving, the updated\n"
+"              information will be stored in the database."
+msgstr ""
+"جزئیات این درس را تغییر دهید. پس از ذخیره‌سازی، اطلاعات\n"
+"              به‌روزرسانی‌شده در پایگاه داده ذخیره خواهد شد."
+
+#: app/templates/admin/components/modals/update/teacher.html:14
+msgid "Update Teacher Information"
+msgstr "به‌روزرسانی اطلاعات استاد"
+
+#: app/templates/admin/components/modals/update/teacher.html:16
+msgid ""
+"Modify the details of this teacher. After saving, the updated\n"
+"              information will be stored in the database."
+msgstr ""
+"جزئیات این استاد را تغییر دهید. پس از ذخیره‌سازی، اطلاعات\n"
+"              به‌روزرسانی‌شده در پایگاه داده ذخیره خواهد شد."
+
+#: app/templates/admin/components/modals/update/time.html:14
+msgid "Update Time Information"
+msgstr "به‌روزرسانی اطلاعات زمان"
+
+#: app/templates/admin/components/modals/update/time.html:16
+msgid ""
+"Modify the details of this time. After saving, the updated\n"
+"              information will be stored in the database."
+msgstr ""
+"جزئیات این زمان را تغییر دهید. پس از ذخیره‌سازی، اطلاعات\n"
+"              به‌روزرسانی‌شده در پایگاه داده ذخیره خواهد شد."
+
+#: app/templates/admin/components/modals/update/user.html:14
+msgid "Update User Information"
+msgstr "به‌روزرسانی اطلاعات کاربر"
+
+#: app/templates/admin/components/modals/update/user.html:16
+msgid ""
+"Modify the details of this user. After saving, the updated\n"
+"              information will be stored in the database."
+msgstr ""
+"جزئیات این کاربر را تغییر دهید. پس از ذخیره‌سازی، اطلاعات\n"
+"              به‌روزرسانی‌شده در پایگاه داده ذخیره خواهد شد."
+
+#: app/templates/admin/components/rows/dashboard-stats.html:60
+msgid "Views"
+msgstr "بازدیدها"
+
+#: app/templates/admin/components/rows/dashboard-stats.html:100
+#: app/templates/admin/components/rows/dashboard-stats.html:126
+#: app/templates/admin/components/rows/dashboard-stats.html:152
+#: app/templates/admin/components/rows/dashboard-stats.html:178
+#: app/templates/admin/components/rows/dashboard-stats.html:203
+msgid "than last month"
+msgstr "نسبت به ماه گذشته"
+
+#: app/templates/admin/components/rows/dashboard-stats.html:136
+#: app/templates/admin/views/department.html:140
+#: app/templates/admin/views/department.html:206
+#: app/templates/admin/views/semester.html:107
+#: app/templates/admin/views/semester.html:180
+#: app/templates/admin/views/subject.html:83
+#: app/templates/admin/views/subject.html:162
+#: app/templates/admin/views/tables/subjects.html:22
+#: app/templates/admin/views/tabs/teachers.html:5
+#: app/templates/admin/views/time.html:73
+#: app/templates/admin/views/time.html:113
+msgid "Teachers"
+msgstr "اساتید"
+
+#: app/templates/admin/pages/profile.html:48
+#, fuzzy
+msgid "Profile Information"
+msgstr "اطلاعات نقش"
+
+#: app/templates/admin/pages/profile.html:55
+#: app/templates/admin/views/information/employee.html:7
+#: app/templates/admin/views/information/student.html:9
+#: app/templates/admin/views/information/teacher.html:6
+#, fuzzy
+msgid "First Name"
+msgstr "نام:"
+
+#: app/templates/admin/pages/profile.html:60
+#: app/templates/admin/views/information/employee.html:11
+#: app/templates/admin/views/information/student.html:12
+#: app/templates/admin/views/information/teacher.html:9
+#, fuzzy
+msgid "Middle Name"
+msgstr "نام میانی:"
+
+#: app/templates/admin/pages/profile.html:65
+#: app/templates/admin/views/information/employee.html:16
+#: app/templates/admin/views/information/student.html:16
+#: app/templates/admin/views/information/teacher.html:13
+#, fuzzy
+msgid "Last Name"
+msgstr "نام خانوادگی:"
+
+#: app/templates/admin/pages/profile.html:70
+#: app/templates/admin/views/information/employee.html:20
+#: app/templates/admin/views/information/student.html:19
+#: app/templates/admin/views/information/teacher.html:16
+#, fuzzy
+msgid "Email"
+msgstr "ایمیل:"
+
+#: app/templates/admin/pages/profile.html:74
+#: app/templates/admin/views/information/employee.html:24
+#: app/templates/admin/views/information/student.html:22
+#: app/templates/admin/views/information/teacher.html:19
+#: app/templates/admin/views/tables/students.html:17
+#: app/templates/admin/views/tables/users.html:22
+msgid "Birthday"
+msgstr "تاریخ تولد"
+
+#: app/templates/admin/views/class.html:39
+#: app/templates/admin/views/exam.html:52
+msgid "Class"
+msgstr "کلاس"
+
+#: app/templates/admin/views/class.html:63
+#: app/templates/admin/views/semester.html:4
+#: app/templates/admin/views/subject.html:42
+msgid "Semester"
+msgstr "نیم‌سال"
+
+#: app/templates/admin/views/class.html:75
+#: app/templates/admin/views/subject.html:54
+msgid "Department"
+msgstr "دپارتمان"
+
+#: app/templates/admin/views/class.html:87
+#: app/templates/admin/views/information/exam.html:18
+#: app/templates/admin/views/tables/attendances.html:17
+msgid "Time"
+msgstr "زمان"
+
+#: app/templates/admin/views/class.html:239
+#: app/templates/admin/views/student.html:133
+#: app/templates/admin/views/tabs/attendances.html:5
+#: app/templates/admin/views/teacher.html:238
+msgid "Attendances"
+msgstr "حضور و غیاب‌ها"
+
+#: app/templates/admin/views/department.html:20
+#: app/templates/admin/views/semester.html:26
+#: app/templates/admin/views/tabs/department.html:3
+msgid "Department Information"
+msgstr "اطلاعات دپارتمان"
+
+#: app/templates/admin/views/employee.html:29
+msgid "Employee Information"
+msgstr "اطلاعات کارمند"
+
+#: app/templates/admin/views/employee.html:41
+#: app/templates/admin/views/job.html:20
+msgid "Job Information"
+msgstr "اطلاعات شغل"
+
+#: app/templates/admin/views/employee.html:60
+#: app/templates/admin/views/tables/employees.html:17
+#: app/templates/admin/views/tables/teachers.html:22
+#: app/templates/admin/views/teacher.html:59
+msgid "Salary"
+msgstr "حقوق"
+
+#: app/templates/admin/views/employee.html:76
+#: app/templates/admin/views/teacher.html:75
+msgid "Greater"
+msgstr "بیشتر"
+
+#: app/templates/admin/views/employee.html:80
+#: app/templates/admin/views/teacher.html:79
+msgid "Less"
+msgstr "کمتر"
+
+#: app/templates/admin/views/employee.html:94
+#: app/templates/admin/views/student.html:46
+#: app/templates/admin/views/teacher.html:93
+msgid "Phone"
+msgstr "تلفن"
+
+#: app/templates/admin/views/exam.html:28
+msgid "Exam"
+msgstr "امتحان"
+
+#: app/templates/admin/views/exam.html:40
+#: app/templates/admin/views/subject.html:30
+msgid "Subject"
+msgstr "درس"
+
+#: app/templates/admin/views/exam.html:102
+msgid "Passed"
+msgstr "قبول‌شده"
+
+#: app/templates/admin/views/exam.html:123
+msgid "Failed"
+msgstr "مردود"
+
+#: app/templates/admin/views/job.html:38
+msgid "Minimum Salary"
+msgstr "حداقل حقوق"
+
+#: app/templates/admin/views/job.html:52
+msgid "Minimum salary in this job."
+msgstr "حداقل حقوق در این شغل."
+
+#: app/templates/admin/views/job.html:66
+msgid "Maximum Salary"
+msgstr "حداکثر حقوق"
+
+#: app/templates/admin/views/job.html:80
+msgid "Maximum salary in this job."
+msgstr "حداکثر حقوق در این شغل."
+
+#: app/templates/admin/views/job.html:107
+msgid "Active staff count"
+msgstr "تعداد کارکنان فعال"
+
+#: app/templates/admin/views/permissions.html:4
+msgid "Permission"
+msgstr "دسترسی"
+
+#: app/templates/admin/views/permissions.html:14
+msgid "Permission Information"
+msgstr "اطلاعات دسترسی"
+
+#: app/templates/admin/views/roles.html:4
+msgid "Role"
+msgstr "نقش"
+
+#: app/templates/admin/views/roles.html:14
+msgid "Role Information"
+msgstr "اطلاعات نقش"
+
+#: app/templates/admin/views/semester.html:14
+#: app/templates/admin/views/tabs/semester.html:3
+msgid "Semester Information"
+msgstr "اطلاعات نیم‌سال"
+
+#: app/templates/admin/views/student.html:29
+msgid "Student Information"
+msgstr "اطلاعات دانشجو"
+
+#: app/templates/admin/views/student.html:81
+#: app/templates/admin/views/student.html:145
+#: app/templates/admin/views/subject.html:124
+#: app/templates/admin/views/subject.html:186
+#: app/templates/admin/views/tabs/files.html:5
+#: app/templates/admin/views/teacher.html:174
+#: app/templates/admin/views/teacher.html:250
+msgid "Files"
+msgstr "فایل‌ها"
+
+#: app/templates/admin/views/student.html:96
+#: app/templates/admin/views/subject.html:137
+#: app/templates/admin/views/teacher.html:189
+msgid "Storage:"
+msgstr "فضای ذخیره‌سازی:"
+
+#: app/templates/admin/views/tabs/teacher.html:4
+#: app/templates/admin/views/teacher.html:29
+msgid "Teacher Information"
+msgstr "اطلاعات استاد"
+
+#: app/templates/admin/views/tabs/time.html:3
+#: app/templates/admin/views/teacher.html:40
+#: app/templates/admin/views/time.html:18
+msgid "Time Information"
+msgstr "اطلاعات زمان"
+
+#: app/templates/admin/views/information/class.html:3
+#: app/templates/admin/views/information/department.html:3
+#: app/templates/admin/views/information/employee.html:3
+#: app/templates/admin/views/information/exam.html:3
+#: app/templates/admin/views/information/job.html:3
+#: app/templates/admin/views/information/permission.html:3
+#: app/templates/admin/views/information/role.html:3
+#: app/templates/admin/views/information/semester.html:3
+#: app/templates/admin/views/information/student.html:3
+#: app/templates/admin/views/information/teacher.html:3
+#: app/templates/admin/views/information/time.html:3
+#: app/templates/admin/views/tables/attendances.html:7
+#: app/templates/admin/views/tables/classes.html:7
+#: app/templates/admin/views/tables/exams.html:7
+#: app/templates/admin/views/tables/permissions.html:7
+#: app/templates/admin/views/tables/results.html:7
+#: app/templates/admin/views/tables/roles.html:7
+#: app/templates/admin/views/tables/semesters.html:7
+#: app/templates/admin/views/tables/students.html:7
+#: app/templates/admin/views/tables/subjects.html:7
+#: app/templates/admin/views/tables/teachers.html:7
+msgid "UID"
+msgstr "شناسه یکتا"
+
+#: app/templates/admin/views/information/class.html:6
+#: app/templates/admin/views/information/department.html:6
+#: app/templates/admin/views/information/permission.html:6
+#: app/templates/admin/views/information/role.html:6
+#: app/templates/admin/views/information/semester.html:6
+#: app/templates/admin/views/tables/classes.html:17
+#: app/templates/admin/views/tables/files.html:12
+#: app/templates/admin/views/tables/permissions.html:12
+#: app/templates/admin/views/tables/roles.html:12
+#: app/templates/admin/views/tables/semesters.html:12
+#: app/templates/admin/views/tables/subjects.html:12
+msgid "Name"
+msgstr "نام"
+
+#: app/templates/admin/views/information/class.html:9
+#: app/templates/admin/views/information/department.html:12
+#: app/templates/admin/views/information/employee.html:38
+#: app/templates/admin/views/information/exam.html:21
+#: app/templates/admin/views/information/job.html:18
+#: app/templates/admin/views/information/permission.html:17
+#: app/templates/admin/views/information/role.html:13
+#: app/templates/admin/views/information/semester.html:12
+#: app/templates/admin/views/information/student.html:29
+#: app/templates/admin/views/information/teacher.html:26
+#: app/templates/admin/views/information/time.html:12
+#, fuzzy
+msgid "Created At"
+msgstr "تاریخ ایجاد:"
+
+#: app/templates/admin/views/information/class.html:12
+#: app/templates/admin/views/information/department.html:16
+#: app/templates/admin/views/information/employee.html:42
+#: app/templates/admin/views/information/exam.html:24
+#: app/templates/admin/views/information/job.html:21
+#: app/templates/admin/views/information/permission.html:21
+#: app/templates/admin/views/information/role.html:16
+#: app/templates/admin/views/information/semester.html:16
+#: app/templates/admin/views/information/student.html:33
+#: app/templates/admin/views/information/teacher.html:30
+#: app/templates/admin/views/information/time.html:15
+#, fuzzy
+msgid "Updated At"
+msgstr "تاریخ به‌روزرسانی:"
+
+#: app/templates/admin/views/information/department.html:9
+#: app/templates/admin/views/information/exam.html:9
+#: app/templates/admin/views/information/job.html:9
+#: app/templates/admin/views/information/permission.html:9
+#: app/templates/admin/views/information/role.html:9
+#, fuzzy
+msgid "Description"
+msgstr "توضیحات:"
+
+#: app/templates/admin/views/information/employee.html:29
+#: app/templates/admin/views/information/student.html:26
+#: app/templates/admin/views/information/teacher.html:23
+#: app/templates/admin/views/tables/students.html:22
+#: app/templates/admin/views/tables/teachers.html:17
+msgid "Age"
+msgstr "سن"
+
+#: app/templates/admin/views/information/employee.html:33
+#: app/templates/admin/views/tables/employees.html:22
+msgid "Hire Date"
+msgstr "تاریخ استخدام"
+
+#: app/templates/admin/views/information/exam.html:6
+#: app/templates/admin/views/information/job.html:6
+#: app/templates/admin/views/tables/exams.html:12
+msgid "Title"
+msgstr "عنوان"
+
+#: app/templates/admin/views/information/exam.html:12
+#: app/templates/admin/views/tables/exams.html:17
+msgid "Total Marks"
+msgstr "مجموع نمرات"
+
+#: app/templates/admin/views/information/exam.html:15
+#: app/templates/admin/views/tables/attendances.html:12
+msgid "Date"
+msgstr "تاریخ"
+
+#: app/templates/admin/views/information/job.html:12
+#, fuzzy
+msgid "Min Salary"
+msgstr "حداقل حقوق:"
+
+#: app/templates/admin/views/information/job.html:15
+#, fuzzy
+msgid "Max Salary"
+msgstr "حداکثر حقوق:"
+
+#: app/templates/admin/views/information/permission.html:13
+#, fuzzy
+msgid "Permission Code"
+msgstr "کد دسترسی:"
+
+#: app/templates/admin/views/information/semester.html:9
+#: app/templates/admin/views/tables/semesters.html:17
+msgid "Number"
+msgstr "شماره"
+
+#: app/templates/admin/views/information/student.html:6
+#, fuzzy
+msgid "Class UID"
+msgstr "شناسه یکتا کلاس:"
+
+#: app/templates/admin/views/information/subject.html:3
+msgid "UID:"
+msgstr "شناسه یکتا (UID):"
+
+#: app/templates/admin/views/information/subject.html:6
+msgid "Name:"
+msgstr "نام:"
+
+#: app/templates/admin/views/information/subject.html:9
+msgid "Description:"
+msgstr "توضیحات:"
+
+#: app/templates/admin/views/information/subject.html:12
+msgid "Credit:"
+msgstr "واحد درسی:"
+
+#: app/templates/admin/views/information/subject.html:15
+msgid "Created At:"
+msgstr "تاریخ ایجاد:"
+
+#: app/templates/admin/views/information/subject.html:18
+msgid "Updated At:"
+msgstr "تاریخ به‌روزرسانی:"
+
+#: app/templates/admin/views/information/time.html:6
+#, fuzzy
+msgid "Start Time"
+msgstr "زمان شروع:"
+
+#: app/templates/admin/views/information/time.html:9
+#, fuzzy
+msgid "End Time"
+msgstr "زمان پایان:"
+
+#: app/templates/admin/views/tables/attendances.html:22
+#: app/templates/admin/views/tables/results.html:22
+msgid "Status"
+msgstr "وضعیت"
+
+#: app/templates/admin/views/tables/attendances.html:42
+#: app/templates/admin/views/tables/classes.html:55
+msgid "No classes yet :("
+msgstr "هنوز کلاسی وجود ندارد :("
+
+#: app/templates/admin/views/tables/employees.html:7
+#: app/templates/admin/views/tables/files.html:7
+#: app/templates/admin/views/tables/users.html:7
+msgid "ID"
+msgstr "شناسه"
+
+#: app/templates/admin/views/tables/employees.html:12
+msgid "Employee"
+msgstr "کارمند"
+
+#: app/templates/admin/views/tables/employees.html:57
+msgid "No employees yet :("
+msgstr "هنوز کارمندی وجود ندارد :("
+
+#: app/templates/admin/views/tables/exams.html:22
+msgid "Exam Date"
+msgstr "تاریخ امتحان"
+
+#: app/templates/admin/views/tables/exams.html:27
+msgid "Exam Time"
+msgstr "ساعت امتحان"
+
+#: app/templates/admin/views/tables/exams.html:43
+msgid "No exams yet :("
+msgstr "هنوز امتحانی وجود ندارد :("
+
+#: app/templates/admin/views/tables/files.html:17
+msgid "Size"
+msgstr "اندازه"
+
+#: app/templates/admin/views/tables/files.html:22
+msgid "Uploaded"
+msgstr "آپلود شده"
+
+#: app/templates/admin/views/tables/files.html:39
+msgid "No files yet :("
+msgstr "هنوز فایلی وجود ندارد :("
+
+#: app/templates/admin/views/tables/permissions.html:17
+msgid "Code"
+msgstr "کد"
+
+#: app/templates/admin/views/tables/permissions.html:31
+msgid "No permissions yet :("
+msgstr "هنوز دسترسی وجود ندارد :("
+
+#: app/templates/admin/views/tables/results.html:12
+#: app/templates/admin/views/tables/students.html:12
+msgid "Student"
+msgstr "دانشجو"
+
+#: app/templates/admin/views/tables/results.html:17
+msgid "Percentage"
+msgstr "درصد"
+
+#: app/templates/admin/views/tables/results.html:56
+msgid "No results yet :("
+msgstr "هنوز نتیجه‌ای وجود ندارد :("
+
+#: app/templates/admin/views/tables/roles.html:25
+msgid "No roles yet :("
+msgstr "هنوز نقشی وجود ندارد :("
+
+#: app/templates/admin/views/tables/semesters.html:49
+msgid "No semesters yet :("
+msgstr "هنوز نیم‌سال‌ای وجود ندارد :("
+
+#: app/templates/admin/views/tables/students.html:51
+msgid "No students yet :("
+msgstr "هنوز دانشجویی وجود ندارد :("
+
+#: app/templates/admin/views/tables/subjects.html:17
+msgid "Credit"
+msgstr "واحد درسی"
+
+#: app/templates/admin/views/tables/subjects.html:37
+msgid "No subjects yet :("
+msgstr "هنوز درسی وجود ندارد :("
+
+#: app/templates/admin/views/tables/teachers.html:51
+msgid "No teachers yet :("
+msgstr "هنوز استادی وجود ندارد :("
+
+#: app/templates/admin/views/tables/users.html:12
+msgid "User"
+msgstr "کاربر"
+
+#: app/templates/admin/views/tables/users.html:17
+msgid "Username"
+msgstr "نام کاربری"
+
+#: app/templates/admin/views/tables/users.html:53
+msgid "No users yet :("
+msgstr "هنوز کاربریی وجود ندارد :("
+
+#: app/templates/admin/views/tabs/class.html:3
+msgid "Class Information"
+msgstr "اطلاعات کلاس"
+
+#: app/templates/admin/views/tabs/exam.html:3
+msgid "Exam Information"
+msgstr "اطلاعات امتحان"
+
+#: app/templates/admin/views/tabs/subject.html:3
+#, fuzzy
+msgid "Subject Information"
+msgstr "به‌روزرسانی اطلاعات درس"
+
+#: app/templates/auth/login.html:4 app/templates/auth/signup.html:63
+msgid "Login"
+msgstr ""
+
+#: app/templates/auth/login.html:33
+msgid "Hello, Welcome!"
+msgstr ""
+
+#: app/templates/auth/login.html:34
+msgid "Don't have an account?"
+msgstr ""
+
+#: app/templates/auth/login.html:35
+#, fuzzy
+msgid "Register"
+msgstr "بیشتر"
+
+#: app/templates/auth/signup.html:4
+#, fuzzy
+msgid "Registration"
+msgstr "اطلاعات نقش"
+
+#: app/templates/auth/signup.html:61
+msgid "Welcome Back!"
+msgstr ""
+
+#: app/templates/auth/signup.html:62
+msgid "Already have an account?"
+msgstr ""
+
+#~ msgid "Table"
+#~ msgstr "جدول"
+
+#~ msgid "Birthday:"
+#~ msgstr "تاریخ تولد:"
+
+#~ msgid "Age:"
+#~ msgstr "سن:"
+
+#~ msgid "Hire Date:"
+#~ msgstr "تاریخ استخدام:"
+
+#~ msgid "Title:"
+#~ msgstr "عنوان:"
+
+#~ msgid "Total Marks:"
+#~ msgstr "مجموع نمرات:"
+
+#~ msgid "Date:"
+#~ msgstr "تاریخ:"
+
+#~ msgid "Time:"
+#~ msgstr "زمان:"
+
+#~ msgid "Number:"
+#~ msgstr "شماره:"
+
