@@ -32,7 +32,7 @@ class Class(db.Model):
     def to_dict(self):
         return {
             "time_id": self.time_id,
-            "name": self.name,
+            "cls_name": self.name,
             "teacher_id": self.teacher_id,
             "semester_id": self.semester_id,
             **call(getattr(super(), "to_dict")),
