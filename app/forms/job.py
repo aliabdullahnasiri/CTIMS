@@ -1,28 +1,29 @@
 from wtforms import DecimalField, HiddenField, StringField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, Length, NumberRange, Optional
+from flask_babel import gettext as _
 
 from app.forms import Form
 
 
 class AddJobForm(Form):
-    job_title = StringField("Job Title", validators=[DataRequired(), Length(max=255)])
+    job_title = StringField(_("Job Title"), validators=[DataRequired(), Length(max=255)])
 
     job_description = TextAreaField(
-        "Job Description", validators=[Optional(), Length(max=2000)]
+        _("Job Description"), validators=[Optional(), Length(max=2000)]
     )
 
     min_salary = DecimalField(
-        "Minimum Salary", places=2, validators=[DataRequired(), NumberRange(min=0)]
+        _("Minimum Salary"), places=2, validators=[DataRequired(), NumberRange(min=0)]
     )
 
     max_salary = DecimalField(
-        "Maximum Salary", places=2, validators=[DataRequired(), NumberRange(min=0)]
+        _("Maximum Salary"), places=2, validators=[DataRequired(), NumberRange(min=0)]
     )
 
-    submit = SubmitField("Add Job")
+    submit = SubmitField(_("Add Job"))
 
 
 class UpdateJobForm(AddJobForm):
-    uid = HiddenField("Job UID", validators=[DataRequired()])
+    uid = HiddenField(_("Job UID"), validators=[DataRequired()])
 
-    submit = SubmitField("Update Job")
+    submit = SubmitField(_("Update Job"))

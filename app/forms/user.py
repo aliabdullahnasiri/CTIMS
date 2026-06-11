@@ -9,33 +9,34 @@ from wtforms import (
     SubmitField,
 )
 from wtforms.validators import DataRequired, Email, Length, Optional
+from flask_babel import gettext as _
 
 from app.forms import Form
 
 
 class AddUserForm(Form):
-    first_name = StringField("First Name", validators=[Length(max=50)])
-    middle_name = StringField("Middle Name", validators=[Length(max=50)])
-    last_name = StringField("Last Name", validators=[Length(max=50)])
-    user_name = StringField("Username", validators=[DataRequired(), Length(max=50)])
+    first_name = StringField(_("First Name"), validators=[Length(max=50)])
+    middle_name = StringField(_("Middle Name"), validators=[Length(max=50)])
+    last_name = StringField(_("Last Name"), validators=[Length(max=50)])
+    user_name = StringField(_("Username"), validators=[DataRequired(), Length(max=50)])
     email = StringField(
-        "Email",
-        validators=[DataRequired(), Email(message="Enter a valid email address")],
+        _("Email"),
+        validators=[DataRequired(), Email(message=_("Enter a valid email address"))],
     )
-    password = PasswordField("Password", validators=[DataRequired()])
-    birthday = DateField("Birthday", format="%Y-%m-%d", validators=[Optional()])
-    avatar = FileField("Upload new profile picture.")
+    password = PasswordField(_("Password"), validators=[DataRequired()])
+    birthday = DateField(_("Birthday"), format="%Y-%m-%d", validators=[Optional()])
+    avatar = FileField(_("Upload new profile picture."))
 
-    files = MultipleFileField("Files")
-    phones = StringField("Phone", validators=[Optional()])
-    roles = StringField("Roles", validators=[Optional()])
+    files = MultipleFileField(_("Files"))
+    phones = StringField(_("Phone"), validators=[Optional()])
+    roles = StringField(_("Roles"), validators=[Optional()])
 
-    submit = SubmitField("Add")
+    submit = SubmitField(_("Add"))
 
 
 class UpdateUserForm(AddUserForm):
-    uid = HiddenField("UID", validators=[DataRequired()])
+    uid = HiddenField(_("UID"), validators=[DataRequired()])
 
-    password = PasswordField("Password", validators=[Optional()])
+    password = PasswordField(_("Password"), validators=[Optional()])
 
-    submit = SubmitField("Update")
+    submit = SubmitField(_("Update"))

@@ -1,29 +1,30 @@
 from wtforms import BooleanField, HiddenField, StringField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, Length, Optional
+from flask_babel import gettext as _
 
 from app.forms import Form
 
 
 class AddRoleForm(Form):
-    name = StringField("Name", validators=[DataRequired(), Length(max=255)])
+    name = StringField(_("Name"), validators=[DataRequired(), Length(max=255)])
 
     description = TextAreaField(
-        "Description", validators=[Optional(), Length(max=2500)]
+        _("Description"), validators=[Optional(), Length(max=2500)]
     )
 
     default = BooleanField(
-        "Default Role (assigned automatically to new users)",
+        _("Default Role (assigned automatically to new users)"),
         default=False,
         validators=[Optional()],
     )
 
-    permissions = StringField("Permissions", validators=[Optional()])
+    permissions = StringField(_("Permissions"), validators=[Optional()])
 
-    submit = SubmitField("Add Role")
+    submit = SubmitField(_("Add Role"))
 
 
 class UpdateRoleForm(AddRoleForm):
-    uid = HiddenField("Role UID", validators=[DataRequired()])
-    name = StringField("Name", validators=[Optional(), Length(max=255)])
+    uid = HiddenField(_("Role UID"), validators=[DataRequired()])
+    name = StringField(_("Name"), validators=[Optional(), Length(max=255)])
 
-    submit = SubmitField("Update Role")
+    submit = SubmitField(_("Update Role"))

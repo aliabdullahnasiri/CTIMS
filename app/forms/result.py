@@ -1,5 +1,6 @@
 import re
 
+from flask_babel import gettext as _
 from wtforms import (
     HiddenField,
     IntegerField,
@@ -16,9 +17,11 @@ from app.models.student import Student
 
 
 class AddResultForm(Form):
-    exam_id = StringField("Exam UID", validators=[DataRequired(), Length(8, 8)])
-    student_id = StringField("Student UID", validators=[DataRequired(), Length(8, 8)])
-    obtained_marks = IntegerField("Obtained Marks", validators=[DataRequired()])
+    exam_id = StringField(_("Exam UID"), validators=[DataRequired(), Length(8, 8)])
+    student_id = StringField(
+        _("Student UID"), validators=[DataRequired(), Length(8, 8)]
+    )
+    obtained_marks = IntegerField(_("Obtained Marks"), validators=[DataRequired()])
 
     def validate_obtained_marks(self, obtained_marks) -> None:
         if uid := self.exam_id.data:
@@ -26,7 +29,7 @@ class AddResultForm(Form):
 
             if exam and not 0 <= obtained_marks.data <= exam.total_marks:
                 raise ValidationError(
-                    "The obtained marks should be between 0 and %s."
+                    _("The obtained marks should be between 0 and %s.")
                     % (exam.total_marks)
                 )
 
@@ -46,13 +49,13 @@ class AddResultForm(Form):
         elif not Student.query.filter_by(uid=student_id.data).first():
             raise ValidationError("Student with the given ID was not found :(")
 
-    submit = SubmitField("Add Result")
+    submit = SubmitField(_("Add Result"))
 
 
 class UpdateResultForm(AddResultForm):
-    uid = HiddenField("Result UID", validators=[DataRequired()])
+    uid = HiddenField(_("Result UID"), validators=[DataRequired()])
     files = MultipleFileField(
-        "Files",
+        _("Files"),
         validators=[],
     )
-    submit = SubmitField("Update Result")
+    submit = SubmitField(_("Update Result"))

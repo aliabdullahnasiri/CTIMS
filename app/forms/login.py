@@ -1,13 +1,14 @@
 from wtforms import EmailField, Form, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Email
+from flask_babel import gettext as _
 
 from app.forms import Form
 
 
 class LoginForm(Form):
     email = EmailField(
-        "Email",
-        validators=[DataRequired(), Email(message="Enter a valid email address")],
+        _("Email"),
+        validators=[DataRequired(), Email(message=_("Enter a valid email address"))],
     )
-    password = PasswordField("Password", validators=[DataRequired()])
-    submit = SubmitField("Log In")
+    password = PasswordField(_("Password"), validators=[DataRequired()])
+    submit = SubmitField(_("Log In"))

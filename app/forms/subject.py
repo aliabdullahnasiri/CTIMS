@@ -7,26 +7,27 @@ from wtforms import (
     TextAreaField,
 )
 from wtforms.validators import DataRequired, Length, Optional
+from flask_babel import gettext as _
 
 from app.forms import Form
 
 
 class AddSubjectForm(Form):
-    name = StringField("Subject Name", validators=[DataRequired(), Length(max=255)])
+    name = StringField(_("Subject Name"), validators=[DataRequired(), Length(max=255)])
 
     description = TextAreaField(
-        "Subject Description", validators=[Optional(), Length(max=2000)]
+        _("Subject Description"), validators=[Optional(), Length(max=2000)]
     )
-    credit = IntegerField("Credit", validators=[Optional()])
+    credit = IntegerField(_("Credit"), validators=[Optional()])
 
-    semester_uid = StringField("Semester UID", validators=[DataRequired()])
+    semester_uid = StringField(_("Semester UID"), validators=[DataRequired()])
 
-    files = MultipleFileField("Files")
+    files = MultipleFileField(_("Files"))
 
-    submit = SubmitField("Add Subject")
+    submit = SubmitField(_("Add Subject"))
 
 
 class UpdateSubjectForm(AddSubjectForm):
-    uid = HiddenField("Subject UID", validators=[DataRequired()])
+    uid = HiddenField(_("Subject UID"), validators=[DataRequired()])
 
-    submit = SubmitField("Update Subject")
+    submit = SubmitField(_("Update Subject"))

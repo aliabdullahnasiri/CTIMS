@@ -1,5 +1,6 @@
 from wtforms import HiddenField, StringField, SubmitField, TextAreaField, TimeField
 from wtforms.validators import DataRequired, Length, Optional
+from flask_babel import gettext as _
 
 from app.forms import Form
 
@@ -8,39 +9,39 @@ class AddTimeForm(Form):
     """Form to add a new Time record."""
 
     title = StringField(
-        "Title",
+        _("Title"),
         validators=[
-            DataRequired(message="Title is required."),
-            Length(max=50, message="Title cannot exceed 50 characters."),
+            DataRequired(message=_("Title is required.")),
+            Length(max=50, message=_("Title cannot exceed 50 characters.")),
         ],
     )
 
     description = TextAreaField(
-        "Description",
+        _("Description"),
         validators=[
             Optional(),
-            Length(max=255, message="Description cannot exceed 255 characters."),
+            Length(max=255, message=_("Description cannot exceed 255 characters.")),
         ],
     )
 
     start = TimeField(
-        "Start Time",
+        _("Start Time"),
         validators=[DataRequired()],
         format="%H:%M",
     )
 
     end = TimeField(
-        "End Time",
+        _("End Time"),
         validators=[DataRequired()],
         format="%H:%M",
     )
 
-    submit = SubmitField("Add Time")
+    submit = SubmitField(_("Add Time"))
 
 
 class UpdateTimeForm(AddTimeForm):
     """Form to update an existing Time record."""
 
-    uid = HiddenField("UID")
+    uid = HiddenField(_("UID"))
 
-    submit = SubmitField("Update Time")
+    submit = SubmitField(_("Update Time"))

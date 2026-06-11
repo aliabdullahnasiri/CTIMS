@@ -1,42 +1,43 @@
 from wtforms import HiddenField, StringField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, Length, Optional
+from flask_babel import gettext as _
 
 from app.forms import Form
 
 
 class AddDepartmentForm(Form):
     name = StringField(
-        "Name",
+        _("Name"),
         validators=[
-            DataRequired(message="Name is required."),
-            Length(max=50, message="Name cannot exceed 50 characters."),
+            DataRequired(message=_("Name is required.")),
+            Length(max=50, message=_("Name cannot exceed 50 characters.")),
         ],
     )
 
     description = TextAreaField(
-        "Description",
+        _("Description"),
         validators=[
             Optional(),
-            Length(max=255, message="Description cannot exceed 255 characters."),
+            Length(max=255, message=_("Description cannot exceed 255 characters.")),
         ],
     )
 
     head_of_department = StringField(
-        "HOD UID",
+        _("HOD UID"),
         validators=[Optional(), Length(min=8, max=8)],
     )
 
     parent_department_uid = StringField(
-        "Parent Department UID",
+        _("Parent Department UID"),
         validators=[Optional(), Length(min=8, max=8)],
     )
 
-    submit = SubmitField("Add Department")
+    submit = SubmitField(_("Add Department"))
 
 
 class UpdateDepartmentForm(AddDepartmentForm):
     """Form to update an existing Department record."""
 
-    uid = HiddenField("UID")
+    uid = HiddenField(_("UID"))
 
-    submit = SubmitField("Update Department")
+    submit = SubmitField(_("Update Department"))
