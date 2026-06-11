@@ -1,6 +1,8 @@
 import json
 import re
+from typing import Self
 
+from flask_babel import lazy_gettext as _
 from flask_wtf import FlaskForm
 from wtforms import ValidationError
 
@@ -19,6 +21,21 @@ from app.models.user import User
 
 
 class Form(FlaskForm):
+    def __new__(cls, *args, **kwargs) -> Self:
+        return super().__new__(cls, *args, **kwargs)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        # Translate all field labels so individual form files don't need to call _ for each label
+        for _, _field in getattr(self, "_fields", {}).items():
+            try:
+                if isinstance(_field.label.text, str):
+                    _field.label.text = _(_field.label.text)
+            except Exception:
+                # Keep going if any field is missing a label or translation fails
+                pass
+
     def validate_role_name(self, name):
         if Role.query.filter_by(name=name.data).first():
             raise ValidationError("A role with this name already exists.")
