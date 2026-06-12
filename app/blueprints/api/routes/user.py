@@ -230,9 +230,6 @@ def add_user() -> Response:
 
         db.session.add(user)
 
-        if form.phones.data:
-            user.update_phones(json.loads(form.phones.data))
-
         if files := request.form.get("files"):
             try:
                 user.update_files(json.loads(files))
@@ -241,8 +238,6 @@ def add_user() -> Response:
 
         if passwd := form.password.data:
             user.set_password(passwd)
-
-        user.update_roles()
 
         db.session.commit()
 
