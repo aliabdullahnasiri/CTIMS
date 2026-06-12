@@ -32,3 +32,8 @@ def dummy_navbar_strings():
     # Account Section
     _("Account")
     _("Profile")
+
+    # Name
+    _("CTI")
+    _("Computer Technology Institute")
+    _("Ali Abdullah Nasiri")
