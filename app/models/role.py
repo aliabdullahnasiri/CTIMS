@@ -20,6 +20,7 @@ class Role(db.Model):
         backref=db.backref("roles", lazy="dynamic"),
         lazy="dynamic",
     )
+    user = db.relationship("User")
 
     @property
     def hex_permissions(self) -> int:
