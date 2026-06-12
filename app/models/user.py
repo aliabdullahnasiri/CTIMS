@@ -67,7 +67,7 @@ class User(UserMixin, db.Model):
         backref=db.backref("users", lazy="dynamic"),
         lazy="dynamic",
     )
-    primary_role = db.relationship("Role", back_populates="users")
+    primary_role = db.relationship("Role", back_populates="user")
 
     @property
     def permissions(self):
@@ -211,18 +211,20 @@ class User(UserMixin, db.Model):
     def update_roles(
         self,
         primary_role: Union[Role, None] = None,
-        roles: Union[List[int], None] = None,
+        roles: Union[List[Role], None] = None,
     ):
         if primary_role:
             self.primary_role_uid = getattr(primary_role, "uid")
 
         if type(roles) is list:
-            for r in self.roles.all():
-                if r.uid not in roles:
+            _roles = self.roles.all()
+
+            for r in _roles:
+                if r not in roles:
                     self.roles.remove(r)
 
             for role in roles:
-                if role not in self.roles.all():
+                if role not in _roles:
                     self.roles.append(role)
 
 
