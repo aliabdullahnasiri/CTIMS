@@ -2,27 +2,26 @@ import json
 from typing import Dict, List, Tuple, Union
 
 from flask import Response
-from flask_login import login_required
+from flask_babel import gettext as g
 
 from app.blueprints.api import bp
+from app.cls import ColumnID, ColumnName
 from app.extensions.db import db
 from app.forms.job import AddJobForm, UpdateJobForm
 from app.func import render_td
 from app.models.job import Job
 from app.models.permission import Permission
 from app.models.user import permission_required
-from app.cls import ColumnID, ColumnName
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
-    (ColumnID("uid"), ColumnName("UID")),
-    (ColumnID("job_title"), ColumnName("Job Title")),
-    (ColumnID("min_salary"), ColumnName("Min Salary")),
-    (ColumnID("max_salary"), ColumnName("Max Salary")),
+    (ColumnID("uid"), ColumnName(g("UID"))),
+    (ColumnID("job_title"), ColumnName(g("Job Title"))),
+    (ColumnID("min_salary"), ColumnName(g("Min Salary"))),
+    (ColumnID("max_salary"), ColumnName(g("Max Salary"))),
 ]
 
 
 @bp.get("/fetch/jobs")
-@login_required
 @permission_required(Permission.get("FETCH_JOBS"))
 def fetch_jobs() -> Response:
     jobs: List[Dict] = [job.to_dict() for job in Job.query.all()]
@@ -35,7 +34,6 @@ def fetch_jobs() -> Response:
 
 
 @bp.get("/fetch/rows/jobs")
-@login_required
 @permission_required(Permission.get("FETCH_JOBS"))
 def fetch_jobs_rows() -> Response:
     response: Response = Response(
@@ -50,7 +48,7 @@ def fetch_jobs_rows() -> Response:
         rows.append(row)
 
     dct: Dict = {
-        "cols": cols,
+        "cols": [(col_id, g(col_name)) for col_id, col_name in cols],
         "rows": rows,
     }
 
@@ -61,7 +59,6 @@ def fetch_jobs_rows() -> Response:
 
 
 @bp.get("/fetch/row/job/<string:uid>")
-@login_required
 @permission_required(Permission.get("FETCH_JOB"))
 def fetch_job_row(uid: str) -> Response:
     job: Union[Job, None] = Job.query.filter_by(uid=uid).first()
@@ -84,7 +81,7 @@ def fetch_job_row(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": "Job with the given ID was not found :(",
+                "message": g("Job with the given ID was not found :("),
                 "category": "error",
             }
         ),
@@ -94,7 +91,6 @@ def fetch_job_row(uid: str) -> Response:
 
 
 @bp.get("/fetch/job/<string:uid>")
-@login_required
 @permission_required(Permission.get("FETCH_JOB"))
 def fetch_job(uid: str) -> Response:
     job: Union[Job, None] = Job.query.filter_by(uid=uid).first()
@@ -109,7 +105,7 @@ def fetch_job(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": "Job with the given ID was not found :(",
+                "message": g("Job with the given ID was not found :("),
                 "category": "error",
             }
         ),
@@ -119,7 +115,6 @@ def fetch_job(uid: str) -> Response:
 
 
 @bp.post("/add/job")
-@login_required
 @permission_required(Permission.get("CREATE_JOB"))
 def add_job() -> Response:
     response: Dict = {}
@@ -137,10 +132,10 @@ def add_job() -> Response:
         db.session.add(job)
         db.session.commit()
 
-        response["message"] = "Job added successfully"
+        response["title"] = g("Job Added")
+        response["message"] = g("Job added successfully")
         response["category"] = "success"
-        response["title"] = "Job Added"
-        response["id"] = job.uid
+        response["id"] = getattr(job, "uid")
 
     else:
         response["errors"] = form.errors
@@ -153,7 +148,6 @@ def add_job() -> Response:
 
 
 @bp.post("/update/job")
-@login_required
 @permission_required(Permission.get("UPDATE_JOB"))
 def update_job() -> Response:
     response: Dict = {}
@@ -172,13 +166,13 @@ def update_job() -> Response:
 
             db.session.commit()
 
-            response["title"] = "Updated!"
+            response["title"] = g("Updated!")
+            response["message"] = g("Job updated successfully!")
             response["category"] = "success"
-            response["message"] = "Job updated successfully!"
         else:
-            response["title"] = "Not Found"
+            response["title"] = g("Not Found")
+            response["message"] = g("Job record not found.")
             response["category"] = "error"
-            response["message"] = "Job record not found."
     else:
         response["errors"] = form.errors
 
@@ -190,7 +184,6 @@ def update_job() -> Response:
 
 
 @bp.delete("/delete/job/<string:uid>")
-@login_required
 @permission_required(Permission.get("DELETE_JOB"))
 def delete_job(uid: str) -> Response:
     response: Dict = {}
@@ -200,13 +193,13 @@ def delete_job(uid: str) -> Response:
         db.session.delete(job)
         db.session.commit()
 
-        response["title"] = "Deleted!"
-        response["message"] = "Job deleted successfully"
+        response["title"] = g("Deleted!")
+        response["message"] = g("Job deleted successfully")
         response["category"] = "success"
         response["status"] = 200
     else:
-        response["title"] = "Error :("
-        response["message"] = "Job not found"
+        response["title"] = g("Error :(")
+        response["message"] = g("Job not found")
         response["category"] = "error"
         response["status"] = 404
 

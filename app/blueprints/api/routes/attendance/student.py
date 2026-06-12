@@ -2,7 +2,7 @@ import json
 from typing import Dict, List, Tuple, Union
 
 from flask import Response
-from flask_login import login_required
+from flask_babel import gettext as g
 
 from app.blueprints.api import bp
 from app.cls import ColumnID, ColumnName
@@ -14,16 +14,15 @@ from app.models.permission import Permission
 from app.models.user import permission_required
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
-    (ColumnID("uid"), ColumnName("UID")),
-    (ColumnID("temp_student"), ColumnName("Student")),
-    (ColumnID("date"), ColumnName("Date")),
-    (ColumnID("time"), ColumnName("Time")),
-    (ColumnID("temp_student_attandance_status"), ColumnName("Status")),
+    (ColumnID("uid"), ColumnName(g("UID"))),
+    (ColumnID("temp_student"), ColumnName(g("Student"))),
+    (ColumnID("date"), ColumnName(g("Date"))),
+    (ColumnID("time"), ColumnName(g("Time"))),
+    (ColumnID("temp_student_attandance_status"), ColumnName(g("Status"))),
 ]
 
 
 @bp.get("/fetch/students/attendances")
-@login_required
 @permission_required(Permission.get("FETCH_STUDENTS_ATTENDANCES"))
 def fetch_students_attendances() -> Response:
     student_attendances: List[Dict] = [
@@ -39,7 +38,6 @@ def fetch_students_attendances() -> Response:
 
 
 @bp.get("/fetch/rows/students/attendances")
-@login_required
 @permission_required(Permission.get("FETCH_STUDENTS_ATTENDANCES"))
 def fetch_students_attendances_rows() -> Response:
     student_attendances: List[StudentAttendance] = StudentAttendance.query.all()
@@ -50,15 +48,19 @@ def fetch_students_attendances_rows() -> Response:
         row = [render_td(col_id, sa) for col_id, _ in cols]
         rows.append(row)
 
+    dct: Dict = {
+        "cols": [(col_id, g(col_name)) for col_id, col_name in cols],
+        "rows": rows,
+    }
+
     return Response(
-        json.dumps({"cols": cols, "rows": rows}),
+        json.dumps(dct),
         status=200,
         headers={"Content-Type": "application/json"},
     )
 
 
 @bp.get("/fetch/row/student/attendance/<string:uid>")
-@login_required
 @permission_required(Permission.get("FETCH_STUDENT_ATTENDANCE"))
 def fetch_student_attendance_row(uid: str) -> Response:
     sa: Union[StudentAttendance, None] = StudentAttendance.query.filter_by(
@@ -83,7 +85,7 @@ def fetch_student_attendance_row(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": "Attendance with the given ID was not found :(",
+                "message": g("Attendance with the given ID was not found :("),
                 "category": "error",
             }
         ),
@@ -93,7 +95,6 @@ def fetch_student_attendance_row(uid: str) -> Response:
 
 
 @bp.get("/fetch/student/attendance/<string:uid>")
-@login_required
 @permission_required(Permission.get("FETCH_STUDENT_ATTENDANCE"))
 def fetch_student_attendance(uid: str) -> Response:
     student_attendance: Union[StudentAttendance, None] = (
@@ -110,7 +111,7 @@ def fetch_student_attendance(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": "Attendance with the given ID was not found :(",
+                "message": g("Attendance with the given ID was not found :("),
                 "category": "error",
             }
         ),
@@ -120,7 +121,6 @@ def fetch_student_attendance(uid: str) -> Response:
 
 
 @bp.post("/add/student/attendance")
-@login_required
 @permission_required(Permission.get("FETCH_STUDENT_ATTENDANCES"))
 def add_student_attendance() -> Response:
     response: Dict = {}
@@ -136,9 +136,9 @@ def add_student_attendance() -> Response:
         db.session.add(student_attendance)
         db.session.commit()
 
-        response["message"] = "Student attendance added successfully"
+        response["message"] = g("Student attendance added successfully")
+        response["title"] = g("Attendance Added")
         response["category"] = "success"
-        response["title"] = "Attendance Added"
         response["id"] = getattr(student_attendance, "uid")
 
     else:

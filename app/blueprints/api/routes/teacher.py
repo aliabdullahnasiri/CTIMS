@@ -2,7 +2,7 @@ import json
 from typing import Dict, List, Tuple, Union
 
 from flask import Response, request, url_for
-from flask_login import login_required
+from flask_babel import gettext as g
 
 from app.blueprints.api import bp
 from app.cls import ColumnID, ColumnName
@@ -17,16 +17,15 @@ from app.models.teacher import Teacher
 from app.models.user import User, permission_required
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
-    (ColumnID("uid"), ColumnName("UID")),
-    (ColumnID("temp_teacher"), ColumnName("Teacher")),
-    (ColumnID("birthday"), ColumnName("Birthday")),
-    (ColumnID("age"), ColumnName("Age")),
-    (ColumnID("salary"), ColumnName("Salary")),
+    (ColumnID("uid"), ColumnName(g("UID"))),
+    (ColumnID("temp_teacher"), ColumnName(g("Teacher"))),
+    (ColumnID("birthday"), ColumnName(g("Birthday"))),
+    (ColumnID("age"), ColumnName(g("Age"))),
+    (ColumnID("salary"), ColumnName(g("Salary"))),
 ]
 
 
 @bp.get("/fetch/teachers")
-@login_required
 @permission_required(Permission.get("FETCH_TEACHERS"))
 def fetch_teachers() -> Response:
     teachers: List[Dict] = [teacher.to_dict() for teacher in Teacher.query.all()]
@@ -39,7 +38,6 @@ def fetch_teachers() -> Response:
 
 
 @bp.get("/fetch/rows/teachers")
-@login_required
 @permission_required(Permission.get("FETCH_TEACHERS"))
 def fetch_teachers_rows() -> Response:
     teachers: List[Teacher] = Teacher.query.all()
@@ -50,15 +48,19 @@ def fetch_teachers_rows() -> Response:
         row = [render_td(col_id, teacher) for col_id, _ in cols]
         rows.append(row)
 
+    dct: Dict = {
+        "cols": [(col_id, g(col_name)) for col_id, col_name in cols],
+        "rows": rows,
+    }
+
     return Response(
-        json.dumps({"cols": cols, "rows": rows}),
+        json.dumps(dct),
         status=200,
         headers={"Content-Type": "application/json"},
     )
 
 
 @bp.get("/fetch/row/teacher/<string:uid>")
-@login_required
 @permission_required(Permission.get("FETCH_TEACHER"))
 def fetch_teacher_row(uid: str) -> Response:
     teacher: Union[Teacher, None] = Teacher.query.filter_by(uid=uid).first()
@@ -81,7 +83,7 @@ def fetch_teacher_row(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": "Teacher with the given ID was not found :(",
+                "message": g("Teacher with the given ID was not found :("),
                 "category": "error",
             }
         ),
@@ -91,7 +93,6 @@ def fetch_teacher_row(uid: str) -> Response:
 
 
 @bp.get("/fetch/teacher/<string:uid>")
-@login_required
 @permission_required(Permission.get("FETCH_TEACHER"))
 def fetch_teacher(uid: str) -> Response:
     teacher: Union[Teacher, None] = Teacher.query.filter_by(uid=uid).first()
@@ -106,7 +107,7 @@ def fetch_teacher(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": "Teacher with the given ID was not found :(",
+                "message": g("Teacher with the given ID was not found :("),
                 "category": "error",
             }
         ),
@@ -116,7 +117,6 @@ def fetch_teacher(uid: str) -> Response:
 
 
 @bp.post("/add/teacher")
-@login_required
 @permission_required(Permission.get("CREATE_TEACHER"))
 def add_teacher() -> Response:
     form: AddTeacherForm = AddTeacherForm()
@@ -167,8 +167,8 @@ def add_teacher() -> Response:
 
         db.session.commit()
 
-        response["message"] = "Teacher added successfully."
-        response["title"] = "Added!"
+        response["title"] = g("Added!")
+        response["message"] = g("Teacher added successfully.")
         response["category"] = "success"
         response["id"] = getattr(teacher, "uid")
 
@@ -179,7 +179,6 @@ def add_teacher() -> Response:
 
 
 @bp.post("/update/teacher")
-@login_required
 @permission_required(Permission.get("UPDATE_TEACHER") | Permission.get("FETCH_TEACHER"))
 def update_teacher() -> Response:
     form: UpdateTeacherForm = UpdateTeacherForm()
@@ -216,8 +215,8 @@ def update_teacher() -> Response:
 
             response.response = json.dumps(
                 {
-                    "title": "Good job!",
-                    "message": "Teacher updated successfully!",
+                    "title": g("Good job!"),
+                    "message": g("Teacher updated successfully!"),
                     "category": "success",
                 }
             )
@@ -229,7 +228,6 @@ def update_teacher() -> Response:
 
 
 @bp.delete("/delete/teacher/<string:uid>")
-@login_required
 @permission_required(Permission.get("DELETE_TEACHER") | Permission.get("FETCH_TEACHER"))
 def delete_teacher(uid: str) -> Response:
     response: Dict = {}
@@ -239,13 +237,13 @@ def delete_teacher(uid: str) -> Response:
         db.session.delete(teacher)
         db.session.commit()
 
-        response["title"] = "Deleted!"
-        response["message"] = "Teacher deleted successfully"
+        response["title"] = g("Deleted!")
+        response["message"] = g("Teacher deleted successfully")
         response["category"] = "success"
         response["status"] = 200
     else:
-        response["title"] = "Error :("
-        response["message"] = "Teacher not found"
+        response["title"] = g("Error :(")
+        response["message"] = g("Teacher not found")
         response["category"] = "error"
         response["status"] = 404
 

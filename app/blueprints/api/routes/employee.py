@@ -2,7 +2,7 @@ import json
 from typing import Dict, List, Tuple, Union
 
 from flask import Response, request, url_for
-from flask_login import login_required
+from flask_babel import gettext as g
 
 from app.blueprints.api import bp
 from app.cls import ColumnID, ColumnName
@@ -17,17 +17,16 @@ from app.models.role import Role
 from app.models.user import User, permission_required
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
-    (ColumnID("uid"), ColumnName("UID")),
-    (ColumnID("temp_employee"), ColumnName("Employee")),
-    (ColumnID("birthday"), ColumnName("Birthday")),
-    (ColumnID("age"), ColumnName("Age")),
-    (ColumnID("hire_date"), ColumnName("Hire Date")),
-    (ColumnID("salary"), ColumnName("Salary")),
+    (ColumnID("uid"), ColumnName(g("UID"))),
+    (ColumnID("temp_employee"), ColumnName(g("Employee"))),
+    (ColumnID("birthday"), ColumnName(g("Birthday"))),
+    (ColumnID("age"), ColumnName(g("Age"))),
+    (ColumnID("hire_date"), ColumnName(g("Hire Date"))),
+    (ColumnID("salary"), ColumnName(g("Salary"))),
 ]
 
 
 @bp.get("/fetch/employees")
-@login_required
 @permission_required(Permission.get("FETCH_EMPLOYEES"))
 def fetch_employees() -> Response:
     employees: List[Dict] = [employee.to_dict() for employee in Employee.query.all()]
@@ -40,7 +39,6 @@ def fetch_employees() -> Response:
 
 
 @bp.get("/fetch/rows/employees")
-@login_required
 @permission_required(Permission.get("FETCH_EMPLOYEES"))
 def fetch_employees_rows() -> Response:
     employees: List[Employee] = Employee.query.all()
@@ -51,15 +49,19 @@ def fetch_employees_rows() -> Response:
         row = [render_td(col_id, employee) for col_id, _ in cols]
         rows.append(row)
 
+    dct: Dict = {
+        "cols": [(col_id, g(col_name)) for col_id, col_name in cols],
+        "rows": rows,
+    }
+
     return Response(
-        json.dumps({"cols": cols, "rows": rows}),
+        json.dumps(dct),
         status=200,
         headers={"Content-Type": "application/json"},
     )
 
 
 @bp.get("/fetch/row/employee/<string:uid>")
-@login_required
 @permission_required(Permission.get("FETCH_EMPLOYEE"))
 def fetch_employee_row(uid: str) -> Response:
     employee: Union[Employee, None] = Employee.query.filter_by(uid=uid).first()
@@ -82,7 +84,7 @@ def fetch_employee_row(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": "Employee with the given ID was not found :(",
+                "message": g("Employee with the given ID was not found :("),
                 "category": "error",
             }
         ),
@@ -92,7 +94,6 @@ def fetch_employee_row(uid: str) -> Response:
 
 
 @bp.get("/fetch/employee/<string:uid>")
-@login_required
 @permission_required(Permission.get("FETCH_EMPLOYEE"))
 def fetch_employee(uid: str) -> Response:
     employee: Union[Employee, None] = Employee.query.filter_by(uid=uid).first()
@@ -107,7 +108,7 @@ def fetch_employee(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": "Employee with the given ID was not found :(",
+                "message": g("Employee with the given ID was not found :("),
                 "category": "error",
             }
         ),
@@ -117,7 +118,6 @@ def fetch_employee(uid: str) -> Response:
 
 
 @bp.post("/add/employee")
-@login_required
 @permission_required(Permission.get("CREATE_EMPLOYEE"))
 def add_employee() -> Response:
     form: AddEmployeeForm = AddEmployeeForm()
@@ -165,8 +165,8 @@ def add_employee() -> Response:
 
         db.session.commit()
 
-        response["message"] = "Employee added successfully."
-        response["title"] = "Added!"
+        response["message"] = g("Employee added successfully.")
+        response["title"] = g("Added!")
         response["category"] = "success"
         response["id"] = getattr(employee, "uid")
 
@@ -177,7 +177,6 @@ def add_employee() -> Response:
 
 
 @bp.post("/update/employee")
-@login_required
 @permission_required(
     Permission.get("UPDATE_EMPLOYEE") | Permission.get("FETCH_EMPLOYEE")
 )
@@ -219,8 +218,8 @@ def update_employee() -> Response:
 
             response.response = json.dumps(
                 {
-                    "title": "Good job!",
-                    "message": "Employee updated successfully!",
+                    "title": g("Good job!"),
+                    "message": g("Employee updated successfully!"),
                     "category": "success",
                 }
             )
@@ -232,7 +231,6 @@ def update_employee() -> Response:
 
 
 @bp.delete("/delete/employee/<string:uid>")
-@login_required
 @permission_required(
     Permission.get("DELETE_EMPLOYEE") | Permission.get("FETCH_EMPLOYEE")
 )
@@ -244,13 +242,13 @@ def delete_employee(uid: str) -> Response:
         db.session.delete(employee)
         db.session.commit()
 
-        response["title"] = "Deleted!"
-        response["message"] = "Employee deleted successfully"
+        response["title"] = g("Deleted!")
+        response["message"] = g("Employee deleted successfully")
         response["category"] = "success"
         response["status"] = 200
     else:
-        response["title"] = "Error :("
-        response["message"] = "Employee not found"
+        response["title"] = g("Error :(")
+        response["message"] = g("Employee not found")
         response["category"] = "error"
         response["status"] = 404
 

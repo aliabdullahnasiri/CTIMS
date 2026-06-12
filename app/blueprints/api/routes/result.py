@@ -2,27 +2,26 @@ import json
 from typing import Dict, List, Tuple, Union
 
 from flask import Response
-from flask_login import login_required
+from flask_babel import gettext as g
 
 from app.blueprints.api import bp
+from app.cls import ColumnID, ColumnName
 from app.extensions.db import db
 from app.forms.result import AddResultForm, UpdateResultForm
 from app.func import render_td
 from app.models.permission import Permission
 from app.models.result import Result
 from app.models.user import permission_required
-from app.cls import ColumnID, ColumnName
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
-    (ColumnID("uid"), ColumnName("UID")),
-    (ColumnID("temp_student"), ColumnName("Student")),
-    (ColumnID("percentage"), ColumnName("Percentage")),
-    (ColumnID("temp_result_status"), ColumnName("Status")),
+    (ColumnID("uid"), ColumnName(g("UID"))),
+    (ColumnID("temp_student"), ColumnName(g("Student"))),
+    (ColumnID("percentage"), ColumnName(g("Percentage"))),
+    (ColumnID("temp_result_status"), ColumnName(g("Status"))),
 ]
 
 
 @bp.get("/fetch/results")
-@login_required
 @permission_required(Permission.get("FETCH_RESULTS"))
 def fetch_results() -> Response:
     results: List[Dict] = [result.to_dict() for result in Result.query.all()]
@@ -35,7 +34,6 @@ def fetch_results() -> Response:
 
 
 @bp.get("/fetch/rows/results")
-@login_required
 @permission_required(Permission.get("FETCH_RESULTS"))
 def fetch_results_rows() -> Response:
     results: List[Result] = Result.query.all()
@@ -46,15 +44,19 @@ def fetch_results_rows() -> Response:
         row = [render_td(col_id, result) for col_id, _ in cols]
         rows.append(row)
 
+    dct: Dict = {
+        "cols": [(col_id, g(col_name)) for col_id, col_name in cols],
+        "rows": rows,
+    }
+
     return Response(
-        json.dumps({"cols": cols, "rows": rows}),
+        json.dumps(dct),
         status=200,
         headers={"Content-Type": "application/json"},
     )
 
 
 @bp.get("/fetch/row/result/<string:uid>")
-@login_required
 @permission_required(Permission.get("FETCH_RESULT"))
 def fetch_result_row(uid: str) -> Response:
     result: Union[Result, None] = Result.query.filter_by(uid=uid).first()
@@ -77,7 +79,7 @@ def fetch_result_row(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": "Result with the given ID was not found :(",
+                "message": g("Result with the given ID was not found :("),
                 "category": "error",
             }
         ),
@@ -87,7 +89,6 @@ def fetch_result_row(uid: str) -> Response:
 
 
 @bp.get("/fetch/result/<string:uid>")
-@login_required
 @permission_required(Permission.get("FETCH_RESULT"))
 def fetch_result(uid: str) -> Response:
     result: Union[Result, None] = Result.query.filter_by(uid=uid).first()
@@ -102,7 +103,7 @@ def fetch_result(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": "Result with the given ID was not found :(",
+                "message": g("Result with the given ID was not found :("),
                 "category": "error",
             }
         ),
@@ -112,7 +113,6 @@ def fetch_result(uid: str) -> Response:
 
 
 @bp.post("/add/result")
-@login_required
 @permission_required(Permission.get("FETCH_RESULT") | Permission.get("CREATE_RESULT"))
 def add_result() -> Response:
     response: Dict = {}
@@ -129,10 +129,10 @@ def add_result() -> Response:
         db.session.add(result)
         db.session.commit()
 
-        response["message"] = "Result added successfully"
+        response["message"] = g("Result added successfully")
+        response["title"] = g("Result Added")
         response["category"] = "success"
-        response["title"] = "Result Added"
-        response["id"] = result.uid
+        response["id"] = getattr(result, "uid")
 
     else:
         response["errors"] = form.errors
@@ -145,7 +145,6 @@ def add_result() -> Response:
 
 
 @bp.post("/update/result")
-@login_required
 @permission_required(Permission.get("FETCH_RESULT") | Permission.get("UPDATE_RESULT"))
 def update_result() -> Response:
     response: Dict = {}
@@ -163,13 +162,13 @@ def update_result() -> Response:
 
             db.session.commit()
 
-            response["title"] = "Updated!"
+            response["title"] = g("Updated!")
+            response["message"] = g("Result updated successfully!")
             response["category"] = "success"
-            response["message"] = "Result updated successfully!"
         else:
-            response["title"] = "Not Found"
-            response["category"] = "error"
-            response["message"] = "Result record not found."
+            response["title"] = g("Not Found")
+            response["message"] = g("Result record not found.")
+            response["category"] = g("error")
     else:
         response["errors"] = form.errors
 
@@ -181,7 +180,6 @@ def update_result() -> Response:
 
 
 @bp.delete("/delete/result/<string:uid>")
-@login_required
 @permission_required(Permission.get("FETCH_RESULT") | Permission.get("DELETE_RESULT"))
 def delete_result(uid: str) -> Response:
     response: Dict = {}
@@ -191,13 +189,13 @@ def delete_result(uid: str) -> Response:
         db.session.delete(result)
         db.session.commit()
 
-        response["title"] = "Deleted!"
-        response["message"] = "Result deleted successfully"
+        response["title"] = g("Deleted!")
+        response["message"] = g("Result deleted successfully")
         response["category"] = "success"
         response["status"] = 200
     else:
-        response["title"] = "Error :("
-        response["message"] = "Result not found"
+        response["title"] = g("Error :(")
+        response["message"] = g("Result not found")
         response["category"] = "error"
         response["status"] = 404
 

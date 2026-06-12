@@ -2,7 +2,7 @@ import json
 from typing import Dict, List, Tuple, Union
 
 from flask import Response
-from flask_login import login_required
+from flask_babel import gettext as g
 
 from app.blueprints.api import bp
 from app.cls import ColumnID, ColumnName
@@ -14,14 +14,13 @@ from app.models.permission import Permission
 from app.models.user import permission_required
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
-    (ColumnID("uid"), ColumnName("UID")),
-    (ColumnID("temp_teacher"), ColumnName("Teacher")),
-    (ColumnID("cls_name"), ColumnName("Name")),
+    (ColumnID("uid"), ColumnName(g("UID"))),
+    (ColumnID("temp_teacher"), ColumnName(g("Teacher"))),
+    (ColumnID("cls_name"), ColumnName(g("Name"))),
 ]
 
 
 @bp.get("/fetch/classes")
-@login_required
 @permission_required(Permission.get("FETCH_CLASSES"))
 def fetch_classes() -> Response:
     class_s: List[Dict] = [class_.to_dict() for class_ in Class.query.all()]
@@ -34,7 +33,6 @@ def fetch_classes() -> Response:
 
 
 @bp.get("/fetch/rows/classes")
-@login_required
 @permission_required(Permission.get("FETCH_CLASSES"))
 def fetch_classes_rows() -> Response:
     class_s: List[Class] = Class.query.all()
@@ -45,15 +43,19 @@ def fetch_classes_rows() -> Response:
         row = [render_td(col_id, class_) for col_id, _ in cols]
         rows.append(row)
 
+    dct: Dict = {
+        "cols": [(col_id, g(col_name)) for col_id, col_name in cols],
+        "rows": rows,
+    }
+
     return Response(
-        json.dumps({"cols": cols, "rows": rows}),
+        json.dumps(dct),
         status=200,
         headers={"Content-Type": "application/json"},
     )
 
 
 @bp.get("/fetch/row/class/<string:uid>")
-@login_required
 @permission_required(Permission.get("FETCH_CLASS"))
 def fetch_class_row(uid: str) -> Response:
     class_: Union[Class, None] = Class.query.filter_by(uid=uid).first()
@@ -76,7 +78,7 @@ def fetch_class_row(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": "Class with the given ID was not found :(",
+                "message": g("Class with the given ID was not found :("),
                 "category": "error",
             }
         ),
@@ -86,7 +88,6 @@ def fetch_class_row(uid: str) -> Response:
 
 
 @bp.get("/fetch/class/<string:uid>")
-@login_required
 @permission_required(Permission.get("FETCH_CLASS"))
 def fetch_class(uid: str) -> Response:
     class_: Union[Class, None] = Class.query.filter_by(uid=uid).first()
@@ -101,7 +102,7 @@ def fetch_class(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": "Class with the given ID was not found :(",
+                "message": g("Class with the given ID was not found :("),
                 "category": "error",
             }
         ),
@@ -111,7 +112,6 @@ def fetch_class(uid: str) -> Response:
 
 
 @bp.post("/add/class")
-@login_required
 @permission_required(Permission.get("CREATE_CLASS"))
 def add_class() -> Response:
     form: AddClassForm = AddClassForm()
@@ -129,8 +129,8 @@ def add_class() -> Response:
         db.session.add(class_)
         db.session.commit()
 
-        response["message"] = "Class added successfully."
-        response["title"] = "Added!"
+        response["message"] = g("Class added successfully.")
+        response["title"] = g("Added!")
         response["category"] = "success"
         response["id"] = getattr(class_, "uid")
 
@@ -141,7 +141,6 @@ def add_class() -> Response:
 
 
 @bp.post("/update/class")
-@login_required
 @permission_required(Permission.get("FETCH_CLASS") | Permission.get("UPDATE_CLASS"))
 def update_class() -> Response:
     form: UpdateClassForm = UpdateClassForm()
@@ -161,8 +160,8 @@ def update_class() -> Response:
 
             response.response = json.dumps(
                 {
-                    "title": "Good job!",
-                    "message": "Class updated successfully!",
+                    "title": g("Good job!"),
+                    "message": g("Class updated successfully!"),
                     "category": "success",
                 }
             )
@@ -174,7 +173,6 @@ def update_class() -> Response:
 
 
 @bp.delete("/delete/class/<string:uid>")
-@login_required
 @permission_required(Permission.get("FETCH_CLASS") | Permission.get("DELETE_CLASS"))
 def delete_class(uid: str) -> Response:
     response: Dict = {}
@@ -184,13 +182,13 @@ def delete_class(uid: str) -> Response:
         db.session.delete(class_)
         db.session.commit()
 
-        response["title"] = "Deleted!"
-        response["message"] = "Class deleted successfully"
+        response["title"] = g("Deleted!")
+        response["message"] = g("Class deleted successfully")
         response["category"] = "success"
         response["status"] = 200
     else:
-        response["title"] = "Error :("
-        response["message"] = "Class not found"
+        response["title"] = g("Error :(")
+        response["message"] = g("Class not found")
         response["category"] = "error"
         response["status"] = 404
 

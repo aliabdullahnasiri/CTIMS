@@ -2,27 +2,26 @@ import json
 from typing import Dict, List, Tuple, Union
 
 from flask import Response
-from flask_login import login_required
+from flask_babel import gettext as g
 
 from app.blueprints.api import bp
+from app.cls import ColumnID, ColumnName
 from app.extensions.db import db
 from app.forms.department import AddDepartmentForm, UpdateDepartmentForm
 from app.func import render_td
 from app.models.department import Department
 from app.models.permission import Permission
 from app.models.user import permission_required
-from app.cls import ColumnID, ColumnName
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
-    (ColumnID("uid"), ColumnName("UID")),
-    (ColumnID("temp_hod"), ColumnName("Head of department")),
-    (ColumnID("name"), ColumnName("name")),
-    (ColumnID("description"), ColumnName("Description")),
+    (ColumnID("uid"), ColumnName(g("UID"))),
+    (ColumnID("temp_hod"), ColumnName(g("Head of department"))),
+    (ColumnID("name"), ColumnName(g("name"))),
+    (ColumnID("description"), ColumnName(g("Description"))),
 ]
 
 
 @bp.get("/fetch/departments")
-@login_required
 @permission_required(Permission.get("FETCH_DEPARTMENTS"))
 def fetch_departments() -> Response:
     departments: List[Dict] = [
@@ -37,7 +36,6 @@ def fetch_departments() -> Response:
 
 
 @bp.get("/fetch/rows/departments")
-@login_required
 @permission_required(Permission.get("FETCH_DEPARTMENTS"))
 def fetch_departments_rows() -> Response:
     departments: List[Department] = Department.query.all()
@@ -48,15 +46,19 @@ def fetch_departments_rows() -> Response:
         row = [render_td(col_id, department) for col_id, _ in cols]
         rows.append(row)
 
+    dct: Dict = {
+        "cols": [(col_id, g(col_name)) for col_id, col_name in cols],
+        "rows": rows,
+    }
+
     return Response(
-        json.dumps({"cols": cols, "rows": rows}),
+        json.dumps(dct),
         status=200,
         headers={"Content-Type": "application/json"},
     )
 
 
 @bp.get("/fetch/row/department/<string:uid>")
-@login_required
 @permission_required(Permission.get("FETCH_DEPARTMENT"))
 def fetch_department_row(uid: str) -> Response:
     department: Union[Department, None] = Department.query.filter_by(uid=uid).first()
@@ -79,7 +81,7 @@ def fetch_department_row(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": "Department with the given ID was not found :(",
+                "message": g("Department with the given ID was not found :("),
                 "category": "error",
             }
         ),
@@ -89,7 +91,6 @@ def fetch_department_row(uid: str) -> Response:
 
 
 @bp.get("/fetch/department/<string:uid>")
-@login_required
 @permission_required(Permission.get("FETCH_DEPARTMENT"))
 def fetch_department(uid: str) -> Response:
     department: Union[Department, None] = Department.query.filter_by(uid=uid).first()
@@ -104,7 +105,7 @@ def fetch_department(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": "Department with the given ID was not found :(",
+                "message": g("Department with the given ID was not found :("),
                 "category": "error",
             }
         ),
@@ -114,7 +115,6 @@ def fetch_department(uid: str) -> Response:
 
 
 @bp.post("/add/department")
-@login_required
 @permission_required(Permission.get("CREATE_DEPARTMENT"))
 def add_department() -> Response:
     response: Dict = {}
@@ -137,10 +137,10 @@ def add_department() -> Response:
         db.session.add(department)
         db.session.commit()
 
-        response["message"] = "Department added successfully"
+        response["message"] = g("Department added successfully")
         response["category"] = "success"
-        response["title"] = "Department Added"
-        response["id"] = department.uid
+        response["title"] = g("Department Added")
+        response["id"] = getattr(department, "uid")
 
     else:
         response["errors"] = form.errors
@@ -153,7 +153,6 @@ def add_department() -> Response:
 
 
 @bp.post("/update/department")
-@login_required
 @permission_required(Permission.get("UPDATE_DEPARTMENT"))
 def update_department() -> Response:
     response: Dict = {}
@@ -170,22 +169,17 @@ def update_department() -> Response:
             department.name = form.name.data
             department.description = form.description.data
             department.head_of_department = form.head_of_department.data
-            department.head_of_department = (
-                uid if (uid := form.head_of_department.data) else None
-            )
-            department.parent_department_uid = (
-                uid if (uid := form.parent_department_uid.data) else None
-            )
+            department.parent_department_uid = form.parent_department_uid.data
 
             db.session.commit()
 
-            response["title"] = "Updated!"
+            response["title"] = g("Updated!")
+            response["message"] = g("Department updated successfully!")
             response["category"] = "success"
-            response["message"] = "Department updated successfully!"
         else:
-            response["title"] = "Not Found"
+            response["title"] = g("Not Found")
+            response["message"] = g("Department record not found.")
             response["category"] = "error"
-            response["message"] = "Department record not found."
     else:
         response["errors"] = form.errors
 
@@ -197,7 +191,6 @@ def update_department() -> Response:
 
 
 @bp.delete("/delete/department/<string:uid>")
-@login_required
 @permission_required(Permission.get("DELETE_DEPARTMENT"))
 def delete_department(uid: str) -> Response:
     response: Dict = {}
@@ -211,13 +204,13 @@ def delete_department(uid: str) -> Response:
         db.session.delete(department)
         db.session.commit()
 
-        response["title"] = "Deleted!"
-        response["message"] = "Department deleted successfully"
+        response["title"] = g("Deleted!")
+        response["message"] = g("Department deleted successfully")
         response["category"] = "success"
         response["status"] = 200
     else:
-        response["title"] = "Error :("
-        response["message"] = "Department not found"
+        response["title"] = g("Error :(")
+        response["message"] = g("Department not found")
         response["category"] = "error"
         response["status"] = 404
 

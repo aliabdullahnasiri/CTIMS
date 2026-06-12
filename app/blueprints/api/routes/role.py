@@ -2,7 +2,7 @@ import json
 from typing import Dict, List, Tuple, Union
 
 from flask import Response
-from flask_login import login_required
+from flask_babel import gettext as g
 
 from app.blueprints.api import bp
 from app.cls import ColumnID, ColumnName
@@ -14,14 +14,12 @@ from app.models.role import Role
 from app.models.user import permission_required
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
-    (ColumnID("is_deletable"), ColumnName("IS_DELETABLE")),
-    (ColumnID("uid"), ColumnName("UID")),
-    (ColumnID("name"), ColumnName("Name")),
+    (ColumnID("uid"), ColumnName(g("UID"))),
+    (ColumnID("name"), ColumnName(g("Name"))),
 ]
 
 
 @bp.get("/fetch/roles")
-@login_required
 @permission_required(Permission.get("FETCH_ROLES"))
 def fetch_roles() -> Response:
     roles: List[Dict] = [role.to_dict() for role in Role.query.all()]
@@ -34,7 +32,6 @@ def fetch_roles() -> Response:
 
 
 @bp.get("/fetch/rows/roles")
-@login_required
 @permission_required(Permission.get("FETCH_ROLES"))
 def fetch_roles_rows() -> Response:
     response: Response = Response(
@@ -49,7 +46,7 @@ def fetch_roles_rows() -> Response:
         rows.append(row)
 
     dct: Dict = {
-        "cols": cols,
+        "cols": [(col_id, g(col_name)) for col_id, col_name in cols],
         "rows": rows,
     }
 
@@ -60,7 +57,6 @@ def fetch_roles_rows() -> Response:
 
 
 @bp.get("/fetch/row/role/<string:uid>")
-@login_required
 @permission_required(Permission.get("FETCH_ROLE"))
 def fetch_role_row(uid: str) -> Response:
     role: Union[Role, None] = Role.query.filter_by(uid=uid).first()
@@ -83,7 +79,7 @@ def fetch_role_row(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": "Role with the given ID was not found :(",
+                "message": g("Role with the given ID was not found :("),
                 "category": "error",
             }
         ),
@@ -93,7 +89,6 @@ def fetch_role_row(uid: str) -> Response:
 
 
 @bp.get("/fetch/role/<string:uid>")
-@login_required
 @permission_required(Permission.get("FETCH_ROLE"))
 def fetch_role(uid: str) -> Response:
     role: Union[Role, None] = Role.query.filter_by(uid=uid).first()
@@ -108,7 +103,7 @@ def fetch_role(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": "Role with the given ID was not found :(",
+                "message": g("Role with the given ID was not found :("),
                 "category": "error",
             }
         ),
@@ -118,7 +113,6 @@ def fetch_role(uid: str) -> Response:
 
 
 @bp.post("/update/role")
-@login_required
 @permission_required(Permission.get("UPDATE_ROLE"))
 def update_role() -> Response:
     response: Dict = {}
@@ -160,13 +154,13 @@ def update_role() -> Response:
             for user in role.users.all():
                 dct.remove(user.id)
 
-            response["title"] = "Updated!"
+            response["title"] = g("Updated!")
+            response["message"] = g("Role updated successfully!")
             response["category"] = "success"
-            response["message"] = "Role updated successfully!"
         else:
-            response["title"] = "Not Found"
+            response["title"] = g("Not Found")
+            response["message"] = g("Role record not found.")
             response["category"] = "error"
-            response["message"] = "Role record not found."
     else:
         response["errors"] = form.errors
 
@@ -178,7 +172,6 @@ def update_role() -> Response:
 
 
 @bp.delete("/delete/role/<string:uid>")
-@login_required
 @permission_required(Permission.get("DELETE_ROLE"))
 def delete_role(uid: str):
     response = {}
@@ -188,19 +181,19 @@ def delete_role(uid: str):
             db.session.delete(role)
             db.session.commit()
 
-            response["title"] = "Deleted!"
-            response["message"] = "Role has been deleted successfully."
+            response["title"] = g("Deleted!")
+            response["message"] = g("Role has been deleted successfully.")
             response["category"] = "success"
             response["status"] = 200
         else:
-            response["title"] = "Warning!"
-            response["message"] = "Primary roles cannot be deleted."
+            response["title"] = g("Warning!")
+            response["message"] = g("Primary roles cannot be deleted.")
             response["category"] = "success"
             response["status"] = 403
 
     else:
-        response["title"] = "Error :("
-        response["message"] = "User not found"
+        response["title"] = g("Error :(")
+        response["message"] = g("User not found")
         response["category"] = "error"
         response["status"] = 404
 
@@ -212,7 +205,6 @@ def delete_role(uid: str):
 
 
 @bp.post("/add/role")
-@login_required
 @permission_required(Permission.get("CREATE_ROLE"))
 def add_role():
     form = AddRoleForm()
@@ -242,9 +234,9 @@ def add_role():
 
         db.session.commit()
 
-        response["message"] = "User added successfully"
+        response["message"] = g("User added successfully")
+        response["title"] = g("User Added")
         response["category"] = "success"
-        response["title"] = "User Added"
         response["id"] = getattr(role, "uid")
 
     else:

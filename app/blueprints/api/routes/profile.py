@@ -2,6 +2,7 @@ import json
 from typing import Dict
 
 from flask import Response, request
+from flask_babel import gettext as g
 from flask_login import current_user, login_required
 
 from app.blueprints.api import bp
@@ -62,9 +63,9 @@ def update_profile():
 
         db.session.commit()
 
-        response["title"] = "Good job!"
+        response["title"] = g("Good job!")
+        response["message"] = g("User updated successfully!")
         response["category"] = "success"
-        response["message"] = "User updated successfully!"
 
     else:
         response["errors"] = form.errors

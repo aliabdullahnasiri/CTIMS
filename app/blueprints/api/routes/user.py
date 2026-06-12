@@ -2,6 +2,7 @@ import json
 from typing import Dict, List, Tuple, Union
 
 from flask import Response, request, url_for
+from flask_babel import gettext as g
 from flask_login import login_required
 
 from app.blueprints.api import bp
@@ -16,12 +17,11 @@ from app.models.role import Role
 from app.models.user import User, permission_required
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
-    (ColumnID("is_deletable"), ColumnName("IS_DELETABLE")),
-    (ColumnID("uid"), ColumnName("UID")),
-    (ColumnID("temp_user"), ColumnName("User")),
-    (ColumnID("user_name"), ColumnName("User Name")),
-    (ColumnID("birthday"), ColumnName("Birthday")),
-    (ColumnID("age"), ColumnName("Age")),
+    (ColumnID("uid"), ColumnName(g("UID"))),
+    (ColumnID("temp_user"), ColumnName(g("User"))),
+    (ColumnID("user_name"), ColumnName(g("User Name"))),
+    (ColumnID("birthday"), ColumnName(g("Birthday"))),
+    (ColumnID("age"), ColumnName(g("Age"))),
 ]
 
 
@@ -52,7 +52,7 @@ def fetch_users_rows() -> Response:
         rows.append(row)
 
     dct: Dict = {
-        "cols": cols,
+        "cols": [(col_id, g(col_name)) for col_id, col_name in cols],
         "rows": rows,
     }
 

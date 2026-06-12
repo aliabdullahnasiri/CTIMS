@@ -2,7 +2,7 @@ import json
 from typing import Dict, List, Tuple, Union
 
 from flask import Response
-from flask_login import login_required
+from flask_babel import gettext as g
 
 from app.blueprints.api import bp
 from app.cls import ColumnID, ColumnName
@@ -14,15 +14,14 @@ from app.models.time import Time
 from app.models.user import permission_required
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
-    (ColumnID("uid"), ColumnName("UID")),
-    (ColumnID("title"), ColumnName("Title")),
-    (ColumnID("start"), ColumnName("Start Time")),
-    (ColumnID("end"), ColumnName("End Time")),
+    (ColumnID("uid"), ColumnName(g("UID"))),
+    (ColumnID("title"), ColumnName(g("Title"))),
+    (ColumnID("start"), ColumnName(g("Start Time"))),
+    (ColumnID("end"), ColumnName(g("End Time"))),
 ]
 
 
 @bp.get("/fetch/times")
-@login_required
 @permission_required(Permission.get("FETCH_TIMES"))
 def fetch_times() -> Response:
     times: List[Dict] = [time.to_dict() for time in Time.query.all()]
@@ -35,7 +34,6 @@ def fetch_times() -> Response:
 
 
 @bp.get("/fetch/rows/times")
-@login_required
 @permission_required(Permission.get("FETCH_TIMES"))
 def fetch_times_rows() -> Response:
     times: List[Time] = Time.query.all()
@@ -46,15 +44,19 @@ def fetch_times_rows() -> Response:
         row = [render_td(col_id, time) for col_id, _ in cols]
         rows.append(row)
 
+    dct: Dict = {
+        "cols": [(col_id, g(col_name)) for col_id, col_name in cols],
+        "rows": rows,
+    }
+
     return Response(
-        json.dumps({"cols": cols, "rows": rows}),
+        json.dumps(dct),
         status=200,
         headers={"Content-Type": "application/json"},
     )
 
 
 @bp.get("/fetch/row/time/<string:uid>")
-@login_required
 @permission_required(Permission.get("FETCH_TIME"))
 def fetch_time_row(uid: str) -> Response:
     time: Union[Time, None] = Time.query.filter_by(uid=uid).first()
@@ -77,7 +79,7 @@ def fetch_time_row(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": "Time with the given ID was not found :(",
+                "message": g("Time with the given ID was not found :("),
                 "category": "error",
             }
         ),
@@ -87,7 +89,6 @@ def fetch_time_row(uid: str) -> Response:
 
 
 @bp.get("/fetch/time/<string:uid>")
-@login_required
 @permission_required(Permission.get("FETCH_TIME"))
 def fetch_time(uid: str) -> Response:
     time: Union[Time, None] = Time.query.filter_by(uid=uid).first()
@@ -102,7 +103,7 @@ def fetch_time(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": "Time with the given ID was not found :(",
+                "message": g("Time with the given ID was not found :("),
                 "category": "error",
             }
         ),
@@ -112,7 +113,6 @@ def fetch_time(uid: str) -> Response:
 
 
 @bp.post("/add/time")
-@login_required
 @permission_required(Permission.get("CREATE_TIME"))
 def add_time() -> Response:
     response: Dict = {}
@@ -130,10 +130,10 @@ def add_time() -> Response:
         db.session.add(time)
         db.session.commit()
 
-        response["message"] = "Time added successfully"
+        response["message"] = g("Time added successfully")
+        response["title"] = g("Time Added")
         response["category"] = "success"
-        response["title"] = "Time Added"
-        response["id"] = time.uid
+        response["id"] = getattr(time, "uid")
 
     else:
         response["errors"] = form.errors
@@ -146,7 +146,6 @@ def add_time() -> Response:
 
 
 @bp.post("/update/time")
-@login_required
 @permission_required(Permission.get("UPDATE_TIME"))
 def update_time() -> Response:
     response: Dict = {}
@@ -165,13 +164,13 @@ def update_time() -> Response:
 
             db.session.commit()
 
-            response["title"] = "Updated!"
+            response["title"] = g("Updated!")
+            response["message"] = g("Time updated successfully!")
             response["category"] = "success"
-            response["message"] = "Time updated successfully!"
         else:
-            response["title"] = "Not Found"
+            response["title"] = g("Not Found")
+            response["message"] = g("Time record not found.")
             response["category"] = "error"
-            response["message"] = "Time record not found."
     else:
         response["errors"] = form.errors
 
@@ -183,7 +182,6 @@ def update_time() -> Response:
 
 
 @bp.delete("/delete/time/<string:uid>")
-@login_required
 @permission_required(Permission.get("DELETE_TIME"))
 def delete_time(uid: str) -> Response:
     response: Dict = {}
@@ -193,13 +191,13 @@ def delete_time(uid: str) -> Response:
         db.session.delete(time)
         db.session.commit()
 
-        response["title"] = "Deleted!"
-        response["message"] = "Time deleted successfully"
+        response["title"] = g("Deleted!")
+        response["message"] = g("Time deleted successfully")
         response["category"] = "success"
         response["status"] = 200
     else:
-        response["title"] = "Error :("
-        response["message"] = "Time not found"
+        response["title"] = g("Error :(")
+        response["message"] = g("Time not found")
         response["category"] = "error"
         response["status"] = 404
 

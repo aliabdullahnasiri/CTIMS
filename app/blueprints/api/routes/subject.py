@@ -2,7 +2,7 @@ import json
 from typing import Dict, List, Tuple, Union
 
 from flask import Response, request
-from flask_login import login_required
+from flask_babel import gettext as g
 
 from app.blueprints.api import bp
 from app.cls import ColumnID, ColumnName
@@ -15,15 +15,14 @@ from app.models.subject import Subject
 from app.models.user import permission_required
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
-    (ColumnID("uid"), ColumnName("UID")),
-    (ColumnID("name"), ColumnName("Name")),
-    (ColumnID("description"), ColumnName("Description")),
-    (ColumnID("credit"), ColumnName("Credit")),
+    (ColumnID("uid"), ColumnName(g("UID"))),
+    (ColumnID("name"), ColumnName(g("Name"))),
+    (ColumnID("description"), ColumnName(g("Description"))),
+    (ColumnID("credit"), ColumnName(g("Credit"))),
 ]
 
 
 @bp.get("/fetch/subjects")
-@login_required
 @permission_required(Permission.get("FETCH_SUBJECTS"))
 def fetch_subjects() -> Response:
     subjects: List[Dict] = [subject.to_dict() for subject in Subject.query.all()]
@@ -36,7 +35,6 @@ def fetch_subjects() -> Response:
 
 
 @bp.get("/fetch/rows/subjects")
-@login_required
 @permission_required(Permission.get("FETCH_SUBJECTS"))
 def fetch_subjects_rows() -> Response:
     subjects: List[Subject] = Subject.query.all()
@@ -47,15 +45,19 @@ def fetch_subjects_rows() -> Response:
         row = [render_td(col_id, subject) for col_id, _ in cols]
         rows.append(row)
 
+    dct: Dict = {
+        "cols": [(col_id, g(col_name)) for col_id, col_name in cols],
+        "rows": rows,
+    }
+
     return Response(
-        json.dumps({"cols": cols, "rows": rows}),
+        json.dumps(dct),
         status=200,
         headers={"Content-Type": "application/json"},
     )
 
 
 @bp.get("/fetch/row/subject/<string:uid>")
-@login_required
 @permission_required(Permission.get("FETCH_SUBJECT"))
 def fetch_subject_row(uid: str) -> Response:
     subject: Union[Subject, None] = Subject.query.filter_by(uid=uid).first()
@@ -78,7 +80,7 @@ def fetch_subject_row(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": "Subject with the given ID was not found :(",
+                "message": g("Subject with the given ID was not found :("),
                 "category": "error",
             }
         ),
@@ -88,7 +90,6 @@ def fetch_subject_row(uid: str) -> Response:
 
 
 @bp.get("/fetch/subject/<string:uid>")
-@login_required
 @permission_required(Permission.get("FETCH_SUBJECT"))
 def fetch_subject(uid: str) -> Response:
     subject: Union[Subject, None] = Subject.query.filter_by(uid=uid).first()
@@ -103,7 +104,7 @@ def fetch_subject(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": "Subject with the given ID was not found :(",
+                "message": g("Subject with the given ID was not found :("),
                 "category": "error",
             }
         ),
@@ -113,7 +114,6 @@ def fetch_subject(uid: str) -> Response:
 
 
 @bp.post("/add/subject")
-@login_required
 @permission_required(Permission.get("CREATE_SUBJECT"))
 def add_subject() -> Response:
     response: Dict = {}
@@ -139,9 +139,9 @@ def add_subject() -> Response:
 
         db.session.commit()
 
-        response["message"] = "Subject added successfully"
+        response["title"] = g("Subject Added")
+        response["message"] = g("Subject added successfully")
         response["category"] = "success"
-        response["title"] = "Subject Added"
         response["id"] = getattr(subject, "uid")
 
     else:
@@ -155,7 +155,6 @@ def add_subject() -> Response:
 
 
 @bp.post("/update/subject")
-@login_required
 @permission_required(Permission.get("FETCH_SUBJECT") | Permission.get("UPDATE_SUBJECT"))
 def update_subject() -> Response:
     response: Dict = {}
@@ -181,13 +180,13 @@ def update_subject() -> Response:
 
             db.session.commit()
 
-            response["title"] = "Updated!"
+            response["title"] = g("Updated!")
+            response["message"] = g("Subject updated successfully!")
             response["category"] = "success"
-            response["message"] = "Subject updated successfully!"
         else:
-            response["title"] = "Not Found"
+            response["title"] = g("Not Found")
+            response["message"] = g("Subject record not found.")
             response["category"] = "error"
-            response["message"] = "Subject record not found."
     else:
         response["errors"] = form.errors
 
@@ -199,23 +198,23 @@ def update_subject() -> Response:
 
 
 @bp.delete("/delete/subject/<string:uid>")
-@login_required
 @permission_required(Permission.get("FETCH_SUBJECT") | Permission.get("DELETE_SUBJECT"))
 def delete_subject(uid: str) -> Response:
     response: Dict = {}
 
     subject: Union[Subject, None] = Subject.query.filter_by(uid=uid).first()
+
     if subject:
         db.session.delete(subject)
         db.session.commit()
 
-        response["title"] = "Deleted!"
-        response["message"] = "Subject deleted successfully"
+        response["title"] = g("Deleted!")
+        response["message"] = g("Subject deleted successfully")
         response["category"] = "success"
         response["status"] = 200
     else:
-        response["title"] = "Error :("
-        response["message"] = "Subject not found"
+        response["title"] = g("Error :(")
+        response["message"] = g("Subject not found")
         response["category"] = "error"
         response["status"] = 404
 

@@ -2,26 +2,25 @@ import json
 from typing import Dict, List, Tuple, Union
 
 from flask import Response
-from flask_login import login_required
+from flask_babel import gettext as g
 
 from app.blueprints.api import bp
+from app.cls import ColumnID, ColumnName
 from app.extensions.db import db
 from app.forms.semester import AddSemesterForm, UpdateSemesterForm
 from app.func import render_td
 from app.models.permission import Permission
 from app.models.semester import Semester
 from app.models.user import permission_required
-from app.cls import ColumnID, ColumnName
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
-    (ColumnID("uid"), ColumnName("UID")),
-    (ColumnID("name"), ColumnName("Name")),
-    (ColumnID("number"), ColumnName("Number")),
+    (ColumnID("uid"), ColumnName(g("UID"))),
+    (ColumnID("name"), ColumnName(g("Name"))),
+    (ColumnID("number"), ColumnName(g("Number"))),
 ]
 
 
 @bp.get("/fetch/semesters")
-@login_required
 @permission_required(Permission.get("FETCH_SEMESTERS"))
 def fetch_semesters() -> Response:
     semesters: List[Dict] = [semester.to_dict() for semester in Semester.query.all()]
@@ -34,7 +33,6 @@ def fetch_semesters() -> Response:
 
 
 @bp.get("/fetch/rows/semesters")
-@login_required
 @permission_required(Permission.get("FETCH_SEMESTERS"))
 def fetch_semesters_rows() -> Response:
     semesters: List[Semester] = Semester.query.all()
@@ -45,15 +43,19 @@ def fetch_semesters_rows() -> Response:
         row = [render_td(col_id, semester) for col_id, _ in cols]
         rows.append(row)
 
+    dct: Dict = {
+        "cols": [(col_id, g(col_name)) for col_id, col_name in cols],
+        "rows": rows,
+    }
+
     return Response(
-        json.dumps({"cols": cols, "rows": rows}),
+        json.dumps(dct),
         status=200,
         headers={"Content-Type": "application/json"},
     )
 
 
 @bp.get("/fetch/row/semester/<string:uid>")
-@login_required
 @permission_required(Permission.get("FETCH_SEMESTER"))
 def fetch_semester_row(uid: str) -> Response:
     semester: Union[Semester, None] = Semester.query.filter_by(uid=uid).first()
@@ -76,7 +78,7 @@ def fetch_semester_row(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": "Semester with the given ID was not found :(",
+                "message": g("Semester with the given ID was not found :("),
                 "category": "error",
             }
         ),
@@ -86,7 +88,6 @@ def fetch_semester_row(uid: str) -> Response:
 
 
 @bp.get("/fetch/semester/<string:uid>")
-@login_required
 @permission_required(Permission.get("FETCH_SEMESTER"))
 def fetch_semester(uid: str) -> Response:
     semester: Union[Semester, None] = Semester.query.filter_by(uid=uid).first()
@@ -101,7 +102,7 @@ def fetch_semester(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": "Semester with the given ID was not found :(",
+                "message": g("Semester with the given ID was not found :("),
                 "category": "error",
             }
         ),
@@ -111,7 +112,6 @@ def fetch_semester(uid: str) -> Response:
 
 
 @bp.post("/add/semester")
-@login_required
 @permission_required(Permission.get("CREATE_SEMESTER"))
 def add_semester() -> Response:
     response: Dict = {}
@@ -128,10 +128,10 @@ def add_semester() -> Response:
         db.session.add(semester)
         db.session.commit()
 
-        response["message"] = "Semester added successfully"
+        response["message"] = g("Semester added successfully")
+        response["title"] = g("Semester Added")
         response["category"] = "success"
-        response["title"] = "Semester Added"
-        response["id"] = semester.uid
+        response["id"] = getattr(semester, "uid")
 
     else:
         response["errors"] = form.errors
@@ -144,7 +144,6 @@ def add_semester() -> Response:
 
 
 @bp.post("/update/semester")
-@login_required
 @permission_required(Permission.get("UPDATE_SEMESTER"))
 def update_semester() -> Response:
     response: Dict = {}
@@ -162,13 +161,13 @@ def update_semester() -> Response:
 
             db.session.commit()
 
-            response["title"] = "Updated!"
+            response["title"] = g("Updated!")
+            response["message"] = g("Semester updated successfully!")
             response["category"] = "success"
-            response["message"] = "Semester updated successfully!"
         else:
-            response["title"] = "Not Found"
+            response["title"] = g("Not Found")
+            response["message"] = g("Semester record not found.")
             response["category"] = "error"
-            response["message"] = "Semester record not found."
     else:
         response["errors"] = form.errors
 
@@ -180,23 +179,23 @@ def update_semester() -> Response:
 
 
 @bp.delete("/delete/semester/<string:uid>")
-@login_required
 @permission_required(Permission.get("DELETE_SEMESTER"))
 def delete_semester(uid: str) -> Response:
     response: Dict = {}
 
     semester: Union[Semester, None] = Semester.query.filter_by(uid=uid).first()
+
     if semester:
         db.session.delete(semester)
         db.session.commit()
 
-        response["title"] = "Deleted!"
-        response["message"] = "Semester deleted successfully"
+        response["title"] = g("Deleted!")
+        response["message"] = g("Semester deleted successfully")
         response["category"] = "success"
         response["status"] = 200
     else:
-        response["title"] = "Error :("
-        response["message"] = "Semester not found"
+        response["title"] = g("Error :(")
+        response["message"] = g("Semester not found")
         response["category"] = "error"
         response["status"] = 404
 

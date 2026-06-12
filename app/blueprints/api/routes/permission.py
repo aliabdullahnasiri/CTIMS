@@ -2,24 +2,23 @@ import json
 from typing import Dict, List, Tuple, Union
 
 from flask import Response
-from flask_login import login_required
+from flask_babel import gettext as g
 
 from app.blueprints.api import bp
+from app.cls import ColumnID, ColumnName
 from app.extensions.db import db
 from app.forms.permission import UpdatePermissionForm
 from app.func import render_td
 from app.models.permission import Permission
 from app.models.user import permission_required
-from app.cls import ColumnID, ColumnName
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
-    (ColumnID("uid"), ColumnName("UID")),
-    (ColumnID("name"), ColumnName("Name")),
+    (ColumnID("uid"), ColumnName(g("UID"))),
+    (ColumnID("name"), ColumnName(g("Name"))),
 ]
 
 
 @bp.get("/fetch/permissions")
-@login_required
 @permission_required(Permission.get("FETCH_PERMISSIONS"))
 def fetch_permissions() -> Response:
     permissions: List[Dict] = [
@@ -34,7 +33,6 @@ def fetch_permissions() -> Response:
 
 
 @bp.get("/fetch/rows/permissions")
-@login_required
 @permission_required(Permission.get("FETCH_PERMISSIONS"))
 def fetch_permissions_rows() -> Response:
     response: Response = Response(
@@ -49,7 +47,7 @@ def fetch_permissions_rows() -> Response:
         rows.append(row)
 
     dct: Dict = {
-        "cols": cols,
+        "cols": [(col_id, g(col_name)) for col_id, col_name in cols],
         "rows": rows,
     }
 
@@ -60,7 +58,6 @@ def fetch_permissions_rows() -> Response:
 
 
 @bp.get("/fetch/row/permission/<string:uid>")
-@login_required
 @permission_required(Permission.get("FETCH_PERMISSION"))
 def fetch_permission_row(uid: str) -> Response:
     permission: Union[Permission, None] = Permission.query.filter_by(uid=uid).first()
@@ -83,7 +80,7 @@ def fetch_permission_row(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": "Permission with the given ID was not found :(",
+                "message": g("Permission with the given ID was not found :("),
                 "category": "error",
             }
         ),
@@ -93,7 +90,6 @@ def fetch_permission_row(uid: str) -> Response:
 
 
 @bp.get("/fetch/permission/<string:uid>")
-@login_required
 @permission_required(Permission.get("FETCH_PERMISSION"))
 def fetch_permission(uid: str) -> Response:
     permission: Union[Permission, None] = Permission.query.filter_by(uid=uid).first()
@@ -108,7 +104,7 @@ def fetch_permission(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": "Permission with the given ID was not found :(",
+                "message": g("Permission with the given ID was not found :("),
                 "category": "error",
             }
         ),
@@ -118,7 +114,6 @@ def fetch_permission(uid: str) -> Response:
 
 
 @bp.post("/update/permission")
-@login_required
 @permission_required(
     Permission.get("FETCH_PERMISSION") | Permission.get("UPDATE_PERMISSION")
 )
@@ -140,13 +135,13 @@ def update_permission() -> Response:
 
             db.session.commit()
 
-            response["title"] = "Updated!"
-            response["category"] = "success"
-            response["message"] = "Permission updated successfully!"
+            response["title"] = g("Updated!")
+            response["message"] = g("Permission updated successfully!")
+            response["category"] = g("success")
         else:
-            response["title"] = "Not Found"
+            response["title"] = g("Not Found")
+            response["message"] = g("Permission record not found.")
             response["category"] = "error"
-            response["message"] = "Permission record not found."
     else:
         response["errors"] = form.errors
 

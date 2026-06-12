@@ -2,20 +2,28 @@ import json
 from typing import Dict, List, Tuple, Union
 
 from flask import Response
-from flask_login import login_required
+from flask_babel import gettext as g
 
 from app.blueprints.api import bp
+from app.cls import ColumnID, ColumnName
 from app.extensions.db import db
 from app.forms.exam import AddExamForm, UpdateExamForm
 from app.func import render_td
 from app.models.exam import Exam
 from app.models.permission import Permission
 from app.models.user import permission_required
-from app.cls import ColumnID, ColumnName
+
+cols: List[Tuple[ColumnID, ColumnName]] = [
+    (ColumnID("uid"), ColumnName(g("UID"))),
+    (ColumnID("title"), ColumnName(g("Title"))),
+    (ColumnID("description"), ColumnName(g("Description"))),
+    (ColumnID("total_marks"), ColumnName(g("Total Marks"))),
+    (ColumnID("exam_date"), ColumnName(g("Exam Date"))),
+    (ColumnID("exam_time"), ColumnName(g("Exam Time"))),
+]
 
 
 @bp.get("/fetch/exams")
-@login_required
 @permission_required(Permission.get("FETCH_EXAMS"))
 def fetch_exams() -> Response:
     exams: List[Dict] = [exam.to_dict() for exam in Exam.query.all()]
@@ -27,18 +35,7 @@ def fetch_exams() -> Response:
     )
 
 
-cols: List[Tuple[ColumnID, ColumnName]] = [
-    (ColumnID("uid"), ColumnName("UID")),
-    (ColumnID("title"), ColumnName("Title")),
-    (ColumnID("description"), ColumnName("Description")),
-    (ColumnID("total_marks"), ColumnName("Total Marks")),
-    (ColumnID("exam_date"), ColumnName("Exam Date")),
-    (ColumnID("exam_time"), ColumnName("Exam Time")),
-]
-
-
 @bp.get("/fetch/rows/exams")
-@login_required
 @permission_required(Permission.get("FETCH_EXAMS"))
 def fetch_exams_rows() -> Response:
     exams: List[Exam] = Exam.query.all()
@@ -49,15 +46,19 @@ def fetch_exams_rows() -> Response:
         row = [render_td(col_id, exam) for col_id, _ in cols]
         rows.append(row)
 
+    dct: Dict = {
+        "cols": [(col_id, g(col_name)) for col_id, col_name in cols],
+        "rows": rows,
+    }
+
     return Response(
-        json.dumps({"cols": cols, "rows": rows}),
+        json.dumps(dct),
         status=200,
         headers={"Content-Type": "application/json"},
     )
 
 
 @bp.get("/fetch/row/exam/<string:uid>")
-@login_required
 @permission_required(Permission.get("FETCH_EXAM"))
 def fetch_exam_row(uid: str) -> Response:
     exam: Union[Exam, None] = Exam.query.filter_by(uid=uid).first()
@@ -80,7 +81,7 @@ def fetch_exam_row(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": "Exam with the given ID was not found :(",
+                "message": g("Exam with the given ID was not found :("),
                 "category": "error",
             }
         ),
@@ -90,7 +91,6 @@ def fetch_exam_row(uid: str) -> Response:
 
 
 @bp.get("/fetch/exam/<string:uid>")
-@login_required
 @permission_required(Permission.get("FETCH_EXAM"))
 def fetch_exam(uid: str) -> Response:
     exam: Union[Exam, None] = Exam.query.filter_by(uid=uid).first()
@@ -105,7 +105,7 @@ def fetch_exam(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": "Exam with the given ID was not found :(",
+                "message": g("Exam with the given ID was not found :("),
                 "category": "error",
             }
         ),
@@ -115,7 +115,6 @@ def fetch_exam(uid: str) -> Response:
 
 
 @bp.post("/add/exam")
-@login_required
 @permission_required(Permission.get("CREATE_EXAM"))
 def add_exam() -> Response:
     response: Dict = {}
@@ -137,10 +136,10 @@ def add_exam() -> Response:
         db.session.add(exam)
         db.session.commit()
 
-        response["message"] = "Exam added successfully"
+        response["title"] = g("Exam Added")
+        response["message"] = g("Exam added successfully")
         response["category"] = "success"
-        response["title"] = "Exam Added"
-        response["id"] = exam.uid
+        response["id"] = getattr(exam, "uid")
 
     else:
         response["errors"] = form.errors
@@ -153,7 +152,6 @@ def add_exam() -> Response:
 
 
 @bp.post("/update/exam")
-@login_required
 @permission_required(Permission.get("UPDATE_EXAM") | Permission.get("FETCH_EXAM"))
 def update_exam() -> Response:
     response: Dict = {}
@@ -176,13 +174,13 @@ def update_exam() -> Response:
 
             db.session.commit()
 
-            response["title"] = "Updated!"
+            response["title"] = g("Updated!")
+            response["message"] = g("Exam updated successfully!")
             response["category"] = "success"
-            response["message"] = "Exam updated successfully!"
         else:
-            response["title"] = "Not Found"
+            response["title"] = g("Not Found")
+            response["message"] = g("Exam record not found.")
             response["category"] = "error"
-            response["message"] = "Exam record not found."
     else:
         response["errors"] = form.errors
 
@@ -194,7 +192,6 @@ def update_exam() -> Response:
 
 
 @bp.delete("/delete/exam/<string:uid>")
-@login_required
 @permission_required(Permission.get("DELETE_EXAM") | Permission.get("FETCH_EXAM"))
 def delete_exam(uid: str) -> Response:
     response: Dict = {}
@@ -204,13 +201,13 @@ def delete_exam(uid: str) -> Response:
         db.session.delete(exam)
         db.session.commit()
 
-        response["title"] = "Deleted!"
-        response["message"] = "Exam deleted successfully"
+        response["title"] = g("Deleted!")
+        response["message"] = g("Exam deleted successfully")
         response["category"] = "success"
         response["status"] = 200
     else:
-        response["title"] = "Error :("
-        response["message"] = "Exam not found"
+        response["title"] = g("Error :(")
+        response["message"] = g("Exam not found")
         response["category"] = "error"
         response["status"] = 404
 
