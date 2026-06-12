@@ -1,4 +1,5 @@
 from flask import render_template
+from flask_babel import gettext as _
 
 from app.blueprints.admin import bp
 from app.forms.subject import AddSubjectForm, UpdateSubjectForm
@@ -11,6 +12,6 @@ from app.models.user import permission_required
 def subjects():
     return render_template(
         "admin/pages/subjects.html",
-        title="Subjects",
+        title=_("Subjects"),
         form={"a": AddSubjectForm(), "u": UpdateSubjectForm()},
     )

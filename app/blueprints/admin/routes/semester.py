@@ -1,4 +1,5 @@
 from flask import render_template
+from flask_babel import gettext as _
 
 from app.blueprints.admin import bp
 from app.forms.semester import AddSemesterForm, UpdateSemesterForm
@@ -13,6 +14,6 @@ from app.models.user import permission_required
 def semesters():
     return render_template(
         "admin/pages/semesters.html",
-        title="Semesters",
+        title=_("Semesters"),
         form={"a": AddSemesterForm(), "u": UpdateSemesterForm()},
     )

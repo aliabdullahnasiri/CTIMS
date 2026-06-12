@@ -1,4 +1,5 @@
 from flask import render_template
+from flask_babel import gettext as _
 
 from app.blueprints.admin import bp
 from app.forms.attendance.student import AddStudentAttendanceForm
@@ -15,7 +16,7 @@ from app.models.user import permission_required
 def teachers_attendances():
     return render_template(
         "admin/pages/attendances/teachers.html",
-        title="Teachers Attendances",
+        title=_("Teachers Attendances"),
         form={"a": AddTeacherAttendanceForm()},
     )
 
@@ -28,6 +29,6 @@ def teachers_attendances():
 def students_attendances():
     return render_template(
         "admin/pages/attendances/students.html",
-        title="Students Attendances",
+        title=_("Students Attendances"),
         form={"a": AddStudentAttendanceForm()},
     )

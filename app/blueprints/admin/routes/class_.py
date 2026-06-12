@@ -1,4 +1,5 @@
 from flask import render_template
+from flask_babel import gettext as _
 
 from app.blueprints.admin import bp
 from app.forms.class_ import AddClassForm, UpdateClassForm
@@ -11,6 +12,6 @@ from app.models.user import permission_required
 def classes():
     return render_template(
         "admin/pages/classes.html",
-        title="Classes",
+        title=_("Classes"),
         form={"a": AddClassForm(), "u": UpdateClassForm()},
     )

@@ -2,6 +2,7 @@ import json
 from typing import Dict
 
 from flask import Response, current_app, render_template
+from flask_babel import gettext as _
 
 from app.blueprints.admin import bp
 from app.config import Config
@@ -43,7 +44,7 @@ def view(entity: str, uid: str) -> Response:
 
     if not validate_uid(uid) or not obj:
         response.headers.setdefault("Content-Type", "application/json")
-        response.response = json.dumps({"error": "Invalid UID/Entity :("})
+        response.response = json.dumps({"error": _("Invalid UID/Entity :(")})
         response.status_code = 404
 
         return response
@@ -58,11 +59,11 @@ def view(entity: str, uid: str) -> Response:
                     response.response = render_template(template, **{entity: row})
                     response.status_code = 200
                 else:
-                    response.response = json.dumps({"error": "Row was not found :("})
+                    response.response = json.dumps({"error": _("Row was not found :(")})
                     response.status_code = 404
             break
     else:
-        response.response = json.dumps({"error": "Template was not found :("})
+        response.response = json.dumps({"error": _("Template was not found :(")})
         response.status_code = 404
 
     return response

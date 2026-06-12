@@ -1,4 +1,5 @@
 from flask import render_template
+from flask_babel import gettext as _
 
 from app.blueprints.admin import bp
 from app.forms.time import AddTimeForm, UpdateTimeForm
@@ -11,6 +12,6 @@ from app.models.user import permission_required
 def times():
     return render_template(
         "admin/pages/times.html",
-        title="Times",
+        title=_("Times"),
         form={"a": AddTimeForm(), "u": UpdateTimeForm()},
     )
