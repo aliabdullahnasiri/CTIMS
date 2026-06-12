@@ -1,5 +1,6 @@
 import json
 import re
+from operator import and_
 from typing import Self
 
 from flask_babel import gettext as _
@@ -62,7 +63,15 @@ class Form(FlaskForm):
             if (
                 db.session.query(Phone)
                 .filter(
-                    Phone.number == num,
+                    and_(
+                        (
+                            Phone.user_id != getattr(getattr(self, "uid"), "data")
+                            if "Update" in self.__class__.__name__
+                            and hasattr(self, "uid")
+                            else True
+                        ),
+                        Phone.number == num,
+                    )
                 )
                 .first()
             ):
@@ -105,9 +114,9 @@ class Form(FlaskForm):
         pattern: re.Pattern = re.compile(r"^(D).\d{6}$")
 
         if not pattern.search(uid):
-            raise ValidationError("Not a valid head of department UID.")
+            raise ValidationError(_("Not a valid head of department UID."))
         elif not Department.query.filter_by(uid=uid).first():
-            raise ValidationError("Department with the given ID was not found :(")
+            raise ValidationError(_("Department with the given ID was not found :("))
 
     def validate_job_uid(self, job_uid) -> None:
         pattern: re.Pattern = re.compile(r"^..\d{6}$")
@@ -198,8 +207,9 @@ class Form(FlaskForm):
 
     # Check if username already exists
     def validate_user_name(self, user_name):
-        if User.query.filter_by(user_name=user_name.data).first():
-            raise ValidationError(_("Username already taken"))
+        if self.__class__.__name__ in ["SignupForm", "AddUserForm"]:
+            if User.query.filter_by(user_name=user_name.data).first():
+                raise ValidationError(_("Username already taken"))
 
     # Check if email already exists
     def validate_email(self, email):
