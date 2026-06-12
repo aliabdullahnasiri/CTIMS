@@ -109,12 +109,6 @@ class User(UserMixin, db.Model):
             "avatar": self.avatar_src,
             "phones": [p.number for p in self.phones.all()],
             "roles": [r.uid for r in self.roles.all()],
-            "is_deletable": not (
-                self.is_administrator()
-                and Role.administrator().users.count() == 1
-                and self.get_id() == current_user.get_id()
-            ),
-            "primary_role_uid": self.primary_role_uid,
             **call(getattr(super(), "to_dict")),
         }
 
