@@ -2,7 +2,8 @@ from flask_babel import gettext as _
 from wtforms import EmailField, PasswordField, StringField, SubmitField
 from wtforms.validators import DataRequired, Email, EqualTo, Length
 
-from app.forms import Form
+from app.forms import Form, MustBeUnique
+from app.models.user import User
 
 
 class SignupForm(Form):
@@ -11,6 +12,7 @@ class SignupForm(Form):
         validators=[
             DataRequired(message=_("This field is required.")),
             Length(max=50, message=_("This field cannot exceed 50 characters.")),
+            MustBeUnique(User, "user_name", _("Username already taken")),
         ],
     )
     email = EmailField(
@@ -18,6 +20,7 @@ class SignupForm(Form):
         validators=[
             DataRequired(message=_("This field is required.")),
             Email(message=_("Enter a valid email address")),
+            MustBeUnique(User, "email", _("Email already registered")),
         ],
     )
     password = PasswordField(

@@ -11,7 +11,10 @@ from wtforms import (
 )
 from wtforms.validators import DataRequired, Length
 
-from app.forms import Form
+from app.forms import Form, ValidateUID
+from app.models.class_ import Class
+from app.models.exam import Exam
+from app.models.subject import Subject
 
 
 class AddExamForm(Form):
@@ -52,6 +55,7 @@ class AddExamForm(Form):
         validators=[
             DataRequired(message=_("This field is required.")),
             Length(min=8, max=8, message=_("This field must be 8 characters.")),
+            ValidateUID(Subject),
         ],
     )
     class_id = StringField(
@@ -59,6 +63,7 @@ class AddExamForm(Form):
         validators=[
             DataRequired(message=_("This field is required.")),
             Length(min=8, max=8, message=_("This field must be 8 characters.")),
+            ValidateUID(Class),
         ],
     )
 
@@ -67,7 +72,11 @@ class AddExamForm(Form):
 
 class UpdateExamForm(AddExamForm):
     uid = HiddenField(
-        _("Exam UID"), validators=[DataRequired(message=_("This field is required."))]
+        _("Exam UID"),
+        validators=[
+            DataRequired(message=_("This field is required.")),
+            ValidateUID(Exam),
+        ],
     )
     files = MultipleFileField(
         _("Files"),

@@ -2,7 +2,9 @@ from flask_babel import gettext as _
 from wtforms import HiddenField, StringField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, Length, Optional
 
-from app.forms import Form
+from app.forms import Form, ValidateUID
+from app.models.department import Department
+from app.models.teacher import Teacher
 
 
 class AddDepartmentForm(Form):
@@ -26,15 +28,14 @@ class AddDepartmentForm(Form):
         _("HOD UID"),
         validators=[
             Optional(),
-            Length(min=8, max=8, message=_("This field must be 8 characters.")),
+            ValidateUID(Teacher),
         ],
     )
 
     parent_department_uid = StringField(
         _("Parent Department UID"),
         validators=[
-            Optional(),
-            Length(min=8, max=8, message=_("This field must be 8 characters.")),
+            ValidateUID(Department),
         ],
     )
 
@@ -44,6 +45,12 @@ class AddDepartmentForm(Form):
 class UpdateDepartmentForm(AddDepartmentForm):
     """Form to update an existing Department record."""
 
-    uid = HiddenField(_("UID"))
+    uid = HiddenField(
+        _("UID"),
+        validators=[
+            DataRequired(message=_("This field is required.")),
+            ValidateUID(Department),
+        ],
+    )
 
     submit = SubmitField(_("Update Department"))

@@ -11,8 +11,9 @@ from wtforms import (
 )
 from wtforms.validators import DataRequired, Length
 
-from app.forms import Form
+from app.forms import Form, ValidateUID
 from app.models.exam import Exam
+from app.models.result import Result
 from app.models.student import Student
 
 
@@ -22,6 +23,7 @@ class AddResultForm(Form):
         validators=[
             DataRequired(message=_("This field is required.")),
             Length(min=8, max=8, message=_("This field must be 8 characters.")),
+            ValidateUID(Exam),
         ],
     )
     student_id = StringField(
@@ -29,6 +31,7 @@ class AddResultForm(Form):
         validators=[
             DataRequired(message=_("This field is required.")),
             Length(min=8, max=8, message=_("This field must be 8 characters.")),
+            ValidateUID(Student),
         ],
     )
     obtained_marks = IntegerField(
@@ -46,28 +49,16 @@ class AddResultForm(Form):
                     % (exam.total_marks)
                 )
 
-    def validate_exam_id(self, exam_id) -> None:
-        pattern: re.Pattern = re.compile(r"^E.\d{6}$")
-
-        if not pattern.search(exam_id.data):
-            raise ValidationError(_("Not a valid Exam UID."))
-        elif not Exam.query.filter_by(uid=exam_id.data).first():
-            raise ValidationError(_("Exam with the given ID was not found :("))
-
-    def validate_student_id(self, student_id) -> None:
-        pattern: re.Pattern = re.compile(r"^S.\d{6}$")
-
-        if not pattern.search(student_id.data):
-            raise ValidationError(_("Not a valid Student UID."))
-        elif not Student.query.filter_by(uid=student_id.data).first():
-            raise ValidationError(_("Student with the given ID was not found :("))
-
     submit = SubmitField(_("Add Result"))
 
 
 class UpdateResultForm(AddResultForm):
     uid = HiddenField(
-        _("Result UID"), validators=[DataRequired(message=_("This field is required."))]
+        _("Result UID"),
+        validators=[
+            DataRequired(message=_("This field is required.")),
+            ValidateUID(Result),
+        ],
     )
     files = MultipleFileField(
         _("Files"),

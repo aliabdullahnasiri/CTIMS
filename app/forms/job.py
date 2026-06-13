@@ -2,7 +2,8 @@ from flask_babel import gettext as _
 from wtforms import DecimalField, HiddenField, StringField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, Length, NumberRange, Optional
 
-from app.forms import Form
+from app.forms import Form, ValidateUID
+from app.models.job import Job
 
 
 class AddJobForm(Form):
@@ -45,7 +46,11 @@ class AddJobForm(Form):
 
 class UpdateJobForm(AddJobForm):
     uid = HiddenField(
-        _("Job UID"), validators=[DataRequired(message=_("This field is required."))]
+        _("Job UID"),
+        validators=[
+            DataRequired(message=_("This field is required.")),
+            ValidateUID(Job),
+        ],
     )
 
     submit = SubmitField(_("Update Job"))

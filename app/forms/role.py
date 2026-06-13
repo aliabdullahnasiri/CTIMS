@@ -2,7 +2,8 @@ from flask_babel import gettext as _
 from wtforms import BooleanField, HiddenField, StringField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, Length, Optional
 
-from app.forms import Form
+from app.forms import Form, MustBeUnique, ValidateUID
+from app.models.role import Role
 
 
 class AddRoleForm(Form):
@@ -11,6 +12,7 @@ class AddRoleForm(Form):
         validators=[
             DataRequired(message=_("This field is required.")),
             Length(max=255, message=_("This field cannot exceed 255 characters.")),
+            MustBeUnique(Role, "name"),
         ],
     )
 
@@ -35,7 +37,11 @@ class AddRoleForm(Form):
 
 class UpdateRoleForm(AddRoleForm):
     uid = HiddenField(
-        _("Role UID"), validators=[DataRequired(message=_("This field is required."))]
+        _("Role UID"),
+        validators=[
+            DataRequired(message=_("This field is required.")),
+            ValidateUID(Role),
+        ],
     )
     name = StringField(
         _("Name"),

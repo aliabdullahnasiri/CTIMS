@@ -2,13 +2,17 @@ from flask_babel import gettext as _
 from wtforms import HiddenField, StringField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, Length, Optional
 
-from app.forms import Form
+from app.forms import Form, ValidateUID
+from app.models.role import Permission
 
 
 class UpdatePermissionForm(Form):
     uid = HiddenField(
         _("Permission UID"),
-        validators=[DataRequired(message=_("This field is required."))],
+        validators=[
+            DataRequired(message=_("This field is required.")),
+            ValidateUID(Permission),
+        ],
     )
 
     name = StringField(

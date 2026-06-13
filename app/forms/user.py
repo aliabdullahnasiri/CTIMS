@@ -11,7 +11,10 @@ from wtforms import (
 )
 from wtforms.validators import DataRequired, Email, Length, Optional
 
-from app.forms import Form
+from app.forms import Form, MustBeUnique, ValidateUID
+from app.models.phone import Phone
+from app.models.role import Role
+from app.models.user import User
 
 
 class AddUserForm(Form):
@@ -38,6 +41,7 @@ class AddUserForm(Form):
         validators=[
             DataRequired(message=_("This field is required.")),
             Length(max=50, message=_("This field cannot exceed 50 characters.")),
+            MustBeUnique(User, "user_name", _("Username already taken")),
         ],
     )
     email = StringField(
@@ -45,6 +49,7 @@ class AddUserForm(Form):
         validators=[
             DataRequired(message=_("This field is required.")),
             Email(message=_("Enter a valid email address")),
+            MustBeUnique(User, "email", _("Email already registered")),
         ],
     )
     password = PasswordField(
@@ -54,8 +59,19 @@ class AddUserForm(Form):
     avatar = FileField(_("Upload new profile picture."))
 
     files = MultipleFileField(_("Files"))
-    phones = StringField(_("Phone"), validators=[Optional()])
-    roles = StringField(_("Roles"), validators=[Optional()])
+    phones = StringField(
+        _("Phone"),
+        validators=[
+            Optional(),
+            MustBeUnique(
+                Phone,
+                "number",
+                _("Duplicate entry for phone number!"),
+                "user_id",
+            ),
+        ],
+    )
+    roles = StringField(_("Roles"), validators=[Optional(), ValidateUID(Role)])
 
     submit = SubmitField(_("Add"))
 

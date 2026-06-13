@@ -2,7 +2,10 @@ from flask_babel import gettext as _
 from wtforms import DecimalField, HiddenField, StringField, SubmitField
 from wtforms.validators import DataRequired, Length, NumberRange, Optional
 
+from app.forms import ValidateUID
 from app.forms.user import AddUserForm, UpdateUserForm
+from app.models.teacher import Teacher
+from app.models.time import Time
 
 
 class AddTeacherForm(AddUserForm):
@@ -11,6 +14,7 @@ class AddTeacherForm(AddUserForm):
         validators=[
             DataRequired(message=_("This field is required.")),
             Length(min=8, max=8, message=_("This field must be 8 characters.")),
+            ValidateUID(Time),
         ],
     )
     salary = DecimalField(
@@ -27,6 +31,10 @@ class AddTeacherForm(AddUserForm):
 
 class UpdateTeacherForm(UpdateUserForm, AddTeacherForm):
     uid = HiddenField(
-        _("Teacher ID"), validators=[DataRequired(message=_("This field is required."))]
+        _("Teacher ID"),
+        validators=[
+            DataRequired(message=_("This field is required.")),
+            ValidateUID(Teacher),
+        ],
     )
     submit = SubmitField(_("Update Teacher"))

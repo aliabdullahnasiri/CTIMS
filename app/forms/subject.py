@@ -9,7 +9,9 @@ from wtforms import (
 )
 from wtforms.validators import DataRequired, Length, Optional
 
-from app.forms import Form
+from app.forms import Form, ValidateUID
+from app.models.semester import Semester
+from app.models.subject import Subject
 
 
 class AddSubjectForm(Form):
@@ -32,7 +34,10 @@ class AddSubjectForm(Form):
 
     semester_uid = StringField(
         _("Semester UID"),
-        validators=[DataRequired(message=_("This field is required."))],
+        validators=[
+            DataRequired(message=_("This field is required.")),
+            ValidateUID(Semester),
+        ],
     )
 
     files = MultipleFileField(_("Files"))
@@ -43,7 +48,10 @@ class AddSubjectForm(Form):
 class UpdateSubjectForm(AddSubjectForm):
     uid = HiddenField(
         _("Subject UID"),
-        validators=[DataRequired(message=_("This field is required."))],
+        validators=[
+            DataRequired(message=_("This field is required.")),
+            ValidateUID(Subject),
+        ],
     )
 
     submit = SubmitField(_("Update Subject"))

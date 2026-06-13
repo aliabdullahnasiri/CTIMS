@@ -2,7 +2,8 @@ from flask_babel import gettext as _
 from wtforms import HiddenField, StringField, SubmitField, TextAreaField, TimeField
 from wtforms.validators import DataRequired, Length, Optional
 
-from app.forms import Form
+from app.forms import Form, ValidateUID
+from app.models.time import Time
 
 
 class AddTimeForm(Form):
@@ -42,6 +43,12 @@ class AddTimeForm(Form):
 class UpdateTimeForm(AddTimeForm):
     """Form to update an existing Time record."""
 
-    uid = HiddenField(_("UID"))
+    uid = HiddenField(
+        _("UID"),
+        validators=[
+            DataRequired(message=_("This field is required.")),
+            ValidateUID(Time),
+        ],
+    )
 
     submit = SubmitField(_("Update Time"))
