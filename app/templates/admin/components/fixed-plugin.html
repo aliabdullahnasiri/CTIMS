@@ -4,11 +4,11 @@
   </a>
   <div class="card shadow-lg">
     <div class="card-header pb-0 pt-3">
-      <div class="float-start">
+      <div class="float-{{ 'end' if lang in ['fa', 'ps'] else 'start' }}">
         <h5 class="mt-3 mb-0">{{ _("UI Configurator") }}</h5>
         <p>{{ _("See our dashboard options.") }}</p>
       </div>
-      <div class="float-end mt-4">
+      <div class="float-{{ 'start' if lang in ['fa', 'ps'] else 'end' }} mt-4">
         <button class="btn btn-link text-dark p-0 fixed-plugin-close-button">
           <i class="material-symbols-rounded">clear</i>
         </button>
@@ -22,7 +22,7 @@
         <h6 class="mb-0">{{ _("Sidebar Colors") }}</h6>
       </div>
       <a href="javascript:void(0)" class="switch-trigger background-color">
-        <div class="badge-colors my-2 text-start">
+        <div class="badge-colors my-2">
           <span
             class="badge filter bg-gradient-primary"
             data-color="primary"
@@ -58,25 +58,27 @@
       <!-- Sidenav Type -->
       <div class="mt-3">
         <h6 class="mb-0">{{ _("Sidenav Type") }}</h6>
-        <p class="text-sm">{{ _("Choose between different sidenav types.") }}</p>
+        <p class="text-sm">
+          {{ _("Choose between different sidenav types.") }}
+        </p>
       </div>
-      <div class="d-flex sidenav-type">
+      <div class="d-flex sidenav-type justify-content-evenly">
         <button
-          class="btn bg-gradient-dark px-3 mb-2"
+          class="btn bg-gradient-dark"
           data-class="bg-gradient-dark"
           onclick="sidebarType(this)"
         >
           {{ _("Dark") }}
         </button>
         <button
-          class="btn bg-gradient-dark px-3 mb-2 ms-2"
+          class="btn bg-gradient-dark"
           data-class="bg-transparent"
           onclick="sidebarType(this)"
         >
           {{ _("Transparent") }}
         </button>
         <button
-          class="btn bg-gradient-dark px-3 mb-2 active ms-2"
+          class="btn bg-gradient-dark"
           data-class="bg-white"
           onclick="sidebarType(this)"
         >
@@ -87,11 +89,11 @@
         {{ _("You can change the sidenav type just on desktop view.") }}
       </p>
       <hr class="horizontal dark my-3" />
-      <div class="mt-2 d-flex">
+      <div class="mt-2 d-flex justify-content-between">
         <h6 class="mb-0">{{ _("Light / Dark") }}</h6>
-        <div class="form-check form-switch ps-0 ms-auto my-auto">
+        <div class="form-check form-switch">
           <input
-            class="form-check-input mt-1 ms-auto"
+            class="form-check-input mt-1"
             type="checkbox"
             id="dark-version"
             onclick="darkMode(this)"
