@@ -3,7 +3,6 @@ from typing import Dict, List, Tuple, Union
 
 from flask import Response, request, url_for
 from flask_babel import gettext as g
-from flask_login import login_required
 
 from app.blueprints.api import bp
 from app.cls import ColumnID, ColumnName
@@ -26,7 +25,6 @@ cols: List[Tuple[ColumnID, ColumnName]] = [
 
 
 @bp.get("/fetch/users")
-@login_required
 @permission_required(Permission.get("FETCH_USERS"))
 def fetch_users() -> Response:
     users: List[User] = [user.to_dict() for user in User.query.all()]
@@ -40,7 +38,6 @@ def fetch_users() -> Response:
 
 
 @bp.get("/fetch/rows/users")
-@login_required
 @permission_required(Permission.get("FETCH_USERS"))
 def fetch_users_rows() -> Response:
     users: List[User] = User.query.all()
@@ -66,7 +63,6 @@ def fetch_users_rows() -> Response:
 
 
 @bp.get("/fetch/row/user/<string:uid>")
-@login_required
 @permission_required(Permission.get("FETCH_USER"))
 def fetch_user_row(uid) -> Response:
     response: Response = Response()
@@ -87,7 +83,7 @@ def fetch_user_row(uid) -> Response:
 
     else:
         dct = {
-            "message": "User with the given ID was not found :(",
+            "message": g("User with the given ID was not found :("),
             "category": "error",
         }
 
@@ -98,7 +94,6 @@ def fetch_user_row(uid) -> Response:
 
 
 @bp.get("/fetch/user/<string:uid>")
-@login_required
 @permission_required(Permission.get("FETCH_USER"))
 def fetch_user(uid) -> Response:
     user = User.query.filter_by(uid=uid).first()
@@ -115,7 +110,7 @@ def fetch_user(uid) -> Response:
     return Response(
         json.dumps(
             {
-                "message": "User with the given ID was not found :(",
+                "message": g("User with the given ID was not found :("),
                 "category": "error",
             }
         ),
@@ -125,7 +120,6 @@ def fetch_user(uid) -> Response:
 
 
 @bp.post("/update/user")
-@login_required
 @permission_required(Permission.get("FETCH_USER") | Permission.get("UPDATE_USER"))
 def update_user(user=None) -> Response:
     form = UpdateUserForm()
@@ -166,9 +160,9 @@ def update_user(user=None) -> Response:
 
             db.session.commit()
 
-            response["title"] = "Good job!"
+            response["title"] = g("Good job!")
+            response["message"] = g("User updated successfully!")
             response["category"] = "success"
-            response["message"] = "User updated successfully!"
 
     else:
         response["errors"] = form.errors
@@ -179,7 +173,6 @@ def update_user(user=None) -> Response:
 
 
 @bp.delete("/delete/user/<string:uid>")
-@login_required
 @permission_required(Permission.get("FETCH_USER") | Permission.get("DELETE_USER"))
 def delete_user(uid):
     response = {}
@@ -188,14 +181,14 @@ def delete_user(uid):
         db.session.delete(user)
         db.session.commit()
 
-        response["title"] = "Deleted!"
-        response["message"] = "User deleted successfully"
+        response["title"] = g("Deleted!")
+        response["message"] = g("User deleted successfully")
         response["category"] = "success"
         response["status"] = 200
 
     else:
-        response["title"] = "Error :("
-        response["message"] = "User not found"
+        response["title"] = g("Error :(")
+        response["message"] = g("User not found")
         response["category"] = "error"
         response["status"] = 404
 
@@ -207,7 +200,6 @@ def delete_user(uid):
 
 
 @bp.post("/add/user")
-@login_required
 @permission_required(Permission.get("CREATE_USER"))
 def add_user() -> Response:
     form = AddUserForm()
@@ -241,9 +233,9 @@ def add_user() -> Response:
 
         db.session.commit()
 
-        response["message"] = "User added successfully"
+        response["message"] = g("User added successfully")
+        response["title"] = g("User Added")
         response["category"] = "success"
-        response["title"] = "User Added"
         response["id"] = getattr(user, "uid")
 
     else:
