@@ -38,6 +38,11 @@
       rel="stylesheet"
     />
 
+    <link
+      href="{{ url_for('static', filename='admin/assets/css/persianDatepicker-default.css') }}"
+      rel="stylesheet"
+    />
+
     {% endblock %}
 
     <script>
@@ -84,6 +89,8 @@
     <script src="{{ url_for('static', filename='admin/assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ url_for('static', filename='admin/assets/js/plugins/smooth-scrollbar.min.js') }}"></script>
     <script src="{{ url_for('static', filename='admin/assets/js/plugins/chartjs.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='admin/assets/js/plugins/jquery-1.10.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='admin/assets/js/plugins/persianDatepicker/persianDatepicker.js') }}"></script>
 
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="{{ url_for('static', filename='admin/assets/js/material-dashboard.min.js') }}"></script>
