@@ -115,3 +115,73 @@ export function createLoader() {
     transformAllMovingTab();
   });
 }).call();
+
+(function () {
+  if (getComputedStyle(document.body).direction === "rtl") {
+    const $inputs = $("input.form-control[type=date]");
+
+    $inputs.each(function () {
+      const $input = $(this);
+
+      $input.persianDatepicker({
+        months: [
+          "حمل",
+          "ثور",
+          "جوزا",
+          "سرطان",
+          "اسد",
+          "سنبله",
+          "میزان",
+          "عقرب",
+          "قوس",
+          "جدی",
+          "دلو",
+          "حوت",
+        ],
+        dowTitle: [
+          "شنبه",
+          "یکشنبه",
+          "دوشنبه",
+          "سه شنبه",
+          "چهارشنبه",
+          "پنج شنبه",
+          "جمعه",
+        ],
+        shortDowTitle: ["ش", "ی", "د", "س", "چ", "پ", "ج"],
+        showGregorianDate: false,
+        persianNumbers: true,
+        formatDate: "YYYY/MM/DD",
+        selectedBefore: false,
+        selectedDate: null,
+        startDate: null,
+        endDate: null,
+        prevArrow: "◄",
+        nextArrow: "►",
+        theme: "default",
+        alwaysShow: false,
+        selectableYears: null,
+        selectableMonths: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        cellWidth: 25,
+        cellHeight: 20,
+        fontSize: 13,
+        isRTL: true,
+        calendarPosition: {
+          x: 0,
+          y: 0,
+        },
+        onShow: function () {},
+        onHide: function () {},
+        onSelect: function () {
+          const d = new Date($input.context.dataset.gdate);
+          $input.context.value =
+            d.getFullYear() +
+            "-" +
+            String(d.getMonth() + 1).padStart(2, "0") +
+            "-" +
+            String(d.getDate()).padStart(2, "0");
+        },
+        onRender: function () {},
+      });
+    });
+  }
+}).call(this);
