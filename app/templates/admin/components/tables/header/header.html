@@ -1,0 +1,37 @@
+<div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+  <div
+    class="align-items-center bg-gradient-dark border-radius-lg d-flex justify-content-between pb-3 pt-4 shadow-dark"
+  >
+    <h6 class="text-white text-capitalize ps-3 mx-3">{{ _(title) }}</h6>
+    <div
+      class="align-items-center d-flex justify-content-center mx-4 table-control"
+    >
+      <div>
+        <button data-bs-role="multiple-delete" class="btn btn-danger m-0 mx-2">
+          <i class="material-symbols-rounded fs-5">delete</i>
+        </button>
+      </div>
+      <div>
+        <button
+          class="btn btn-info m-0 mx-2"
+          data-bs-role="add"
+          data-bs-toggle="modal"
+          data-bs-placement="top"
+          data-bs-target=""
+          data-bs-add="add"
+        >
+          <i class="material-symbols-rounded fs-5">add</i>
+        </button>
+      </div>
+      <div>
+        <button data-bs-role="refresh" class="btn btn-info m-0 mx-2">
+          <i class="material-symbols-rounded fs-5">refresh</i>
+        </button>
+      </div>
+      <div class="input-group input-group-outline mx-2">
+        <label class="form-label">{{ _("Search...") }}</label
+        ><input type="text" data-bs-role="search" class="form-control search" />
+      </div>
+    </div>
+  </div>
+</div>
