@@ -518,113 +518,66 @@ function viewRow(tableElement, row) {
     });
 }
 
-function initTableContol(
-  tableElement,
-  tableControlElement,
-  tbodyElement,
-  theadElement,
-) {
-  let addRowContainerDivElement;
+function initTableControl(tableElement, theadElement, tbodyElement) {
+  let headerElement = tableElement
+    .closest("div.card")
+    ?.querySelector("div.card-header");
+  let addButtonElement = headerElement.querySelector("[data-bs-role='add']");
+  let deleteButtonElement = headerElement.querySelector(
+    "[data-bs-role='multiple-delete']",
+  );
+  let reloadButtonElement = headerElement.querySelector(
+    "[data-bs-role=refresh]",
+  );
+  let searchInputElement = headerElement.querySelector(
+    "input[data-bs-role=search]",
+  );
+  let formElement;
 
-  if (tableElement.dataset.addRowModalId) {
-    // Add Row
-    addRowContainerDivElement = document.createElement("div");
-    let addRowButtonElement = document.createElement("button");
-    let addRowIconElement = document.createElement("i");
-
-    addRowIconElement.classList.value = "material-symbols-rounded fs-5";
-    addRowIconElement.innerHTML = "add";
-
-    addRowButtonElement.classList.value = "btn btn-info m-0 mx-2";
-    addRowButtonElement.dataset.bsToggle = "modal";
-    addRowButtonElement.dataset.bsPlacement = "top";
-    addRowButtonElement.dataset.bsTarget = tableElement.dataset.addRowModalId;
-    addRowButtonElement.dataset.bsAdd = "add";
-
-    addRowButtonElement.append(addRowIconElement);
-    addRowContainerDivElement.append(addRowButtonElement);
-
-    addRowButtonElement.addEventListener("click", function () {
-      resetForm(
-        document.querySelector(
-          addRowButtonElement.dataset.bsTarget.concat(" form"),
-        ),
+  if (addButtonElement)
+    if (tableElement.dataset.addRowModalId) {
+      formElement = document.querySelector(
+        addButtonElement.dataset.bsTarget?.concat(" form"),
       );
+
+      addButtonElement.setAttribute(
+        "data-bs-target",
+        tableElement.dataset.addRowModalId,
+      );
+
+      if (formElement)
+        addButtonElement.addEventListener("click", function () {
+          resetForm(formElement);
+        });
+    } else {
+      addButtonElement.setAttribute("disabled", true);
+    }
+
+  if (deleteButtonElement)
+    if (!tableElement.dataset.deleteRow)
+      deleteButtonElement.setAttribute("disabled", true);
+
+  if (reloadButtonElement)
+    reloadButtonElement.addEventListener("click", function () {
+      initTable(tableElement, theadElement, tbodyElement);
+    });
+
+  if (searchInputElement) {
+    let timer;
+    searchInputElement.addEventListener("input", (event) => {
+      clearTimeout(timer);
+
+      const searchTerm = event.target.value.toLowerCase();
+
+      timer = setTimeout(() => {
+        Array.from(tbodyElement.querySelectorAll("tr")).forEach((row) => {
+          const text = row.textContent.toLowerCase();
+
+          row.style.display = text.includes(searchTerm) ? "" : "none";
+        });
+      }, 500);
     });
   }
-
-  // Delete Multiple Rows
-  if (tableElement.dataset.deleteRow) {
-    let deleteRowsContainerDivElement = document.createElement("div");
-    let deleteRowButtonElement = document.createElement("button");
-    let deleteRowIconElement = document.createElement("i");
-
-    deleteRowButtonElement.dataset.bsRole = "multiple-delete";
-
-    deleteRowIconElement.classList.value = "material-symbols-rounded fs-5";
-    deleteRowIconElement.innerHTML = "delete";
-
-    deleteRowButtonElement.classList.value = "btn btn-danger m-0 mx-2";
-
-    deleteRowButtonElement.append(deleteRowIconElement);
-    deleteRowsContainerDivElement.append(deleteRowButtonElement);
-
-    tableControlElement.append(deleteRowsContainerDivElement);
-  }
-
-  // Reload Button
-  let reloadsContainerDivElement = document.createElement("div");
-  let reloadButtonElement = document.createElement("button");
-  let reloadIconElement = document.createElement("i");
-
-  reloadIconElement.classList.value = "material-symbols-rounded fs-5";
-  reloadIconElement.innerHTML = "refresh";
-  reloadButtonElement.classList.value = "btn btn-info m-0 mx-2";
-  reloadButtonElement.append(reloadIconElement);
-  reloadsContainerDivElement.append(reloadButtonElement);
-
-  reloadButtonElement.addEventListener("click", function () {
-    initTable(tableElement, theadElement, tbodyElement);
-  });
-
-  // Search
-  let searchInputContainerDivElement = document.createElement("div");
-  let searchInputLabel = document.createElement("label");
-  let searchInputElement = document.createElement("input");
-  let timer;
-
-  searchInputElement.addEventListener("input", (event) => {
-    clearTimeout(timer);
-
-    const searchTerm = event.target.value.toLowerCase();
-
-    timer = setTimeout(() => {
-      Array.from(tbodyElement.querySelectorAll("tr")).forEach((row) => {
-        const text = row.textContent.toLowerCase();
-
-        row.style.display = text.includes(searchTerm) ? "" : "none";
-      });
-    }, 500);
-  });
-
-  searchInputContainerDivElement.classList.value =
-    "input-group input-group-outline mx-2";
-
-  searchInputLabel.classList.add("form-label");
-  searchInputLabel.innerHTML = "Search...";
-
-  searchInputElement.type = "text";
-  searchInputElement.classList.value = "form-control search";
-
-  searchInputContainerDivElement.append(searchInputLabel);
-  searchInputContainerDivElement.append(searchInputElement);
-
-  // Append
-  if (addRowContainerDivElement)
-    tableControlElement.append(addRowContainerDivElement);
-
-  tableControlElement.append(reloadsContainerDivElement);
-  tableControlElement.append(searchInputContainerDivElement);
 }
 
 (function () {
@@ -634,15 +587,8 @@ function initTableContol(
 
   const theadElement = tableElement.querySelector("thead");
   const tbodyElement = tableElement.querySelector("tbody");
-  const cardElement = tableElement.closest("div.card");
-  const tableControlDivElement = cardElement.querySelector("div.table-control");
 
-  initTableContol(
-    tableElement,
-    tableControlDivElement,
-    tbodyElement,
-    theadElement,
-  );
+  initTableControl(tableElement, theadElement, tbodyElement);
   initTable(tableElement, theadElement, tbodyElement);
 
   document.addEventListener("click", (event) => {
