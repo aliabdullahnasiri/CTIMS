@@ -688,3 +688,22 @@ export function upload(files, dropZone) {
     true,
   );
 }).call(this);
+
+(function () {
+  document.body.addEventListener("click", (event) => {
+    const liElement = event.target.closest("li[data-url][data-uid]");
+    const deleteFileButton = event.target.closest(
+      "button[data-role='delete-file']",
+    );
+
+    if (liElement && deleteFileButton) {
+      let id = liElement.dataset.uid;
+
+      fetch("/api/delete/file/".concat(id))
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+        });
+    }
+  });
+}).call(this);
