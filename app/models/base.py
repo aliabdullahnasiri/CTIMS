@@ -2,12 +2,10 @@ from datetime import datetime, timedelta, timezone
 from typing import Any, Literal
 
 import humanize
-from flask import request
 from numerize import numerize
 from sqlalchemy import Column, Integer, String, event, extract, func
 from sqlalchemy.ext.declarative import declared_attr
 
-from app.extensions.console import console
 from app.extensions.db import db
 
 

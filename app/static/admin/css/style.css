@@ -357,3 +357,20 @@ td .avatar {
 .rtl ul.list-group {
   padding: 0;
 }
+
+.suggestions-list {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.suggestions-list .item {
+  transition: 0.32s;
+}
+
+.suggestions-list .item:hover {
+  transition: 0.32s;
+  background-image: linear-gradient(195deg, #747b8a 0%, #495361 100%);
+}
+
+.suggestions-list:not(:has(.item)) {
+  display: none !important;
+}

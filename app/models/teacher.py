@@ -34,6 +34,10 @@ class Teacher(db.Model):
     )
 
     @property
+    def full_name(self):
+        return self.user.full_name
+
+    @property
     def display_salary(self) -> str:
         return (
             f"{CURRENCY_SYMBOL}{float(self.salary):,.2f}"

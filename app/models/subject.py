@@ -4,7 +4,6 @@ from typing import Dict, List
 import humanize
 from numerize.numerize import numerize
 
-from app.extensions.console import console
 from app.extensions.db import db
 from app.models.file import File
 

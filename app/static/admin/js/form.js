@@ -553,3 +553,138 @@ export function upload(files, dropZone) {
     formElement.noValidate = true;
   });
 })();
+
+(function () {
+  document.body.addEventListener(
+    "focusin",
+    (event) => {
+      const target = event.target;
+
+      if (Array("INPUT", "TEXTAREA").includes(target.tagName)) {
+        const inputGroup = target.closest(".input-group");
+
+        Array.from(document.querySelectorAll("div.suggestions-list")).forEach(
+          (element) => {
+            if (inputGroup && inputGroup.contains(element)) {
+              return; // Skip this one
+            }
+
+            element.classList.add("d-none");
+          },
+        );
+      }
+    },
+    true,
+  );
+
+  document.body.addEventListener(
+    "click",
+    (event) => {
+      const target = event.target;
+
+      if (target.closest("div.suggestions-list,.input-group")) return;
+
+      Array.from(document.querySelectorAll("div.suggestions-list")).forEach(
+        (element) => {
+          element.classList.add("d-none");
+        },
+      );
+    },
+    true,
+  );
+
+  const handler = function (event) {
+    const target = event.target;
+
+    if (
+      target.tagName !== "INPUT" ||
+      target.dataset.autoComplete !== "true" ||
+      (target.value.length < 3 && event.type !== "focus" && event.keyCode !== 8)
+    )
+      return;
+
+    const parentElement = target.parentElement;
+
+    let suggestionsListDivElement = parentElement.querySelector(
+      "div.suggestions-list",
+    );
+
+    if (!suggestionsListDivElement) {
+      suggestionsListDivElement = document.createElement("div");
+      suggestionsListDivElement.classList.value =
+        "m-0 mt-2 position-absolute rounded-2 suggestions-list top-100 w-100 z-index-2 p-0 pb-2";
+
+      parentElement.append(suggestionsListDivElement);
+    }
+
+    suggestionsListDivElement.classList.remove("d-none");
+
+    let url = target.dataset.fetchApi;
+
+    if (url) {
+      const query = target.value;
+
+      let params = new URLSearchParams();
+
+      params.set("query", query);
+      params.set("model-name", target.dataset.modelName);
+      params.set("search-col", target.dataset.searchCol);
+      params.set("select-val", target.dataset.selectVal);
+      params.set("template", target.dataset.template);
+
+      url = url.concat(String.fromCharCode(63)).concat(params.toString());
+
+      fetch(url)
+        .then((response) => response.text())
+        .then((data) => {
+          suggestionsListDivElement.innerHTML = data;
+        });
+    }
+  };
+
+  document.body.addEventListener("focus", handler, true);
+  document.body.addEventListener("keyup", handler, true);
+  document.body.addEventListener(
+    "click",
+    (event) => {
+      const target = event.target;
+      const suggestionsListDivElement = target.closest("div.suggestions-list");
+      const itemElement = target.closest(".item");
+
+      if (!suggestionsListDivElement || !itemElement) return;
+
+      suggestionsListDivElement.classList.add("d-none");
+
+      const inputGroup = target.closest("div.input-group");
+      const inputElement = inputGroup.querySelector(
+        "input[data-auto-complete=true]",
+      );
+      const selectVal = inputElement.dataset.selectVal;
+
+      let val = itemElement.getAttribute(
+        "data".concat(String.fromCharCode(45)).concat(selectVal),
+      );
+
+      const valsElement =
+        inputGroup?.parentElement?.querySelector("div.values");
+
+      inputElement.value = "";
+
+      if (valsElement && !valsElement.innerHTML.includes(val)) {
+        let spanElement = document.createElement("span");
+        spanElement.classList.value =
+          "badge badge-sm bg-gradient-secondary mx-2 my-1 cursor-pointer tt-none";
+        spanElement.dataset.role = "value";
+        spanElement.innerHTML = val;
+
+        valsElement.append(spanElement);
+      }
+
+      if (!valsElement) {
+        inputGroup.classList.add("is-filled");
+        inputElement.value = val;
+      }
+    },
+    true,
+  );
+}).call(this);
