@@ -1,5 +1,9 @@
 {% with f = form.a %}
-<form method="POST" action="{{ url_for('api.add_employee') }}">
+<form
+  autocomplete="off"
+  method="POST"
+  action="{{ url_for('api.add_employee') }}"
+>
   {{ f.hidden_tag() }}
 
   <div class="row mb-5 mt-4">

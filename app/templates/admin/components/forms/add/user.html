@@ -1,5 +1,6 @@
 {% with form = add_user_form %}
 <form
+  autocomplete="off"
   method="POST"
   action="{{ url_for('api.add_user') }}"
   enctype="multipart/form-data"

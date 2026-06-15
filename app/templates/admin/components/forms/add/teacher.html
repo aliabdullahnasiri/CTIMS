@@ -1,5 +1,6 @@
 {% with f = form.a %}
 <form
+  autocomplete="off"
   method="POST"
   action="{{ url_for('api.add_teacher') }}"
   enctype="multipart/form-data"

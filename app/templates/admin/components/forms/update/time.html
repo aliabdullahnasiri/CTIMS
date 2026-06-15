@@ -1,5 +1,6 @@
 {% with f = form.u %}
 <form
+  autocomplete="off"
   method="POST"
   action="{{ url_for('api.update_time') }}"
   data-get="{{ url_for('api.fetch_time', uid='@') }}"

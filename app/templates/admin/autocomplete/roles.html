@@ -1,0 +1,9 @@
+{% extends "admin/autocomplete/base.html" %}
+
+{% block content %}
+  <ul class="list-unstyled p-2 pb-0 items">
+    {% for row in rows %}
+    <li class="p-2 item rounded-2 text-white cursor-pointer" data-uid="{{ row.uid }}">{{ row.name }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

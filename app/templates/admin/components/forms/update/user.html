@@ -1,5 +1,6 @@
 {% with form = update_user_form %}
 <form
+  autocomplete="off"
   method="POST"
   action="{{ url_for('api.update_user') }}"
   data-get="{{ url_for('api.fetch_user', uid='@') }}"
