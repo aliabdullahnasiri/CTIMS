@@ -87,7 +87,6 @@ class Form(FlaskForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        print(self._fields)
         # Translate all field labels so individual form files don't need to call _ for each label
         for _field in getattr(self, "_fields", {}).values():
             try:
