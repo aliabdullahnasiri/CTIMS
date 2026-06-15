@@ -1346,12 +1346,11 @@ msgstr "سفید"
 
 #: app/templates/admin/components/fixed-plugin.html:90
 msgid "Language"
-msgstr ""
+msgstr "زبان"
 
 #: app/templates/admin/components/fixed-plugin.html:91
-#, fuzzy
 msgid "Choose between different language."
-msgstr "بین انواع مختلف نوار کناری انتخاب کنید."
+msgstr "زبان مورد نظر خود را انتخاب کنید."
 
 #: app/templates/admin/components/fixed-plugin.html:105
 msgid "You can change the sidenav type just on desktop view."
