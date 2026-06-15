@@ -163,7 +163,7 @@ def add_student() -> Response:
         response["message"] = g("Student added successfully")
         response["title"] = g("Student Added")
         response["category"] = "success"
-        response["id"] = getattr(user, "uid")
+        response["id"] = getattr(student, "uid")
 
     else:
         response["errors"] = form.errors
