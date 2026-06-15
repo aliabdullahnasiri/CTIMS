@@ -35,10 +35,10 @@ class MustBeUnique:
         except:
             vals.append(field.data)
 
+        print(self.model.__name__, form.__class__.__name__)
         for val in vals:
             if (
-                "Update" in form.__class__.__name__
-                and self.model.query.filter(
+                self.model.query.filter(
                     and_(
                         (
                             getattr(self.model, self.col)
@@ -47,9 +47,9 @@ class MustBeUnique:
                                     form,
                                     (
                                         self.field
-                                        if self.model.__class__.__name__
-                                        not in form.__class__.__name__
-                                        else f"{self.model.__class__.__name__.lower()}_{self.field}"
+                                        if self.model.__name__
+                                        in form.__class__.__name__
+                                        else f"{self.model.__name__.lower()}_{self.field}"
                                     ),
                                 ),
                                 "data",
@@ -58,7 +58,8 @@ class MustBeUnique:
                         getattr(self.model, self.name) == val,
                     )
                 ).count()
-                or self.model.query.filter(
+                if "Update" in form.__class__.__name__
+                else self.model.query.filter(
                     getattr(self.model, self.name) == val,
                 ).count()
             ):

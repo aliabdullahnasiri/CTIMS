@@ -5,24 +5,36 @@ import { createLoader, transformAllMovingTab } from "./script.js";
   document.addEventListener("show.bs.modal", (event) => {
     transformAllMovingTab();
 
-    let label = event.target.getAttribute("aria-labelledby");
-    if (!label?.search(/^Add/)) {
-      Array.from(
-        event.target.querySelectorAll(
-          "form div.input-group.focused.is-focused",
-        ),
-      ).forEach((input) => {
-        input?.classList.remove("focused");
-        input?.classList.remove("is-focused");
-      });
-    }
+    const form = event.target.querySelector("form");
 
-    Array.from(event.target.querySelectorAll("ul li[data-uid]")).forEach(
-      (element) => {
-        element?.remove();
-      },
-    );
+    if (form) {
+      let label = event.target.getAttribute("aria-labelledby");
+
+      if (!label?.search(/^Add/)) {
+        form?.reset();
+
+        Array.from(form.querySelectorAll("div.input-group")).forEach(
+          (input) => {
+            input?.classList.remove("focused");
+            input?.classList.remove("is-focused");
+            input?.classList.remove("is-filled");
+            input?.classList.remove("is-invalid");
+          },
+        );
+
+        Array.from(event.target.querySelectorAll("ul li[data-uid]")).forEach(
+          (element) => {
+            element?.remove();
+          },
+        );
+
+        Array.from(form.querySelectorAll("div.errors")).forEach((element) => {
+          element.remove();
+        });
+      }
+    }
   });
+
   document.addEventListener("show.bs.modal", (event) => {
     const form = event.target.querySelector("form[data-get]");
 
