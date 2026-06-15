@@ -366,9 +366,19 @@ td .avatar {
   transition: 0.32s;
 }
 
+.suggestions-list .item {
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
 .suggestions-list .item:hover {
   transition: 0.32s;
-  background-image: linear-gradient(195deg, #747b8a 0%, #495361 100%);
+  background: var(--bs-table-hover-bg);
+}
+
+body.dark-version .suggestions-list .item:hover {
+  background: rgb(10 10 10 / 18%);
+  border: 1px solid rgb(155 155 155 / 18%);
 }
 
 .suggestions-list:not(:has(.item)) {
