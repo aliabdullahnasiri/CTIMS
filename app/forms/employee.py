@@ -13,6 +13,7 @@ from app.forms import ValidateUID
 from app.forms.user import AddUserForm, UpdateUserForm
 from app.models.employee import Employee
 from app.models.job import Job
+from app.models.user import User
 
 
 class AddEmployeeForm(AddUserForm):
@@ -57,6 +58,13 @@ class UpdateEmployeeForm(UpdateUserForm, AddEmployeeForm):
         validators=[
             DataRequired(message=_("This field is required.")),
             ValidateUID(Employee),
+        ],
+    )
+    user_uid = HiddenField(
+        _("User UID"),
+        validators=[
+            DataRequired(message=_("This field is required.")),
+            ValidateUID(User),
         ],
     )
     password = PasswordField(_("Password"))

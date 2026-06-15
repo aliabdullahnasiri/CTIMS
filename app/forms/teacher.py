@@ -6,6 +6,7 @@ from app.forms import ValidateUID
 from app.forms.user import AddUserForm, UpdateUserForm
 from app.models.teacher import Teacher
 from app.models.time import Time
+from app.models.user import User
 
 
 class AddTeacherForm(AddUserForm):
@@ -43,6 +44,13 @@ class UpdateTeacherForm(UpdateUserForm, AddTeacherForm):
         validators=[
             DataRequired(message=_("This field is required.")),
             ValidateUID(Teacher),
+        ],
+    )
+    user_uid = HiddenField(
+        _("User UID"),
+        validators=[
+            DataRequired(message=_("This field is required.")),
+            ValidateUID(User),
         ],
     )
     submit = SubmitField(_("Update Teacher"))

@@ -19,10 +19,12 @@ class MustBeUnique:
         name,
         message=None,
         col="uid",
+        field="uid",
     ) -> None:
         self.model = model
         self.name = name
         self.col = col
+        self.field = field
         self.message = message
 
     def __call__(self, form, field):
@@ -34,17 +36,32 @@ class MustBeUnique:
             vals.append(field.data)
 
         for val in vals:
-            if self.model.query.filter(
-                and_(
-                    (
-                        getattr(self.model, self.col)
-                        != getattr(getattr(form, "uid"), "data")
-                        if "Update" in form.__class__.__name__ and hasattr(form, "uid")
-                        else getattr(self.model, "uid")
-                    ),
+            if (
+                "Update" in form.__class__.__name__
+                and self.model.query.filter(
+                    and_(
+                        (
+                            getattr(self.model, self.col)
+                            != getattr(
+                                getattr(
+                                    form,
+                                    (
+                                        self.field
+                                        if self.model.__class__.__name__
+                                        not in form.__class__.__name__
+                                        else f"{self.model.__class__.__name__.lower()}_{self.field}"
+                                    ),
+                                ),
+                                "data",
+                            )
+                        ),
+                        getattr(self.model, self.name) == val,
+                    )
+                ).count()
+                or self.model.query.filter(
                     getattr(self.model, self.name) == val,
-                )
-            ).count():
+                ).count()
+            ):
                 raise ValidationError(_(self.message))
 
 
