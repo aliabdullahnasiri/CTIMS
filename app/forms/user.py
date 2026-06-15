@@ -1,4 +1,3 @@
-from flask import url_for
 from flask_babel import gettext as _
 from flask_wtf.file import FileField
 from wtforms import (
