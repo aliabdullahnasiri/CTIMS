@@ -25,6 +25,14 @@ class AddResultForm(Form):
             Length(min=8, max=8, message=_("This field must be 8 characters.")),
             ValidateUID(Exam),
         ],
+        render_kw={
+            "data-auto-complete": "true",
+            "data-fetch-api": "api.autocomplete",
+            "data-model-name": "Exam",
+            "data-select-val": "uid",
+            "data-search-col": "title",
+            "data-template": "classes.html",
+        },
     )
     student_id = StringField(
         _("Student UID"),
@@ -33,6 +41,14 @@ class AddResultForm(Form):
             Length(min=8, max=8, message=_("This field must be 8 characters.")),
             ValidateUID(Student),
         ],
+        render_kw={
+            "data-auto-complete": "true",
+            "data-fetch-api": "api.autocomplete",
+            "data-model-name": "Student",
+            "data-select-val": "uid",
+            "data-search-col": "uid",
+            "data-template": "students.html",
+        },
     )
     obtained_marks = IntegerField(
         _("Obtained Marks"),

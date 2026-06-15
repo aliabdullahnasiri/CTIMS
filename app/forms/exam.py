@@ -42,12 +42,10 @@ class AddExamForm(Form):
     total_marks = IntegerField(
         _("Total Marks"),
         validators=[DataRequired(message=_("This field is required."))],
-        default=100,
     )
     min_marks = IntegerField(
         _("Minimum Marks"),
         validators=[DataRequired(message=_("This field is required."))],
-        default=50,
     )
 
     subject_id = StringField(
@@ -57,6 +55,14 @@ class AddExamForm(Form):
             Length(min=8, max=8, message=_("This field must be 8 characters.")),
             ValidateUID(Subject),
         ],
+        render_kw={
+            "data-auto-complete": "true",
+            "data-fetch-api": "api.autocomplete",
+            "data-model-name": "Job",
+            "data-select-val": "uid",
+            "data-search-col": "name",
+            "data-template": "subjects.html",
+        },
     )
     class_id = StringField(
         _("Class UID"),
@@ -65,6 +71,14 @@ class AddExamForm(Form):
             Length(min=8, max=8, message=_("This field must be 8 characters.")),
             ValidateUID(Class),
         ],
+        render_kw={
+            "data-auto-complete": "true",
+            "data-fetch-api": "api.autocomplete",
+            "data-model-name": "Class",
+            "data-select-val": "uid",
+            "data-search-col": "name",
+            "data-template": "classes.html",
+        },
     )
 
     submit = SubmitField(_("Add Exam"))

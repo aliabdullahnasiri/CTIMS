@@ -23,6 +23,14 @@ class AddEmployeeForm(AddUserForm):
             Length(min=8, max=8, message=_("This field must be 8 characters.")),
             ValidateUID(Job),
         ],
+        render_kw={
+            "data-auto-complete": "true",
+            "data-fetch-api": "api.autocomplete",
+            "data-model-name": "Job",
+            "data-select-val": "uid",
+            "data-search-col": "job_title",
+            "data-template": "jobs.html",
+        },
     )
 
     address = StringField(

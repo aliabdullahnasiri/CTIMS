@@ -3,6 +3,7 @@ import re
 from operator import and_
 from typing import List, Self
 
+from flask import url_for
 from flask_babel import gettext as _
 from flask_babel import lazy_gettext as _l
 from flask_wtf import FlaskForm
@@ -86,15 +87,22 @@ class Form(FlaskForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
+        print(self._fields)
         # Translate all field labels so individual form files don't need to call _ for each label
         for _field in getattr(self, "_fields", {}).values():
             try:
+                if _field.render_kw and (
+                    endpoint := _field.render_kw.get("data-fetch-api")
+                ):
+                    _field.render_kw["data-fetch-api"] = url_for(endpoint)
+            except:
+                ...
+
+            try:
                 if isinstance(_field.label.text, str):
                     _field.label.text = _l(_field.label.text)
-
-            except Exception:
-                # Keep going if any field is missing a label or translation fails
-                pass
+            except:
+                ...
 
     def validate(self, *args, **kwargs):
         # Run the standard WTForms validation

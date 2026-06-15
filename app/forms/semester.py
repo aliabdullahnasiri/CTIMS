@@ -27,6 +27,14 @@ class AddSemesterForm(Form):
             DataRequired(message=_("This field is required.")),
             ValidateUID(Department),
         ],
+        render_kw={
+            "data-auto-complete": "true",
+            "data-fetch-api": "api.autocomplete",
+            "data-model-name": "Department",
+            "data-select-val": "uid",
+            "data-search-col": "name",
+            "data-template": "departments.html",
+        },
     )
 
     submit = SubmitField(_("Add Semester"))

@@ -38,6 +38,14 @@ class AddSubjectForm(Form):
             DataRequired(message=_("This field is required.")),
             ValidateUID(Semester),
         ],
+        render_kw={
+            "data-auto-complete": "true",
+            "data-fetch-api": "api.autocomplete",
+            "data-model-name": "Semester",
+            "data-select-val": "uid",
+            "data-search-col": "name",
+            "data-template": "semesters.html",
+        },
     )
 
     files = MultipleFileField(_("Files"))

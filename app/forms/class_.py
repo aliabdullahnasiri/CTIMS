@@ -25,6 +25,14 @@ class AddClassForm(Form):
             Length(min=8, max=8, message=_("This field must be 8 characters.")),
             ValidateUID(Teacher),
         ],
+        render_kw={
+            "data-auto-complete": "true",
+            "data-fetch-api": "api.autocomplete",
+            "data-model-name": "Teacher",
+            "data-select-val": "uid",
+            "data-search-col": "uid",
+            "data-template": "teachers.html",
+        },
     )
     semester_id = StringField(
         _("Semester UID"),
@@ -33,6 +41,14 @@ class AddClassForm(Form):
             Length(min=8, max=8, message=_("This field must be 8 characters.")),
             ValidateUID(Semester),
         ],
+        render_kw={
+            "data-auto-complete": "true",
+            "data-fetch-api": "api.autocomplete",
+            "data-model-name": "Semester",
+            "data-select-val": "uid",
+            "data-search-col": "name",
+            "data-template": "semesters.html",
+        },
     )
     time_id = StringField(
         _("Time UID"),
@@ -41,6 +57,14 @@ class AddClassForm(Form):
             Length(min=8, max=8, message=_("This field must be 8 characters.")),
             ValidateUID(Time),
         ],
+        render_kw={
+            "data-auto-complete": "true",
+            "data-fetch-api": "api.autocomplete",
+            "data-model-name": "Time",
+            "data-select-val": "uid",
+            "data-search-col": "title",
+            "data-template": "times.html",
+        },
     )
 
     submit = SubmitField(_("Add Class"))

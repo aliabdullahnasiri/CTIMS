@@ -30,6 +30,14 @@ class AddDepartmentForm(Form):
             Optional(),
             ValidateUID(Teacher),
         ],
+        render_kw={
+            "data-auto-complete": "true",
+            "data-fetch-api": "api.autocomplete",
+            "data-model-name": "Teacher",
+            "data-select-val": "uid",
+            "data-search-col": "uid",
+            "data-template": "teachers.html",
+        },
     )
 
     parent_department_uid = StringField(
@@ -37,6 +45,14 @@ class AddDepartmentForm(Form):
         validators=[
             ValidateUID(Department),
         ],
+        render_kw={
+            "data-auto-complete": "true",
+            "data-fetch-api": "api.autocomplete",
+            "data-model-name": "Department",
+            "data-select-val": "uid",
+            "data-search-col": "name",
+            "data-template": "departments.html",
+        },
     )
 
     submit = SubmitField(_("Add Department"))

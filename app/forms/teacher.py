@@ -16,6 +16,14 @@ class AddTeacherForm(AddUserForm):
             Length(min=8, max=8, message=_("This field must be 8 characters.")),
             ValidateUID(Time),
         ],
+        render_kw={
+            "data-auto-complete": "true",
+            "data-fetch-api": "api.autocomplete",
+            "data-model-name": "Time",
+            "data-select-val": "uid",
+            "data-search-col": "title",
+            "data-template": "times.html",
+        },
     )
     salary = DecimalField(
         _("Salary"),

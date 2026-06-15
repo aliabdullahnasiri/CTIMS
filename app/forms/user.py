@@ -1,3 +1,4 @@
+from flask import url_for
 from flask_babel import gettext as _
 from flask_wtf.file import FileField
 from wtforms import (
@@ -71,7 +72,18 @@ class AddUserForm(Form):
             ),
         ],
     )
-    roles = StringField(_("Roles"), validators=[Optional(), ValidateUID(Role)])
+    roles = StringField(
+        _("Roles"),
+        validators=[Optional(), ValidateUID(Role)],
+        render_kw={
+            "data-auto-complete": "true",
+            "data-fetch-api": "api.autocomplete",
+            "data-model-name": "Role",
+            "data-select-val": "uid",
+            "data-search-col": "name",
+            "data-template": "roles.html",
+        },
+    )
 
     submit = SubmitField(_("Add"))
 
