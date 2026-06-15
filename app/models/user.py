@@ -192,12 +192,6 @@ class User(UserMixin, db.Model):
                     )
 
                 case "files" if type(value) == list:
-                    for file in self.files.filter_by(
-                        file_for=getattr(self, "uid")
-                    ).all():
-                        if file.id not in value:
-                            db.session.delete(file)
-
                     for val in value:
                         if file := File.query.filter_by(id=int(val)).scalar():
                             file.user = self
