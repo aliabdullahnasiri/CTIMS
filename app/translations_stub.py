@@ -37,3 +37,8 @@ def dummy_navbar_strings():
     _("CTI")
     _("Computer Technology Institute")
     _("Ali Abdullah Nasiri")
+
+    # Languages
+    _("ps")
+    _("fa")
+    _("en")

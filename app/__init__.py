@@ -26,6 +26,7 @@ def ctx() -> Dict:
         ),
         "DEVELOPER": const.DEVELOPER,
         "CURRENCY_SYMBOL": current_app.config["CURRENCY_SYMBOL"],
+        "LANGUAGES": const.LANGUAGES,
     }
 
     return dct
