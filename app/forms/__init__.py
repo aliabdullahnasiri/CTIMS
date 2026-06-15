@@ -35,7 +35,6 @@ class MustBeUnique:
         except:
             vals.append(field.data)
 
-        print(self.model.__name__, form.__class__.__name__)
         for val in vals:
             if (
                 self.model.query.filter(

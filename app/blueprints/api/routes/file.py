@@ -22,6 +22,5 @@ def delete_file(id: int) -> Response:
 
     return Response(
         json.dumps(response),
-        status=response["status"],
         headers={"Content-Type": "application/json"},
     )
