@@ -1,0 +1,30 @@
+
+{% extends "admin/autocomplete/base.html" %}
+
+{% block content %}
+  <ul class="list-unstyled p-1 pb-0 items">
+    {% for row in rows %}
+
+    <li class="p-2 item rounded-2 text-white cursor-pointer" data-uid="{{ row.uid }}">
+      <div class="d-flex px-0 py-1">
+        <div class="mx-2">
+          <img
+            src="{{ row.user.avatar_path }}"
+            class="avatar avatar-sm border-radius-lg"
+            alt="user1"
+          />
+        </div>
+        <div class="d-flex flex-column justify-content-center">
+          <h6 class="mb-0 text-sm">{{  row.user.full_name }}</h6>
+          <p class="text-xs text-secondary mb-0">
+            {{ row.user.email }}
+          </p>
+        </div>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
+
+
+
