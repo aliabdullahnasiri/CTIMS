@@ -69,19 +69,6 @@
                 </div>
               </div>
               <hr class="bg-dark horizontal my-0 opacity-10" />
-              <div class="card-footer p-2">
-                <p class="mb-0 text-sm">
-                  {% if employee.is_salary_gt_avg %}
-                  <span class="text-success font-weight-bolder"
-                    >{{ _("GREATER_LABEL") }}</span
-                  >
-                  {% else %}
-                  <span class="text-danger font-weight-bolder"
-                    >{{ _("LESS_LABEL") }}</span
-                  >
-                  {% endif %} than average salary.
-                </p>
-              </div>
             </div>
           </div>
         </div>
@@ -91,7 +78,9 @@
               <div class="card-header">
                 <div class="d-flex justify-content-between">
                   <div>
-                    <p class="text-sm mb-0 text-capitalize">{{ _("PHONE_LABEL") }}</p>
+                    <p class="text-sm mb-0 text-capitalize">
+                      {{ _("PHONE_LABEL") }}
+                    </p>
                     <h4 class="mb-0">
                       {{ employee.user.display_number_of_phone_nums }}
                     </h4>
