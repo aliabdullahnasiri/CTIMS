@@ -8,6 +8,10 @@ class Student(db.Model):
 
     user_id = db.Column(db.String(8), db.ForeignKey("users.uid"))
     class_id = db.Column(db.String(8), db.ForeignKey("classes.uid"))
+    daily_section_uid = db.Column(
+        db.String(8),
+        db.ForeignKey("daily_sections.uid"),
+    )
 
     class_ = db.relationship("Class", back_populates="students")
     attendances = db.relationship(

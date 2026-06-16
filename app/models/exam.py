@@ -23,8 +23,9 @@ class Exam(db.Model):
     class_id = db.Column(db.String(8), db.ForeignKey("classes.uid"), nullable=False)
 
     daily_section = db.relationship(
-        "Exam",
+        "DailySection",
         back_populates="exam",
+        uselist=False,
     )
     subject = db.relationship("Subject", back_populates="exams")
     class_ = db.relationship("Class", back_populates="exams")
