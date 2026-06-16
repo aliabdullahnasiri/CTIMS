@@ -9,7 +9,7 @@ from wtforms import (
     TextAreaField,
     TimeField,
 )
-from wtforms.validators import DataRequired, Length
+from wtforms.validators import DataRequired, Length, Optional
 
 from app.forms import Form, ValidateUID
 from app.models.class_ import Class
@@ -53,7 +53,7 @@ class AddExamForm(Form):
     subject_id = StringField(
         _("SUBJECT_UID_LABEL"),
         validators=[
-            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
+            Optional(),
             Length(min=8, max=8, message=_("THIS_FIELD_MUST_BE_8_CHARACTERS_MSG")),
             ValidateUID(Subject),
         ],
@@ -69,7 +69,7 @@ class AddExamForm(Form):
     class_id = StringField(
         _("CLASS_UID_LABEL"),
         validators=[
-            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
+            Optional(),
             Length(min=8, max=8, message=_("THIS_FIELD_MUST_BE_8_CHARACTERS_MSG")),
             ValidateUID(Class),
         ],

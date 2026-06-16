@@ -19,8 +19,8 @@ class Exam(db.Model):
     total_marks = db.Column(db.Integer, nullable=False, default=100)
     min_marks = db.Column(db.Integer, nullable=False, default=50)
 
-    subject_id = db.Column(db.String(8), db.ForeignKey("subjects.uid"), nullable=False)
-    class_id = db.Column(db.String(8), db.ForeignKey("classes.uid"), nullable=False)
+    subject_id = db.Column(db.String(8), db.ForeignKey("subjects.uid"))
+    class_id = db.Column(db.String(8), db.ForeignKey("classes.uid"))
 
     daily_section = db.relationship(
         "DailySection",
@@ -46,8 +46,8 @@ class Exam(db.Model):
             "exam_time": self.display_exam_time,
             "total_marks": self.total_marks,
             "min_marks": self.min_marks,
-            "subject": self.subject.name,
-            "class": self.class_.name,
+            "subject": self.subject.name if self.subject else None,
+            "class": self.class_.name if self.class_ else None,
             **call(getattr(super(), "to_dict")),
         }
 
