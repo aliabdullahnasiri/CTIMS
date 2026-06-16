@@ -8,6 +8,7 @@ from app.blueprints.admin import bp
 from app.config import Config
 from app.func import validate_uid
 from app.models.class_ import Class
+from app.models.daily_section import DailySection
 from app.models.department import Department
 from app.models.employee import Employee
 from app.models.exam import Exam
@@ -33,6 +34,7 @@ entities: Dict = {
     "exam": Exam,
     "permission": Permission,
     "role": Role,
+    "daily_section": DailySection,
 }
 
 
@@ -59,7 +61,9 @@ def view(entity: str, uid: str) -> Response:
                     response.response = render_template(template, **{entity: row})
                     response.status_code = 200
                 else:
-                    response.response = json.dumps({"error": _("ROW_WAS_NOT_FOUND_MSG")})
+                    response.response = json.dumps(
+                        {"error": _("ROW_WAS_NOT_FOUND_MSG")}
+                    )
                     response.status_code = 404
             break
     else:
