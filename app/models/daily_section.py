@@ -5,13 +5,14 @@ from app.extensions.db import db
 
 
 class DailySection(db.Model):
-    __tablename__ = "daily_section"
+    __tablename__ = "daily_sections"
 
     exam_uid = db.Column(
         db.String(8),
         db.ForeignKey("exams.uid"),
         nullable=True,
         index=True,
+        unique=True,
     )
 
     title = db.Column(db.String(255), nullable=False)
@@ -21,7 +22,7 @@ class DailySection(db.Model):
 
     exam = db.relationship(
         "Exam",
-        back_populates="daily_sections",
+        back_populates="daily_section",
     )
 
     students = db.relationship(
