@@ -67,7 +67,7 @@ msgstr "زمانها"
 #: app/templates/admin/components/rows/dashboard-stats.html:24
 #: app/translations_stub.py:19
 msgid "DEPARTMENTS_LABEL"
-msgstr "بخشها"
+msgstr "بخش ها"
 
 #: app/blueprints/admin/routes/semester.py:17
 #: app/blueprints/api/routes/navbar.py:63
@@ -150,7 +150,7 @@ msgstr "صنف ها"
 #: app/templates/admin/views/time.html:54
 #: app/templates/admin/views/time.html:125 app/translations_stub.py:26
 msgid "STUDENTS_LABEL"
-msgstr "دانشآموزان"
+msgstr "دانش آموزان"
 
 #: app/blueprints/admin/routes/exam.py:15
 #: app/blueprints/api/routes/navbar.py:127
