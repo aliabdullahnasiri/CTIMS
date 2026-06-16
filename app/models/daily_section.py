@@ -1,4 +1,5 @@
 from operator import call
+from typing import Dict
 
 from app.extensions.db import db
 
