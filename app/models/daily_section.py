@@ -18,8 +18,6 @@ class DailySection(db.Model):
     title = db.Column(db.String(255), nullable=False)
     description = db.Column(db.Text)
 
-    date = db.Column(db.Date, nullable=False)
-
     exam = db.relationship(
         "Exam",
         back_populates="daily_section",
@@ -37,7 +35,6 @@ class DailySection(db.Model):
             "exam_uid": self.exam_uid,
             "title": self.title,
             "description": self.description,
-            "date": self.date.strftime("%Y-%m-%d") if self.date else None,
             "students": [student.to_dict() for student in self.students.all()],
             **call(getattr(super(), "to_dict")),
         }
