@@ -1,0 +1,21 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+<div class="row">
+  <div class="col-12">
+    <div class="card my-4">
+      {% include "admin/components/tables/header/header.html" %}
+      <div class="card-body px-0 pb-2">
+        <div class="table-responsive p-0">
+          {% include "admin/components/tables/daily_sections.html" %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% include "admin/components/modals/add/daily_section.html" %}
+{% include "admin/components/modals/update/daily_section.html" %}
+{% include "admin/components/modals/view.html" %}
+{% endblock %}
+
