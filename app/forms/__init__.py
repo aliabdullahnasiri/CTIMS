@@ -14,18 +14,14 @@ from app.const import UID_PATTERN
 
 class MustBeUnique:
     def __init__(
-        self: Self,
-        model,
-        name,
-        message=None,
-        col="uid",
-        field="uid",
+        self: Self, model, name, message=None, col="uid", field="uid", format=False
     ) -> None:
         self.model = model
         self.name = name
         self.col = col
         self.field = field
         self.message = message
+        self.format = format
 
     def __call__(self, form, field):
         vals: List = []
@@ -42,15 +38,7 @@ class MustBeUnique:
                         (
                             getattr(self.model, self.col)
                             != getattr(
-                                getattr(
-                                    form,
-                                    (
-                                        self.field
-                                        if self.model.__name__
-                                        in form.__class__.__name__
-                                        else f"{self.model.__name__.lower()}_{self.field}"
-                                    ),
-                                ),
+                                getattr(form, _f),
                                 "data",
                             )
                         ),
@@ -58,6 +46,17 @@ class MustBeUnique:
                     )
                 ).count()
                 if "Update" in form.__class__.__name__
+                and hasattr(
+                    form,
+                    (
+                        _f := (
+                            self.field
+                            if self.model.__name__ in form.__class__.__name__
+                            or self.format
+                            else f"{self.model.__name__.lower()}_{self.field}"
+                        )
+                    ),
+                )
                 else self.model.query.filter(
                     getattr(self.model, self.name) == val,
                 ).count()
