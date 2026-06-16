@@ -1,0 +1,28 @@
+<div
+  class="modal fade"
+  id="AddDailySectionModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="AddDailySectionModal"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-body p-0">
+        <div class="card card-plain">
+          <div class="card-header pb-0 text-left">
+            <h5 data-modal-title>{{ _("ADD_NEW_DAILY_SECTION_MSG") }}</h5>
+            <p class="mb-0" data-modal-description>
+              {{
+              _("FILL_IN_THE_DAILY_SECTION_S_DETAILS_BELOW_TO_CREATE_A_NEW_DAILY_SECTION_MSG")
+              }}
+            </p>
+          </div>
+          <div class="card-body">
+            {% include "admin/components/forms/add/daily_section.html" %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

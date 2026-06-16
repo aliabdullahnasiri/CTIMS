@@ -1,0 +1,15 @@
+<table
+  class="table align-items-center mb-0 table-hover"
+  data-type="dynamic"
+  data-get-rows="{{ url_for('api.fetch_daily_sections_rows') }}"
+  data-get-row="{{ url_for('api.fetch_daily_section_row', uid='@')}}"
+  data-update-row="{{ url_for('api.update_daily_section')}}"
+  data-delete-row="{{ url_for('api.delete_daily_section', uid='@')}}"
+  data-view-row="{{ url_for('admin.view', entity='daily_section', uid='@') }}"
+  data-add-row-modal-id="#AddDailySectionModal"
+  data-edit-row-modal-id="#EditDailySectionModal"
+  data-view-row-modal-id="#ViewModal"
+>
+  <thead></thead>
+  <tbody></tbody>
+</table>
