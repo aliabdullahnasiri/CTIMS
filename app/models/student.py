@@ -21,6 +21,11 @@ class Student(db.Model):
 
     user = db.relationship("User", cascade="delete")
 
+    daily_section = db.relationship(
+        "DailySection",
+        back_populates="students",
+    )
+
     def to_dict(self) -> dict:
         return {
             "user_uid": self.user.uid,
