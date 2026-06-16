@@ -185,3 +185,10 @@ export function createLoader() {
     });
   }
 }).call(this);
+
+(function () {
+  const sideNavElement = document.querySelector("#sidenav-collapse-main");
+  const ps = new PerfectScrollbar(sideNavElement, {
+    suppressScrollX: true,
+  });
+}).call(this);
