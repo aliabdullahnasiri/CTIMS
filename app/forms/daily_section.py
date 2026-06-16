@@ -15,6 +15,14 @@ class AddDailySectionForm(Form):
             ValidateUID(Exam),
             MustBeUnique(Exam, "uid"),
         ],
+        render_kw={
+            "data-auto-complete": "true",
+            "data-fetch-api": "api.autocomplete",
+            "data-model-name": "Exam",
+            "data-select-val": "uid",
+            "data-search-col": "title",
+            "data-template": "exams.html",
+        },
     )
 
     title = StringField(
