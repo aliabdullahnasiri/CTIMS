@@ -33,10 +33,12 @@ class AddExamForm(Form):
     )
 
     exam_date = DateField(
-        _("EXAM_DATE_LABEL"), validators=[DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR"))]
+        _("EXAM_DATE_LABEL"),
+        validators=[DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR"))],
     )
     exam_time = TimeField(
-        _("EXAM_TIME_LABEL"), validators=[DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR"))]
+        _("EXAM_TIME_LABEL"),
+        validators=[DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR"))],
     )
 
     total_marks = IntegerField(
@@ -58,7 +60,7 @@ class AddExamForm(Form):
         render_kw={
             "data-auto-complete": "true",
             "data-fetch-api": "api.autocomplete",
-            "data-model-name": "Job",
+            "data-model-name": "Subject",
             "data-select-val": "uid",
             "data-search-col": "name",
             "data-template": "subjects.html",
