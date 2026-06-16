@@ -73,6 +73,7 @@ class AddUserForm(Form):
                 "number",
                 _("DUPLICATE_ENTRY_FOR_PHONE_NUMBER_MSG"),
                 "user_id",
+                format=True,
             ),
         ],
     )
