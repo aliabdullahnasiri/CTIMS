@@ -8,47 +8,47 @@ from app.models.role import Role
 
 class AddRoleForm(Form):
     name = StringField(
-        _("Name"),
+        _("NAME_LABEL"),
         validators=[
-            DataRequired(message=_("This field is required.")),
-            Length(max=255, message=_("This field cannot exceed 255 characters.")),
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
+            Length(max=255, message=_("THIS_FIELD_CANNOT_EXCEED_255_CHARACTERS_MSG")),
             MustBeUnique(Role, "name"),
         ],
     )
 
     description = TextAreaField(
-        _("Description"),
+        _("DESCRIPTION_LABEL"),
         validators=[
             Optional(),
-            Length(max=2500, message=_("This field cannot exceed 255 characters.")),
+            Length(max=2500, message=_("THIS_FIELD_CANNOT_EXCEED_255_CHARACTERS_MSG")),
         ],
     )
 
     default = BooleanField(
-        _("Default Role (assigned automatically to new users)"),
+        _("DEFAULT_ROLE_ASSIGNED_AUTOMATICALLY_TO_NEW_USERS_MSG"),
         default=False,
         validators=[Optional()],
     )
 
-    permissions = StringField(_("Permissions"), validators=[Optional()])
+    permissions = StringField(_("PERMISSIONS_LABEL"), validators=[Optional()])
 
-    submit = SubmitField(_("Add Role"))
+    submit = SubmitField(_("ADD_ROLE_LABEL"))
 
 
 class UpdateRoleForm(AddRoleForm):
     uid = HiddenField(
-        _("Role UID"),
+        _("ROLE_UID_LABEL"),
         validators=[
-            DataRequired(message=_("This field is required.")),
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
             ValidateUID(Role),
         ],
     )
     name = StringField(
-        _("Name"),
+        _("NAME_LABEL"),
         validators=[
             Optional(),
-            Length(max=255, message=_("This field cannot exceed 255 characters.")),
+            Length(max=255, message=_("THIS_FIELD_CANNOT_EXCEED_255_CHARACTERS_MSG")),
         ],
     )
 
-    submit = SubmitField(_("Update Role"))
+    submit = SubmitField(_("UPDATE_ROLE_LABEL"))

@@ -63,8 +63,8 @@ def update_profile():
 
         db.session.commit()
 
-        response["title"] = g("Good job!")
-        response["message"] = g("User updated successfully!")
+        response["title"] = g("GOOD_JOB_LABEL")
+        response["message"] = g("USER_UPDATED_SUCCESSFULLY_SUCCESS_MSG")
         response["category"] = "success"
 
     else:

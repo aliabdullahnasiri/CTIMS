@@ -12,6 +12,6 @@ from app.models.user import permission_required
 def roles():
     return render_template(
         "admin/pages/roles.html",
-        title=_("Roles"),
+        title=_("ROLES_LABEL"),
         form={"a": AddRoleForm(), "u": UpdateRoleForm()},
     )

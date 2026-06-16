@@ -14,6 +14,6 @@ from app.models.user import permission_required
 def departments():
     return render_template(
         "admin/pages/departments.html",
-        title=_("Departments"),
+        title=_("DEPARTMENTS_LABEL"),
         form={"a": AddDepartmentForm(), "u": UpdateDepartmentForm()},
     )

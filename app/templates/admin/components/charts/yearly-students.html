@@ -1,8 +1,8 @@
 <div class="col-lg-8 col-md-6 mt-4 mb-4">
   <div class="card">
     <div class="card-body">
-      <h6 class="mb-0">{{ _("Students") }}</h6>
-      <p class="text-sm">{{ _("Last 12 Month") }}</p>
+      <h6 class="mb-0">{{ _("STUDENTS_LABEL") }}</h6>
+      <p class="text-sm">{{ _("LAST_12_MONTH_MSG") }}</p>
       <div class="pe-2">
         <div class="chart">
           <canvas
@@ -22,7 +22,7 @@
           <span
             class="text-{{ Student.yearly_growth_clr() }} font-weight-bolder"
             >{{ Student.display_yearly_growth() }} </span
-          >{{ _("than last year") }}
+          >{{ _("THAN_LAST_YEAR_MSG") }}
         </p>
       </div>
     </div>

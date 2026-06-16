@@ -14,8 +14,8 @@ from app.models.role import Role
 from app.models.user import permission_required
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
-    (ColumnID("uid"), ColumnName(g("UID"))),
-    (ColumnID("name"), ColumnName(g("Name"))),
+    (ColumnID("uid"), ColumnName(g("UID_LABEL"))),
+    (ColumnID("name"), ColumnName(g("NAME_LABEL"))),
 ]
 
 
@@ -79,7 +79,7 @@ def fetch_role_row(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": g("Role with the given ID was not found :("),
+                "message": g("ROLE_WITH_THE_GIVEN_ID_WAS_NOT_FOUND_MSG"),
                 "category": "error",
             }
         ),
@@ -103,7 +103,7 @@ def fetch_role(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": g("Role with the given ID was not found :("),
+                "message": g("ROLE_WITH_THE_GIVEN_ID_WAS_NOT_FOUND_MSG"),
                 "category": "error",
             }
         ),
@@ -154,12 +154,12 @@ def update_role() -> Response:
             for user in role.users.all():
                 dct.remove(user.id)
 
-            response["title"] = g("Updated!")
-            response["message"] = g("Role updated successfully!")
+            response["title"] = g("UPDATED_SUCCESS_MSG")
+            response["message"] = g("ROLE_UPDATED_SUCCESSFULLY_SUCCESS_MSG")
             response["category"] = "success"
         else:
-            response["title"] = g("Not Found")
-            response["message"] = g("Role record not found.")
+            response["title"] = g("NOT_FOUND_LABEL")
+            response["message"] = g("ROLE_RECORD_NOT_FOUND_MSG")
             response["category"] = "error"
     else:
         response["errors"] = form.errors
@@ -181,19 +181,19 @@ def delete_role(uid: str):
             db.session.delete(role)
             db.session.commit()
 
-            response["title"] = g("Deleted!")
-            response["message"] = g("Role has been deleted successfully.")
+            response["title"] = g("DELETED_SUCCESS_MSG")
+            response["message"] = g("ROLE_HAS_BEEN_DELETED_SUCCESSFULLY_SUCCESS_MSG")
             response["category"] = "success"
             response["status"] = 200
         else:
-            response["title"] = g("Warning!")
-            response["message"] = g("Primary roles cannot be deleted.")
+            response["title"] = g("WARNING_WARNING")
+            response["message"] = g("PRIMARY_ROLES_CANNOT_BE_DELETED_ERROR")
             response["category"] = "success"
             response["status"] = 403
 
     else:
-        response["title"] = g("Error :(")
-        response["message"] = g("User not found")
+        response["title"] = g("ERROR_ERROR")
+        response["message"] = g("USER_NOT_FOUND_MSG")
         response["category"] = "error"
         response["status"] = 404
 
@@ -234,8 +234,8 @@ def add_role():
 
         db.session.commit()
 
-        response["message"] = g("User added successfully")
-        response["title"] = g("User Added")
+        response["message"] = g("USER_ADDED_SUCCESSFULLY_SUCCESS_MSG")
+        response["title"] = g("USER_ADDED_LABEL")
         response["category"] = "success"
         response["id"] = getattr(role, "uid")
 

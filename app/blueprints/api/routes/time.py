@@ -14,10 +14,10 @@ from app.models.time import Time
 from app.models.user import permission_required
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
-    (ColumnID("uid"), ColumnName(g("UID"))),
-    (ColumnID("title"), ColumnName(g("Title"))),
-    (ColumnID("start"), ColumnName(g("Start Time"))),
-    (ColumnID("end"), ColumnName(g("End Time"))),
+    (ColumnID("uid"), ColumnName(g("UID_LABEL"))),
+    (ColumnID("title"), ColumnName(g("TITLE_LABEL"))),
+    (ColumnID("start"), ColumnName(g("START_TIME_LABEL"))),
+    (ColumnID("end"), ColumnName(g("END_TIME_LABEL"))),
 ]
 
 
@@ -79,7 +79,7 @@ def fetch_time_row(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": g("Time with the given ID was not found :("),
+                "message": g("TIME_WITH_THE_GIVEN_ID_WAS_NOT_FOUND_MSG"),
                 "category": "error",
             }
         ),
@@ -103,7 +103,7 @@ def fetch_time(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": g("Time with the given ID was not found :("),
+                "message": g("TIME_WITH_THE_GIVEN_ID_WAS_NOT_FOUND_MSG"),
                 "category": "error",
             }
         ),
@@ -130,8 +130,8 @@ def add_time() -> Response:
         db.session.add(time)
         db.session.commit()
 
-        response["message"] = g("Time added successfully")
-        response["title"] = g("Time Added")
+        response["message"] = g("TIME_ADDED_SUCCESSFULLY_SUCCESS_MSG")
+        response["title"] = g("TIME_ADDED_LABEL")
         response["category"] = "success"
         response["id"] = getattr(time, "uid")
 
@@ -164,12 +164,12 @@ def update_time() -> Response:
 
             db.session.commit()
 
-            response["title"] = g("Updated!")
-            response["message"] = g("Time updated successfully!")
+            response["title"] = g("UPDATED_SUCCESS_MSG")
+            response["message"] = g("TIME_UPDATED_SUCCESSFULLY_SUCCESS_MSG")
             response["category"] = "success"
         else:
-            response["title"] = g("Not Found")
-            response["message"] = g("Time record not found.")
+            response["title"] = g("NOT_FOUND_LABEL")
+            response["message"] = g("TIME_RECORD_NOT_FOUND_MSG")
             response["category"] = "error"
     else:
         response["errors"] = form.errors
@@ -191,13 +191,13 @@ def delete_time(uid: str) -> Response:
         db.session.delete(time)
         db.session.commit()
 
-        response["title"] = g("Deleted!")
-        response["message"] = g("Time deleted successfully")
+        response["title"] = g("DELETED_SUCCESS_MSG")
+        response["message"] = g("TIME_DELETED_SUCCESSFULLY_SUCCESS_MSG")
         response["category"] = "success"
         response["status"] = 200
     else:
-        response["title"] = g("Error :(")
-        response["message"] = g("Time not found")
+        response["title"] = g("ERROR_ERROR")
+        response["message"] = g("TIME_NOT_FOUND_MSG")
         response["category"] = "error"
         response["status"] = 404
 

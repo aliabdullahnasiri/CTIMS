@@ -19,60 +19,60 @@ from app.models.user import User
 
 class AddUserForm(Form):
     first_name = StringField(
-        _("First Name"),
+        _("FIRST_NAME_LABEL"),
         validators=[
-            Length(max=50, message=_("This field cannot exceed 50 characters."))
+            Length(max=50, message=_("THIS_FIELD_CANNOT_EXCEED_50_CHARACTERS_MSG"))
         ],
     )
     middle_name = StringField(
-        _("Middle Name"),
+        _("MIDDLE_NAME_LABEL"),
         validators=[
-            Length(max=50, message=_("This field cannot exceed 50 characters."))
+            Length(max=50, message=_("THIS_FIELD_CANNOT_EXCEED_50_CHARACTERS_MSG"))
         ],
     )
     last_name = StringField(
-        _("Last Name"),
+        _("LAST_NAME_LABEL"),
         validators=[
-            Length(max=50, message=_("This field cannot exceed 50 characters."))
+            Length(max=50, message=_("THIS_FIELD_CANNOT_EXCEED_50_CHARACTERS_MSG"))
         ],
     )
     user_name = StringField(
-        _("Username"),
+        _("USERNAME_LABEL"),
         validators=[
-            DataRequired(message=_("This field is required.")),
-            Length(max=50, message=_("This field cannot exceed 50 characters.")),
-            MustBeUnique(User, "user_name", _("Username already taken")),
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
+            Length(max=50, message=_("THIS_FIELD_CANNOT_EXCEED_50_CHARACTERS_MSG")),
+            MustBeUnique(User, "user_name", _("USERNAME_ALREADY_TAKEN_MSG")),
         ],
     )
     email = StringField(
-        _("Email"),
+        _("EMAIL_LABEL"),
         validators=[
-            DataRequired(message=_("This field is required.")),
-            Email(message=_("Enter a valid email address")),
-            MustBeUnique(User, "email", _("Email already registered")),
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
+            Email(message=_("ENTER_A_VALID_EMAIL_ADDRESS_PLACEHOLDER")),
+            MustBeUnique(User, "email", _("EMAIL_ALREADY_REGISTERED_MSG")),
         ],
     )
     password = PasswordField(
-        _("Password"), validators=[DataRequired(message=_("This field is required."))]
+        _("PASSWORD_LABEL"), validators=[DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR"))]
     )
-    birthday = DateField(_("Birthday"), format="%Y-%m-%d", validators=[Optional()])
-    avatar = FileField(_("Upload new profile picture."))
+    birthday = DateField(_("BIRTHDAY_LABEL"), format="%Y-%m-%d", validators=[Optional()])
+    avatar = FileField(_("UPLOAD_NEW_PROFILE_PICTURE_MSG"))
 
-    files = MultipleFileField(_("Files"))
+    files = MultipleFileField(_("FILES_LABEL"))
     phones = StringField(
-        _("Phone"),
+        _("PHONE_LABEL"),
         validators=[
             Optional(),
             MustBeUnique(
                 Phone,
                 "number",
-                _("Duplicate entry for phone number!"),
+                _("DUPLICATE_ENTRY_FOR_PHONE_NUMBER_MSG"),
                 "user_id",
             ),
         ],
     )
     roles = StringField(
-        _("Roles"),
+        _("ROLES_LABEL"),
         validators=[Optional(), ValidateUID(Role)],
         render_kw={
             "data-auto-complete": "true",
@@ -84,14 +84,14 @@ class AddUserForm(Form):
         },
     )
 
-    submit = SubmitField(_("Add"))
+    submit = SubmitField(_("ADD_LABEL"))
 
 
 class UpdateUserForm(AddUserForm):
     uid = HiddenField(
-        _("UID"), validators=[DataRequired(message=_("This field is required."))]
+        _("UID_LABEL"), validators=[DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR"))]
     )
 
-    password = PasswordField(_("Password"), validators=[Optional()])
+    password = PasswordField(_("PASSWORD_LABEL"), validators=[Optional()])
 
-    submit = SubmitField(_("Update"))
+    submit = SubmitField(_("UPDATE_LABEL"))

@@ -19,10 +19,10 @@ from app.models.student import Student
 
 class AddResultForm(Form):
     exam_id = StringField(
-        _("Exam UID"),
+        _("EXAM_UID_LABEL"),
         validators=[
-            DataRequired(message=_("This field is required.")),
-            Length(min=8, max=8, message=_("This field must be 8 characters.")),
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
+            Length(min=8, max=8, message=_("THIS_FIELD_MUST_BE_8_CHARACTERS_MSG")),
             ValidateUID(Exam),
         ],
         render_kw={
@@ -35,10 +35,10 @@ class AddResultForm(Form):
         },
     )
     student_id = StringField(
-        _("Student UID"),
+        _("STUDENT_UID_LABEL"),
         validators=[
-            DataRequired(message=_("This field is required.")),
-            Length(min=8, max=8, message=_("This field must be 8 characters.")),
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
+            Length(min=8, max=8, message=_("THIS_FIELD_MUST_BE_8_CHARACTERS_MSG")),
             ValidateUID(Student),
         ],
         render_kw={
@@ -51,8 +51,8 @@ class AddResultForm(Form):
         },
     )
     obtained_marks = IntegerField(
-        _("Obtained Marks"),
-        validators=[DataRequired(message=_("This field is required."))],
+        _("OBTAINED_MARKS_LABEL"),
+        validators=[DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR"))],
     )
 
     def validate_obtained_marks(self, obtained_marks) -> None:
@@ -61,23 +61,23 @@ class AddResultForm(Form):
 
             if exam and not 0 <= obtained_marks.data <= exam.total_marks:
                 raise ValidationError(
-                    _("The obtained marks should be between 0 and %s.")
+                    _("THE_OBTAINED_MARKS_SHOULD_BE_BETWEEN_0_AND_S_MSG")
                     % (exam.total_marks)
                 )
 
-    submit = SubmitField(_("Add Result"))
+    submit = SubmitField(_("ADD_RESULT_LABEL"))
 
 
 class UpdateResultForm(AddResultForm):
     uid = HiddenField(
-        _("Result UID"),
+        _("RESULT_UID_LABEL"),
         validators=[
-            DataRequired(message=_("This field is required.")),
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
             ValidateUID(Result),
         ],
     )
     files = MultipleFileField(
-        _("Files"),
+        _("FILES_LABEL"),
         validators=[],
     )
-    submit = SubmitField(_("Update Result"))
+    submit = SubmitField(_("UPDATE_RESULT_LABEL"))

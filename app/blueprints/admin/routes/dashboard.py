@@ -13,6 +13,6 @@ from app.models.user import permission_required
 def dashboard():
     return render_template(
         "admin/pages/dashboard.html",
-        title=_("Dashboard"),
+        title=_("DASHBOARD_LABEL"),
         **{cls.__name__: cls for cls in Base.__subclasses__()}
     )

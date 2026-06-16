@@ -14,12 +14,12 @@ from app.models.permission import Permission
 from app.models.user import permission_required
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
-    (ColumnID("uid"), ColumnName(g("UID"))),
-    (ColumnID("title"), ColumnName(g("Title"))),
-    (ColumnID("description"), ColumnName(g("Description"))),
-    (ColumnID("total_marks"), ColumnName(g("Total Marks"))),
-    (ColumnID("exam_date"), ColumnName(g("Exam Date"))),
-    (ColumnID("exam_time"), ColumnName(g("Exam Time"))),
+    (ColumnID("uid"), ColumnName(g("UID_LABEL"))),
+    (ColumnID("title"), ColumnName(g("TITLE_LABEL"))),
+    (ColumnID("description"), ColumnName(g("DESCRIPTION_LABEL"))),
+    (ColumnID("total_marks"), ColumnName(g("TOTAL_MARKS_LABEL"))),
+    (ColumnID("exam_date"), ColumnName(g("EXAM_DATE_LABEL"))),
+    (ColumnID("exam_time"), ColumnName(g("EXAM_TIME_LABEL"))),
 ]
 
 
@@ -81,7 +81,7 @@ def fetch_exam_row(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": g("Exam with the given ID was not found :("),
+                "message": g("EXAM_WITH_THE_GIVEN_ID_WAS_NOT_FOUND_MSG"),
                 "category": "error",
             }
         ),
@@ -105,7 +105,7 @@ def fetch_exam(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": g("Exam with the given ID was not found :("),
+                "message": g("EXAM_WITH_THE_GIVEN_ID_WAS_NOT_FOUND_MSG"),
                 "category": "error",
             }
         ),
@@ -136,8 +136,8 @@ def add_exam() -> Response:
         db.session.add(exam)
         db.session.commit()
 
-        response["title"] = g("Exam Added")
-        response["message"] = g("Exam added successfully")
+        response["title"] = g("EXAM_ADDED_LABEL")
+        response["message"] = g("EXAM_ADDED_SUCCESSFULLY_SUCCESS_MSG")
         response["category"] = "success"
         response["id"] = getattr(exam, "uid")
 
@@ -174,12 +174,12 @@ def update_exam() -> Response:
 
             db.session.commit()
 
-            response["title"] = g("Updated!")
-            response["message"] = g("Exam updated successfully!")
+            response["title"] = g("UPDATED_SUCCESS_MSG")
+            response["message"] = g("EXAM_UPDATED_SUCCESSFULLY_SUCCESS_MSG")
             response["category"] = "success"
         else:
-            response["title"] = g("Not Found")
-            response["message"] = g("Exam record not found.")
+            response["title"] = g("NOT_FOUND_LABEL")
+            response["message"] = g("EXAM_RECORD_NOT_FOUND_MSG")
             response["category"] = "error"
     else:
         response["errors"] = form.errors
@@ -201,13 +201,13 @@ def delete_exam(uid: str) -> Response:
         db.session.delete(exam)
         db.session.commit()
 
-        response["title"] = g("Deleted!")
-        response["message"] = g("Exam deleted successfully")
+        response["title"] = g("DELETED_SUCCESS_MSG")
+        response["message"] = g("EXAM_DELETED_SUCCESSFULLY_SUCCESS_MSG")
         response["category"] = "success"
         response["status"] = 200
     else:
-        response["title"] = g("Error :(")
-        response["message"] = g("Exam not found")
+        response["title"] = g("ERROR_ERROR")
+        response["message"] = g("EXAM_NOT_FOUND_MSG")
         response["category"] = "error"
         response["status"] = 404
 

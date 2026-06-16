@@ -16,26 +16,26 @@ from app.models.subject import Subject
 
 class AddSubjectForm(Form):
     name = StringField(
-        _("Subject Name"),
+        _("SUBJECT_NAME_LABEL"),
         validators=[
-            DataRequired(message=_("This field is required.")),
-            Length(max=255, message=_("This field cannot exceed 255 characters.")),
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
+            Length(max=255, message=_("THIS_FIELD_CANNOT_EXCEED_255_CHARACTERS_MSG")),
         ],
     )
 
     description = TextAreaField(
-        _("Subject Description"),
+        _("SUBJECT_DESCRIPTION_LABEL"),
         validators=[
             Optional(),
-            Length(max=2000, message=_("This field cannot exceed 2000 characters.")),
+            Length(max=2000, message=_("THIS_FIELD_CANNOT_EXCEED_2000_CHARACTERS_MSG")),
         ],
     )
-    credit = IntegerField(_("Credit"), validators=[Optional()])
+    credit = IntegerField(_("CREDIT_LABEL"), validators=[Optional()])
 
     semester_uid = StringField(
-        _("Semester UID"),
+        _("SEMESTER_UID_LABEL"),
         validators=[
-            DataRequired(message=_("This field is required.")),
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
             ValidateUID(Semester),
         ],
         render_kw={
@@ -48,18 +48,18 @@ class AddSubjectForm(Form):
         },
     )
 
-    files = MultipleFileField(_("Files"))
+    files = MultipleFileField(_("FILES_LABEL"))
 
-    submit = SubmitField(_("Add Subject"))
+    submit = SubmitField(_("ADD_SUBJECT_LABEL"))
 
 
 class UpdateSubjectForm(AddSubjectForm):
     uid = HiddenField(
-        _("Subject UID"),
+        _("SUBJECT_UID_LABEL"),
         validators=[
-            DataRequired(message=_("This field is required.")),
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
             ValidateUID(Subject),
         ],
     )
 
-    submit = SubmitField(_("Update Subject"))
+    submit = SubmitField(_("UPDATE_SUBJECT_LABEL"))

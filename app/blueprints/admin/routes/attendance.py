@@ -16,7 +16,7 @@ from app.models.user import permission_required
 def teachers_attendances():
     return render_template(
         "admin/pages/attendances/teachers.html",
-        title=_("Teachers Attendances"),
+        title=_("TEACHERS_ATTENDANCES_LABEL"),
         form={"a": AddTeacherAttendanceForm()},
     )
 
@@ -29,6 +29,6 @@ def teachers_attendances():
 def students_attendances():
     return render_template(
         "admin/pages/attendances/students.html",
-        title=_("Students Attendances"),
+        title=_("STUDENTS_ATTENDANCES_LABEL"),
         form={"a": AddStudentAttendanceForm()},
     )

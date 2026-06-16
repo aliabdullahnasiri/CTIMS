@@ -8,30 +8,30 @@ def dummy_navbar_strings():
     """
 
     # Top-level items
-    _("Dashboard")
-    _("Users")
-    _("Permissions")
-    _("Roles")
+    _("DASHBOARD_LABEL")
+    _("USERS_LABEL")
+    _("PERMISSIONS_LABEL")
+    _("ROLES_LABEL")
 
     # CTI Management Section
-    _("CTI Management")
-    _("Times")
-    _("Departments")
-    _("Semesters")
-    _("Jobs")
-    _("Employees")
-    _("Teacher")
-    _("Subjects")
-    _("Classes")
-    _("Students")
-    _("Exams")
-    _("Results")
-    _("Teachers Attendances")
-    _("Students Attendances")
+    _("CTI_MANAGEMENT_LABEL")
+    _("TIMES_LABEL")
+    _("DEPARTMENTS_LABEL")
+    _("SEMESTERS_LABEL")
+    _("JOBS_LABEL")
+    _("EMPLOYEES_LABEL")
+    _("TEACHER_LABEL")
+    _("SUBJECTS_LABEL")
+    _("CLASSES_LABEL")
+    _("STUDENTS_LABEL")
+    _("EXAMS_LABEL")
+    _("RESULTS_LABEL")
+    _("TEACHERS_ATTENDANCES_LABEL")
+    _("STUDENTS_ATTENDANCES_LABEL")
 
     # Account Section
-    _("Account")
-    _("Profile")
+    _("ACCOUNT_LABEL")
+    _("PROFILE_LABEL")
 
     # Name
     _("CTI")
@@ -39,6 +39,6 @@ def dummy_navbar_strings():
     _("Ali Abdullah Nasiri")
 
     # Languages
-    _("ps")
-    _("fa")
-    _("en")
+    _("PS_LABEL")
+    _("FA_LABEL")
+    _("EN_LABEL")

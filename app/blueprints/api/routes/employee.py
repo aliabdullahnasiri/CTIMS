@@ -17,12 +17,12 @@ from app.models.role import Role
 from app.models.user import User, permission_required
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
-    (ColumnID("uid"), ColumnName(g("UID"))),
-    (ColumnID("temp_employee"), ColumnName(g("Employee"))),
-    (ColumnID("birthday"), ColumnName(g("Birthday"))),
-    (ColumnID("age"), ColumnName(g("Age"))),
-    (ColumnID("hire_date"), ColumnName(g("Hire Date"))),
-    (ColumnID("salary"), ColumnName(g("Salary"))),
+    (ColumnID("uid"), ColumnName(g("UID_LABEL"))),
+    (ColumnID("temp_employee"), ColumnName(g("EMPLOYEE_LABEL"))),
+    (ColumnID("birthday"), ColumnName(g("BIRTHDAY_LABEL"))),
+    (ColumnID("age"), ColumnName(g("AGE_LABEL"))),
+    (ColumnID("hire_date"), ColumnName(g("HIRE_DATE_LABEL"))),
+    (ColumnID("salary"), ColumnName(g("SALARY_LABEL"))),
 ]
 
 
@@ -84,7 +84,7 @@ def fetch_employee_row(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": g("Employee with the given ID was not found :("),
+                "message": g("EMPLOYEE_WITH_THE_GIVEN_ID_WAS_NOT_FOUND_MSG"),
                 "category": "error",
             }
         ),
@@ -108,7 +108,7 @@ def fetch_employee(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": g("Employee with the given ID was not found :("),
+                "message": g("EMPLOYEE_WITH_THE_GIVEN_ID_WAS_NOT_FOUND_MSG"),
                 "category": "error",
             }
         ),
@@ -165,8 +165,8 @@ def add_employee() -> Response:
 
         db.session.commit()
 
-        response["message"] = g("Employee added successfully.")
-        response["title"] = g("Added!")
+        response["message"] = g("EMPLOYEE_ADDED_SUCCESSFULLY_SUCCESS_MSG")
+        response["title"] = g("ADDED_LABEL")
         response["category"] = "success"
         response["id"] = getattr(employee, "uid")
 
@@ -218,8 +218,8 @@ def update_employee() -> Response:
 
             response.response = json.dumps(
                 {
-                    "title": g("Good job!"),
-                    "message": g("Employee updated successfully!"),
+                    "title": g("GOOD_JOB_LABEL"),
+                    "message": g("EMPLOYEE_UPDATED_SUCCESSFULLY_SUCCESS_MSG"),
                     "category": "success",
                 }
             )
@@ -242,13 +242,13 @@ def delete_employee(uid: str) -> Response:
         db.session.delete(employee)
         db.session.commit()
 
-        response["title"] = g("Deleted!")
-        response["message"] = g("Employee deleted successfully")
+        response["title"] = g("DELETED_SUCCESS_MSG")
+        response["message"] = g("EMPLOYEE_DELETED_SUCCESSFULLY_SUCCESS_MSG")
         response["category"] = "success"
         response["status"] = 200
     else:
-        response["title"] = g("Error :(")
-        response["message"] = g("Employee not found")
+        response["title"] = g("ERROR_ERROR")
+        response["message"] = g("EMPLOYEE_NOT_FOUND_MSG")
         response["category"] = "error"
         response["status"] = 404
 

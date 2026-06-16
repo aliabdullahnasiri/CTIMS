@@ -8,49 +8,49 @@ from app.models.job import Job
 
 class AddJobForm(Form):
     job_title = StringField(
-        _("Job Title"),
+        _("JOB_TITLE_LABEL"),
         validators=[
-            DataRequired(message=_("This field is required.")),
-            Length(max=255, message=_("This field cannot exceed 255 characters.")),
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
+            Length(max=255, message=_("THIS_FIELD_CANNOT_EXCEED_255_CHARACTERS_MSG")),
         ],
     )
 
     job_description = TextAreaField(
-        _("Job Description"),
+        _("JOB_DESCRIPTION_LABEL"),
         validators=[
             Optional(),
-            Length(max=2000, message=_("This field cannot exceed 2000 characters.")),
+            Length(max=2000, message=_("THIS_FIELD_CANNOT_EXCEED_2000_CHARACTERS_MSG")),
         ],
     )
 
     min_salary = DecimalField(
-        _("Minimum Salary"),
+        _("MINIMUM_SALARY_LABEL"),
         places=2,
         validators=[
-            DataRequired(message=_("This field is required.")),
-            NumberRange(min=0, message=_("Value must be at least %(min)s.")),
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
+            NumberRange(min=0, message=_("VALUE_MUST_BE_AT_LEAST_MIN_S_MSG")),
         ],
     )
 
     max_salary = DecimalField(
-        _("Maximum Salary"),
+        _("MAXIMUM_SALARY_LABEL"),
         places=2,
         validators=[
-            DataRequired(message=_("This field is required.")),
-            NumberRange(min=0, message=_("Value must be at least %(min)s.")),
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
+            NumberRange(min=0, message=_("VALUE_MUST_BE_AT_LEAST_MIN_S_MSG")),
         ],
     )
 
-    submit = SubmitField(_("Add Job"))
+    submit = SubmitField(_("ADD_JOB_LABEL"))
 
 
 class UpdateJobForm(AddJobForm):
     uid = HiddenField(
-        _("Job UID"),
+        _("JOB_UID_LABEL"),
         validators=[
-            DataRequired(message=_("This field is required.")),
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
             ValidateUID(Job),
         ],
     )
 
-    submit = SubmitField(_("Update Job"))
+    submit = SubmitField(_("UPDATE_JOB_LABEL"))

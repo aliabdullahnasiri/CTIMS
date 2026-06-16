@@ -12,6 +12,6 @@ from app.models.user import permission_required
 def teachers():
     return render_template(
         "admin/pages/teachers.html",
-        title=_("Teachers"),
+        title=_("TEACHERS_LABEL"),
         form={"a": AddTeacherForm(), "u": UpdateTeacherForm()},
     )

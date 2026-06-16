@@ -11,7 +11,7 @@ from app.forms.profile import UpdateProfileForm
 def profile():
     return render_template(
         "admin/pages/profile.html",
-        title=_("Profile"),
+        title=_("PROFILE_LABEL"),
         user=current_user,
         update_user_form=UpdateProfileForm(),
     )

@@ -11,10 +11,10 @@ from app.models.user import User
 
 class AddTeacherForm(AddUserForm):
     time_id = StringField(
-        _("Time UID"),
+        _("TIME_UID_LABEL"),
         validators=[
-            DataRequired(message=_("This field is required.")),
-            Length(min=8, max=8, message=_("This field must be 8 characters.")),
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
+            Length(min=8, max=8, message=_("THIS_FIELD_MUST_BE_8_CHARACTERS_MSG")),
             ValidateUID(Time),
         ],
         render_kw={
@@ -27,30 +27,30 @@ class AddTeacherForm(AddUserForm):
         },
     )
     salary = DecimalField(
-        _("Salary"),
+        _("SALARY_LABEL"),
         places=2,
         validators=[
             Optional(),
-            NumberRange(min=0, message=_("Value must be at least %(min)s.")),
+            NumberRange(min=0, message=_("VALUE_MUST_BE_AT_LEAST_MIN_S_MSG")),
         ],
     )
-    subjects = StringField(_("Subject UID"), validators=[Optional()])
-    submit = SubmitField(_("Add Teacher"))
+    subjects = StringField(_("SUBJECT_UID_LABEL"), validators=[Optional()])
+    submit = SubmitField(_("ADD_TEACHER_LABEL"))
 
 
 class UpdateTeacherForm(UpdateUserForm, AddTeacherForm):
     uid = HiddenField(
-        _("Teacher ID"),
+        _("TEACHER_ID_LABEL"),
         validators=[
-            DataRequired(message=_("This field is required.")),
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
             ValidateUID(Teacher),
         ],
     )
     user_uid = HiddenField(
-        _("User UID"),
+        _("USER_UID_LABEL"),
         validators=[
-            DataRequired(message=_("This field is required.")),
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
             ValidateUID(User),
         ],
     )
-    submit = SubmitField(_("Update Teacher"))
+    submit = SubmitField(_("UPDATE_TEACHER_LABEL"))

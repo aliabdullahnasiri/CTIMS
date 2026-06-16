@@ -9,23 +9,23 @@ from app.models.teacher import Teacher
 
 class AddDepartmentForm(Form):
     name = StringField(
-        _("Name"),
+        _("NAME_LABEL"),
         validators=[
-            DataRequired(message=_("Name is required.")),
-            Length(max=50, message=_("Name cannot exceed 50 characters.")),
+            DataRequired(message=_("NAME_IS_REQUIRED_ERROR")),
+            Length(max=50, message=_("NAME_CANNOT_EXCEED_50_CHARACTERS_MSG")),
         ],
     )
 
     description = TextAreaField(
-        _("Description"),
+        _("DESCRIPTION_LABEL"),
         validators=[
             Optional(),
-            Length(max=255, message=_("Description cannot exceed 255 characters.")),
+            Length(max=255, message=_("DESCRIPTION_CANNOT_EXCEED_255_CHARACTERS_MSG")),
         ],
     )
 
     head_of_department = StringField(
-        _("HOD UID"),
+        _("HOD_UID_LABEL"),
         validators=[
             Optional(),
             ValidateUID(Teacher),
@@ -41,7 +41,7 @@ class AddDepartmentForm(Form):
     )
 
     parent_department_uid = StringField(
-        _("Parent Department UID"),
+        _("PARENT_DEPARTMENT_UID_MSG"),
         validators=[
             ValidateUID(Department),
         ],
@@ -55,18 +55,18 @@ class AddDepartmentForm(Form):
         },
     )
 
-    submit = SubmitField(_("Add Department"))
+    submit = SubmitField(_("ADD_DEPARTMENT_LABEL"))
 
 
 class UpdateDepartmentForm(AddDepartmentForm):
     """Form to update an existing Department record."""
 
     uid = HiddenField(
-        _("UID"),
+        _("UID_LABEL"),
         validators=[
-            DataRequired(message=_("This field is required.")),
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
             ValidateUID(Department),
         ],
     )
 
-    submit = SubmitField(_("Update Department"))
+    submit = SubmitField(_("UPDATE_DEPARTMENT_LABEL"))

@@ -12,6 +12,6 @@ from app.models.user import permission_required
 def results():
     return render_template(
         "admin/pages/results.html",
-        title=_("Results"),
+        title=_("RESULTS_LABEL"),
         form={"a": AddResultForm(), "u": UpdateResultForm()},
     )

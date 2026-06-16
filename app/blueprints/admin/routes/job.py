@@ -12,6 +12,6 @@ from app.models.user import permission_required
 def jobs():
     return render_template(
         "admin/pages/jobs.html",
-        title=_("Jobs"),
+        title=_("JOBS_LABEL"),
         form={"a": AddJobForm(), "u": UpdateJobForm()},
     )

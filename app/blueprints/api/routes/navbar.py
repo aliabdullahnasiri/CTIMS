@@ -6,25 +6,26 @@ from flask_login import current_user, login_required
 from app.blueprints.api import bp
 from app.models.permission import Permission
 from app.models.role import Role
+from flask_babel import _
 
 ITEMS: List[Dict] = [
     {
         "type": "item",
-        "title": "Dashboard",
+        "title": _("DASHBOARD_LABEL"),
         "icon": "dashboard",
         "endpoint": "admin.dashboard",
         "permissions": Permission.get("VIEW_DASHBOARD"),
     },
     {
         "type": "item",
-        "title": "Users",
+        "title": _("USERS_LABEL"),
         "icon": "groups",
         "endpoint": "admin.users",
         "permissions": Permission.get("FETCH_USERS") | Permission.get("FETCH_USER"),
     },
     {
         "type": "item",
-        "title": "Permissions",
+        "title": _("PERMISSIONS_LABEL"),
         "icon": "lock_open_circle",
         "endpoint": "admin.permissions",
         "permissions": Permission.get("FETCH_PERMISSIONS")
@@ -32,18 +33,18 @@ ITEMS: List[Dict] = [
     },
     {
         "type": "item",
-        "title": "Roles",
+        "title": _("ROLES_LABEL"),
         "icon": "supervised_user_circle",
         "endpoint": "admin.roles",
         "permissions": Permission.get("FETCH_ROLES") | Permission.get("FETCH_ROLE"),
     },
     {
         "type": "section",
-        "title": "CTI Management",
+        "title": _("CTI_MANAGEMENT_TITLE"),
         "items": [
             {
                 "type": "item",
-                "title": "Times",
+                "title": _("TIMES_TITLE"),
                 "icon": None,
                 "endpoint": "admin.times",
                 "permissions": Permission.get("FETCH_TIMES")
@@ -51,7 +52,7 @@ ITEMS: List[Dict] = [
             },
             {
                 "type": "item",
-                "title": "Departments",
+                "title": _("DEPARTMENTS_LABEL"),
                 "icon": None,
                 "endpoint": "admin.departments",
                 "permissions": Permission.get("FETCH_DEPARTMENTS")
@@ -59,7 +60,7 @@ ITEMS: List[Dict] = [
             },
             {
                 "type": "item",
-                "title": "Semesters",
+                "title": _("SEMESTERS_LABEL"),
                 "icon": None,
                 "endpoint": "admin.semesters",
                 "permissions": Permission.get("FETCH_SEMESTERS")
@@ -67,7 +68,7 @@ ITEMS: List[Dict] = [
             },
             {
                 "type": "item",
-                "title": "Jobs",
+                "title": _("JOBS_LABEL"),
                 "icon": None,
                 "endpoint": "admin.jobs",
                 "permissions": Permission.get("FETCH_JOBS")
@@ -75,7 +76,7 @@ ITEMS: List[Dict] = [
             },
             {
                 "type": "item",
-                "title": "Employees",
+                "title": _("EMPLOYEES_LABEL"),
                 "icon": None,
                 "endpoint": "admin.employees",
                 "permissions": Permission.get("FETCH_EMPLOYEES")
@@ -83,7 +84,7 @@ ITEMS: List[Dict] = [
             },
             {
                 "type": "item",
-                "title": "Teacher",
+                "title": _("TEACHER_LABEL"),
                 "icon": None,
                 "endpoint": "admin.teachers",
                 "permissions": Permission.get("FETCH_TEACHERS")
@@ -91,7 +92,7 @@ ITEMS: List[Dict] = [
             },
             {
                 "type": "item",
-                "title": "Subjects",
+                "title": _("SUBJECTS_LABEL"),
                 "icon": None,
                 "endpoint": "admin.subjects",
                 "permissions": Permission.get("FETCH_SUBJECTS")
@@ -99,7 +100,7 @@ ITEMS: List[Dict] = [
             },
             {
                 "type": "item",
-                "title": "Classes",
+                "title": _("CLASSES_LABEL"),
                 "icon": None,
                 "endpoint": "admin.classes",
                 "permissions": Permission.get("FETCH_CLASSES")
@@ -107,7 +108,7 @@ ITEMS: List[Dict] = [
             },
             {
                 "type": "item",
-                "title": "Students",
+                "title": _("STUDENTS_LABEL"),
                 "icon": None,
                 "endpoint": "admin.students",
                 "permissions": Permission.get("FETCH_STUDENTS")
@@ -115,7 +116,7 @@ ITEMS: List[Dict] = [
             },
             {
                 "type": "item",
-                "title": "Exams",
+                "title": _("EXAMS_LABEL"),
                 "icon": None,
                 "endpoint": "admin.exams",
                 "permissions": Permission.get("FETCH_EXAMS")
@@ -123,7 +124,7 @@ ITEMS: List[Dict] = [
             },
             {
                 "type": "item",
-                "title": "Results",
+                "title": _("RESULTS_LABEL"),
                 "icon": None,
                 "endpoint": "admin.results",
                 "permissions": Permission.get("FETCH_RESULTS")
@@ -131,7 +132,7 @@ ITEMS: List[Dict] = [
             },
             {
                 "type": "item",
-                "title": "Teachers Attendances",
+                "title": _("TEACHERS_ATTENDANCES_LABEL"),
                 "icon": None,
                 "endpoint": "admin.teachers_attendances",
                 "permissions": Permission.get("FETCH_TEACHERS_ATTENDANCES")
@@ -139,7 +140,7 @@ ITEMS: List[Dict] = [
             },
             {
                 "type": "item",
-                "title": "Students Attendances",
+                "title": _("STUDENTS_ATTENDANCES_LABEL"),
                 "icon": None,
                 "endpoint": "admin.students_attendances",
                 "permissions": Permission.get("FETCH_STUDENTS_ATTENDANCES")
@@ -149,11 +150,11 @@ ITEMS: List[Dict] = [
     },
     {
         "type": "section",
-        "title": "Account",
+        "title": _("ACCOUNT_TITLE"),
         "items": [
             {
                 "type": "item",
-                "title": "Profile",
+                "title": _("PROFILE_TITLE"),
                 "icon": "person",
                 "endpoint": "admin.profile",
             },

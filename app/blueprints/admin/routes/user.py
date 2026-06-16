@@ -16,7 +16,7 @@ def users():
 
     return render_template(
         "admin/pages/users.html",
-        title=_("Users"),
+        title=_("USERS_LABEL"),
         update_user_form=update_user_form,
         add_user_form=add_user_form,
     )

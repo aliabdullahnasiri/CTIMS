@@ -14,11 +14,11 @@ from app.models.permission import Permission
 from app.models.user import permission_required
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
-    (ColumnID("uid"), ColumnName(g("UID"))),
-    (ColumnID("temp_student"), ColumnName(g("Student"))),
-    (ColumnID("date"), ColumnName(g("Date"))),
-    (ColumnID("time"), ColumnName(g("Time"))),
-    (ColumnID("temp_student_attandance_status"), ColumnName(g("Status"))),
+    (ColumnID("uid"), ColumnName(g("UID_LABEL"))),
+    (ColumnID("temp_student"), ColumnName(g("STUDENT_LABEL"))),
+    (ColumnID("date"), ColumnName(g("DATE_LABEL"))),
+    (ColumnID("time"), ColumnName(g("TIME_LABEL"))),
+    (ColumnID("temp_student_attandance_status"), ColumnName(g("STATUS_LABEL"))),
 ]
 
 
@@ -85,7 +85,7 @@ def fetch_student_attendance_row(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": g("Attendance with the given ID was not found :("),
+                "message": g("ATTENDANCE_WITH_THE_GIVEN_ID_WAS_NOT_FOUND_MSG"),
                 "category": "error",
             }
         ),
@@ -111,7 +111,7 @@ def fetch_student_attendance(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": g("Attendance with the given ID was not found :("),
+                "message": g("ATTENDANCE_WITH_THE_GIVEN_ID_WAS_NOT_FOUND_MSG"),
                 "category": "error",
             }
         ),
@@ -136,8 +136,8 @@ def add_student_attendance() -> Response:
         db.session.add(student_attendance)
         db.session.commit()
 
-        response["message"] = g("Student attendance added successfully")
-        response["title"] = g("Attendance Added")
+        response["message"] = g("STUDENT_ATTENDANCE_ADDED_SUCCESSFULLY_SUCCESS_MSG")
+        response["title"] = g("ATTENDANCE_ADDED_LABEL")
         response["category"] = "success"
         response["id"] = getattr(student_attendance, "uid")
 

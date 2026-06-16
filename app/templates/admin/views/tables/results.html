@@ -4,22 +4,22 @@
       <th
         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center"
       >
-        {{ _("UID") }}
+        {{ _("UID_LABEL") }}
       </th>
       <th
         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
       >
-        {{ _("Student") }}
+        {{ _("STUDENT_LABEL") }}
       </th>
       <th
         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
       >
-        {{ _("Percentage") }}
+        {{ _("PERCENTAGE_LABEL") }}
       </th>
       <th
         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
       >
-        {{ _("Status") }}
+        {{ _("STATUS_LABEL") }}
       </th>
     </tr>
   </thead>
@@ -53,7 +53,7 @@
     {% else %}
     <tr class="no-rows-label">
       <td colspan="4" class="py-4 text-center">
-        <span>{{ _("No results yet :(") }}</span>
+        <span>{{ _("NO_RESULTS_YET_MSG") }}</span>
       </td>
     </tr>
     {% endfor %}

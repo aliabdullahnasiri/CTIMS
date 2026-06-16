@@ -1,7 +1,7 @@
 <div class="card card-plain">
   <div class="card-header mx-1">
     <div class="row gx-4 mb-0">
-      <h4 class="mb-0">{{ _("Role") }}</h4>
+      <h4 class="mb-0">{{ _("ROLE_LABEL") }}</h4>
       <p class="mb-0 mt-0 font-weight-normal text-sm">{{ role.name }}</p>
     </div>
   </div>
@@ -11,7 +11,7 @@
         <div class="row gx-0 mb-3">
           <div class="card">
             <div class="card-header pb-0">
-              <h5>{{ _("Role Information") }}</h5>
+              <h5>{{ _("ROLE_INFORMATION_LABEL") }}</h5>
             </div>
             <hr class="bg-dark horizontal my-0 opacity-10" />
             <div class="card-body p0">
@@ -28,7 +28,7 @@
               <div class="card-header ps-3">
                 <div class="d-flex justify-content-between">
                   <div>
-                    <p class="text-sm mb-0 text-capitalize">{{ _("Permissions") }}</p>
+                    <p class="text-sm mb-0 text-capitalize">{{ _("PERMISSIONS_LABEL") }}</p>
                     <h4 class="mb-0">{{ role.permissions.count() }}</h4>
                   </div>
                   <div
@@ -47,7 +47,7 @@
               <div class="card-header ps-3">
                 <div class="d-flex justify-content-between">
                   <div>
-                    <p class="text-sm mb-0 text-capitalize">{{ _("Users") }}</p>
+                    <p class="text-sm mb-0 text-capitalize">{{ _("USERS_LABEL") }}</p>
                     <h4 class="mb-0">{{ role.users.count() }}</h4>
                   </div>
                   <div
@@ -76,7 +76,7 @@
                 role="tab"
                 aria-selected="true"
               >
-                {{ _("Users") }}
+                {{ _("USERS_LABEL") }}
               </a>
             </li>
             <li class="nav-item" role="presentation">
@@ -88,7 +88,7 @@
                 role="tab"
                 aria-selected="false"
               >
-                {{ _("Permissions") }}
+                {{ _("PERMISSIONS_LABEL") }}
               </a>
             </li>
           </ul>

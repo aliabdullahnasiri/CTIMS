@@ -14,10 +14,10 @@ from app.models.permission import Permission
 from app.models.user import permission_required
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
-    (ColumnID("uid"), ColumnName(g("UID"))),
-    (ColumnID("temp_hod"), ColumnName(g("Head of department"))),
-    (ColumnID("name"), ColumnName(g("name"))),
-    (ColumnID("description"), ColumnName(g("Description"))),
+    (ColumnID("uid"), ColumnName(g("UID_LABEL"))),
+    (ColumnID("temp_hod"), ColumnName(g("HEAD_OF_DEPARTMENT_MSG"))),
+    (ColumnID("name"), ColumnName(g("NAME_LABEL"))),
+    (ColumnID("description"), ColumnName(g("DESCRIPTION_LABEL"))),
 ]
 
 
@@ -81,7 +81,7 @@ def fetch_department_row(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": g("Department with the given ID was not found :("),
+                "message": g("DEPARTMENT_WITH_THE_GIVEN_ID_WAS_NOT_FOUND_MSG"),
                 "category": "error",
             }
         ),
@@ -105,7 +105,7 @@ def fetch_department(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": g("Department with the given ID was not found :("),
+                "message": g("DEPARTMENT_WITH_THE_GIVEN_ID_WAS_NOT_FOUND_MSG"),
                 "category": "error",
             }
         ),
@@ -137,9 +137,9 @@ def add_department() -> Response:
         db.session.add(department)
         db.session.commit()
 
-        response["message"] = g("Department added successfully")
+        response["message"] = g("DEPARTMENT_ADDED_SUCCESSFULLY_SUCCESS_MSG")
         response["category"] = "success"
-        response["title"] = g("Department Added")
+        response["title"] = g("DEPARTMENT_ADDED_LABEL")
         response["id"] = getattr(department, "uid")
 
     else:
@@ -173,12 +173,12 @@ def update_department() -> Response:
 
             db.session.commit()
 
-            response["title"] = g("Updated!")
-            response["message"] = g("Department updated successfully!")
+            response["title"] = g("UPDATED_SUCCESS_MSG")
+            response["message"] = g("DEPARTMENT_UPDATED_SUCCESSFULLY_SUCCESS_MSG")
             response["category"] = "success"
         else:
-            response["title"] = g("Not Found")
-            response["message"] = g("Department record not found.")
+            response["title"] = g("NOT_FOUND_LABEL")
+            response["message"] = g("DEPARTMENT_RECORD_NOT_FOUND_MSG")
             response["category"] = "error"
     else:
         response["errors"] = form.errors
@@ -204,13 +204,13 @@ def delete_department(uid: str) -> Response:
         db.session.delete(department)
         db.session.commit()
 
-        response["title"] = g("Deleted!")
-        response["message"] = g("Department deleted successfully")
+        response["title"] = g("DELETED_SUCCESS_MSG")
+        response["message"] = g("DEPARTMENT_DELETED_SUCCESSFULLY_SUCCESS_MSG")
         response["category"] = "success"
         response["status"] = 200
     else:
-        response["title"] = g("Error :(")
-        response["message"] = g("Department not found")
+        response["title"] = g("ERROR_ERROR")
+        response["message"] = g("DEPARTMENT_NOT_FOUND_MSG")
         response["category"] = "error"
         response["status"] = 404
 

@@ -10,15 +10,15 @@
             <script>
               document.write(new Date().getFullYear());
             </script>
-            {{ _("made with") }}
+            {{ _("MADE_WITH_LABEL") }}
           </span>
           <i class="material-symbols-rounded link-danger fs-4 mx-1">favorite</i>
           <span>
-            {{ _("by") }}
+            {{ _("BY_LABEL") }}
             <a href="#" class="font-weight-bold" target="_blank"
-              >{{ _(DEVELOPER ) }}</a
+              >{{ _(DEVELOPER) }}</a
             >
-            {{ _("for") }}
+            {{ _("FOR_LABEL") }}
             <a
               href="{{ url_for('admin.dashboard') }}"
               class="font-weight-bold"

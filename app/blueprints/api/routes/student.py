@@ -17,10 +17,10 @@ from app.models.student import Student
 from app.models.user import User, permission_required
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
-    (ColumnID("uid"), ColumnName(g("UID"))),
-    (ColumnID("temp_student"), ColumnName(g("Student"))),
-    (ColumnID("birthday"), ColumnName(g("Birthday"))),
-    (ColumnID("age"), ColumnName(g("Age"))),
+    (ColumnID("uid"), ColumnName(g("UID_LABEL"))),
+    (ColumnID("temp_student"), ColumnName(g("STUDENT_LABEL"))),
+    (ColumnID("birthday"), ColumnName(g("BIRTHDAY_LABEL"))),
+    (ColumnID("age"), ColumnName(g("AGE_LABEL"))),
 ]
 
 
@@ -82,7 +82,7 @@ def fetch_student_row(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": g("Student with the given ID was not found :("),
+                "message": g("STUDENT_WITH_THE_GIVEN_ID_WAS_NOT_FOUND_MSG"),
                 "category": "error",
             }
         ),
@@ -106,7 +106,7 @@ def fetch_student(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": g("Student with the given ID was not found :("),
+                "message": g("STUDENT_WITH_THE_GIVEN_ID_WAS_NOT_FOUND_MSG"),
                 "category": "error",
             }
         ),
@@ -160,8 +160,8 @@ def add_student() -> Response:
 
         db.session.commit()
 
-        response["message"] = g("Student added successfully")
-        response["title"] = g("Student Added")
+        response["message"] = g("STUDENT_ADDED_SUCCESSFULLY_SUCCESS_MSG")
+        response["title"] = g("STUDENT_ADDED_LABEL")
         response["category"] = "success"
         response["id"] = getattr(student, "uid")
 
@@ -209,12 +209,12 @@ def update_student() -> Response:
 
             db.session.commit()
 
-            response["title"] = g("Updated!")
-            response["message"] = g("Student updated successfully!")
+            response["title"] = g("UPDATED_SUCCESS_MSG")
+            response["message"] = g("STUDENT_UPDATED_SUCCESSFULLY_SUCCESS_MSG")
             response["category"] = "success"
         else:
-            response["title"] = g("Not Found")
-            response["message"] = g("Student record not found.")
+            response["title"] = g("NOT_FOUND_LABEL")
+            response["message"] = g("STUDENT_RECORD_NOT_FOUND_MSG")
             response["category"] = "error"
     else:
         response["errors"] = form.errors
@@ -236,13 +236,13 @@ def delete_student(uid: str) -> Response:
         db.session.delete(student)
         db.session.commit()
 
-        response["title"] = g("Deleted!")
-        response["message"] = g("Student deleted successfully")
+        response["title"] = g("DELETED_SUCCESS_MSG")
+        response["message"] = g("STUDENT_DELETED_SUCCESSFULLY_SUCCESS_MSG")
         response["category"] = "success"
         response["status"] = 200
     else:
-        response["title"] = g("Error :(")
-        response["message"] = g("Student not found")
+        response["title"] = g("ERROR_ERROR")
+        response["message"] = g("STUDENT_NOT_FOUND_MSG")
         response["category"] = "error"
         response["status"] = 404
 

@@ -9,17 +9,17 @@
       <th
         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
       >
-        {{ _("Name") }}
+        {{ _("NAME_LABEL") }}
       </th>
       <th
         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
       >
-        {{ _("Size") }}
+        {{ _("SIZE_LABEL") }}
       </th>
       <th
         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
       >
-        {{ _("Uploaded") }}
+        {{ _("UPLOADED_LABEL") }}
       </th>
     </tr>
   </thead>
@@ -36,7 +36,7 @@
     {% else %}
     <tr class="no-rows-label">
       <td colspan="5" class="py-4 text-center">
-        <span>{{ _("No files yet :(") }}</span>
+        <span>{{ _("NO_FILES_YET_MSG") }}</span>
       </td>
     </tr>
     {% endfor %}

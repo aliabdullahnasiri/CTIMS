@@ -18,10 +18,10 @@ from app.models.user import User
 
 class AddEmployeeForm(AddUserForm):
     job_uid = StringField(
-        _("Job UID"),
+        _("JOB_UID_LABEL"),
         validators=[
             Optional(),
-            Length(min=8, max=8, message=_("This field must be 8 characters.")),
+            Length(min=8, max=8, message=_("THIS_FIELD_MUST_BE_8_CHARACTERS_MSG")),
             ValidateUID(Job),
         ],
         render_kw={
@@ -35,37 +35,37 @@ class AddEmployeeForm(AddUserForm):
     )
 
     address = StringField(
-        _("Address"),
+        _("ADDRESS_LABEL"),
         validators=[
-            Length(max=255, message=_("This field cannot exceed 255 characters."))
+            Length(max=255, message=_("THIS_FIELD_CANNOT_EXCEED_255_CHARACTERS_MSG"))
         ],
     )
     salary = DecimalField(
-        _("Salary"),
+        _("SALARY_LABEL"),
         places=2,
         validators=[
             Optional(),
-            NumberRange(min=0, message=_("Value must be at least %(min)s.")),
+            NumberRange(min=0, message=_("VALUE_MUST_BE_AT_LEAST_MIN_S_MSG")),
         ],
     )
-    hire_date = DateField(_("Hire Date"), format="%Y-%m-%d")
-    submit = SubmitField(_("Add"))
+    hire_date = DateField(_("HIRE_DATE_LABEL"), format="%Y-%m-%d")
+    submit = SubmitField(_("ADD_LABEL"))
 
 
 class UpdateEmployeeForm(UpdateUserForm, AddEmployeeForm):
     uid = HiddenField(
-        _("Employee UID"),
+        _("EMPLOYEE_UID_LABEL"),
         validators=[
-            DataRequired(message=_("This field is required.")),
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
             ValidateUID(Employee),
         ],
     )
     user_uid = HiddenField(
-        _("User UID"),
+        _("USER_UID_LABEL"),
         validators=[
-            DataRequired(message=_("This field is required.")),
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
             ValidateUID(User),
         ],
     )
-    password = PasswordField(_("Password"))
-    submit = SubmitField(_("Update"))
+    password = PasswordField(_("PASSWORD_LABEL"))
+    submit = SubmitField(_("UPDATE_LABEL"))

@@ -9,22 +9,22 @@ from app.models.semester import Semester
 
 class AddSemesterForm(Form):
     name = StringField(
-        _("Semester Name"),
+        _("SEMESTER_NAME_LABEL"),
         validators=[
-            DataRequired(message=_("This field is required.")),
-            Length(max=255, message=_("This field cannot exceed 255 characters.")),
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
+            Length(max=255, message=_("THIS_FIELD_CANNOT_EXCEED_255_CHARACTERS_MSG")),
         ],
     )
 
     number = IntegerField(
-        _("Semester Number"),
-        validators=[DataRequired(message=_("This field is required."))],
+        _("SEMESTER_NUMBER_LABEL"),
+        validators=[DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR"))],
     )
 
     department_uid = StringField(
-        _("Department UID"),
+        _("DEPARTMENT_UID_LABEL"),
         validators=[
-            DataRequired(message=_("This field is required.")),
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
             ValidateUID(Department),
         ],
         render_kw={
@@ -37,16 +37,16 @@ class AddSemesterForm(Form):
         },
     )
 
-    submit = SubmitField(_("Add Semester"))
+    submit = SubmitField(_("ADD_SEMESTER_LABEL"))
 
 
 class UpdateSemesterForm(AddSemesterForm):
     uid = HiddenField(
-        _("Semester UID"),
+        _("SEMESTER_UID_LABEL"),
         validators=[
-            DataRequired(message=_("This field is required.")),
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
             ValidateUID(Semester),
         ],
     )
 
-    submit = SubmitField(_("Update Semester"))
+    submit = SubmitField(_("UPDATE_SEMESTER_LABEL"))

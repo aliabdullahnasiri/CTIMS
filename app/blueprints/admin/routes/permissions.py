@@ -14,6 +14,6 @@ from app.models.user import permission_required
 def permissions():
     return render_template(
         "admin/pages/permissions.html",
-        title=_("Permissions"),
+        title=_("PERMISSIONS_LABEL"),
         form={"u": UpdatePermissionForm()},
     )

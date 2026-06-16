@@ -14,9 +14,9 @@ from app.models.permission import Permission
 from app.models.user import permission_required
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
-    (ColumnID("uid"), ColumnName(g("UID"))),
-    (ColumnID("temp_teacher"), ColumnName(g("Teacher"))),
-    (ColumnID("cls_name"), ColumnName(g("Name"))),
+    (ColumnID("uid"), ColumnName(g("UID_LABEL"))),
+    (ColumnID("temp_teacher"), ColumnName(g("TEACHER_LABEL"))),
+    (ColumnID("cls_name"), ColumnName(g("NAME_LABEL"))),
 ]
 
 
@@ -78,7 +78,7 @@ def fetch_class_row(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": g("Class with the given ID was not found :("),
+                "message": g("CLASS_WITH_THE_GIVEN_ID_WAS_NOT_FOUND_MSG"),
                 "category": "error",
             }
         ),
@@ -102,7 +102,7 @@ def fetch_class(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": g("Class with the given ID was not found :("),
+                "message": g("CLASS_WITH_THE_GIVEN_ID_WAS_NOT_FOUND_MSG"),
                 "category": "error",
             }
         ),
@@ -129,8 +129,8 @@ def add_class() -> Response:
         db.session.add(class_)
         db.session.commit()
 
-        response["message"] = g("Class added successfully.")
-        response["title"] = g("Added!")
+        response["message"] = g("CLASS_ADDED_SUCCESSFULLY_SUCCESS_MSG")
+        response["title"] = g("ADDED_LABEL")
         response["category"] = "success"
         response["id"] = getattr(class_, "uid")
 
@@ -160,8 +160,8 @@ def update_class() -> Response:
 
             response.response = json.dumps(
                 {
-                    "title": g("Good job!"),
-                    "message": g("Class updated successfully!"),
+                    "title": g("GOOD_JOB_LABEL"),
+                    "message": g("CLASS_UPDATED_SUCCESSFULLY_SUCCESS_MSG"),
                     "category": "success",
                 }
             )
@@ -182,13 +182,13 @@ def delete_class(uid: str) -> Response:
         db.session.delete(class_)
         db.session.commit()
 
-        response["title"] = g("Deleted!")
-        response["message"] = g("Class deleted successfully")
+        response["title"] = g("DELETED_SUCCESS_MSG")
+        response["message"] = g("CLASS_DELETED_SUCCESSFULLY_SUCCESS_MSG")
         response["category"] = "success"
         response["status"] = 200
     else:
-        response["title"] = g("Error :(")
-        response["message"] = g("Class not found")
+        response["title"] = g("ERROR_ERROR")
+        response["message"] = g("CLASS_NOT_FOUND_MSG")
         response["category"] = "error"
         response["status"] = 404
 

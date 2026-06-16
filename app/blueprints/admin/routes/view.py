@@ -44,7 +44,7 @@ def view(entity: str, uid: str) -> Response:
 
     if not validate_uid(uid) or not obj:
         response.headers.setdefault("Content-Type", "application/json")
-        response.response = json.dumps({"error": _("Invalid UID/Entity :(")})
+        response.response = json.dumps({"error": _("INVALID_UID_ENTITY_ERROR")})
         response.status_code = 404
 
         return response
@@ -59,11 +59,11 @@ def view(entity: str, uid: str) -> Response:
                     response.response = render_template(template, **{entity: row})
                     response.status_code = 200
                 else:
-                    response.response = json.dumps({"error": _("Row was not found :(")})
+                    response.response = json.dumps({"error": _("ROW_WAS_NOT_FOUND_MSG")})
                     response.status_code = 404
             break
     else:
-        response.response = json.dumps({"error": _("Template was not found :(")})
+        response.response = json.dumps({"error": _("TEMPLATE_WAS_NOT_FOUND_MSG")})
         response.status_code = 404
 
     return response

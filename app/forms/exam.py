@@ -19,40 +19,40 @@ from app.models.subject import Subject
 
 class AddExamForm(Form):
     title = StringField(
-        _("Title"),
+        _("TITLE_LABEL"),
         validators=[
-            DataRequired(message=_("This field is required.")),
-            Length(max=50, message=_("This field cannot exceed 50 characters.")),
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
+            Length(max=50, message=_("THIS_FIELD_CANNOT_EXCEED_50_CHARACTERS_MSG")),
         ],
     )
     description = TextAreaField(
-        _("Description"),
+        _("DESCRIPTION_LABEL"),
         validators=[
-            Length(max=50, message=_("This field cannot exceed 50 characters."))
+            Length(max=50, message=_("THIS_FIELD_CANNOT_EXCEED_50_CHARACTERS_MSG"))
         ],
     )
 
     exam_date = DateField(
-        _("Exam Date"), validators=[DataRequired(message=_("This field is required."))]
+        _("EXAM_DATE_LABEL"), validators=[DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR"))]
     )
     exam_time = TimeField(
-        _("Exam Time"), validators=[DataRequired(message=_("This field is required."))]
+        _("EXAM_TIME_LABEL"), validators=[DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR"))]
     )
 
     total_marks = IntegerField(
-        _("Total Marks"),
-        validators=[DataRequired(message=_("This field is required."))],
+        _("TOTAL_MARKS_LABEL"),
+        validators=[DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR"))],
     )
     min_marks = IntegerField(
-        _("Minimum Marks"),
-        validators=[DataRequired(message=_("This field is required."))],
+        _("MINIMUM_MARKS_LABEL"),
+        validators=[DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR"))],
     )
 
     subject_id = StringField(
-        _("Subject UID"),
+        _("SUBJECT_UID_LABEL"),
         validators=[
-            DataRequired(message=_("This field is required.")),
-            Length(min=8, max=8, message=_("This field must be 8 characters.")),
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
+            Length(min=8, max=8, message=_("THIS_FIELD_MUST_BE_8_CHARACTERS_MSG")),
             ValidateUID(Subject),
         ],
         render_kw={
@@ -65,10 +65,10 @@ class AddExamForm(Form):
         },
     )
     class_id = StringField(
-        _("Class UID"),
+        _("CLASS_UID_LABEL"),
         validators=[
-            DataRequired(message=_("This field is required.")),
-            Length(min=8, max=8, message=_("This field must be 8 characters.")),
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
+            Length(min=8, max=8, message=_("THIS_FIELD_MUST_BE_8_CHARACTERS_MSG")),
             ValidateUID(Class),
         ],
         render_kw={
@@ -81,19 +81,19 @@ class AddExamForm(Form):
         },
     )
 
-    submit = SubmitField(_("Add Exam"))
+    submit = SubmitField(_("ADD_EXAM_LABEL"))
 
 
 class UpdateExamForm(AddExamForm):
     uid = HiddenField(
-        _("Exam UID"),
+        _("EXAM_UID_LABEL"),
         validators=[
-            DataRequired(message=_("This field is required.")),
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
             ValidateUID(Exam),
         ],
     )
     files = MultipleFileField(
-        _("Files"),
+        _("FILES_LABEL"),
         validators=[],
     )
-    submit = SubmitField(_("Update Exam"))
+    submit = SubmitField(_("UPDATE_EXAM_LABEL"))

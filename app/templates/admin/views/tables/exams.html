@@ -4,27 +4,27 @@
       <th
         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center"
       >
-        {{ _("UID") }}
+        {{ _("UID_LABEL") }}
       </th>
       <th
         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
       >
-        {{ _("Title") }}
+        {{ _("TITLE_LABEL") }}
       </th>
       <th
         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
       >
-        {{ _("Total Marks") }}
+        {{ _("TOTAL_MARKS_LABEL") }}
       </th>
       <th
         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
       >
-        {{ _("Exam Date") }}
+        {{ _("EXAM_DATE_LABEL") }}
       </th>
       <th
         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
       >
-        {{ _("Exam Time") }}
+        {{ _("EXAM_TIME_LABEL") }}
       </th>
     </tr>
   </thead>
@@ -40,7 +40,7 @@
     {% else %}
     <tr class="no-rows-label">
       <td colspan="5" class="py-4 text-center">
-        <span>{{ _("No exams yet :(") }}</span>
+        <span>{{ _("NO_EXAMS_YET_MSG") }}</span>
       </td>
     </tr>
     {% endfor %}

@@ -1,7 +1,7 @@
 {% extends 'auth/base.html' %} {% block form %}
 <div class="form-box">
   <form method="POST">
-    <h1>{{ _("Login") }}</h1>
+    <h1>{{ _("LOGIN_LABEL") }}</h1>
     {{ form.hidden_tag() }}
     
     <div class="input-box">
@@ -30,9 +30,9 @@
 
 <div class="toggle-box">
   <div class="toggle-panel toggle-left">
-    <h1>{{ _("Hello, Welcome!") }}</h1>
-    <p>{{ _("Don't have an account?") }}</p>
-    <button class="btn register-btn" data-location="{{ url_for('auth.signup') }}">{{ _("Register") }}</button>
+    <h1>{{ _("HELLO_WELCOME_LABEL") }}</h1>
+    <p>{{ _("DON_T_HAVE_AN_ACCOUNT_MSG") }}</p>
+    <button class="btn register-btn" data-location="{{ url_for('auth.signup') }}">{{ _("REGISTER_LABEL") }}</button>
   </div>
 </div>
 {% endblock %}

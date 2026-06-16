@@ -26,7 +26,7 @@
         <div class="row gx-0 mb-3">
           <div class="card">
             <div class="card-header pb-0">
-              <h5>{{ _("Teacher Information") }}</h5>
+              <h5>{{ _("TEACHER_INFORMATION_LABEL") }}</h5>
             </div>
             <hr class="bg-dark horizontal my-0 opacity-10" />
             <div class="card-body p0">
@@ -37,7 +37,7 @@
         <div class="row gx-0 mb-3">
           <div class="card">
             <div class="card-header pb-0">
-              <h5>{{ _("Time Information") }}</h5>
+              <h5>{{ _("TIME_INFORMATION_LABEL") }}</h5>
             </div>
             <hr class="bg-dark horizontal my-0 opacity-10" />
             <div class="card-body p0">
@@ -56,7 +56,7 @@
                 <div class="d-flex justify-content-between">
                   <div>
                     <p class="text-sm mb-0 text-capitalize">
-                      {{ _("Salary") }}
+                      {{ _("SALARY_LABEL") }}
                     </p>
                     <h4 class="mb-0">{{ teacher.display_salary }}</h4>
                   </div>
@@ -72,11 +72,11 @@
                 <p class="mb-0 text-sm">
                   {% if teacher.is_salary_gt_avg %}
                   <span class="text-success font-weight-bolder"
-                    >{{ _("Greater") }}</span
+                    >{{ _("GREATER_LABEL") }}</span
                   >
                   {% else %}
                   <span class="text-danger font-weight-bolder"
-                    >{{ _("Less") }}</span
+                    >{{ _("LESS_LABEL") }}</span
                   >
                   {% endif %} than average salary.
                 </p>
@@ -90,7 +90,7 @@
               <div class="card-header">
                 <div class="d-flex justify-content-between">
                   <div>
-                    <p class="text-sm mb-0 text-capitalize">{{ _("Phone") }}</p>
+                    <p class="text-sm mb-0 text-capitalize">{{ _("PHONE_LABEL") }}</p>
                     <h4 class="mb-0">
                       {{ teacher.user.display_number_of_phone_nums }}
                     </h4>
@@ -126,7 +126,7 @@
                 <div class="d-flex justify-content-between">
                   <div>
                     <p class="text-sm mb-0 text-capitalize">
-                      {{ _("Classes") }}
+                      {{ _("CLASSES_LABEL") }}
                     </p>
                     <h4 class="mb-0">
                       {{ teacher.display_number_of_classes }}
@@ -149,7 +149,7 @@
                 <div class="d-flex justify-content-between">
                   <div>
                     <p class="text-sm mb-0 text-capitalize">
-                      {{ _("Subjects") }}
+                      {{ _("SUBJECTS_LABEL") }}
                     </p>
                     <h4 class="mb-0">
                       {{ teacher.display_number_of_subjects }}
@@ -171,7 +171,7 @@
               <div class="card-header">
                 <div class="d-flex justify-content-between">
                   <div>
-                    <p class="text-sm mb-0 text-capitalize">{{ _("Files") }}</p>
+                    <p class="text-sm mb-0 text-capitalize">{{ _("FILES_LABEL") }}</p>
                     <h4 class="mb-0">
                       {{ teacher.user.display_number_of_files }}
                     </h4>
@@ -186,7 +186,7 @@
               <hr class="bg-dark horizontal my-0 opacity-10" />
               <div class="card-footer py-2">
                 <span class="font-weight-bolder text-sm"
-                  >{{ _("Storage:") }}
+                  >{{ _("STORAGE_LABEL") }}
                 </span>
 
                 <span class="text-sm font-weight-normal"
@@ -211,7 +211,7 @@
                 role="tab"
                 aria-selected="true"
               >
-                {{ _("Classes") }}
+                {{ _("CLASSES_LABEL") }}
               </a>
             </li>
             <li class="nav-item" role="presentation">
@@ -223,7 +223,7 @@
                 role="tab"
                 aria-selected="true"
               >
-                {{ _("Subjects") }}
+                {{ _("SUBJECTS_LABEL") }}
               </a>
             </li>
             <li class="nav-item" role="presentation">
@@ -235,7 +235,7 @@
                 role="tab"
                 aria-selected="false"
               >
-                {{ _("Attendances") }}
+                {{ _("ATTENDANCES_LABEL") }}
               </a>
             </li>
             <li class="nav-item" role="presentation">
@@ -247,7 +247,7 @@
                 role="tab"
                 aria-selected="false"
               >
-                {{ _("Files") }}
+                {{ _("FILES_LABEL") }}
               </a>
             </li>
           </ul>

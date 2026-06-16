@@ -5,8 +5,8 @@
   <div class="card shadow-lg">
     <div class="card-header pb-0 pt-3">
       <div class="float-{{ 'end' if lang in ['fa', 'ps'] else 'start' }}">
-        <h5 class="mt-3 mb-0">{{ _("UI Configurator") }}</h5>
-        <p>{{ _("See our dashboard options.") }}</p>
+        <h5 class="mt-3 mb-0">{{ _("UI_CONFIGURATOR_LABEL") }}</h5>
+        <p>{{ _("SEE_OUR_DASHBOARD_OPTIONS_MSG") }}</p>
       </div>
       <div class="float-{{ 'start' if lang in ['fa', 'ps'] else 'end' }} mt-4">
         <button class="btn btn-link text-dark p-0 fixed-plugin-close-button">
@@ -19,7 +19,7 @@
     <div class="card-body pt-sm-3 pt-0">
       <!-- Sidebar Backgrounds -->
       <div>
-        <h6 class="mb-0">{{ _("Sidebar Colors") }}</h6>
+        <h6 class="mb-0">{{ _("SIDEBAR_COLORS_LABEL") }}</h6>
       </div>
       <a href="javascript:void(0)" class="switch-trigger background-color">
         <div class="badge-colors my-2">
@@ -57,9 +57,9 @@
       </a>
       <!-- Sidenav Type -->
       <div class="mt-3">
-        <h6 class="mb-0">{{ _("Sidenav Type") }}</h6>
+        <h6 class="mb-0">{{ _("SIDENAV_TYPE_PLACEHOLDER") }}</h6>
         <p class="text-sm">
-          {{ _("Choose between different sidenav types.") }}
+          {{ _("CHOOSE_BETWEEN_DIFFERENT_SIDENAV_TYPES_PLACEHOLDER") }}
         </p>
       </div>
       <div class="d-flex sidenav-type justify-content-evenly">
@@ -68,45 +68,46 @@
           data-class="bg-gradient-dark"
           onclick="sidebarType(this)"
         >
-          {{ _("Dark") }}
+          {{ _("DARK_LABEL") }}
         </button>
         <button
           class="btn bg-gradient-dark"
           data-class="bg-transparent"
           onclick="sidebarType(this)"
         >
-          {{ _("Transparent") }}
+          {{ _("TRANSPARENT_LABEL") }}
         </button>
         <button
           class="btn bg-gradient-dark"
           data-class="bg-white"
           onclick="sidebarType(this)"
         >
-          {{ _("White") }}
+          {{ _("WHITE_LABEL") }}
         </button>
       </div>
       <hr class="horizontal dark my-3" />
       <div class="mt-3">
-        <h6 class="mb-0">{{ _("Language") }}</h6>
-        <p class="text-sm">{{ _("Choose between different language.") }}</p>
+        <h6 class="mb-0">{{ _("LANGUAGE_LABEL") }}</h6>
+        <p class="text-sm">{{ _("CHOOSE_BETWEEN_DIFFERENT_LANGUAGE_MSG") }}</p>
       </div>
       <div class="d-flex sidenav-type justify-content-evenly">
         {% for LANG in LANGUAGES %}
         <button
-          class="btn {% if LANG == lang %}active{% else %}bg-gradient-dark{% endif %}"
+          class="btn bg-gradient-dark {{ LANG == lang and 'active' }}"
           data-class="bg-gradient-dark"
           onclick="window.location.href='?lang={{ LANG }}'"
         >
-          {{ _(LANG) }}
+          {{ _((LANG | upper) + "_LABEL") }}
         </button>
         {% endfor %}
       </div>
       <p class="text-sm d-xl-none d-block mt-2 mb-2">
-        {{ _("You can change the sidenav type just on desktop view.") }}
+        {{ _("YOU_CAN_CHANGE_THE_SIDENAV_TYPE_JUST_ON_DESKTOP_VIEW_PLACEHOLDER")
+        }}
       </p>
       <hr class="horizontal dark my-3" />
       <div class="mt-2 d-flex justify-content-between">
-        <h6 class="mb-0">{{ _("Light / Dark") }}</h6>
+        <h6 class="mb-0">{{ _("LIGHT_DARK_MSG") }}</h6>
         <div class="form-check form-switch">
           <input
             class="form-check-input mt-1"

@@ -16,11 +16,11 @@ from app.models.role import Role
 from app.models.user import User, permission_required
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
-    (ColumnID("uid"), ColumnName(g("UID"))),
-    (ColumnID("temp_user"), ColumnName(g("User"))),
-    (ColumnID("user_name"), ColumnName(g("User Name"))),
-    (ColumnID("birthday"), ColumnName(g("Birthday"))),
-    (ColumnID("age"), ColumnName(g("Age"))),
+    (ColumnID("uid"), ColumnName(g("UID_LABEL"))),
+    (ColumnID("temp_user"), ColumnName(g("USER_LABEL"))),
+    (ColumnID("user_name"), ColumnName(g("USER_NAME_LABEL"))),
+    (ColumnID("birthday"), ColumnName(g("BIRTHDAY_LABEL"))),
+    (ColumnID("age"), ColumnName(g("AGE_LABEL"))),
 ]
 
 
@@ -83,7 +83,7 @@ def fetch_user_row(uid) -> Response:
 
     else:
         dct = {
-            "message": g("User with the given ID was not found :("),
+            "message": g("USER_WITH_THE_GIVEN_ID_WAS_NOT_FOUND_MSG"),
             "category": "error",
         }
 
@@ -110,7 +110,7 @@ def fetch_user(uid) -> Response:
     return Response(
         json.dumps(
             {
-                "message": g("User with the given ID was not found :("),
+                "message": g("USER_WITH_THE_GIVEN_ID_WAS_NOT_FOUND_MSG"),
                 "category": "error",
             }
         ),
@@ -160,8 +160,8 @@ def update_user(user=None) -> Response:
 
             db.session.commit()
 
-            response["title"] = g("Good job!")
-            response["message"] = g("User updated successfully!")
+            response["title"] = g("GOOD_JOB_LABEL")
+            response["message"] = g("USER_UPDATED_SUCCESSFULLY_SUCCESS_MSG")
             response["category"] = "success"
 
     else:
@@ -181,14 +181,14 @@ def delete_user(uid):
         db.session.delete(user)
         db.session.commit()
 
-        response["title"] = g("Deleted!")
-        response["message"] = g("User deleted successfully")
+        response["title"] = g("DELETED_SUCCESS_MSG")
+        response["message"] = g("USER_DELETED_SUCCESSFULLY_SUCCESS_MSG")
         response["category"] = "success"
         response["status"] = 200
 
     else:
-        response["title"] = g("Error :(")
-        response["message"] = g("User not found")
+        response["title"] = g("ERROR_ERROR")
+        response["message"] = g("USER_NOT_FOUND_MSG")
         response["category"] = "error"
         response["status"] = 404
 
@@ -233,8 +233,8 @@ def add_user() -> Response:
 
         db.session.commit()
 
-        response["message"] = g("User added successfully")
-        response["title"] = g("User Added")
+        response["message"] = g("USER_ADDED_SUCCESSFULLY_SUCCESS_MSG")
+        response["title"] = g("USER_ADDED_LABEL")
         response["category"] = "success"
         response["id"] = getattr(user, "uid")
 

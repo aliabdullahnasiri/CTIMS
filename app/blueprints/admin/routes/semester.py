@@ -14,6 +14,6 @@ from app.models.user import permission_required
 def semesters():
     return render_template(
         "admin/pages/semesters.html",
-        title=_("Semesters"),
+        title=_("SEMESTERS_LABEL"),
         form={"a": AddSemesterForm(), "u": UpdateSemesterForm()},
     )

@@ -8,33 +8,33 @@ from app.models.user import User
 
 class SignupForm(Form):
     user_name = StringField(
-        _("Username"),
+        _("USERNAME_LABEL"),
         validators=[
-            DataRequired(message=_("This field is required.")),
-            Length(max=50, message=_("This field cannot exceed 50 characters.")),
-            MustBeUnique(User, "user_name", _("Username already taken")),
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
+            Length(max=50, message=_("THIS_FIELD_CANNOT_EXCEED_50_CHARACTERS_MSG")),
+            MustBeUnique(User, "user_name", _("USERNAME_ALREADY_TAKEN_MSG")),
         ],
     )
     email = EmailField(
-        _("Email"),
+        _("EMAIL_LABEL"),
         validators=[
-            DataRequired(message=_("This field is required.")),
-            Email(message=_("Enter a valid email address")),
-            MustBeUnique(User, "email", _("Email already registered")),
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
+            Email(message=_("ENTER_A_VALID_EMAIL_ADDRESS_PLACEHOLDER")),
+            MustBeUnique(User, "email", _("EMAIL_ALREADY_REGISTERED_MSG")),
         ],
     )
     password = PasswordField(
-        _("Password"),
+        _("PASSWORD_LABEL"),
         validators=[
-            DataRequired(message=_("This field is required.")),
-            Length(min=6, message=_("This field must be at least 6 characters.")),
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
+            Length(min=6, message=_("THIS_FIELD_MUST_BE_AT_LEAST_6_CHARACTERS_MSG")),
         ],
     )
     confirm_password = PasswordField(
-        _("Confirm Password"),
+        _("CONFIRM_PASSWORD_WARNING"),
         validators=[
-            DataRequired(message=_("This field is required.")),
-            EqualTo("password", message=_("Passwords must match")),
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
+            EqualTo("password", message=_("PASSWORDS_MUST_MATCH_MSG")),
         ],
     )
-    submit = SubmitField(_("Sign Up"))
+    submit = SubmitField(_("SIGN_UP_LABEL"))

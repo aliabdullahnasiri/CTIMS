@@ -13,8 +13,8 @@ from app.models.permission import Permission
 from app.models.user import permission_required
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
-    (ColumnID("uid"), ColumnName(g("UID"))),
-    (ColumnID("name"), ColumnName(g("Name"))),
+    (ColumnID("uid"), ColumnName(g("UID_LABEL"))),
+    (ColumnID("name"), ColumnName(g("NAME_LABEL"))),
 ]
 
 
@@ -80,7 +80,7 @@ def fetch_permission_row(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": g("Permission with the given ID was not found :("),
+                "message": g("PERMISSION_WITH_THE_GIVEN_ID_WAS_NOT_FOUND_MSG"),
                 "category": "error",
             }
         ),
@@ -104,7 +104,7 @@ def fetch_permission(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": g("Permission with the given ID was not found :("),
+                "message": g("PERMISSION_WITH_THE_GIVEN_ID_WAS_NOT_FOUND_MSG"),
                 "category": "error",
             }
         ),
@@ -135,12 +135,12 @@ def update_permission() -> Response:
 
             db.session.commit()
 
-            response["title"] = g("Updated!")
-            response["message"] = g("Permission updated successfully!")
-            response["category"] = g("success")
+            response["title"] = g("UPDATED_SUCCESS_MSG")
+            response["message"] = g("PERMISSION_UPDATED_SUCCESSFULLY_SUCCESS_MSG")
+            response["category"] = g("SUCCESS_SUCCESS_MSG")
         else:
-            response["title"] = g("Not Found")
-            response["message"] = g("Permission record not found.")
+            response["title"] = g("NOT_FOUND_LABEL")
+            response["message"] = g("PERMISSION_RECORD_NOT_FOUND_MSG")
             response["category"] = "error"
     else:
         response["errors"] = form.errors

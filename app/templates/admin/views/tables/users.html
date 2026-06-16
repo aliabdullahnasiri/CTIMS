@@ -9,17 +9,17 @@
       <th
         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
       >
-        {{ _("User") }}
+        {{ _("USER_LABEL") }}
       </th>
       <th
         class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
       >
-        {{ _("Username") }}
+        {{ _("USERNAME_LABEL") }}
       </th>
       <th
         class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
       >
-        {{ _("Birthday") }}
+        {{ _("BIRTHDAY_LABEL") }}
       </th>
     </tr>
   </thead>
@@ -50,7 +50,7 @@
     {% else %}
     <tr class="no-rows-label">
       <td colspan="4" class="py-4 text-center">
-        <span>{{ _("No users yet :(") }}</span>
+        <span>{{ _("NO_USERS_YET_MSG") }}</span>
       </td>
     </tr>
     {% endfor %}

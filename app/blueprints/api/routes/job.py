@@ -14,10 +14,10 @@ from app.models.permission import Permission
 from app.models.user import permission_required
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
-    (ColumnID("uid"), ColumnName(g("UID"))),
-    (ColumnID("job_title"), ColumnName(g("Job Title"))),
-    (ColumnID("min_salary"), ColumnName(g("Min Salary"))),
-    (ColumnID("max_salary"), ColumnName(g("Max Salary"))),
+    (ColumnID("uid"), ColumnName(g("UID_LABEL"))),
+    (ColumnID("job_title"), ColumnName(g("JOB_TITLE_LABEL"))),
+    (ColumnID("min_salary"), ColumnName(g("MIN_SALARY_LABEL"))),
+    (ColumnID("max_salary"), ColumnName(g("MAX_SALARY_LABEL"))),
 ]
 
 
@@ -81,7 +81,7 @@ def fetch_job_row(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": g("Job with the given ID was not found :("),
+                "message": g("JOB_WITH_THE_GIVEN_ID_WAS_NOT_FOUND_MSG"),
                 "category": "error",
             }
         ),
@@ -105,7 +105,7 @@ def fetch_job(uid: str) -> Response:
     return Response(
         json.dumps(
             {
-                "message": g("Job with the given ID was not found :("),
+                "message": g("JOB_WITH_THE_GIVEN_ID_WAS_NOT_FOUND_MSG"),
                 "category": "error",
             }
         ),
@@ -132,8 +132,8 @@ def add_job() -> Response:
         db.session.add(job)
         db.session.commit()
 
-        response["title"] = g("Job Added")
-        response["message"] = g("Job added successfully")
+        response["title"] = g("JOB_ADDED_LABEL")
+        response["message"] = g("JOB_ADDED_SUCCESSFULLY_SUCCESS_MSG")
         response["category"] = "success"
         response["id"] = getattr(job, "uid")
 
@@ -166,12 +166,12 @@ def update_job() -> Response:
 
             db.session.commit()
 
-            response["title"] = g("Updated!")
-            response["message"] = g("Job updated successfully!")
+            response["title"] = g("UPDATED_SUCCESS_MSG")
+            response["message"] = g("JOB_UPDATED_SUCCESSFULLY_SUCCESS_MSG")
             response["category"] = "success"
         else:
-            response["title"] = g("Not Found")
-            response["message"] = g("Job record not found.")
+            response["title"] = g("NOT_FOUND_LABEL")
+            response["message"] = g("JOB_RECORD_NOT_FOUND_MSG")
             response["category"] = "error"
     else:
         response["errors"] = form.errors
@@ -193,13 +193,13 @@ def delete_job(uid: str) -> Response:
         db.session.delete(job)
         db.session.commit()
 
-        response["title"] = g("Deleted!")
-        response["message"] = g("Job deleted successfully")
+        response["title"] = g("DELETED_SUCCESS_MSG")
+        response["message"] = g("JOB_DELETED_SUCCESSFULLY_SUCCESS_MSG")
         response["category"] = "success"
         response["status"] = 200
     else:
-        response["title"] = g("Error :(")
-        response["message"] = g("Job not found")
+        response["title"] = g("ERROR_ERROR")
+        response["message"] = g("JOB_NOT_FOUND_MSG")
         response["category"] = "error"
         response["status"] = 404
 

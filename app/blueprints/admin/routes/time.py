@@ -12,6 +12,6 @@ from app.models.user import permission_required
 def times():
     return render_template(
         "admin/pages/times.html",
-        title=_("Times"),
+        title=_("TIMES_LABEL"),
         form={"a": AddTimeForm(), "u": UpdateTimeForm()},
     )

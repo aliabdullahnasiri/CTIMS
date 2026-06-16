@@ -11,18 +11,18 @@ from app.models.time import Time
 
 class AddClassForm(Form):
     cls_name = StringField(
-        _("Class Name"),
+        _("CLASS_NAME_LABEL"),
         validators=[
-            DataRequired(message=_("This field is required.")),
-            Length(max=255, message=_("This field cannot exceed 255 characters.")),
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
+            Length(max=255, message=_("THIS_FIELD_CANNOT_EXCEED_255_CHARACTERS_MSG")),
             MustBeUnique(Class, "name"),
         ],
     )
     teacher_id = StringField(
-        _("Teacher UID"),
+        _("TEACHER_UID_LABEL"),
         validators=[
-            DataRequired(message=_("This field is required.")),
-            Length(min=8, max=8, message=_("This field must be 8 characters.")),
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
+            Length(min=8, max=8, message=_("THIS_FIELD_MUST_BE_8_CHARACTERS_MSG")),
             ValidateUID(Teacher),
         ],
         render_kw={
@@ -35,10 +35,10 @@ class AddClassForm(Form):
         },
     )
     semester_id = StringField(
-        _("Semester UID"),
+        _("SEMESTER_UID_LABEL"),
         validators=[
-            DataRequired(message=_("This field is required.")),
-            Length(min=8, max=8, message=_("This field must be 8 characters.")),
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
+            Length(min=8, max=8, message=_("THIS_FIELD_MUST_BE_8_CHARACTERS_MSG")),
             ValidateUID(Semester),
         ],
         render_kw={
@@ -51,10 +51,10 @@ class AddClassForm(Form):
         },
     )
     time_id = StringField(
-        _("Time UID"),
+        _("TIME_UID_LABEL"),
         validators=[
-            DataRequired(message=_("This field is required.")),
-            Length(min=8, max=8, message=_("This field must be 8 characters.")),
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
+            Length(min=8, max=8, message=_("THIS_FIELD_MUST_BE_8_CHARACTERS_MSG")),
             ValidateUID(Time),
         ],
         render_kw={
@@ -67,16 +67,16 @@ class AddClassForm(Form):
         },
     )
 
-    submit = SubmitField(_("Add Class"))
+    submit = SubmitField(_("ADD_CLASS_LABEL"))
 
 
 class UpdateClassForm(AddClassForm):
     uid = HiddenField(
-        _("Class UID"),
+        _("CLASS_UID_LABEL"),
         validators=[
-            DataRequired(message=_("This field is required.")),
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
             ValidateUID(Class),
         ],
     )
 
-    submit = SubmitField(_("Update Class"))
+    submit = SubmitField(_("UPDATE_CLASS_LABEL"))

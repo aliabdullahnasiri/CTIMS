@@ -7,13 +7,13 @@ from app.forms import Form
 
 class LoginForm(Form):
     email = EmailField(
-        _("Email"),
+        _("EMAIL_LABEL"),
         validators=[
-            DataRequired(message=_("This field is required.")),
-            Email(message=_("Enter a valid email address")),
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
+            Email(message=_("ENTER_A_VALID_EMAIL_ADDRESS_PLACEHOLDER")),
         ],
     )
     password = PasswordField(
-        _("Password"), validators=[DataRequired(message=_("This field is required."))]
+        _("PASSWORD_LABEL"), validators=[DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR"))]
     )
-    submit = SubmitField(_("Log In"))
+    submit = SubmitField(_("LOG_IN_LABEL"))

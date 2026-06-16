@@ -12,6 +12,6 @@ from app.models.user import permission_required
 def subjects():
     return render_template(
         "admin/pages/subjects.html",
-        title=_("Subjects"),
+        title=_("SUBJECTS_LABEL"),
         form={"a": AddSubjectForm(), "u": UpdateSubjectForm()},
     )

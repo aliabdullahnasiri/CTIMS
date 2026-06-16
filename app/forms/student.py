@@ -10,28 +10,28 @@ from app.models.user import User
 
 
 class AddStudentForm(AddUserForm):
-    submit = SubmitField(_("Add"))
+    submit = SubmitField(_("ADD_LABEL"))
 
 
 class UpdateStudentForm(UpdateUserForm, AddStudentForm):
     uid = HiddenField(
-        _("Student UID"),
+        _("STUDENT_UID_LABEL"),
         validators=[
-            DataRequired(message=_("This field is required.")),
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
             ValidateUID(Student),
         ],
     )
     user_uid = HiddenField(
-        _("User UID"),
+        _("USER_UID_LABEL"),
         validators=[
-            DataRequired(message=_("This field is required.")),
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
             ValidateUID(User),
         ],
     )
     class_id = StringField(
-        _("Class UID"),
+        _("CLASS_UID_LABEL"),
         validators=[
-            Length(8, 8, message=_("This field must be 8 characters.")),
+            Length(8, 8, message=_("THIS_FIELD_MUST_BE_8_CHARACTERS_MSG")),
             ValidateUID(Class),
         ],
         render_kw={
@@ -43,4 +43,4 @@ class UpdateStudentForm(UpdateUserForm, AddStudentForm):
             "data-template": "classes.html",
         },
     )
-    submit = SubmitField(_("Update Student"))
+    submit = SubmitField(_("UPDATE_STUDENT_LABEL"))

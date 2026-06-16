@@ -10,45 +10,45 @@ class AddTimeForm(Form):
     """Form to add a new Time record."""
 
     title = StringField(
-        _("Title"),
+        _("TITLE_LABEL"),
         validators=[
-            DataRequired(message=_("Title is required.")),
-            Length(max=50, message=_("Title cannot exceed 50 characters.")),
+            DataRequired(message=_("TITLE_IS_REQUIRED_ERROR")),
+            Length(max=50, message=_("TITLE_CANNOT_EXCEED_50_CHARACTERS_MSG")),
         ],
     )
 
     description = TextAreaField(
-        _("Description"),
+        _("DESCRIPTION_LABEL"),
         validators=[
             Optional(),
-            Length(max=255, message=_("Description cannot exceed 255 characters.")),
+            Length(max=255, message=_("DESCRIPTION_CANNOT_EXCEED_255_CHARACTERS_MSG")),
         ],
     )
 
     start = TimeField(
-        _("Start Time"),
-        validators=[DataRequired(message=_("This field is required."))],
+        _("START_TIME_LABEL"),
+        validators=[DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR"))],
         format="%H:%M",
     )
 
     end = TimeField(
-        _("End Time"),
-        validators=[DataRequired(message=_("This field is required."))],
+        _("END_TIME_LABEL"),
+        validators=[DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR"))],
         format="%H:%M",
     )
 
-    submit = SubmitField(_("Add Time"))
+    submit = SubmitField(_("ADD_TIME_LABEL"))
 
 
 class UpdateTimeForm(AddTimeForm):
     """Form to update an existing Time record."""
 
     uid = HiddenField(
-        _("UID"),
+        _("UID_LABEL"),
         validators=[
-            DataRequired(message=_("This field is required.")),
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
             ValidateUID(Time),
         ],
     )
 
-    submit = SubmitField(_("Update Time"))
+    submit = SubmitField(_("UPDATE_TIME_LABEL"))

@@ -12,6 +12,6 @@ from app.models.user import permission_required
 def classes():
     return render_template(
         "admin/pages/classes.html",
-        title=_("Classes"),
+        title=_("CLASSES_LABEL"),
         form={"a": AddClassForm(), "u": UpdateClassForm()},
     )

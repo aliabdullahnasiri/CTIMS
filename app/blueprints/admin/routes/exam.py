@@ -12,6 +12,6 @@ from app.models.user import permission_required
 def exams():
     return render_template(
         "admin/pages/exams.html",
-        title=_("Exams"),
+        title=_("EXAMS_LABEL"),
         form={"a": AddExamForm(), "u": UpdateExamForm()},
     )

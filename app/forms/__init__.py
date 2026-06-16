@@ -89,11 +89,11 @@ class ValidateUID:
 
         for val in vals:
             if not pattern.search(val):
-                raise ValidationError(_(self.invalid_format_msg or "Not a valid UID."))
+                raise ValidationError(_(self.invalid_format_msg or "NOT_VALID_UID_MSG"))
 
             if not self.model.query.filter_by(uid=val).count():
                 raise ValidationError(
-                    _(self.not_found_msg or "The specified record does not exists.")
+                    _(self.not_found_msg or "SPECIFIED_RECORD_DOES_NOT_EXIST")
                 )
 
 

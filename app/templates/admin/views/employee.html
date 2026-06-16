@@ -26,7 +26,7 @@
         <div class="row gx-0 mb-3">
           <div class="card">
             <div class="card-header pb-0">
-              <h5>{{ _("Employee Information") }}</h5>
+              <h5>{{ _("EMPLOYEE_INFORMATION_LABEL") }}</h5>
             </div>
             <hr class="bg-dark horizontal my-0 opacity-10" />
             <div class="card-body p0">
@@ -38,7 +38,7 @@
         <div class="row gx-0 mb-3">
           <div class="card">
             <div class="card-header pb-0">
-              <h5>{{ _("Job Information") }}</h5>
+              <h5>{{ _("JOB_INFORMATION_LABEL") }}</h5>
             </div>
             <hr class="bg-dark horizontal my-0 opacity-10" />
             <div class="card-body p0">
@@ -57,7 +57,7 @@
                 <div class="d-flex justify-content-between">
                   <div>
                     <p class="text-sm mb-0 text-capitalize">
-                      {{ _("Salary") }}
+                      {{ _("SALARY_LABEL") }}
                     </p>
                     <h4 class="mb-0">{{ employee.display_salary }}</h4>
                   </div>
@@ -73,11 +73,11 @@
                 <p class="mb-0 text-sm">
                   {% if employee.is_salary_gt_avg %}
                   <span class="text-success font-weight-bolder"
-                    >{{ _("Greater") }}</span
+                    >{{ _("GREATER_LABEL") }}</span
                   >
                   {% else %}
                   <span class="text-danger font-weight-bolder"
-                    >{{ _("Less") }}</span
+                    >{{ _("LESS_LABEL") }}</span
                   >
                   {% endif %} than average salary.
                 </p>
@@ -91,7 +91,7 @@
               <div class="card-header">
                 <div class="d-flex justify-content-between">
                   <div>
-                    <p class="text-sm mb-0 text-capitalize">{{ _("Phone") }}</p>
+                    <p class="text-sm mb-0 text-capitalize">{{ _("PHONE_LABEL") }}</p>
                     <h4 class="mb-0">
                       {{ employee.user.display_number_of_phone_nums }}
                     </h4>

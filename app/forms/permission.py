@@ -8,27 +8,27 @@ from app.models.role import Permission
 
 class UpdatePermissionForm(Form):
     uid = HiddenField(
-        _("Permission UID"),
+        _("PERMISSION_UID_LABEL"),
         validators=[
-            DataRequired(message=_("This field is required.")),
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
             ValidateUID(Permission),
         ],
     )
 
     name = StringField(
-        _("Name"),
+        _("NAME_LABEL"),
         validators=[
-            DataRequired(message=_("This field is required.")),
-            Length(max=255, message=_("This field cannot exceed 255 characters.")),
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
+            Length(max=255, message=_("THIS_FIELD_CANNOT_EXCEED_255_CHARACTERS_MSG")),
         ],
     )
 
     description = TextAreaField(
-        _("Description"),
+        _("DESCRIPTION_LABEL"),
         validators=[
             Optional(),
-            Length(max=2500, message=_("This field cannot exceed 2500 characters.")),
+            Length(max=2500, message=_("THIS_FIELD_CANNOT_EXCEED_2500_CHARACTERS_MSG")),
         ],
     )
 
-    submit = SubmitField(_("Update Permission"))
+    submit = SubmitField(_("UPDATE_PERMISSION_LABEL"))

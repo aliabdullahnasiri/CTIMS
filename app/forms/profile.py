@@ -6,5 +6,5 @@ from app.forms.user import AddUserForm
 
 
 class UpdateProfileForm(AddUserForm):
-    password = PasswordField(_("Password"), validators=[Optional()])
-    submit = SubmitField(_("Update"))
+    password = PasswordField(_("PASSWORD_LABEL"), validators=[Optional()])
+    submit = SubmitField(_("UPDATE_LABEL"))
