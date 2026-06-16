@@ -21,7 +21,8 @@ class AddUserForm(Form):
     first_name = StringField(
         _("FIRST_NAME_LABEL"),
         validators=[
-            Length(max=50, message=_("THIS_FIELD_CANNOT_EXCEED_50_CHARACTERS_MSG"))
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
+            Length(max=50, message=_("THIS_FIELD_CANNOT_EXCEED_50_CHARACTERS_MSG")),
         ],
     )
     middle_name = StringField(
@@ -33,7 +34,8 @@ class AddUserForm(Form):
     last_name = StringField(
         _("LAST_NAME_LABEL"),
         validators=[
-            Length(max=50, message=_("THIS_FIELD_CANNOT_EXCEED_50_CHARACTERS_MSG"))
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
+            Length(max=50, message=_("THIS_FIELD_CANNOT_EXCEED_50_CHARACTERS_MSG")),
         ],
     )
     user_name = StringField(
@@ -53,9 +55,12 @@ class AddUserForm(Form):
         ],
     )
     password = PasswordField(
-        _("PASSWORD_LABEL"), validators=[DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR"))]
+        _("PASSWORD_LABEL"),
+        validators=[DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR"))],
     )
-    birthday = DateField(_("BIRTHDAY_LABEL"), format="%Y-%m-%d", validators=[Optional()])
+    birthday = DateField(
+        _("BIRTHDAY_LABEL"), format="%Y-%m-%d", validators=[Optional()]
+    )
     avatar = FileField(_("UPLOAD_NEW_PROFILE_PICTURE_MSG"))
 
     files = MultipleFileField(_("FILES_LABEL"))
@@ -89,7 +94,8 @@ class AddUserForm(Form):
 
 class UpdateUserForm(AddUserForm):
     uid = HiddenField(
-        _("UID_LABEL"), validators=[DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR"))]
+        _("UID_LABEL"),
+        validators=[DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR"))],
     )
 
     password = PasswordField(_("PASSWORD_LABEL"), validators=[Optional()])
