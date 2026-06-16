@@ -1,6 +1,6 @@
 from flask_babel import gettext as _
 from wtforms import HiddenField, StringField, SubmitField, TextAreaField
-from wtforms.validators import DataRequired, Length
+from wtforms.validators import DataRequired, Length, Optional
 
 from app.forms import Form, MustBeUnique, ValidateUID
 from app.models.daily_section import DailySection
@@ -11,8 +11,7 @@ class AddDailySectionForm(Form):
     exam_uid = StringField(
         _("EXAM_UID_LABEL"),
         validators=[
-            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
-            Length(max=8, message=_("THIS_FIELD_CANNOT_EXCEED_8_CHARACTERS_MSG")),
+            Optional(),
             ValidateUID(Exam),
             MustBeUnique(Exam, "uid"),
         ],
