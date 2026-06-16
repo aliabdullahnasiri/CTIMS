@@ -1,12 +1,12 @@
 from typing import Dict, List
 
 from flask import jsonify, url_for
+from flask_babel import _
 from flask_login import current_user, login_required
 
 from app.blueprints.api import bp
 from app.models.permission import Permission
 from app.models.role import Role
-from flask_babel import _
 
 ITEMS: List[Dict] = [
     {
@@ -105,6 +105,14 @@ ITEMS: List[Dict] = [
                 "endpoint": "admin.classes",
                 "permissions": Permission.get("FETCH_CLASSES")
                 | Permission.get("FETCH_CLASS"),
+            },
+            {
+                "type": "item",
+                "title": _("DAILY_SECTION_LABEL"),
+                "icon": None,
+                "endpoint": "admin.daily_sections",
+                "permissions": Permission.get("FETCH_DAILY_SECTIONS")
+                | Permission.get("FETCH_DAILY_SECTION"),
             },
             {
                 "type": "item",
