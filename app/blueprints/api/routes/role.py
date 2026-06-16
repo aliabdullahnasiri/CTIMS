@@ -193,7 +193,7 @@ def delete_role(uid: str):
 
     else:
         response["title"] = g("ERROR_ERROR")
-        response["message"] = g("USER_NOT_FOUND_MSG")
+        response["message"] = g("ROLE_NOT_FOUND_MSG")
         response["category"] = "error"
         response["status"] = 404
 
@@ -234,8 +234,8 @@ def add_role():
 
         db.session.commit()
 
-        response["message"] = g("USER_ADDED_SUCCESSFULLY_SUCCESS_MSG")
-        response["title"] = g("USER_ADDED_LABEL")
+        response["message"] = g("ROLE_ADDED_SUCCESSFULLY_SUCCESS_MSG")
+        response["title"] = g("ROLE_ADDED_LABEL")
         response["category"] = "success"
         response["id"] = getattr(role, "uid")
 
