@@ -15,10 +15,9 @@ from app.models.user import permission_required
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
     (ColumnID("uid"), ColumnName(g("UID_LABEL"))),
-    (ColumnID("id"), ColumnName(g("ID_LABEL"))),
-    (ColumnID("exam_uid"), ColumnName(g("EXAM_UID_LABEL"))),
     (ColumnID("title"), ColumnName(g("TITLE_LABEL"))),
     (ColumnID("description"), ColumnName(g("DESCRIPTION_LABEL"))),
+    (ColumnID("exam_uid"), ColumnName(g("EXAM_UID_LABEL"))),
 ]
 
 
@@ -140,6 +139,8 @@ def update_daily_section() -> Response:
             daily_section.title = form.title.data
             daily_section.description = form.description.data
 
+            db.session.commit()
+
             response["title"] = g("UPDATED_SUCCESS_MSG")
             response["message"] = g("DAILY_SECTION_UPDATED_SUCCESSFULLY_SUCCESS_MSG")
             response["category"] = "success"
@@ -199,6 +200,7 @@ def add_daily_section():
         daily_section.title = form.title.data
         daily_section.description = form.description.data
 
+        db.session.add(daily_section)
         db.session.commit()
 
         response["message"] = g("DAILY_SECTION_ADDED_SUCCESSFULLY_SUCCESS_MSG")
