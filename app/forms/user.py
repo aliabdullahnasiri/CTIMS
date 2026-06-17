@@ -69,11 +69,12 @@ class AddUserForm(Form):
         validators=[
             Optional(),
             MustBeUnique(
-                Phone,
-                "number",
-                _("DUPLICATE_ENTRY_FOR_PHONE_NUMBER_MSG"),
-                "user_id",
-                format=True,
+                model=Phone,
+                name="number",
+                message=_("DUPLICATE_ENTRY_FOR_PHONE_NUMBER_MSG"),
+                col="user_id",
+                field="uid",
+                f="user_uid",
             ),
         ],
     )
