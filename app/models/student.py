@@ -3,6 +3,11 @@ from operator import call
 from app.extensions.db import db
 
 
+class IdentityCardType:
+    ELECTRONIC = "electronic"
+    PAPER = "paper"
+
+
 class Student(db.Model):
     __tablename__ = "students"
 
@@ -19,13 +24,32 @@ class Student(db.Model):
 
     electronic_tazkira_number = db.Column(db.String(100), unique=True)
 
-    permanent_village = db.Column(db.String(255))
-    permanent_district = db.Column(db.String(255))
-    permanent_province = db.Column(db.String(255))
+    tazkira_folder = db.Column(db.String(50), nullable=True)
+    tazkira_page_number = db.Column(db.String(50), nullable=True)
+    tazkira_registration_number = db.Column(db.String(50), nullable=True)
+    tazkira_sakok_number = db.Column(db.String(50), nullable=True)
 
+    permanent_province_uid = db.Column(
+        db.String(8),
+        db.ForeignKey("province.uid"),
+    )
+
+    permanent_district_uid = db.Column(
+        db.String(8),
+        db.ForeignKey("district.uid"),
+    )
+    permanent_village = db.Column(db.String(255))
+
+    current_province_uid = db.Column(
+        db.String(8),
+        db.ForeignKey("province.uid"),
+    )
+
+    current_district_uid = db.Column(
+        db.String(8),
+        db.ForeignKey("district.uid"),
+    )
     current_village = db.Column(db.String(255))
-    current_district = db.Column(db.String(255))
-    current_province = db.Column(db.String(255))
 
     class_ = db.relationship("Class", back_populates="students")
     attendances = db.relationship(
