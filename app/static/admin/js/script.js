@@ -192,3 +192,9 @@ export function createLoader() {
     suppressScrollX: true,
   });
 }).call(this);
+
+(function () {
+  $(document).ready(function () {
+    $("select").selectpicker();
+  });
+}).call(this);

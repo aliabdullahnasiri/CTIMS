@@ -384,3 +384,34 @@ body.dark-version .suggestions-list .item:hover {
 .suggestions-list:not(:has(.item)) {
   display: none !important;
 }
+
+.filter-option-inner-inner {
+  margin: 0px 10px;
+}
+
+.rtl .filter-option-inner-inner {
+  margin: 0px !important;
+  text-align: right;
+}
+
+.rtl div.dropdown.is-invalid .filter-option-inner-inner {
+  margin-right: 16px !important;
+}
+
+.dark-version .dropdown-menu {
+  background: #202020 !important;
+}
+
+div.dropdown-menu {
+  margin-top: 5px !important;
+}
+
+div.dropdown-menu {
+  background: white !important;
+  border: 1.5px solid !important;
+}
+
+.dark-version .dropdown-toggle {
+  color: white !important;
+  margin-bottom: 0px !important;
+}

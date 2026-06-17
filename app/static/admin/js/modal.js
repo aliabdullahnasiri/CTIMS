@@ -13,14 +13,14 @@ import { createLoader, transformAllMovingTab } from "./script.js";
       if (!label?.search(/^Add/)) {
         form?.reset();
 
-        Array.from(form.querySelectorAll("div.input-group")).forEach(
-          (input) => {
-            input?.classList.remove("focused");
-            input?.classList.remove("is-focused");
-            input?.classList.remove("is-filled");
-            input?.classList.remove("is-invalid");
-          },
-        );
+        Array.from(
+          form.querySelectorAll("div.input-group,.form-control"),
+        ).forEach((input) => {
+          input?.classList.remove("focused");
+          input?.classList.remove("is-focused");
+          input?.classList.remove("is-filled");
+          input?.classList.remove("is-invalid");
+        });
 
         Array.from(event.target.querySelectorAll("ul li[data-uid]")).forEach(
           (element) => {
