@@ -1,4 +1,4 @@
-# Persian translations for PROJECT.
+# Persian (Dari) translations for PROJECT.
 # Copyright (C) 2026 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-16 20:04+0430\n"
-"PO-Revision-Date: 2026-06-17 06:59+0430\n"
+"POT-Creation-Date: 2026-06-17 19:40+0430\n"
+"PO-Revision-Date: 2026-06-17 19:08+0430\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fa_AF\n"
 "Language-Team: fa_AF <LL@li.org>\n"
@@ -42,15 +42,15 @@ msgstr "کاربران"
 #: app/templates/admin/views/tabs/permissions.html:5
 #: app/translations_stub.py:13
 msgid "PERMISSIONS_LABEL"
-msgstr "دسترسیها"
+msgstr "صلاحیت‌ها"
 
 #: app/blueprints/admin/routes/roles.py:15
-#: app/blueprints/api/routes/navbar.py:36 app/forms/user.py:80
+#: app/blueprints/api/routes/navbar.py:36 app/forms/user.py:82
 #: app/templates/admin/views/permissions.html:31
 #: app/templates/admin/views/permissions.html:91
 #: app/templates/admin/views/tabs/roles.html:5 app/translations_stub.py:14
 msgid "ROLES_LABEL"
-msgstr "نقشها"
+msgstr "نقش‌ها"
 
 #: app/translations_stub.py:17
 msgid "CTI_MANAGEMENT_LABEL"
@@ -67,7 +67,7 @@ msgstr "اوقات"
 #: app/templates/admin/components/rows/dashboard-stats.html:24
 #: app/translations_stub.py:19
 msgid "DEPARTMENTS_LABEL"
-msgstr "دیپارتمنتها"
+msgstr "دیپارتمنت‌ها"
 
 #: app/blueprints/admin/routes/semester.py:17
 #: app/blueprints/api/routes/navbar.py:63
@@ -112,8 +112,8 @@ msgstr "استاد"
 #: app/templates/admin/views/semester.html:156
 #: app/templates/admin/views/tables/semesters.html:27
 #: app/templates/admin/views/tabs/subjects.html:5
-#: app/templates/admin/views/teacher.html:152
-#: app/templates/admin/views/teacher.html:226 app/translations_stub.py:24
+#: app/templates/admin/views/teacher.html:141
+#: app/templates/admin/views/teacher.html:217 app/translations_stub.py:24
 msgid "SUBJECTS_LABEL"
 msgstr "مضامین"
 
@@ -127,12 +127,12 @@ msgstr "مضامین"
 #: app/templates/admin/views/semester.html:168
 #: app/templates/admin/views/tables/semesters.html:22
 #: app/templates/admin/views/tabs/classes.html:5
-#: app/templates/admin/views/teacher.html:129
-#: app/templates/admin/views/teacher.html:214
+#: app/templates/admin/views/teacher.html:118
+#: app/templates/admin/views/teacher.html:205
 #: app/templates/admin/views/time.html:35
 #: app/templates/admin/views/time.html:101 app/translations_stub.py:25
 msgid "CLASSES_LABEL"
-msgstr "صنوف"
+msgstr "صنف‌ها"
 
 #: app/blueprints/admin/routes/student.py:15
 #: app/blueprints/api/routes/navbar.py:119
@@ -150,7 +150,7 @@ msgstr "صنوف"
 #: app/templates/admin/views/time.html:54
 #: app/templates/admin/views/time.html:125 app/translations_stub.py:26
 msgid "STUDENTS_LABEL"
-msgstr "محصلین"
+msgstr "شاگردان"
 
 #: app/blueprints/admin/routes/exam.py:15
 #: app/blueprints/api/routes/navbar.py:127
@@ -183,11 +183,11 @@ msgstr "حاضری اساتید"
 #: app/blueprints/admin/routes/attendance.py:32
 #: app/blueprints/api/routes/navbar.py:151 app/translations_stub.py:30
 msgid "STUDENTS_ATTENDANCES_LABEL"
-msgstr "حاضری محصلین"
+msgstr "حاضری شاگردان"
 
 #: app/translations_stub.py:33
 msgid "ACCOUNT_LABEL"
-msgstr "حساب"
+msgstr "حساب کاربری"
 
 #: app/blueprints/admin/routes/profile.py:14 app/translations_stub.py:34
 msgid "PROFILE_LABEL"
@@ -199,7 +199,7 @@ msgstr "CTI"
 
 #: app/translations_stub.py:38
 msgid "Computer Technology Institute"
-msgstr "انستیتوت تکنالوژی کمپیوتر"
+msgstr "انستیتوت تکنولوژی کمپیوتر"
 
 #: app/translations_stub.py:39
 msgid "Ali Abdullah Nasiri"
@@ -207,19 +207,19 @@ msgstr "علی عبدالله نصیری"
 
 #: app/translations_stub.py:42
 msgid "PS_LABEL"
-msgstr "پښتو"
+msgstr "پشتو (PS)"
 
 #: app/translations_stub.py:43
 msgid "FA_LABEL"
-msgstr "دری"
+msgstr "دری (FA)"
 
 #: app/translations_stub.py:44
 msgid "EN_LABEL"
-msgstr "انگلیسی"
+msgstr "انگلیسی (EN)"
 
 #: app/blueprints/admin/routes/daily_section.py:17
 msgid "DAILY_SECTIONS_LABEL"
-msgstr "بخش های روزانه"
+msgstr "بخش‌های روزانه"
 
 #: app/blueprints/admin/routes/teacher.py:15
 #: app/templates/admin/components/rows/dashboard-stats.html:136
@@ -238,15 +238,15 @@ msgstr "اساتید"
 
 #: app/blueprints/admin/routes/view.py:49
 msgid "INVALID_UID_ENTITY_ERROR"
-msgstr "شناسه (UID) نامعتبر است."
+msgstr "موجودیت UID نامعتبر است"
 
 #: app/blueprints/admin/routes/view.py:65
 msgid "ROW_WAS_NOT_FOUND_MSG"
-msgstr "ریکارد یافت نشد."
+msgstr "ردیف یافت نشد"
 
 #: app/blueprints/admin/routes/view.py:70
 msgid "TEMPLATE_WAS_NOT_FOUND_MSG"
-msgstr "قالب یافت نشد."
+msgstr "قالب یافت نشد"
 
 #: app/blueprints/api/routes/attendance/student.py:17
 #: app/blueprints/api/routes/attendance/teacher.py:17
@@ -262,7 +262,7 @@ msgstr "قالب یافت نشد."
 #: app/blueprints/api/routes/subject.py:18
 #: app/blueprints/api/routes/teacher.py:20 app/blueprints/api/routes/time.py:17
 #: app/blueprints/api/routes/user.py:19 app/forms/department.py:65
-#: app/forms/time.py:47 app/forms/user.py:97
+#: app/forms/time.py:47 app/forms/user.py:99
 #: app/templates/admin/views/information/class.html:3
 #: app/templates/admin/views/information/department.html:3
 #: app/templates/admin/views/information/employee.html:3
@@ -286,7 +286,7 @@ msgstr "قالب یافت نشد."
 #: app/templates/admin/views/tables/subjects.html:7
 #: app/templates/admin/views/tables/teachers.html:7
 msgid "UID_LABEL"
-msgstr "شناسه"
+msgstr "شناسه (UID)"
 
 #: app/blueprints/api/routes/class_.py:19
 #: app/blueprints/api/routes/department.py:19
@@ -313,11 +313,11 @@ msgstr "نام"
 #: app/blueprints/api/routes/class_.py:81
 #: app/blueprints/api/routes/class_.py:105
 msgid "CLASS_WITH_THE_GIVEN_ID_WAS_NOT_FOUND_MSG"
-msgstr "صنفی با این شناسه یافت نشد."
+msgstr "صنف با شناسه داده شده یافت نشد"
 
 #: app/blueprints/api/routes/class_.py:132
 msgid "CLASS_ADDED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "صنف با موفقیت علاوه شد."
+msgstr "صنف با موفقیت علاوه شد"
 
 #: app/blueprints/api/routes/class_.py:133
 #: app/blueprints/api/routes/employee.py:169
@@ -335,10 +335,10 @@ msgstr "آفرین"
 
 #: app/blueprints/api/routes/class_.py:164
 msgid "CLASS_UPDATED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "صنف با موفقیت بروزرسانی شد."
+msgstr "صنف با موفقیت بروزرسانی شد"
 
 #: app/blueprints/api/routes/class_.py:185
-#: app/blueprints/api/routes/daily_section.py:170
+#: app/blueprints/api/routes/daily_section.py:171
 #: app/blueprints/api/routes/department.py:207
 #: app/blueprints/api/routes/employee.py:245
 #: app/blueprints/api/routes/exam.py:204 app/blueprints/api/routes/job.py:196
@@ -350,14 +350,14 @@ msgstr "صنف با موفقیت بروزرسانی شد."
 #: app/blueprints/api/routes/teacher.py:240
 #: app/blueprints/api/routes/time.py:194 app/blueprints/api/routes/user.py:184
 msgid "DELETED_SUCCESS_MSG"
-msgstr "با موفقیت حذف شد."
+msgstr "با موفقیت حذف شد"
 
 #: app/blueprints/api/routes/class_.py:186
 msgid "CLASS_DELETED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "صنف با موفقیت حذف شد."
+msgstr "صنف با موفقیت حذف شد"
 
 #: app/blueprints/api/routes/class_.py:190
-#: app/blueprints/api/routes/daily_section.py:177
+#: app/blueprints/api/routes/daily_section.py:178
 #: app/blueprints/api/routes/department.py:212
 #: app/blueprints/api/routes/employee.py:250
 #: app/blueprints/api/routes/exam.py:209 app/blueprints/api/routes/job.py:201
@@ -374,11 +374,11 @@ msgstr "خطا"
 
 #: app/blueprints/api/routes/class_.py:191
 msgid "CLASS_NOT_FOUND_MSG"
-msgstr "صنف یافت نشد."
+msgstr "صنف یافت نشد"
 
 #: app/blueprints/api/routes/daily_section.py:18
 #: app/blueprints/api/routes/exam.py:18 app/blueprints/api/routes/time.py:18
-#: app/forms/daily_section.py:21 app/forms/exam.py:22 app/forms/time.py:13
+#: app/forms/daily_section.py:29 app/forms/exam.py:22 app/forms/time.py:13
 #: app/templates/admin/views/information/exam.html:6
 #: app/templates/admin/views/information/job.html:6
 #: app/templates/admin/views/tables/exams.html:12
@@ -388,7 +388,7 @@ msgstr "عنوان"
 #: app/blueprints/api/routes/daily_section.py:19
 #: app/blueprints/api/routes/department.py:20
 #: app/blueprints/api/routes/exam.py:19 app/blueprints/api/routes/subject.py:20
-#: app/forms/daily_section.py:29 app/forms/department.py:20
+#: app/forms/daily_section.py:37 app/forms/department.py:20
 #: app/forms/exam.py:29 app/forms/permission.py:27 app/forms/role.py:20
 #: app/forms/time.py:21 app/templates/admin/views/information/department.html:9
 #: app/templates/admin/views/information/exam.html:9
@@ -397,7 +397,7 @@ msgstr "عنوان"
 #: app/templates/admin/views/information/role.html:9
 #: app/templates/admin/views/information/subject.html:9
 msgid "DESCRIPTION_LABEL"
-msgstr "تفصیلات"
+msgstr "توضیحات"
 
 #: app/blueprints/api/routes/daily_section.py:20 app/forms/daily_section.py:12
 #: app/forms/exam.py:91 app/forms/result.py:22
@@ -407,9 +407,9 @@ msgstr "شناسه امتحان"
 #: app/blueprints/api/routes/daily_section.py:88
 #: app/blueprints/api/routes/daily_section.py:114
 msgid "DAILY_SECTION_WITH_THE_GIVEN_ID_WAS_NOT_FOUND_MSG"
-msgstr "بخش روزانه با این شناسه یافت نشد."
+msgstr "بخش روزانه با شناسه داده شده یافت نشد"
 
-#: app/blueprints/api/routes/daily_section.py:144
+#: app/blueprints/api/routes/daily_section.py:145
 #: app/blueprints/api/routes/department.py:176
 #: app/blueprints/api/routes/exam.py:177 app/blueprints/api/routes/job.py:169
 #: app/blueprints/api/routes/permission.py:138
@@ -420,13 +420,13 @@ msgstr "بخش روزانه با این شناسه یافت نشد."
 #: app/blueprints/api/routes/subject.py:183
 #: app/blueprints/api/routes/time.py:167
 msgid "UPDATED_SUCCESS_MSG"
-msgstr "با موفقیت بروزرسانی شد."
+msgstr "با موفقیت بروزرسانی شد"
 
-#: app/blueprints/api/routes/daily_section.py:145
+#: app/blueprints/api/routes/daily_section.py:146
 msgid "DAILY_SECTION_UPDATED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "بخش روزانه با موفقیت بروزرسانی شد."
+msgstr "بخش روزانه با موفقیت بروزرسانی شد"
 
-#: app/blueprints/api/routes/daily_section.py:148
+#: app/blueprints/api/routes/daily_section.py:149
 #: app/blueprints/api/routes/department.py:180
 #: app/blueprints/api/routes/exam.py:181 app/blueprints/api/routes/job.py:173
 #: app/blueprints/api/routes/permission.py:142
@@ -439,23 +439,23 @@ msgstr "بخش روزانه با موفقیت بروزرسانی شد."
 msgid "NOT_FOUND_LABEL"
 msgstr "یافت نشد"
 
-#: app/blueprints/api/routes/daily_section.py:149
+#: app/blueprints/api/routes/daily_section.py:150
 msgid "DAILY_SECTION_RECORD_NOT_FOUND_MSG"
-msgstr "ریکارد بخش روزانه یافت نشد."
+msgstr "ریکاردی برای بخش روزانه یافت نشد"
 
-#: app/blueprints/api/routes/daily_section.py:172
+#: app/blueprints/api/routes/daily_section.py:173
 msgid "DAILY_SECTION_HAS_BEEN_DELETED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "بخش روزانه با موفقیت حذف شد."
+msgstr "بخش روزانه با موفقیت حذف گردید"
 
-#: app/blueprints/api/routes/daily_section.py:178
+#: app/blueprints/api/routes/daily_section.py:179
 msgid "DAILY_SECTION_NOT_FOUND_MSG"
-msgstr "بخش روزانه یافت نشد."
+msgstr "بخش روزانه یافت نشد"
 
-#: app/blueprints/api/routes/daily_section.py:206
+#: app/blueprints/api/routes/daily_section.py:208
 msgid "DAILY_SECTION_ADDED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "بخش روزانه با موفقیت علاوه شد."
+msgstr "بخش روزانه با موفقیت علاوه شد"
 
-#: app/blueprints/api/routes/daily_section.py:207
+#: app/blueprints/api/routes/daily_section.py:209
 msgid "DAILY_SECTION_ADDED_LABEL"
 msgstr "بخش روزانه علاوه شد"
 
@@ -466,11 +466,11 @@ msgstr "آمر دیپارتمنت"
 #: app/blueprints/api/routes/department.py:84
 #: app/blueprints/api/routes/department.py:108
 msgid "DEPARTMENT_WITH_THE_GIVEN_ID_WAS_NOT_FOUND_MSG"
-msgstr "دیپارتمنت با این شناسه یافت نشد."
+msgstr "دیپارتمنت با شناسه داده شده یافت نشد"
 
 #: app/blueprints/api/routes/department.py:140
 msgid "DEPARTMENT_ADDED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "دیپارتمنت با موفقیت علاوه شد."
+msgstr "دیپارتمنت با موفقیت علاوه شد"
 
 #: app/blueprints/api/routes/department.py:142
 msgid "DEPARTMENT_ADDED_LABEL"
@@ -478,19 +478,19 @@ msgstr "دیپارتمنت علاوه شد"
 
 #: app/blueprints/api/routes/department.py:177
 msgid "DEPARTMENT_UPDATED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "دیپارتمنت با موفقیت بروزرسانی شد."
+msgstr "دیپارتمنت با موفقیت بروزرسانی شد"
 
 #: app/blueprints/api/routes/department.py:181
 msgid "DEPARTMENT_RECORD_NOT_FOUND_MSG"
-msgstr "ریکارد دیپارتمنت یافت نشد."
+msgstr "ریکاردی برای دیپارتمنت یافت نشد"
 
 #: app/blueprints/api/routes/department.py:208
 msgid "DEPARTMENT_DELETED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "دیپارتمنت با موفقیت حذف شد."
+msgstr "دیپارتمنت با موفقیت حذف شد"
 
 #: app/blueprints/api/routes/department.py:213
 msgid "DEPARTMENT_NOT_FOUND_MSG"
-msgstr "دیپارتمنت یافت نشد."
+msgstr "دیپارتمنت یافت نشد"
 
 #: app/blueprints/api/routes/employee.py:21
 #: app/templates/admin/views/tables/employees.html:12
@@ -524,7 +524,7 @@ msgstr "سن"
 #: app/templates/admin/views/information/employee.html:33
 #: app/templates/admin/views/tables/employees.html:22
 msgid "HIRE_DATE_LABEL"
-msgstr "تاریخ تقرر"
+msgstr "تاریخ استخدام"
 
 #: app/blueprints/api/routes/employee.py:25
 #: app/blueprints/api/routes/teacher.py:24 app/forms/employee.py:44
@@ -538,29 +538,29 @@ msgstr "معاش"
 #: app/blueprints/api/routes/employee.py:87
 #: app/blueprints/api/routes/employee.py:111
 msgid "EMPLOYEE_WITH_THE_GIVEN_ID_WAS_NOT_FOUND_MSG"
-msgstr "کارمند با این شناسه یافت نشد."
+msgstr "کارمند با شناسه داده شده یافت نشد"
 
 #: app/blueprints/api/routes/employee.py:168
 msgid "EMPLOYEE_ADDED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "کارمند با موفقیت علاوه شد."
+msgstr "کارمند با موفقیت علاوه شد"
 
 #: app/blueprints/api/routes/employee.py:222
 msgid "EMPLOYEE_UPDATED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "کارمند با موفقیت بروزرسانی شد."
+msgstr "کارمند با موفقیت بروزرسانی شد"
 
 #: app/blueprints/api/routes/employee.py:246
 msgid "EMPLOYEE_DELETED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "کارمند با موفقیت حذف شد."
+msgstr "کارمند با موفقیت حذف شد"
 
 #: app/blueprints/api/routes/employee.py:251
 msgid "EMPLOYEE_NOT_FOUND_MSG"
-msgstr "کارمند یافت نشد."
+msgstr "کارمند یافت نشد"
 
 #: app/blueprints/api/routes/exam.py:20 app/forms/exam.py:45
 #: app/templates/admin/views/information/exam.html:12
 #: app/templates/admin/views/tables/exams.html:17
 msgid "TOTAL_MARKS_LABEL"
-msgstr "مجموعه نمرات"
+msgstr "مجموع نمرات"
 
 #: app/blueprints/api/routes/exam.py:21 app/forms/exam.py:36
 #: app/templates/admin/views/tables/exams.html:22
@@ -574,7 +574,7 @@ msgstr "زمان امتحان"
 
 #: app/blueprints/api/routes/exam.py:84 app/blueprints/api/routes/exam.py:108
 msgid "EXAM_WITH_THE_GIVEN_ID_WAS_NOT_FOUND_MSG"
-msgstr "امتحان با این شناسه یافت نشد."
+msgstr "امتحان با شناسه داده شده یافت نشد"
 
 #: app/blueprints/api/routes/exam.py:139
 msgid "EXAM_ADDED_LABEL"
@@ -582,23 +582,23 @@ msgstr "امتحان علاوه شد"
 
 #: app/blueprints/api/routes/exam.py:140
 msgid "EXAM_ADDED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "امتحان با موفقیت علاوه شد."
+msgstr "امتحان با موفقیت علاوه شد"
 
 #: app/blueprints/api/routes/exam.py:178
 msgid "EXAM_UPDATED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "امتحان با موفقیت بروزرسانی شد."
+msgstr "امتحان با موفقیت بروزرسانی شد"
 
 #: app/blueprints/api/routes/exam.py:182
 msgid "EXAM_RECORD_NOT_FOUND_MSG"
-msgstr "ریکارد امتحان یافت نشد."
+msgstr "ریکاردی برای امتحان یافت نشد"
 
 #: app/blueprints/api/routes/exam.py:205
 msgid "EXAM_DELETED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "امتحان با موفقیت حذف شد."
+msgstr "امتحان با موفقیت حذف شد"
 
 #: app/blueprints/api/routes/exam.py:210
 msgid "EXAM_NOT_FOUND_MSG"
-msgstr "امتحان یافت نشد."
+msgstr "امتحان یافت نشد"
 
 #: app/blueprints/api/routes/job.py:18 app/forms/job.py:11
 msgid "JOB_TITLE_LABEL"
@@ -616,7 +616,7 @@ msgstr "حداکثر معاش"
 
 #: app/blueprints/api/routes/job.py:84 app/blueprints/api/routes/job.py:108
 msgid "JOB_WITH_THE_GIVEN_ID_WAS_NOT_FOUND_MSG"
-msgstr "وظیفه با این شناسه یافت نشد."
+msgstr "وظیفه با شناسه داده شده یافت نشد"
 
 #: app/blueprints/api/routes/job.py:135
 msgid "JOB_ADDED_LABEL"
@@ -624,23 +624,23 @@ msgstr "وظیفه علاوه شد"
 
 #: app/blueprints/api/routes/job.py:136
 msgid "JOB_ADDED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "وظیفه با موفقیت علاوه شد."
+msgstr "وظیفه با موفقیت علاوه شد"
 
 #: app/blueprints/api/routes/job.py:170
 msgid "JOB_UPDATED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "وظیفه با موفقیت بروزرسانی شد."
+msgstr "وظیفه با موفقیت بروزرسانی شد"
 
 #: app/blueprints/api/routes/job.py:174
 msgid "JOB_RECORD_NOT_FOUND_MSG"
-msgstr "ریکارد وظیفه یافت نشد."
+msgstr "ریکاردی برای وظیفه یافت نشد"
 
 #: app/blueprints/api/routes/job.py:197
 msgid "JOB_DELETED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "وظیفه با موفقیت حذف شد."
+msgstr "وظیفه با موفقیت حذف شد"
 
 #: app/blueprints/api/routes/job.py:202
 msgid "JOB_NOT_FOUND_MSG"
-msgstr "وظیفه یافت نشد."
+msgstr "وظیفه یافت نشد"
 
 #: app/blueprints/api/routes/navbar.py:43
 msgid "CTI_MANAGEMENT_TITLE"
@@ -656,7 +656,7 @@ msgstr "بخش روزانه"
 
 #: app/blueprints/api/routes/navbar.py:161
 msgid "ACCOUNT_TITLE"
-msgstr "حساب"
+msgstr "حساب کاربری"
 
 #: app/blueprints/api/routes/navbar.py:165
 msgid "PROFILE_TITLE"
@@ -665,24 +665,24 @@ msgstr "پروفایل"
 #: app/blueprints/api/routes/permission.py:83
 #: app/blueprints/api/routes/permission.py:107
 msgid "PERMISSION_WITH_THE_GIVEN_ID_WAS_NOT_FOUND_MSG"
-msgstr "دسترسی با این شناسه یافت نشد."
+msgstr "صلاحیت با شناسه داده شده یافت نشد"
 
 #: app/blueprints/api/routes/permission.py:139
 msgid "PERMISSION_UPDATED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "دسترسی با موفقیت بروزرسانی شد."
+msgstr "صلاحیت با موفقیت بروزرسانی شد"
 
 #: app/blueprints/api/routes/permission.py:140
 msgid "SUCCESS_SUCCESS_MSG"
-msgstr "موفقیت"
+msgstr "موفق"
 
 #: app/blueprints/api/routes/permission.py:143
 msgid "PERMISSION_RECORD_NOT_FOUND_MSG"
-msgstr "ریکارد دسترسی یافت نشد."
+msgstr "ریکاردی برای صلاحیت یافت نشد"
 
 #: app/blueprints/api/routes/profile.py:67
 #: app/blueprints/api/routes/user.py:164
 msgid "USER_UPDATED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "کاربر با موفقیت بروزرسانی شد."
+msgstr "کاربر با موفقیت بروزرسانی شد"
 
 #: app/blueprints/api/routes/attendance/student.py:18
 #: app/blueprints/api/routes/result.py:18
@@ -690,7 +690,7 @@ msgstr "کاربر با موفقیت بروزرسانی شد."
 #: app/templates/admin/views/tables/results.html:12
 #: app/templates/admin/views/tables/students.html:12
 msgid "STUDENT_LABEL"
-msgstr "محصل"
+msgstr "شاگرد"
 
 #: app/blueprints/api/routes/result.py:19
 #: app/templates/admin/views/tables/results.html:17
@@ -699,21 +699,21 @@ msgstr "فیصدی"
 
 #: app/blueprints/api/routes/attendance/student.py:21
 #: app/blueprints/api/routes/attendance/teacher.py:21
-#: app/blueprints/api/routes/result.py:20 app/forms/attendance/student.py:15
-#: app/forms/attendance/teacher.py:15
+#: app/blueprints/api/routes/result.py:20 app/forms/attendance/student.py:28
+#: app/forms/attendance/teacher.py:28
 #: app/templates/admin/views/tables/attendances.html:22
 #: app/templates/admin/views/tables/results.html:22
 msgid "STATUS_LABEL"
-msgstr "حالت"
+msgstr "وضعیت"
 
 #: app/blueprints/api/routes/result.py:82
 #: app/blueprints/api/routes/result.py:106
 msgid "RESULT_WITH_THE_GIVEN_ID_WAS_NOT_FOUND_MSG"
-msgstr "نتیجه با این شناسه یافت نشد."
+msgstr "نتیجه با شناسه داده شده یافت نشد"
 
 #: app/blueprints/api/routes/result.py:132
 msgid "RESULT_ADDED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "نتیجه با موفقیت علاوه شد."
+msgstr "نتیجه با موفقیت علاوه شد"
 
 #: app/blueprints/api/routes/result.py:133
 msgid "RESULT_ADDED_LABEL"
@@ -721,35 +721,35 @@ msgstr "نتیجه علاوه شد"
 
 #: app/blueprints/api/routes/result.py:166
 msgid "RESULT_UPDATED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "نتیجه با موفقیت بروزرسانی شد."
+msgstr "نتیجه با موفقیت بروزرسانی شد"
 
 #: app/blueprints/api/routes/result.py:170
 msgid "RESULT_RECORD_NOT_FOUND_MSG"
-msgstr "ریکارد نتیجه یافت نشد."
+msgstr "ریکاردی برای نتیجه یافت نشد"
 
 #: app/blueprints/api/routes/result.py:193
 msgid "RESULT_DELETED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "نتیجه با موفقیت حذف شد."
+msgstr "نتیجه با موفقیت حذف شد"
 
 #: app/blueprints/api/routes/result.py:198
 msgid "RESULT_NOT_FOUND_MSG"
-msgstr "نتیجه یافت نشد."
+msgstr "نتیجه یافت نشد"
 
 #: app/blueprints/api/routes/role.py:82 app/blueprints/api/routes/role.py:106
 msgid "ROLE_WITH_THE_GIVEN_ID_WAS_NOT_FOUND_MSG"
-msgstr "نقش با این شناسه یافت نشد."
+msgstr "نقش با شناسه داده شده یافت نشد"
 
 #: app/blueprints/api/routes/role.py:158
 msgid "ROLE_UPDATED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "نقش با موفقیت بروزرسانی شد."
+msgstr "نقش با موفقیت بروزرسانی شد"
 
 #: app/blueprints/api/routes/role.py:162
 msgid "ROLE_RECORD_NOT_FOUND_MSG"
-msgstr "ریکارد نقش یافت نشد."
+msgstr "ریکاردی برای نقش یافت نشد"
 
 #: app/blueprints/api/routes/role.py:185
 msgid "ROLE_HAS_BEEN_DELETED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "نقش با موفقیت حذف شد."
+msgstr "نقش با موفقیت حذف گردید"
 
 #: app/blueprints/api/routes/role.py:189
 msgid "WARNING_WARNING"
@@ -757,15 +757,15 @@ msgstr "هشدار"
 
 #: app/blueprints/api/routes/role.py:190
 msgid "PRIMARY_ROLES_CANNOT_BE_DELETED_ERROR"
-msgstr "نقشهای اساسی قابل حذف نیستند."
+msgstr "نقش‌های اساسی قابل حذف نیستند"
 
 #: app/blueprints/api/routes/role.py:196
 msgid "ROLE_NOT_FOUND_MSG"
-msgstr "نقش یافت نشد."
+msgstr "نقش یافت نشد"
 
 #: app/blueprints/api/routes/role.py:237
 msgid "ROLE_ADDED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "نقش با موفقیت علاوه شد."
+msgstr "نقش با موفقیت علاوه شد"
 
 #: app/blueprints/api/routes/role.py:238
 msgid "ROLE_ADDED_LABEL"
@@ -780,11 +780,11 @@ msgstr "شماره"
 #: app/blueprints/api/routes/semester.py:81
 #: app/blueprints/api/routes/semester.py:105
 msgid "SEMESTER_WITH_THE_GIVEN_ID_WAS_NOT_FOUND_MSG"
-msgstr "سمستر با این شناسه یافت نشد."
+msgstr "سمستر با شناسه داده شده یافت نشد"
 
 #: app/blueprints/api/routes/semester.py:131
 msgid "SEMESTER_ADDED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "سمستر با موفقیت علاوه شد."
+msgstr "سمستر با موفقیت علاوه شد"
 
 #: app/blueprints/api/routes/semester.py:132
 msgid "SEMESTER_ADDED_LABEL"
@@ -792,48 +792,48 @@ msgstr "سمستر علاوه شد"
 
 #: app/blueprints/api/routes/semester.py:165
 msgid "SEMESTER_UPDATED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "سمستر با موفقیت بروزرسانی شد."
+msgstr "سمستر با موفقیت بروزرسانی شد"
 
 #: app/blueprints/api/routes/semester.py:169
 msgid "SEMESTER_RECORD_NOT_FOUND_MSG"
-msgstr "ریکارد سمستر یافت نشد."
+msgstr "ریکاردی برای سمستر یافت نشد"
 
 #: app/blueprints/api/routes/semester.py:193
 msgid "SEMESTER_DELETED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "سمستر با موفقیت حذف شد."
+msgstr "سمستر با موفقیت حذف شد"
 
 #: app/blueprints/api/routes/semester.py:198
 msgid "SEMESTER_NOT_FOUND_MSG"
-msgstr "سمستر یافت نشد."
+msgstr "سمستر یافت نشد"
 
 #: app/blueprints/api/routes/student.py:85
-#: app/blueprints/api/routes/student.py:109 app/forms/attendance/student.py:27
+#: app/blueprints/api/routes/student.py:109
 msgid "STUDENT_WITH_THE_GIVEN_ID_WAS_NOT_FOUND_MSG"
-msgstr "محصل با این شناسه یافت نشد."
+msgstr "شاگرد با شناسه داده شده یافت نشد"
 
 #: app/blueprints/api/routes/student.py:163
 msgid "STUDENT_ADDED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "محصل با موفقیت علاوه شد."
+msgstr "شاگرد با موفقیت علاوه شد"
 
 #: app/blueprints/api/routes/student.py:164
 msgid "STUDENT_ADDED_LABEL"
-msgstr "محصل علاوه شد"
+msgstr "شاگرد علاوه شد"
 
 #: app/blueprints/api/routes/student.py:213
 msgid "STUDENT_UPDATED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "محصل با موفقیت بروزرسانی شد."
+msgstr "شاگرد با موفقیت بروزرسانی شد"
 
 #: app/blueprints/api/routes/student.py:217
 msgid "STUDENT_RECORD_NOT_FOUND_MSG"
-msgstr "ریکارد محصل یافت نشد."
+msgstr "ریکاردی برای شاگرد یافت نشد"
 
 #: app/blueprints/api/routes/student.py:240
 msgid "STUDENT_DELETED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "محصل با موفقیت حذف شد."
+msgstr "شاگرد با موفقیت حذف شد"
 
 #: app/blueprints/api/routes/student.py:245
 msgid "STUDENT_NOT_FOUND_MSG"
-msgstr "محصل یافت نشد."
+msgstr "شاگرد یافت نشد"
 
 #: app/blueprints/api/routes/subject.py:21 app/forms/subject.py:33
 #: app/templates/admin/views/information/subject.html:12
@@ -844,7 +844,7 @@ msgstr "کریدت"
 #: app/blueprints/api/routes/subject.py:83
 #: app/blueprints/api/routes/subject.py:107
 msgid "SUBJECT_WITH_THE_GIVEN_ID_WAS_NOT_FOUND_MSG"
-msgstr "مضمون با این شناسه یافت نشد."
+msgstr "مضمون با شناسه داده شده یافت نشد"
 
 #: app/blueprints/api/routes/subject.py:142
 msgid "SUBJECT_ADDED_LABEL"
@@ -852,44 +852,44 @@ msgstr "مضمون علاوه شد"
 
 #: app/blueprints/api/routes/subject.py:143
 msgid "SUBJECT_ADDED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "مضمون با موفقیت علاوه شد."
+msgstr "مضمون با موفقیت علاوه شد"
 
 #: app/blueprints/api/routes/subject.py:184
 msgid "SUBJECT_UPDATED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "مضمون با موفقیت بروزرسانی شد."
+msgstr "مضمون با موفقیت بروزرسانی شد"
 
 #: app/blueprints/api/routes/subject.py:188
 msgid "SUBJECT_RECORD_NOT_FOUND_MSG"
-msgstr "ریکارد مضمون یافت نشد."
+msgstr "ریکاردی برای مضمون یافت نشد"
 
 #: app/blueprints/api/routes/subject.py:212
 msgid "SUBJECT_DELETED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "مضمون با موفقیت حذف شد."
+msgstr "مضمون با موفقیت حذف شد"
 
 #: app/blueprints/api/routes/subject.py:217
 msgid "SUBJECT_NOT_FOUND_MSG"
-msgstr "مضمون یافت نشد."
+msgstr "مضمون یافت نشد"
 
 #: app/blueprints/api/routes/teacher.py:86
-#: app/blueprints/api/routes/teacher.py:110 app/forms/attendance/teacher.py:27
+#: app/blueprints/api/routes/teacher.py:110
 msgid "TEACHER_WITH_THE_GIVEN_ID_WAS_NOT_FOUND_MSG"
-msgstr "استاد با این شناسه یافت نشد."
+msgstr "استاد با شناسه داده شده یافت نشد"
 
 #: app/blueprints/api/routes/teacher.py:171
 msgid "TEACHER_ADDED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "استاد با موفقیت علاوه شد."
+msgstr "استاد با موفقیت علاوه شد"
 
 #: app/blueprints/api/routes/teacher.py:219
 msgid "TEACHER_UPDATED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "استاد با موفقیت بروزرسانی شد."
+msgstr "استاد با موفقیت بروزرسانی شد"
 
 #: app/blueprints/api/routes/teacher.py:241
 msgid "TEACHER_DELETED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "استاد با موفقیت حذف شد."
+msgstr "استاد با موفقیت حذف شد"
 
 #: app/blueprints/api/routes/teacher.py:246
 msgid "TEACHER_NOT_FOUND_MSG"
-msgstr "استاد یافت نشد."
+msgstr "استاد یافت نشد"
 
 #: app/blueprints/api/routes/time.py:19 app/forms/time.py:29
 #: app/templates/admin/views/information/time.html:6
@@ -903,31 +903,31 @@ msgstr "زمان ختم"
 
 #: app/blueprints/api/routes/time.py:82 app/blueprints/api/routes/time.py:106
 msgid "TIME_WITH_THE_GIVEN_ID_WAS_NOT_FOUND_MSG"
-msgstr "زمان با این شناسه یافت نشد."
+msgstr "وقت با شناسه داده شده یافت نشد"
 
 #: app/blueprints/api/routes/time.py:133
 msgid "TIME_ADDED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "زمان با موفقیت علاوه شد."
+msgstr "وقت با موفقیت علاوه شد"
 
 #: app/blueprints/api/routes/time.py:134
 msgid "TIME_ADDED_LABEL"
-msgstr "زمان علاوه شد"
+msgstr "وقت علاوه شد"
 
 #: app/blueprints/api/routes/time.py:168
 msgid "TIME_UPDATED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "زمان با موفقیت بروزرسانی شد."
+msgstr "وقت با موفقیت بروزرسانی شد"
 
 #: app/blueprints/api/routes/time.py:172
 msgid "TIME_RECORD_NOT_FOUND_MSG"
-msgstr "ریکارد زمان یافت نشد."
+msgstr "ریکاردی برای وقت یافت نشد"
 
 #: app/blueprints/api/routes/time.py:195
 msgid "TIME_DELETED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "زمان با موفقیت حذف شد."
+msgstr "وقت با موفقیت حذف شد"
 
 #: app/blueprints/api/routes/time.py:200
 msgid "TIME_NOT_FOUND_MSG"
-msgstr "زمان یافت نشد."
+msgstr "وقت یافت نشد"
 
 #: app/blueprints/api/routes/user.py:20
 #: app/templates/admin/views/tables/users.html:12
@@ -940,19 +940,19 @@ msgstr "نام کاربر"
 
 #: app/blueprints/api/routes/user.py:86 app/blueprints/api/routes/user.py:113
 msgid "USER_WITH_THE_GIVEN_ID_WAS_NOT_FOUND_MSG"
-msgstr "کاربر با این شناسه یافت نشد."
+msgstr "کاربر با شناسه داده شده یافت نشد"
 
 #: app/blueprints/api/routes/user.py:185
 msgid "USER_DELETED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "کاربر با موفقیت حذف شد."
+msgstr "کاربر با موفقیت حذف شد"
 
 #: app/blueprints/api/routes/user.py:191
 msgid "USER_NOT_FOUND_MSG"
-msgstr "کاربر یافت نشد."
+msgstr "کاربر یافت نشد"
 
 #: app/blueprints/api/routes/user.py:236
 msgid "USER_ADDED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "کاربر با موفقیت علاوه شد."
+msgstr "کاربر با موفقیت علاوه شد"
 
 #: app/blueprints/api/routes/user.py:237
 msgid "USER_ADDED_LABEL"
@@ -977,11 +977,11 @@ msgstr "زمان"
 #: app/blueprints/api/routes/attendance/student.py:114
 #: app/blueprints/api/routes/attendance/teacher.py:114
 msgid "ATTENDANCE_WITH_THE_GIVEN_ID_WAS_NOT_FOUND_MSG"
-msgstr "حاضری با این شناسه یافت نشد."
+msgstr "حاضری با شناسه داده شده یافت نشد"
 
 #: app/blueprints/api/routes/attendance/student.py:139
 msgid "STUDENT_ATTENDANCE_ADDED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "حاضری محصل با موفقیت علاوه شد."
+msgstr "حاضری شاگرد با موفقیت علاوه شد"
 
 #: app/blueprints/api/routes/attendance/student.py:140
 #: app/blueprints/api/routes/attendance/teacher.py:140
@@ -990,63 +990,68 @@ msgstr "حاضری علاوه شد"
 
 #: app/blueprints/api/routes/attendance/teacher.py:139
 msgid "TEACHER_ATTENDANCE_ADDED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "حاضری استاد با موفقیت علاوه شد."
+msgstr "حاضری استاد با موفقیت علاوه شد"
 
-#: app/forms/__init__.py:92
+#: app/forms/__init__.py:93
 msgid "NOT_VALID_UID_MSG"
-msgstr "شناسه نامعتبر است."
+msgstr "شناسه (UID) نامعتبر است"
 
-#: app/forms/__init__.py:96
+#: app/forms/__init__.py:97
 msgid "SPECIFIED_RECORD_DOES_NOT_EXIST"
-msgstr "ریکارد مشخص شده وجود ندارد."
+msgstr "ریکارد مشخص شده وجود ندارد"
+
+#: app/forms/__init__.py:127
+msgid "CHOICE_AN_OPTION_LABEL"
+msgstr "یک گزینه را انتخاب کنید"
 
 #: app/forms/class_.py:14
 msgid "CLASS_NAME_LABEL"
 msgstr "نام صنف"
 
-#: app/forms/attendance/student.py:13 app/forms/attendance/student.py:16
-#: app/forms/attendance/teacher.py:13 app/forms/attendance/teacher.py:16
+#: app/forms/attendance/student.py:14 app/forms/attendance/student.py:29
+#: app/forms/attendance/teacher.py:14 app/forms/attendance/teacher.py:29
 #: app/forms/class_.py:16 app/forms/class_.py:24 app/forms/class_.py:40
-#: app/forms/class_.py:56 app/forms/class_.py:77 app/forms/daily_section.py:23
-#: app/forms/daily_section.py:39 app/forms/department.py:67
-#: app/forms/employee.py:59 app/forms/employee.py:66 app/forms/exam.py:24
-#: app/forms/exam.py:37 app/forms/exam.py:41 app/forms/exam.py:46
-#: app/forms/exam.py:50 app/forms/exam.py:56 app/forms/exam.py:72
-#: app/forms/exam.py:93 app/forms/job.py:13 app/forms/job.py:30
-#: app/forms/job.py:39 app/forms/job.py:51 app/forms/login.py:12
-#: app/forms/login.py:17 app/forms/permission.py:13 app/forms/permission.py:21
-#: app/forms/result.py:24 app/forms/result.py:40 app/forms/result.py:55
-#: app/forms/result.py:75 app/forms/role.py:13 app/forms/role.py:42
-#: app/forms/semester.py:14 app/forms/semester.py:21 app/forms/semester.py:27
-#: app/forms/semester.py:47 app/forms/signup.py:13 app/forms/signup.py:21
-#: app/forms/signup.py:29 app/forms/signup.py:36 app/forms/student.py:20
-#: app/forms/student.py:27 app/forms/subject.py:21 app/forms/subject.py:38
+#: app/forms/class_.py:56 app/forms/class_.py:77 app/forms/daily_section.py:31
+#: app/forms/daily_section.py:43 app/forms/daily_section.py:54
+#: app/forms/department.py:67 app/forms/employee.py:59 app/forms/employee.py:66
+#: app/forms/exam.py:24 app/forms/exam.py:37 app/forms/exam.py:41
+#: app/forms/exam.py:46 app/forms/exam.py:50 app/forms/exam.py:93
+#: app/forms/job.py:13 app/forms/job.py:30 app/forms/job.py:39
+#: app/forms/job.py:51 app/forms/login.py:12 app/forms/login.py:17
+#: app/forms/permission.py:13 app/forms/permission.py:21 app/forms/result.py:24
+#: app/forms/result.py:40 app/forms/result.py:55 app/forms/result.py:75
+#: app/forms/role.py:13 app/forms/role.py:42 app/forms/semester.py:14
+#: app/forms/semester.py:21 app/forms/semester.py:27 app/forms/semester.py:47
+#: app/forms/signup.py:13 app/forms/signup.py:21 app/forms/signup.py:29
+#: app/forms/signup.py:36 app/forms/student.py:16 app/forms/student.py:32
+#: app/forms/student.py:90 app/forms/student.py:124 app/forms/student.py:161
+#: app/forms/student.py:168 app/forms/subject.py:21 app/forms/subject.py:38
 #: app/forms/subject.py:60 app/forms/teacher.py:16 app/forms/teacher.py:45
 #: app/forms/teacher.py:52 app/forms/time.py:30 app/forms/time.py:36
 #: app/forms/time.py:49 app/forms/user.py:24 app/forms/user.py:37
 #: app/forms/user.py:44 app/forms/user.py:52 app/forms/user.py:59
-#: app/forms/user.py:98
+#: app/forms/user.py:100
 msgid "THIS_FIELD_IS_REQUIRED_ERROR"
-msgstr "این فیلد ضروری است."
+msgstr "این فیلد الزامی است"
 
-#: app/forms/class_.py:17 app/forms/daily_section.py:24
+#: app/forms/class_.py:17 app/forms/daily_section.py:32
 #: app/forms/employee.py:40 app/forms/job.py:14 app/forms/permission.py:22
 #: app/forms/role.py:14 app/forms/role.py:23 app/forms/role.py:50
 #: app/forms/semester.py:15 app/forms/subject.py:22
 msgid "THIS_FIELD_CANNOT_EXCEED_255_CHARACTERS_MSG"
-msgstr "این فیلد نمیتواند بیشتر از ۲۵۵ حرف باشد."
+msgstr "این فیلد نمی‌تواند بیشتر از 255 کاراکتر باشد"
 
-#: app/forms/attendance/teacher.py:13 app/forms/class_.py:22
+#: app/forms/attendance/teacher.py:12 app/forms/class_.py:22
 msgid "TEACHER_UID_LABEL"
 msgstr "شناسه استاد"
 
-#: app/forms/attendance/student.py:13 app/forms/attendance/teacher.py:13
+#: app/forms/attendance/student.py:15 app/forms/attendance/teacher.py:15
 #: app/forms/class_.py:25 app/forms/class_.py:41 app/forms/class_.py:57
 #: app/forms/employee.py:24 app/forms/exam.py:57 app/forms/exam.py:73
-#: app/forms/result.py:25 app/forms/result.py:41 app/forms/student.py:34
+#: app/forms/result.py:25 app/forms/result.py:41 app/forms/student.py:176
 #: app/forms/teacher.py:17
 msgid "THIS_FIELD_MUST_BE_8_CHARACTERS_MSG"
-msgstr "این فیلد باید ۸ حرف باشد."
+msgstr "این فیلد باید دقیقاً 8 کاراکتر باشد"
 
 #: app/forms/class_.py:38 app/forms/semester.py:45 app/forms/subject.py:36
 msgid "SEMESTER_UID_LABEL"
@@ -1054,13 +1059,13 @@ msgstr "شناسه سمستر"
 
 #: app/forms/class_.py:54 app/forms/teacher.py:14
 msgid "TIME_UID_LABEL"
-msgstr "شناسه زمان"
+msgstr "شناسه وقت"
 
 #: app/forms/class_.py:70
 msgid "ADD_CLASS_LABEL"
 msgstr "علاوه کردن صنف"
 
-#: app/forms/class_.py:75 app/forms/exam.py:70 app/forms/student.py:32
+#: app/forms/class_.py:75 app/forms/exam.py:70 app/forms/student.py:173
 #: app/templates/admin/views/information/student.html:6
 msgid "CLASS_UID_LABEL"
 msgstr "شناسه صنف"
@@ -1069,31 +1074,39 @@ msgstr "شناسه صنف"
 msgid "UPDATE_CLASS_LABEL"
 msgstr "بروزرسانی صنف"
 
-#: app/forms/daily_section.py:32 app/forms/employee.py:52
-#: app/forms/student.py:13 app/forms/user.py:92
+#: app/forms/daily_section.py:41
+msgid "STARTING_BASE_NUMBER_LABEL"
+msgstr "شماره پایه شروع"
+
+#: app/forms/daily_section.py:44
+msgid "NUMBER_MUST_BE_POSITIVE"
+msgstr "شماره باید مثبت باشد"
+
+#: app/forms/daily_section.py:47 app/forms/employee.py:52
+#: app/forms/student.py:154 app/forms/user.py:94
 msgid "ADD_LABEL"
 msgstr "علاوه کردن"
 
-#: app/forms/daily_section.py:37
+#: app/forms/daily_section.py:52
 msgid "DAILY_SECTION_UID_LABEL"
 msgstr "شناسه بخش روزانه"
 
-#: app/forms/daily_section.py:44 app/forms/employee.py:71
-#: app/forms/profile.py:10 app/forms/user.py:103
+#: app/forms/daily_section.py:59 app/forms/employee.py:71
+#: app/forms/profile.py:10 app/forms/user.py:105
 msgid "UPDATE_LABEL"
 msgstr "بروزرسانی"
 
 #: app/forms/department.py:14
 msgid "NAME_IS_REQUIRED_ERROR"
-msgstr "نام ضروری است."
+msgstr "نام الزامی است"
 
 #: app/forms/department.py:15
 msgid "NAME_CANNOT_EXCEED_50_CHARACTERS_MSG"
-msgstr "نام نمیتواند بیشتر از ۵۰ حرف باشد."
+msgstr "نام نمی‌تواند بیشتر از 50 کاراکتر باشد"
 
 #: app/forms/department.py:23 app/forms/time.py:24
 msgid "DESCRIPTION_CANNOT_EXCEED_255_CHARACTERS_MSG"
-msgstr "توضیحات نمیتواند بیشتر از ۲۵۵ حرف باشد."
+msgstr "توضیحات نمی‌تواند بیشتر از 255 کاراکتر باشد"
 
 #: app/forms/department.py:28
 msgid "HOD_UID_LABEL"
@@ -1122,18 +1135,18 @@ msgstr "آدرس"
 #: app/forms/employee.py:48 app/forms/job.py:31 app/forms/job.py:40
 #: app/forms/teacher.py:34
 msgid "VALUE_MUST_BE_AT_LEAST_MIN_S_MSG"
-msgstr "مقدار باید حداقل %s باشد."
+msgstr "مقدار باید حداقل %s باشد"
 
 #: app/forms/employee.py:57
 msgid "EMPLOYEE_UID_LABEL"
 msgstr "شناسه کارمند"
 
-#: app/forms/employee.py:64 app/forms/student.py:25 app/forms/teacher.py:50
+#: app/forms/employee.py:64 app/forms/student.py:166 app/forms/teacher.py:50
 msgid "USER_UID_LABEL"
 msgstr "شناسه کاربر"
 
 #: app/forms/employee.py:70 app/forms/login.py:17 app/forms/profile.py:9
-#: app/forms/signup.py:27 app/forms/user.py:58 app/forms/user.py:101
+#: app/forms/signup.py:27 app/forms/user.py:58 app/forms/user.py:103
 msgid "PASSWORD_LABEL"
 msgstr "رمز عبور"
 
@@ -1141,7 +1154,7 @@ msgstr "رمز عبور"
 #: app/forms/user.py:25 app/forms/user.py:31 app/forms/user.py:38
 #: app/forms/user.py:45
 msgid "THIS_FIELD_CANNOT_EXCEED_50_CHARACTERS_MSG"
-msgstr "این فیلد نمیتواند بیشتر از ۵۰ حرف باشد."
+msgstr "این فیلد نمی‌تواند بیشتر از 50 کاراکتر باشد"
 
 #: app/forms/exam.py:49
 msgid "MINIMUM_MARKS_LABEL"
@@ -1161,10 +1174,10 @@ msgstr "علاوه کردن امتحان"
 #: app/templates/admin/views/subject.html:124
 #: app/templates/admin/views/subject.html:186
 #: app/templates/admin/views/tabs/files.html:5
-#: app/templates/admin/views/teacher.html:174
-#: app/templates/admin/views/teacher.html:250
+#: app/templates/admin/views/teacher.html:164
+#: app/templates/admin/views/teacher.html:241
 msgid "FILES_LABEL"
-msgstr "فایلها"
+msgstr "فایل‌ها"
 
 #: app/forms/exam.py:101
 msgid "UPDATE_EXAM_LABEL"
@@ -1172,11 +1185,11 @@ msgstr "بروزرسانی امتحان"
 
 #: app/forms/job.py:19
 msgid "JOB_DESCRIPTION_LABEL"
-msgstr "لایحه وظایف"
+msgstr "توضیحات وظیفه"
 
 #: app/forms/job.py:22 app/forms/subject.py:30
 msgid "THIS_FIELD_CANNOT_EXCEED_2000_CHARACTERS_MSG"
-msgstr "این فیلد نمیتواند بیشتر از ۲۰۰۰ حرف باشد."
+msgstr "این فیلد نمی‌تواند بیشتر از 2000 کاراکتر باشد"
 
 #: app/forms/job.py:27 app/templates/admin/views/job.html:38
 msgid "MINIMUM_SALARY_LABEL"
@@ -1212,20 +1225,20 @@ msgstr "ورود"
 
 #: app/forms/permission.py:11
 msgid "PERMISSION_UID_LABEL"
-msgstr "شناسه دسترسی"
+msgstr "شناسه صلاحیت"
 
 #: app/forms/permission.py:30
 msgid "THIS_FIELD_CANNOT_EXCEED_2500_CHARACTERS_MSG"
-msgstr "این فیلد نمیتواند بیشتر از ۲۵۰۰ حرف باشد."
+msgstr "این فیلد نمی‌تواند بیشتر از 2500 کاراکتر باشد"
 
 #: app/forms/permission.py:34
 msgid "UPDATE_PERMISSION_LABEL"
-msgstr "بروزرسانی دسترسی"
+msgstr "بروزرسانی صلاحیت"
 
-#: app/forms/attendance/student.py:13 app/forms/result.py:38
-#: app/forms/student.py:18
+#: app/forms/attendance/student.py:12 app/forms/result.py:38
+#: app/forms/student.py:159
 msgid "STUDENT_UID_LABEL"
-msgstr "شناسه محصل"
+msgstr "شناسه شاگرد"
 
 #: app/forms/result.py:54
 msgid "OBTAINED_MARKS_LABEL"
@@ -1233,7 +1246,7 @@ msgstr "نمرات اخذ شده"
 
 #: app/forms/result.py:64
 msgid "THE_OBTAINED_MARKS_SHOULD_BE_BETWEEN_0_AND_S_MSG"
-msgstr "نمرات اخذ شده باید بین ۰ و %s باشد."
+msgstr "نمرات اخذ شده باید بین 0 و %s باشد"
 
 #: app/forms/result.py:68
 msgid "ADD_RESULT_LABEL"
@@ -1249,7 +1262,7 @@ msgstr "بروزرسانی نتیجه"
 
 #: app/forms/role.py:28
 msgid "DEFAULT_ROLE_ASSIGNED_AUTOMATICALLY_TO_NEW_USERS_MSG"
-msgstr "نقش پیشفرض که به صورت خودکار به کاربران جدید داده میشود"
+msgstr "نقش پیش‌فرض به‌طور خودکار به کاربران جدید اختصاص می‌یابد"
 
 #: app/forms/role.py:35
 msgid "ADD_ROLE_LABEL"
@@ -1298,7 +1311,7 @@ msgstr "ایمیل قبلاً ثبت شده است"
 
 #: app/forms/signup.py:30
 msgid "THIS_FIELD_MUST_BE_AT_LEAST_6_CHARACTERS_MSG"
-msgstr "این فیلد باید حداقل ۶ حرف باشد."
+msgstr "این فیلد باید حداقل 6 کاراکتر باشد"
 
 #: app/forms/signup.py:34
 msgid "CONFIRM_PASSWORD_WARNING"
@@ -1312,9 +1325,73 @@ msgstr "رمزهای عبور باید مطابقت داشته باشند"
 msgid "SIGN_UP_LABEL"
 msgstr "ثبت نام"
 
-#: app/forms/student.py:46
+#: app/forms/student.py:14
+msgid "FATHER_NAME_LABEL"
+msgstr "نام پدر"
+
+#: app/forms/student.py:22
+msgid "GRANDFATHER_NAME_LABEL"
+msgstr "نام پدر کلان"
+
+#: app/forms/student.py:30
+msgid "IDENTITY_CARD_TYPE_LABEL"
+msgstr "نوعیت تذکره"
+
+#: app/forms/student.py:35
+msgid "ELECTRONIC_TAZKIRA_LABEL"
+msgstr "تذکره الکترونیکی"
+
+#: app/forms/student.py:36
+msgid "PAPER_TAZKIRA_LABEL"
+msgstr "تذکره کاغذی"
+
+#: app/forms/student.py:42
+msgid "ELECTRONIC_TAZKIRA_NUMBER_LABEL"
+msgstr "شماره تذکره الکترونیکی"
+
+#: app/forms/student.py:51
+msgid "TAZKIRA_FOLDER_LABEL"
+msgstr "جلد تذکره"
+
+#: app/forms/student.py:60
+msgid "TAZKIRA_PAGE_NUMBER_LABEL"
+msgstr "صفحه تذکره"
+
+#: app/forms/student.py:69
+msgid "TAZKIRA_REGISTRATION_NUMBER_LABEL"
+msgstr "شماره ثبت تذکره"
+
+#: app/forms/student.py:78
+msgid "TAZKIRA_SAKOK_NUMBER_LABEL"
+msgstr "شماره صکوک تذکره"
+
+#: app/forms/student.py:88
+msgid "PERMANENT_PROVINCE_LABEL"
+msgstr "ولایت اصلی"
+
+#: app/forms/student.py:103
+msgid "PERMANENT_DISTRICT_LABEL"
+msgstr "ولسوالی اصلی"
+
+#: app/forms/student.py:116
+msgid "PERMANENT_VILLAGE_LABEL"
+msgstr "قریه اصلی"
+
+#: app/forms/student.py:122
+msgid "CURRENT_PROVINCE_LABEL"
+msgstr "ولایت فعلی"
+
+#: app/forms/student.py:137
+msgid "CURRENT_DISTRICT_LABEL"
+msgstr "ولسوالی فعلی"
+
+#: app/forms/student.py:150
+msgid "CURRENT_VILLAGE_LABEL"
+msgstr "قریه فعلی"
+
+#: app/forms/student.py:188
 msgid "UPDATE_STUDENT_LABEL"
-msgstr "بروزرسانی محصل"
+msgstr "بروزرسانی شاگرد"
 
 #: app/forms/subject.py:19
 msgid "SUBJECT_NAME_LABEL"
@@ -1338,7 +1415,7 @@ msgstr "علاوه کردن استاد"
 
 #: app/forms/teacher.py:43
 msgid "TEACHER_ID_LABEL"
-msgstr "آیدی استاد"
+msgstr "آی‌دی استاد"
 
 #: app/forms/teacher.py:56
 msgid "UPDATE_TEACHER_LABEL"
@@ -1346,19 +1423,19 @@ msgstr "بروزرسانی استاد"
 
 #: app/forms/time.py:15
 msgid "TITLE_IS_REQUIRED_ERROR"
-msgstr "عنوان ضروری است"
+msgstr "عنوان الزامی است"
 
 #: app/forms/time.py:16
 msgid "TITLE_CANNOT_EXCEED_50_CHARACTERS_MSG"
-msgstr "عنوان نمیتواند بیشتر از ۵۰ حرف باشد"
+msgstr "عنوان نمی‌تواند بیشتر از 50 کاراکتر باشد"
 
 #: app/forms/time.py:40
 msgid "ADD_TIME_LABEL"
-msgstr "علاوه کردن زمان"
+msgstr "علاوه کردن وقت"
 
 #: app/forms/time.py:54
 msgid "UPDATE_TIME_LABEL"
-msgstr "بروزرسانی زمان"
+msgstr "بروزرسانی وقت"
 
 #: app/forms/user.py:22 app/templates/admin/pages/profile.html:55
 #: app/templates/admin/views/information/employee.html:7
@@ -1372,7 +1449,7 @@ msgstr "نام"
 #: app/templates/admin/views/information/student.html:12
 #: app/templates/admin/views/information/teacher.html:9
 msgid "MIDDLE_NAME_LABEL"
-msgstr "نام میانه"
+msgstr "نام میانی"
 
 #: app/forms/user.py:35 app/templates/admin/pages/profile.html:65
 #: app/templates/admin/views/information/employee.html:16
@@ -1385,9 +1462,9 @@ msgstr "تخلص"
 msgid "UPLOAD_NEW_PROFILE_PICTURE_MSG"
 msgstr "آپلود عکس پروفایل جدید"
 
-#: app/forms/user.py:68 app/templates/admin/views/employee.html:94
+#: app/forms/user.py:68 app/templates/admin/views/employee.html:82
 #: app/templates/admin/views/student.html:46
-#: app/templates/admin/views/teacher.html:93
+#: app/templates/admin/views/teacher.html:81
 msgid "PHONE_LABEL"
 msgstr "شماره تماس"
 
@@ -1395,17 +1472,9 @@ msgstr "شماره تماس"
 msgid "DUPLICATE_ENTRY_FOR_PHONE_NUMBER_MSG"
 msgstr "شماره تماس تکراری است"
 
-#: app/forms/attendance/student.py:25
-msgid "NOT_A_VALID_STUDENT_UID_MSG"
-msgstr "شناسه محصل معتبر نیست"
-
-#: app/forms/attendance/student.py:29 app/forms/attendance/teacher.py:29
+#: app/forms/attendance/student.py:34 app/forms/attendance/teacher.py:34
 msgid "ADD_ATTENDANCE_LABEL"
 msgstr "علاوه کردن حاضری"
-
-#: app/forms/attendance/teacher.py:25
-msgid "NOT_A_VALID_TEACHER_UID_MSG"
-msgstr "شناسه استاد معتبر نیست"
 
 #: app/templates/admin/components/aside.html:64
 msgid "LOGOUT_LABEL"
@@ -1413,23 +1482,23 @@ msgstr "خروج"
 
 #: app/templates/admin/components/fixed-plugin.html:8
 msgid "UI_CONFIGURATOR_LABEL"
-msgstr "تنظیمات رابط کاربری"
+msgstr "تنظیمات ظاهر (UI)"
 
 #: app/templates/admin/components/fixed-plugin.html:9
 msgid "SEE_OUR_DASHBOARD_OPTIONS_MSG"
-msgstr "تنظیمات داشبورد ما را ببینید"
+msgstr "گزینه‌های داشبورد ما را مشاهده کنید"
 
 #: app/templates/admin/components/fixed-plugin.html:22
 msgid "SIDEBAR_COLORS_LABEL"
-msgstr "رنگهای نوار کناری"
+msgstr "رنگ‌های سایدبار"
 
 #: app/templates/admin/components/fixed-plugin.html:60
 msgid "SIDENAV_TYPE_PLACEHOLDER"
-msgstr "نوع نوار کناری"
+msgstr "نوعیت سایدبار"
 
 #: app/templates/admin/components/fixed-plugin.html:62
 msgid "CHOOSE_BETWEEN_DIFFERENT_SIDENAV_TYPES_PLACEHOLDER"
-msgstr "از بین انواع مختلف نوار کناری انتخاب کنید"
+msgstr "از بین انواع مختلف سایدبار انتخاب کنید"
 
 #: app/templates/admin/components/fixed-plugin.html:71
 msgid "DARK_LABEL"
@@ -1445,15 +1514,15 @@ msgstr "سفید"
 
 #: app/templates/admin/components/fixed-plugin.html:90
 msgid "LANGUAGE_LABEL"
-msgstr "زبان"
+msgstr "لسان"
 
 #: app/templates/admin/components/fixed-plugin.html:91
 msgid "CHOOSE_BETWEEN_DIFFERENT_LANGUAGE_MSG"
-msgstr "از بین زبانهای مختلف انتخاب کنید"
+msgstr "از بین لسان‌های مختلف انتخاب کنید"
 
 #: app/templates/admin/components/fixed-plugin.html:105
 msgid "YOU_CAN_CHANGE_THE_SIDENAV_TYPE_JUST_ON_DESKTOP_VIEW_PLACEHOLDER"
-msgstr "شما میتوانید نوع نوار کناری را فقط در نمای دیسکتاپ تغییر دهید"
+msgstr "شما می‌توانید نوعیت سایدبار را تنها در نمای دسکتاپ تغییر دهید"
 
 #: app/templates/admin/components/fixed-plugin.html:110
 msgid "LIGHT_DARK_MSG"
@@ -1477,12 +1546,12 @@ msgstr "صفحات"
 
 #: app/templates/admin/components/charts/weekly-users.html:4
 msgid "WEEEKLY_WEBSITE_USERS_MSG"
-msgstr "کاربران هفتهوار وبسایت"
+msgstr "کاربران هفته‌وار وب‌سایت"
 
 #: app/templates/admin/components/charts/weekly-users.html:5
 #: app/templates/admin/components/charts/weekly-views.html:5
 msgid "LAST_7_DAYS_MSG"
-msgstr "۷ روز گذشته"
+msgstr "7 روز گذشته"
 
 #: app/templates/admin/components/charts/weekly-users.html:24
 #: app/templates/admin/components/charts/weekly-views.html:24
@@ -1492,19 +1561,19 @@ msgstr "نسبت به هفته گذشته"
 
 #: app/templates/admin/components/charts/weekly-views.html:4
 msgid "WEEEKLY_WEBSITE_VIEWS_MSG"
-msgstr "بازدیدهای هفتهوار وبسایت"
+msgstr "بازدیدهای هفته‌وار وب‌سایت"
 
 #: app/templates/admin/components/charts/yearly-classes.html:5
 #: app/templates/admin/components/charts/yearly-students.html:5
 msgid "LAST_12_MONTH_MSG"
-msgstr "۱۲ ماه گذشته"
+msgstr "12 ماه گذشته"
 
 #: app/templates/admin/components/charts/yearly-classes.html:24
 #: app/templates/admin/components/charts/yearly-students.html:25
 msgid "THAN_LAST_YEAR_MSG"
 msgstr "نسبت به سال گذشته"
 
-#: app/templates/admin/components/forms/add/student.html:129
+#: app/templates/admin/components/forms/add/student.html:271
 #: app/templates/admin/components/forms/add/subject.html:63
 #: app/templates/admin/components/forms/add/teacher.html:165
 #: app/templates/admin/components/forms/update/student.html:141
@@ -1513,148 +1582,148 @@ msgstr "نسبت به سال گذشته"
 msgid "CHOOSE_A_FILE_MSG"
 msgstr "یک فایل انتخاب کنید"
 
-#: app/templates/admin/components/forms/add/student.html:131
+#: app/templates/admin/components/forms/add/student.html:273
 #: app/templates/admin/components/forms/add/subject.html:65
 #: app/templates/admin/components/forms/add/teacher.html:167
 #: app/templates/admin/components/forms/update/student.html:143
 #: app/templates/admin/components/forms/update/subject.html:66
 #: app/templates/admin/components/forms/update/teacher.html:168
 msgid "OR_DRAG_IT_HERE_MSG"
-msgstr "یا کش کرده اینجا رها کنید"
+msgstr "یا آن را اینجا بکشید"
 
-#: app/templates/admin/components/forms/add/student.html:137
+#: app/templates/admin/components/forms/add/student.html:279
 #: app/templates/admin/components/forms/add/subject.html:71
 #: app/templates/admin/components/forms/add/teacher.html:173
 #: app/templates/admin/components/forms/update/student.html:149
 #: app/templates/admin/components/forms/update/subject.html:72
 #: app/templates/admin/components/forms/update/teacher.html:174
 msgid "UPLOADED_FILES_LABEL"
-msgstr "فایلهای آپلود شده"
+msgstr "فایل‌های آپلود شده"
 
 #: app/templates/admin/components/modals/add/class.html:14
 msgid "ADD_NEW_CLASS_MSG"
-msgstr "علاوه نمودن صنف جدید"
+msgstr "علاوه کردن صنف جدید"
 
 #: app/templates/admin/components/modals/add/class.html:16
 msgid "FILL_IN_THE_CLASS_S_DETAILS_BELOW_TO_CREATE_A_NEW_CLASS_MSG"
-msgstr "برای ایجاد صنف جدید، جزئیات صنف را در پایین خانهپری نمایید."
+msgstr "جزئیات صنف را در زیر پر کنید تا یک صنف جدید ایجاد شود"
 
 #: app/templates/admin/components/modals/add/daily_section.html:14
 msgid "ADD_NEW_DAILY_SECTION_MSG"
-msgstr "علاوه نمودن بخش روزانه جدید"
+msgstr "علاوه کردن بخش روزانه جدید"
 
 #: app/templates/admin/components/modals/add/daily_section.html:17
 msgid "FILL_IN_THE_DAILY_SECTION_S_DETAILS_BELOW_TO_CREATE_A_NEW_DAILY_SECTION_MSG"
-msgstr "برای ایجاد بخش روزانه جدید، جزئیات آن را در پایین خانهپری نمایید."
+msgstr "جزئیات بخش روزانه را در زیر پر کنید تا یک بخش روزانه جدید ایجاد شود"
 
 #: app/templates/admin/components/modals/add/department.html:14
 msgid "ADD_NEW_DEPARTMENT_MSG"
-msgstr "علاوه نمودن دیپارتمنت جدید"
+msgstr "علاوه کردن دیپارتمنت جدید"
 
 #: app/templates/admin/components/modals/add/department.html:16
 msgid "FILL_IN_THE_DEPARTMENT_S_DETAILS_BELOW_TO_CREATE_A_NEW_DEPARTMENT_MSG"
-msgstr "برای ایجاد دیپارتمنت جدید، جزئیات دیپارتمنت را در پایین خانهپری نمایید."
+msgstr "جزئیات دیپارتمنت را در زیر پر کنید تا یک دیپارتمنت جدید ایجاد شود"
 
 #: app/templates/admin/components/modals/add/employee.html:14
 msgid "ADD_NEW_EMPLOYEE_MSG"
-msgstr "علاوه نمودن کارمند جدید"
+msgstr "علاوه کردن کارمند جدید"
 
 #: app/templates/admin/components/modals/add/employee.html:16
 msgid "FILL_IN_THE_EMPLOYEE_S_DETAILS_BELOW_TO_CREATE_A_NEW_EMPLOYEE_MSG"
-msgstr "برای ایجاد کارمند جدید، جزئیات کارمند را در پایین خانهپری نمایید."
+msgstr "جزئیات کارمند را در زیر پر کنید تا یک کارمند جدید ایجاد شود"
 
 #: app/templates/admin/components/modals/add/exam.html:14
 msgid "ADD_NEW_EXAM_MSG"
-msgstr "علاوه نمودن امتحان جدید"
+msgstr "علاوه کردن امتحان جدید"
 
 #: app/templates/admin/components/modals/add/exam.html:16
 msgid "FILL_IN_THE_EXAM_S_DETAILS_BELOW_TO_CREATE_A_NEW_EXAM_MSG"
-msgstr "برای ایجاد امتحان جدید، جزئیات امتحان را در پایین خانهپری نمایید."
+msgstr "جزئیات امتحان را در زیر پر کنید تا یک امتحان جدید ایجاد شود"
 
 #: app/templates/admin/components/modals/add/job.html:14
 msgid "ADD_NEW_JOB_MSG"
-msgstr "علاوه نمودن وظیفه جدید"
+msgstr "علاوه کردن وظیفه جدید"
 
 #: app/templates/admin/components/modals/add/job.html:16
 msgid "FILL_IN_THE_JOB_S_DETAILS_BELOW_TO_CREATE_A_NEW_JOB_MSG"
-msgstr "برای ایجاد وظیفه جدید، جزئیات وظیفه را در پایین خانهپری نمایید."
+msgstr "جزئیات وظیفه را در زیر پر کنید تا یک وظیفه جدید ایجاد شود"
 
 #: app/templates/admin/components/modals/add/result.html:14
 msgid "ADD_NEW_RESULT_MSG"
-msgstr "علاوه نمودن نتیجه جدید"
+msgstr "علاوه کردن نتیجه جدید"
 
 #: app/templates/admin/components/modals/add/result.html:16
 msgid "FILL_IN_THE_RESULT_S_DETAILS_BELOW_TO_CREATE_A_NEW_RESULT_MSG"
-msgstr "برای ایجاد نتیجه جدید، جزئیات نتیجه را در پایین خانهپری نمایید."
+msgstr "جزئیات نتیجه را در زیر پر کنید تا یک نتیجه جدید ایجاد شود"
 
 #: app/templates/admin/components/modals/add/role.html:14
 msgid "ADD_NEW_ROLE_MSG"
-msgstr "علاوه نمودن نقش جدید"
+msgstr "علاوه کردن نقش جدید"
 
 #: app/templates/admin/components/modals/add/role.html:16
 msgid "FILL_IN_THE_ROLE_S_DETAILS_BELOW_TO_CREATE_A_NEW_ROLE_MSG"
-msgstr "برای ایجاد نقش جدید، جزئیات نقش را در پایین خانهپری نمایید."
+msgstr "جزئیات نقش را در زیر پر کنید تا یک نقش جدید ایجاد شود"
 
 #: app/templates/admin/components/modals/add/semester.html:14
 msgid "ADD_NEW_SEMESTER_MSG"
-msgstr "علاوه نمودن سمستر جدید"
+msgstr "علاوه کردن سمستر جدید"
 
 #: app/templates/admin/components/modals/add/semester.html:16
 msgid "FILL_IN_THE_SEMESTER_S_DETAILS_BELOW_TO_CREATE_A_NEW_SEMESTER_MSG"
-msgstr "برای ایجاد سمستر جدید، جزئیات سمستر را در پایین خانهپری نمایید."
+msgstr "جزئیات سمستر را در زیر پر کنید تا یک سمستر جدید ایجاد شود"
 
 #: app/templates/admin/components/modals/add/student.html:14
 msgid "ADD_NEW_STUDENT_MSG"
-msgstr "علاوه نمودن محصل جدید"
+msgstr "علاوه کردن شاگرد جدید"
 
 #: app/templates/admin/components/modals/add/student.html:16
 msgid "FILL_IN_THE_STUDENT_S_DETAILS_BELOW_TO_CREATE_A_NEW_STUDENT_MSG"
-msgstr "برای ایجاد محصل جدید، جزئیات محصل را در پایین خانهپری نمایید."
+msgstr "جزئیات شاگرد را در زیر پر کنید تا یک شاگرد جدید ایجاد شود"
 
 #: app/templates/admin/components/modals/add/subject.html:14
 msgid "ADD_NEW_SUBJECT_MSG"
-msgstr "علاوه نمودن مضمون جدید"
+msgstr "علاوه کردن مضمون جدید"
 
 #: app/templates/admin/components/modals/add/subject.html:16
 msgid "FILL_IN_THE_SUBJECT_S_DETAILS_BELOW_TO_CREATE_A_NEW_SUBJECT_MSG"
-msgstr "برای ایجاد مضمون جدید، جزئیات مضمون را در پایین خانهپری نمایید."
+msgstr "جزئیات مضمون را در زیر پر کنید تا یک مضمون جدید ایجاد شود"
 
 #: app/templates/admin/components/modals/add/teacher.html:14
 msgid "ADD_NEW_TEACHER_MSG"
-msgstr "علاوه نمودن استاد جدید"
+msgstr "علاوه کردن استاد جدید"
 
 #: app/templates/admin/components/modals/add/teacher.html:16
 msgid "FILL_IN_THE_TEACHER_S_DETAILS_BELOW_TO_CREATE_A_NEW_TEACHER_MSG"
-msgstr "برای ایجاد استاد جدید، جزئیات استاد را در پایین خانهپری نمایید."
+msgstr "جزئیات استاد را در زیر پر کنید تا یک استاد جدید ایجاد شود"
 
 #: app/templates/admin/components/modals/add/time.html:14
 msgid "ADD_NEW_TIME_MSG"
-msgstr "علاوه نمودن زمان جدید"
+msgstr "علاوه کردن وقت جدید"
 
 #: app/templates/admin/components/modals/add/time.html:16
 msgid "FILL_IN_THE_TIME_S_DETAILS_BELOW_TO_CREATE_A_NEW_TIME_MSG"
-msgstr "برای ایجاد زمان جدید، جزئیات زمان را در پایین خانهپری نمایید."
+msgstr "جزئیات وقت را در زیر پر کنید تا یک وقت جدید ایجاد شود"
 
 #: app/templates/admin/components/modals/add/user.html:14
 msgid "ADD_NEW_USER_MSG"
-msgstr "علاوه نمودن کاربر جدید"
+msgstr "علاوه کردن کاربر جدید"
 
 #: app/templates/admin/components/modals/add/user.html:16
 msgid "FILL_IN_THE_USER_S_DETAILS_BELOW_TO_CREATE_A_NEW_ACCOUNT_MSG"
-msgstr "برای ایجاد کاربر جدید، جزئیات کاربر را در پایین خانهپری نمایید."
+msgstr "جزئیات کاربر را در زیر پر کنید تا یک حساب جدید ایجاد شود"
 
 #: app/templates/admin/components/modals/add/attendance/student.html:14
 msgid "ADD_STUDENT_ATTENDANCE_MSG"
-msgstr "علاوه نمودن حاضری محصل"
+msgstr "علاوه کردن حاضری شاگرد"
 
 #: app/templates/admin/components/modals/add/attendance/student.html:17
 #: app/templates/admin/components/modals/add/attendance/teacher.html:17
 msgid "FILL_IN_THE_ATTENDANCE_S_DETAILS_BELOW_TO_CREATE_A_NEW_ATTENDANCE_MSG"
-msgstr "برای ایجاد حاضری جدید، جزئیات حاضری را در پایین خانهپری نمایید."
+msgstr "جزئیات حاضری را در زیر پر کنید تا یک حاضری جدید ایجاد شود"
 
 #: app/templates/admin/components/modals/add/attendance/teacher.html:14
 msgid "ADD_TEACHER_ATTENDANCE_MSG"
-msgstr "علاوه نمودن حاضری استاد"
+msgstr "علاوه کردن حاضری استاد"
 
 #: app/templates/admin/components/modals/update/class.html:14
 msgid "UPDATE_CLASS_INFORMATION_MSG"
@@ -1662,7 +1731,7 @@ msgstr "بروزرسانی معلومات صنف"
 
 #: app/templates/admin/components/modals/update/class.html:16
 msgid "UPDATE_CLASS_DESCRIPTION_MODAL_MSG"
-msgstr "جزئیات صنف را برای بروزرسانی در پایین ویرایش نمایید."
+msgstr "توضیحات بروزرسانی صنف"
 
 #: app/templates/admin/components/modals/update/daily_section.html:15
 msgid "UPDATE_DAILY_SECTION_INFORMATION_MSG"
@@ -1670,7 +1739,7 @@ msgstr "بروزرسانی معلومات بخش روزانه"
 
 #: app/templates/admin/components/modals/update/daily_section.html:18
 msgid "UPDATE_DAILY_SECTION_DESCRIPTION_MODAL_MSG"
-msgstr "جزئیات بخش روزانه را برای بروزرسانی در پایین ویرایش نمایید."
+msgstr "توضیحات بروزرسانی بخش روزانه"
 
 #: app/templates/admin/components/modals/update/department.html:15
 msgid "UPDATE_DEPARTMENT_INFORMATION_MSG"
@@ -1678,7 +1747,7 @@ msgstr "بروزرسانی معلومات دیپارتمنت"
 
 #: app/templates/admin/components/modals/update/department.html:18
 msgid "UPDATE_DEPARTMENT_DESCRIPTION_MODAL_MSG"
-msgstr "جزئیات دیپارتمنت را برای بروزرسانی در پایین ویرایش نمایید."
+msgstr "توضیحات بروزرسانی دیپارتمنت"
 
 #: app/templates/admin/components/modals/update/employee.html:14
 msgid "UPDATE_EMPLOYEE_INFORMATION_MSG"
@@ -1686,7 +1755,7 @@ msgstr "بروزرسانی معلومات کارمند"
 
 #: app/templates/admin/components/modals/update/employee.html:16
 msgid "UPDATE_EMPLOYEE_DESCRIPTION_MODAL_MSG"
-msgstr "جزئیات کارمند را برای بروزرسانی در پایین ویرایش نمایید."
+msgstr "توضیحات بروزرسانی کارمند"
 
 #: app/templates/admin/components/modals/update/exam.html:14
 msgid "UPDATE_EXAM_INFORMATION_MSG"
@@ -1694,7 +1763,7 @@ msgstr "بروزرسانی معلومات امتحان"
 
 #: app/templates/admin/components/modals/update/exam.html:16
 msgid "UPDATE_EXAM_DESCRIPTION_MODAL_MSG"
-msgstr "جزئیات امتحان را برای بروزرسانی در پایین ویرایش نمایید."
+msgstr "توضیحات بروزرسانی امتحان"
 
 #: app/templates/admin/components/modals/update/job.html:14
 msgid "UPDATE_JOB_INFORMATION_MSG"
@@ -1702,15 +1771,15 @@ msgstr "بروزرسانی معلومات وظیفه"
 
 #: app/templates/admin/components/modals/update/job.html:16
 msgid "UPDATE_JOB_DESCRIPTION_MODAL_MSG"
-msgstr "جزئیات وظیفه را برای بروزرسانی در پایین ویرایش نمایید."
+msgstr "توضیحات بروزرسانی وظیفه"
 
 #: app/templates/admin/components/modals/update/permission.html:15
 msgid "UPDATE_PERMISSION_INFORMATION_MSG"
-msgstr "بروزرسانی معلومات دسترسی"
+msgstr "بروزرسانی معلومات صلاحیت"
 
 #: app/templates/admin/components/modals/update/permission.html:18
 msgid "UPDATE_PERMISSION_DESCRIPTION_MODAL_MSG"
-msgstr "جزئیات دسترسی را برای بروزرسانی در پایین ویرایش نمایید."
+msgstr "توضیحات بروزرسانی صلاحیت"
 
 #: app/templates/admin/components/modals/update/profile.html:14
 msgid "UPDATE_PROFILE_INFORMATION_MSG"
@@ -1718,7 +1787,7 @@ msgstr "بروزرسانی معلومات پروفایل"
 
 #: app/templates/admin/components/modals/update/profile.html:16
 msgid "UPDATE_PROFILE_DESCRIPTION_MODAL_MSG"
-msgstr "جزئیات پروفایل را برای بروزرسانی در پایین ویرایش نمایید."
+msgstr "توضیحات بروزرسانی پروفایل"
 
 #: app/templates/admin/components/modals/update/result.html:14
 msgid "UPDATE_RESULT_INFORMATION_MSG"
@@ -1726,7 +1795,7 @@ msgstr "بروزرسانی معلومات نتیجه"
 
 #: app/templates/admin/components/modals/update/result.html:16
 msgid "UPDATE_RESULT_DESCRIPTION_MODAL_MSG"
-msgstr "جزئیات نتیجه را برای بروزرسانی در پایین ویرایش نمایید."
+msgstr "توضیحات بروزرسانی نتیجه"
 
 #: app/templates/admin/components/modals/update/role.html:14
 msgid "UPDATE_ROLE_INFORMATION_MSG"
@@ -1734,7 +1803,7 @@ msgstr "بروزرسانی معلومات نقش"
 
 #: app/templates/admin/components/modals/update/role.html:16
 msgid "UPDATE_ROLE_DESCRIPTION_MODAL_MSG"
-msgstr "جزئیات نقش را برای بروزرسانی در پایین ویرایش نمایید."
+msgstr "توضیحات بروزرسانی نقش"
 
 #: app/templates/admin/components/modals/update/semester.html:14
 msgid "UPDATE_SEMESTER_INFORMATION_MSG"
@@ -1742,15 +1811,15 @@ msgstr "بروزرسانی معلومات سمستر"
 
 #: app/templates/admin/components/modals/update/semester.html:16
 msgid "UPDATE_SEMESTER_DESCRIPTION_MODAL_MSG"
-msgstr "جزئیات سمستر را برای بروزرسانی در پایین ویرایش نمایید."
+msgstr "توضیحات بروزرسانی سمستر"
 
 #: app/templates/admin/components/modals/update/student.html:14
 msgid "UPDATE_STUDENT_INFORMATION_MSG"
-msgstr "بروزرسانی معلومات محصل"
+msgstr "بروزرسانی معلومات شاگرد"
 
 #: app/templates/admin/components/modals/update/student.html:16
 msgid "UPDATE_STUDENT_DESCRIPTION_MODAL_MSG"
-msgstr "جزئیات محصل را برای بروزرسانی در پایین ویرایش نمایید."
+msgstr "توضیحات بروزرسانی شاگرد"
 
 #: app/templates/admin/components/modals/update/subject.html:14
 msgid "UPDATE_SUBJECT_INFORMATION_MSG"
@@ -1758,7 +1827,7 @@ msgstr "بروزرسانی معلومات مضمون"
 
 #: app/templates/admin/components/modals/update/subject.html:16
 msgid "UPDATE_SUBJECT_DESCRIPTION_MODAL_MSG"
-msgstr "جزئیات مضمون را برای بروزرسانی در پایین ویرایش نمایید."
+msgstr "توضیحات بروزرسانی مضمون"
 
 #: app/templates/admin/components/modals/update/teacher.html:14
 msgid "UPDATE_TEACHER_INFORMATION_MSG"
@@ -1766,15 +1835,15 @@ msgstr "بروزرسانی معلومات استاد"
 
 #: app/templates/admin/components/modals/update/teacher.html:16
 msgid "UPDATE_TEACHER_DESCRIPTION_MODAL_MSG"
-msgstr "جزئیات استاد را برای بروزرسانی در پایین ویرایش نمایید."
+msgstr "توضیحات بروزرسانی استاد"
 
 #: app/templates/admin/components/modals/update/time.html:14
 msgid "UPDATE_TIME_INFORMATION_MSG"
-msgstr "بروزرسانی معلومات زمان"
+msgstr "بروزرسانی معلومات وقت"
 
 #: app/templates/admin/components/modals/update/time.html:16
 msgid "UPDATE_TIME_DESCRIPTION_MODAL_MSG"
-msgstr "جزئیات زمان را برای بروزرسانی در پایین ویرایش نمایید."
+msgstr "توضیحات بروزرسانی وقت"
 
 #: app/templates/admin/components/modals/update/user.html:14
 msgid "UPDATE_USER_INFORMATION_MSG"
@@ -1782,7 +1851,7 @@ msgstr "بروزرسانی معلومات کاربر"
 
 #: app/templates/admin/components/modals/update/user.html:16
 msgid "UPDATE_USER_DESCRIPTION_MODAL_MSG"
-msgstr "جزئیات کاربر را برای بروزرسانی در پایین ویرایش نمایید."
+msgstr "توضیحات بروزرسانی کاربر"
 
 #: app/templates/admin/components/rows/dashboard-stats.html:60
 msgid "VIEWS_LABEL"
@@ -1798,7 +1867,7 @@ msgstr "نسبت به ماه گذشته"
 
 #: app/templates/admin/components/tables/header/header.html:31
 msgid "SEARCH_PLACEHOLDER"
-msgstr "جستجو..."
+msgstr "جستجو"
 
 #: app/templates/admin/pages/profile.html:48
 msgid "PROFILE_INFORMATION_LABEL"
@@ -1823,9 +1892,9 @@ msgstr "دیپارتمنت"
 #: app/templates/admin/views/class.html:239
 #: app/templates/admin/views/student.html:133
 #: app/templates/admin/views/tabs/attendances.html:5
-#: app/templates/admin/views/teacher.html:238
+#: app/templates/admin/views/teacher.html:229
 msgid "ATTENDANCES_LABEL"
-msgstr "حاضریها"
+msgstr "حاضری‌ها"
 
 #: app/templates/admin/views/department.html:20
 #: app/templates/admin/views/semester.html:26
@@ -1841,16 +1910,6 @@ msgstr "معلومات کارمند"
 #: app/templates/admin/views/job.html:20
 msgid "JOB_INFORMATION_LABEL"
 msgstr "معلومات وظیفه"
-
-#: app/templates/admin/views/employee.html:76
-#: app/templates/admin/views/teacher.html:75
-msgid "GREATER_LABEL"
-msgstr "بیشتر"
-
-#: app/templates/admin/views/employee.html:80
-#: app/templates/admin/views/teacher.html:79
-msgid "LESS_LABEL"
-msgstr "کمتر"
 
 #: app/templates/admin/views/exam.html:28
 msgid "EXAM_LABEL"
@@ -1879,15 +1938,15 @@ msgstr "حداکثر معاش در این وظیفه"
 
 #: app/templates/admin/views/job.html:107
 msgid "ACTIVE_STAFF_COUNT_MSG"
-msgstr "تعداد کارمندان برحال"
+msgstr "تعداد پرسنل فعال"
 
 #: app/templates/admin/views/permissions.html:4
 msgid "PERMISSION_LABEL"
-msgstr "دسترسی"
+msgstr "صلاحیت"
 
 #: app/templates/admin/views/permissions.html:14
 msgid "PERMISSION_INFORMATION_LABEL"
-msgstr "معلومات دسترسی"
+msgstr "معلومات صلاحیت"
 
 #: app/templates/admin/views/roles.html:4
 msgid "ROLE_LABEL"
@@ -1904,13 +1963,13 @@ msgstr "معلومات سمستر"
 
 #: app/templates/admin/views/student.html:29
 msgid "STUDENT_INFORMATION_LABEL"
-msgstr "معلومات محصل"
+msgstr "معلومات شاگرد"
 
 #: app/templates/admin/views/student.html:96
 #: app/templates/admin/views/subject.html:137
-#: app/templates/admin/views/teacher.html:189
+#: app/templates/admin/views/teacher.html:180
 msgid "STORAGE_LABEL"
-msgstr "ذخیرهگاه"
+msgstr "ذخیره‌سازی"
 
 #: app/templates/admin/views/tabs/teacher.html:4
 #: app/templates/admin/views/teacher.html:29
@@ -1921,7 +1980,7 @@ msgstr "معلومات استاد"
 #: app/templates/admin/views/teacher.html:40
 #: app/templates/admin/views/time.html:18
 msgid "TIME_INFORMATION_LABEL"
-msgstr "معلومات زمان"
+msgstr "معلومات وقت"
 
 #: app/templates/admin/views/information/class.html:9
 #: app/templates/admin/views/information/department.html:12
@@ -1936,7 +1995,7 @@ msgstr "معلومات زمان"
 #: app/templates/admin/views/information/teacher.html:26
 #: app/templates/admin/views/information/time.html:12
 msgid "CREATED_AT_SUCCESS_MSG"
-msgstr "تاریخ ایجاد"
+msgstr "ایجاد شده در"
 
 #: app/templates/admin/views/information/class.html:12
 #: app/templates/admin/views/information/department.html:16
@@ -1951,30 +2010,30 @@ msgstr "تاریخ ایجاد"
 #: app/templates/admin/views/information/teacher.html:30
 #: app/templates/admin/views/information/time.html:15
 msgid "UPDATED_AT_SUCCESS_MSG"
-msgstr "تاریخ بروزرسانی"
+msgstr "بروزرسانی شده در"
 
 #: app/templates/admin/views/information/permission.html:13
 msgid "PERMISSION_CODE_LABEL"
-msgstr "کود دسترسی"
+msgstr "کد صلاحیت"
 
 #: app/templates/admin/views/tables/attendances.html:42
 #: app/templates/admin/views/tables/classes.html:55
 msgid "NO_CLASSES_YET_MSG"
-msgstr "تاکنون صنفی وجود ندارد"
+msgstr "هنوز صنفی وجود ندارد"
 
 #: app/templates/admin/views/tables/employees.html:7
 #: app/templates/admin/views/tables/files.html:7
 #: app/templates/admin/views/tables/users.html:7
 msgid "ID"
-msgstr "آیدی"
+msgstr "آی‌دی"
 
 #: app/templates/admin/views/tables/employees.html:57
 msgid "NO_EMPLOYEES_YET_MSG"
-msgstr "تاکنون کارمندی وجود ندارد"
+msgstr "هنوز کارمندی وجود ندارد"
 
 #: app/templates/admin/views/tables/exams.html:43
 msgid "NO_EXAMS_YET_MSG"
-msgstr "تاکنون امتحانی وجود ندارد"
+msgstr "هنوز امتحانی وجود ندارد"
 
 #: app/templates/admin/views/tables/files.html:17
 msgid "SIZE_LABEL"
@@ -1982,47 +2041,47 @@ msgstr "اندازه"
 
 #: app/templates/admin/views/tables/files.html:22
 msgid "UPLOADED_LABEL"
-msgstr "آپلود شد"
+msgstr "آپلود شده"
 
 #: app/templates/admin/views/tables/files.html:39
 msgid "NO_FILES_YET_MSG"
-msgstr "تاکنون فایلی وجود ندارد"
+msgstr "هنوز فایلی وجود ندارد"
 
 #: app/templates/admin/views/tables/permissions.html:17
 msgid "CODE_LABEL"
-msgstr "کود"
+msgstr "کد"
 
 #: app/templates/admin/views/tables/permissions.html:31
 msgid "NO_PERMISSIONS_YET_MSG"
-msgstr "تاکنون دسترسی وجود ندارد"
+msgstr "هنوز صلاحیتی وجود ندارد"
 
 #: app/templates/admin/views/tables/results.html:56
 msgid "NO_RESULTS_YET_MSG"
-msgstr "تاکنون نتیجهای وجود ندارد"
+msgstr "هنوز نتیجه‌ای وجود ندارد"
 
 #: app/templates/admin/views/tables/roles.html:25
 msgid "NO_ROLES_YET_MSG"
-msgstr "تاکنون نقشی وجود ندارد"
+msgstr "هنوز نقشی وجود ندارد"
 
 #: app/templates/admin/views/tables/semesters.html:49
 msgid "NO_SEMESTERS_YET_MSG"
-msgstr "تاکنون سمستری وجود ندارد"
+msgstr "هنوز سمستری وجود ندارد"
 
 #: app/templates/admin/views/tables/students.html:51
 msgid "NO_STUDENTS_YET_MSG"
-msgstr "تاکنون محصلی وجود ندارد"
+msgstr "هنوز شاگردی وجود ندارد"
 
 #: app/templates/admin/views/tables/subjects.html:37
 msgid "NO_SUBJECTS_YET_MSG"
-msgstr "تاکنون مضمونی وجود ندارد"
+msgstr "هنوز مضمونی وجود ندارد"
 
 #: app/templates/admin/views/tables/teachers.html:51
 msgid "NO_TEACHERS_YET_MSG"
-msgstr "تاکنون استادی وجود ندارد"
+msgstr "هنوز استادی وجود ندارد"
 
 #: app/templates/admin/views/tables/users.html:53
 msgid "NO_USERS_YET_MSG"
-msgstr "تاکنون کاربری وجود ندارد"
+msgstr "هنوز کاربری وجود ندارد"
 
 #: app/templates/admin/views/tabs/class.html:3
 msgid "CLASS_INFORMATION_LABEL"
@@ -2042,7 +2101,7 @@ msgstr "ورود"
 
 #: app/templates/auth/login.html:33
 msgid "HELLO_WELCOME_LABEL"
-msgstr "سلام! خوش آمدید."
+msgstr "سلام، خوش آمدید"
 
 #: app/templates/auth/login.html:34
 msgid "DON_T_HAVE_AN_ACCOUNT_MSG"
@@ -2058,8 +2117,9 @@ msgstr "ثبت نام"
 
 #: app/templates/auth/signup.html:61
 msgid "WELCOME_BACK_LABEL"
-msgstr "خوش برگشتید"
+msgstr "خوش آمدید"
 
 #: app/templates/auth/signup.html:62
 msgid "ALREADY_HAVE_AN_ACCOUNT_MSG"
-msgstr "از قبل حساب کاربری دارید؟"
+msgstr "قبلاً حساب کاربری دارید؟"
+
