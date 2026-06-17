@@ -6,7 +6,8 @@ from app.extensions.db import db
 class Student(db.Model):
     __tablename__ = "students"
 
-    user_id = db.Column(db.String(8), db.ForeignKey("users.uid"))
+    base_number = db.Column(db.Integer, unique=True)
+    user_id = db.Column(db.String(8), db.ForeignKey("users.uid"), nullable=False)
     class_id = db.Column(db.String(8), db.ForeignKey("classes.uid"))
     daily_section_uid = db.Column(
         db.String(8),
@@ -32,6 +33,7 @@ class Student(db.Model):
 
     def to_dict(self) -> dict:
         return {
+            "base_number": self.base_number,
             "user_uid": self.user.uid,
             "class_id": self.class_id,
             "first_name": self.user.first_name,
