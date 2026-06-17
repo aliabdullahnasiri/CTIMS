@@ -14,17 +14,13 @@ from app.const import UID_PATTERN
 
 class MustBeUnique:
     def __init__(
-        self: Self,
-        model,
-        name,
-        message=None,
-        col="uid",
-        field="uid",
+        self: Self, model, name, message=None, col="uid", field="uid", f=None
     ) -> None:
         self.model = model
         self.name = name
         self.col = col
         self.field = field
+        self.f = f
         self.message = message
 
     def __call__(self, form, field):
@@ -35,31 +31,34 @@ class MustBeUnique:
         except:
             vals.append(field.data)
 
+        _f = self.field
+
+        if self.model.__name__ not in form.__class__.__name__:
+            _f = f"{self.model.__name__.lower()}_{self.field}"
+
+            if not hasattr(form, _f):
+                if self.f and not hasattr(form, self.f):
+                    _f = self.field
+                else:
+                    _f = self.f
+
         for val in vals:
             if (
                 self.model.query.filter(
                     and_(
                         (
                             getattr(self.model, self.col)
-                            != getattr(
-                                getattr(form, _field),
-                                "data",
+                            != (
+                                getattr(
+                                    getattr(form, _f),
+                                    "data",
+                                )
                             )
                         ),
                         getattr(self.model, self.name) == val,
                     )
                 ).count()
                 if "Update" in form.__class__.__name__
-                and hasattr(
-                    form,
-                    (
-                        _field := (
-                            self.field
-                            if self.model.__name__ in form.__class__.__name__
-                            else f"{self.model.__name__.lower()}_{self.field}"
-                        )
-                    ),
-                )
                 else self.model.query.filter(
                     getattr(self.model, self.name) == val,
                 ).count()
