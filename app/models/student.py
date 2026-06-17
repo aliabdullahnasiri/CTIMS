@@ -14,6 +14,19 @@ class Student(db.Model):
         db.ForeignKey("daily_sections.uid"),
     )
 
+    father_name = db.Column(db.String(255))
+    grandfather_name = db.Column(db.String(255))
+
+    electronic_tazkira_number = db.Column(db.String(100), unique=True)
+
+    permanent_village = db.Column(db.String(255))
+    permanent_district = db.Column(db.String(255))
+    permanent_province = db.Column(db.String(255))
+
+    current_village = db.Column(db.String(255))
+    current_district = db.Column(db.String(255))
+    current_province = db.Column(db.String(255))
+
     class_ = db.relationship("Class", back_populates="students")
     attendances = db.relationship(
         "StudentAttendance",
