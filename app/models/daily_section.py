@@ -17,6 +17,7 @@ class DailySection(db.Model):
 
     title = db.Column(db.String(255), nullable=False)
     description = db.Column(db.Text)
+    starting_base_number = db.Column(db.Integer, nullable=False)
 
     exam = db.relationship(
         "Exam",
@@ -35,6 +36,7 @@ class DailySection(db.Model):
             "exam_uid": self.exam_uid,
             "title": self.title,
             "description": self.description,
+            "starting_base_number": self.starting_base_number,
             "students": [student.to_dict() for student in self.students.all()],
             **call(getattr(super(), "to_dict")),
         }
