@@ -7,7 +7,7 @@ from flask import url_for
 from flask_babel import gettext as _
 from flask_babel import lazy_gettext as _l
 from flask_wtf import FlaskForm
-from wtforms import ValidationError
+from wtforms import SelectField, SelectMultipleField, ValidationError
 
 from app.const import UID_PATTERN
 
@@ -120,6 +120,21 @@ class Form(FlaskForm):
                     _field.label.text = _l(_field.label.text)
             except:
                 ...
+
+            try:
+                if isinstance(_field, (SelectField, SelectMultipleField)):
+                    if not _field.render_kw:
+                        _field.render_kw = {}
+
+                    _field.render_kw["data-none-selected-text"] = _l(
+                        "CHOICE_AN_OPTION_LABEL"
+                    )
+
+                    _field.choices = [
+                        (value, _l(label)) for value, label in _field.choices
+                    ]
+            except:
+                pass
 
     def validate(self, *args, **kwargs):
         # Run the standard WTForms validation
