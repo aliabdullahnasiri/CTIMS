@@ -31,16 +31,16 @@ class MustBeUnique:
         except:
             vals.append(field.data)
 
-        _f = self.field
+        _f: str = self.field
 
         if self.model.__name__ not in form.__class__.__name__:
             _f = f"{self.model.__name__.lower()}_{self.field}"
 
             if not hasattr(form, _f):
-                if self.f and not hasattr(form, self.f):
-                    _f = self.field
-                else:
+                if self.f and hasattr(form, self.f):
                     _f = self.f
+                else:
+                    _f = self.field
 
         for val in vals:
             if (
