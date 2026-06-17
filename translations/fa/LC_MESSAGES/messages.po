@@ -219,7 +219,7 @@ msgstr "انگلیسی"
 
 #: app/blueprints/admin/routes/daily_section.py:17
 msgid "DAILY_SECTIONS_LABEL"
-msgstr "بخشهای روزانه"
+msgstr "بخش های روزانه"
 
 #: app/blueprints/admin/routes/teacher.py:15
 #: app/templates/admin/components/rows/dashboard-stats.html:136
