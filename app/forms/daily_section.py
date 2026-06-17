@@ -1,6 +1,6 @@
 from flask_babel import gettext as _
-from wtforms import HiddenField, StringField, SubmitField, TextAreaField
-from wtforms.validators import DataRequired, Length, Optional
+from wtforms import HiddenField, IntegerField, StringField, SubmitField, TextAreaField
+from wtforms.validators import DataRequired, Length, NumberRange, Optional
 
 from app.forms import Form, MustBeUnique, ValidateUID
 from app.models.daily_section import DailySection
@@ -37,6 +37,13 @@ class AddDailySectionForm(Form):
         _("DESCRIPTION_LABEL"),
     )
 
+    starting_base_number = IntegerField(
+        _("STARTING_BASE_NUMBER_LABEL"),
+        validators=[
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
+            NumberRange(min=0, message=_("NUMBER_MUST_BE_POSITIVE")),
+        ],
+    )
     submit = SubmitField(_("ADD_LABEL"))
 
 

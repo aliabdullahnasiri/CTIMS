@@ -1,6 +1,6 @@
 from flask_babel import gettext as _
 from wtforms import HiddenField, StringField, SubmitField
-from wtforms.validators import DataRequired, Length
+from wtforms.validators import DataRequired, Length, Optional
 
 from app.forms import ValidateUID
 from app.forms.user import AddUserForm, UpdateUserForm
@@ -31,6 +31,7 @@ class UpdateStudentForm(UpdateUserForm, AddStudentForm):
     class_id = StringField(
         _("CLASS_UID_LABEL"),
         validators=[
+            Optional(),
             Length(8, 8, message=_("THIS_FIELD_MUST_BE_8_CHARACTERS_MSG")),
             ValidateUID(Class),
         ],
