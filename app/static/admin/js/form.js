@@ -751,8 +751,9 @@ export function upload(files, dropZone) {
         ?.querySelector(`[data-group-id='${option.value}']`)
         ?.closest(".row,.group");
 
-      if (select.value !== option.value) group.classList.add("d-none");
-      else group.classList.remove("d-none");
+      if (group)
+        if (select.value !== option.value) group.classList.add("d-none");
+        else group.classList.remove("d-none");
     });
   }
   document.querySelectorAll("[data-group-switcher=true]").forEach((select) => {
@@ -764,5 +765,26 @@ export function upload(files, dropZone) {
       return;
 
     fun(event.target);
+  });
+}).call(this);
+
+(function () {
+  //
+  const input = document.getElementById("electronic_tazkira_number");
+
+  input.addEventListener("input", (e) => {
+    let value = e.target.value.replace(/\D/g, "");
+
+    if (value.length > 13) {
+      value = value.slice(0, 13);
+    }
+
+    if (value.length > 8) {
+      value = `${value.slice(0, 4)}-${value.slice(4, 8)}-${value.slice(8)}`;
+    } else if (value.length > 4) {
+      value = `${value.slice(0, 4)}-${value.slice(4)}`;
+    }
+
+    e.target.value = value;
   });
 }).call(this);

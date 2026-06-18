@@ -419,3 +419,11 @@ div.dropdown-menu {
 .rtl a[role="option"] {
   text-align: right;
 }
+
+.input-group input::placeholder {
+  opacity: 0;
+}
+
+.input-group.focused input::placeholder {
+  opacity: 1;
+}
