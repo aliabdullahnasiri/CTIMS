@@ -9,6 +9,11 @@ class District(db.Model):
     province_uid = db.Column(db.String(8), db.ForeignKey("province.uid"))
     name = db.Column(db.String(100))
 
+    province = db.relationship(
+        "Province",
+        back_populates="districts",
+    )
+
     def to_dict(self) -> dict:
         return {
             "name": self.name,
