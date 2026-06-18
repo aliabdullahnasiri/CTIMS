@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-17 19:40+0430\n"
+"POT-Creation-Date: 2026-06-18 16:55+0430\n"
 "PO-Revision-Date: 2026-06-17 19:08+0430\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fa_AF\n"
@@ -36,7 +36,7 @@ msgid "USERS_LABEL"
 msgstr "کاربران"
 
 #: app/blueprints/admin/routes/permissions.py:17
-#: app/blueprints/api/routes/navbar.py:28 app/forms/role.py:33
+#: app/blueprints/api/routes/navbar.py:28 app/forms/role.py:35
 #: app/templates/admin/views/roles.html:31
 #: app/templates/admin/views/roles.html:91
 #: app/templates/admin/views/tabs/permissions.html:5
@@ -294,7 +294,7 @@ msgstr "شناسه (UID)"
 #: app/blueprints/api/routes/role.py:18
 #: app/blueprints/api/routes/semester.py:18
 #: app/blueprints/api/routes/subject.py:19 app/forms/department.py:12
-#: app/forms/permission.py:19 app/forms/role.py:11 app/forms/role.py:47
+#: app/forms/permission.py:19 app/forms/role.py:12 app/forms/role.py:59
 #: app/templates/admin/views/information/class.html:6
 #: app/templates/admin/views/information/department.html:6
 #: app/templates/admin/views/information/permission.html:6
@@ -389,7 +389,7 @@ msgstr "عنوان"
 #: app/blueprints/api/routes/department.py:20
 #: app/blueprints/api/routes/exam.py:19 app/blueprints/api/routes/subject.py:20
 #: app/forms/daily_section.py:37 app/forms/department.py:20
-#: app/forms/exam.py:29 app/forms/permission.py:27 app/forms/role.py:20
+#: app/forms/exam.py:29 app/forms/permission.py:27 app/forms/role.py:21
 #: app/forms/time.py:21 app/templates/admin/views/information/department.html:9
 #: app/templates/admin/views/information/exam.html:9
 #: app/templates/admin/views/information/job.html:9
@@ -1000,7 +1000,7 @@ msgstr "شناسه (UID) نامعتبر است"
 msgid "SPECIFIED_RECORD_DOES_NOT_EXIST"
 msgstr "ریکارد مشخص شده وجود ندارد"
 
-#: app/forms/__init__.py:127
+#: app/forms/__init__.py:131 app/forms/student.py:170
 msgid "CHOICE_AN_OPTION_LABEL"
 msgstr "یک گزینه را انتخاب کنید"
 
@@ -1020,23 +1020,24 @@ msgstr "نام صنف"
 #: app/forms/job.py:51 app/forms/login.py:12 app/forms/login.py:17
 #: app/forms/permission.py:13 app/forms/permission.py:21 app/forms/result.py:24
 #: app/forms/result.py:40 app/forms/result.py:55 app/forms/result.py:75
-#: app/forms/role.py:13 app/forms/role.py:42 app/forms/semester.py:14
+#: app/forms/role.py:14 app/forms/role.py:54 app/forms/semester.py:14
 #: app/forms/semester.py:21 app/forms/semester.py:27 app/forms/semester.py:47
 #: app/forms/signup.py:13 app/forms/signup.py:21 app/forms/signup.py:29
-#: app/forms/signup.py:36 app/forms/student.py:16 app/forms/student.py:32
-#: app/forms/student.py:90 app/forms/student.py:124 app/forms/student.py:161
-#: app/forms/student.py:168 app/forms/subject.py:21 app/forms/subject.py:38
-#: app/forms/subject.py:60 app/forms/teacher.py:16 app/forms/teacher.py:45
-#: app/forms/teacher.py:52 app/forms/time.py:30 app/forms/time.py:36
-#: app/forms/time.py:49 app/forms/user.py:24 app/forms/user.py:37
-#: app/forms/user.py:44 app/forms/user.py:52 app/forms/user.py:59
-#: app/forms/user.py:100
+#: app/forms/signup.py:36 app/forms/student.py:23 app/forms/student.py:31
+#: app/forms/student.py:47 app/forms/student.py:105 app/forms/student.py:113
+#: app/forms/student.py:135 app/forms/student.py:143 app/forms/student.py:186
+#: app/forms/student.py:200 app/forms/student.py:216 app/forms/student.py:223
+#: app/forms/subject.py:21 app/forms/subject.py:38 app/forms/subject.py:60
+#: app/forms/teacher.py:16 app/forms/teacher.py:45 app/forms/teacher.py:52
+#: app/forms/time.py:30 app/forms/time.py:36 app/forms/time.py:49
+#: app/forms/user.py:24 app/forms/user.py:37 app/forms/user.py:44
+#: app/forms/user.py:52 app/forms/user.py:59 app/forms/user.py:100
 msgid "THIS_FIELD_IS_REQUIRED_ERROR"
 msgstr "این فیلد الزامی است"
 
 #: app/forms/class_.py:17 app/forms/daily_section.py:32
 #: app/forms/employee.py:40 app/forms/job.py:14 app/forms/permission.py:22
-#: app/forms/role.py:14 app/forms/role.py:23 app/forms/role.py:50
+#: app/forms/role.py:15 app/forms/role.py:24 app/forms/role.py:62
 #: app/forms/semester.py:15 app/forms/subject.py:22
 msgid "THIS_FIELD_CANNOT_EXCEED_255_CHARACTERS_MSG"
 msgstr "این فیلد نمی‌تواند بیشتر از 255 کاراکتر باشد"
@@ -1048,7 +1049,7 @@ msgstr "شناسه استاد"
 #: app/forms/attendance/student.py:15 app/forms/attendance/teacher.py:15
 #: app/forms/class_.py:25 app/forms/class_.py:41 app/forms/class_.py:57
 #: app/forms/employee.py:24 app/forms/exam.py:57 app/forms/exam.py:73
-#: app/forms/result.py:25 app/forms/result.py:41 app/forms/student.py:176
+#: app/forms/result.py:25 app/forms/result.py:41 app/forms/student.py:231
 #: app/forms/teacher.py:17
 msgid "THIS_FIELD_MUST_BE_8_CHARACTERS_MSG"
 msgstr "این فیلد باید دقیقاً 8 کاراکتر باشد"
@@ -1065,7 +1066,7 @@ msgstr "شناسه وقت"
 msgid "ADD_CLASS_LABEL"
 msgstr "علاوه کردن صنف"
 
-#: app/forms/class_.py:75 app/forms/exam.py:70 app/forms/student.py:173
+#: app/forms/class_.py:75 app/forms/exam.py:70 app/forms/student.py:228
 #: app/templates/admin/views/information/student.html:6
 msgid "CLASS_UID_LABEL"
 msgstr "شناسه صنف"
@@ -1083,7 +1084,7 @@ msgid "NUMBER_MUST_BE_POSITIVE"
 msgstr "شماره باید مثبت باشد"
 
 #: app/forms/daily_section.py:47 app/forms/employee.py:52
-#: app/forms/student.py:154 app/forms/user.py:94
+#: app/forms/student.py:161 app/forms/user.py:94
 msgid "ADD_LABEL"
 msgstr "علاوه کردن"
 
@@ -1141,7 +1142,7 @@ msgstr "مقدار باید حداقل %s باشد"
 msgid "EMPLOYEE_UID_LABEL"
 msgstr "شناسه کارمند"
 
-#: app/forms/employee.py:64 app/forms/student.py:166 app/forms/teacher.py:50
+#: app/forms/employee.py:64 app/forms/student.py:221 app/forms/teacher.py:50
 msgid "USER_UID_LABEL"
 msgstr "شناسه کاربر"
 
@@ -1236,7 +1237,7 @@ msgid "UPDATE_PERMISSION_LABEL"
 msgstr "بروزرسانی صلاحیت"
 
 #: app/forms/attendance/student.py:12 app/forms/result.py:38
-#: app/forms/student.py:159
+#: app/forms/student.py:214
 msgid "STUDENT_UID_LABEL"
 msgstr "شناسه شاگرد"
 
@@ -1260,19 +1261,19 @@ msgstr "شناسه نتیجه"
 msgid "UPDATE_RESULT_LABEL"
 msgstr "بروزرسانی نتیجه"
 
-#: app/forms/role.py:28
+#: app/forms/role.py:29
 msgid "DEFAULT_ROLE_ASSIGNED_AUTOMATICALLY_TO_NEW_USERS_MSG"
 msgstr "نقش پیش‌فرض به‌طور خودکار به کاربران جدید اختصاص می‌یابد"
 
-#: app/forms/role.py:35
+#: app/forms/role.py:47
 msgid "ADD_ROLE_LABEL"
 msgstr "علاوه کردن نقش"
 
-#: app/forms/role.py:40
+#: app/forms/role.py:52
 msgid "ROLE_UID_LABEL"
 msgstr "شناسه نقش"
 
-#: app/forms/role.py:54
+#: app/forms/role.py:66
 msgid "UPDATE_ROLE_LABEL"
 msgstr "بروزرسانی نقش"
 
@@ -1325,71 +1326,75 @@ msgstr "رمزهای عبور باید مطابقت داشته باشند"
 msgid "SIGN_UP_LABEL"
 msgstr "ثبت نام"
 
-#: app/forms/student.py:14
+#: app/forms/student.py:21
 msgid "FATHER_NAME_LABEL"
 msgstr "نام پدر"
 
-#: app/forms/student.py:22
+#: app/forms/student.py:29
 msgid "GRANDFATHER_NAME_LABEL"
 msgstr "نام پدر کلان"
 
-#: app/forms/student.py:30
+#: app/forms/student.py:37
+msgid "KANKOR_ID"
+msgstr "شناسه کانکور"
+
+#: app/forms/student.py:45
 msgid "IDENTITY_CARD_TYPE_LABEL"
 msgstr "نوعیت تذکره"
 
-#: app/forms/student.py:35
+#: app/forms/student.py:50
 msgid "ELECTRONIC_TAZKIRA_LABEL"
 msgstr "تذکره الکترونیکی"
 
-#: app/forms/student.py:36
+#: app/forms/student.py:51
 msgid "PAPER_TAZKIRA_LABEL"
 msgstr "تذکره کاغذی"
 
-#: app/forms/student.py:42
+#: app/forms/student.py:57
 msgid "ELECTRONIC_TAZKIRA_NUMBER_LABEL"
 msgstr "شماره تذکره الکترونیکی"
 
-#: app/forms/student.py:51
+#: app/forms/student.py:66
 msgid "TAZKIRA_FOLDER_LABEL"
 msgstr "جلد تذکره"
 
-#: app/forms/student.py:60
+#: app/forms/student.py:75
 msgid "TAZKIRA_PAGE_NUMBER_LABEL"
 msgstr "صفحه تذکره"
 
-#: app/forms/student.py:69
+#: app/forms/student.py:84
 msgid "TAZKIRA_REGISTRATION_NUMBER_LABEL"
 msgstr "شماره ثبت تذکره"
 
-#: app/forms/student.py:78
+#: app/forms/student.py:93
 msgid "TAZKIRA_SAKOK_NUMBER_LABEL"
 msgstr "شماره صکوک تذکره"
 
-#: app/forms/student.py:88
+#: app/forms/student.py:103
 msgid "PERMANENT_PROVINCE_LABEL"
 msgstr "ولایت اصلی"
 
-#: app/forms/student.py:103
+#: app/forms/student.py:111
 msgid "PERMANENT_DISTRICT_LABEL"
 msgstr "ولسوالی اصلی"
 
-#: app/forms/student.py:116
+#: app/forms/student.py:127
 msgid "PERMANENT_VILLAGE_LABEL"
 msgstr "قریه اصلی"
 
-#: app/forms/student.py:122
+#: app/forms/student.py:133
 msgid "CURRENT_PROVINCE_LABEL"
 msgstr "ولایت فعلی"
 
-#: app/forms/student.py:137
+#: app/forms/student.py:141
 msgid "CURRENT_DISTRICT_LABEL"
 msgstr "ولسوالی فعلی"
 
-#: app/forms/student.py:150
+#: app/forms/student.py:157
 msgid "CURRENT_VILLAGE_LABEL"
 msgstr "قریه فعلی"
 
-#: app/forms/student.py:188
+#: app/forms/student.py:243
 msgid "UPDATE_STUDENT_LABEL"
 msgstr "بروزرسانی شاگرد"
 
@@ -1573,7 +1578,7 @@ msgstr "12 ماه گذشته"
 msgid "THAN_LAST_YEAR_MSG"
 msgstr "نسبت به سال گذشته"
 
-#: app/templates/admin/components/forms/add/student.html:271
+#: app/templates/admin/components/forms/add/student.html:282
 #: app/templates/admin/components/forms/add/subject.html:63
 #: app/templates/admin/components/forms/add/teacher.html:165
 #: app/templates/admin/components/forms/update/student.html:141
@@ -1582,7 +1587,7 @@ msgstr "نسبت به سال گذشته"
 msgid "CHOOSE_A_FILE_MSG"
 msgstr "یک فایل انتخاب کنید"
 
-#: app/templates/admin/components/forms/add/student.html:273
+#: app/templates/admin/components/forms/add/student.html:284
 #: app/templates/admin/components/forms/add/subject.html:65
 #: app/templates/admin/components/forms/add/teacher.html:167
 #: app/templates/admin/components/forms/update/student.html:143
@@ -1591,7 +1596,7 @@ msgstr "یک فایل انتخاب کنید"
 msgid "OR_DRAG_IT_HERE_MSG"
 msgstr "یا آن را اینجا بکشید"
 
-#: app/templates/admin/components/forms/add/student.html:279
+#: app/templates/admin/components/forms/add/student.html:290
 #: app/templates/admin/components/forms/add/subject.html:71
 #: app/templates/admin/components/forms/add/teacher.html:173
 #: app/templates/admin/components/forms/update/student.html:149
@@ -2123,3 +2128,2042 @@ msgstr "خوش آمدید"
 msgid "ALREADY_HAVE_AN_ACCOUNT_MSG"
 msgstr "قبلاً حساب کاربری دارید؟"
 
+#: data/provinces-and-districts.json
+msgid "UROZGAN_LABEL"
+msgstr "اورزگان"
+
+#: data/provinces-and-districts.json
+msgid "CHORA_LABEL"
+msgstr "چوره"
+
+#: data/provinces-and-districts.json
+msgid "DEH_RAHWOD_LABEL"
+msgstr "دهراوود"
+
+#: data/provinces-and-districts.json
+msgid "KHAS_URUZGAN_LABEL"
+msgstr "ارزگان خاص"
+
+#: data/provinces-and-districts.json
+msgid "SHAHIDI_HASSAS_LABEL"
+msgstr "شهید حساس"
+
+#: data/provinces-and-districts.json
+msgid "TARIN_KOWT_LABEL"
+msgstr "ترینکوت"
+
+#: data/provinces-and-districts.json
+msgid "BADGHIS_LABEL"
+msgstr "بادغیس"
+
+#: data/provinces-and-districts.json
+msgid "AB_KAMARI_LABEL"
+msgstr "آب کمری"
+
+#: data/provinces-and-districts.json
+msgid "GHORMACH_LABEL"
+msgstr "غورماچ"
+
+#: data/provinces-and-districts.json
+msgid "JAWAND_LABEL"
+msgstr "جوند"
+
+#: data/provinces-and-districts.json
+msgid "MUQUR_LABEL"
+msgstr "مقر"
+
+#: data/provinces-and-districts.json
+msgid "MURGHAB_LABEL"
+msgstr "بالا مرغاب"
+
+#: data/provinces-and-districts.json
+msgid "QADIS_LABEL"
+msgstr "قادس"
+
+#: data/provinces-and-districts.json
+msgid "QALA_I_NAW_LABEL"
+msgstr "قلعه نو"
+
+#: data/provinces-and-districts.json
+msgid "BAMYAN_LABEL"
+msgstr "بامیان"
+
+#: data/provinces-and-districts.json
+msgid "KAHMARD_LABEL"
+msgstr "کهمرد"
+
+#: data/provinces-and-districts.json
+msgid "PANJAB_LABEL"
+msgstr "پنجاب"
+
+#: data/provinces-and-districts.json
+msgid "SAYGHAN_LABEL"
+msgstr "سیغان"
+
+#: data/provinces-and-districts.json
+msgid "SHIBAR_LABEL"
+msgstr "شیبر"
+
+#: data/provinces-and-districts.json
+msgid "WARAS_LABEL"
+msgstr "ورث"
+
+#: data/provinces-and-districts.json
+msgid "YAKAWLANG_LABEL"
+msgstr "یکاولنگ"
+
+#: data/provinces-and-districts.json
+msgid "SHEBAR_LABEL"
+msgstr "شیبر"
+
+#: data/provinces-and-districts.json
+msgid "CENTER_OF_BAMYAN_LABEL"
+msgstr "مرکز بامیان"
+
+#: data/provinces-and-districts.json
+msgid "BADAKHSHAN_LABEL"
+msgstr "بدخشان"
+
+#: data/provinces-and-districts.json
+msgid "ARGHANJ_KHWA_LABEL"
+msgstr "ارغنجخواه"
+
+#: data/provinces-and-districts.json
+msgid "ARGO_LABEL"
+msgstr "ارگو"
+
+#: data/provinces-and-districts.json
+msgid "BAHARAK_LABEL"
+msgstr "بهارک"
+
+#: data/provinces-and-districts.json
+msgid "DARAYIM_LABEL"
+msgstr "درایم"
+
+#: data/provinces-and-districts.json
+msgid "FAYZABAD_LABEL"
+msgstr "فیض آباد"
+
+#: data/provinces-and-districts.json
+msgid "ISHKASHIM_LABEL"
+msgstr "اشکاشم"
+
+#: data/provinces-and-districts.json
+msgid "JURM_LABEL"
+msgstr "جورم"
+
+#: data/provinces-and-districts.json
+msgid "KHASH_LABEL"
+msgstr "خاش"
+
+#: data/provinces-and-districts.json
+msgid "KHWAHAN_LABEL"
+msgstr "خواهان"
+
+#: data/provinces-and-districts.json
+msgid "KISHIM_LABEL"
+msgstr "کشم"
+
+#: data/provinces-and-districts.json
+msgid "KOHISTAN_LABEL"
+msgstr "کوهستان"
+
+#: data/provinces-and-districts.json
+msgid "KUF_AB_LABEL"
+msgstr "کوف آب"
+
+#: data/provinces-and-districts.json
+msgid "KURAN_WA_MUNJAN_LABEL"
+msgstr "کوران و منجان"
+
+#: data/provinces-and-districts.json
+msgid "MAIMAY_LABEL"
+msgstr "ماهمی"
+
+#: data/provinces-and-districts.json
+msgid "NUSAY_LABEL"
+msgstr "نُسی"
+
+#: data/provinces-and-districts.json
+msgid "RAGH_LABEL"
+msgstr "راغ"
+
+#: data/provinces-and-districts.json
+msgid "SHAHRI_BUZURG_LABEL"
+msgstr "شهری بزگ"
+
+#: data/provinces-and-districts.json
+msgid "SHEKAY_LABEL"
+msgstr "شُکی"
+
+#: data/provinces-and-districts.json
+msgid "SHIGHNAN_LABEL"
+msgstr "شغنان"
+
+#: data/provinces-and-districts.json
+msgid "SHUHADA_LABEL"
+msgstr "شهدا"
+
+#: data/provinces-and-districts.json
+msgid "TAGAB_LABEL"
+msgstr "تگاب"
+
+#: data/provinces-and-districts.json
+msgid "TISHKAN_LABEL"
+msgstr "تیشکان"
+
+#: data/provinces-and-districts.json
+msgid "WAKHAN_LABEL"
+msgstr "واخان"
+
+#: data/provinces-and-districts.json
+msgid "WURDUJ_LABEL"
+msgstr "وردوج"
+
+#: data/provinces-and-districts.json
+msgid "YAFTALI_LABEL"
+msgstr "یافت علی"
+
+#: data/provinces-and-districts.json
+msgid "YAMGAN_LABEL"
+msgstr "یمگان"
+
+#: data/provinces-and-districts.json
+msgid "YAWAN_LABEL"
+msgstr "یاوان"
+
+#: data/provinces-and-districts.json
+msgid "ZEBAK_LABEL"
+msgstr "زیباک"
+
+#: data/provinces-and-districts.json
+msgid "TASHKAN_LABEL"
+msgstr "Tashkan"
+
+#: data/provinces-and-districts.json
+msgid "BAGHLAN_LABEL"
+msgstr "بغلان"
+
+#: data/provinces-and-districts.json
+msgid "ANDARAB_LABEL"
+msgstr "اندراب"
+
+#: data/provinces-and-districts.json
+msgid "BAGHLANI_JADID_LABEL"
+msgstr "بغلان جدید"
+
+#: data/provinces-and-districts.json
+msgid "BURKA_LABEL"
+msgstr "برکه"
+
+#: data/provinces-and-districts.json
+msgid "DAHANA_I_GHURI_LABEL"
+msgstr "دهنه غوري"
+
+#: data/provinces-and-districts.json
+msgid "DIH_SALAH_LABEL"
+msgstr "ده صالح"
+
+#: data/provinces-and-districts.json
+msgid "DUSHI_LABEL"
+msgstr "دوشي"
+
+#: data/provinces-and-districts.json
+msgid "FARANG_WA_GHAR_LABEL"
+msgstr "فرنگ او غارو"
+
+#: data/provinces-and-districts.json
+msgid "GUZARGAHI_NUR_LABEL"
+msgstr "گذرگاه نور"
+
+#: data/provinces-and-districts.json
+msgid "KHINJAN_LABEL"
+msgstr "خنجان"
+
+#: data/provinces-and-districts.json
+msgid "KHOST_WA_FEREN_LABEL"
+msgstr "خوست و فرنگ"
+
+#: data/provinces-and-districts.json
+msgid "KHWAJA_HIJRAN_LABEL"
+msgstr "خواجه هجران"
+
+#: data/provinces-and-districts.json
+msgid "NAHRIN_LABEL"
+msgstr "ناهرین"
+
+#: data/provinces-and-districts.json
+msgid "PULI_HISAR_LABEL"
+msgstr "پل حصار"
+
+#: data/provinces-and-districts.json
+msgid "PULI_KHUMRI_LABEL"
+msgstr "پلخمري"
+
+#: data/provinces-and-districts.json
+msgid "TALA_WA_BARFAK_LABEL"
+msgstr "تاله و برفک"
+
+#: data/provinces-and-districts.json
+msgid "BANO_LABEL"
+msgstr ""
+
+#: data/provinces-and-districts.json
+msgid "BAGHLAN_MARKAZI_LABEL"
+msgstr ""
+
+#: data/provinces-and-districts.json
+msgid "BALKH_LABEL"
+msgstr "بلخ"
+
+#: data/provinces-and-districts.json
+msgid "CHAHAR_BOLAK_LABEL"
+msgstr "چار پولک"
+
+#: data/provinces-and-districts.json
+msgid "CHAHAR_KINT_LABEL"
+msgstr "چار کنت"
+
+#: data/provinces-and-districts.json
+msgid "CHIMTAL_LABEL"
+msgstr "چمتال"
+
+#: data/provinces-and-districts.json
+msgid "DAWLATABAD_LABEL"
+msgstr "دولت اباد"
+
+#: data/provinces-and-districts.json
+msgid "DIHDADI_LABEL"
+msgstr "دهدادی"
+
+#: data/provinces-and-districts.json
+msgid "KALDAR_LABEL"
+msgstr "کُلدار"
+
+#: data/provinces-and-districts.json
+msgid "KHULMI_LABEL"
+msgstr "خلم"
+
+#: data/provinces-and-districts.json
+msgid "KISHINDIH_LABEL"
+msgstr "کشنده"
+
+#: data/provinces-and-districts.json
+msgid "MARMUL_LABEL"
+msgstr "مارمل"
+
+#: data/provinces-and-districts.json
+msgid "MAZAR_E_SHARIF_LABEL"
+msgstr "مزارشریف"
+
+#: data/provinces-and-districts.json
+msgid "NAHR_E_SHAHI_LABEL"
+msgstr "نهر شاهی"
+
+#: data/provinces-and-districts.json
+msgid "SHOLGARA_LABEL"
+msgstr "شولگره"
+
+#: data/provinces-and-districts.json
+msgid "SHORTEPA_LABEL"
+msgstr "شورتپه"
+
+#: data/provinces-and-districts.json
+msgid "ZARI_LABEL"
+msgstr "زاری"
+
+#: data/provinces-and-districts.json
+msgid "DEHDADI_LABEL"
+msgstr "دهدادی"
+
+#: data/provinces-and-districts.json
+msgid "CENTER_OF_BALKH_LABEL"
+msgstr ""
+
+#: data/provinces-and-districts.json
+msgid "MARKAZ_SHAHAR_LABEL"
+msgstr ""
+
+#: data/provinces-and-districts.json
+msgid "MARKAZ_E_SHAHR_LABEL"
+msgstr ""
+
+#: data/provinces-and-districts.json
+msgid "NAHIA_SHASHUM_LABEL"
+msgstr ""
+
+#: data/provinces-and-districts.json
+msgid "PD_7_LABEL"
+msgstr "PD 7"
+
+#: data/provinces-and-districts.json
+msgid "PD_8_LABEL"
+msgstr "PD 8"
+
+#: data/provinces-and-districts.json
+msgid "1_PD_LABEL"
+msgstr "1 PD"
+
+#: data/provinces-and-districts.json
+msgid "TAKHAR_LABEL"
+msgstr "تخار"
+
+#: data/provinces-and-districts.json
+msgid "BANGI_LABEL"
+msgstr "بنگي"
+
+#: data/provinces-and-districts.json
+msgid "CHAH_AB_LABEL"
+msgstr "چاه آب"
+
+#: data/provinces-and-districts.json
+msgid "CHAL_AHIB_LABEL"
+msgstr "چال"
+
+#: data/provinces-and-districts.json
+msgid "DARQAD_BAD_LABEL"
+msgstr "درقد"
+
+#: data/provinces-and-districts.json
+msgid "DASHTI_QALA_LABEL"
+msgstr "دشت قلعه"
+
+#: data/provinces-and-districts.json
+msgid "FARKHAR_I_ZAL_LABEL"
+msgstr "فرخار"
+
+#: data/provinces-and-districts.json
+msgid "HAZAR_SUMUCH_LABEL"
+msgstr "هزار سموچ"
+
+#: data/provinces-and-districts.json
+msgid "ISHKAMISH_LABEL"
+msgstr "اشکامش"
+
+#: data/provinces-and-districts.json
+msgid "KALAFGAN_LABEL"
+msgstr "کلفگان"
+
+#: data/provinces-and-districts.json
+msgid "KHWAJA_BAHA_LABEL"
+msgstr "خواجه بهاوالدین"
+
+#: data/provinces-and-districts.json
+msgid "KHWAJA_GHAR_LABEL"
+msgstr "خواجه غار"
+
+#: data/provinces-and-districts.json
+msgid "NAMAK_AB_LABEL"
+msgstr "نمک آب"
+
+#: data/provinces-and-districts.json
+msgid "RUSTAQ_LABEL"
+msgstr "روستاق"
+
+#: data/provinces-and-districts.json
+msgid "TALUQAN_LABEL"
+msgstr "تالقان"
+
+#: data/provinces-and-districts.json
+msgid "WARSAJ_LABEL"
+msgstr "ورسج"
+
+#: data/provinces-and-districts.json
+msgid "YANGI_QALA_LABEL"
+msgstr "ینگی قلعه"
+
+#: data/provinces-and-districts.json
+msgid "JOZ_JAN_LABEL"
+msgstr "جوزجان"
+
+#: data/provinces-and-districts.json
+msgid "AQCHA_LABEL"
+msgstr "آقچه"
+
+#: data/provinces-and-districts.json
+msgid "DARZAB_LABEL"
+msgstr "درزآب"
+
+#: data/provinces-and-districts.json
+msgid "KHAMYAB_LABEL"
+msgstr "خمآب"
+
+#: data/provinces-and-districts.json
+msgid "KHANIQA_LABEL"
+msgstr "خانقاه"
+
+#: data/provinces-and-districts.json
+msgid "KHWAJA_DU_KOH_LABEL"
+msgstr "خواجه دو کوه"
+
+#: data/provinces-and-districts.json
+msgid "MARDYAN_LABEL"
+msgstr "مردیان"
+
+#: data/provinces-and-districts.json
+msgid "MINGAJIK_LABEL"
+msgstr "منگجیک"
+
+#: data/provinces-and-districts.json
+msgid "QARQIN_LABEL"
+msgstr "قرقین"
+
+#: data/provinces-and-districts.json
+msgid "QUSH_TEPA_LABEL"
+msgstr "قوش تپه"
+
+#: data/provinces-and-districts.json
+msgid "SHIBIRGHAN_LABEL"
+msgstr "شبرغان"
+
+#: data/provinces-and-districts.json
+msgid "KHOST_LABEL"
+msgstr "خوست"
+
+#: data/provinces-and-districts.json
+msgid "BAAK_LABEL"
+msgstr "باک"
+
+#: data/provinces-and-districts.json
+msgid "GURBUZ_LABEL"
+msgstr "گوربز"
+
+#: data/provinces-and-districts.json
+msgid "JAJI_MAIDAN_LABEL"
+msgstr "جاجی میدان"
+
+#: data/provinces-and-districts.json
+msgid "KHOST_MATOON_LABEL"
+msgstr "خوست"
+
+#: data/provinces-and-districts.json
+msgid "MANDOZAI_LABEL"
+msgstr "مندوزی"
+
+#: data/provinces-and-districts.json
+msgid "MUSA_KHEL_LABEL"
+msgstr "موسی خیل"
+
+#: data/provinces-and-districts.json
+msgid "NADIR_SHAH_KOT_LABEL"
+msgstr "نادرشاه کوت"
+
+#: data/provinces-and-districts.json
+msgid "QALANDAR_LABEL"
+msgstr "قلندر"
+
+#: data/provinces-and-districts.json
+msgid "SABARI_LABEL"
+msgstr "سبری"
+
+#: data/provinces-and-districts.json
+msgid "SHAMAL_LABEL"
+msgstr "شمال"
+
+#: data/provinces-and-districts.json
+msgid "SPERA_LABEL"
+msgstr "سپیره"
+
+#: data/provinces-and-districts.json
+msgid "TANI_LABEL"
+msgstr "تنی"
+
+#: data/provinces-and-districts.json
+msgid "TIRZAYI__ALI_SHER__LABEL"
+msgstr "تیره زی"
+
+#: data/provinces-and-districts.json
+msgid "CENTER_OF_KHOST_LABEL"
+msgstr ""
+
+#: data/provinces-and-districts.json
+msgid "PROVINCIAL_LABEL"
+msgstr ""
+
+#: data/provinces-and-districts.json
+msgid "ISMAIL_KHAIL_MANDOZAI_LABEL"
+msgstr ""
+
+#: data/provinces-and-districts.json
+msgid "DOWA_MENDA_LABEL"
+msgstr ""
+
+#: data/provinces-and-districts.json
+msgid "DAIKUNDI_LABEL"
+msgstr "دایکندی"
+
+#: data/provinces-and-districts.json
+msgid "GIZAB_LABEL"
+msgstr "گیزاب"
+
+#: data/provinces-and-districts.json
+msgid "ISHTARLAY_LABEL"
+msgstr "اشترلی"
+
+#: data/provinces-and-districts.json
+msgid "KAJRAN_LABEL"
+msgstr "کجران"
+
+#: data/provinces-and-districts.json
+msgid "KHADIR_LABEL"
+msgstr "خادر"
+
+#: data/provinces-and-districts.json
+msgid "KITI_LABEL"
+msgstr "کیتی"
+
+#: data/provinces-and-districts.json
+msgid "MIRAMOR_LABEL"
+msgstr "میرامور"
+
+#: data/provinces-and-districts.json
+msgid "NILI_LABEL"
+msgstr "نیلی"
+
+#: data/provinces-and-districts.json
+msgid "SANGTAKHT_LABEL"
+msgstr "سنگ تخت"
+
+#: data/provinces-and-districts.json
+msgid "SHAHRISTAN_LABEL"
+msgstr "شهرستان"
+
+#: data/provinces-and-districts.json
+msgid "ZABUL_LABEL"
+msgstr "زابل"
+
+#: data/provinces-and-districts.json
+msgid "ARGAHANDAB_LABEL"
+msgstr "ارغنداب"
+
+#: data/provinces-and-districts.json
+msgid "ATGHAR_LABEL"
+msgstr "اتغار"
+
+#: data/provinces-and-districts.json
+msgid "DAYCHOPAN_LABEL"
+msgstr "دای چوپان"
+
+#: data/provinces-and-districts.json
+msgid "KAKAR_LABEL"
+msgstr "کاکر"
+
+#: data/provinces-and-districts.json
+msgid "MIZAN_LABEL"
+msgstr "میزان"
+
+#: data/provinces-and-districts.json
+msgid "NAW_BAHAR_LABEL"
+msgstr "نو بهار"
+
+#: data/provinces-and-districts.json
+msgid "QALAT_LABEL"
+msgstr "قلات"
+
+#: data/provinces-and-districts.json
+msgid "SHAH_JOY_LABEL"
+msgstr "شاه جوی"
+
+#: data/provinces-and-districts.json
+msgid "SHAMULZAYI_LABEL"
+msgstr "شمولزی"
+
+#: data/provinces-and-districts.json
+msgid "SHINKAY_LABEL"
+msgstr "شینکی"
+
+#: data/provinces-and-districts.json
+msgid "TARNAK_WA_JALDAK_LABEL"
+msgstr "ترنک او جلدک"
+
+#: data/provinces-and-districts.json
+msgid "SAR_E_PUL_LABEL"
+msgstr "سر پل"
+
+#: data/provinces-and-districts.json
+msgid "BALKHAB_LABEL"
+msgstr "بلخاب"
+
+#: data/provinces-and-districts.json
+msgid "GOSFANDI_LABEL"
+msgstr "گوسفندی"
+
+#: data/provinces-and-districts.json
+msgid "KOHISTANAT_LABEL"
+msgstr "کوهستانات"
+
+#: data/provinces-and-districts.json
+msgid "SANGCHARAK_LABEL"
+msgstr "سنگچارک"
+
+#: data/provinces-and-districts.json
+msgid "SAYYAD_LABEL"
+msgstr "سیاد"
+
+#: data/provinces-and-districts.json
+msgid "SOZMA_QALA_LABEL"
+msgstr "سوزمان قلعه"
+
+#: data/provinces-and-districts.json
+msgid "SAMANGAN_LABEL"
+msgstr "سمنگان"
+
+#: data/provinces-and-districts.json
+msgid "AYBAK_LABEL"
+msgstr "ایبک"
+
+#: data/provinces-and-districts.json
+msgid "DARA_I_SUFI_BALLA_LABEL"
+msgstr "دره صوف بالا"
+
+#: data/provinces-and-districts.json
+msgid "DARA_I_SUFI_PAYAN_LABEL"
+msgstr "دره صوف پایان"
+
+#: data/provinces-and-districts.json
+msgid "FEROZ_NAKHCHIR_LABEL"
+msgstr "فیروز نخچیر"
+
+#: data/provinces-and-districts.json
+msgid "HAZRATI_SULTAN_LABEL"
+msgstr "حضرت سلطان"
+
+#: data/provinces-and-districts.json
+msgid "KHURAM_WA_SARBAGH_LABEL"
+msgstr "خرم و سرباغ"
+
+#: data/provinces-and-districts.json
+msgid "RUYI_DU_AB_LABEL"
+msgstr "روی دو آب"
+
+#: data/provinces-and-districts.json
+msgid "GHAZNI_LABEL"
+msgstr "غزنی"
+
+#: data/provinces-and-districts.json
+msgid "AB_BAND_LABEL"
+msgstr "آب بند"
+
+#: data/provinces-and-districts.json
+msgid "AJRISTAN_LABEL"
+msgstr "اجرستان"
+
+#: data/provinces-and-districts.json
+msgid "ANDAR_LABEL"
+msgstr "اندر"
+
+#: data/provinces-and-districts.json
+msgid "DIH_YAK_LABEL"
+msgstr "ده یک"
+
+#: data/provinces-and-districts.json
+msgid "GELAN_LABEL"
+msgstr "گیلان"
+
+#: data/provinces-and-districts.json
+msgid "GHAZNI_CITY_LABEL"
+msgstr "غزنی"
+
+#: data/provinces-and-districts.json
+msgid "GIRO_LABEL"
+msgstr "گیرو"
+
+#: data/provinces-and-districts.json
+msgid "JEGHATOO_LABEL"
+msgstr "جغتو"
+
+#: data/provinces-and-districts.json
+msgid "JAGHURI_LABEL"
+msgstr "جاغوری"
+
+#: data/provinces-and-districts.json
+msgid "KHUGIANI_LABEL"
+msgstr "خوگیانی"
+
+#: data/provinces-and-districts.json
+msgid "KHWAJA_UMARI_LABEL"
+msgstr "خواجه عمری"
+
+#: data/provinces-and-districts.json
+msgid "MALISTAN_LABEL"
+msgstr "مالستان"
+
+#: data/provinces-and-districts.json
+msgid "NAWA_LABEL"
+msgstr "ناوه"
+
+#: data/provinces-and-districts.json
+msgid "NAWUR_LABEL"
+msgstr "ناور"
+
+#: data/provinces-and-districts.json
+msgid "QARABAGH_LABEL"
+msgstr "قره باغ"
+
+#: data/provinces-and-districts.json
+msgid "RASHIDAN_LABEL"
+msgstr "راشیدان"
+
+#: data/provinces-and-districts.json
+msgid "WAGHAZ_LABEL"
+msgstr "واغاز"
+
+#: data/provinces-and-districts.json
+msgid "ZANA_KHAN_LABEL"
+msgstr "زنا خان"
+
+#: data/provinces-and-districts.json
+msgid "GHOR_LABEL"
+msgstr "غور"
+
+#: data/provinces-and-districts.json
+msgid "CHAGHCHARAN_LABEL"
+msgstr "چغچران"
+
+#: data/provinces-and-districts.json
+msgid "CHARSADA_LABEL"
+msgstr "چارسده"
+
+#: data/provinces-and-districts.json
+msgid "DAWLAT_YAR_LABEL"
+msgstr "دولت یار"
+
+#: data/provinces-and-districts.json
+msgid "DU_LAYNA_LABEL"
+msgstr "دولینه"
+
+#: data/provinces-and-districts.json
+msgid "LAL_WA_SARJANGAL_LABEL"
+msgstr "لعل و سر جنگل"
+
+#: data/provinces-and-districts.json
+msgid "PASABAND_LABEL"
+msgstr "پسابند"
+
+#: data/provinces-and-districts.json
+msgid "SAGHAR_LABEL"
+msgstr "ساغر"
+
+#: data/provinces-and-districts.json
+msgid "SHAHRAK_LABEL"
+msgstr "شهرک"
+
+#: data/provinces-and-districts.json
+msgid "TAYWARA_LABEL"
+msgstr "تایواره"
+
+#: data/provinces-and-districts.json
+msgid "TULAK_LABEL"
+msgstr "تولک"
+
+#: data/provinces-and-districts.json
+msgid "FARYAB_LABEL"
+msgstr "فاریاب"
+
+#: data/provinces-and-districts.json
+msgid "ALMAR_LABEL"
+msgstr "المار"
+
+#: data/provinces-and-districts.json
+msgid "ANDKHOY_LABEL"
+msgstr "اندخوی"
+
+#: data/provinces-and-districts.json
+msgid "BILCHIRAGH_LABEL"
+msgstr "بیلچراغ"
+
+#: data/provinces-and-districts.json
+msgid "DAWLAT_ABAD_LABEL"
+msgstr "دولت اباد"
+
+#: data/provinces-and-districts.json
+msgid "GURZIWAN_LABEL"
+msgstr "ګورزیوان"
+
+#: data/provinces-and-districts.json
+msgid "KHANI_CHAHAR_BAGH_LABEL"
+msgstr "خان چارباغ"
+
+#: data/provinces-and-districts.json
+msgid "KHWAJA_SABZ_POSH_LABEL"
+msgstr "خواجه سبز پوش"
+
+#: data/provinces-and-districts.json
+msgid "MAYMANA_LABEL"
+msgstr "میمنه"
+
+#: data/provinces-and-districts.json
+msgid "PASHTUN_KOT_LABEL"
+msgstr "‎پشتون کوت"
+
+#: data/provinces-and-districts.json
+msgid "QARAMQOL_LABEL"
+msgstr "قرمقل"
+
+#: data/provinces-and-districts.json
+msgid "QAYSAR_LABEL"
+msgstr "قیصار"
+
+#: data/provinces-and-districts.json
+msgid "QURGHAN_LABEL"
+msgstr "قرغان"
+
+#: data/provinces-and-districts.json
+msgid "SHIRIN_TAGAB_LABEL"
+msgstr "شیرین تگاب"
+
+#: data/provinces-and-districts.json
+msgid "FARAH_LABEL"
+msgstr "فراه"
+
+#: data/provinces-and-districts.json
+msgid "ANAR_DARA_LABEL"
+msgstr "انار دره"
+
+#: data/provinces-and-districts.json
+msgid "BAKWA_LABEL"
+msgstr "بکواه"
+
+#: data/provinces-and-districts.json
+msgid "BALA_BULUK_LABEL"
+msgstr "بالا بلوک"
+
+#: data/provinces-and-districts.json
+msgid "GULISTAN_LABEL"
+msgstr "گلستان"
+
+#: data/provinces-and-districts.json
+msgid "KHAKI_SAFED_LABEL"
+msgstr "خاک سفید"
+
+#: data/provinces-and-districts.json
+msgid "LASH_WA_JUWAYN_LABEL"
+msgstr "دلاش و جواین"
+
+#: data/provinces-and-districts.json
+msgid "PUR_CHAMAN_LABEL"
+msgstr "پرچمن"
+
+#: data/provinces-and-districts.json
+msgid "PUSHT_ROD_LABEL"
+msgstr "پشت رود"
+
+#: data/provinces-and-districts.json
+msgid "QALA_I_KAH_LABEL"
+msgstr "قلعه کاه"
+
+#: data/provinces-and-districts.json
+msgid "SHIB_KOH_LABEL"
+msgstr "شیب کوه"
+
+#: data/provinces-and-districts.json
+msgid "KUNDOZ_LABEL"
+msgstr "کندز"
+
+#: data/provinces-and-districts.json
+msgid "ALI_ABAD_LABEL"
+msgstr "علي آباد"
+
+#: data/provinces-and-districts.json
+msgid "ARCHI_LABEL"
+msgstr "ارچي"
+
+#: data/provinces-and-districts.json
+msgid "CHAHAR_DARA_LABEL"
+msgstr "چار دره"
+
+#: data/provinces-and-districts.json
+msgid "IMAM_SAHIB_LABEL"
+msgstr "امام صیب"
+
+#: data/provinces-and-districts.json
+msgid "KHAN_ABAD_LABEL"
+msgstr "خان آباد"
+
+#: data/provinces-and-districts.json
+msgid "KUNDUZ_LABEL"
+msgstr "کندوز"
+
+#: data/provinces-and-districts.json
+msgid "QALAY_I_ZAL_LABEL"
+msgstr "قلعه ذال"
+
+#: data/provinces-and-districts.json
+msgid "CENTER_OF_KUNDUZ_LABEL"
+msgstr "مرکز کندز"
+
+#: data/provinces-and-districts.json
+msgid "KANDAHAR_LABEL"
+msgstr "قندهار"
+
+#: data/provinces-and-districts.json
+msgid "ARGHANDAB_LABEL"
+msgstr "ارغنداب"
+
+#: data/provinces-and-districts.json
+msgid "ARGHISTAN_LABEL"
+msgstr "ارغستان"
+
+#: data/provinces-and-districts.json
+msgid "DAMAN_LABEL"
+msgstr "دامان"
+
+#: data/provinces-and-districts.json
+msgid "GHORAK_LABEL"
+msgstr "غورک"
+
+#: data/provinces-and-districts.json
+msgid "KANDAHAR_CITY__LABEL"
+msgstr "کندهار"
+
+#: data/provinces-and-districts.json
+msgid "KHAKREZ_LABEL"
+msgstr "خاکریز"
+
+#: data/provinces-and-districts.json
+msgid "MARUF_LABEL"
+msgstr "معروف"
+
+#: data/provinces-and-districts.json
+msgid "MAYWAND_LABEL"
+msgstr "میوند"
+
+#: data/provinces-and-districts.json
+msgid "MIYAN_NASHEEN_LABEL"
+msgstr "میانشین"
+
+#: data/provinces-and-districts.json
+msgid "NAISH_LABEL"
+msgstr "نیش"
+
+#: data/provinces-and-districts.json
+msgid "PANJWAYE_LABEL"
+msgstr "پنجوایی"
+
+#: data/provinces-and-districts.json
+msgid "REG_LABEL"
+msgstr "ریگ"
+
+#: data/provinces-and-districts.json
+msgid "SHAH_WALI_KOT_LABEL"
+msgstr "شاه ولی کوت"
+
+#: data/provinces-and-districts.json
+msgid "SHORABAK_LABEL"
+msgstr "شوراوک"
+
+#: data/provinces-and-districts.json
+msgid "SPIN_BOLDAK_LABEL"
+msgstr "سپین بولدک"
+
+#: data/provinces-and-districts.json
+msgid "ZHARAI_LABEL"
+msgstr "ژیری"
+
+#: data/provinces-and-districts.json
+msgid "DAND_LABEL"
+msgstr ""
+
+#: data/provinces-and-districts.json
+msgid "DISTRICT_6_LABEL"
+msgstr "ناحیه ششم"
+
+#: data/provinces-and-districts.json
+msgid "LAGHMAN_LABEL"
+msgstr "لغمان"
+
+#: data/provinces-and-districts.json
+msgid "ALINGAR_LABEL"
+msgstr "الینگار"
+
+#: data/provinces-and-districts.json
+msgid "ALISHING_LABEL"
+msgstr "الیشنگ"
+
+#: data/provinces-and-districts.json
+msgid "DAWLAT_SHAH_LABEL"
+msgstr "دولت شاه"
+
+#: data/provinces-and-districts.json
+msgid "MIHTARLAM_LABEL"
+msgstr "مهترلام"
+
+#: data/provinces-and-districts.json
+msgid "QARGHAYI_LABEL"
+msgstr "قرغه یی"
+
+#: data/provinces-and-districts.json
+msgid "LOGAR_LABEL"
+msgstr "لوگر"
+
+#: data/provinces-and-districts.json
+msgid "AZRA_LABEL"
+msgstr "ازره"
+
+#: data/provinces-and-districts.json
+msgid "BARAKI_BARAK_LABEL"
+msgstr "برکی برک"
+
+#: data/provinces-and-districts.json
+msgid "CHARKH_LABEL"
+msgstr "چرخ"
+
+#: data/provinces-and-districts.json
+msgid "KHARWAR_LABEL"
+msgstr "خروار"
+
+#: data/provinces-and-districts.json
+msgid "KHOSHI_LABEL"
+msgstr "خوشی"
+
+#: data/provinces-and-districts.json
+msgid "MOHAMMAD_AGHA_LABEL"
+msgstr "محمدآغه"
+
+#: data/provinces-and-districts.json
+msgid "PUL_I_ALAM_LABEL"
+msgstr "پل علم"
+
+#: data/provinces-and-districts.json
+msgid "NANGARHAR_LABEL"
+msgstr "ننگرهار"
+
+#: data/provinces-and-districts.json
+msgid "ACHIN_LABEL"
+msgstr "اچین"
+
+#: data/provinces-and-districts.json
+msgid "BATI_KOT_LABEL"
+msgstr "بتی کوت"
+
+#: data/provinces-and-districts.json
+msgid "BEHSUD_LABEL"
+msgstr "بیهسود"
+
+#: data/provinces-and-districts.json
+msgid "CHAPARHAR_LABEL"
+msgstr "چپر هار"
+
+#: data/provinces-and-districts.json
+msgid "DARA_E_NOOR_LABEL"
+msgstr "دره نور"
+
+#: data/provinces-and-districts.json
+msgid "DIH_BALA_LABEL"
+msgstr "ده بالا"
+
+#: data/provinces-and-districts.json
+msgid "DUR_BABA_LABEL"
+msgstr "دور بابا"
+
+#: data/provinces-and-districts.json
+msgid "GOSHTA_LABEL"
+msgstr "گوشته"
+
+#: data/provinces-and-districts.json
+msgid "HISARAK_LABEL"
+msgstr "حصارک"
+
+#: data/provinces-and-districts.json
+msgid "JALALABAD__LABEL"
+msgstr "جلال آباد"
+
+#: data/provinces-and-districts.json
+msgid "KHOGYANI__LABEL"
+msgstr "خوگیانی"
+
+#: data/provinces-and-districts.json
+msgid "LAL_PUR_LABEL"
+msgstr "لال پور"
+
+#: data/provinces-and-districts.json
+msgid "MUHMAND_DARA_LABEL"
+msgstr "موهمند دره"
+
+#: data/provinces-and-districts.json
+msgid "NAZYAN_LABEL"
+msgstr "نازیان"
+
+#: data/provinces-and-districts.json
+msgid "PACHIR_WA_AGAM_LABEL"
+msgstr "پچیر وآگام"
+
+#: data/provinces-and-districts.json
+msgid "RODAT_LABEL"
+msgstr "رودات"
+
+#: data/provinces-and-districts.json
+msgid "SHERZAD_LABEL"
+msgstr "شیرزاد"
+
+#: data/provinces-and-districts.json
+msgid "SHINWAR_LABEL"
+msgstr "شینوار"
+
+#: data/provinces-and-districts.json
+msgid "SURKH_ROD_LABEL"
+msgstr "سرخ رود"
+
+#: data/provinces-and-districts.json
+msgid "KUZ_KUNAR_KHEWA_LABEL"
+msgstr "خیوه"
+
+#: data/provinces-and-districts.json
+msgid "KAMA_LABEL"
+msgstr "کما"
+
+#: data/provinces-and-districts.json
+msgid "DISTRICT_3_LABEL"
+msgstr "ولسوالی 3"
+
+#: data/provinces-and-districts.json
+msgid "DISTRICT_4_LABEL"
+msgstr "ولسوالی 4"
+
+#: data/provinces-and-districts.json
+msgid "GHANI_KHAIL_LABEL"
+msgstr "غنی خیل"
+
+#: data/provinces-and-districts.json
+msgid "DISTRICT_1_LABEL"
+msgstr "ناحیه اول"
+
+#: data/provinces-and-districts.json
+msgid "DISTRICT_2_LABEL"
+msgstr "ناحیه دو"
+
+#: data/provinces-and-districts.json
+msgid "DISTRICT_7_LABEL"
+msgstr "ناحیه هفت"
+
+#: data/provinces-and-districts.json
+msgid "DISTRICT_8_LABEL"
+msgstr "ناحیه هشتم"
+
+#: data/provinces-and-districts.json
+msgid "KHEWA_LABEL"
+msgstr "خیوه"
+
+#: data/provinces-and-districts.json
+msgid "NURISTAN_LABEL"
+msgstr "نورستان"
+
+#: data/provinces-and-districts.json
+msgid "BARGI_MATAL_LABEL"
+msgstr "برگیمتال"
+
+#: data/provinces-and-districts.json
+msgid "DU_AB_LABEL"
+msgstr "دو آب"
+
+#: data/provinces-and-districts.json
+msgid "KAMDESH_LABEL"
+msgstr "کامدیش"
+
+#: data/provinces-and-districts.json
+msgid "MANDOL_LABEL"
+msgstr "مندول"
+
+#: data/provinces-and-districts.json
+msgid "NURGARAM_LABEL"
+msgstr "نورگرام"
+
+#: data/provinces-and-districts.json
+msgid "PAROON_LABEL"
+msgstr "پارون"
+
+#: data/provinces-and-districts.json
+msgid "WAMA_LABEL"
+msgstr "واما"
+
+#: data/provinces-and-districts.json
+msgid "WAYGAL_LABEL"
+msgstr "وایگل"
+
+#: data/provinces-and-districts.json
+msgid "NIMROZ_LABEL"
+msgstr "نیمروز"
+
+#: data/provinces-and-districts.json
+msgid "CHAHAR_BURJAK_LABEL"
+msgstr "چهاربورجه"
+
+#: data/provinces-and-districts.json
+msgid "CHAKHANSUR_LABEL"
+msgstr "چخانسور"
+
+#: data/provinces-and-districts.json
+msgid "KANG_LABEL"
+msgstr "کنگ"
+
+#: data/provinces-and-districts.json
+msgid "KHASH_ROD_LABEL"
+msgstr "خاش رود"
+
+#: data/provinces-and-districts.json
+msgid "ZARANJ_LABEL"
+msgstr "زرنچ"
+
+#: data/provinces-and-districts.json
+msgid "HERAT_LABEL"
+msgstr "هرات"
+
+#: data/provinces-and-districts.json
+msgid "ADRASKAN_LABEL"
+msgstr "ادرسکن"
+
+#: data/provinces-and-districts.json
+msgid "CHISHT_E_SHARIF_LABEL"
+msgstr "چشت شریف"
+
+#: data/provinces-and-districts.json
+msgid "FARSI_LABEL"
+msgstr "فارسی"
+
+#: data/provinces-and-districts.json
+msgid "GHORYAN_LABEL"
+msgstr "غوریان"
+
+#: data/provinces-and-districts.json
+msgid "GULRAN_LABEL"
+msgstr "گلران"
+
+#: data/provinces-and-districts.json
+msgid "GUZARA_LABEL"
+msgstr "گزره"
+
+#: data/provinces-and-districts.json
+msgid "HERAT__LABEL"
+msgstr "هرات"
+
+#: data/provinces-and-districts.json
+msgid "ENJIL__LABEL"
+msgstr "انجیل"
+
+#: data/provinces-and-districts.json
+msgid "KARUKH_LABEL"
+msgstr "کارخ"
+
+#: data/provinces-and-districts.json
+msgid "KOHSAN_LABEL"
+msgstr "کوهسان"
+
+#: data/provinces-and-districts.json
+msgid "KUSHK_LABEL"
+msgstr "کشک"
+
+#: data/provinces-and-districts.json
+msgid "KUSHKI_KUHNA_LABEL"
+msgstr "کشک کهنه"
+
+#: data/provinces-and-districts.json
+msgid "OBE_LABEL"
+msgstr "اوبی"
+
+#: data/provinces-and-districts.json
+msgid "PASHTUN_ZARGHUN_LABEL"
+msgstr "پشتون زرغون"
+
+#: data/provinces-and-districts.json
+msgid "SHINDAND_LABEL"
+msgstr "شین ډنډ"
+
+#: data/provinces-and-districts.json
+msgid "ZINDA_JAN_LABEL"
+msgstr "زنده جان"
+
+#: data/provinces-and-districts.json
+msgid "GOZARA_LABEL"
+msgstr "گذاره"
+
+#: data/provinces-and-districts.json
+msgid "2ND_CITY_DISTRICT_LABEL"
+msgstr "ولایت ولسوالی-2"
+
+#: data/provinces-and-districts.json
+msgid "10TH_CITY_DISTRICT_LABEL"
+msgstr "ولایت ولسوالی -10"
+
+#: data/provinces-and-districts.json
+msgid "6TH_CITY_DISTRICT_LABEL"
+msgstr "ولسوالی-6"
+
+#: data/provinces-and-districts.json
+msgid "4TH_CITY_DISTRICT_LABEL"
+msgstr "ولایت ولسوالی-4"
+
+#: data/provinces-and-districts.json
+msgid "5TH_CITY_DISTRICT__LABEL"
+msgstr "ولسوالی-5"
+
+#: data/provinces-and-districts.json
+msgid "13TH_CITY_DISTRICT_LABEL"
+msgstr "ولایت ولسوالی-13"
+
+#: data/provinces-and-districts.json
+msgid "DISTRICT_9_LABEL"
+msgstr "ولسوالی -9"
+
+#: data/provinces-and-districts.json
+msgid "8TH_CITY_DISTRICT_LABEL"
+msgstr "ولایت ولسوالی 8"
+
+#: data/provinces-and-districts.json
+msgid "1ST_DISTRICT__LABEL"
+msgstr "ولایت ولسوالی 1"
+
+#: data/provinces-and-districts.json
+msgid "5TH_CITY_DISTRICT_LABEL"
+msgstr "ولایت ولسوالی 5"
+
+#: data/provinces-and-districts.json
+msgid "9TH_CITY_DISTRICT_LABEL"
+msgstr "ولایت ولسوالی 9"
+
+#: data/provinces-and-districts.json
+msgid "14TH_CITY_DISTRICT_LABEL"
+msgstr "ولایت ولسوالی 14"
+
+#: data/provinces-and-districts.json
+msgid "3RD_CITY_DISTRICT_LABEL"
+msgstr "ولایت ولسوالی 3"
+
+#: data/provinces-and-districts.json
+msgid "HERAT_CITY_LABEL"
+msgstr "ولایت هرات"
+
+#: data/provinces-and-districts.json
+msgid "12TH_CITY_DISTRICT_LABEL"
+msgstr "ولایت ولسوالی 12"
+
+#: data/provinces-and-districts.json
+msgid "15TH_CITY_DISTRICT_LABEL"
+msgstr "ولسوالی 15"
+
+#: data/provinces-and-districts.json
+msgid "ZONE_9_LABEL"
+msgstr ""
+
+#: data/provinces-and-districts.json
+msgid "INJIL__LABEL"
+msgstr ""
+
+#: data/provinces-and-districts.json
+msgid "TORGHUNDI_LABEL"
+msgstr ""
+
+#: data/provinces-and-districts.json
+msgid "DARWAZA_MALIK_LABEL"
+msgstr "دروازه ملک "
+
+#: data/provinces-and-districts.json
+msgid "DARB_IRAQ_LABEL"
+msgstr "درب عراق"
+
+#: data/provinces-and-districts.json
+msgid "11TH_CITY_DISTRICT_LABEL"
+msgstr "ناحیه یازدهم"
+
+#: data/provinces-and-districts.json
+msgid "7TH_CITY_DISTRICT__LABEL"
+msgstr "ناحیه ۷"
+
+#: data/provinces-and-districts.json
+msgid "HELMAND_LABEL"
+msgstr "هلمند"
+
+#: data/provinces-and-districts.json
+msgid "BAGHRAN_LABEL"
+msgstr "باغران"
+
+#: data/provinces-and-districts.json
+msgid "DISHU_LABEL"
+msgstr "دیشو"
+
+#: data/provinces-and-districts.json
+msgid "GARMSIR_LABEL"
+msgstr "گرمسیر"
+
+#: data/provinces-and-districts.json
+msgid "GERISHK_LABEL"
+msgstr "گریشک"
+
+#: data/provinces-and-districts.json
+msgid "KAJAKI_LABEL"
+msgstr "کجکی"
+
+#: data/provinces-and-districts.json
+msgid "KHANASHIN_LABEL"
+msgstr ""
+
+#: data/provinces-and-districts.json
+msgid "LASHKARGAH_LABEL"
+msgstr "لشکرگاه"
+
+#: data/provinces-and-districts.json
+msgid "MUSA_QALA_LABEL"
+msgstr "موسی قلعه"
+
+#: data/provinces-and-districts.json
+msgid "NAD_ALI_LABEL"
+msgstr "نادعلی"
+
+#: data/provinces-and-districts.json
+msgid "NAWA_I_BARAKZAYI_LABEL"
+msgstr "ناوه بارکزای"
+
+#: data/provinces-and-districts.json
+msgid "NAWZAD_LABEL"
+msgstr "نوزاد"
+
+#: data/provinces-and-districts.json
+msgid "SANGIN_LABEL"
+msgstr "سنگین"
+
+#: data/provinces-and-districts.json
+msgid "WASHIR_LABEL"
+msgstr "واشیر"
+
+#: data/provinces-and-districts.json
+msgid "SHURABAK_LABEL"
+msgstr "شورآبک"
+
+#: data/provinces-and-districts.json
+msgid "WARDAK_LABEL"
+msgstr "میدان وردگ"
+
+#: data/provinces-and-districts.json
+msgid "CHAKI_WARDAK_LABEL"
+msgstr "چک وردگ"
+
+#: data/provinces-and-districts.json
+msgid "DAY_MIRDAD_LABEL"
+msgstr "دایمیرداد"
+
+#: data/provinces-and-districts.json
+msgid "HISA_I_AWALI_BIHSUD_LABEL"
+msgstr "حصۀاول بهسود"
+
+#: data/provinces-and-districts.json
+msgid "JAGHATU_LABEL"
+msgstr "جغتو"
+
+#: data/provinces-and-districts.json
+msgid "JALREZ_LABEL"
+msgstr "جلریز"
+
+#: data/provinces-and-districts.json
+msgid "MARKAZI_BIHSUD_LABEL"
+msgstr "مرکز بهسود"
+
+#: data/provinces-and-districts.json
+msgid "MAYDAN_SHAHR_LABEL"
+msgstr "میدان شهر"
+
+#: data/provinces-and-districts.json
+msgid "NIRKH_LABEL"
+msgstr "نرخ"
+
+#: data/provinces-and-districts.json
+msgid "SAYDABAD_LABEL"
+msgstr "سید آباد"
+
+#: data/provinces-and-districts.json
+msgid "PARWAN_LABEL"
+msgstr "پروان"
+
+#: data/provinces-and-districts.json
+msgid "BAGRAM_LABEL"
+msgstr "بگرام"
+
+#: data/provinces-and-districts.json
+msgid "GHORBAND_LABEL"
+msgstr "غوربند"
+
+#: data/provinces-and-districts.json
+msgid "JABAL_SARAJ_LABEL"
+msgstr "جبل سراج"
+
+#: data/provinces-and-districts.json
+msgid "KOHI_SAFI_LABEL"
+msgstr "کوه صافي"
+
+#: data/provinces-and-districts.json
+msgid "SALANG_LABEL"
+msgstr "سالنگ"
+
+#: data/provinces-and-districts.json
+msgid "SAYED_KHEL_LABEL"
+msgstr "سید خیل"
+
+#: data/provinces-and-districts.json
+msgid "SHEKH_ALI_LABEL"
+msgstr "شیخ علی"
+
+#: data/provinces-and-districts.json
+msgid "SHINWARI_LABEL"
+msgstr "شینواري"
+
+#: data/provinces-and-districts.json
+msgid "SURKHI_PARSA_LABEL"
+msgstr "سرخ پارسا"
+
+#: data/provinces-and-districts.json
+msgid "CHARIKAR_LABEL"
+msgstr "چاریکار"
+
+#: data/provinces-and-districts.json
+msgid "SIA_GIRD__GHORBUND_LABEL"
+msgstr ""
+
+#: data/provinces-and-districts.json
+msgid "CENTER_OF_PARWAN_LABEL"
+msgstr ""
+
+#: data/provinces-and-districts.json
+msgid "PANJSHER_LABEL"
+msgstr "پنجشیر"
+
+#: data/provinces-and-districts.json
+msgid "ANABA_LABEL"
+msgstr "انابه"
+
+#: data/provinces-and-districts.json
+msgid "BAZARAK_LABEL"
+msgstr "بازارک"
+
+#: data/provinces-and-districts.json
+msgid "DARAH_LABEL"
+msgstr "دره"
+
+#: data/provinces-and-districts.json
+msgid "KHENJ_LABEL"
+msgstr "خنج"
+
+#: data/provinces-and-districts.json
+msgid "PARYAN_LABEL"
+msgstr "پریان"
+
+#: data/provinces-and-districts.json
+msgid "ROKHA_LABEL"
+msgstr "روخه"
+
+#: data/provinces-and-districts.json
+msgid "SHOTUL_LABEL"
+msgstr "شوتل"
+
+#: data/provinces-and-districts.json
+msgid "PAKTYA_LABEL"
+msgstr "پکتیا"
+
+#: data/provinces-and-districts.json
+msgid "AHMADABAD_LABEL"
+msgstr "احمد آباد"
+
+#: data/provinces-and-districts.json
+msgid "CHAMKANI_LABEL"
+msgstr "څمکنی"
+
+#: data/provinces-and-districts.json
+msgid "DAND_WA_PATAN_LABEL"
+msgstr "دند او پتان"
+
+#: data/provinces-and-districts.json
+msgid "GARDEZ_LABEL"
+msgstr "گردیز"
+
+#: data/provinces-and-districts.json
+msgid "JAJI_LABEL"
+msgstr "جاجی اریوب"
+
+#: data/provinces-and-districts.json
+msgid "JANI_KHAIL_LABEL"
+msgstr "جانی خیل"
+
+#: data/provinces-and-districts.json
+msgid "LAZHA_AHMAD_KHEL_LABEL"
+msgstr "لژه احمد خیل"
+
+#: data/provinces-and-districts.json
+msgid "SAYED_KARAM_LABEL"
+msgstr "سید کرم"
+
+#: data/provinces-and-districts.json
+msgid "SHWAK_LABEL"
+msgstr "شواک"
+
+#: data/provinces-and-districts.json
+msgid "WUZA_ZADRAN_LABEL"
+msgstr "وزی ځدراڼ"
+
+#: data/provinces-and-districts.json
+msgid "ZURMAT_LABEL"
+msgstr "زرمت"
+
+#: data/provinces-and-districts.json
+msgid "BARMAL_LABEL"
+msgstr "برمل"
+
+#: data/provinces-and-districts.json
+msgid "MIRZAKA_LABEL"
+msgstr "میرزاکا"
+
+#: data/provinces-and-districts.json
+msgid "PAKTIKA_LABEL"
+msgstr "پکتیکا"
+
+#: data/provinces-and-districts.json
+msgid "DILA_LABEL"
+msgstr "دیله"
+
+#: data/provinces-and-districts.json
+msgid "GAYAN_LABEL"
+msgstr "گیان"
+
+#: data/provinces-and-districts.json
+msgid "GOMAL_LABEL"
+msgstr "گومال"
+
+#: data/provinces-and-districts.json
+msgid "JANI_KHEL_LABEL"
+msgstr "جانی خیل"
+
+#: data/provinces-and-districts.json
+msgid "MATA_KHAN_LABEL"
+msgstr "مته خان"
+
+#: data/provinces-and-districts.json
+msgid "NIKA_LABEL"
+msgstr "نیکه"
+
+#: data/provinces-and-districts.json
+msgid "OMNA_LABEL"
+msgstr "اومنا"
+
+#: data/provinces-and-districts.json
+msgid "SAR_HAWZA_LABEL"
+msgstr "سره حوزه"
+
+#: data/provinces-and-districts.json
+msgid "SAROBI_LABEL"
+msgstr "سروبی"
+
+#: data/provinces-and-districts.json
+msgid "SHARAN_LABEL"
+msgstr "شرن"
+
+#: data/provinces-and-districts.json
+msgid "TERWA_LABEL"
+msgstr "تیروه"
+
+#: data/provinces-and-districts.json
+msgid "URGUN_LABEL"
+msgstr "اورگون"
+
+#: data/provinces-and-districts.json
+msgid "WAZA_KHWA_LABEL"
+msgstr "وازه خوا"
+
+#: data/provinces-and-districts.json
+msgid "WOR_MAMAY_LABEL"
+msgstr "ور مامی"
+
+#: data/provinces-and-districts.json
+msgid "YAHYA_KHEL_LABEL"
+msgstr "یحی خیل"
+
+#: data/provinces-and-districts.json
+msgid "YOSUF_KHEL_LABEL"
+msgstr "یوسف خیل"
+
+#: data/provinces-and-districts.json
+msgid "ZARGHUN_SHAHR_LABEL"
+msgstr "زرغون شهر"
+
+#: data/provinces-and-districts.json
+msgid "ZIRUK_LABEL"
+msgstr "زیروک"
+
+#: data/provinces-and-districts.json
+msgid "GARDIZ_LABEL"
+msgstr ""
+
+#: data/provinces-and-districts.json
+msgid "KABUL_LABEL"
+msgstr "کابل"
+
+#: data/provinces-and-districts.json
+msgid "BAGRAMI_LABEL"
+msgstr "بگرامی"
+
+#: data/provinces-and-districts.json
+msgid "CHAHAR_ASYAB_LABEL"
+msgstr "چهاراسیاب"
+
+#: data/provinces-and-districts.json
+msgid "DEH_SABZ_LABEL"
+msgstr "ده سبز"
+
+#: data/provinces-and-districts.json
+msgid "FARZA_LABEL"
+msgstr "فرزه"
+
+#: data/provinces-and-districts.json
+msgid "GULDARA_LABEL"
+msgstr "گلدره"
+
+#: data/provinces-and-districts.json
+msgid "ISTALIF_LABEL"
+msgstr "استالف"
+
+#: data/provinces-and-districts.json
+msgid "KALAKAN_LABEL"
+msgstr "کلکان"
+
+#: data/provinces-and-districts.json
+msgid "KHAKI_JABBAR_LABEL"
+msgstr "خاکجبار"
+
+#: data/provinces-and-districts.json
+msgid "MIR_BACHA_KOT_LABEL"
+msgstr "میر بچه کوت"
+
+#: data/provinces-and-districts.json
+msgid "MUSSAHI_BAGRAMI_LABEL"
+msgstr "موسی"
+
+#: data/provinces-and-districts.json
+msgid "PAGHMAN__LABEL"
+msgstr "پغمان"
+
+#: data/provinces-and-districts.json
+msgid "QAARABAGH_LABEL"
+msgstr "قره باغ"
+
+#: data/provinces-and-districts.json
+msgid "SHAKARDARA_FARZA_LABEL"
+msgstr "شکر دره"
+
+#: data/provinces-and-districts.json
+msgid "SUROBI_LABEL"
+msgstr "سروبي"
+
+#: data/provinces-and-districts.json
+msgid "CENTER_OF_KABUL_LABEL"
+msgstr ""
+
+#: data/provinces-and-districts.json
+msgid "DISTRICT_11_LABEL"
+msgstr ""
+
+#: data/provinces-and-districts.json
+msgid "DISTRICT_13_LABEL"
+msgstr ""
+
+#: data/provinces-and-districts.json
+msgid "DASHT_E_BARCHI_LABEL"
+msgstr ""
+
+#: data/provinces-and-districts.json
+msgid "CITY_DISTRICT_13_LABEL"
+msgstr ""
+
+#: data/provinces-and-districts.json
+msgid "PD_03_LABEL"
+msgstr ""
+
+#: data/provinces-and-districts.json
+msgid "PD_04_LABEL"
+msgstr ""
+
+#: data/provinces-and-districts.json
+msgid "PD_08_LABEL"
+msgstr ""
+
+#: data/provinces-and-districts.json
+msgid "PD_13_LABEL"
+msgstr ""
+
+#: data/provinces-and-districts.json
+msgid "PD_10_LABEL"
+msgstr ""
+
+#: data/provinces-and-districts.json
+msgid "PD_11_LABEL"
+msgstr ""
+
+#: data/provinces-and-districts.json
+msgid "PD_01_LABEL"
+msgstr ""
+
+#: data/provinces-and-districts.json
+msgid "PD_17_LABEL"
+msgstr ""
+
+#: data/provinces-and-districts.json
+msgid "PD_07_LABEL"
+msgstr ""
+
+#: data/provinces-and-districts.json
+msgid "PD_02_LABEL"
+msgstr ""
+
+#: data/provinces-and-districts.json
+msgid "PD_14_LABEL"
+msgstr ""
+
+#: data/provinces-and-districts.json
+msgid "PD_15_LABEL"
+msgstr ""
+
+#: data/provinces-and-districts.json
+msgid "PD_16_LABEL"
+msgstr ""
+
+#: data/provinces-and-districts.json
+msgid "DARULAMAN_LABEL"
+msgstr ""
+
+#: data/provinces-and-districts.json
+msgid "PD_5_LABEL"
+msgstr "ناحیه 5"
+
+#: data/provinces-and-districts.json
+msgid "PD_6_LABEL"
+msgstr "PD 6"
+
+#: data/provinces-and-districts.json
+msgid "PD_09_LABEL"
+msgstr "ناحیه نهم"
+
+#: data/provinces-and-districts.json
+msgid "PD_12_LABEL"
+msgstr "ناحیه دوازدهم"
+
+#: data/provinces-and-districts.json
+msgid "KAPISA_LABEL"
+msgstr "کاپیسا"
+
+#: data/provinces-and-districts.json
+msgid "ALASAY_LABEL"
+msgstr "آلاسای"
+
+#: data/provinces-and-districts.json
+msgid "HESA_AWAL_KOHISTAN_LABEL"
+msgstr "حصه اول کوهستان"
+
+#: data/provinces-and-districts.json
+msgid "HESA_DUWUM_KOHISTAN_LABEL"
+msgstr "حصه دوم کوهستان"
+
+#: data/provinces-and-districts.json
+msgid "KOH_BAND_LABEL"
+msgstr "کوه بند"
+
+#: data/provinces-and-districts.json
+msgid "MAHMUD_RAQI_LABEL"
+msgstr "محمود راقی"
+
+#: data/provinces-and-districts.json
+msgid "NIJRAB_LABEL"
+msgstr "نجراب"
+
+#: data/provinces-and-districts.json
+msgid "KUHISTAN_LABEL"
+msgstr "کوهستان"
+
+#: data/provinces-and-districts.json
+msgid "CENTER_OF_KAPISA_LABEL"
+msgstr "مرکز کاپیسا"
+
+#: data/provinces-and-districts.json
+msgid "KOHISTAN_1_LABEL"
+msgstr "کوهستان-1"
+
+#: data/provinces-and-districts.json
+msgid "KOHISTAN_2_LABEL"
+msgstr "کوهستان-2"
+
+#: data/provinces-and-districts.json
+msgid "NIJRAB__LABEL"
+msgstr "نجراب"
+
+#: data/provinces-and-districts.json
+msgid "HASA_AWAL_KOHISTAN_LABEL"
+msgstr ""
+
+#: data/provinces-and-districts.json
+msgid "HESA_AWAL_LABEL"
+msgstr "حصه اول"
+
+#: data/provinces-and-districts.json
+msgid "HESA_DOWM_LABEL"
+msgstr "حصه دوم"
+
+#: data/provinces-and-districts.json
+msgid "KUNAR_LABEL"
+msgstr "کنر"
+
+#: data/provinces-and-districts.json
+msgid "ASADABAD_LABEL"
+msgstr "اسعد آباد"
+
+#: data/provinces-and-districts.json
+msgid "BAR_KUNAR_LABEL"
+msgstr "بر کنر"
+
+#: data/provinces-and-districts.json
+msgid "CHAPA_DARA_LABEL"
+msgstr "چپه دره"
+
+#: data/provinces-and-districts.json
+msgid "CHAWKAY_LABEL"
+msgstr "چوکی"
+
+#: data/provinces-and-districts.json
+msgid "DANGAM_LABEL"
+msgstr "دانگام"
+
+#: data/provinces-and-districts.json
+msgid "DARA_I_PECH_LABEL"
+msgstr "دره پیچ"
+
+#: data/provinces-and-districts.json
+msgid "GHAZIABAD_LABEL"
+msgstr "غازی اباد"
+
+#: data/provinces-and-districts.json
+msgid "KHAS_KUNAR_LABEL"
+msgstr "خاص کنر"
+
+#: data/provinces-and-districts.json
+msgid "MARAWARA_LABEL"
+msgstr "مروره"
+
+#: data/provinces-and-districts.json
+msgid "NARANG_WA_BADIL_LABEL"
+msgstr "نرنگ و بادیل"
+
+#: data/provinces-and-districts.json
+msgid "NARI_LABEL"
+msgstr "ناړۍ"
+
+#: data/provinces-and-districts.json
+msgid "NURGAL_LABEL"
+msgstr "نورگل"
+
+#: data/provinces-and-districts.json
+msgid "SHAYGAL_WA_SHILTAN_LABEL"
+msgstr "شیگل او شیلتن"
+
+#: data/provinces-and-districts.json
+msgid "SIRKANAY_LABEL"
+msgstr "سرکانو"
+
+#: data/provinces-and-districts.json
+msgid "WATA_PUR_LABEL"
+msgstr "وته پور"
+
+#: data/provinces-and-districts.json
+msgid "MANOGAY_LABEL"
+msgstr "مانوګی"
