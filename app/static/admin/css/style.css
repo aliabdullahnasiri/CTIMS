@@ -373,7 +373,7 @@ td .avatar {
 
 .suggestions-list .item:hover {
   transition: 0.32s;
-  background: var(--bs-table-hover-bg);
+  background: rgb(0 0 0 / 10%);
 }
 
 body.dark-version .suggestions-list .item:hover {
@@ -426,4 +426,9 @@ div.dropdown-menu {
 
 .input-group.focused input::placeholder {
   opacity: 1;
+}
+
+.dropdown button.dropdown-toggle {
+  border-color: #73737380 !important;
+  margin-bottom: 0px;
 }
