@@ -160,6 +160,21 @@ class AddStudentForm(AddUserForm):
         validators=[Optional(), Length(max=255)],
     )
 
+    daily_section_uid = StringField(
+        _("DAILY_SECTION_LABEL"),
+        validators=[
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
+        ],
+        render_kw={
+            "data-auto-complete": "true",
+            "data-fetch-api": "api.autocomplete",
+            "data-model-name": "DailySection",
+            "data-select-val": "uid",
+            "data-search-col": "title",
+            "data-template": "daily_sections.html",
+        },
+    )
+
     submit = SubmitField(_("ADD_LABEL"))
 
     def __init__(self, *args, **kwargs):
