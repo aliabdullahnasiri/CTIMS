@@ -6,8 +6,9 @@ from wtforms import (
     StringField,
     SubmitField,
 )
-from wtforms.validators import DataRequired, Length, Optional
+from wtforms.validators import DataRequired, Length, Optional, Regexp
 
+from app.const import KANKOR_ID_REGEX, NATIONAL_ID_REGEX
 from app.forms import ValidateUID
 from app.forms.user import AddUserForm, UpdateUserForm
 from app.models.class_ import Class
@@ -37,7 +38,8 @@ class AddStudentForm(AddUserForm):
         _("KANKOR_ID"),
         validators=[
             Optional(),
-            Length(max=12),
+            Length(max=9),
+            Regexp(KANKOR_ID_REGEX, message=_("INVALID_KANKOR_ID_LABEL")),
         ],
     )
 
@@ -57,9 +59,13 @@ class AddStudentForm(AddUserForm):
         _("ELECTRONIC_TAZKIRA_NUMBER_LABEL"),
         validators=[
             Optional(),
-            Length(max=100),
+            Length(max=15),
+            Regexp(NATIONAL_ID_REGEX, message=_("INVALID_NATIONAL_ID_LABEL")),
         ],
-        render_kw={"data-group-id": IdentityCardType.ELECTRONIC},
+        render_kw={
+            "data-group-id": IdentityCardType.ELECTRONIC,
+            "placeholder": "0000-0000-00000",
+        },
     )
 
     tazkira_folder = StringField(
@@ -177,7 +183,8 @@ class AddStudentForm(AddUserForm):
                 pass
 
     def validate(self, extra_validators=None) -> bool:
-        super().validate(extra_validators)
+        if not super().validate(extra_validators):
+            return False
 
         tz_type = self.identity_card_type.data
 
