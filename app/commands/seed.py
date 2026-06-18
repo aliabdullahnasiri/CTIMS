@@ -15,5 +15,19 @@ def seed_provinces_and_districts():
     with open("data/provinces-and-districts.json", encoding="utf-8") as f:
         provinces = json.load(f)
 
-        for province in provinces:
+        for p in provinces:
+            province: Province = Province()
+            province.name = p["name"]
+
+            db.session.add(province)
+            db.session.commit()
+
+            for d in p["districts"]:
+                district: District = District()
+                district.name = d["name"]
+                setattr(district, "province", province)
+
+                db.session.add(district)
+                db.session.commit()
+
             console.print(province)
