@@ -9,6 +9,7 @@ import app.const as const
 from app.blueprints.admin import bp as admin_bp
 from app.blueprints.api import bp as api_bp
 from app.blueprints.auth import bp as auth_bp
+from app.commands import register_commands
 from app.config import Config
 from app.extensions.babel import babel
 from app.extensions.bcrypt import bcrypt
@@ -53,6 +54,8 @@ def create_app(config_class: type[Config] | None = None) -> Flask:
     app.register_blueprint(api_bp, url_prefix="/api")
     app.register_blueprint(auth_bp, url_prefix="/auth")
     app.register_blueprint(admin_bp, url_prefix="/")
+
+    register_commands(app)
 
     if "db" not in sys.argv:
         with app.app_context(), app.test_request_context():
