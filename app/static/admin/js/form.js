@@ -743,3 +743,26 @@ export function upload(files, dropZone) {
       });
   });
 }).call(this);
+
+(function () {
+  function fun(select) {
+    select.querySelectorAll("option").forEach((option) => {
+      let group = document
+        ?.querySelector(`[data-group-id='${option.value}']`)
+        ?.closest(".row,.group");
+
+      if (select.value !== option.value) group.classList.add("d-none");
+      else group.classList.remove("d-none");
+    });
+  }
+  document.querySelectorAll("[data-group-switcher=true]").forEach((select) => {
+    fun(select);
+  });
+
+  document.addEventListener("change", (event) => {
+    if (!event.target.matches("select") && !event.target.dataset.groupSwitcher)
+      return;
+
+    fun(event.target);
+  });
+}).call(this);
