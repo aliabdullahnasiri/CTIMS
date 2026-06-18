@@ -8,6 +8,12 @@ class Province(db.Model):
 
     name = db.Column(db.String(100), unique=True)
 
+    districts = db.relationship(
+        "District",
+        back_populates="province",
+        lazy="dynamic",
+    )
+
     def to_dict(self) -> dict:
         return {
             "name": self.name,
