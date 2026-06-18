@@ -3,6 +3,7 @@ from wtforms import BooleanField, HiddenField, StringField, SubmitField, TextAre
 from wtforms.validators import DataRequired, Length, Optional
 
 from app.forms import Form, MustBeUnique, ValidateUID
+from app.models.permission import Permission
 from app.models.role import Role
 
 
@@ -30,7 +31,18 @@ class AddRoleForm(Form):
         validators=[Optional()],
     )
 
-    permissions = StringField(_("PERMISSIONS_LABEL"), validators=[Optional()])
+    permissions = StringField(
+        _("PERMISSIONS_LABEL"),
+        validators=[Optional(), ValidateUID(Permission)],
+        render_kw={
+            "data-auto-complete": "true",
+            "data-fetch-api": "api.autocomplete",
+            "data-model-name": "Permission",
+            "data-select-val": "uid",
+            "data-search-col": "name",
+            "data-template": "roles.html",
+        },
+    )
 
     submit = SubmitField(_("ADD_ROLE_LABEL"))
 
