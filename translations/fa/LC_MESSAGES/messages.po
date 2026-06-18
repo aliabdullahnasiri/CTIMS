@@ -207,15 +207,15 @@ msgstr "علی عبدالله نصیری"
 
 #: app/translations_stub.py:42
 msgid "PS_LABEL"
-msgstr "پشتو (PS)"
+msgstr "پشتو "
 
 #: app/translations_stub.py:43
 msgid "FA_LABEL"
-msgstr "دری (FA)"
+msgstr "دری"
 
 #: app/translations_stub.py:44
 msgid "EN_LABEL"
-msgstr "انگلیسی (EN)"
+msgstr "انگلیسی"
 
 #: app/blueprints/admin/routes/daily_section.py:17
 msgid "DAILY_SECTIONS_LABEL"
