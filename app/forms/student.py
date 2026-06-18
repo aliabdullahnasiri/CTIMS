@@ -1,11 +1,5 @@
 from flask_babel import gettext as _
-from wtforms import (
-    HiddenField,
-    SelectField,
-    SelectMultipleField,
-    StringField,
-    SubmitField,
-)
+from wtforms import HiddenField, SelectField, StringField, SubmitField
 from wtforms.validators import DataRequired, Length, Optional, Regexp
 
 from app.const import KANKOR_ID_REGEX, NATIONAL_ID_REGEX
