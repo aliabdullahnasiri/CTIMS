@@ -13,7 +13,7 @@ from app.forms.student import AddStudentForm, UpdateStudentForm
 from app.func import render_td
 from app.models.permission import Permission
 from app.models.role import Role
-from app.models.student import Student
+from app.models.student import IdentityCardType, Student
 from app.models.user import User, permission_required
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
@@ -145,6 +145,34 @@ def add_student() -> Response:
 
         student = Student()
         student.user_id = getattr(user, "uid")
+
+        student.father_name = form.father_name.data
+        student.grandfather_name = form.grandfather_name.data
+        student.kankor_id = form.kankor_id.data
+
+        student.electronic_tazkira_number = form.electronic_tazkira_number.data
+
+        student.tazkira_folder = form.tazkira_folder.data
+        student.tazkira_page_number = form.tazkira_page_number.data
+        student.tazkira_registration_number = form.tazkira_registration_number.data
+        student.tazkira_sakok_number = form.tazkira_sakok_number.data
+
+        student.permanent_province_uid = form.permanent_province.data
+        student.permanent_district_uid = form.permanent_district.data
+        student.permanent_village = form.permanent_village.data
+
+        student.current_province_uid = form.current_province.data
+        student.current_district_uid = form.current_district.data
+        student.current_village = form.current_village.data
+
+        if form.identity_card_type.data == IdentityCardType.ELECTRONIC:
+            student.tazkira_folder = None
+            student.tazkira_page_number = None
+            student.tazkira_registration_number = None
+            student.tazkira_sakok_number = None
+
+        elif form.identity_card_type.data == IdentityCardType.PAPER:
+            student.electronic_tazkira_number = None
 
         db.session.add(student)
         db.session.commit()
