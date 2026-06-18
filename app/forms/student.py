@@ -32,6 +32,14 @@ class AddStudentForm(AddUserForm):
         ],
     )
 
+    kankor_id = StringField(
+        _("KANKOR_ID"),
+        validators=[
+            Optional(),
+            Length(max=12),
+        ],
+    )
+
     identity_card_type = SelectField(
         _("IDENTITY_CARD_TYPE_LABEL"),
         validators=[
