@@ -150,6 +150,8 @@ def add_student() -> Response:
         student.grandfather_name = form.grandfather_name.data
         student.kankor_id = form.kankor_id.data
 
+        student.daily_section_uid = form.daily_section_uid.data
+
         student.electronic_tazkira_number = form.electronic_tazkira_number.data
 
         student.tazkira_folder = form.tazkira_folder.data
@@ -221,7 +223,37 @@ def update_student() -> Response:
             student.user.user_name = form.user_name.data
             student.user.email = form.email.data
             student.user.birthday = form.birthday.data
+
             student.class_id = form.class_id.data
+            student.daily_section_uid = form.daily_section_uid.data
+
+            student.father_name = form.father_name.data
+            student.grandfather_name = form.grandfather_name.data
+            student.kankor_id = form.kankor_id.data
+
+            student.electronic_tazkira_number = form.electronic_tazkira_number.data
+
+            student.tazkira_folder = form.tazkira_folder.data
+            student.tazkira_page_number = form.tazkira_page_number.data
+            student.tazkira_registration_number = form.tazkira_registration_number.data
+            student.tazkira_sakok_number = form.tazkira_sakok_number.data
+
+            student.permanent_province_uid = form.permanent_province.data
+            student.permanent_district_uid = form.permanent_district.data
+            student.permanent_village = form.permanent_village.data
+
+            student.current_province_uid = form.current_province.data
+            student.current_district_uid = form.current_district.data
+            student.current_village = form.current_village.data
+
+            if form.identity_card_type.data == IdentityCardType.ELECTRONIC:
+                student.tazkira_folder = None
+                student.tazkira_page_number = None
+                student.tazkira_registration_number = None
+                student.tazkira_sakok_number = None
+
+            elif form.identity_card_type.data == IdentityCardType.PAPER:
+                student.electronic_tazkira_number = None
 
             if form.password.data:
                 student.user.set_password(form.password.data)
