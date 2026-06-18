@@ -75,6 +75,15 @@ import { createLoader, transformAllMovingTab } from "./script.js";
               input.disabled = true;
             }
 
+            switch (input.tagName) {
+              case "SELECT":
+                if (input.dataset.dependsOn) {
+                  setTimeout(() => {
+                    $(input).selectpicker("val", val);
+                  }, 500);
+                } else $(input).selectpicker("val", val);
+                break;
+            }
             switch (input.type) {
               case "select-one":
                 input

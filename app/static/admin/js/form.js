@@ -709,39 +709,51 @@ export function upload(files, dropZone) {
 }).call(this);
 
 (function () {
-  //
-  document.addEventListener("change", async (event) => {
-    if (!event.target.matches("select")) {
-      return;
-    }
+  $(document).on(
+    "changed.bs.select",
+    "select",
+    async function (e, clickedIndex, isSelected, previousValue) {
+      const parentSelect = this;
 
-    const parentSelect = event.target;
+      const dependents = document.querySelectorAll(
+        `select[data-depends-on="${parentSelect.id}"]`,
+      );
 
-    document
-      .querySelectorAll(`select[data-depends-on="${parentSelect.id}"]`)
-      .forEach(async (childSelect) => {
+      for (const childSelect of dependents) {
         const valCol = childSelect.dataset.optionValue;
         const textCol = childSelect.dataset.optionText;
         const api = childSelect.dataset.fetchApi;
-        const $select = $(childSelect);
 
-        $select.selectpicker("destroy");
+        const $child = $(childSelect);
 
+        $child.selectpicker("destroy");
+
+        // clear old options
         childSelect.innerHTML = "";
 
-        const response = await fetch(`${api}?${valCol}=${parentSelect.value}`);
+        try {
+          const response = await fetch(
+            `${api}?${valCol}=${encodeURIComponent($(parentSelect).val())}`,
+          );
 
-        const items = await response.json();
+          const items = await response.json();
 
-        items.forEach((item) => {
-          childSelect.add(new Option(item[textCol], item[valCol]));
-        });
+          for (const item of items) {
+            childSelect.add(new Option(item[textCol], item[valCol]));
+          }
 
-        childSelect.selectedIndex = -1;
+          childSelect.selectedIndex = -1;
 
-        $select.selectpicker();
-      });
-  });
+          $child.selectpicker();
+
+          // optional: trigger next level dependency
+          $child.trigger("changed.bs.select");
+        } catch (err) {
+          console.error("Error loading dependent select:", err);
+        }
+      }
+    },
+  );
 }).call(this);
 
 (function () {
