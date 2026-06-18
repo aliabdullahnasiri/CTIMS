@@ -1,5 +1,7 @@
 from operator import call
 
+from flask_babel import gettext as _
+
 from app.extensions.db import db
 
 
@@ -16,7 +18,7 @@ class District(db.Model):
 
     def to_dict(self) -> dict:
         return {
-            "name": self.name,
+            "name": _(self.name),
             "province_uid": self.province_uid,
             **call(getattr(super(), "to_dict")),
         }

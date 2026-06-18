@@ -112,7 +112,8 @@ class Form(FlaskForm):
                     endpoint := _field.render_kw.get("data-fetch-api")
                 ):
                     _field.render_kw["data-fetch-api"] = url_for(endpoint)
-            except:
+            except Exception as err:
+                print(err)
                 ...
 
             try:

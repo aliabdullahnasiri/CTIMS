@@ -11,6 +11,7 @@ from wtforms.validators import DataRequired, Length, Optional
 from app.forms import ValidateUID
 from app.forms.user import AddUserForm, UpdateUserForm
 from app.models.class_ import Class
+from app.models.province import Province
 from app.models.student import IdentityCardType, Student
 from app.models.user import User
 
@@ -114,12 +115,13 @@ class AddStudentForm(AddUserForm):
         choices=[],
         render_kw={
             "data-auto-complete": "true",
-            "data-fetch-api": "api.autocomplete",
+            "data-fetch-api": "api.fetch_districts",
             "data-model-name": "District",
             "data-option-value": "uid",
             "data-option-text": "name",
             "data-depends-on": "permanent_province",
         },
+        validate_choice=False,
     )
 
     permanent_village = StringField(
@@ -144,12 +146,13 @@ class AddStudentForm(AddUserForm):
         choices=[],
         render_kw={
             "data-auto-complete": "true",
-            "data-fetch-api": "api.autocomplete",
+            "data-fetch-api": "api.fetch_districts",
             "data-model-name": "District",
             "data-option-value": "uid",
             "data-option-text": "name",
             "data-depends-on": "current_province",
         },
+        validate_choice=False,
     )
 
     current_village = StringField(
@@ -165,11 +168,11 @@ class AddStudentForm(AddUserForm):
         # Translate all field labels so individual form files don't need to call _ for each label
         for _field in getattr(self, "_fields", {}).values():
             try:
-                if (
-                    isinstance(_field, (SelectField, SelectMultipleField))
-                    and "province" in _field.name
-                ):
-                    ...
+                if isinstance(_field, (SelectField,)) and "province" in _field.name:
+                    choices = _field.choices = [("", _("CHOICE_AN_OPTION_LABEL"))]
+
+                    for p in Province.query.all():
+                        choices.append((p.uid, _(p.name)))
             except:
                 pass
 

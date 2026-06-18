@@ -707,3 +707,39 @@ export function upload(files, dropZone) {
     }
   });
 }).call(this);
+
+(function () {
+  //
+  document.addEventListener("change", async (event) => {
+    if (!event.target.matches("select")) {
+      return;
+    }
+
+    const parentSelect = event.target;
+
+    document
+      .querySelectorAll(`select[data-depends-on="${parentSelect.id}"]`)
+      .forEach(async (childSelect) => {
+        const valCol = childSelect.dataset.optionValue;
+        const textCol = childSelect.dataset.optionText;
+        const api = childSelect.dataset.fetchApi;
+        const $select = $(childSelect);
+
+        $select.selectpicker("destroy");
+
+        childSelect.innerHTML = "";
+
+        const response = await fetch(`${api}?${valCol}=${parentSelect.value}`);
+
+        const items = await response.json();
+
+        items.forEach((item) => {
+          childSelect.add(new Option(item[textCol], item[valCol]));
+        });
+
+        childSelect.selectedIndex = -1;
+
+        $select.selectpicker();
+      });
+  });
+}).call(this);

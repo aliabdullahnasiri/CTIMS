@@ -188,7 +188,7 @@ export function createLoader() {
 
 (function () {
   const sideNavElement = document.querySelector("#sidenav-collapse-main");
-  const ps = new PerfectScrollbar(sideNavElement, {
+  new PerfectScrollbar(sideNavElement, {
     suppressScrollX: true,
   });
 }).call(this);

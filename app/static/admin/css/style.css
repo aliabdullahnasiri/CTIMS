@@ -415,3 +415,7 @@ div.dropdown-menu {
   color: white !important;
   margin-bottom: 0px !important;
 }
+
+.rtl a[role="option"] {
+  text-align: right;
+}
