@@ -27,8 +27,8 @@
     <div class="col-md-4">
       <div class="my-2">
         <div class="input-group input-group-outline">
-          {{ f.first_name.label(class="form-label") }}
-          {{ f.first_name(class="form-control") }}
+          {{ f.first_name.label(class="form-label") }} {{
+          f.first_name(class="form-control") }}
         </div>
       </div>
     </div>
@@ -36,8 +36,8 @@
     <div class="col-md-4">
       <div class="my-2">
         <div class="input-group input-group-outline">
-          {{ f.middle_name.label(class="form-label") }}
-          {{ f.middle_name(class="form-control is-invalid") }}
+          {{ f.middle_name.label(class="form-label") }} {{
+          f.middle_name(class="form-control is-invalid") }}
         </div>
       </div>
     </div>
@@ -45,8 +45,8 @@
     <div class="col-md-4">
       <div class="my-2">
         <div class="input-group input-group-outline">
-          {{ f.last_name.label(class="form-label") }}
-          {{ f.last_name(class="form-control") }}
+          {{ f.last_name.label(class="form-label") }} {{
+          f.last_name(class="form-control") }}
         </div>
       </div>
     </div>
@@ -56,8 +56,8 @@
     <div class="col-md-6">
       <div class="my-2">
         <div class="input-group input-group-outline">
-          {{ f.father_name.label(class="form-label") }}
-          {{ f.father_name(class="form-control") }}
+          {{ f.father_name.label(class="form-label") }} {{
+          f.father_name(class="form-control") }}
         </div>
       </div>
     </div>
@@ -65,8 +65,8 @@
     <div class="col-md-6">
       <div class="my-2">
         <div class="input-group input-group-outline">
-          {{ f.grandfather_name.label(class="form-label") }}
-          {{ f.grandfather_name(class="form-control is-invalid") }}
+          {{ f.grandfather_name.label(class="form-label") }} {{
+          f.grandfather_name(class="form-control is-invalid") }}
         </div>
       </div>
     </div>
@@ -78,7 +78,8 @@
         <div class="px-2 py-0 my-0">
           {{ f.identity_card_type.label(class="form-label") }}
         </div>
-        {{ f.identity_card_type(class="form-control", data_style="btn btn-outline-dark text-auto") }}
+        {{ f.identity_card_type(class="form-control", data_style="btn
+        btn-outline-dark text-auto") }}
       </div>
     </div>
   </div>
@@ -98,8 +99,8 @@
     <div class="col-12 col-sm-6 col-lg-6">
       <div class="my-2">
         <div class="input-group input-group-outline">
-          {{ f.tazkira_folder.label(class="form-label") }}
-          {{ f.tazkira_folder(class="form-control") }}
+          {{ f.tazkira_folder.label(class="form-label") }} {{
+          f.tazkira_folder(class="form-control") }}
         </div>
       </div>
     </div>
@@ -107,8 +108,8 @@
     <div class="col-12 col-sm-6 col-lg-6">
       <div class="my-2">
         <div class="input-group input-group-outline">
-          {{ f.tazkira_page_number.label(class="form-label") }}
-          {{ f.tazkira_page_number(class="form-control") }}
+          {{ f.tazkira_page_number.label(class="form-label") }} {{
+          f.tazkira_page_number(class="form-control") }}
         </div>
       </div>
     </div>
@@ -116,8 +117,8 @@
     <div class="col-12 col-sm-6 col-lg-6">
       <div class="my-2">
         <div class="input-group input-group-outline">
-          {{ f.tazkira_registration_number.label(class="form-label") }}
-          {{ f.tazkira_registration_number(class="form-control") }}
+          {{ f.tazkira_registration_number.label(class="form-label") }} {{
+          f.tazkira_registration_number(class="form-control") }}
         </div>
       </div>
     </div>
@@ -125,8 +126,8 @@
     <div class="col-12 col-sm-6 col-lg-6">
       <div class="my-2">
         <div class="input-group input-group-outline">
-          {{ f.tazkira_sakok_number.label(class="form-label") }}
-          {{ f.tazkira_sakok_number(class="form-control") }}
+          {{ f.tazkira_sakok_number.label(class="form-label") }} {{
+          f.tazkira_sakok_number(class="form-control") }}
         </div>
       </div>
     </div>
@@ -168,6 +169,17 @@
   <div class="row">
     <div class="col-md-12">
       <div class="my-2">
+        <div class="input-group input-group-outline">
+          {{ f.kankor_id.label(class="form-label") }} {{
+          f.kankor_id(class="form-control is-invalid") }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="my-2">
         <div class="multi-value-input card">
           <div class="input-group input-group-outline">
             {{ f.phones.label(class="form-label") }} {{
@@ -185,7 +197,8 @@
         <div class="px-2 py-0 my-0">
           {{ f.permanent_province.label(class="form-label") }}
         </div>
-        {{ f.permanent_province(class="form-control", data_style="btn btn-outline-dark text-auto") }}
+        {{ f.permanent_province(class="form-control", data_style="btn
+        btn-outline-dark text-auto") }}
       </div>
     </div>
 
@@ -194,7 +207,8 @@
         <div class="px-2 py-0 my-0">
           {{ f.permanent_district.label(class="form-label") }}
         </div>
-        {{ f.permanent_district(class="form-control", data_style="btn btn-outline-dark text-auto") }}
+        {{ f.permanent_district(class="form-control", data_style="btn
+        btn-outline-dark text-auto") }}
       </div>
     </div>
   </div>
@@ -203,8 +217,9 @@
     <div class="col-12">
       <div class="my-2">
         <div class="input-group input-group-outline">
-          {{ f.permanent_village.label(class="form-label") }}
-          {{ f.permanent_village(class="form-control", data_style="btn btn-outline-dark text-auto") }}
+          {{ f.permanent_village.label(class="form-label") }} {{
+          f.permanent_village(class="form-control", data_style="btn
+          btn-outline-dark text-auto") }}
         </div>
       </div>
     </div>
@@ -216,7 +231,8 @@
         <div class="px-2 py-0 my-0">
           {{ f.current_province.label(class="form-label") }}
         </div>
-        {{ f.current_province(class="form-control", data_style="btn btn-outline-dark text-auto") }}
+        {{ f.current_province(class="form-control", data_style="btn
+        btn-outline-dark text-auto") }}
       </div>
     </div>
 
@@ -225,7 +241,8 @@
         <div class="px-2 py-0 my-0">
           {{ f.current_district.label(class="form-label") }}
         </div>
-        {{ f.current_district(class="form-control", data_style="btn btn-outline-dark text-auto") }}
+        {{ f.current_district(class="form-control", data_style="btn
+        btn-outline-dark text-auto") }}
       </div>
     </div>
   </div>
@@ -234,8 +251,9 @@
     <div class="col-12">
       <div class="my-2">
         <div class="input-group input-group-outline">
-          {{ f.current_village.label(class="form-label") }}
-          {{ f.current_village(class="form-control", data_style="btn btn-outline-dark text-auto") }}
+          {{ f.current_village.label(class="form-label") }} {{
+          f.current_village(class="form-control", data_style="btn
+          btn-outline-dark text-auto") }}
         </div>
       </div>
     </div>
