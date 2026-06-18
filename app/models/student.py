@@ -29,6 +29,30 @@ class Student(db.Model):
     tazkira_registration_number = db.Column(db.String(50), nullable=True)
     tazkira_sakok_number = db.Column(db.String(50), nullable=True)
 
+    kankor_id = db.Column(
+        db.String(12),
+        unique=True,
+        nullable=True,
+        index=True,
+        comment="Kankor registration number",
+    )
+
+    kankor_year = db.Column(db.SmallInteger, nullable=True, comment="Kankor exam year")
+
+    kankor_score = db.Column(db.Float, nullable=True, comment="Kankor score")
+
+    kankor_rank = db.Column(db.Integer, nullable=True, comment="Kankor rank")
+
+    kankor_result = db.Column(
+        db.String(100), nullable=True, comment="Faculty or department accepted"
+    )
+
+    kankor_university = db.Column(
+        db.String(150), nullable=True, comment="Accepted university"
+    )
+
+    kankor_province = db.Column(db.String(100), nullable=True, comment="Exam province")
+
     permanent_province_uid = db.Column(
         db.String(8),
         db.ForeignKey("province.uid"),
