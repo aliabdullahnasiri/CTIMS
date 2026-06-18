@@ -1,0 +1,2154 @@
+[
+  {
+    "id": 1,
+    "name": "UROZGAN_LABEL",
+    "districts": [
+      {
+        "id": 392,
+        "name": "CHORA_LABEL"
+      },
+      {
+        "id": 393,
+        "name": "DEH_RAHWOD_LABEL"
+      },
+      {
+        "id": 394,
+        "name": "KHAS_URUZGAN_LABEL"
+      },
+      {
+        "id": 395,
+        "name": "SHAHIDI_HASSAS_LABEL"
+      },
+      {
+        "id": 396,
+        "name": "TARIN_KOWT_LABEL"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "BADGHIS_LABEL",
+    "districts": [
+      {
+        "id": 236,
+        "name": "AB_KAMARI_LABEL"
+      },
+      {
+        "id": 237,
+        "name": "GHORMACH_LABEL"
+      },
+      {
+        "id": 238,
+        "name": "JAWAND_LABEL"
+      },
+      {
+        "id": 239,
+        "name": "MUQUR_LABEL"
+      },
+      {
+        "id": 240,
+        "name": "MURGHAB_LABEL"
+      },
+      {
+        "id": 241,
+        "name": "QADIS_LABEL"
+      },
+      {
+        "id": 242,
+        "name": "QALA_I_NAW_LABEL"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "BAMYAN_LABEL",
+    "districts": [
+      {
+        "id": 244,
+        "name": "KAHMARD_LABEL"
+      },
+      {
+        "id": 245,
+        "name": "PANJAB_LABEL"
+      },
+      {
+        "id": 246,
+        "name": "SAYGHAN_LABEL"
+      },
+      {
+        "id": 247,
+        "name": "SHIBAR_LABEL"
+      },
+      {
+        "id": 248,
+        "name": "WARAS_LABEL"
+      },
+      {
+        "id": 249,
+        "name": "YAKAWLANG_LABEL"
+      },
+      {
+        "id": 412,
+        "name": "SHEBAR_LABEL"
+      },
+      {
+        "id": 413,
+        "name": "CENTER_OF_BAMYAN_LABEL"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "BADAKHSHAN_LABEL",
+    "districts": [
+      {
+        "id": 1,
+        "name": "ARGHANJ_KHWA_LABEL"
+      },
+      {
+        "id": 2,
+        "name": "ARGO_LABEL"
+      },
+      {
+        "id": 3,
+        "name": "BAHARAK_LABEL"
+      },
+      {
+        "id": 4,
+        "name": "DARAYIM_LABEL"
+      },
+      {
+        "id": 5,
+        "name": "FAYZABAD_LABEL"
+      },
+      {
+        "id": 6,
+        "name": "ISHKASHIM_LABEL"
+      },
+      {
+        "id": 7,
+        "name": "JURM_LABEL"
+      },
+      {
+        "id": 8,
+        "name": "KHASH_LABEL"
+      },
+      {
+        "id": 9,
+        "name": "KHWAHAN_LABEL"
+      },
+      {
+        "id": 10,
+        "name": "KISHIM_LABEL"
+      },
+      {
+        "id": 11,
+        "name": "KOHISTAN_LABEL"
+      },
+      {
+        "id": 12,
+        "name": "KUF_AB_LABEL"
+      },
+      {
+        "id": 13,
+        "name": "KURAN_WA_MUNJAN_LABEL"
+      },
+      {
+        "id": 14,
+        "name": "MAIMAY_LABEL"
+      },
+      {
+        "id": 15,
+        "name": "NUSAY_LABEL"
+      },
+      {
+        "id": 16,
+        "name": "RAGH_LABEL"
+      },
+      {
+        "id": 17,
+        "name": "SHAHRI_BUZURG_LABEL"
+      },
+      {
+        "id": 18,
+        "name": "SHEKAY_LABEL"
+      },
+      {
+        "id": 19,
+        "name": "SHIGHNAN_LABEL"
+      },
+      {
+        "id": 20,
+        "name": "SHUHADA_LABEL"
+      },
+      {
+        "id": 21,
+        "name": "TAGAB_LABEL"
+      },
+      {
+        "id": 22,
+        "name": "TISHKAN_LABEL"
+      },
+      {
+        "id": 23,
+        "name": "WAKHAN_LABEL"
+      },
+      {
+        "id": 24,
+        "name": "WURDUJ_LABEL"
+      },
+      {
+        "id": 25,
+        "name": "YAFTALI_LABEL"
+      },
+      {
+        "id": 26,
+        "name": "YAMGAN_LABEL"
+      },
+      {
+        "id": 27,
+        "name": "YAWAN_LABEL"
+      },
+      {
+        "id": 28,
+        "name": "ZEBAK_LABEL"
+      },
+      {
+        "id": 505,
+        "name": "TASHKAN_LABEL"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "BAGHLAN_LABEL",
+    "districts": [
+      {
+        "id": 29,
+        "name": "ANDARAB_LABEL"
+      },
+      {
+        "id": 30,
+        "name": "BAGHLAN_LABEL"
+      },
+      {
+        "id": 31,
+        "name": "BAGHLANI_JADID_LABEL"
+      },
+      {
+        "id": 32,
+        "name": "BURKA_LABEL"
+      },
+      {
+        "id": 33,
+        "name": "DAHANA_I_GHURI_LABEL"
+      },
+      {
+        "id": 34,
+        "name": "DIH_SALAH_LABEL"
+      },
+      {
+        "id": 35,
+        "name": "DUSHI_LABEL"
+      },
+      {
+        "id": 36,
+        "name": "FARANG_WA_GHAR_LABEL"
+      },
+      {
+        "id": 37,
+        "name": "GUZARGAHI_NUR_LABEL"
+      },
+      {
+        "id": 38,
+        "name": "KHINJAN_LABEL"
+      },
+      {
+        "id": 39,
+        "name": "KHOST_WA_FEREN_LABEL"
+      },
+      {
+        "id": 40,
+        "name": "KHWAJA_HIJRAN_LABEL"
+      },
+      {
+        "id": 41,
+        "name": "NAHRIN_LABEL"
+      },
+      {
+        "id": 42,
+        "name": "PULI_HISAR_LABEL"
+      },
+      {
+        "id": 43,
+        "name": "PULI_KHUMRI_LABEL"
+      },
+      {
+        "id": 44,
+        "name": "TALA_WA_BARFAK_LABEL"
+      },
+      {
+        "id": 460,
+        "name": "BANO_LABEL"
+      },
+      {
+        "id": 475,
+        "name": "BAGHLAN_MARKAZI_LABEL"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "BALKH_LABEL",
+    "districts": [
+      {
+        "id": 69,
+        "name": "BALKH_LABEL"
+      },
+      {
+        "id": 70,
+        "name": "CHAHAR_BOLAK_LABEL"
+      },
+      {
+        "id": 71,
+        "name": "CHAHAR_KINT_LABEL"
+      },
+      {
+        "id": 72,
+        "name": "CHIMTAL_LABEL"
+      },
+      {
+        "id": 73,
+        "name": "DAWLATABAD_LABEL"
+      },
+      {
+        "id": 74,
+        "name": "DIHDADI_LABEL"
+      },
+      {
+        "id": 75,
+        "name": "KALDAR_LABEL"
+      },
+      {
+        "id": 76,
+        "name": "KHULMI_LABEL"
+      },
+      {
+        "id": 77,
+        "name": "KISHINDIH_LABEL"
+      },
+      {
+        "id": 78,
+        "name": "MARMUL_LABEL"
+      },
+      {
+        "id": 79,
+        "name": "MAZAR_E_SHARIF_LABEL"
+      },
+      {
+        "id": 80,
+        "name": "NAHR_E_SHAHI_LABEL"
+      },
+      {
+        "id": 81,
+        "name": "SHOLGARA_LABEL"
+      },
+      {
+        "id": 82,
+        "name": "SHORTEPA_LABEL"
+      },
+      {
+        "id": 83,
+        "name": "ZARI_LABEL"
+      },
+      {
+        "id": 424,
+        "name": "DEHDADI_LABEL"
+      },
+      {
+        "id": 456,
+        "name": "CENTER_OF_BALKH_LABEL"
+      },
+      {
+        "id": 457,
+        "name": "MARKAZ_SHAHAR_LABEL"
+      },
+      {
+        "id": 458,
+        "name": "MARKAZ_E_SHAHR_LABEL"
+      },
+      {
+        "id": 461,
+        "name": "NAHIA_SHASHUM_LABEL"
+      },
+      {
+        "id": 502,
+        "name": "PD_7_LABEL"
+      },
+      {
+        "id": 503,
+        "name": "PD_8_LABEL"
+      },
+      {
+        "id": 506,
+        "name": "1_PD_LABEL"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "name": "TAKHAR_LABEL",
+    "districts": [
+      {
+        "id": 52,
+        "name": "BAHARAK_LABEL"
+      },
+      {
+        "id": 53,
+        "name": "BANGI_LABEL"
+      },
+      {
+        "id": 54,
+        "name": "CHAH_AB_LABEL"
+      },
+      {
+        "id": 55,
+        "name": "CHAL_AHIB_LABEL"
+      },
+      {
+        "id": 56,
+        "name": "DARQAD_BAD_LABEL"
+      },
+      {
+        "id": 57,
+        "name": "DASHTI_QALA_LABEL"
+      },
+      {
+        "id": 58,
+        "name": "FARKHAR_I_ZAL_LABEL"
+      },
+      {
+        "id": 59,
+        "name": "HAZAR_SUMUCH_LABEL"
+      },
+      {
+        "id": 60,
+        "name": "ISHKAMISH_LABEL"
+      },
+      {
+        "id": 61,
+        "name": "KALAFGAN_LABEL"
+      },
+      {
+        "id": 62,
+        "name": "KHWAJA_BAHA_LABEL"
+      },
+      {
+        "id": 63,
+        "name": "KHWAJA_GHAR_LABEL"
+      },
+      {
+        "id": 64,
+        "name": "NAMAK_AB_LABEL"
+      },
+      {
+        "id": 65,
+        "name": "RUSTAQ_LABEL"
+      },
+      {
+        "id": 66,
+        "name": "TALUQAN_LABEL"
+      },
+      {
+        "id": 67,
+        "name": "WARSAJ_LABEL"
+      },
+      {
+        "id": 68,
+        "name": "YANGI_QALA_LABEL"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "name": "JOZ_JAN_LABEL",
+    "districts": [
+      {
+        "id": 98,
+        "name": "AQCHA_LABEL"
+      },
+      {
+        "id": 99,
+        "name": "DARZAB_LABEL"
+      },
+      {
+        "id": 100,
+        "name": "FAYZABAD_LABEL"
+      },
+      {
+        "id": 101,
+        "name": "KHAMYAB_LABEL"
+      },
+      {
+        "id": 102,
+        "name": "KHANIQA_LABEL"
+      },
+      {
+        "id": 103,
+        "name": "KHWAJA_DU_KOH_LABEL"
+      },
+      {
+        "id": 104,
+        "name": "MARDYAN_LABEL"
+      },
+      {
+        "id": 105,
+        "name": "MINGAJIK_LABEL"
+      },
+      {
+        "id": 106,
+        "name": "QARQIN_LABEL"
+      },
+      {
+        "id": 107,
+        "name": "QUSH_TEPA_LABEL"
+      },
+      {
+        "id": 108,
+        "name": "SHIBIRGHAN_LABEL"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "name": "KHOST_LABEL",
+    "districts": [
+      {
+        "id": 306,
+        "name": "BAAK_LABEL"
+      },
+      {
+        "id": 307,
+        "name": "GURBUZ_LABEL"
+      },
+      {
+        "id": 308,
+        "name": "JAJI_MAIDAN_LABEL"
+      },
+      {
+        "id": 309,
+        "name": "KHOST_MATOON_LABEL"
+      },
+      {
+        "id": 310,
+        "name": "MANDOZAI_LABEL"
+      },
+      {
+        "id": 311,
+        "name": "MUSA_KHEL_LABEL"
+      },
+      {
+        "id": 312,
+        "name": "NADIR_SHAH_KOT_LABEL"
+      },
+      {
+        "id": 313,
+        "name": "QALANDAR_LABEL"
+      },
+      {
+        "id": 314,
+        "name": "SABARI_LABEL"
+      },
+      {
+        "id": 315,
+        "name": "SHAMAL_LABEL"
+      },
+      {
+        "id": 316,
+        "name": "SPERA_LABEL"
+      },
+      {
+        "id": 317,
+        "name": "TANI_LABEL"
+      },
+      {
+        "id": 318,
+        "name": "TIRZAYI__ALI_SHER__LABEL"
+      },
+      {
+        "id": 459,
+        "name": "CENTER_OF_KHOST_LABEL"
+      },
+      {
+        "id": 472,
+        "name": "PROVINCIAL_LABEL"
+      },
+      {
+        "id": 481,
+        "name": "ISMAIL_KHAIL_MANDOZAI_LABEL"
+      },
+      {
+        "id": 482,
+        "name": "DOWA_MENDA_LABEL"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "name": "DAIKUNDI_LABEL",
+    "districts": [
+      {
+        "id": 349,
+        "name": "GIZAB_LABEL"
+      },
+      {
+        "id": 350,
+        "name": "ISHTARLAY_LABEL"
+      },
+      {
+        "id": 351,
+        "name": "KAJRAN_LABEL"
+      },
+      {
+        "id": 352,
+        "name": "KHADIR_LABEL"
+      },
+      {
+        "id": 353,
+        "name": "KITI_LABEL"
+      },
+      {
+        "id": 354,
+        "name": "MIRAMOR_LABEL"
+      },
+      {
+        "id": 355,
+        "name": "NILI_LABEL"
+      },
+      {
+        "id": 356,
+        "name": "SANGTAKHT_LABEL"
+      },
+      {
+        "id": 357,
+        "name": "SHAHRISTAN_LABEL"
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "name": "ZABUL_LABEL",
+    "districts": [
+      {
+        "id": 397,
+        "name": "ARGAHANDAB_LABEL"
+      },
+      {
+        "id": 398,
+        "name": "ATGHAR_LABEL"
+      },
+      {
+        "id": 399,
+        "name": "DAYCHOPAN_LABEL"
+      },
+      {
+        "id": 400,
+        "name": "KAKAR_LABEL"
+      },
+      {
+        "id": 401,
+        "name": "MIZAN_LABEL"
+      },
+      {
+        "id": 402,
+        "name": "NAW_BAHAR_LABEL"
+      },
+      {
+        "id": 403,
+        "name": "QALAT_LABEL"
+      },
+      {
+        "id": 404,
+        "name": "SHAH_JOY_LABEL"
+      },
+      {
+        "id": 405,
+        "name": "SHAMULZAYI_LABEL"
+      },
+      {
+        "id": 406,
+        "name": "SHINKAY_LABEL"
+      },
+      {
+        "id": 407,
+        "name": "TARNAK_WA_JALDAK_LABEL"
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "name": "SAR_E_PUL_LABEL",
+    "districts": [
+      {
+        "id": 116,
+        "name": "BALKHAB_LABEL"
+      },
+      {
+        "id": 117,
+        "name": "GOSFANDI_LABEL"
+      },
+      {
+        "id": 118,
+        "name": "KOHISTANAT_LABEL"
+      },
+      {
+        "id": 119,
+        "name": "SANGCHARAK_LABEL"
+      },
+      {
+        "id": 120,
+        "name": "SAR_E_PUL_LABEL"
+      },
+      {
+        "id": 121,
+        "name": "SAYYAD_LABEL"
+      },
+      {
+        "id": 122,
+        "name": "SOZMA_QALA_LABEL"
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "name": "SAMANGAN_LABEL",
+    "districts": [
+      {
+        "id": 109,
+        "name": "AYBAK_LABEL"
+      },
+      {
+        "id": 110,
+        "name": "DARA_I_SUFI_BALLA_LABEL"
+      },
+      {
+        "id": 111,
+        "name": "DARA_I_SUFI_PAYAN_LABEL"
+      },
+      {
+        "id": 112,
+        "name": "FEROZ_NAKHCHIR_LABEL"
+      },
+      {
+        "id": 113,
+        "name": "HAZRATI_SULTAN_LABEL"
+      },
+      {
+        "id": 114,
+        "name": "KHURAM_WA_SARBAGH_LABEL"
+      },
+      {
+        "id": 115,
+        "name": "RUYI_DU_AB_LABEL"
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "name": "GHAZNI_LABEL",
+    "districts": [
+      {
+        "id": 287,
+        "name": "AB_BAND_LABEL"
+      },
+      {
+        "id": 288,
+        "name": "AJRISTAN_LABEL"
+      },
+      {
+        "id": 289,
+        "name": "ANDAR_LABEL"
+      },
+      {
+        "id": 290,
+        "name": "DIH_YAK_LABEL"
+      },
+      {
+        "id": 291,
+        "name": "GELAN_LABEL"
+      },
+      {
+        "id": 292,
+        "name": "GHAZNI_CITY_LABEL"
+      },
+      {
+        "id": 293,
+        "name": "GIRO_LABEL"
+      },
+      {
+        "id": 294,
+        "name": "JEGHATOO_LABEL"
+      },
+      {
+        "id": 295,
+        "name": "JAGHURI_LABEL"
+      },
+      {
+        "id": 296,
+        "name": "KHUGIANI_LABEL"
+      },
+      {
+        "id": 297,
+        "name": "KHWAJA_UMARI_LABEL"
+      },
+      {
+        "id": 298,
+        "name": "MALISTAN_LABEL"
+      },
+      {
+        "id": 299,
+        "name": "MUQUR_LABEL"
+      },
+      {
+        "id": 300,
+        "name": "NAWA_LABEL"
+      },
+      {
+        "id": 301,
+        "name": "NAWUR_LABEL"
+      },
+      {
+        "id": 302,
+        "name": "QARABAGH_LABEL"
+      },
+      {
+        "id": 303,
+        "name": "RASHIDAN_LABEL"
+      },
+      {
+        "id": 304,
+        "name": "WAGHAZ_LABEL"
+      },
+      {
+        "id": 305,
+        "name": "ZANA_KHAN_LABEL"
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "name": "GHOR_LABEL",
+    "districts": [
+      {
+        "id": 261,
+        "name": "CHAGHCHARAN_LABEL"
+      },
+      {
+        "id": 262,
+        "name": "CHARSADA_LABEL"
+      },
+      {
+        "id": 263,
+        "name": "DAWLAT_YAR_LABEL"
+      },
+      {
+        "id": 264,
+        "name": "DU_LAYNA_LABEL"
+      },
+      {
+        "id": 265,
+        "name": "LAL_WA_SARJANGAL_LABEL"
+      },
+      {
+        "id": 266,
+        "name": "PASABAND_LABEL"
+      },
+      {
+        "id": 267,
+        "name": "SAGHAR_LABEL"
+      },
+      {
+        "id": 268,
+        "name": "SHAHRAK_LABEL"
+      },
+      {
+        "id": 269,
+        "name": "TAYWARA_LABEL"
+      },
+      {
+        "id": 270,
+        "name": "TULAK_LABEL"
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "name": "FARYAB_LABEL",
+    "districts": [
+      {
+        "id": 84,
+        "name": "ALMAR_LABEL"
+      },
+      {
+        "id": 85,
+        "name": "ANDKHOY_LABEL"
+      },
+      {
+        "id": 86,
+        "name": "BILCHIRAGH_LABEL"
+      },
+      {
+        "id": 87,
+        "name": "DAWLAT_ABAD_LABEL"
+      },
+      {
+        "id": 88,
+        "name": "GURZIWAN_LABEL"
+      },
+      {
+        "id": 89,
+        "name": "KHANI_CHAHAR_BAGH_LABEL"
+      },
+      {
+        "id": 90,
+        "name": "KHWAJA_SABZ_POSH_LABEL"
+      },
+      {
+        "id": 91,
+        "name": "KOHISTAN_LABEL"
+      },
+      {
+        "id": 92,
+        "name": "MAYMANA_LABEL"
+      },
+      {
+        "id": 93,
+        "name": "PASHTUN_KOT_LABEL"
+      },
+      {
+        "id": 94,
+        "name": "QARAMQOL_LABEL"
+      },
+      {
+        "id": 95,
+        "name": "QAYSAR_LABEL"
+      },
+      {
+        "id": 96,
+        "name": "QURGHAN_LABEL"
+      },
+      {
+        "id": 97,
+        "name": "SHIRIN_TAGAB_LABEL"
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "name": "FARAH_LABEL",
+    "districts": [
+      {
+        "id": 250,
+        "name": "ANAR_DARA_LABEL"
+      },
+      {
+        "id": 251,
+        "name": "BAKWA_LABEL"
+      },
+      {
+        "id": 252,
+        "name": "BALA_BULUK_LABEL"
+      },
+      {
+        "id": 253,
+        "name": "FARAH_LABEL"
+      },
+      {
+        "id": 254,
+        "name": "GULISTAN_LABEL"
+      },
+      {
+        "id": 255,
+        "name": "KHAKI_SAFED_LABEL"
+      },
+      {
+        "id": 256,
+        "name": "LASH_WA_JUWAYN_LABEL"
+      },
+      {
+        "id": 257,
+        "name": "PUR_CHAMAN_LABEL"
+      },
+      {
+        "id": 258,
+        "name": "PUSHT_ROD_LABEL"
+      },
+      {
+        "id": 259,
+        "name": "QALA_I_KAH_LABEL"
+      },
+      {
+        "id": 260,
+        "name": "SHIB_KOH_LABEL"
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "name": "KUNDOZ_LABEL",
+    "districts": [
+      {
+        "id": 45,
+        "name": "ALI_ABAD_LABEL"
+      },
+      {
+        "id": 46,
+        "name": "ARCHI_LABEL"
+      },
+      {
+        "id": 47,
+        "name": "CHAHAR_DARA_LABEL"
+      },
+      {
+        "id": 48,
+        "name": "IMAM_SAHIB_LABEL"
+      },
+      {
+        "id": 49,
+        "name": "KHAN_ABAD_LABEL"
+      },
+      {
+        "id": 50,
+        "name": "KUNDUZ_LABEL"
+      },
+      {
+        "id": 51,
+        "name": "QALAY_I_ZAL_LABEL"
+      },
+      {
+        "id": 415,
+        "name": "CENTER_OF_KUNDUZ_LABEL"
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "name": "KANDAHAR_LABEL",
+    "districts": [
+      {
+        "id": 371,
+        "name": "ARGHANDAB_LABEL"
+      },
+      {
+        "id": 372,
+        "name": "ARGHISTAN_LABEL"
+      },
+      {
+        "id": 373,
+        "name": "DAMAN_LABEL"
+      },
+      {
+        "id": 374,
+        "name": "GHORAK_LABEL"
+      },
+      {
+        "id": 375,
+        "name": "KANDAHAR_CITY__LABEL"
+      },
+      {
+        "id": 376,
+        "name": "KHAKREZ_LABEL"
+      },
+      {
+        "id": 377,
+        "name": "MARUF_LABEL"
+      },
+      {
+        "id": 378,
+        "name": "MAYWAND_LABEL"
+      },
+      {
+        "id": 379,
+        "name": "MIYAN_NASHEEN_LABEL"
+      },
+      {
+        "id": 380,
+        "name": "NAISH_LABEL"
+      },
+      {
+        "id": 381,
+        "name": "PANJWAYE_LABEL"
+      },
+      {
+        "id": 382,
+        "name": "REG_LABEL"
+      },
+      {
+        "id": 383,
+        "name": "SHAH_WALI_KOT_LABEL"
+      },
+      {
+        "id": 384,
+        "name": "SHORABAK_LABEL"
+      },
+      {
+        "id": 385,
+        "name": "SPIN_BOLDAK_LABEL"
+      },
+      {
+        "id": 386,
+        "name": "ZHARAI_LABEL"
+      },
+      {
+        "id": 473,
+        "name": "DAND_LABEL"
+      },
+      {
+        "id": 499,
+        "name": "DISTRICT_6_LABEL"
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "name": "LAGHMAN_LABEL",
+    "districts": [
+      {
+        "id": 193,
+        "name": "ALINGAR_LABEL"
+      },
+      {
+        "id": 194,
+        "name": "ALISHING_LABEL"
+      },
+      {
+        "id": 195,
+        "name": "DAWLAT_SHAH_LABEL"
+      },
+      {
+        "id": 196,
+        "name": "MIHTARLAM_LABEL"
+      },
+      {
+        "id": 197,
+        "name": "QARGHAYI_LABEL"
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "name": "LOGAR_LABEL",
+    "districts": [
+      {
+        "id": 145,
+        "name": "AZRA_LABEL"
+      },
+      {
+        "id": 146,
+        "name": "BARAKI_BARAK_LABEL"
+      },
+      {
+        "id": 147,
+        "name": "CHARKH_LABEL"
+      },
+      {
+        "id": 148,
+        "name": "KHARWAR_LABEL"
+      },
+      {
+        "id": 149,
+        "name": "KHOSHI_LABEL"
+      },
+      {
+        "id": 150,
+        "name": "MOHAMMAD_AGHA_LABEL"
+      },
+      {
+        "id": 151,
+        "name": "PUL_I_ALAM_LABEL"
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "name": "NANGARHAR_LABEL",
+    "districts": [
+      {
+        "id": 198,
+        "name": "ACHIN_LABEL"
+      },
+      {
+        "id": 199,
+        "name": "BATI_KOT_LABEL"
+      },
+      {
+        "id": 200,
+        "name": "BEHSUD_LABEL"
+      },
+      {
+        "id": 201,
+        "name": "CHAPARHAR_LABEL"
+      },
+      {
+        "id": 202,
+        "name": "DARA_E_NOOR_LABEL"
+      },
+      {
+        "id": 203,
+        "name": "DIH_BALA_LABEL"
+      },
+      {
+        "id": 204,
+        "name": "DUR_BABA_LABEL"
+      },
+      {
+        "id": 205,
+        "name": "GOSHTA_LABEL"
+      },
+      {
+        "id": 206,
+        "name": "HISARAK_LABEL"
+      },
+      {
+        "id": 207,
+        "name": "JALALABAD__LABEL"
+      },
+      {
+        "id": 209,
+        "name": "KHOGYANI__LABEL"
+      },
+      {
+        "id": 220,
+        "name": "LAL_PUR_LABEL"
+      },
+      {
+        "id": 221,
+        "name": "MUHMAND_DARA_LABEL"
+      },
+      {
+        "id": 222,
+        "name": "NAZYAN_LABEL"
+      },
+      {
+        "id": 223,
+        "name": "PACHIR_WA_AGAM_LABEL"
+      },
+      {
+        "id": 224,
+        "name": "RODAT_LABEL"
+      },
+      {
+        "id": 225,
+        "name": "SHERZAD_LABEL"
+      },
+      {
+        "id": 226,
+        "name": "SHINWAR_LABEL"
+      },
+      {
+        "id": 227,
+        "name": "SURKH_ROD_LABEL"
+      },
+      {
+        "id": 411,
+        "name": "KUZ_KUNAR_KHEWA_LABEL"
+      },
+      {
+        "id": 414,
+        "name": "KAMA_LABEL"
+      },
+      {
+        "id": 441,
+        "name": "DISTRICT_3_LABEL"
+      },
+      {
+        "id": 442,
+        "name": "DISTRICT_4_LABEL"
+      },
+      {
+        "id": 486,
+        "name": "GHANI_KHAIL_LABEL"
+      },
+      {
+        "id": 487,
+        "name": "DISTRICT_1_LABEL"
+      },
+      {
+        "id": 488,
+        "name": "DISTRICT_2_LABEL"
+      },
+      {
+        "id": 489,
+        "name": "DISTRICT_7_LABEL"
+      },
+      {
+        "id": 490,
+        "name": "DISTRICT_8_LABEL"
+      },
+      {
+        "id": 494,
+        "name": "KHEWA_LABEL"
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "name": "NURISTAN_LABEL",
+    "districts": [
+      {
+        "id": 228,
+        "name": "BARGI_MATAL_LABEL"
+      },
+      {
+        "id": 229,
+        "name": "DU_AB_LABEL"
+      },
+      {
+        "id": 230,
+        "name": "KAMDESH_LABEL"
+      },
+      {
+        "id": 231,
+        "name": "MANDOL_LABEL"
+      },
+      {
+        "id": 232,
+        "name": "NURGARAM_LABEL"
+      },
+      {
+        "id": 233,
+        "name": "PAROON_LABEL"
+      },
+      {
+        "id": 234,
+        "name": "WAMA_LABEL"
+      },
+      {
+        "id": 235,
+        "name": "WAYGAL_LABEL"
+      }
+    ]
+  },
+  {
+    "id": 24,
+    "name": "NIMROZ_LABEL",
+    "districts": [
+      {
+        "id": 387,
+        "name": "CHAHAR_BURJAK_LABEL"
+      },
+      {
+        "id": 388,
+        "name": "CHAKHANSUR_LABEL"
+      },
+      {
+        "id": 389,
+        "name": "KANG_LABEL"
+      },
+      {
+        "id": 390,
+        "name": "KHASH_ROD_LABEL"
+      },
+      {
+        "id": 391,
+        "name": "ZARANJ_LABEL"
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "name": "HERAT_LABEL",
+    "districts": [
+      {
+        "id": 271,
+        "name": "ADRASKAN_LABEL"
+      },
+      {
+        "id": 272,
+        "name": "CHISHT_E_SHARIF_LABEL"
+      },
+      {
+        "id": 273,
+        "name": "FARSI_LABEL"
+      },
+      {
+        "id": 274,
+        "name": "GHORYAN_LABEL"
+      },
+      {
+        "id": 275,
+        "name": "GULRAN_LABEL"
+      },
+      {
+        "id": 276,
+        "name": "GUZARA_LABEL"
+      },
+      {
+        "id": 277,
+        "name": "HERAT__LABEL"
+      },
+      {
+        "id": 278,
+        "name": "ENJIL__LABEL"
+      },
+      {
+        "id": 279,
+        "name": "KARUKH_LABEL"
+      },
+      {
+        "id": 280,
+        "name": "KOHSAN_LABEL"
+      },
+      {
+        "id": 281,
+        "name": "KUSHK_LABEL"
+      },
+      {
+        "id": 282,
+        "name": "KUSHKI_KUHNA_LABEL"
+      },
+      {
+        "id": 283,
+        "name": "OBE_LABEL"
+      },
+      {
+        "id": 284,
+        "name": "PASHTUN_ZARGHUN_LABEL"
+      },
+      {
+        "id": 285,
+        "name": "SHINDAND_LABEL"
+      },
+      {
+        "id": 286,
+        "name": "ZINDA_JAN_LABEL"
+      },
+      {
+        "id": 421,
+        "name": "GOZARA_LABEL"
+      },
+      {
+        "id": 422,
+        "name": "2ND_CITY_DISTRICT_LABEL"
+      },
+      {
+        "id": 423,
+        "name": "10TH_CITY_DISTRICT_LABEL"
+      },
+      {
+        "id": 425,
+        "name": "6TH_CITY_DISTRICT_LABEL"
+      },
+      {
+        "id": 426,
+        "name": "4TH_CITY_DISTRICT_LABEL"
+      },
+      {
+        "id": 427,
+        "name": "5TH_CITY_DISTRICT__LABEL"
+      },
+      {
+        "id": 429,
+        "name": "13TH_CITY_DISTRICT_LABEL"
+      },
+      {
+        "id": 431,
+        "name": "DISTRICT_9_LABEL"
+      },
+      {
+        "id": 432,
+        "name": "8TH_CITY_DISTRICT_LABEL"
+      },
+      {
+        "id": 433,
+        "name": "1ST_DISTRICT__LABEL"
+      },
+      {
+        "id": 434,
+        "name": "5TH_CITY_DISTRICT_LABEL"
+      },
+      {
+        "id": 435,
+        "name": "9TH_CITY_DISTRICT_LABEL"
+      },
+      {
+        "id": 436,
+        "name": "14TH_CITY_DISTRICT_LABEL"
+      },
+      {
+        "id": 437,
+        "name": "3RD_CITY_DISTRICT_LABEL"
+      },
+      {
+        "id": 438,
+        "name": "HERAT_CITY_LABEL"
+      },
+      {
+        "id": 439,
+        "name": "12TH_CITY_DISTRICT_LABEL"
+      },
+      {
+        "id": 440,
+        "name": "15TH_CITY_DISTRICT_LABEL"
+      },
+      {
+        "id": 450,
+        "name": "ZONE_9_LABEL"
+      },
+      {
+        "id": 451,
+        "name": "1ST_DISTRICT__LABEL"
+      },
+      {
+        "id": 462,
+        "name": "INJIL__LABEL"
+      },
+      {
+        "id": 484,
+        "name": "TORGHUNDI_LABEL"
+      },
+      {
+        "id": 496,
+        "name": "DARWAZA_MALIK_LABEL"
+      },
+      {
+        "id": 497,
+        "name": "DARB_IRAQ_LABEL"
+      },
+      {
+        "id": 504,
+        "name": "11TH_CITY_DISTRICT_LABEL"
+      },
+      {
+        "id": 507,
+        "name": "7TH_CITY_DISTRICT__LABEL"
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "name": "HELMAND_LABEL",
+    "districts": [
+      {
+        "id": 358,
+        "name": "BAGHRAN_LABEL"
+      },
+      {
+        "id": 359,
+        "name": "DISHU_LABEL"
+      },
+      {
+        "id": 360,
+        "name": "GARMSIR_LABEL"
+      },
+      {
+        "id": 361,
+        "name": "GERISHK_LABEL"
+      },
+      {
+        "id": 362,
+        "name": "KAJAKI_LABEL"
+      },
+      {
+        "id": 363,
+        "name": "KHANASHIN_LABEL"
+      },
+      {
+        "id": 364,
+        "name": "LASHKARGAH_LABEL"
+      },
+      {
+        "id": 365,
+        "name": "MUSA_QALA_LABEL"
+      },
+      {
+        "id": 366,
+        "name": "NAD_ALI_LABEL"
+      },
+      {
+        "id": 367,
+        "name": "NAWA_I_BARAKZAYI_LABEL"
+      },
+      {
+        "id": 368,
+        "name": "NAWZAD_LABEL"
+      },
+      {
+        "id": 369,
+        "name": "SANGIN_LABEL"
+      },
+      {
+        "id": 370,
+        "name": "WASHIR_LABEL"
+      },
+      {
+        "id": 491,
+        "name": "SHURABAK_LABEL"
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "name": "WARDAK_LABEL",
+    "districts": [
+      {
+        "id": 169,
+        "name": "CHAKI_WARDAK_LABEL"
+      },
+      {
+        "id": 170,
+        "name": "DAY_MIRDAD_LABEL"
+      },
+      {
+        "id": 171,
+        "name": "HISA_I_AWALI_BIHSUD_LABEL"
+      },
+      {
+        "id": 172,
+        "name": "JAGHATU_LABEL"
+      },
+      {
+        "id": 173,
+        "name": "JALREZ_LABEL"
+      },
+      {
+        "id": 174,
+        "name": "MARKAZI_BIHSUD_LABEL"
+      },
+      {
+        "id": 175,
+        "name": "MAYDAN_SHAHR_LABEL"
+      },
+      {
+        "id": 176,
+        "name": "NIRKH_LABEL"
+      },
+      {
+        "id": 177,
+        "name": "SAYDABAD_LABEL"
+      }
+    ]
+  },
+  {
+    "id": 28,
+    "name": "PARWAN_LABEL",
+    "districts": [
+      {
+        "id": 159,
+        "name": "BAGRAM_LABEL"
+      },
+      {
+        "id": 161,
+        "name": "GHORBAND_LABEL"
+      },
+      {
+        "id": 162,
+        "name": "JABAL_SARAJ_LABEL"
+      },
+      {
+        "id": 163,
+        "name": "KOHI_SAFI_LABEL"
+      },
+      {
+        "id": 164,
+        "name": "SALANG_LABEL"
+      },
+      {
+        "id": 165,
+        "name": "SAYED_KHEL_LABEL"
+      },
+      {
+        "id": 166,
+        "name": "SHEKH_ALI_LABEL"
+      },
+      {
+        "id": 167,
+        "name": "SHINWARI_LABEL"
+      },
+      {
+        "id": 168,
+        "name": "SURKHI_PARSA_LABEL"
+      },
+      {
+        "id": 409,
+        "name": "CHARIKAR_LABEL"
+      },
+      {
+        "id": 476,
+        "name": "SIA_GIRD__GHORBUND_LABEL"
+      },
+      {
+        "id": 483,
+        "name": "CENTER_OF_PARWAN_LABEL"
+      }
+    ]
+  },
+  {
+    "id": 29,
+    "name": "PANJSHER_LABEL",
+    "districts": [
+      {
+        "id": 152,
+        "name": "ANABA_LABEL"
+      },
+      {
+        "id": 153,
+        "name": "BAZARAK_LABEL"
+      },
+      {
+        "id": 154,
+        "name": "DARAH_LABEL"
+      },
+      {
+        "id": 155,
+        "name": "KHENJ_LABEL"
+      },
+      {
+        "id": 156,
+        "name": "PARYAN_LABEL"
+      },
+      {
+        "id": 157,
+        "name": "ROKHA_LABEL"
+      },
+      {
+        "id": 158,
+        "name": "SHOTUL_LABEL"
+      }
+    ]
+  },
+  {
+    "id": 30,
+    "name": "PAKTYA_LABEL",
+    "districts": [
+      {
+        "id": 319,
+        "name": "AHMADABAD_LABEL"
+      },
+      {
+        "id": 320,
+        "name": "CHAMKANI_LABEL"
+      },
+      {
+        "id": 321,
+        "name": "DAND_WA_PATAN_LABEL"
+      },
+      {
+        "id": 322,
+        "name": "GARDEZ_LABEL"
+      },
+      {
+        "id": 323,
+        "name": "JAJI_LABEL"
+      },
+      {
+        "id": 324,
+        "name": "JANI_KHAIL_LABEL"
+      },
+      {
+        "id": 325,
+        "name": "LAZHA_AHMAD_KHEL_LABEL"
+      },
+      {
+        "id": 326,
+        "name": "SAYED_KARAM_LABEL"
+      },
+      {
+        "id": 327,
+        "name": "SHWAK_LABEL"
+      },
+      {
+        "id": 328,
+        "name": "WUZA_ZADRAN_LABEL"
+      },
+      {
+        "id": 329,
+        "name": "ZURMAT_LABEL"
+      },
+      {
+        "id": 330,
+        "name": "BARMAL_LABEL"
+      },
+      {
+        "id": 443,
+        "name": "MIRZAKA_LABEL"
+      }
+    ]
+  },
+  {
+    "id": 31,
+    "name": "PAKTIKA_LABEL",
+    "districts": [
+      {
+        "id": 331,
+        "name": "DILA_LABEL"
+      },
+      {
+        "id": 332,
+        "name": "GAYAN_LABEL"
+      },
+      {
+        "id": 333,
+        "name": "GOMAL_LABEL"
+      },
+      {
+        "id": 334,
+        "name": "JANI_KHEL_LABEL"
+      },
+      {
+        "id": 335,
+        "name": "MATA_KHAN_LABEL"
+      },
+      {
+        "id": 336,
+        "name": "NIKA_LABEL"
+      },
+      {
+        "id": 337,
+        "name": "OMNA_LABEL"
+      },
+      {
+        "id": 338,
+        "name": "SAR_HAWZA_LABEL"
+      },
+      {
+        "id": 339,
+        "name": "SAROBI_LABEL"
+      },
+      {
+        "id": 340,
+        "name": "SHARAN_LABEL"
+      },
+      {
+        "id": 341,
+        "name": "TERWA_LABEL"
+      },
+      {
+        "id": 342,
+        "name": "URGUN_LABEL"
+      },
+      {
+        "id": 343,
+        "name": "WAZA_KHWA_LABEL"
+      },
+      {
+        "id": 344,
+        "name": "WOR_MAMAY_LABEL"
+      },
+      {
+        "id": 345,
+        "name": "YAHYA_KHEL_LABEL"
+      },
+      {
+        "id": 346,
+        "name": "YOSUF_KHEL_LABEL"
+      },
+      {
+        "id": 347,
+        "name": "ZARGHUN_SHAHR_LABEL"
+      },
+      {
+        "id": 348,
+        "name": "ZIRUK_LABEL"
+      },
+      {
+        "id": 454,
+        "name": "GARDIZ_LABEL"
+      }
+    ]
+  },
+  {
+    "id": 32,
+    "name": "KABUL_LABEL",
+    "districts": [
+      {
+        "id": 123,
+        "name": "BAGRAMI_LABEL"
+      },
+      {
+        "id": 124,
+        "name": "CHAHAR_ASYAB_LABEL"
+      },
+      {
+        "id": 125,
+        "name": "DEH_SABZ_LABEL"
+      },
+      {
+        "id": 126,
+        "name": "FARZA_LABEL"
+      },
+      {
+        "id": 127,
+        "name": "GULDARA_LABEL"
+      },
+      {
+        "id": 128,
+        "name": "ISTALIF_LABEL"
+      },
+      {
+        "id": 129,
+        "name": "KABUL_LABEL"
+      },
+      {
+        "id": 130,
+        "name": "KALAKAN_LABEL"
+      },
+      {
+        "id": 131,
+        "name": "KHAKI_JABBAR_LABEL"
+      },
+      {
+        "id": 132,
+        "name": "MIR_BACHA_KOT_LABEL"
+      },
+      {
+        "id": 133,
+        "name": "MUSSAHI_BAGRAMI_LABEL"
+      },
+      {
+        "id": 134,
+        "name": "PAGHMAN__LABEL"
+      },
+      {
+        "id": 135,
+        "name": "QAARABAGH_LABEL"
+      },
+      {
+        "id": 136,
+        "name": "SHAKARDARA_FARZA_LABEL"
+      },
+      {
+        "id": 137,
+        "name": "SUROBI_LABEL"
+      },
+      {
+        "id": 445,
+        "name": "CENTER_OF_KABUL_LABEL"
+      },
+      {
+        "id": 446,
+        "name": "DISTRICT_11_LABEL"
+      },
+      {
+        "id": 447,
+        "name": "DISTRICT_13_LABEL"
+      },
+      {
+        "id": 448,
+        "name": "DASHT_E_BARCHI_LABEL"
+      },
+      {
+        "id": 449,
+        "name": "CITY_DISTRICT_13_LABEL"
+      },
+      {
+        "id": 463,
+        "name": "PD_03_LABEL"
+      },
+      {
+        "id": 464,
+        "name": "PD_04_LABEL"
+      },
+      {
+        "id": 465,
+        "name": "PD_08_LABEL"
+      },
+      {
+        "id": 466,
+        "name": "PD_13_LABEL"
+      },
+      {
+        "id": 467,
+        "name": "PD_10_LABEL"
+      },
+      {
+        "id": 468,
+        "name": "PD_11_LABEL"
+      },
+      {
+        "id": 469,
+        "name": "PD_01_LABEL"
+      },
+      {
+        "id": 470,
+        "name": "PD_17_LABEL"
+      },
+      {
+        "id": 471,
+        "name": "PD_07_LABEL"
+      },
+      {
+        "id": 477,
+        "name": "PD_02_LABEL"
+      },
+      {
+        "id": 478,
+        "name": "PD_14_LABEL"
+      },
+      {
+        "id": 479,
+        "name": "PD_15_LABEL"
+      },
+      {
+        "id": 480,
+        "name": "PD_16_LABEL"
+      },
+      {
+        "id": 485,
+        "name": "DARULAMAN_LABEL"
+      },
+      {
+        "id": 495,
+        "name": "PD_5_LABEL"
+      },
+      {
+        "id": 498,
+        "name": "PD_6_LABEL"
+      },
+      {
+        "id": 500,
+        "name": "PD_09_LABEL"
+      },
+      {
+        "id": 501,
+        "name": "PD_12_LABEL"
+      }
+    ]
+  },
+  {
+    "id": 33,
+    "name": "KAPISA_LABEL",
+    "districts": [
+      {
+        "id": 138,
+        "name": "ALASAY_LABEL"
+      },
+      {
+        "id": 139,
+        "name": "HESA_AWAL_KOHISTAN_LABEL"
+      },
+      {
+        "id": 140,
+        "name": "HESA_DUWUM_KOHISTAN_LABEL"
+      },
+      {
+        "id": 141,
+        "name": "KOH_BAND_LABEL"
+      },
+      {
+        "id": 142,
+        "name": "MAHMUD_RAQI_LABEL"
+      },
+      {
+        "id": 143,
+        "name": "NIJRAB_LABEL"
+      },
+      {
+        "id": 144,
+        "name": "TAGAB_LABEL"
+      },
+      {
+        "id": 410,
+        "name": "KUHISTAN_LABEL"
+      },
+      {
+        "id": 417,
+        "name": "CENTER_OF_KAPISA_LABEL"
+      },
+      {
+        "id": 418,
+        "name": "KOHISTAN_1_LABEL"
+      },
+      {
+        "id": 419,
+        "name": "KOHISTAN_2_LABEL"
+      },
+      {
+        "id": 420,
+        "name": "NIJRAB__LABEL"
+      },
+      {
+        "id": 452,
+        "name": "HASA_AWAL_KOHISTAN_LABEL"
+      },
+      {
+        "id": 492,
+        "name": "HESA_AWAL_LABEL"
+      },
+      {
+        "id": 493,
+        "name": "HESA_DOWM_LABEL"
+      }
+    ]
+  },
+  {
+    "id": 34,
+    "name": "KUNAR_LABEL",
+    "districts": [
+      {
+        "id": 178,
+        "name": "ASADABAD_LABEL"
+      },
+      {
+        "id": 179,
+        "name": "BAR_KUNAR_LABEL"
+      },
+      {
+        "id": 180,
+        "name": "CHAPA_DARA_LABEL"
+      },
+      {
+        "id": 181,
+        "name": "CHAWKAY_LABEL"
+      },
+      {
+        "id": 182,
+        "name": "DANGAM_LABEL"
+      },
+      {
+        "id": 183,
+        "name": "DARA_I_PECH_LABEL"
+      },
+      {
+        "id": 184,
+        "name": "GHAZIABAD_LABEL"
+      },
+      {
+        "id": 185,
+        "name": "KHAS_KUNAR_LABEL"
+      },
+      {
+        "id": 186,
+        "name": "MARAWARA_LABEL"
+      },
+      {
+        "id": 187,
+        "name": "NARANG_WA_BADIL_LABEL"
+      },
+      {
+        "id": 188,
+        "name": "NARI_LABEL"
+      },
+      {
+        "id": 189,
+        "name": "NURGAL_LABEL"
+      },
+      {
+        "id": 190,
+        "name": "SHAYGAL_WA_SHILTAN_LABEL"
+      },
+      {
+        "id": 191,
+        "name": "SIRKANAY_LABEL"
+      },
+      {
+        "id": 192,
+        "name": "WATA_PUR_LABEL"
+      },
+      {
+        "id": 474,
+        "name": "MANOGAY_LABEL"
+      }
+    ]
+  }
+]
