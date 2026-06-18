@@ -747,15 +747,16 @@ export function upload(files, dropZone) {
 (function () {
   function fun(select) {
     select.querySelectorAll("option").forEach((option) => {
-      let group = document
-        ?.querySelector(`[data-group-id='${option.value}']`)
-        ?.closest(".row,.group");
-
-      if (group)
+      for (let group of document?.querySelectorAll(
+        `[data-group-id='${option.value}']`,
+      )) {
+        group = group?.closest(".row,.group");
         if (select.value !== option.value) group.classList.add("d-none");
         else group.classList.remove("d-none");
+      }
     });
   }
+
   document.querySelectorAll("[data-group-switcher=true]").forEach((select) => {
     fun(select);
   });
