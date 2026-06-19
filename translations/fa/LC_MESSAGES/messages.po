@@ -42,7 +42,7 @@ msgstr "کاربران"
 #: app/templates/admin/views/tabs/permissions.html:5
 #: app/translations_stub.py:13
 msgid "PERMISSIONS_LABEL"
-msgstr "صلاحیتها"
+msgstr "صلاحیت‌ها"
 
 #: app/blueprints/admin/routes/roles.py:15
 #: app/blueprints/api/routes/navbar.py:36 app/forms/user.py:82
@@ -50,7 +50,7 @@ msgstr "صلاحیتها"
 #: app/templates/admin/views/permissions.html:91
 #: app/templates/admin/views/tabs/roles.html:5 app/translations_stub.py:14
 msgid "ROLES_LABEL"
-msgstr "نقشها"
+msgstr "نقش‌ها"
 
 #: app/translations_stub.py:17
 msgid "CTI_MANAGEMENT_LABEL"
@@ -67,7 +67,7 @@ msgstr "اوقات"
 #: app/templates/admin/components/rows/dashboard-stats.html:24
 #: app/translations_stub.py:19
 msgid "DEPARTMENTS_LABEL"
-msgstr "دیپارتمنتها"
+msgstr "دیپارتمنت‌ها"
 
 #: app/blueprints/admin/routes/semester.py:17
 #: app/blueprints/api/routes/navbar.py:63
@@ -132,7 +132,7 @@ msgstr "مضامین"
 #: app/templates/admin/views/time.html:35
 #: app/templates/admin/views/time.html:101 app/translations_stub.py:25
 msgid "CLASSES_LABEL"
-msgstr "صنفها"
+msgstr "صنف‌ها"
 
 #: app/blueprints/admin/routes/student.py:15
 #: app/blueprints/api/routes/navbar.py:119
@@ -219,7 +219,7 @@ msgstr "انگلیسی"
 
 #: app/blueprints/admin/routes/daily_section.py:17
 msgid "DAILY_SECTIONS_LABEL"
-msgstr "بخشهای روزانه"
+msgstr "بخش‌های روزانه"
 
 #: app/blueprints/admin/routes/teacher.py:15
 #: app/templates/admin/components/rows/dashboard-stats.html:136
@@ -757,7 +757,7 @@ msgstr "هشدار"
 
 #: app/blueprints/api/routes/role.py:190
 msgid "PRIMARY_ROLES_CANNOT_BE_DELETED_ERROR"
-msgstr "نقشهای اساسی قابل حذف نیستند"
+msgstr "نقش‌های اساسی قابل حذف نیستند"
 
 #: app/blueprints/api/routes/role.py:196
 msgid "ROLE_NOT_FOUND_MSG"
@@ -1041,7 +1041,7 @@ msgstr "این فیلد الزامی است"
 #: app/forms/role.py:15 app/forms/role.py:24 app/forms/role.py:62
 #: app/forms/semester.py:15 app/forms/subject.py:22
 msgid "THIS_FIELD_CANNOT_EXCEED_255_CHARACTERS_MSG"
-msgstr "این فیلد نمیتواند بیشتر از 255 کاراکتر باشد"
+msgstr "این فیلد نمی‌تواند بیشتر از 255 کاراکتر باشد"
 
 #: app/forms/attendance/teacher.py:12 app/forms/class_.py:22
 msgid "TEACHER_UID_LABEL"
@@ -1104,11 +1104,11 @@ msgstr "نام الزامی است"
 
 #: app/forms/department.py:15
 msgid "NAME_CANNOT_EXCEED_50_CHARACTERS_MSG"
-msgstr "نام نمیتواند بیشتر از 50 کاراکتر باشد"
+msgstr "نام نمی‌تواند بیشتر از 50 کاراکتر باشد"
 
 #: app/forms/department.py:23 app/forms/time.py:24
 msgid "DESCRIPTION_CANNOT_EXCEED_255_CHARACTERS_MSG"
-msgstr "توضیحات نمیتواند بیشتر از 255 کاراکتر باشد"
+msgstr "توضیحات نمی‌تواند بیشتر از 255 کاراکتر باشد"
 
 #: app/forms/department.py:28
 msgid "HOD_UID_LABEL"
@@ -1156,7 +1156,7 @@ msgstr "رمز عبور"
 #: app/forms/user.py:25 app/forms/user.py:31 app/forms/user.py:38
 #: app/forms/user.py:45
 msgid "THIS_FIELD_CANNOT_EXCEED_50_CHARACTERS_MSG"
-msgstr "این فیلد نمیتواند بیشتر از 50 کاراکتر باشد"
+msgstr "این فیلد نمی‌تواند بیشتر از 50 کاراکتر باشد"
 
 #: app/forms/exam.py:49
 msgid "MINIMUM_MARKS_LABEL"
@@ -1179,7 +1179,7 @@ msgstr "علاوه کردن امتحان"
 #: app/templates/admin/views/teacher.html:164
 #: app/templates/admin/views/teacher.html:241
 msgid "FILES_LABEL"
-msgstr "فایلها"
+msgstr "فایل‌ها"
 
 #: app/forms/exam.py:101
 msgid "UPDATE_EXAM_LABEL"
@@ -1191,7 +1191,7 @@ msgstr "توضیحات وظیفه"
 
 #: app/forms/job.py:22 app/forms/subject.py:30
 msgid "THIS_FIELD_CANNOT_EXCEED_2000_CHARACTERS_MSG"
-msgstr "این فیلد نمیتواند بیشتر از 2000 کاراکتر باشد"
+msgstr "این فیلد نمی‌تواند بیشتر از 2000 کاراکتر باشد"
 
 #: app/forms/job.py:27 app/templates/admin/views/job.html:38
 msgid "MINIMUM_SALARY_LABEL"
@@ -1231,7 +1231,7 @@ msgstr "شناسه صلاحیت"
 
 #: app/forms/permission.py:30
 msgid "THIS_FIELD_CANNOT_EXCEED_2500_CHARACTERS_MSG"
-msgstr "این فیلد نمیتواند بیشتر از 2500 کاراکتر باشد"
+msgstr "این فیلد نمی‌تواند بیشتر از 2500 کاراکتر باشد"
 
 #: app/forms/permission.py:34
 msgid "UPDATE_PERMISSION_LABEL"
@@ -1264,7 +1264,7 @@ msgstr "بروزرسانی نتیجه"
 
 #: app/forms/role.py:29
 msgid "DEFAULT_ROLE_ASSIGNED_AUTOMATICALLY_TO_NEW_USERS_MSG"
-msgstr "نقش پیشفرض بهطور خودکار به کاربران جدید اختصاص مییابد"
+msgstr "نقش پیش‌فرض به‌طور خودکار به کاربران جدید اختصاص می‌یابد"
 
 #: app/forms/role.py:47
 msgid "ADD_ROLE_LABEL"
@@ -1341,7 +1341,7 @@ msgstr "شناسه کانکور"
 
 #: app/forms/student.py:36
 msgid "INVALID_KANKOR_ID_LABEL"
-msgstr ""
+msgstr "شناسه کانکور معتبر نیست"
 
 #: app/forms/student.py:41
 msgid "IDENTITY_CARD_TYPE_LABEL"
@@ -1361,7 +1361,7 @@ msgstr "شماره تذکره الکترونیکی"
 
 #: app/forms/student.py:57
 msgid "INVALID_NATIONAL_ID_LABEL"
-msgstr ""
+msgstr "شماره تذکره معتبر نیست"
 
 #: app/forms/student.py:66
 msgid "TAZKIRA_FOLDER_LABEL"
@@ -1429,7 +1429,7 @@ msgstr "علاوه کردن استاد"
 
 #: app/forms/teacher.py:43
 msgid "TEACHER_ID_LABEL"
-msgstr "آیدی استاد"
+msgstr "آی‌دی استاد"
 
 #: app/forms/teacher.py:56
 msgid "UPDATE_TEACHER_LABEL"
@@ -1441,7 +1441,7 @@ msgstr "عنوان الزامی است"
 
 #: app/forms/time.py:16
 msgid "TITLE_CANNOT_EXCEED_50_CHARACTERS_MSG"
-msgstr "عنوان نمیتواند بیشتر از 50 کاراکتر باشد"
+msgstr "عنوان نمی‌تواند بیشتر از 50 کاراکتر باشد"
 
 #: app/forms/time.py:40
 msgid "ADD_TIME_LABEL"
@@ -1500,11 +1500,11 @@ msgstr "تنظیمات ظاهر (UI)"
 
 #: app/templates/admin/components/fixed-plugin.html:9
 msgid "SEE_OUR_DASHBOARD_OPTIONS_MSG"
-msgstr "گزینههای داشبورد ما را مشاهده کنید"
+msgstr "گزینه‌های داشبورد ما را مشاهده کنید"
 
 #: app/templates/admin/components/fixed-plugin.html:22
 msgid "SIDEBAR_COLORS_LABEL"
-msgstr "رنگهای سایدبار"
+msgstr "رنگ‌های سایدبار"
 
 #: app/templates/admin/components/fixed-plugin.html:60
 msgid "SIDENAV_TYPE_PLACEHOLDER"
@@ -1532,11 +1532,11 @@ msgstr "لسان"
 
 #: app/templates/admin/components/fixed-plugin.html:91
 msgid "CHOOSE_BETWEEN_DIFFERENT_LANGUAGE_MSG"
-msgstr "از بین لسانهای مختلف انتخاب کنید"
+msgstr "از بین لسان‌های مختلف انتخاب کنید"
 
 #: app/templates/admin/components/fixed-plugin.html:105
 msgid "YOU_CAN_CHANGE_THE_SIDENAV_TYPE_JUST_ON_DESKTOP_VIEW_PLACEHOLDER"
-msgstr "شما میتوانید نوعیت سایدبار را تنها در نمای دسکتاپ تغییر دهید"
+msgstr "شما می‌توانید نوعیت سایدبار را تنها در نمای دسکتاپ تغییر دهید"
 
 #: app/templates/admin/components/fixed-plugin.html:110
 msgid "LIGHT_DARK_MSG"
@@ -1560,7 +1560,7 @@ msgstr "صفحات"
 
 #: app/templates/admin/components/charts/weekly-users.html:4
 msgid "WEEEKLY_WEBSITE_USERS_MSG"
-msgstr "کاربران هفتهوار وبسایت"
+msgstr "کاربران هفته‌وار وب‌سایت"
 
 #: app/templates/admin/components/charts/weekly-users.html:5
 #: app/templates/admin/components/charts/weekly-views.html:5
@@ -1575,7 +1575,7 @@ msgstr "نسبت به هفته گذشته"
 
 #: app/templates/admin/components/charts/weekly-views.html:4
 msgid "WEEEKLY_WEBSITE_VIEWS_MSG"
-msgstr "بازدیدهای هفتهوار وبسایت"
+msgstr "بازدیدهای هفته‌وار وب‌سایت"
 
 #: app/templates/admin/components/charts/yearly-classes.html:5
 #: app/templates/admin/components/charts/yearly-students.html:5
@@ -1612,7 +1612,7 @@ msgstr "یا آن را اینجا بکشید"
 #: app/templates/admin/components/forms/update/subject.html:72
 #: app/templates/admin/components/forms/update/teacher.html:174
 msgid "UPLOADED_FILES_LABEL"
-msgstr "فایلهای آپلود شده"
+msgstr "فایل‌های آپلود شده"
 
 #: app/templates/admin/components/modals/add/class.html:14
 msgid "ADD_NEW_CLASS_MSG"
@@ -1908,7 +1908,7 @@ msgstr "دیپارتمنت"
 #: app/templates/admin/views/tabs/attendances.html:5
 #: app/templates/admin/views/teacher.html:229
 msgid "ATTENDANCES_LABEL"
-msgstr "حاضری ها"
+msgstr "حاضری‌ها"
 
 #: app/templates/admin/views/department.html:20
 #: app/templates/admin/views/semester.html:26
@@ -1983,7 +1983,7 @@ msgstr "معلومات شاگرد"
 #: app/templates/admin/views/subject.html:137
 #: app/templates/admin/views/teacher.html:180
 msgid "STORAGE_LABEL"
-msgstr "ذخیرهسازی"
+msgstr "ذخیره‌سازی"
 
 #: app/templates/admin/views/tabs/teacher.html:4
 #: app/templates/admin/views/teacher.html:29
@@ -2032,7 +2032,7 @@ msgstr "کد صلاحیت"
 
 #: app/templates/admin/views/tables/attendances.html:42
 msgid "NO_ATTENDANCE_YET_MSG"
-msgstr "هنوز حاضری وجود ندارد"
+msgstr "تاکنون هیچ حاضری ثبت نشده است"
 
 #: app/templates/admin/views/tables/classes.html:55
 msgid "NO_CLASSES_YET_MSG"
@@ -2042,7 +2042,7 @@ msgstr "هنوز صنفی وجود ندارد"
 #: app/templates/admin/views/tables/files.html:7
 #: app/templates/admin/views/tables/users.html:7
 msgid "ID"
-msgstr "آیدی"
+msgstr "آی‌دی"
 
 #: app/templates/admin/views/tables/employees.html:57
 msgid "NO_EMPLOYEES_YET_MSG"
@@ -2074,7 +2074,7 @@ msgstr "هنوز صلاحیتی وجود ندارد"
 
 #: app/templates/admin/views/tables/results.html:56
 msgid "NO_RESULTS_YET_MSG"
-msgstr "هنوز نتیجهای وجود ندارد"
+msgstr "هنوز نتیجه‌ای وجود ندارد"
 
 #: app/templates/admin/views/tables/roles.html:25
 msgid "NO_ROLES_YET_MSG"
