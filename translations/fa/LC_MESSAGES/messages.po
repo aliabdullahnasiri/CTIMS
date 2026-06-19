@@ -1908,7 +1908,7 @@ msgstr "دیپارتمنت"
 #: app/templates/admin/views/tabs/attendances.html:5
 #: app/templates/admin/views/teacher.html:229
 msgid "ATTENDANCES_LABEL"
-msgstr "حاضریها"
+msgstr "حاضری ها"
 
 #: app/templates/admin/views/department.html:20
 #: app/templates/admin/views/semester.html:26
