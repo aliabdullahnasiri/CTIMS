@@ -97,6 +97,11 @@ class Student(db.Model):
             "base_number": self.base_number,
             "kankor_id": self.kankor_id,
             "electronic_tazkira_number": self.electronic_tazkira_number,
+            "identity_card_type": (
+                IdentityCardType.ELECTRONIC
+                if self.electronic_tazkira_number
+                else IdentityCardType.PAPER
+            ),
             "tazkira_folder": self.tazkira_folder,
             "tazkira_page_number": self.tazkira_page_number,
             "tazkira_registration_number": self.tazkira_registration_number,

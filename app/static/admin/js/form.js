@@ -769,15 +769,14 @@ export function upload(files, dropZone) {
     });
   }
 
-  document.querySelectorAll("[data-group-switcher=true]").forEach((select) => {
-    fun(select);
+  $("[data-group-switcher=true]").each(function () {
+    fun(this);
   });
 
-  document.addEventListener("change", (event) => {
-    if (!event.target.matches("select") && !event.target.dataset.groupSwitcher)
-      return;
+  $(document).on("changed.bs.select", "select", function () {
+    if (!this.matches("select") && !this.dataset.groupSwitcher) return;
 
-    fun(event.target);
+    fun(this);
   });
 }).call(this);
 
