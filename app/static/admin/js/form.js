@@ -784,19 +784,20 @@ export function upload(files, dropZone) {
   //
   const input = document.getElementById("electronic_tazkira_number");
 
-  input.addEventListener("input", (e) => {
-    let value = e.target.value.replace(/\D/g, "");
+  if (input)
+    input.addEventListener("input", (e) => {
+      let value = e.target.value.replace(/\D/g, "");
 
-    if (value.length > 13) {
-      value = value.slice(0, 13);
-    }
+      if (value.length > 13) {
+        value = value.slice(0, 13);
+      }
 
-    if (value.length > 8) {
-      value = `${value.slice(0, 4)}-${value.slice(4, 8)}-${value.slice(8)}`;
-    } else if (value.length > 4) {
-      value = `${value.slice(0, 4)}-${value.slice(4)}`;
-    }
+      if (value.length > 8) {
+        value = `${value.slice(0, 4)}-${value.slice(4, 8)}-${value.slice(8)}`;
+      } else if (value.length > 4) {
+        value = `${value.slice(0, 4)}-${value.slice(4)}`;
+      }
 
-    e.target.value = value;
-  });
+      e.target.value = value;
+    });
 }).call(this);
