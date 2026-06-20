@@ -7,6 +7,7 @@ from app.extensions.console import console
 from app.extensions.db import db
 from app.models.district import District
 from app.models.province import Province
+from app.models.subject import SchoolSubject
 
 
 @click.command("seed-provinces-and-districts")
@@ -31,3 +32,17 @@ def seed_provinces_and_districts():
                 db.session.commit()
 
             console.print(province)
+
+
+@click.command("seed-school-subjects")
+@with_appcontext
+def seed_school_subjects():
+    with open("data/school-subjects.json", encoding="utf-8") as f:
+        subjects = json.load(f)
+
+        for s in subjects:
+            subject: SchoolSubject = SchoolSubject()
+            subject.label = s
+
+            db.session.add(subject)
+            db.session.commit()
