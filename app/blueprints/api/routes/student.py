@@ -277,7 +277,7 @@ def update_student() -> Response:
             response["message"] = g("STUDENT_RECORD_NOT_FOUND_MSG")
             response["category"] = "error"
     else:
-        response["errors"] = form.errors
+        response["errors"] = dict(form.errors) | form.errors_dct
 
     return Response(
         json.dumps(response),
