@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-19 09:41+0430\n"
+"POT-Creation-Date: 2026-06-20 10:03+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -133,7 +133,7 @@ msgstr ""
 msgid "CLASSES_LABEL"
 msgstr ""
 
-#: app/blueprints/admin/routes/student.py:15
+#: app/blueprints/admin/routes/student.py:16
 #: app/blueprints/api/routes/navbar.py:119
 #: app/templates/admin/components/charts/yearly-students.html:4
 #: app/templates/admin/components/rows/dashboard-stats.html:162
@@ -337,7 +337,7 @@ msgid "CLASS_UPDATED_SUCCESSFULLY_SUCCESS_MSG"
 msgstr ""
 
 #: app/blueprints/api/routes/class_.py:185
-#: app/blueprints/api/routes/daily_section.py:171
+#: app/blueprints/api/routes/daily_section.py:172
 #: app/blueprints/api/routes/department.py:207
 #: app/blueprints/api/routes/employee.py:245
 #: app/blueprints/api/routes/exam.py:204 app/blueprints/api/routes/job.py:196
@@ -356,7 +356,7 @@ msgid "CLASS_DELETED_SUCCESSFULLY_SUCCESS_MSG"
 msgstr ""
 
 #: app/blueprints/api/routes/class_.py:190
-#: app/blueprints/api/routes/daily_section.py:178
+#: app/blueprints/api/routes/daily_section.py:179
 #: app/blueprints/api/routes/department.py:212
 #: app/blueprints/api/routes/employee.py:250
 #: app/blueprints/api/routes/exam.py:209 app/blueprints/api/routes/job.py:201
@@ -442,19 +442,19 @@ msgstr ""
 msgid "DAILY_SECTION_RECORD_NOT_FOUND_MSG"
 msgstr ""
 
-#: app/blueprints/api/routes/daily_section.py:173
+#: app/blueprints/api/routes/daily_section.py:174
 msgid "DAILY_SECTION_HAS_BEEN_DELETED_SUCCESSFULLY_SUCCESS_MSG"
 msgstr ""
 
-#: app/blueprints/api/routes/daily_section.py:179
+#: app/blueprints/api/routes/daily_section.py:180
 msgid "DAILY_SECTION_NOT_FOUND_MSG"
 msgstr ""
 
-#: app/blueprints/api/routes/daily_section.py:208
+#: app/blueprints/api/routes/daily_section.py:209
 msgid "DAILY_SECTION_ADDED_SUCCESSFULLY_SUCCESS_MSG"
 msgstr ""
 
-#: app/blueprints/api/routes/daily_section.py:209
+#: app/blueprints/api/routes/daily_section.py:210
 msgid "DAILY_SECTION_ADDED_LABEL"
 msgstr ""
 
@@ -1589,7 +1589,7 @@ msgstr ""
 #: app/templates/admin/components/forms/add/student.html:293
 #: app/templates/admin/components/forms/add/subject.html:63
 #: app/templates/admin/components/forms/add/teacher.html:165
-#: app/templates/admin/components/forms/update/student.html:305
+#: app/templates/admin/components/forms/update/student.html:309
 #: app/templates/admin/components/forms/update/subject.html:64
 #: app/templates/admin/components/forms/update/teacher.html:166
 msgid "CHOOSE_A_FILE_MSG"
@@ -1598,7 +1598,7 @@ msgstr ""
 #: app/templates/admin/components/forms/add/student.html:295
 #: app/templates/admin/components/forms/add/subject.html:65
 #: app/templates/admin/components/forms/add/teacher.html:167
-#: app/templates/admin/components/forms/update/student.html:307
+#: app/templates/admin/components/forms/update/student.html:311
 #: app/templates/admin/components/forms/update/subject.html:66
 #: app/templates/admin/components/forms/update/teacher.html:168
 msgid "OR_DRAG_IT_HERE_MSG"
@@ -1607,10 +1607,30 @@ msgstr ""
 #: app/templates/admin/components/forms/add/student.html:301
 #: app/templates/admin/components/forms/add/subject.html:71
 #: app/templates/admin/components/forms/add/teacher.html:173
-#: app/templates/admin/components/forms/update/student.html:313
+#: app/templates/admin/components/forms/update/student.html:317
 #: app/templates/admin/components/forms/update/subject.html:72
 #: app/templates/admin/components/forms/update/teacher.html:174
 msgid "UPLOADED_FILES_LABEL"
+msgstr ""
+
+#: app/templates/admin/components/forms/update/student.html:334
+msgid "GRADE_10_LABEL"
+msgstr ""
+
+#: app/templates/admin/components/forms/update/student.html:335
+msgid "GRADE_11_LABEL"
+msgstr ""
+
+#: app/templates/admin/components/forms/update/student.html:336
+msgid "GRADE_12_LABEL"
+msgstr ""
+
+#: app/templates/admin/components/forms/update/student.html:363
+msgid "MAJMUE_LABEL"
+msgstr ""
+
+#: app/templates/admin/components/forms/update/student.html:369
+msgid "AVERAGE_LABEL"
 msgstr ""
 
 #: app/templates/admin/components/modals/add/class.html:14
@@ -4177,5 +4197,77 @@ msgstr ""
 
 #: data/provinces-and-districts.json
 msgid "MANOGAY_LABEL"
+msgstr ""
+
+#: data/school-subjects.json
+msgid "TAFSIR_LABEL"
+msgstr ""
+
+#: data/school-subjects.json
+msgid "HADITH_LABEL"
+msgstr ""
+
+#: data/school-subjects.json
+msgid "PASHTO_LABEL"
+msgstr ""
+
+#: data/school-subjects.json
+msgid "DARI_LABEL"
+msgstr ""
+
+#: data/school-subjects.json
+msgid "ENGLISH_LABEL"
+msgstr ""
+
+#: data/school-subjects.json
+msgid "MATHEMATICS_LABEL"
+msgstr ""
+
+#: data/school-subjects.json
+msgid "PHYSICS_LABEL"
+msgstr ""
+
+#: data/school-subjects.json
+msgid "CHEMISTRY_LABEL"
+msgstr ""
+
+#: data/school-subjects.json
+msgid "BIOLOGY_LABEL"
+msgstr ""
+
+#: data/school-subjects.json
+msgid "GEOLOGY_LABEL"
+msgstr ""
+
+#: data/school-subjects.json
+msgid "HISTORY_LABEL"
+msgstr ""
+
+#: data/school-subjects.json
+msgid "GEOGRAPHY_LABEL"
+msgstr ""
+
+#: data/school-subjects.json
+msgid "CIVIC_EDUCATION_LABEL"
+msgstr ""
+
+#: data/school-subjects.json
+msgid "COMPUTER_LABEL"
+msgstr ""
+
+#: data/school-subjects.json
+msgid "SPORT_LABEL"
+msgstr ""
+
+#: data/school-subjects.json
+msgid "CULTURE_LABEL"
+msgstr ""
+
+#: data/school-subjects.json
+msgid "ART_LABEL"
+msgstr ""
+
+#: data/school-subjects.json
+msgid "ELECTIVE_LABEL"
 msgstr ""
 
