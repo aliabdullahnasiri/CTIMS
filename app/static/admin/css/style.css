@@ -432,3 +432,14 @@ div.dropdown-menu {
   border-color: #73737380 !important;
   margin-bottom: 0px;
 }
+
+.row-wrapper {
+  border-radius: 16px;
+  text-align: center;
+  width: 100px;
+}
+
+.drop-zone ul li {
+  width: 80px;
+  height: 100px;
+}

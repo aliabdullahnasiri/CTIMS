@@ -140,18 +140,20 @@ async function submitForm(formElement) {
           const parent = input.parentElement;
           parent.classList.add("is-invalid");
 
-          const errorDiv = document.createElement("div");
-          errorDiv.classList.add("errors");
-          errorDiv.classList.add("px-2");
+          if (input.offsetWidth > 100) {
+            const errorDiv = document.createElement("div");
+            errorDiv.classList.add("errors");
+            errorDiv.classList.add("px-2");
 
-          messages.forEach((msg) => {
-            const span = document.createElement("span");
-            span.className = "text-danger small";
-            span.textContent = msg;
-            errorDiv.appendChild(span);
-          });
+            messages.forEach((msg) => {
+              const span = document.createElement("span");
+              span.className = "text-danger small";
+              span.textContent = msg;
+              errorDiv.appendChild(span);
+            });
 
-          parent.parentElement.appendChild(errorDiv);
+            parent.parentElement.appendChild(errorDiv);
+          }
         }
       });
     } else {
@@ -221,7 +223,7 @@ export function createListSectionItem(extension, size, uploaded, link, uid) {
   }
 
   liElement.classList.value =
-    "card w-25 height-100 p-2 mx-2 my-2 position-relative cursor-pointer";
+    "card height-100 p-2 mx-2 my-2 position-relative cursor-pointer";
   divHeaderElement.classList.value =
     "header position-absolute end-0 mt-n3 me-n2";
   divBodyElement.classList.value = "body h-100 d-grid align-items-end";
@@ -800,4 +802,42 @@ export function upload(files, dropZone) {
 
       e.target.value = value;
     });
+}).call(this);
+
+(function () {
+  const e = document.querySelector("table.school-subjects");
+
+  if (e) {
+    e.addEventListener(
+      "focus",
+      (event) => {
+        if (event.target.tagName === "INPUT" && event.target.value == 0)
+          event.target.value = null;
+      },
+      1,
+    );
+    e.addEventListener(
+      "focusout",
+      (event) => {
+        if (event.target.tagName === "INPUT" && !event.target.value)
+          event.target.value = 0;
+      },
+      1,
+    );
+    e.addEventListener("change", (event) => {
+      let sum = 0;
+      let count = 0;
+      e.querySelectorAll(
+        `input[data-name=${event.target.dataset.name}]`,
+      ).forEach((input) => {
+        sum += +input.value;
+        count += 1;
+      });
+
+      e.querySelector(`[data-sum='${event.target.dataset.name}']`).innerHTML =
+        sum;
+      e.querySelector(`[data-avg='${event.target.dataset.name}']`).innerHTML =
+        Math.round(sum / count) + "%";
+    });
+  }
 }).call(this);
