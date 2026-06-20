@@ -145,6 +145,9 @@ class Student(db.Model):
             "avatar": self.user.avatar_path,
             "phones": [phone.number for phone in self.user.phones.all()],
             "files": [f.to_dict() for f in self.user.files.all()],
+            "high_school_name": self.high_school_name,
+            "high_school_registration_no": self.high_school_registration_no,
+            "high_school_graduation_year": self.high_school_graduation_year,
             **{
                 f"grade_{grade}_sum": sum(
                     [s.score for s in self.school_subjects.filter_by(grade=grade).all()]
