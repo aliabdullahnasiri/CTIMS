@@ -4,6 +4,7 @@ from flask_babel import gettext as _
 from app.blueprints.admin import bp
 from app.forms.student import AddStudentForm, UpdateStudentForm
 from app.models.permission import Permission
+from app.models.subject import SchoolSubject
 from app.models.user import permission_required
 
 
@@ -14,4 +15,7 @@ def students():
         "admin/pages/students.html",
         title=_("STUDENTS_LABEL"),
         form={"a": AddStudentForm(), "u": UpdateStudentForm()},
+        **{
+            "SchoolSubject": SchoolSubject,
+        }
     )
