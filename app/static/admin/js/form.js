@@ -221,7 +221,7 @@ export function createListSectionItem(extension, size, uploaded, link, uid) {
   }
 
   liElement.classList.value =
-    "card w-20 height-100 p-2 mx-2 my-2 position-relative cursor-pointer";
+    "card w-25 height-100 p-2 mx-2 my-2 position-relative cursor-pointer";
   divHeaderElement.classList.value =
     "header position-absolute end-0 mt-n3 me-n2";
   divBodyElement.classList.value = "body h-100 d-grid align-items-end";
