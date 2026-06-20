@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-20 10:03+0430\n"
+"POT-Creation-Date: 2026-06-20 18:57+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -257,7 +257,7 @@ msgstr ""
 #: app/blueprints/api/routes/permission.py:16
 #: app/blueprints/api/routes/result.py:17 app/blueprints/api/routes/role.py:17
 #: app/blueprints/api/routes/semester.py:17
-#: app/blueprints/api/routes/student.py:20
+#: app/blueprints/api/routes/student.py:22
 #: app/blueprints/api/routes/subject.py:18
 #: app/blueprints/api/routes/teacher.py:20 app/blueprints/api/routes/time.py:17
 #: app/blueprints/api/routes/user.py:19 app/forms/department.py:65
@@ -344,7 +344,7 @@ msgstr ""
 #: app/blueprints/api/routes/result.py:192
 #: app/blueprints/api/routes/role.py:184
 #: app/blueprints/api/routes/semester.py:192
-#: app/blueprints/api/routes/student.py:299
+#: app/blueprints/api/routes/student.py:329
 #: app/blueprints/api/routes/subject.py:211
 #: app/blueprints/api/routes/teacher.py:240
 #: app/blueprints/api/routes/time.py:194 app/blueprints/api/routes/user.py:184
@@ -364,7 +364,7 @@ msgstr ""
 #: app/blueprints/api/routes/result.py:197
 #: app/blueprints/api/routes/role.py:195
 #: app/blueprints/api/routes/semester.py:197
-#: app/blueprints/api/routes/student.py:304
+#: app/blueprints/api/routes/student.py:334
 #: app/blueprints/api/routes/subject.py:216
 #: app/blueprints/api/routes/teacher.py:245
 #: app/blueprints/api/routes/time.py:199 app/blueprints/api/routes/user.py:190
@@ -415,7 +415,7 @@ msgstr ""
 #: app/blueprints/api/routes/result.py:165
 #: app/blueprints/api/routes/role.py:157
 #: app/blueprints/api/routes/semester.py:164
-#: app/blueprints/api/routes/student.py:272
+#: app/blueprints/api/routes/student.py:302
 #: app/blueprints/api/routes/subject.py:183
 #: app/blueprints/api/routes/time.py:167
 msgid "UPDATED_SUCCESS_MSG"
@@ -432,7 +432,7 @@ msgstr ""
 #: app/blueprints/api/routes/result.py:169
 #: app/blueprints/api/routes/role.py:161
 #: app/blueprints/api/routes/semester.py:168
-#: app/blueprints/api/routes/student.py:276
+#: app/blueprints/api/routes/student.py:306
 #: app/blueprints/api/routes/subject.py:187
 #: app/blueprints/api/routes/time.py:171
 msgid "NOT_FOUND_LABEL"
@@ -497,7 +497,7 @@ msgid "EMPLOYEE_LABEL"
 msgstr ""
 
 #: app/blueprints/api/routes/employee.py:22
-#: app/blueprints/api/routes/student.py:22
+#: app/blueprints/api/routes/student.py:24
 #: app/blueprints/api/routes/teacher.py:22 app/blueprints/api/routes/user.py:22
 #: app/forms/user.py:62 app/templates/admin/pages/profile.html:74
 #: app/templates/admin/views/information/employee.html:24
@@ -509,7 +509,7 @@ msgid "BIRTHDAY_LABEL"
 msgstr ""
 
 #: app/blueprints/api/routes/employee.py:23
-#: app/blueprints/api/routes/student.py:23
+#: app/blueprints/api/routes/student.py:25
 #: app/blueprints/api/routes/teacher.py:23 app/blueprints/api/routes/user.py:23
 #: app/templates/admin/views/information/employee.html:29
 #: app/templates/admin/views/information/student.html:26
@@ -649,7 +649,7 @@ msgstr ""
 msgid "TIMES_TITLE"
 msgstr ""
 
-#: app/blueprints/api/routes/navbar.py:111 app/forms/student.py:164
+#: app/blueprints/api/routes/navbar.py:111 app/forms/student.py:165
 msgid "DAILY_SECTION_LABEL"
 msgstr ""
 
@@ -685,7 +685,7 @@ msgstr ""
 
 #: app/blueprints/api/routes/attendance/student.py:18
 #: app/blueprints/api/routes/result.py:18
-#: app/blueprints/api/routes/student.py:21
+#: app/blueprints/api/routes/student.py:23
 #: app/templates/admin/views/tables/results.html:12
 #: app/templates/admin/views/tables/students.html:12
 msgid "STUDENT_LABEL"
@@ -805,32 +805,32 @@ msgstr ""
 msgid "SEMESTER_NOT_FOUND_MSG"
 msgstr ""
 
-#: app/blueprints/api/routes/student.py:85
-#: app/blueprints/api/routes/student.py:109
+#: app/blueprints/api/routes/student.py:87
+#: app/blueprints/api/routes/student.py:111
 msgid "STUDENT_WITH_THE_GIVEN_ID_WAS_NOT_FOUND_MSG"
 msgstr ""
 
-#: app/blueprints/api/routes/student.py:193
+#: app/blueprints/api/routes/student.py:195
 msgid "STUDENT_ADDED_SUCCESSFULLY_SUCCESS_MSG"
 msgstr ""
 
-#: app/blueprints/api/routes/student.py:194
+#: app/blueprints/api/routes/student.py:196
 msgid "STUDENT_ADDED_LABEL"
 msgstr ""
 
-#: app/blueprints/api/routes/student.py:273
+#: app/blueprints/api/routes/student.py:303
 msgid "STUDENT_UPDATED_SUCCESSFULLY_SUCCESS_MSG"
 msgstr ""
 
-#: app/blueprints/api/routes/student.py:277
+#: app/blueprints/api/routes/student.py:307
 msgid "STUDENT_RECORD_NOT_FOUND_MSG"
 msgstr ""
 
-#: app/blueprints/api/routes/student.py:300
+#: app/blueprints/api/routes/student.py:330
 msgid "STUDENT_DELETED_SUCCESSFULLY_SUCCESS_MSG"
 msgstr ""
 
-#: app/blueprints/api/routes/student.py:305
+#: app/blueprints/api/routes/student.py:335
 msgid "STUDENT_NOT_FOUND_MSG"
 msgstr ""
 
@@ -999,7 +999,7 @@ msgstr ""
 msgid "SPECIFIED_RECORD_DOES_NOT_EXIST"
 msgstr ""
 
-#: app/forms/__init__.py:131 app/forms/student.py:187
+#: app/forms/__init__.py:130 app/forms/student.py:205
 msgid "CHOICE_AN_OPTION_LABEL"
 msgstr ""
 
@@ -1022,11 +1022,11 @@ msgstr ""
 #: app/forms/role.py:14 app/forms/role.py:54 app/forms/semester.py:14
 #: app/forms/semester.py:21 app/forms/semester.py:27 app/forms/semester.py:47
 #: app/forms/signup.py:13 app/forms/signup.py:21 app/forms/signup.py:29
-#: app/forms/signup.py:36 app/forms/student.py:18 app/forms/student.py:26
-#: app/forms/student.py:43 app/forms/student.py:105 app/forms/student.py:113
-#: app/forms/student.py:136 app/forms/student.py:144 app/forms/student.py:166
-#: app/forms/student.py:204 app/forms/student.py:218 app/forms/student.py:234
-#: app/forms/student.py:241 app/forms/subject.py:21 app/forms/subject.py:38
+#: app/forms/signup.py:36 app/forms/student.py:19 app/forms/student.py:27
+#: app/forms/student.py:44 app/forms/student.py:106 app/forms/student.py:114
+#: app/forms/student.py:137 app/forms/student.py:145 app/forms/student.py:167
+#: app/forms/student.py:223 app/forms/student.py:237 app/forms/student.py:266
+#: app/forms/student.py:273 app/forms/subject.py:21 app/forms/subject.py:38
 #: app/forms/subject.py:60 app/forms/teacher.py:16 app/forms/teacher.py:45
 #: app/forms/teacher.py:52 app/forms/time.py:30 app/forms/time.py:36
 #: app/forms/time.py:49 app/forms/user.py:24 app/forms/user.py:37
@@ -1049,7 +1049,7 @@ msgstr ""
 #: app/forms/attendance/student.py:15 app/forms/attendance/teacher.py:15
 #: app/forms/class_.py:25 app/forms/class_.py:41 app/forms/class_.py:57
 #: app/forms/employee.py:24 app/forms/exam.py:57 app/forms/exam.py:73
-#: app/forms/result.py:25 app/forms/result.py:41 app/forms/student.py:249
+#: app/forms/result.py:25 app/forms/result.py:41 app/forms/student.py:281
 #: app/forms/teacher.py:17
 msgid "THIS_FIELD_MUST_BE_8_CHARACTERS_MSG"
 msgstr ""
@@ -1066,7 +1066,7 @@ msgstr ""
 msgid "ADD_CLASS_LABEL"
 msgstr ""
 
-#: app/forms/class_.py:75 app/forms/exam.py:70 app/forms/student.py:246
+#: app/forms/class_.py:75 app/forms/exam.py:70 app/forms/student.py:278
 #: app/templates/admin/views/information/student.html:6
 msgid "CLASS_UID_LABEL"
 msgstr ""
@@ -1084,7 +1084,7 @@ msgid "NUMBER_MUST_BE_POSITIVE"
 msgstr ""
 
 #: app/forms/daily_section.py:47 app/forms/employee.py:52
-#: app/forms/student.py:178 app/forms/user.py:94
+#: app/forms/student.py:194 app/forms/user.py:94
 msgid "ADD_LABEL"
 msgstr ""
 
@@ -1142,7 +1142,7 @@ msgstr ""
 msgid "EMPLOYEE_UID_LABEL"
 msgstr ""
 
-#: app/forms/employee.py:64 app/forms/student.py:239 app/forms/teacher.py:50
+#: app/forms/employee.py:64 app/forms/student.py:271 app/forms/teacher.py:50
 msgid "USER_UID_LABEL"
 msgstr ""
 
@@ -1237,7 +1237,7 @@ msgid "UPDATE_PERMISSION_LABEL"
 msgstr ""
 
 #: app/forms/attendance/student.py:12 app/forms/result.py:38
-#: app/forms/student.py:232
+#: app/forms/student.py:264
 msgid "STUDENT_UID_LABEL"
 msgstr ""
 
@@ -1326,83 +1326,97 @@ msgstr ""
 msgid "SIGN_UP_LABEL"
 msgstr ""
 
-#: app/forms/student.py:16
+#: app/forms/student.py:17
 msgid "FATHER_NAME_LABEL"
 msgstr ""
 
-#: app/forms/student.py:24
+#: app/forms/student.py:25
 msgid "GRANDFATHER_NAME_LABEL"
 msgstr ""
 
-#: app/forms/student.py:32
+#: app/forms/student.py:33
 msgid "KANKOR_ID"
 msgstr ""
 
-#: app/forms/student.py:36
+#: app/forms/student.py:37
 msgid "INVALID_KANKOR_ID_LABEL"
 msgstr ""
 
-#: app/forms/student.py:41
+#: app/forms/student.py:42
 msgid "IDENTITY_CARD_TYPE_LABEL"
 msgstr ""
 
-#: app/forms/student.py:46
+#: app/forms/student.py:47
 msgid "ELECTRONIC_TAZKIRA_LABEL"
 msgstr ""
 
-#: app/forms/student.py:47
+#: app/forms/student.py:48
 msgid "PAPER_TAZKIRA_LABEL"
 msgstr ""
 
-#: app/forms/student.py:53
+#: app/forms/student.py:54
 msgid "ELECTRONIC_TAZKIRA_NUMBER_LABEL"
 msgstr ""
 
-#: app/forms/student.py:57
+#: app/forms/student.py:58
 msgid "INVALID_NATIONAL_ID_LABEL"
 msgstr ""
 
-#: app/forms/student.py:66
+#: app/forms/student.py:67
 msgid "TAZKIRA_FOLDER_LABEL"
 msgstr ""
 
-#: app/forms/student.py:75
+#: app/forms/student.py:76
 msgid "TAZKIRA_PAGE_NUMBER_LABEL"
 msgstr ""
 
-#: app/forms/student.py:84
+#: app/forms/student.py:85
 msgid "TAZKIRA_REGISTRATION_NUMBER_LABEL"
 msgstr ""
 
-#: app/forms/student.py:93
+#: app/forms/student.py:94
 msgid "TAZKIRA_SAKOK_NUMBER_LABEL"
 msgstr ""
 
-#: app/forms/student.py:103
+#: app/forms/student.py:104
 msgid "PERMANENT_PROVINCE_LABEL"
 msgstr ""
 
-#: app/forms/student.py:111
+#: app/forms/student.py:112
 msgid "PERMANENT_DISTRICT_LABEL"
 msgstr ""
 
-#: app/forms/student.py:128
+#: app/forms/student.py:129
 msgid "PERMANENT_VILLAGE_LABEL"
 msgstr ""
 
-#: app/forms/student.py:134
+#: app/forms/student.py:135
 msgid "CURRENT_PROVINCE_LABEL"
 msgstr ""
 
-#: app/forms/student.py:142
+#: app/forms/student.py:143
 msgid "CURRENT_DISTRICT_LABEL"
 msgstr ""
 
-#: app/forms/student.py:159
+#: app/forms/student.py:160
 msgid "CURRENT_VILLAGE_LABEL"
 msgstr ""
 
-#: app/forms/student.py:261
+#: app/forms/student.py:180
+#: app/templates/admin/components/forms/update/student.html:306
+msgid "HIGH_SCHOOL_NAME_LABEL"
+msgstr ""
+
+#: app/forms/student.py:185
+#: app/templates/admin/components/forms/update/student.html:313
+msgid "HIGH_SCHOOL_REGISTRATION_NO_LABEL"
+msgstr ""
+
+#: app/forms/student.py:190
+msgid "HIGH_SCHOOL_GRADUATION_YEAR_LABEL"
+msgstr ""
+
+#: app/forms/student.py:293
 msgid "UPDATE_STUDENT_LABEL"
 msgstr ""
 
@@ -1589,7 +1603,7 @@ msgstr ""
 #: app/templates/admin/components/forms/add/student.html:293
 #: app/templates/admin/components/forms/add/subject.html:63
 #: app/templates/admin/components/forms/add/teacher.html:165
-#: app/templates/admin/components/forms/update/student.html:309
+#: app/templates/admin/components/forms/update/student.html:424
 #: app/templates/admin/components/forms/update/subject.html:64
 #: app/templates/admin/components/forms/update/teacher.html:166
 msgid "CHOOSE_A_FILE_MSG"
@@ -1598,7 +1612,7 @@ msgstr ""
 #: app/templates/admin/components/forms/add/student.html:295
 #: app/templates/admin/components/forms/add/subject.html:65
 #: app/templates/admin/components/forms/add/teacher.html:167
-#: app/templates/admin/components/forms/update/student.html:311
+#: app/templates/admin/components/forms/update/student.html:426
 #: app/templates/admin/components/forms/update/subject.html:66
 #: app/templates/admin/components/forms/update/teacher.html:168
 msgid "OR_DRAG_IT_HERE_MSG"
@@ -1607,29 +1621,49 @@ msgstr ""
 #: app/templates/admin/components/forms/add/student.html:301
 #: app/templates/admin/components/forms/add/subject.html:71
 #: app/templates/admin/components/forms/add/teacher.html:173
-#: app/templates/admin/components/forms/update/student.html:317
+#: app/templates/admin/components/forms/update/student.html:432
 #: app/templates/admin/components/forms/update/subject.html:72
 #: app/templates/admin/components/forms/update/teacher.html:174
 msgid "UPLOADED_FILES_LABEL"
 msgstr ""
 
-#: app/templates/admin/components/forms/update/student.html:334
+#: app/templates/admin/components/forms/update/student.html:298
+msgid "EDUCATIONAL_BACKGROUND_LABEL"
+msgstr ""
+
+#: app/templates/admin/components/forms/update/student.html:300
+msgid "EDUCATIONAL_BACKGROUND_DESC"
+msgstr ""
+
+#: app/templates/admin/components/forms/update/student.html:320
+msgid "GRADUATION_YEAR_LABEL"
+msgstr ""
+
+#: app/templates/admin/components/forms/update/student.html:328
+msgid "HIGH_SCHOOL_SCORES_LABEL"
+msgstr ""
+
+#: app/templates/admin/components/forms/update/student.html:330
+msgid "HIGH_SCHOOL_SCORES_DESC"
+msgstr ""
+
+#: app/templates/admin/components/forms/update/student.html:337
 msgid "GRADE_10_LABEL"
 msgstr ""
 
-#: app/templates/admin/components/forms/update/student.html:335
+#: app/templates/admin/components/forms/update/student.html:338
 msgid "GRADE_11_LABEL"
 msgstr ""
 
-#: app/templates/admin/components/forms/update/student.html:336
+#: app/templates/admin/components/forms/update/student.html:339
 msgid "GRADE_12_LABEL"
 msgstr ""
 
-#: app/templates/admin/components/forms/update/student.html:363
+#: app/templates/admin/components/forms/update/student.html:367
 msgid "MAJMUE_LABEL"
 msgstr ""
 
-#: app/templates/admin/components/forms/update/student.html:369
+#: app/templates/admin/components/forms/update/student.html:387
 msgid "AVERAGE_LABEL"
 msgstr ""
 
