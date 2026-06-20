@@ -96,6 +96,12 @@ class SchoolSubject(db.Model):
 
     label = db.Column(db.String(255), nullable=False)
 
+    students = db.relationship(
+        "StudentSubject",
+        back_populates="subject",
+        cascade="all, delete-orphan",
+    )
+
     def to_dict(self) -> Dict:
         return {
             "lable": self.label,
@@ -104,3 +110,43 @@ class SchoolSubject(db.Model):
 
     def __repr__(self):
         return f"<SchoolSubject label={self.label!r}>"
+
+
+class StudentSubject(db.Model):
+    __tablename__ = "student_subjects"
+
+    uid = None
+
+    student_uid = db.Column(
+        db.String(8),
+        db.ForeignKey("students.uid"),
+        nullable=False,
+    )
+
+    subject_uid = db.Column(
+        db.String(8),
+        db.ForeignKey("school_subject.uid"),
+        nullable=False,
+    )
+
+    grade = db.Column(db.Integer, nullable=False)
+    score = db.Column(db.Float, default=0, nullable=False)
+
+    __table_args__ = (
+        db.UniqueConstraint(
+            "student_uid",
+            "subject_uid",
+            "grade",
+            name="uq_student_subject",
+        ),
+    )
+
+    student = db.relationship(
+        "Student",
+        back_populates="school_subjects",
+    )
+
+    subject = db.relationship(
+        "SchoolSubject",
+        back_populates="students",
+    )
