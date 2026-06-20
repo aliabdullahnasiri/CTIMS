@@ -134,6 +134,25 @@ class Student(db.Model):
             "phones": [phone.number for phone in self.user.phones.all()],
             "files": [f.to_dict() for f in self.user.files.all()],
             **{
+                f"grade_{grade}_sum": sum(
+                    [s.score for s in self.school_subjects.filter_by(grade=grade).all()]
+                )
+                for grade in [10, 11, 12]
+            },
+            **{
+                f"grade_{grade}_avg": round(
+                    sum(
+                        [
+                            s.score
+                            for s in self.school_subjects.filter_by(grade=grade).all()
+                        ]
+                    )
+                    / c
+                )
+                for grade in [10, 11, 12]
+                if (c := self.school_subjects.filter_by(grade=grade).count())
+            },
+            **{
                 f"GRADE_{s.grade}_{s.subject_uid}": s.score
                 for s in self.school_subjects.all()
             },
