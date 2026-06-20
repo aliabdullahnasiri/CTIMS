@@ -54,3 +54,5 @@ config.local.py
 migrations/
 app/static/uploads/
 lib64
+
+docx-template
