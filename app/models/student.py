@@ -84,7 +84,12 @@ class Student(db.Model):
     results = db.relationship(
         "Result", back_populates="student", cascade="all, delete, delete-orphan"
     )
-
+    school_subjects = db.relationship(
+        "StudentSubject",
+        back_populates="student",
+        cascade="all, delete-orphan",
+        lazy="dynamic",
+    )
     user = db.relationship("User", cascade="delete")
 
     daily_section = db.relationship(
@@ -128,6 +133,10 @@ class Student(db.Model):
             "avatar": self.user.avatar_path,
             "phones": [phone.number for phone in self.user.phones.all()],
             "files": [f.to_dict() for f in self.user.files.all()],
+            **{
+                f"GRADE_{s.grade}_{s.subject_uid}": s.score
+                for s in self.school_subjects.all()
+            },
             **call(getattr(super(), "to_dict")),
         }
 
