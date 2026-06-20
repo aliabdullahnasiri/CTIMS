@@ -75,6 +75,18 @@ class Student(db.Model):
     )
     current_village = db.Column(db.String(255))
 
+    high_school_name = db.Column(
+        db.String(255), nullable=True, comment="High School Name"
+    )
+
+    high_school_registration_no = db.Column(
+        db.String(100), nullable=True, comment="High School Registration Number"
+    )
+
+    high_school_graduation_year = db.Column(
+        db.Integer, nullable=True, comment="Graduation Year"
+    )
+
     class_ = db.relationship("Class", back_populates="students")
     attendances = db.relationship(
         "StudentAttendance",
