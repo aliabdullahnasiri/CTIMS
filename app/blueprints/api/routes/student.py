@@ -1,4 +1,5 @@
 import json
+from re import sub
 from typing import Dict, List, Tuple, Union
 
 from flask import Response, request, url_for
@@ -14,6 +15,7 @@ from app.func import render_td
 from app.models.permission import Permission
 from app.models.role import Role
 from app.models.student import IdentityCardType, Student
+from app.models.subject import StudentSubject
 from app.models.user import User, permission_required
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
@@ -268,6 +270,34 @@ def update_student() -> Response:
                     console.print(err)
 
             db.session.commit()
+
+            for (grade, subject_uid), score in dict(
+                map(
+                    lambda item: (tuple(item[0].split("_")[1:]), int(item[1])),
+                    filter(
+                        lambda item: item[0].startswith("GRADE_"),
+                        list(request.form.items()),
+                    ),
+                )
+            ).items():
+                student_subject = StudentSubject.query.filter_by(
+                    student_uid=student.uid,
+                    subject_uid=subject_uid,
+                    grade=grade,
+                ).first()
+
+                if student_subject:
+                    student_subject.score = score
+                else:
+                    s = StudentSubject()
+                    s.subject_uid = subject_uid
+                    s.student_uid = student.uid
+                    s.grade = grade
+                    s.score = score
+
+                    db.session.add(s)
+
+                db.session.commit()
 
             response["title"] = g("UPDATED_SUCCESS_MSG")
             response["message"] = g("STUDENT_UPDATED_SUCCESSFULLY_SUCCESS_MSG")
