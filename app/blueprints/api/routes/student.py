@@ -247,6 +247,9 @@ def update_student() -> Response:
             student.current_province_uid = form.current_province.data
             student.current_district_uid = form.current_district.data
             student.current_village = form.current_village.data
+            student.high_school_name = form.high_school_name.data
+            student.high_school_registration_no = form.high_school_registration_no.data
+            student.high_school_graduation_year = form.high_school_graduation_year.data
 
             if form.identity_card_type.data == IdentityCardType.ELECTRONIC:
                 student.tazkira_folder = None
