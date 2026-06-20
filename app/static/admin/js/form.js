@@ -834,9 +834,9 @@ export function upload(files, dropZone) {
         count += 1;
       });
 
-      e.querySelector(`[data-sum='${event.target.dataset.name}']`).innerHTML =
+      e.querySelector(`[data-sum='${event.target.dataset.name}'] input`).value =
         sum;
-      e.querySelector(`[data-avg='${event.target.dataset.name}']`).innerHTML =
+      e.querySelector(`[data-avg='${event.target.dataset.name}'] input`).value =
         Math.round(sum / count) + "%";
     });
   }
