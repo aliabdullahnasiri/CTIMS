@@ -89,3 +89,18 @@ class Subject(db.Model):
                     for val in set(vals):
                         if file := File.query.filter_by(id=int(val)).scalar():
                             self.files.add(file)
+
+
+class SchoolSubject(db.Model):
+    __tablename__ = "school_subject"
+
+    label = db.Column(db.String(255), nullable=False)
+
+    def to_dict(self) -> Dict:
+        return {
+            "lable": self.label,
+            **call(getattr(super(), "to_dict")),
+        }
+
+    def __repr__(self):
+        return f"<SchoolSubject label={self.label!r}>"
