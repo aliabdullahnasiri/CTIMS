@@ -1,7 +1,7 @@
 from flask import request
 from flask_babel import gettext as _
-from wtforms import HiddenField, SelectField, StringField, SubmitField
-from wtforms.validators import DataRequired, Length, Optional, Regexp
+from wtforms import HiddenField, IntegerField, SelectField, StringField, SubmitField
+from wtforms.validators import DataRequired, Length, NumberRange, Optional, Regexp
 
 from app.const import KANKOR_ID_REGEX, NATIONAL_ID_REGEX
 from app.forms import ValidateUID
@@ -174,6 +174,21 @@ class AddStudentForm(AddUserForm):
             "data-search-col": "title",
             "data-template": "daily_sections.html",
         },
+    )
+
+    high_school_name = StringField(
+        _("HIGH_SCHOOL_NAME_LABEL"),
+        validators=[Optional(), Length(max=255)],
+    )
+
+    high_school_registration_no = StringField(
+        _("HIGH_SCHOOL_REGISTRATION_NO_LABEL"),
+        validators=[Optional(), Length(max=100)],
+    )
+
+    high_school_graduation_year = IntegerField(
+        _("HIGH_SCHOOL_GRADUATION_YEAR_LABEL"),
+        validators=[Optional(), NumberRange(min=1300, max=1500)],
     )
 
     submit = SubmitField(_("ADD_LABEL"))
