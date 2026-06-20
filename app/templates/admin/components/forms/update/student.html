@@ -293,80 +293,118 @@
       </div>
     </div>
     <div class="col-6">
-      <table class="mx-auto text-center school-subjects">
-        <thead>
-          <tr>
-            <td></td>
-            <td class="px-0"><div class="text-sm">{{ _("GRADE_10_LABEL") }}</div></td>
-            <td class="px-0"><div class="text-sm">{{ _("GRADE_11_LABEL") }}</div></td>
-            <td class="px-0"><div class="text-sm">{{ _("GRADE_12_LABEL") }}</div></td>
-          </tr>
-        </thead>
-        <tbody>
-          {% for s in SchoolSubject.query.all() %}
-            <tr data-school-subject-uid="{{ s.uid }}">
-              <td class="p-0 m-0"><div class="text-sm row-wrapper">{{ _(s.label) }}</div></td>
-              <td class="p-1 m-0">
-                <div class="input-group input-group-outline input-group-sm">
-                  <input type="number" class="form-control" value="0" id="GRADE_10_{{ s.uid }}" name="GRADE_10_{{ s.uid }}" data-name="grade_10">
-                </div>
+      <div class="row">
+        <div class="card-header pb-0 pt-0">
+            <h6>{{ _("EDUCATIONAL_BACKGROUND_LABEL") }}</h6>
+            <p class="text-sm text-muted mb-0">
+                {{ _("EDUCATIONAL_BACKGROUND_DESC") }}
+            </p>
+        </div>
+        <div class="row gy-2">
+          <div class="col-12">
+            <div class="input-group input-group-outline">
+              <label class="form-label">{{ _("HIGH_SCHOOL_NAME_LABEL") }}</label>
+              {{ f.high_school_name(class="form-control") }}
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="input-group input-group-outline">
+              <label class="form-label">{{ _("HIGH_SCHOOL_REGISTRATION_NO_LABEL") }}</label>
+              {{ f.high_school_registration_no(class="form-control") }}
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="input-group input-group-outline">
+              <label class="form-label">{{ _("GRADUATION_YEAR_LABEL") }}</label>
+              {{ f.high_school_graduation_year(class="form-control") }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="card-header pb-0 pt-3">
+          <h6>{{ _("HIGH_SCHOOL_SCORES_LABEL") }}</h6>
+          <p class="text-sm text-muted mb-1">
+            {{ _("HIGH_SCHOOL_SCORES_DESC") }}
+          </p>
+        </div> 
+        <table class="mx-auto text-center school-subjects">
+          <thead>
+            <tr>
+              <td></td>
+              <td class="px-0"><div class="text-sm">{{ _("GRADE_10_LABEL") }}</div></td>
+              <td class="px-0"><div class="text-sm">{{ _("GRADE_11_LABEL") }}</div></td>
+              <td class="px-0"><div class="text-sm">{{ _("GRADE_12_LABEL") }}</div></td>
+            </tr>
+          </thead>
+          <tbody>
+            {% for s in SchoolSubject.query.all() %}
+              <tr data-school-subject-uid="{{ s.uid }}">
+                <td class="p-0 m-0"><div class="text-sm row-wrapper">{{ _(s.label) }}</div></td>
+                <td class="p-1 m-0">
+                  <div class="input-group input-group-outline input-group-sm">
+                    <input type="number" class="form-control" value="0" id="GRADE_10_{{ s.uid }}" name="GRADE_10_{{ s.uid }}" data-name="grade_10">
+                  </div>
+                </td>
+                <td class="p-1 m-0">
+                  <div class="input-group input-group-outline input-group-sm">
+                    <input type="number" class="form-control" value="0" id="GRADE_11_{{ s.uid }}" name="GRADE_11_{{ s.uid }}" data-name="grade_11">
+                  </div>
+                </td>
+                <td class="p-1 m-0">
+                  <div class="input-group input-group-outline input-group-sm">
+                    <input type="number" class="form-control" value="0" id="GRADE_12_{{ s.uid }}" name="GRADE_12_{{ s.uid }}" data-name="grade_12">
+                  </div>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+          <tfoot>
+            <tr>
+              <td class="p-0 pt-2">
+                <div class="text-sm">{{ _("MAJMUE_LABEL") }}</div>
               </td>
-              <td class="p-1 m-0">
-                <div class="input-group input-group-outline input-group-sm">
-                  <input type="number" class="form-control" value="0" id="GRADE_11_{{ s.uid }}" name="GRADE_11_{{ s.uid }}" data-name="grade_11">
-                </div>
+              <td class="p-0 pt-2">
+                  <div class="text-sm" data-sum="grade_10">
+                    <input class="bg-transparent border-0 form-control p-0 text-auto text-center w-100" id="grade_10_sum" name="grade_10_sum" type="text" disabled />
+                  </div>
               </td>
-              <td class="p-1 m-0">
-                <div class="input-group input-group-outline input-group-sm">
-                  <input type="number" class="form-control" value="0" id="GRADE_12_{{ s.uid }}" name="GRADE_12_{{ s.uid }}" data-name="grade_12">
-                </div>
+              <td class="p-0 pt-2">
+                  <div class="text-sm" data-sum="grade_11">
+                    <input class="bg-transparent border-0 form-control p-0 text-auto text-center w-100" id="grade_11_sum" name="grade_11_sum" type="text" disabled />
+                  </div>
+              </td>
+              <td class="p-0 pt-2">
+                  <div class="text-sm" data-sum="grade_12">
+                    <input class="bg-transparent border-0 form-control p-0 text-auto text-center w-100" id="grade_12_sum" name="grade_12_sum" type="text" disabled />
+                  </div>
               </td>
             </tr>
-          {% endfor %}
-        </tbody>
-        <tfoot>
-          <tr>
-            <td class="p-0 pt-2">
-              <div class="text-sm">{{ _("MAJMUE_LABEL") }}</div>
-            </td>
-            <td class="p-0 pt-2">
-                <div class="text-sm" data-sum="grade_10">
-                  <input class="bg-transparent border-0 form-control p-0 text-auto text-center w-100" id="grade_10_sum" name="grade_10_sum" type="text" disabled />
-                </div>
-            </td>
-            <td class="p-0 pt-2">
-                <div class="text-sm" data-sum="grade_11">
-                  <input class="bg-transparent border-0 form-control p-0 text-auto text-center w-100" id="grade_11_sum" name="grade_11_sum" type="text" disabled />
-                </div>
-            </td>
-            <td class="p-0 pt-2">
-                <div class="text-sm" data-sum="grade_12">
-                  <input class="bg-transparent border-0 form-control p-0 text-auto text-center w-100" id="grade_12_sum" name="grade_12_sum" type="text" disabled />
-                </div>
-            </td>
-          </tr>
-          <tr>
-            <td class="p-0 pt-1">
-              <div class="text-sm">{{ _("AVERAGE_LABEL") }}</div>
-            </td>
-            <td class="p-0 pt-2">
-                <div class="text-sm" data-avg="grade_10">
-                  <input class="bg-transparent border-0 form-control p-0 text-auto text-center w-100" id="grade_10_avg" name="grade_10_avg" type="text" disabled />
-                </div>
-            </td>
-            <td class="p-0 pt-2">
-                <div class="text-sm" data-avg="grade_11">
-                  <input class="bg-transparent border-0 form-control p-0 text-auto text-center w-100" id="grade_11_avg" name="grade_11_avg" type="text" disabled />
-                </div>
-            </td>
-            <td class="p-0 pt-2">
-                <div class="text-sm" data-avg="grade_12">
-                  <input class="bg-transparent border-0 form-control p-0 text-auto text-center w-100" id="grade_12_avg" name="grade_12_avg" type="text" disabled />
-                </div>
-            </td>
-          </tr>
-        </tfoot>
-      </table>
+            <tr>
+              <td class="p-0 pt-1">
+                <div class="text-sm">{{ _("AVERAGE_LABEL") }}</div>
+              </td>
+              <td class="p-0 pt-2">
+                  <div class="text-sm" data-avg="grade_10">
+                    <input class="bg-transparent border-0 form-control p-0 text-auto text-center w-100" id="grade_10_avg" name="grade_10_avg" type="text" disabled />
+                  </div>
+              </td>
+              <td class="p-0 pt-2">
+                  <div class="text-sm" data-avg="grade_11">
+                    <input class="bg-transparent border-0 form-control p-0 text-auto text-center w-100" id="grade_11_avg" name="grade_11_avg" type="text" disabled />
+                  </div>
+              </td>
+              <td class="p-0 pt-2">
+                  <div class="text-sm" data-avg="grade_12">
+                    <input class="bg-transparent border-0 form-control p-0 text-auto text-center w-100" id="grade_12_avg" name="grade_12_avg" type="text" disabled />
+                  </div>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
     </div>
     <div class="col-12">
       <div class="row">
