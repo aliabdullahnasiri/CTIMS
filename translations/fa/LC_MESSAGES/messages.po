@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-19 09:41+0430\n"
+"POT-Creation-Date: 2026-06-20 10:03+0430\n"
 "PO-Revision-Date: 2026-06-17 19:08+0430\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fa_AF\n"
@@ -134,7 +134,7 @@ msgstr "مضامین"
 msgid "CLASSES_LABEL"
 msgstr "صنف‌ها"
 
-#: app/blueprints/admin/routes/student.py:15
+#: app/blueprints/admin/routes/student.py:16
 #: app/blueprints/api/routes/navbar.py:119
 #: app/templates/admin/components/charts/yearly-students.html:4
 #: app/templates/admin/components/rows/dashboard-stats.html:162
@@ -150,7 +150,7 @@ msgstr "صنف‌ها"
 #: app/templates/admin/views/time.html:54
 #: app/templates/admin/views/time.html:125 app/translations_stub.py:26
 msgid "STUDENTS_LABEL"
-msgstr "شاگردان"
+msgstr "محصلان"
 
 #: app/blueprints/admin/routes/exam.py:15
 #: app/blueprints/api/routes/navbar.py:127
@@ -183,7 +183,7 @@ msgstr "حاضری اساتید"
 #: app/blueprints/admin/routes/attendance.py:32
 #: app/blueprints/api/routes/navbar.py:151 app/translations_stub.py:30
 msgid "STUDENTS_ATTENDANCES_LABEL"
-msgstr "حاضری شاگردان"
+msgstr "حاضری محصلان"
 
 #: app/translations_stub.py:33
 msgid "ACCOUNT_LABEL"
@@ -338,7 +338,7 @@ msgid "CLASS_UPDATED_SUCCESSFULLY_SUCCESS_MSG"
 msgstr "صنف با موفقیت بروزرسانی شد"
 
 #: app/blueprints/api/routes/class_.py:185
-#: app/blueprints/api/routes/daily_section.py:171
+#: app/blueprints/api/routes/daily_section.py:172
 #: app/blueprints/api/routes/department.py:207
 #: app/blueprints/api/routes/employee.py:245
 #: app/blueprints/api/routes/exam.py:204 app/blueprints/api/routes/job.py:196
@@ -357,7 +357,7 @@ msgid "CLASS_DELETED_SUCCESSFULLY_SUCCESS_MSG"
 msgstr "صنف با موفقیت حذف شد"
 
 #: app/blueprints/api/routes/class_.py:190
-#: app/blueprints/api/routes/daily_section.py:178
+#: app/blueprints/api/routes/daily_section.py:179
 #: app/blueprints/api/routes/department.py:212
 #: app/blueprints/api/routes/employee.py:250
 #: app/blueprints/api/routes/exam.py:209 app/blueprints/api/routes/job.py:201
@@ -443,19 +443,19 @@ msgstr "یافت نشد"
 msgid "DAILY_SECTION_RECORD_NOT_FOUND_MSG"
 msgstr "ریکاردی برای بخش روزانه یافت نشد"
 
-#: app/blueprints/api/routes/daily_section.py:173
+#: app/blueprints/api/routes/daily_section.py:174
 msgid "DAILY_SECTION_HAS_BEEN_DELETED_SUCCESSFULLY_SUCCESS_MSG"
 msgstr "بخش روزانه با موفقیت حذف گردید"
 
-#: app/blueprints/api/routes/daily_section.py:179
+#: app/blueprints/api/routes/daily_section.py:180
 msgid "DAILY_SECTION_NOT_FOUND_MSG"
 msgstr "بخش روزانه یافت نشد"
 
-#: app/blueprints/api/routes/daily_section.py:208
+#: app/blueprints/api/routes/daily_section.py:209
 msgid "DAILY_SECTION_ADDED_SUCCESSFULLY_SUCCESS_MSG"
 msgstr "بخش روزانه با موفقیت علاوه شد"
 
-#: app/blueprints/api/routes/daily_section.py:209
+#: app/blueprints/api/routes/daily_section.py:210
 msgid "DAILY_SECTION_ADDED_LABEL"
 msgstr "بخش روزانه علاوه شد"
 
@@ -690,7 +690,7 @@ msgstr "کاربر با موفقیت بروزرسانی شد"
 #: app/templates/admin/views/tables/results.html:12
 #: app/templates/admin/views/tables/students.html:12
 msgid "STUDENT_LABEL"
-msgstr "شاگرد"
+msgstr "محصل"
 
 #: app/blueprints/api/routes/result.py:19
 #: app/templates/admin/views/tables/results.html:17
@@ -809,31 +809,31 @@ msgstr "سمستر یافت نشد"
 #: app/blueprints/api/routes/student.py:85
 #: app/blueprints/api/routes/student.py:109
 msgid "STUDENT_WITH_THE_GIVEN_ID_WAS_NOT_FOUND_MSG"
-msgstr "شاگرد با شناسه داده شده یافت نشد"
+msgstr "محصل با شناسه داده شده یافت نشد"
 
 #: app/blueprints/api/routes/student.py:193
 msgid "STUDENT_ADDED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "شاگرد با موفقیت علاوه شد"
+msgstr "محصل با موفقیت علاوه شد"
 
 #: app/blueprints/api/routes/student.py:194
 msgid "STUDENT_ADDED_LABEL"
-msgstr "شاگرد علاوه شد"
+msgstr "محصل علاوه شد"
 
 #: app/blueprints/api/routes/student.py:273
 msgid "STUDENT_UPDATED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "شاگرد با موفقیت بروزرسانی شد"
+msgstr "محصل با موفقیت بروزرسانی شد"
 
 #: app/blueprints/api/routes/student.py:277
 msgid "STUDENT_RECORD_NOT_FOUND_MSG"
-msgstr "ریکاردی برای شاگرد یافت نشد"
+msgstr "ریکاردی برای محصل یافت نشد"
 
 #: app/blueprints/api/routes/student.py:300
 msgid "STUDENT_DELETED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "شاگرد با موفقیت حذف شد"
+msgstr "محصل با موفقیت حذف شد"
 
 #: app/blueprints/api/routes/student.py:305
 msgid "STUDENT_NOT_FOUND_MSG"
-msgstr "شاگرد یافت نشد"
+msgstr "محصل یافت نشد"
 
 #: app/blueprints/api/routes/subject.py:21 app/forms/subject.py:33
 #: app/templates/admin/views/information/subject.html:12
@@ -981,7 +981,7 @@ msgstr "حاضری با شناسه داده شده یافت نشد"
 
 #: app/blueprints/api/routes/attendance/student.py:139
 msgid "STUDENT_ATTENDANCE_ADDED_SUCCESSFULLY_SUCCESS_MSG"
-msgstr "حاضری شاگرد با موفقیت علاوه شد"
+msgstr "حاضری محصل با موفقیت علاوه شد"
 
 #: app/blueprints/api/routes/attendance/student.py:140
 #: app/blueprints/api/routes/attendance/teacher.py:140
@@ -1240,7 +1240,7 @@ msgstr "بروزرسانی صلاحیت"
 #: app/forms/attendance/student.py:12 app/forms/result.py:38
 #: app/forms/student.py:232
 msgid "STUDENT_UID_LABEL"
-msgstr "شناسه شاگرد"
+msgstr "شناسه محصل"
 
 #: app/forms/result.py:54
 msgid "OBTAINED_MARKS_LABEL"
@@ -1405,7 +1405,7 @@ msgstr "قریه فعلی"
 
 #: app/forms/student.py:261
 msgid "UPDATE_STUDENT_LABEL"
-msgstr "بروزرسانی شاگرد"
+msgstr "بروزرسانی محصل"
 
 #: app/forms/subject.py:19
 msgid "SUBJECT_NAME_LABEL"
@@ -1590,7 +1590,7 @@ msgstr "نسبت به سال گذشته"
 #: app/templates/admin/components/forms/add/student.html:293
 #: app/templates/admin/components/forms/add/subject.html:63
 #: app/templates/admin/components/forms/add/teacher.html:165
-#: app/templates/admin/components/forms/update/student.html:305
+#: app/templates/admin/components/forms/update/student.html:309
 #: app/templates/admin/components/forms/update/subject.html:64
 #: app/templates/admin/components/forms/update/teacher.html:166
 msgid "CHOOSE_A_FILE_MSG"
@@ -1599,7 +1599,7 @@ msgstr "یک فایل انتخاب کنید"
 #: app/templates/admin/components/forms/add/student.html:295
 #: app/templates/admin/components/forms/add/subject.html:65
 #: app/templates/admin/components/forms/add/teacher.html:167
-#: app/templates/admin/components/forms/update/student.html:307
+#: app/templates/admin/components/forms/update/student.html:311
 #: app/templates/admin/components/forms/update/subject.html:66
 #: app/templates/admin/components/forms/update/teacher.html:168
 msgid "OR_DRAG_IT_HERE_MSG"
@@ -1608,11 +1608,31 @@ msgstr "یا آن را اینجا بکشید"
 #: app/templates/admin/components/forms/add/student.html:301
 #: app/templates/admin/components/forms/add/subject.html:71
 #: app/templates/admin/components/forms/add/teacher.html:173
-#: app/templates/admin/components/forms/update/student.html:313
+#: app/templates/admin/components/forms/update/student.html:317
 #: app/templates/admin/components/forms/update/subject.html:72
 #: app/templates/admin/components/forms/update/teacher.html:174
 msgid "UPLOADED_FILES_LABEL"
 msgstr "فایل‌های آپلود شده"
+
+#: app/templates/admin/components/forms/update/student.html:334
+msgid "GRADE_10_LABEL"
+msgstr "صنف ۱۰"
+
+#: app/templates/admin/components/forms/update/student.html:335
+msgid "GRADE_11_LABEL"
+msgstr "صنف ۱۱"
+
+#: app/templates/admin/components/forms/update/student.html:336
+msgid "GRADE_12_LABEL"
+msgstr "صنف ۱۲"
+
+#: app/templates/admin/components/forms/update/student.html:363
+msgid "MAJMUE_LABEL"
+msgstr "مجموعه"
+
+#: app/templates/admin/components/forms/update/student.html:369
+msgid "AVERAGE_LABEL"
+msgstr "اوسط"
 
 #: app/templates/admin/components/modals/add/class.html:14
 msgid "ADD_NEW_CLASS_MSG"
@@ -1688,11 +1708,11 @@ msgstr "جزئیات سمستر را در زیر پر کنید تا یک سمس�
 
 #: app/templates/admin/components/modals/add/student.html:14
 msgid "ADD_NEW_STUDENT_MSG"
-msgstr "علاوه کردن شاگرد جدید"
+msgstr "علاوه کردن محصل جدید"
 
 #: app/templates/admin/components/modals/add/student.html:16
 msgid "FILL_IN_THE_STUDENT_S_DETAILS_BELOW_TO_CREATE_A_NEW_STUDENT_MSG"
-msgstr "جزئیات شاگرد را در زیر پر کنید تا یک شاگرد جدید ایجاد شود"
+msgstr "جزئیات محصل را در زیر پر کنید تا یک محصل جدید ایجاد شود"
 
 #: app/templates/admin/components/modals/add/subject.html:14
 msgid "ADD_NEW_SUBJECT_MSG"
@@ -1728,7 +1748,7 @@ msgstr "جزئیات کاربر را در زیر پر کنید تا یک حسا�
 
 #: app/templates/admin/components/modals/add/attendance/student.html:14
 msgid "ADD_STUDENT_ATTENDANCE_MSG"
-msgstr "علاوه کردن حاضری شاگرد"
+msgstr "علاوه کردن حاضری محصل"
 
 #: app/templates/admin/components/modals/add/attendance/student.html:17
 #: app/templates/admin/components/modals/add/attendance/teacher.html:17
@@ -1829,11 +1849,11 @@ msgstr "توضیحات بروزرسانی سمستر"
 
 #: app/templates/admin/components/modals/update/student.html:14
 msgid "UPDATE_STUDENT_INFORMATION_MSG"
-msgstr "بروزرسانی معلومات شاگرد"
+msgstr "بروزرسانی معلومات محصل"
 
 #: app/templates/admin/components/modals/update/student.html:16
 msgid "UPDATE_STUDENT_DESCRIPTION_MODAL_MSG"
-msgstr "توضیحات بروزرسانی شاگرد"
+msgstr "توضیحات بروزرسانی محصل"
 
 #: app/templates/admin/components/modals/update/subject.html:14
 msgid "UPDATE_SUBJECT_INFORMATION_MSG"
@@ -1977,7 +1997,7 @@ msgstr "معلومات سمستر"
 
 #: app/templates/admin/views/student.html:29
 msgid "STUDENT_INFORMATION_LABEL"
-msgstr "معلومات شاگرد"
+msgstr "معلومات محصل"
 
 #: app/templates/admin/views/student.html:96
 #: app/templates/admin/views/subject.html:137
@@ -2086,7 +2106,7 @@ msgstr "هنوز سمستری وجود ندارد"
 
 #: app/templates/admin/views/tables/students.html:51
 msgid "NO_STUDENTS_YET_MSG"
-msgstr "هنوز شاگردی وجود ندارد"
+msgstr "هنوز محصلی وجود ندارد"
 
 #: app/templates/admin/views/tables/subjects.html:37
 msgid "NO_SUBJECTS_YET_MSG"
@@ -4179,4 +4199,76 @@ msgstr "وته پور"
 #: data/provinces-and-districts.json
 msgid "MANOGAY_LABEL"
 msgstr "مانوګی"
+
+#: data/school-subjects.json
+msgid "TAFSIR_LABEL"
+msgstr "تفسیر شریف"
+
+#: data/school-subjects.json
+msgid "HADITH_LABEL"
+msgstr "احادیث شریف"
+
+#: data/school-subjects.json
+msgid "PASHTO_LABEL"
+msgstr "پشتو"
+
+#: data/school-subjects.json
+msgid "DARI_LABEL"
+msgstr "دری"
+
+#: data/school-subjects.json
+msgid "ENGLISH_LABEL"
+msgstr "انگلیسی"
+
+#: data/school-subjects.json
+msgid "MATHEMATICS_LABEL"
+msgstr "ریاضی"
+
+#: data/school-subjects.json
+msgid "PHYSICS_LABEL"
+msgstr "فزیک"
+
+#: data/school-subjects.json
+msgid "CHEMISTRY_LABEL"
+msgstr "کیمیا"
+
+#: data/school-subjects.json
+msgid "BIOLOGY_LABEL"
+msgstr "بیولوژی"
+
+#: data/school-subjects.json
+msgid "GEOLOGY_LABEL"
+msgstr "جیولوجی"
+
+#: data/school-subjects.json
+msgid "HISTORY_LABEL"
+msgstr "تاریخ"
+
+#: data/school-subjects.json
+msgid "GEOGRAPHY_LABEL"
+msgstr "جغرافیه"
+
+#: data/school-subjects.json
+msgid "CIVIC_EDUCATION_LABEL"
+msgstr "تعلیمات مدنی"
+
+#: data/school-subjects.json
+msgid "COMPUTER_LABEL"
+msgstr "کمپیوتر"
+
+#: data/school-subjects.json
+msgid "SPORT_LABEL"
+msgstr "سپورت"
+
+#: data/school-subjects.json
+msgid "CULTURE_LABEL"
+msgstr "فرهنگ"
+
+#: data/school-subjects.json
+msgid "ART_LABEL"
+msgstr "تهذیب"
+
+#: data/school-subjects.json
+msgid "ELECTIVE_LABEL"
+msgstr "انتخابی"
 
