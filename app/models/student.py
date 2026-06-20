@@ -140,17 +140,22 @@ class Student(db.Model):
                 for grade in [10, 11, 12]
             },
             **{
-                f"grade_{grade}_avg": round(
-                    sum(
-                        [
-                            s.score
-                            for s in self.school_subjects.filter_by(grade=grade).all()
-                        ]
+                f"grade_{grade}_avg": "{}%".format(
+                    round(
+                        sum(
+                            [
+                                s.score
+                                for s in self.school_subjects.filter_by(
+                                    grade=grade
+                                ).all()
+                            ]
+                        )
+                        / c
                     )
-                    / c
+                    if (c := self.school_subjects.filter_by(grade=grade).count())
+                    else 0
                 )
                 for grade in [10, 11, 12]
-                if (c := self.school_subjects.filter_by(grade=grade).count())
             },
             **{
                 f"GRADE_{s.grade}_{s.subject_uid}": s.score
