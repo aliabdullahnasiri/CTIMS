@@ -291,40 +291,6 @@
           </div>
         </div>
       </div>
-
-      <div class="row">
-        <div class="col-md-12">
-          <div class="mx-2">{{ f.files.label(class="form-label") }}</div>
-          <div class="card drop-zone position-relative">
-            <div
-              class="d-grid align-item-center align-content-center justify-content-center w-100 h-100 py-5"
-            >
-              <div class="text-center">
-                <i class="material-symbols-rounded opacity-5 fs-1">upload</i>
-              </div>
-              <span
-                ><strong
-                  class="open-default-file-input-modal cursor-pointer"
-                  data-id="{{ f.files.id }}"
-                  >{{ _("CHOOSE_A_FILE_MSG") }}</strong
-                >
-                {{ _("OR_DRAG_IT_HERE_MSG") }}</span
-              >
-            </div>
-
-            <div class="list-section pt-0 pb-2 px-2">
-              <hr class="dark horizontal mb-3 mt-0" />
-              <div class="list-title fs-5 m-2">{{ _("UPLOADED_FILES_LABEL") }}</div>
-              <ul class="list-unstyled d-flex flex-wrap mt-4 mx-2 px-2 justify-content-center"></ul>
-            </div>
-            {{ f.files(class="form-control d-none") }}
-          </div>
-        </div>
-      </div>
-
-      <div class="text-center">
-        {{ f.submit(class="btn bg-gradient-info btn-lg w-100 mt-4 mb-0") }}
-      </div>
     </div>
     <div class="col-6">
       <table class="mx-auto text-center school-subjects">
@@ -401,6 +367,41 @@
           </tr>
         </tfoot>
       </table>
+    </div>
+    <div class="col-12">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="mx-2">{{ f.files.label(class="form-label") }}</div>
+          <div class="card drop-zone position-relative">
+            <div
+              class="d-grid align-item-center align-content-center justify-content-center w-100 h-100 py-5"
+            >
+              <div class="text-center">
+                <i class="material-symbols-rounded opacity-5 fs-1">upload</i>
+              </div>
+              <span
+                ><strong
+                  class="open-default-file-input-modal cursor-pointer"
+                  data-id="{{ f.files.id }}"
+                  >{{ _("CHOOSE_A_FILE_MSG") }}</strong
+                >
+                {{ _("OR_DRAG_IT_HERE_MSG") }}</span
+              >
+            </div>
+
+            <div class="list-section pt-0 pb-2 px-2">
+              <hr class="dark horizontal mb-3 mt-0" />
+              <div class="list-title fs-5 m-2">{{ _("UPLOADED_FILES_LABEL") }}</div>
+              <ul class="list-unstyled d-flex flex-wrap mt-4 mx-2 px-2 justify-content-center"></ul>
+            </div>
+            {{ f.files(class="form-control d-none") }}
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center">
+        {{ f.submit(class="btn bg-gradient-info btn-lg w-100 mt-4 mb-0") }}
+      </div>
     </div>
   </div>
 </form>
