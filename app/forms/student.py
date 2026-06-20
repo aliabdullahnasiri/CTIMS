@@ -1,3 +1,4 @@
+from flask import request
 from flask_babel import gettext as _
 from wtforms import HiddenField, SelectField, StringField, SubmitField
 from wtforms.validators import DataRequired, Length, Optional, Regexp
@@ -177,6 +178,8 @@ class AddStudentForm(AddUserForm):
 
     submit = SubmitField(_("ADD_LABEL"))
 
+    errors_dct = {}
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -192,8 +195,9 @@ class AddStudentForm(AddUserForm):
                 pass
 
     def validate(self, extra_validators=None) -> bool:
+        r = True
         if not super().validate(extra_validators):
-            return False
+            r = False
 
         tz_type = self.identity_card_type.data
 
@@ -203,7 +207,7 @@ class AddStudentForm(AddUserForm):
                 self.electronic_tazkira_number.errors.append(
                     _("THIS_FIELD_IS_REQUIRED_ERROR")
                 )
-                return False
+                r = False
 
         # PAPER tazkira rules
         elif tz_type == IdentityCardType.PAPER:
@@ -222,9 +226,22 @@ class AddStudentForm(AddUserForm):
                 self.tazkira_registration_number.errors.append(msg)
                 self.tazkira_sakok_number.errors.append(msg)
 
-                return False
+                r = False
 
-        return True
+        # Subjects
+        self.errors_dct = {}
+        for key, value in request.form.items():
+            if key.startswith("GRADE_"):
+                try:
+                    val = int(value)
+                except ValueError:
+                    self.errors_dct.setdefault(key, [f"{key} must be a number"])
+                    continue
+
+                if val < 0 or val > 100:
+                    self.errors_dct.setdefault(key, [f"{key} must be 0–100"])
+
+        return r and len(self.errors_dct) == 0
 
 
 class UpdateStudentForm(UpdateUserForm, AddStudentForm):
