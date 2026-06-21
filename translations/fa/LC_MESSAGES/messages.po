@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-20 18:57+0430\n"
+"POT-Creation-Date: 2026-06-20 19:21+0430\n"
 "PO-Revision-Date: 2026-06-17 19:08+0430\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fa_AF\n"
@@ -170,7 +170,7 @@ msgstr "امتحانات"
 #: app/templates/admin/views/exam.html:81
 #: app/templates/admin/views/exam.html:147
 #: app/templates/admin/views/semester.html:216
-#: app/templates/admin/views/student.html:121
+#: app/templates/admin/views/student.html:134
 #: app/templates/admin/views/tabs/results.html:5 app/translations_stub.py:28
 msgid "RESULTS_LABEL"
 msgstr "نتایج"
@@ -345,7 +345,7 @@ msgstr "صنف با موفقیت بروزرسانی شد"
 #: app/blueprints/api/routes/result.py:192
 #: app/blueprints/api/routes/role.py:184
 #: app/blueprints/api/routes/semester.py:192
-#: app/blueprints/api/routes/student.py:329
+#: app/blueprints/api/routes/student.py:332
 #: app/blueprints/api/routes/subject.py:211
 #: app/blueprints/api/routes/teacher.py:240
 #: app/blueprints/api/routes/time.py:194 app/blueprints/api/routes/user.py:184
@@ -365,7 +365,7 @@ msgstr "صنف با موفقیت حذف شد"
 #: app/blueprints/api/routes/result.py:197
 #: app/blueprints/api/routes/role.py:195
 #: app/blueprints/api/routes/semester.py:197
-#: app/blueprints/api/routes/student.py:334
+#: app/blueprints/api/routes/student.py:337
 #: app/blueprints/api/routes/subject.py:216
 #: app/blueprints/api/routes/teacher.py:245
 #: app/blueprints/api/routes/time.py:199 app/blueprints/api/routes/user.py:190
@@ -416,7 +416,7 @@ msgstr "بخش روزانه با شناسه داده شده یافت نشد"
 #: app/blueprints/api/routes/result.py:165
 #: app/blueprints/api/routes/role.py:157
 #: app/blueprints/api/routes/semester.py:164
-#: app/blueprints/api/routes/student.py:302
+#: app/blueprints/api/routes/student.py:305
 #: app/blueprints/api/routes/subject.py:183
 #: app/blueprints/api/routes/time.py:167
 msgid "UPDATED_SUCCESS_MSG"
@@ -433,7 +433,7 @@ msgstr "بخش روزانه با موفقیت بروزرسانی شد"
 #: app/blueprints/api/routes/result.py:169
 #: app/blueprints/api/routes/role.py:161
 #: app/blueprints/api/routes/semester.py:168
-#: app/blueprints/api/routes/student.py:306
+#: app/blueprints/api/routes/student.py:309
 #: app/blueprints/api/routes/subject.py:187
 #: app/blueprints/api/routes/time.py:171
 msgid "NOT_FOUND_LABEL"
@@ -819,19 +819,19 @@ msgstr "محصل با موفقیت علاوه شد"
 msgid "STUDENT_ADDED_LABEL"
 msgstr "محصل علاوه شد"
 
-#: app/blueprints/api/routes/student.py:303
+#: app/blueprints/api/routes/student.py:306
 msgid "STUDENT_UPDATED_SUCCESSFULLY_SUCCESS_MSG"
 msgstr "محصل با موفقیت بروزرسانی شد"
 
-#: app/blueprints/api/routes/student.py:307
+#: app/blueprints/api/routes/student.py:310
 msgid "STUDENT_RECORD_NOT_FOUND_MSG"
 msgstr "ریکاردی برای محصل یافت نشد"
 
-#: app/blueprints/api/routes/student.py:330
+#: app/blueprints/api/routes/student.py:333
 msgid "STUDENT_DELETED_SUCCESSFULLY_SUCCESS_MSG"
 msgstr "محصل با موفقیت حذف شد"
 
-#: app/blueprints/api/routes/student.py:335
+#: app/blueprints/api/routes/student.py:338
 msgid "STUDENT_NOT_FOUND_MSG"
 msgstr "محصل یافت نشد"
 
@@ -1171,8 +1171,8 @@ msgid "ADD_EXAM_LABEL"
 msgstr "علاوه کردن امتحان"
 
 #: app/forms/exam.py:98 app/forms/result.py:80 app/forms/subject.py:51
-#: app/forms/user.py:66 app/templates/admin/views/student.html:81
-#: app/templates/admin/views/student.html:145
+#: app/forms/user.py:66 app/templates/admin/views/student.html:93
+#: app/templates/admin/views/student.html:158
 #: app/templates/admin/views/subject.html:124
 #: app/templates/admin/views/subject.html:186
 #: app/templates/admin/views/tabs/files.html:5
@@ -1491,7 +1491,7 @@ msgid "UPLOAD_NEW_PROFILE_PICTURE_MSG"
 msgstr "آپلود عکس پروفایل جدید"
 
 #: app/forms/user.py:68 app/templates/admin/views/employee.html:82
-#: app/templates/admin/views/student.html:46
+#: app/templates/admin/views/student.html:56
 #: app/templates/admin/views/teacher.html:81
 msgid "PHONE_LABEL"
 msgstr "شماره تماس"
@@ -1964,7 +1964,7 @@ msgid "DEPARTMENT_LABEL"
 msgstr "دیپارتمنت"
 
 #: app/templates/admin/views/class.html:239
-#: app/templates/admin/views/student.html:133
+#: app/templates/admin/views/student.html:146
 #: app/templates/admin/views/tabs/attendances.html:5
 #: app/templates/admin/views/teacher.html:229
 msgid "ATTENDANCES_LABEL"
@@ -2035,11 +2035,15 @@ msgstr "معلومات نقش"
 msgid "SEMESTER_INFORMATION_LABEL"
 msgstr "معلومات سمستر"
 
-#: app/templates/admin/views/student.html:29
+#: app/templates/admin/views/student.html:27
+msgid "EXPORT_REGISTRATION_FORM_LABEL"
+msgstr "صدور فورم ثبت‌نام"
+
+#: app/templates/admin/views/student.html:38
 msgid "STUDENT_INFORMATION_LABEL"
 msgstr "معلومات محصل"
 
-#: app/templates/admin/views/student.html:96
+#: app/templates/admin/views/student.html:109
 #: app/templates/admin/views/subject.html:137
 #: app/templates/admin/views/teacher.html:180
 msgid "STORAGE_LABEL"
