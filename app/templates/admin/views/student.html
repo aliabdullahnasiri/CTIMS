@@ -18,6 +18,15 @@
           </div>
         </div>
       </div>
+      <div class="align-items-center col-4 d-flex justify-content-end me-auto">
+        <a
+          class="btn btn-outline-primary d-inline-flex align-items-center gap-2 m-0"
+          href="{{ url_for('api.export_student_registration_form', uid=student.uid) }}"
+          target="_blank"
+        >
+          {{ _('EXPORT_REGISTRATION_FORM_LABEL') }}
+        </a>
+      </div>
     </div>
   </div>
   <div class="card-body py-0">
@@ -43,7 +52,9 @@
               <div class="card-header">
                 <div class="d-flex justify-content-between">
                   <div>
-                    <p class="text-sm mb-0 text-capitalize">{{ _("PHONE_LABEL") }}</p>
+                    <p class="text-sm mb-0 text-capitalize">
+                      {{ _("PHONE_LABEL") }}
+                    </p>
                     <h4 class="mb-0">
                       {{ student.user.display_number_of_phone_nums }}
                     </h4>
@@ -78,7 +89,9 @@
               <div class="card-header">
                 <div class="d-flex justify-content-between">
                   <div>
-                    <p class="text-sm mb-0 text-capitalize">{{ _("FILES_LABEL") }}</p>
+                    <p class="text-sm mb-0 text-capitalize">
+                      {{ _("FILES_LABEL") }}
+                    </p>
                     <h4 class="mb-0">
                       {{ student.user.display_number_of_files }}
                     </h4>
