@@ -1,5 +1,7 @@
 from operator import call
 
+from flask_babel import gettext as _
+
 from app.extensions.db import db
 
 
@@ -109,6 +111,27 @@ class Student(db.Model):
         back_populates="students",
     )
 
+    current_province = db.relationship(
+        "Province",
+        foreign_keys=[current_province_uid],
+        backref=db.backref("students_current_province", lazy="dynamic"),
+    )
+    permanent_province = db.relationship(
+        "Province",
+        foreign_keys=[permanent_province_uid],
+        backref=db.backref("students_permanent_province", lazy="dynamic"),
+    )
+    current_district = db.relationship(
+        "District",
+        foreign_keys=[current_district_uid],
+        backref=db.backref("students_current_district", lazy="dynamic"),
+    )
+    permanent_district = db.relationship(
+        "District",
+        foreign_keys=[permanent_district_uid],
+        backref=db.backref("students_permanent_district", lazy="dynamic"),
+    )
+
     def to_dict(self) -> dict:
         return {
             "base_number": self.base_number,
@@ -148,6 +171,19 @@ class Student(db.Model):
             "high_school_name": self.high_school_name,
             "high_school_registration_no": self.high_school_registration_no,
             "high_school_graduation_year": self.high_school_graduation_year,
+            "birthday_year": self.user.birthday.year if self.user.birthday else "0000",
+            "current_province_name": (
+                _(self.current_province.name) if self.current_province else ""
+            ),
+            "current_district_name": (
+                _(self.current_district.name) if self.current_district else ""
+            ),
+            "permanent_district_name": (
+                _(self.permanent_district.name) if self.permanent_district else ""
+            ),
+            "permanent_province_name": (
+                _(self.permanent_province.name) if self.permanent_province else ""
+            ),
             **{
                 f"grade_{grade}_sum": sum(
                     [s.score for s in self.school_subjects.filter_by(grade=grade).all()]
