@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-23 12:44+0430\n"
+"POT-Creation-Date: 2026-06-23 18:49+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -999,7 +999,7 @@ msgstr ""
 msgid "SPECIFIED_RECORD_DOES_NOT_EXIST"
 msgstr ""
 
-#: app/forms/__init__.py:130 app/forms/student.py:205
+#: app/forms/__init__.py:130 app/forms/student.py:223
 msgid "CHOICE_AN_OPTION_LABEL"
 msgstr ""
 
@@ -1025,13 +1025,13 @@ msgstr ""
 #: app/forms/signup.py:36 app/forms/student.py:19 app/forms/student.py:27
 #: app/forms/student.py:44 app/forms/student.py:106 app/forms/student.py:114
 #: app/forms/student.py:137 app/forms/student.py:145 app/forms/student.py:167
-#: app/forms/student.py:223 app/forms/student.py:237 app/forms/student.py:266
-#: app/forms/student.py:273 app/forms/subject.py:21 app/forms/subject.py:38
-#: app/forms/subject.py:60 app/forms/teacher.py:16 app/forms/teacher.py:45
-#: app/forms/teacher.py:52 app/forms/time.py:30 app/forms/time.py:36
-#: app/forms/time.py:49 app/forms/user.py:24 app/forms/user.py:37
-#: app/forms/user.py:44 app/forms/user.py:52 app/forms/user.py:59
-#: app/forms/user.py:100
+#: app/forms/student.py:197 app/forms/student.py:241 app/forms/student.py:255
+#: app/forms/student.py:284 app/forms/student.py:291 app/forms/subject.py:21
+#: app/forms/subject.py:38 app/forms/subject.py:60 app/forms/teacher.py:16
+#: app/forms/teacher.py:45 app/forms/teacher.py:52 app/forms/time.py:30
+#: app/forms/time.py:36 app/forms/time.py:49 app/forms/user.py:24
+#: app/forms/user.py:37 app/forms/user.py:44 app/forms/user.py:52
+#: app/forms/user.py:59 app/forms/user.py:100
 msgid "THIS_FIELD_IS_REQUIRED_ERROR"
 msgstr ""
 
@@ -1049,7 +1049,7 @@ msgstr ""
 #: app/forms/attendance/student.py:15 app/forms/attendance/teacher.py:15
 #: app/forms/class_.py:25 app/forms/class_.py:41 app/forms/class_.py:57
 #: app/forms/employee.py:24 app/forms/exam.py:57 app/forms/exam.py:73
-#: app/forms/result.py:25 app/forms/result.py:41 app/forms/student.py:281
+#: app/forms/result.py:25 app/forms/result.py:41 app/forms/student.py:299
 #: app/forms/teacher.py:17
 msgid "THIS_FIELD_MUST_BE_8_CHARACTERS_MSG"
 msgstr ""
@@ -1066,7 +1066,7 @@ msgstr ""
 msgid "ADD_CLASS_LABEL"
 msgstr ""
 
-#: app/forms/class_.py:75 app/forms/exam.py:70 app/forms/student.py:278
+#: app/forms/class_.py:75 app/forms/exam.py:70 app/forms/student.py:296
 #: app/templates/admin/views/information/student.html:6
 msgid "CLASS_UID_LABEL"
 msgstr ""
@@ -1088,7 +1088,7 @@ msgid "ACADEMIC_YEAR_LABEL"
 msgstr ""
 
 #: app/forms/daily_section.py:53 app/forms/employee.py:52
-#: app/forms/student.py:194 app/forms/user.py:94
+#: app/forms/student.py:212 app/forms/user.py:94
 msgid "ADD_LABEL"
 msgstr ""
 
@@ -1146,7 +1146,7 @@ msgstr ""
 msgid "EMPLOYEE_UID_LABEL"
 msgstr ""
 
-#: app/forms/employee.py:64 app/forms/student.py:271 app/forms/teacher.py:50
+#: app/forms/employee.py:64 app/forms/student.py:289 app/forms/teacher.py:50
 msgid "USER_UID_LABEL"
 msgstr ""
 
@@ -1241,7 +1241,7 @@ msgid "UPDATE_PERMISSION_LABEL"
 msgstr ""
 
 #: app/forms/attendance/student.py:12 app/forms/result.py:38
-#: app/forms/student.py:264
+#: app/forms/student.py:282
 msgid "STUDENT_UID_LABEL"
 msgstr ""
 
@@ -1407,12 +1407,12 @@ msgid "CURRENT_VILLAGE_LABEL"
 msgstr ""
 
 #: app/forms/student.py:180
-#: app/templates/admin/components/forms/update/student.html:306
+#: app/templates/admin/components/forms/update/student.html:380
 msgid "HIGH_SCHOOL_NAME_LABEL"
 msgstr ""
 
 #: app/forms/student.py:185
-#: app/templates/admin/components/forms/update/student.html:313
+#: app/templates/admin/components/forms/update/student.html:387
 msgid "HIGH_SCHOOL_REGISTRATION_NO_LABEL"
 msgstr ""
 
@@ -1420,7 +1420,19 @@ msgstr ""
 msgid "HIGH_SCHOOL_GRADUATION_YEAR_LABEL"
 msgstr ""
 
-#: app/forms/student.py:293
+#: app/forms/student.py:195
+msgid "HIGH_SCHOOL_PROVINCE_LABEL"
+msgstr ""
+
+#: app/forms/student.py:203
+msgid "FATHER_JOB_LABEL"
+msgstr ""
+
+#: app/forms/student.py:208
+msgid "FATHER_JOB_ADDRESS_LABEL"
+msgstr ""
+
+#: app/forms/student.py:311
 msgid "UPDATE_STUDENT_LABEL"
 msgstr ""
 
@@ -1607,7 +1619,7 @@ msgstr ""
 #: app/templates/admin/components/forms/add/student.html:293
 #: app/templates/admin/components/forms/add/subject.html:63
 #: app/templates/admin/components/forms/add/teacher.html:165
-#: app/templates/admin/components/forms/update/student.html:415
+#: app/templates/admin/components/forms/update/student.html:498
 #: app/templates/admin/components/forms/update/subject.html:64
 #: app/templates/admin/components/forms/update/teacher.html:166
 msgid "CHOOSE_A_FILE_MSG"
@@ -1616,7 +1628,7 @@ msgstr ""
 #: app/templates/admin/components/forms/add/student.html:295
 #: app/templates/admin/components/forms/add/subject.html:65
 #: app/templates/admin/components/forms/add/teacher.html:167
-#: app/templates/admin/components/forms/update/student.html:417
+#: app/templates/admin/components/forms/update/student.html:500
 #: app/templates/admin/components/forms/update/subject.html:66
 #: app/templates/admin/components/forms/update/teacher.html:168
 msgid "OR_DRAG_IT_HERE_MSG"
@@ -1625,37 +1637,93 @@ msgstr ""
 #: app/templates/admin/components/forms/add/student.html:301
 #: app/templates/admin/components/forms/add/subject.html:71
 #: app/templates/admin/components/forms/add/teacher.html:173
-#: app/templates/admin/components/forms/update/student.html:423
+#: app/templates/admin/components/forms/update/student.html:506
 #: app/templates/admin/components/forms/update/subject.html:72
 #: app/templates/admin/components/forms/update/teacher.html:174
 msgid "UPLOADED_FILES_LABEL"
 msgstr ""
 
-#: app/templates/admin/components/forms/update/student.html:298
+#: app/templates/admin/components/forms/update/student.html:33
+msgid "PERSONAL_INFORMATION_LABEL"
+msgstr ""
+
+#: app/templates/admin/components/forms/update/student.html:35
+msgid "PERSONAL_INFORMATION_DESC"
+msgstr ""
+
+#: app/templates/admin/components/forms/update/student.html:104
+msgid "TAZKIRA_INFORMATION_LABEL"
+msgstr ""
+
+#: app/templates/admin/components/forms/update/student.html:106
+msgid "TAZKIRA_INFORMATION_DESC"
+msgstr ""
+
+#: app/templates/admin/components/forms/update/student.html:173
+msgid "ACCOUNT_INFORMATION_LABEL"
+msgstr ""
+
+#: app/templates/admin/components/forms/update/student.html:175
+msgid "ACCOUNT_INFORMATION_DESC"
+msgstr ""
+
+#: app/templates/admin/components/forms/update/student.html:211
+msgid "OTHER_INFORMATION_LABEL"
+msgstr ""
+
+#: app/templates/admin/components/forms/update/student.html:213
+msgid "OTHER_INFORMATION_DESC"
+msgstr ""
+
+#: app/templates/admin/components/forms/update/student.html:243
+msgid "ADDRESS_INFORMATION_LABEL"
+msgstr ""
+
+#: app/templates/admin/components/forms/update/student.html:245
+msgid "ADDRESS_INFORMATION_DESC"
+msgstr ""
+
+#: app/templates/admin/components/forms/update/student.html:314
+msgid "ACADEMIC_INFORMATION_LABEL"
+msgstr ""
+
+#: app/templates/admin/components/forms/update/student.html:316
+msgid "ACADEMIC_INFORMATION_DESC"
+msgstr ""
+
+#: app/templates/admin/components/forms/update/student.html:342
+msgid "FATHER_INFORMATION_LABEL"
+msgstr ""
+
+#: app/templates/admin/components/forms/update/student.html:344
+msgid "FATHER_INFORMATION_DESC"
+msgstr ""
+
+#: app/templates/admin/components/forms/update/student.html:372
 msgid "EDUCATIONAL_BACKGROUND_LABEL"
 msgstr ""
 
-#: app/templates/admin/components/forms/update/student.html:300
+#: app/templates/admin/components/forms/update/student.html:374
 msgid "EDUCATIONAL_BACKGROUND_DESC"
 msgstr ""
 
-#: app/templates/admin/components/forms/update/student.html:320
+#: app/templates/admin/components/forms/update/student.html:394
 msgid "GRADUATION_YEAR_LABEL"
 msgstr ""
 
-#: app/templates/admin/components/forms/update/student.html:328
+#: app/templates/admin/components/forms/update/student.html:411
 msgid "HIGH_SCHOOL_SCORES_LABEL"
 msgstr ""
 
-#: app/templates/admin/components/forms/update/student.html:330
+#: app/templates/admin/components/forms/update/student.html:413
 msgid "HIGH_SCHOOL_SCORES_DESC"
 msgstr ""
 
-#: app/templates/admin/components/forms/update/student.html:369
+#: app/templates/admin/components/forms/update/student.html:452
 msgid "MAJMUE_LABEL"
 msgstr ""
 
-#: app/templates/admin/components/forms/update/student.html:384
+#: app/templates/admin/components/forms/update/student.html:467
 msgid "AVERAGE_LABEL"
 msgstr ""
 
