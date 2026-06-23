@@ -87,9 +87,17 @@ class Student(db.Model):
         db.String(100), nullable=True, comment="High School Registration Number"
     )
 
+    high_school_province_uid = db.Column(
+        db.String(8),
+        db.ForeignKey("province.uid"),
+    )
+
     high_school_graduation_year = db.Column(
         db.Integer, nullable=True, comment="Graduation Year"
     )
+
+    father_job = db.Column(db.String(100), nullable=True)
+    father_job_address = db.Column(db.String(100), nullable=True)
 
     class_ = db.relationship("Class", back_populates="students")
     attendances = db.relationship(
@@ -126,6 +134,10 @@ class Student(db.Model):
         "District",
         foreign_keys=[permanent_district_uid],
         backref=db.backref("students_permanent_district", lazy="dynamic"),
+    )
+    high_school_province = db.relationship(
+        "Province",
+        foreign_keys=[high_school_province_uid],
     )
 
     def to_dict(self) -> dict:
@@ -179,6 +191,10 @@ class Student(db.Model):
                 "high_school_name": self.high_school_name,
                 "high_school_registration_no": self.high_school_registration_no,
                 "high_school_graduation_year": self.high_school_graduation_year,
+                "admission_date": (
+                    self.daily_section.academic_year if self.daily_section else None
+                ),
+                "high_school_last_grade": 12,
                 "birthday_year": (
                     self.user.birthday.year if self.user.birthday else "0000"
                 ),
@@ -193,6 +209,14 @@ class Student(db.Model):
                 ),
                 "permanent_province_name": (
                     _(self.permanent_province.name) if self.permanent_province else ""
+                ),
+                "father_job": self.father_job,
+                "father_job_address": self.father_job_address,
+                "high_school_province": self.high_school_province_uid,
+                "high_school_province_name": (
+                    _(self.high_school_province.name)
+                    if self.high_school_province_uid
+                    else None
                 ),
                 **call(getattr(super(), "to_dict")),
             }
