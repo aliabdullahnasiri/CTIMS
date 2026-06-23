@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-20 19:21+0430\n"
+"POT-Creation-Date: 2026-06-23 12:44+0430\n"
 "PO-Revision-Date: 2026-06-17 19:08+0430\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fa_AF\n"
@@ -338,14 +338,14 @@ msgid "CLASS_UPDATED_SUCCESSFULLY_SUCCESS_MSG"
 msgstr "صنف با موفقیت بروزرسانی شد"
 
 #: app/blueprints/api/routes/class_.py:185
-#: app/blueprints/api/routes/daily_section.py:172
+#: app/blueprints/api/routes/daily_section.py:173
 #: app/blueprints/api/routes/department.py:207
 #: app/blueprints/api/routes/employee.py:245
 #: app/blueprints/api/routes/exam.py:204 app/blueprints/api/routes/job.py:196
 #: app/blueprints/api/routes/result.py:192
 #: app/blueprints/api/routes/role.py:184
 #: app/blueprints/api/routes/semester.py:192
-#: app/blueprints/api/routes/student.py:332
+#: app/blueprints/api/routes/student.py:335
 #: app/blueprints/api/routes/subject.py:211
 #: app/blueprints/api/routes/teacher.py:240
 #: app/blueprints/api/routes/time.py:194 app/blueprints/api/routes/user.py:184
@@ -357,7 +357,7 @@ msgid "CLASS_DELETED_SUCCESSFULLY_SUCCESS_MSG"
 msgstr "صنف با موفقیت حذف شد"
 
 #: app/blueprints/api/routes/class_.py:190
-#: app/blueprints/api/routes/daily_section.py:179
+#: app/blueprints/api/routes/daily_section.py:180
 #: app/blueprints/api/routes/department.py:212
 #: app/blueprints/api/routes/employee.py:250
 #: app/blueprints/api/routes/exam.py:209 app/blueprints/api/routes/job.py:201
@@ -365,7 +365,7 @@ msgstr "صنف با موفقیت حذف شد"
 #: app/blueprints/api/routes/result.py:197
 #: app/blueprints/api/routes/role.py:195
 #: app/blueprints/api/routes/semester.py:197
-#: app/blueprints/api/routes/student.py:337
+#: app/blueprints/api/routes/student.py:340
 #: app/blueprints/api/routes/subject.py:216
 #: app/blueprints/api/routes/teacher.py:245
 #: app/blueprints/api/routes/time.py:199 app/blueprints/api/routes/user.py:190
@@ -409,53 +409,53 @@ msgstr "شناسه امتحان"
 msgid "DAILY_SECTION_WITH_THE_GIVEN_ID_WAS_NOT_FOUND_MSG"
 msgstr "بخش روزانه با شناسه داده شده یافت نشد"
 
-#: app/blueprints/api/routes/daily_section.py:145
+#: app/blueprints/api/routes/daily_section.py:146
 #: app/blueprints/api/routes/department.py:176
 #: app/blueprints/api/routes/exam.py:177 app/blueprints/api/routes/job.py:169
 #: app/blueprints/api/routes/permission.py:138
 #: app/blueprints/api/routes/result.py:165
 #: app/blueprints/api/routes/role.py:157
 #: app/blueprints/api/routes/semester.py:164
-#: app/blueprints/api/routes/student.py:305
+#: app/blueprints/api/routes/student.py:308
 #: app/blueprints/api/routes/subject.py:183
 #: app/blueprints/api/routes/time.py:167
 msgid "UPDATED_SUCCESS_MSG"
 msgstr "با موفقیت بروزرسانی شد"
 
-#: app/blueprints/api/routes/daily_section.py:146
+#: app/blueprints/api/routes/daily_section.py:147
 msgid "DAILY_SECTION_UPDATED_SUCCESSFULLY_SUCCESS_MSG"
 msgstr "بخش روزانه با موفقیت بروزرسانی شد"
 
-#: app/blueprints/api/routes/daily_section.py:149
+#: app/blueprints/api/routes/daily_section.py:150
 #: app/blueprints/api/routes/department.py:180
 #: app/blueprints/api/routes/exam.py:181 app/blueprints/api/routes/job.py:173
 #: app/blueprints/api/routes/permission.py:142
 #: app/blueprints/api/routes/result.py:169
 #: app/blueprints/api/routes/role.py:161
 #: app/blueprints/api/routes/semester.py:168
-#: app/blueprints/api/routes/student.py:309
+#: app/blueprints/api/routes/student.py:312
 #: app/blueprints/api/routes/subject.py:187
 #: app/blueprints/api/routes/time.py:171
 msgid "NOT_FOUND_LABEL"
 msgstr "یافت نشد"
 
-#: app/blueprints/api/routes/daily_section.py:150
+#: app/blueprints/api/routes/daily_section.py:151
 msgid "DAILY_SECTION_RECORD_NOT_FOUND_MSG"
 msgstr "ریکاردی برای بخش روزانه یافت نشد"
 
-#: app/blueprints/api/routes/daily_section.py:174
+#: app/blueprints/api/routes/daily_section.py:175
 msgid "DAILY_SECTION_HAS_BEEN_DELETED_SUCCESSFULLY_SUCCESS_MSG"
 msgstr "بخش روزانه با موفقیت حذف گردید"
 
-#: app/blueprints/api/routes/daily_section.py:180
+#: app/blueprints/api/routes/daily_section.py:181
 msgid "DAILY_SECTION_NOT_FOUND_MSG"
 msgstr "بخش روزانه یافت نشد"
 
-#: app/blueprints/api/routes/daily_section.py:209
+#: app/blueprints/api/routes/daily_section.py:211
 msgid "DAILY_SECTION_ADDED_SUCCESSFULLY_SUCCESS_MSG"
 msgstr "بخش روزانه با موفقیت علاوه شد"
 
-#: app/blueprints/api/routes/daily_section.py:210
+#: app/blueprints/api/routes/daily_section.py:212
 msgid "DAILY_SECTION_ADDED_LABEL"
 msgstr "بخش روزانه علاوه شد"
 
@@ -819,19 +819,19 @@ msgstr "محصل با موفقیت علاوه شد"
 msgid "STUDENT_ADDED_LABEL"
 msgstr "محصل علاوه شد"
 
-#: app/blueprints/api/routes/student.py:306
+#: app/blueprints/api/routes/student.py:309
 msgid "STUDENT_UPDATED_SUCCESSFULLY_SUCCESS_MSG"
 msgstr "محصل با موفقیت بروزرسانی شد"
 
-#: app/blueprints/api/routes/student.py:310
+#: app/blueprints/api/routes/student.py:313
 msgid "STUDENT_RECORD_NOT_FOUND_MSG"
 msgstr "ریکاردی برای محصل یافت نشد"
 
-#: app/blueprints/api/routes/student.py:333
+#: app/blueprints/api/routes/student.py:336
 msgid "STUDENT_DELETED_SUCCESSFULLY_SUCCESS_MSG"
 msgstr "محصل با موفقیت حذف شد"
 
-#: app/blueprints/api/routes/student.py:338
+#: app/blueprints/api/routes/student.py:341
 msgid "STUDENT_NOT_FOUND_MSG"
 msgstr "محصل یافت نشد"
 
@@ -1012,7 +1012,7 @@ msgstr "نام صنف"
 #: app/forms/attendance/teacher.py:14 app/forms/attendance/teacher.py:29
 #: app/forms/class_.py:16 app/forms/class_.py:24 app/forms/class_.py:40
 #: app/forms/class_.py:56 app/forms/class_.py:77 app/forms/daily_section.py:31
-#: app/forms/daily_section.py:43 app/forms/daily_section.py:54
+#: app/forms/daily_section.py:43 app/forms/daily_section.py:60
 #: app/forms/department.py:67 app/forms/employee.py:59 app/forms/employee.py:66
 #: app/forms/exam.py:24 app/forms/exam.py:37 app/forms/exam.py:41
 #: app/forms/exam.py:46 app/forms/exam.py:50 app/forms/exam.py:93
@@ -1078,22 +1078,26 @@ msgstr "بروزرسانی صنف"
 
 #: app/forms/daily_section.py:41
 msgid "STARTING_BASE_NUMBER_LABEL"
-msgstr "شماره پایه شروع"
+msgstr "شروع نمبر اساس"
 
 #: app/forms/daily_section.py:44
 msgid "NUMBER_MUST_BE_POSITIVE"
 msgstr "شماره باید مثبت باشد"
 
-#: app/forms/daily_section.py:47 app/forms/employee.py:52
+#: app/forms/daily_section.py:49
+msgid "ACADEMIC_YEAR_LABEL"
+msgstr "سال تعلیمی"
+
+#: app/forms/daily_section.py:53 app/forms/employee.py:52
 #: app/forms/student.py:194 app/forms/user.py:94
 msgid "ADD_LABEL"
 msgstr "علاوه کردن"
 
-#: app/forms/daily_section.py:52
+#: app/forms/daily_section.py:58
 msgid "DAILY_SECTION_UID_LABEL"
 msgstr "شناسه بخش روزانه"
 
-#: app/forms/daily_section.py:59 app/forms/employee.py:71
+#: app/forms/daily_section.py:65 app/forms/employee.py:71
 #: app/forms/profile.py:10 app/forms/user.py:105
 msgid "UPDATE_LABEL"
 msgstr "بروزرسانی"
@@ -1604,7 +1608,7 @@ msgstr "نسبت به سال گذشته"
 #: app/templates/admin/components/forms/add/student.html:293
 #: app/templates/admin/components/forms/add/subject.html:63
 #: app/templates/admin/components/forms/add/teacher.html:165
-#: app/templates/admin/components/forms/update/student.html:424
+#: app/templates/admin/components/forms/update/student.html:415
 #: app/templates/admin/components/forms/update/subject.html:64
 #: app/templates/admin/components/forms/update/teacher.html:166
 msgid "CHOOSE_A_FILE_MSG"
@@ -1613,7 +1617,7 @@ msgstr "یک فایل انتخاب کنید"
 #: app/templates/admin/components/forms/add/student.html:295
 #: app/templates/admin/components/forms/add/subject.html:65
 #: app/templates/admin/components/forms/add/teacher.html:167
-#: app/templates/admin/components/forms/update/student.html:426
+#: app/templates/admin/components/forms/update/student.html:417
 #: app/templates/admin/components/forms/update/subject.html:66
 #: app/templates/admin/components/forms/update/teacher.html:168
 msgid "OR_DRAG_IT_HERE_MSG"
@@ -1622,7 +1626,7 @@ msgstr "یا آن را اینجا بکشید"
 #: app/templates/admin/components/forms/add/student.html:301
 #: app/templates/admin/components/forms/add/subject.html:71
 #: app/templates/admin/components/forms/add/teacher.html:173
-#: app/templates/admin/components/forms/update/student.html:432
+#: app/templates/admin/components/forms/update/student.html:423
 #: app/templates/admin/components/forms/update/subject.html:72
 #: app/templates/admin/components/forms/update/teacher.html:174
 msgid "UPLOADED_FILES_LABEL"
@@ -1648,23 +1652,11 @@ msgstr "نمرات دوره لیسه"
 msgid "HIGH_SCHOOL_SCORES_DESC"
 msgstr "نمرات سال‌های دهم، یازدهم و دوازدهم را وارد نمایید."
 
-#: app/templates/admin/components/forms/update/student.html:337
-msgid "GRADE_10_LABEL"
-msgstr "صنف ۱۰"
-
-#: app/templates/admin/components/forms/update/student.html:338
-msgid "GRADE_11_LABEL"
-msgstr "صنف ۱۱"
-
-#: app/templates/admin/components/forms/update/student.html:339
-msgid "GRADE_12_LABEL"
-msgstr "صنف ۱۲"
-
-#: app/templates/admin/components/forms/update/student.html:367
+#: app/templates/admin/components/forms/update/student.html:369
 msgid "MAJMUE_LABEL"
 msgstr "مجموعه"
 
-#: app/templates/admin/components/forms/update/student.html:387
+#: app/templates/admin/components/forms/update/student.html:384
 msgid "AVERAGE_LABEL"
 msgstr "اوسط"
 
@@ -4243,6 +4235,18 @@ msgstr "وته پور"
 #: data/provinces-and-districts.json
 msgid "MANOGAY_LABEL"
 msgstr "مانوګی"
+
+#: data/school-grades.json data/school-subjects.json
+msgid "GRADE_10_LABEL"
+msgstr "صنف ۱۰"
+
+#: data/school-grades.json
+msgid "GRADE_11_LABEL"
+msgstr "صنف ۱۱"
+
+#: data/school-grades.json
+msgid "GRADE_12_LABEL"
+msgstr "صنف ۱۲"
 
 #: data/school-subjects.json
 msgid "TAFSIR_LABEL"
