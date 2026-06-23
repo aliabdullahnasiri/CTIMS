@@ -8,7 +8,12 @@
   "PHYSICS_LABEL",
   "CHEMISTRY_LABEL",
   "BIOLOGY_LABEL",
-  "GEOLOGY_LABEL",
+  {
+    "name": "GEOLOGY_LABEL",
+    "grades": [
+      "GRADE_10_LABEL"
+    ]
+  },
   "HISTORY_LABEL",
   "GEOGRAPHY_LABEL",
   "CIVIC_EDUCATION_LABEL",
