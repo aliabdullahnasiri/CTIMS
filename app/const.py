@@ -16,5 +16,5 @@ STUDENT = Config.ROLE["STUDENT"]
 EMPLOYEE = Config.ROLE["EMPLOYEE"]
 LANGUAGES = ["en", "fa", "ps"]
 
-KANKOR_ID_REGEX = r"^\d{9}$"
+KANKOR_ID_REGEX = r"^S\d{8}$"
 NATIONAL_ID_REGEX = r"^\d{4}-?\d{4}-?\d{5}$"
