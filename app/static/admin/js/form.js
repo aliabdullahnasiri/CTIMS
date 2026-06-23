@@ -811,7 +811,11 @@ export function upload(files, dropZone) {
     e.addEventListener(
       "focus",
       (event) => {
-        if (event.target.tagName === "INPUT" && event.target.value == 0)
+        if (
+          event.target.tagName === "INPUT" &&
+          !event.target.readOnly &&
+          event.target.value == 0
+        )
           event.target.value = null;
       },
       1,
@@ -819,7 +823,11 @@ export function upload(files, dropZone) {
     e.addEventListener(
       "focusout",
       (event) => {
-        if (event.target.tagName === "INPUT" && !event.target.value)
+        if (
+          event.target.tagName === "INPUT" &&
+          !event.target.readOnly &&
+          !event.target.value
+        )
           event.target.value = 0;
       },
       1,

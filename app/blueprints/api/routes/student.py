@@ -218,6 +218,7 @@ def update_student() -> Response:
         uid = form.uid.data
         student: Union[Student, None] = Student.query.filter_by(uid=uid).first()
 
+        print(student.updated_at)
         if student:
             student.user.first_name = form.first_name.data
             student.user.middle_name = form.middle_name.data
@@ -274,7 +275,7 @@ def update_student() -> Response:
 
             db.session.commit()
 
-            for (grade, subject_uid), score in dict(
+            for (grade_uid, subject_uid), score in dict(
                 map(
                     lambda item: (tuple(item[0].split("_")[1:]), int(item[1])),
                     filter(
@@ -286,7 +287,7 @@ def update_student() -> Response:
                 student_subject = StudentSubject.query.filter_by(
                     student_uid=student.uid,
                     subject_uid=subject_uid,
-                    grade=grade,
+                    grade_uid=grade_uid,
                 ).first()
 
                 if student_subject:
@@ -295,10 +296,12 @@ def update_student() -> Response:
                     s = StudentSubject()
                     s.subject_uid = subject_uid
                     s.student_uid = student.uid
-                    s.grade = grade
+                    s.grade_uid = grade_uid
                     s.score = score
 
                     db.session.add(s)
+
+                student.update()
 
                 db.session.commit()
 

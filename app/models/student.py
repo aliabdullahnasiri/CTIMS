@@ -1,8 +1,10 @@
 from operator import call
 
 from flask_babel import gettext as _
+from sqlalchemy import func
 
 from app.extensions.db import db
+from app.models.subject import StudentSubject
 
 
 class IdentityCardType:
@@ -98,12 +100,6 @@ class Student(db.Model):
     results = db.relationship(
         "Result", back_populates="student", cascade="all, delete, delete-orphan"
     )
-    school_subjects = db.relationship(
-        "StudentSubject",
-        back_populates="student",
-        cascade="all, delete-orphan",
-        lazy="dynamic",
-    )
     user = db.relationship("User", cascade="delete")
 
     daily_section = db.relationship(
@@ -133,87 +129,88 @@ class Student(db.Model):
     )
 
     def to_dict(self) -> dict:
-        return {
-            "base_number": self.base_number,
-            "kankor_id": self.kankor_id,
-            "electronic_tazkira_number": self.electronic_tazkira_number,
-            "identity_card_type": (
-                IdentityCardType.ELECTRONIC
-                if self.electronic_tazkira_number
-                else IdentityCardType.PAPER
-            ),
-            "tazkira_folder": self.tazkira_folder,
-            "tazkira_page_number": self.tazkira_page_number,
-            "tazkira_registration_number": self.tazkira_registration_number,
-            "tazkira_sakok_number": self.tazkira_sakok_number,
-            "permanent_province": self.permanent_province_uid,
-            "permanent_district": self.permanent_district_uid,
-            "permanent_village": self.permanent_village,
-            "current_province": self.current_province_uid,
-            "current_district": self.current_district_uid,
-            "current_village": self.current_village,
-            "father_name": self.father_name,
-            "grandfather_name": self.grandfather_name,
-            "daily_section_uid": self.daily_section_uid,
-            "user_uid": self.user.uid,
-            "class_id": self.class_id,
-            "first_name": self.user.first_name,
-            "middle_name": self.user.middle_name,
-            "last_name": self.user.last_name,
-            "full_name": self.user.full_name,
-            "user_name": self.user.user_name,
-            "email": self.user.email,
-            "birthday": self.user.display_birthday,
-            "age": self.user.age,
-            "avatar": self.user.avatar_path,
-            "phones": [phone.number for phone in self.user.phones.all()],
-            "files": [f.to_dict() for f in self.user.files.all()],
-            "high_school_name": self.high_school_name,
-            "high_school_registration_no": self.high_school_registration_no,
-            "high_school_graduation_year": self.high_school_graduation_year,
-            "birthday_year": self.user.birthday.year if self.user.birthday else "0000",
-            "current_province_name": (
-                _(self.current_province.name) if self.current_province else ""
-            ),
-            "current_district_name": (
-                _(self.current_district.name) if self.current_district else ""
-            ),
-            "permanent_district_name": (
-                _(self.permanent_district.name) if self.permanent_district else ""
-            ),
-            "permanent_province_name": (
-                _(self.permanent_province.name) if self.permanent_province else ""
-            ),
-            **{
-                f"grade_{grade}_sum": sum(
-                    [s.score for s in self.school_subjects.filter_by(grade=grade).all()]
-                )
-                for grade in [10, 11, 12]
-            },
-            **{
-                f"grade_{grade}_avg": "{}%".format(
-                    round(
-                        sum(
-                            [
-                                s.score
-                                for s in self.school_subjects.filter_by(
-                                    grade=grade
-                                ).all()
-                            ]
-                        )
-                        / c
-                    )
-                    if (c := self.school_subjects.filter_by(grade=grade).count())
-                    else 0
-                )
-                for grade in [10, 11, 12]
-            },
-            **{
-                f"GRADE_{s.grade}_{s.subject_uid}": s.score
-                for s in self.school_subjects.all()
-            },
-            **call(getattr(super(), "to_dict")),
-        }
+        grade_stat = (
+            db.session.query(
+                StudentSubject.grade_uid,
+                func.sum(StudentSubject.score).label("total"),
+                func.avg(StudentSubject.score).label("average"),
+            )
+            .filter(StudentSubject.student_uid == getattr(self, "uid"))
+            .group_by(StudentSubject.grade_uid)
+            .all()
+        )
+
+        return (
+            {
+                "base_number": self.base_number,
+                "kankor_id": self.kankor_id,
+                "electronic_tazkira_number": self.electronic_tazkira_number,
+                "identity_card_type": (
+                    IdentityCardType.ELECTRONIC
+                    if self.electronic_tazkira_number
+                    else IdentityCardType.PAPER
+                ),
+                "tazkira_folder": self.tazkira_folder,
+                "tazkira_page_number": self.tazkira_page_number,
+                "tazkira_registration_number": self.tazkira_registration_number,
+                "tazkira_sakok_number": self.tazkira_sakok_number,
+                "permanent_province": self.permanent_province_uid,
+                "permanent_district": self.permanent_district_uid,
+                "permanent_village": self.permanent_village,
+                "current_province": self.current_province_uid,
+                "current_district": self.current_district_uid,
+                "current_village": self.current_village,
+                "father_name": self.father_name,
+                "grandfather_name": self.grandfather_name,
+                "daily_section_uid": self.daily_section_uid,
+                "user_uid": self.user.uid,
+                "class_id": self.class_id,
+                "first_name": self.user.first_name,
+                "middle_name": self.user.middle_name,
+                "last_name": self.user.last_name,
+                "full_name": self.user.full_name,
+                "user_name": self.user.user_name,
+                "email": self.user.email,
+                "birthday": self.user.display_birthday,
+                "age": self.user.age,
+                "avatar": self.user.avatar_path,
+                "phones": [phone.number for phone in self.user.phones.all()],
+                "files": [f.to_dict() for f in self.user.files.all()],
+                "high_school_name": self.high_school_name,
+                "high_school_registration_no": self.high_school_registration_no,
+                "high_school_graduation_year": self.high_school_graduation_year,
+                "birthday_year": (
+                    self.user.birthday.year if self.user.birthday else "0000"
+                ),
+                "current_province_name": (
+                    _(self.current_province.name) if self.current_province else ""
+                ),
+                "current_district_name": (
+                    _(self.current_district.name) if self.current_district else ""
+                ),
+                "permanent_district_name": (
+                    _(self.permanent_district.name) if self.permanent_district else ""
+                ),
+                "permanent_province_name": (
+                    _(self.permanent_province.name) if self.permanent_province else ""
+                ),
+                **call(getattr(super(), "to_dict")),
+            }
+            | {
+                f"GRADE_{s.grade_uid}_{s.subject_uid}": s.score
+                for s in getattr(self, "school_scores").all()
+            }
+            | {
+                f"GRADE_{uid}_SUM": round(val)
+                for uid, val, _ in grade_stat
+                if isinstance(val, (int, float))
+            }
+            | {
+                f"GRADE_{uid}_AVG": round(val)
+                for uid, _, val in grade_stat
+                if isinstance(val, (int, float))
+            }
+        )
 
     def __repr__(self):
         return f"<Student full_name={self.user.full_name!r}>"

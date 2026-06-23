@@ -139,6 +139,7 @@ def update_daily_section() -> Response:
             daily_section.title = form.title.data
             daily_section.description = form.description.data
             daily_section.starting_base_number = form.starting_base_number.data
+            daily_section.academic_year = form.academic_year.data
 
             db.session.commit()
 
@@ -202,6 +203,7 @@ def add_daily_section():
         daily_section.title = form.title.data
         daily_section.description = form.description.data
         daily_section.starting_base_number = form.starting_base_number.data
+        daily_section.academic_year = form.academic_year.data
 
         db.session.add(daily_section)
         db.session.commit()

@@ -44,6 +44,12 @@ class AddDailySectionForm(Form):
             NumberRange(min=0, message=_("NUMBER_MUST_BE_POSITIVE")),
         ],
     )
+
+    academic_year = IntegerField(
+        _("ACADEMIC_YEAR_LABEL"),
+        validators=[Optional(), NumberRange(min=1300, max=1500)],
+    )
+
     submit = SubmitField(_("ADD_LABEL"))
 
 

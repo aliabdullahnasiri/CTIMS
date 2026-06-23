@@ -4,7 +4,7 @@ from flask_babel import gettext as _
 from app.blueprints.admin import bp
 from app.forms.student import AddStudentForm, UpdateStudentForm
 from app.models.permission import Permission
-from app.models.subject import SchoolSubject
+from app.models.subject import SchoolGrade, SchoolSubject
 from app.models.user import permission_required
 
 
@@ -17,5 +17,6 @@ def students():
         form={"a": AddStudentForm(), "u": UpdateStudentForm()},
         **{
             "SchoolSubject": SchoolSubject,
+            "SchoolGrade": SchoolGrade,
         }
     )

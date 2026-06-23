@@ -1,4 +1,4 @@
-from flask import Response, render_template, request
+from flask import render_template, request
 from flask_login import login_required
 
 from app.blueprints.api import bp

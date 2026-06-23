@@ -96,7 +96,7 @@ class SchoolSubject(db.Model):
 
     label = db.Column(db.String(255), nullable=False)
 
-    students = db.relationship(
+    student_scores = db.relationship(
         "StudentSubject",
         back_populates="subject",
         cascade="all, delete-orphan",
@@ -112,41 +112,90 @@ class SchoolSubject(db.Model):
         return f"<SchoolSubject label={self.label!r}>"
 
 
-class StudentSubject(db.Model):
-    __tablename__ = "student_subjects"
+class SchoolGrade(db.Model):
+    __tablename__ = "school_grade"
+
+    name = db.Column(db.String(50), nullable=False)
+
+    subjects = db.relationship(
+        "SchoolSubject",
+        secondary="school_grade_subject",
+        lazy="dynamic",
+        backref=db.backref("school_grades", lazy="dynamic"),
+    )
+
+
+class SchoolGradeSubject(db.Model):
+    __tablename__ = "school_grade_subject"
 
     uid = None
 
-    student_uid = db.Column(
+    grade_uid = db.Column(
         db.String(8),
-        db.ForeignKey("students.uid"),
-        nullable=False,
+        db.ForeignKey("school_grade.uid"),
     )
 
     subject_uid = db.Column(
         db.String(8),
         db.ForeignKey("school_subject.uid"),
-        nullable=False,
     )
-
-    grade = db.Column(db.Integer, nullable=False)
-    score = db.Column(db.Float, default=0, nullable=False)
 
     __table_args__ = (
         db.UniqueConstraint(
-            "student_uid",
+            "grade_uid",
             "subject_uid",
-            "grade",
-            name="uq_student_subject",
+            name="uc_grade_subject_uid",
+        ),
+    )
+
+
+class StudentSubject(db.Model):
+    __tablename__ = "student_subject"
+
+    student_uid = db.Column(
+        db.String(8),
+        db.ForeignKey("students.uid"),
+    )
+
+    grade_uid = db.Column(
+        db.String(8),
+        db.ForeignKey("school_grade.uid"),
+    )
+
+    subject_uid = db.Column(
+        db.String(8),
+        db.ForeignKey("school_subject.uid"),
+    )
+
+    score = db.Column(db.Float)
+
+    __table_args__ = (
+        db.UniqueConstraint(
+            "subject_uid",
+            "grade_uid",
+            "subject_uid",
+            name="uc_student_grade_subject_uid",
         ),
     )
 
     student = db.relationship(
         "Student",
-        back_populates="school_subjects",
+        backref=db.backref(
+            "school_scores",
+            lazy="dynamic",
+            cascade="all, delete-orphan",
+        ),
+    )
+
+    school_grade = db.relationship(
+        "SchoolGrade",
+        backref=db.backref(
+            "student_scores",
+            lazy="dynamic",
+        ),
     )
 
     subject = db.relationship(
         "SchoolSubject",
-        back_populates="students",
+        back_populates="student_scores",
     )

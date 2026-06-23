@@ -334,30 +334,32 @@
           <thead>
             <tr>
               <td></td>
-              <td class="px-0"><div class="text-sm">{{ _("GRADE_10_LABEL") }}</div></td>
-              <td class="px-0"><div class="text-sm">{{ _("GRADE_11_LABEL") }}</div></td>
-              <td class="px-0"><div class="text-sm">{{ _("GRADE_12_LABEL") }}</div></td>
+              {% for g in SchoolGrade.query.all() %}
+                <td class="px-0"><div class="text-sm">{{ _(g.name) }}</div></td>
+              {% endfor %}
             </tr>
           </thead>
           <tbody>
             {% for s in SchoolSubject.query.all() %}
               <tr data-school-subject-uid="{{ s.uid }}">
                 <td class="p-0 m-0"><div class="text-sm row-wrapper">{{ _(s.label) }}</div></td>
-                <td class="p-1 m-0">
-                  <div class="input-group input-group-outline input-group-sm">
-                    <input type="number" class="form-control" value="0" id="GRADE_10_{{ s.uid }}" name="GRADE_10_{{ s.uid }}" data-name="grade_10">
-                  </div>
-                </td>
-                <td class="p-1 m-0">
-                  <div class="input-group input-group-outline input-group-sm">
-                    <input type="number" class="form-control" value="0" id="GRADE_11_{{ s.uid }}" name="GRADE_11_{{ s.uid }}" data-name="grade_11">
-                  </div>
-                </td>
-                <td class="p-1 m-0">
-                  <div class="input-group input-group-outline input-group-sm">
-                    <input type="number" class="form-control" value="0" id="GRADE_12_{{ s.uid }}" name="GRADE_12_{{ s.uid }}" data-name="grade_12">
-                  </div>
-                </td>
+                {% for g in SchoolGrade.query.all() %}
+                  {% if g in s.school_grades %}
+                    {% with name = g.name | replace("_LABEL", "")  %}
+                    <td class="p-1 m-0">
+                      <div class="input-group input-group-outline input-group-sm">
+                        <input type="number" class="form-control" value="0" id="GRADE_{{ g.uid }}_{{ s.uid }}" name="GRADE_{{ g.uid }}_{{ s.uid }}" data-name="{{ name | lower }}">
+                      </div>
+                    </td>
+                    {% endwith %}
+                  {% else %}
+                      <td class="p-1 m-0">
+                        <div class="input-group input-group-outline input-group-sm">
+                          <input type="number" class="form-control" readonly>
+                        </div>
+                      </td>
+                  {% endif %}
+                {% endfor %}
               </tr>
             {% endfor %}
           </tbody>
@@ -366,41 +368,30 @@
               <td class="p-0 pt-2">
                 <div class="text-sm">{{ _("MAJMUE_LABEL") }}</div>
               </td>
-              <td class="p-0 pt-2">
-                  <div class="text-sm" data-sum="grade_10">
-                    <input class="bg-transparent border-0 form-control p-0 text-auto text-center w-100" id="grade_10_sum" name="grade_10_sum" type="text" disabled />
-                  </div>
-              </td>
-              <td class="p-0 pt-2">
-                  <div class="text-sm" data-sum="grade_11">
-                    <input class="bg-transparent border-0 form-control p-0 text-auto text-center w-100" id="grade_11_sum" name="grade_11_sum" type="text" disabled />
-                  </div>
-              </td>
-              <td class="p-0 pt-2">
-                  <div class="text-sm" data-sum="grade_12">
-                    <input class="bg-transparent border-0 form-control p-0 text-auto text-center w-100" id="grade_12_sum" name="grade_12_sum" type="text" disabled />
-                  </div>
-              </td>
+
+              {% for g in SchoolGrade.query.all() %}
+                {% with name = g.name | replace("_LABEL", "")  %}
+                  <td class="p-0 pt-2">
+                    <div class="text-sm" data-sum="{{ name | lower }}">
+                      <input class="bg-transparent border-0 form-control p-0 text-auto text-center w-100" id="{{ name | lower }}_sum" name="{{ name | lower }}_sum" type="text" disabled />
+                    </div>
+                  </td>
+                {% endwith %}
+              {% endfor %}
             </tr>
             <tr>
               <td class="p-0 pt-1">
                 <div class="text-sm">{{ _("AVERAGE_LABEL") }}</div>
               </td>
-              <td class="p-0 pt-2">
-                  <div class="text-sm" data-avg="grade_10">
-                    <input class="bg-transparent border-0 form-control p-0 text-auto text-center w-100" id="grade_10_avg" name="grade_10_avg" type="text" disabled />
-                  </div>
-              </td>
-              <td class="p-0 pt-2">
-                  <div class="text-sm" data-avg="grade_11">
-                    <input class="bg-transparent border-0 form-control p-0 text-auto text-center w-100" id="grade_11_avg" name="grade_11_avg" type="text" disabled />
-                  </div>
-              </td>
-              <td class="p-0 pt-2">
-                  <div class="text-sm" data-avg="grade_12">
-                    <input class="bg-transparent border-0 form-control p-0 text-auto text-center w-100" id="grade_12_avg" name="grade_12_avg" type="text" disabled />
-                  </div>
-              </td>
+              {% for g in SchoolGrade.query.all() %}
+                {% with name = g.name | replace("_LABEL", "")  %}
+                  <td class="p-0 pt-2">
+                    <div class="text-sm" data-avg="{{ name | lower }}">
+                        <input class="bg-transparent border-0 form-control p-0 text-auto text-center w-100" id="{{ name | lower }}_avg" name="{{ name | lower }}_avg" type="text" disabled />
+                      </div>
+                  </td>
+                {% endwith %}
+              {% endfor %}
             </tr>
           </tfoot>
         </table>

@@ -2,8 +2,9 @@ from datetime import datetime, timedelta, timezone
 from typing import Any, Literal
 
 import humanize
+import jdatetime
 from numerize import numerize
-from sqlalchemy import Column, Integer, String, event, extract, func
+from sqlalchemy import Column, Date, DateTime, Integer, String, event, extract, func
 from sqlalchemy.ext.declarative import declared_attr
 
 from app.extensions.db import db
@@ -28,10 +29,32 @@ class Base(db.Model):
     )
     updated_at = db.Column(
         db.DateTime(timezone=True),
-        default=lambda: datetime.now(),
-        onupdate=lambda: datetime.now(),
+        default=func.now(),
+        onupdate=func.now(),
         nullable=False,
     )
+
+    def __getattribute__(self, name: str, /) -> Any:
+        if name.startswith("display_"):
+            column_name = name[8:]
+
+            if hasattr(self, column_name):
+                column = getattr(self.__class__, column_name, None)
+                value = getattr(self, column_name, None)
+
+                if value is None:
+                    return ""
+
+                # check if column is date or datetime
+                if column is not None and isinstance(column.type, (Date, DateTime)):
+                    return jdatetime.date.fromgregorian(date=value).strftime("%Y-%m-%d")
+
+                return str(value)
+
+        return super().__getattribute__(name)
+
+    def update(self):
+        self.updated_at = func.now()
 
     @classmethod
     def yearly_growth(cls):
