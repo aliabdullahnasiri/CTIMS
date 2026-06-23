@@ -191,6 +191,24 @@ class AddStudentForm(AddUserForm):
         validators=[Optional(), NumberRange(min=1300, max=1500)],
     )
 
+    high_school_province = SelectField(
+        _("HIGH_SCHOOL_PROVINCE_LABEL"),
+        validators=[
+            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
+        ],
+        choices=[],
+    )
+
+    father_job = StringField(
+        _("FATHER_JOB_LABEL"),
+        validators=[Optional(), Length(max=100)],
+    )
+
+    father_job_address = StringField(
+        _("FATHER_JOB_ADDRESS_LABEL"),
+        validators=[Optional(), Length(max=100)],
+    )
+
     submit = SubmitField(_("ADD_LABEL"))
 
     errors_dct = {}
