@@ -29,264 +29,338 @@
 
     <div class="col-12 col-md-12 col-lg-6">
       <div class="row">
-        <div class="col-md-4">
-          <div class="my-2">
-            <div class="input-group input-group-outline">
-              {{ f.first_name.label(class="form-label") }}
-              {{ f.first_name(class="form-control") }}
-            </div>
-          </div>
+        <div class="card-header pb-0 pt-0">
+          <h6 class="m-0">{{ _("PERSONAL_INFORMATION_LABEL") }}</h6>
+          <p class="text-sm text-muted mb-2">
+            {{ _("PERSONAL_INFORMATION_DESC") }}
+          </p>
         </div>
 
-        <div class="col-md-4">
-          <div class="my-2">
-            <div class="input-group input-group-outline">
-              {{ f.middle_name.label(class="form-label") }}
-              {{ f.middle_name(class="form-control is-invalid") }}
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="my-2">
-            <div class="input-group input-group-outline">
-              {{ f.last_name.label(class="form-label") }}
-              {{ f.last_name(class="form-control") }}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-6">
-          <div class="my-2">
-            <div class="input-group input-group-outline">
-              {{ f.father_name.label(class="form-label") }}
-              {{ f.father_name(class="form-control") }}
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <div class="my-2">
-            <div class="input-group input-group-outline">
-              {{ f.grandfather_name.label(class="form-label") }}
-              {{ f.grandfather_name(class="form-control is-invalid") }}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-12">
-          <div class="my-2">
-            <div class="px-2 py-0 my-0">
-              {{ f.identity_card_type.label(class="form-label") }}
-            </div>
-            {{ f.identity_card_type(class="form-control", data_style="btn btn-outline-dark text-auto") }}
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-12">
-          <div class="my-2">
-            <div class="input-group input-group-outline">
-              {{ f.electronic_tazkira_number.label(class="form-label") }} {{
-              f.electronic_tazkira_number(class="form-control") }}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-12 col-sm-6 col-lg-6">
-          <div class="my-2">
-            <div class="input-group input-group-outline">
-              {{ f.tazkira_folder.label(class="form-label") }}
-              {{ f.tazkira_folder(class="form-control") }}
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-lg-6">
-          <div class="my-2">
-            <div class="input-group input-group-outline">
-              {{ f.tazkira_page_number.label(class="form-label") }}
-              {{ f.tazkira_page_number(class="form-control") }}
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-lg-6">
-          <div class="my-2">
-            <div class="input-group input-group-outline">
-              {{ f.tazkira_registration_number.label(class="form-label") }}
-              {{ f.tazkira_registration_number(class="form-control") }}
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-lg-6">
-          <div class="my-2">
-            <div class="input-group input-group-outline">
-              {{ f.tazkira_sakok_number.label(class="form-label") }}
-              {{ f.tazkira_sakok_number(class="form-control") }}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-12">
-          <div class="my-2">
-            <div class="input-group input-group-outline">
-              {{ f.user_name.label(class="form-label") }} {{
-              f.user_name(class="form-control") }}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-12">
-          <div class="my-2">
-            <div class="input-group input-group-outline">
-              {{ f.email.label(class="form-label") }} {{
-              f.email(class="form-control") }}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-12">
-          <div class="my-2">
-            <div class="input-group input-group-outline">
-              {{ f.password.label(class="form-label") }} {{
-              f.password(class="form-control") }}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-12">
-          <div class="my-2">
-            <div class="input-group input-group-outline">
-              {{ f.kankor_id.label(class="form-label") }}
-              {{ f.kankor_id(class="form-control is-invalid") }}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-12">
-          <div class="my-2">
-            <div class="multi-value-input card">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="my-2">
               <div class="input-group input-group-outline">
-                {{ f.phones.label(class="form-label") }} {{
-                f.phones(class="form-control") }}
+                {{ f.first_name.label(class="form-label") }}
+                {{ f.first_name(class="form-control") }}
               </div>
-              <div class="values d-flex flex-wrap"></div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="my-2">
+              <div class="input-group input-group-outline">
+                {{ f.middle_name.label(class="form-label") }}
+                {{ f.middle_name(class="form-control is-invalid") }}
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="my-2">
+              <div class="input-group input-group-outline">
+                {{ f.last_name.label(class="form-label") }}
+                {{ f.last_name(class="form-control") }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="my-2">
+              <div class="input-group input-group-outline">
+                {{ f.father_name.label(class="form-label") }}
+                {{ f.father_name(class="form-control") }}
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="my-2">
+              <div class="input-group input-group-outline">
+                {{ f.grandfather_name.label(class="form-label") }}
+                {{ f.grandfather_name(class="form-control is-invalid") }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="my-2">
+              <div class="px-2 py-0 my-0">
+                {{ f.birthday.label(class="form-label") }}
+              </div>
+              <div class="input-group input-group-outline">
+                {{ f.birthday(class="form-control") }}
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="row g-3">
-        <div class="col-6">
-          <div class="my-2">
-            <div class="px-2 py-0 my-0">
-              {{ f.permanent_province.label(class="form-label") }}
+      <div class="row mt-3">
+        <div class="card-header pb-0 pt-0">
+          <h6 class="m-0">{{ _("TAZKIRA_INFORMATION_LABEL") }}</h6>
+          <p class="text-sm text-muted mb-2">
+            {{ _("TAZKIRA_INFORMATION_DESC") }}
+          </p>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="my-2">
+              <div class="px-2 py-0 my-0">
+                {{ f.identity_card_type.label(class="form-label") }}
+              </div>
+              {{ f.identity_card_type(class="form-control", data_style="btn btn-outline-dark text-auto") }}
             </div>
-            {{ f.permanent_province(class="form-control", data_style="btn btn-outline-dark text-auto") }}
           </div>
         </div>
 
-        <div class="col-6">
-          <div class="my-2">
-            <div class="px-2 py-0 my-0">
-              {{ f.permanent_district.label(class="form-label") }}
-            </div>
-            {{ f.permanent_district(class="form-control", data_style="btn btn-outline-dark text-auto") }}
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-12">
-          <div class="my-2">
-            <div class="input-group input-group-outline">
-              {{ f.permanent_village.label(class="form-label") }}
-              {{ f.permanent_village(class="form-control", data_style="btn btn-outline-dark text-auto") }}
+        <div class="row">
+          <div class="col-md-12">
+            <div class="my-2">
+              <div class="input-group input-group-outline">
+                {{ f.electronic_tazkira_number.label(class="form-label") }}
+                {{ f.electronic_tazkira_number(class="form-control") }}
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="row g-3">
-        <div class="col-6">
-          <div class="my-2">
-            <div class="px-2 py-0 my-0">
-              {{ f.current_province.label(class="form-label") }}
-            </div>
-            {{ f.current_province(class="form-control", data_style="btn btn-outline-dark text-auto") }}
-          </div>
-        </div>
-
-        <div class="col-6">
-          <div class="my-2">
-            <div class="px-2 py-0 my-0">
-              {{ f.current_district.label(class="form-label") }}
-            </div>
-            {{ f.current_district(class="form-control", data_style="btn btn-outline-dark text-auto") }}
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-12">
-          <div class="my-2">
-            <div class="input-group input-group-outline">
-              {{ f.current_village.label(class="form-label") }}
-              {{ f.current_village(class="form-control", data_style="btn btn-outline-dark text-auto") }}
+        <div class="row">
+          <div class="col-12 col-sm-6 col-lg-6">
+            <div class="my-2">
+              <div class="input-group input-group-outline">
+                {{ f.tazkira_folder.label(class="form-label") }}
+                {{ f.tazkira_folder(class="form-control") }}
+              </div>
             </div>
           </div>
-        </div>
-      </div>
 
-      <div class="row">
-        <div class="col-md-12">
-          <div class="my-2">
-            <div class="px-2 py-0 my-0">
-              {{ f.birthday.label(class="form-label") }}
+          <div class="col-12 col-sm-6 col-lg-6">
+            <div class="my-2">
+              <div class="input-group input-group-outline">
+                {{ f.tazkira_page_number.label(class="form-label") }}
+                {{ f.tazkira_page_number(class="form-control") }}
+              </div>
             </div>
-            <div class="input-group input-group-outline">
-              {{ f.birthday(class="form-control") }}
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-6">
+            <div class="my-2">
+              <div class="input-group input-group-outline">
+                {{ f.tazkira_registration_number.label(class="form-label") }}
+                {{ f.tazkira_registration_number(class="form-control") }}
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-6">
+            <div class="my-2">
+              <div class="input-group input-group-outline">
+                {{ f.tazkira_sakok_number.label(class="form-label") }}
+                {{ f.tazkira_sakok_number(class="form-control") }}
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-md-12">
-          <div class="my-2">
-            <div class="input-group input-group-outline">
-              {{ f.class_id.label(class="form-label") }} {{
-              f.class_id(class="form-control") }}
+      <div class="row mt-3">
+        <div class="card-header pb-0 pt-0">
+          <h6 class="m-0">{{ _("ACCOUNT_INFORMATION_LABEL") }}</h6>
+          <p class="text-sm text-muted mb-2">
+            {{ _("ACCOUNT_INFORMATION_DESC") }}
+          </p>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="my-2">
+              <div class="input-group input-group-outline">
+                {{ f.user_name.label(class="form-label") }}
+                {{ f.user_name(class="form-control") }}
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div class="my-2">
+              <div class="input-group input-group-outline">
+                {{ f.email.label(class="form-label") }}
+                {{ f.email(class="form-control") }}
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div class="my-2">
+              <div class="input-group input-group-outline">
+                {{ f.password.label(class="form-label") }}
+                {{ f.password(class="form-control") }}
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-12">
-          <div class="my-2">
-            <div class="input-group input-group-outline">
-              {{ f.daily_section_uid.label(class="form-label") }}
-              {{ f.daily_section_uid (class="form-control") }}
+      <div class="row mt-3">
+        <div class="card-header pb-0 pt-0">
+          <h6 class="m-0">{{ _("OTHER_INFORMATION_LABEL") }}</h6>
+          <p class="text-sm text-muted mb-2">
+            {{ _("OTHER_INFORMATION_DESC") }}
+          </p>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="my-2">
+              <div class="input-group input-group-outline">
+                {{ f.kankor_id.label(class="form-label") }}
+                {{ f.kankor_id(class="form-control is-invalid") }}
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div class="my-2">
+              <div class="multi-value-input card">
+                <div class="input-group input-group-outline">
+                  {{ f.phones.label(class="form-label") }}
+                  {{ f.phones(class="form-control") }}
+                </div>
+                <div class="values d-flex flex-wrap"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="card-header pb-0 pt-0">
+          <h6 class="m-0">{{ _("ADDRESS_INFORMATION_LABEL") }}</h6>
+          <p class="text-sm text-muted mb-2">
+            {{ _("ADDRESS_INFORMATION_DESC") }}
+          </p>
+        </div>
+
+        <div class="row">
+          <div class="col-6">
+            <div class="my-2">
+              <div class="px-2 py-0 my-0">
+                {{ f.permanent_province.label(class="form-label") }}
+              </div>
+              {{ f.permanent_province(class="form-control", data_style="btn btn-outline-dark text-auto") }}
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="my-2">
+              <div class="px-2 py-0 my-0">
+                {{ f.permanent_district.label(class="form-label") }}
+              </div>
+              {{ f.permanent_district(class="form-control", data_style="btn btn-outline-dark text-auto") }}
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <div class="my-2">
+              <div class="input-group input-group-outline">
+                {{ f.permanent_village.label(class="form-label") }}
+                {{ f.permanent_village(class="form-control") }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-6">
+            <div class="my-2">
+              <div class="px-2 py-0 my-0">
+                {{ f.current_province.label(class="form-label") }}
+              </div>
+              {{ f.current_province(class="form-control", data_style="btn btn-outline-dark text-auto") }}
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="my-2">
+              <div class="px-2 py-0 my-0">
+                {{ f.current_district.label(class="form-label") }}
+              </div>
+              {{ f.current_district(class="form-control", data_style="btn btn-outline-dark text-auto") }}
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <div class="my-2">
+              <div class="input-group input-group-outline">
+                {{ f.current_village.label(class="form-label") }}
+                {{ f.current_village(class="form-control", data_style="btn btn-outline-dark text-auto") }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="card-header pb-0 pt-0">
+          <h6 class="m-0">{{ _("ACADEMIC_INFORMATION_LABEL") }}</h6>
+          <p class="text-sm text-muted mb-2">
+            {{ _("ACADEMIC_INFORMATION_DESC") }}
+          </p>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="my-2">
+              <div class="input-group input-group-outline">
+                {{ f.class_id.label(class="form-label") }}
+                {{ f.class_id(class="form-control") }}
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="my-2">
+              <div class="input-group input-group-outline">
+                {{ f.daily_section_uid.label(class="form-label") }}
+                {{ f.daily_section_uid(class="form-control") }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="card-header pb-0 pt-0">
+          <h6 class="m-0">{{ _("FATHER_INFORMATION_LABEL") }}</h6>
+          <p class="text-sm text-muted mb-2">
+            {{ _("FATHER_INFORMATION_DESC") }}
+          </p>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="my-2">
+              <div class="input-group input-group-outline">
+                {{ f.father_job.label(class="form-label") }}
+                {{ f.father_job(class="form-control") }}
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="my-2">
+              <div class="input-group input-group-outline">
+                {{ f.father_job_address.label(class="form-label") }}
+                {{ f.father_job_address(class="form-control") }}
+              </div>
             </div>
           </div>
         </div>
@@ -295,12 +369,12 @@
     <div class="col-6">
       <div class="row">
         <div class="card-header pb-0 pt-0">
-            <h6>{{ _("EDUCATIONAL_BACKGROUND_LABEL") }}</h6>
-            <p class="text-sm text-muted mb-0">
+            <h6 class="m-0">{{ _("EDUCATIONAL_BACKGROUND_LABEL") }}</h6>
+            <p class="text-sm text-muted mb-2">
                 {{ _("EDUCATIONAL_BACKGROUND_DESC") }}
             </p>
         </div>
-        <div class="row gy-2">
+        <div class="row g-2 mt-0">
           <div class="col-12">
             <div class="input-group input-group-outline">
               <label class="form-label">{{ _("HIGH_SCHOOL_NAME_LABEL") }}</label>
@@ -321,12 +395,21 @@
               {{ f.high_school_graduation_year(class="form-control") }}
             </div>
           </div>
+
+          <div class="col-12 mt-0">
+            <div class="my-2">
+              <div class="px-2 py-0 my-0">
+                {{ f.high_school_province.label(class="form-label") }}
+              </div>
+              {{ f.high_school_province(class="form-control", data_style="btn btn-outline-dark text-auto") }}
+            </div>
+          </div>
         </div>
       </div>
       <div class="row">
         <div class="card-header pb-0 pt-3">
-          <h6>{{ _("HIGH_SCHOOL_SCORES_LABEL") }}</h6>
-          <p class="text-sm text-muted mb-1">
+          <h6 class="m-0">{{ _("HIGH_SCHOOL_SCORES_LABEL") }}</h6>
+          <p class="text-sm text-muted mb-2">
             {{ _("HIGH_SCHOOL_SCORES_DESC") }}
           </p>
         </div> 
@@ -398,7 +481,7 @@
       </div>
     </div>
     <div class="col-12">
-      <div class="row">
+      <div class="row mt-3">
         <div class="col-md-12">
           <div class="mx-2">{{ f.files.label(class="form-label") }}</div>
           <div class="card drop-zone position-relative">
