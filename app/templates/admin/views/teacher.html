@@ -28,7 +28,7 @@
             <div class="card-header pb-0">
               <h5>{{ _("TEACHER_INFORMATION_LABEL") }}</h5>
             </div>
-            <hr class="bg-dark horizontal my-0 opacity-10" />
+            <hr class="horizontal my-0 opacity-10" />
             <div class="card-body p0">
               {% include "admin/views/information/teacher.html" %}
             </div>
@@ -39,7 +39,7 @@
             <div class="card-header pb-0">
               <h5>{{ _("TIME_INFORMATION_LABEL") }}</h5>
             </div>
-            <hr class="bg-dark horizontal my-0 opacity-10" />
+            <hr class="horizontal my-0 opacity-10" />
             <div class="card-body p0">
               {% with time = teacher.time %} {% include
               "admin/views/information/time.html" %} {% endwith %}
@@ -67,7 +67,7 @@
                   </div>
                 </div>
               </div>
-              <hr class="bg-dark horizontal my-0 opacity-10" />
+              <hr class="horizontal my-0 opacity-10" />
             </div>
           </div>
         </div>
@@ -92,7 +92,7 @@
                 </div>
               </div>
               {% if teacher.user.phones.count() > 0 %}
-              <hr class="bg-dark horizontal my-0 opacity-10" />
+              <hr class="horizontal my-0 opacity-10" />
               <div class="card-footer py-2">
                 <div class="values d-flex flex-wrap justify-content-center">
                   {% for phone in teacher.user.phones.all() %}
@@ -174,7 +174,7 @@
                   </div>
                 </div>
               </div>
-              <hr class="bg-dark horizontal my-0 opacity-10" />
+              <hr class="horizontal my-0 opacity-10" />
               <div class="card-footer py-2">
                 <span class="font-weight-bolder text-sm"
                   >{{ _("STORAGE_LABEL") }}
@@ -192,7 +192,7 @@
     <div class="row gx-3 my-1">
       <div class="col-lg-8 mx-auto mt-3">
         <div class="nav-wrapper position-relative end-0">
-          <ul class="nav nav-pills nav-fill p-1 bg-dark" role="tablist">
+          <ul class="nav nav-pills nav-fill p-1 " role="tablist">
             <li class="nav-item" role="presentation">
               <a
                 class="nav-link mb-0 px-0 py-1 text-white"

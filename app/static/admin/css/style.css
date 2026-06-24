@@ -443,3 +443,19 @@ div.dropdown-menu {
   width: 80px;
   height: 100px;
 }
+
+hr.horizontal {
+  background: #c6c6c6c6 !important;
+}
+
+.dark-version .card hr.horizontal {
+  background-color: #262626 !important;
+}
+
+ul.nav.nav-pills.nav-fill {
+  background: #959595 !important;
+}
+
+.dark-version .nav.nav-pills.nav-fill {
+  background-color: #262626 !important;
+}
