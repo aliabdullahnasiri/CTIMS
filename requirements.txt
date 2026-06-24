@@ -24,3 +24,4 @@ flask_socketio
 flask-babel
 docxtpl 
 openpyxl
+jdatetim
