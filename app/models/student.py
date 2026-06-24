@@ -183,7 +183,11 @@ class Student(db.Model):
                 "full_name": self.user.full_name,
                 "user_name": self.user.user_name,
                 "email": self.user.email,
-                "birthday": self.user.display_birthday,
+                "birthday": (
+                    self.user.birthday.strftime("%Y-%m-%d")
+                    if self.user.birthday
+                    else None
+                ),
                 "age": self.user.age,
                 "avatar": self.user.avatar_path,
                 "phones": [phone.number for phone in self.user.phones.all()],
