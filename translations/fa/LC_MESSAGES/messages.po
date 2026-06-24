@@ -1806,7 +1806,7 @@ msgstr "علاوه کردن محصل جدید"
 
 #: app/templates/admin/components/modals/add/student.html:16
 msgid "FILL_IN_THE_STUDENT_S_DETAILS_BELOW_TO_CREATE_A_NEW_STUDENT_MSG"
-msgstr "جزئیات محصل را در زیر پر کنید تا یک محصل جدید ایجاد شود"
+msgstr "لطفاً فورم ثبت‌نام محصل را با وارد نمودن معلومات دقیق شخصی، هویتی، معلومات تماس، معلومات تحصیلی و آدرس تکمیل نمایید. اطمینان حاصل کنید که تمامی فیلدهای ضروری به‌درستی خانه‌پری شده و اسناد و عکس پروفایل بارگذاری‌شده واضح و به‌روز باشند.."
 
 #: app/templates/admin/components/modals/add/subject.html:14
 msgid "ADD_NEW_SUBJECT_MSG"
