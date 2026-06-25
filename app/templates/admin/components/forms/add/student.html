@@ -5,6 +5,7 @@
   action="{{ url_for('api.add_student') }}"
   enctype="multipart/form-data"
 >
+  {{ f.hidden_tag() }}
   <div class="row justify-content-center">
     <div class="col-12 float-end">
       <div class="row justify-content-center mb-5 mt-4">
