@@ -13,7 +13,7 @@ class Result(db.Model):
 
     student_id = db.Column(db.String(8), db.ForeignKey("students.uid"), nullable=False)
 
-    student = db.relationship("Student", back_populates="results")
+    student = db.relationship("Student", back_populates="results", lazy="select")
     exam = db.relationship("Exam", back_populates="results")
 
     def to_dict(self) -> Dict:
@@ -38,3 +38,7 @@ class Result(db.Model):
     @property
     def status(self):
         return "Pass" if self.percentage >= self.exam.min_percentage else "Fail"
+
+    @property
+    def is_passed(self):
+        return self.percentage >= self.exam.min_percentage
