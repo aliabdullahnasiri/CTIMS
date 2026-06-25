@@ -46,7 +46,11 @@ class Base(db.Model):
                     return ""
 
                 # check if column is date or datetime
-                if column is not None and isinstance(column.type, (Date, DateTime)):
+                if (
+                    column is not None
+                    and hasattr(column, "type")
+                    and isinstance(column.type, (Date, DateTime))
+                ):
                     return jdatetime.date.fromgregorian(date=value).strftime("%Y-%m-%d")
 
                 return str(value)
