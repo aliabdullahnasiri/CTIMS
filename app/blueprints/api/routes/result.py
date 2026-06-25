@@ -127,6 +127,20 @@ def add_result() -> Response:
         result.student_id = form.student_id.data
 
         db.session.add(result)
+        db.session.flush()
+
+        if (
+            result.is_passed
+            and result.student.daily_section
+            and result.student.daily_section.exam_uid == result.exam_id
+            and not result.student.base_number
+        ):
+            setattr(
+                result.student,
+                "base_number",
+                result.student.daily_section.get_next_base_number,
+            )
+
         db.session.commit()
 
         response["message"] = g("RESULT_ADDED_SUCCESSFULLY_SUCCESS_MSG")
@@ -160,6 +174,18 @@ def update_result() -> Response:
             result.exam_id = form.exam_id.data
             result.student_id = form.student_id.data
 
+            if (
+                result.is_passed
+                and result.student.daily_section
+                and result.student.daily_section.exam_uid == result.exam_id
+                and not result.student.base_number
+            ):
+                setattr(
+                    result.student,
+                    "base_number",
+                    result.student.daily_section.get_next_base_number,
+                )
+
             db.session.commit()
 
             response["title"] = g("UPDATED_SUCCESS_MSG")
@@ -186,6 +212,13 @@ def delete_result(uid: str) -> Response:
 
     result: Union[Result, None] = Result.query.filter_by(uid=uid).first()
     if result:
+        if (
+            result.student.daily_section
+            and result.student.daily_section.exam_uid == result.exam_id
+            and result.student.base_number
+        ):
+            setattr(result.student, "base_number", None)
+
         db.session.delete(result)
         db.session.commit()
 
