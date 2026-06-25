@@ -1,5 +1,3 @@
-import re
-
 from flask_babel import gettext as _
 from wtforms import (
     HiddenField,
@@ -31,7 +29,7 @@ class AddResultForm(Form):
             "data-model-name": "Exam",
             "data-select-val": "uid",
             "data-search-col": "title",
-            "data-template": "classes.html",
+            "data-template": "exams.html",
         },
     )
     student_id = StringField(
