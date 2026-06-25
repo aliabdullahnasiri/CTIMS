@@ -63,7 +63,9 @@ class MustBeUnique:
                     getattr(self.model, self.name) == val,
                 ).count()
             ):
-                raise ValidationError(_(self.message))
+                raise ValidationError(
+                    _(self.message or "THIS_VALUE_MUST_BE_UNIQUE_MSG")
+                )
 
 
 class ValidateUID:
