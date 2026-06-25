@@ -218,7 +218,6 @@ def update_student() -> Response:
         uid = form.uid.data
         student: Union[Student, None] = Student.query.filter_by(uid=uid).first()
 
-        print(student.updated_at)
         if student:
             student.user.first_name = form.first_name.data
             student.user.middle_name = form.middle_name.data
@@ -254,6 +253,13 @@ def update_student() -> Response:
             student.high_school_province_uid = form.high_school_province.data
             student.father_job = form.father_job.data
             student.father_job_address = form.father_job_address.data
+
+            if form.kankor_id.data and student.daily_section:
+                setattr(
+                    student,
+                    "base_number",
+                    student.daily_section.get_next_base_number,
+                )
 
             if form.identity_card_type.data == IdentityCardType.ELECTRONIC:
                 student.tazkira_folder = None
@@ -297,9 +303,9 @@ def update_student() -> Response:
                     student_subject.score = score
                 else:
                     s = StudentSubject()
-                    s.subject_uid = subject_uid
                     s.student_uid = student.uid
                     s.grade_uid = grade_uid
+                    s.subject_uid = subject_uid
                     s.score = score
 
                     db.session.add(s)
