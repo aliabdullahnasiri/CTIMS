@@ -171,7 +171,7 @@ class StudentSubject(db.Model):
 
     __table_args__ = (
         db.UniqueConstraint(
-            "subject_uid",
+            "student_uid",
             "grade_uid",
             "subject_uid",
             name="uc_student_grade_subject_uid",
