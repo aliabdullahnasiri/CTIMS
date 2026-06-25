@@ -1,5 +1,4 @@
 import json
-from re import sub
 from typing import Dict, List, Tuple, Union
 
 from flask import Response, request, url_for
