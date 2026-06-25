@@ -4,7 +4,7 @@ from wtforms import HiddenField, IntegerField, SelectField, StringField, SubmitF
 from wtforms.validators import DataRequired, Length, NumberRange, Optional, Regexp
 
 from app.const import KANKOR_ID_REGEX, NATIONAL_ID_REGEX
-from app.forms import ValidateUID
+from app.forms import MustBeUnique, ValidateUID
 from app.forms.user import AddUserForm, UpdateUserForm
 from app.models.class_ import Class
 from app.models.province import Province
@@ -35,6 +35,7 @@ class AddStudentForm(AddUserForm):
             Optional(),
             Length(max=9),
             Regexp(KANKOR_ID_REGEX, message=_("INVALID_KANKOR_ID_LABEL")),
+            MustBeUnique(Student, "kankor_id"),
         ],
     )
 
@@ -164,7 +165,7 @@ class AddStudentForm(AddUserForm):
     daily_section_uid = StringField(
         _("DAILY_SECTION_LABEL"),
         validators=[
-            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
+            Optional(),
         ],
         render_kw={
             "data-auto-complete": "true",
@@ -193,9 +194,7 @@ class AddStudentForm(AddUserForm):
 
     high_school_province = SelectField(
         _("HIGH_SCHOOL_PROVINCE_LABEL"),
-        validators=[
-            DataRequired(message=_("THIS_FIELD_IS_REQUIRED_ERROR")),
-        ],
+        validators=[Optional(), Length(max=255)],
         choices=[],
     )
 
