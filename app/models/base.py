@@ -51,7 +51,7 @@ class Base(db.Model):
                     and hasattr(column, "type")
                     and isinstance(column.type, (Date, DateTime))
                 ):
-                    return jdatetime.date.fromgregorian(date=value).strftime("%Y-%m-%d")
+                    return jdatetime.date.fromgregorian(date=value).strftime("%Y/%m/%d")
 
                 return str(value)
 

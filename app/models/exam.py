@@ -2,6 +2,7 @@ from operator import call
 from typing import Dict
 
 from numerize.numerize import numerize
+from sqlalchemy import func
 
 from app.extensions.db import db
 from app.models.result import Result
@@ -90,3 +91,30 @@ class Exam(db.Model):
     @property
     def display_number_of_failed(self):
         return numerize(self.failed.count())
+
+    @property
+    def average_score(self):
+        avg = (
+            db.session.query(func.avg(Result.obtained_marks))
+            .filter(Result.exam_id == getattr(self, "uid"))
+            .scalar()
+        )
+        return round(avg, 2) if avg is not None else 0
+
+    @property
+    def highest_score(self):
+        return (
+            db.session.query(func.max(Result.obtained_marks))
+            .filter(Result.exam_id == getattr(self, "uid"))
+            .scalar()
+            or 0
+        )
+
+    @property
+    def lowest_score(self):
+        return (
+            db.session.query(func.min(Result.obtained_marks))
+            .filter(Result.exam_id == getattr(self, "uid"))
+            .scalar()
+            or 0
+        )

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-26 09:37+0430\n"
+"POT-Creation-Date: 2026-06-26 10:10+0430\n"
 "PO-Revision-Date: 2026-06-17 19:08+0430\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fa_AF\n"
@@ -264,6 +264,7 @@ msgstr "قالب یافت نشد"
 #: app/blueprints/api/routes/user.py:19 app/forms/department.py:65
 #: app/forms/time.py:47 app/forms/user.py:99
 #: app/templates/admin/views/information/class.html:3
+#: app/templates/admin/views/information/daily_section.html:3
 #: app/templates/admin/views/information/department.html:3
 #: app/templates/admin/views/information/employee.html:3
 #: app/templates/admin/views/information/exam.html:3
@@ -379,6 +380,7 @@ msgstr "صنف یافت نشد"
 #: app/blueprints/api/routes/daily_section.py:18
 #: app/blueprints/api/routes/exam.py:18 app/blueprints/api/routes/time.py:18
 #: app/forms/daily_section.py:29 app/forms/exam.py:22 app/forms/time.py:13
+#: app/templates/admin/views/information/daily_section.html:6
 #: app/templates/admin/views/information/exam.html:6
 #: app/templates/admin/views/information/job.html:6
 #: app/templates/admin/views/tables/exams.html:12
@@ -390,7 +392,9 @@ msgstr "عنوان"
 #: app/blueprints/api/routes/exam.py:19 app/blueprints/api/routes/subject.py:20
 #: app/forms/daily_section.py:37 app/forms/department.py:20
 #: app/forms/exam.py:29 app/forms/permission.py:27 app/forms/role.py:21
-#: app/forms/time.py:21 app/templates/admin/views/information/department.html:9
+#: app/forms/time.py:21
+#: app/templates/admin/views/information/daily_section.html:9
+#: app/templates/admin/views/information/department.html:9
 #: app/templates/admin/views/information/exam.html:9
 #: app/templates/admin/views/information/job.html:9
 #: app/templates/admin/views/information/permission.html:9
@@ -416,7 +420,7 @@ msgstr "بخش روزانه با شناسه داده شده یافت نشد"
 #: app/blueprints/api/routes/result.py:191
 #: app/blueprints/api/routes/role.py:157
 #: app/blueprints/api/routes/semester.py:164
-#: app/blueprints/api/routes/student.py:317
+#: app/blueprints/api/routes/student.py:318
 #: app/blueprints/api/routes/subject.py:183
 #: app/blueprints/api/routes/time.py:167
 msgid "UPDATED_SUCCESS_MSG"
@@ -433,7 +437,7 @@ msgstr "بخش روزانه با موفقیت بروزرسانی شد"
 #: app/blueprints/api/routes/result.py:195
 #: app/blueprints/api/routes/role.py:161
 #: app/blueprints/api/routes/semester.py:168
-#: app/blueprints/api/routes/student.py:321
+#: app/blueprints/api/routes/student.py:322
 #: app/blueprints/api/routes/subject.py:187
 #: app/blueprints/api/routes/time.py:171
 msgid "NOT_FOUND_LABEL"
@@ -819,11 +823,11 @@ msgstr "محصل با موفقیت علاوه شد"
 msgid "STUDENT_ADDED_LABEL"
 msgstr "محصل علاوه شد"
 
-#: app/blueprints/api/routes/student.py:318
+#: app/blueprints/api/routes/student.py:319
 msgid "STUDENT_UPDATED_SUCCESSFULLY_SUCCESS_MSG"
 msgstr "محصل با موفقیت بروزرسانی شد"
 
-#: app/blueprints/api/routes/student.py:322
+#: app/blueprints/api/routes/student.py:323
 msgid "STUDENT_RECORD_NOT_FOUND_MSG"
 msgstr "ریکاردی برای محصل یافت نشد"
 
@@ -1030,7 +1034,7 @@ msgstr "نام صنف"
 #: app/forms/signup.py:36 app/forms/student.py:19 app/forms/student.py:27
 #: app/forms/student.py:45 app/forms/student.py:107 app/forms/student.py:115
 #: app/forms/student.py:138 app/forms/student.py:146 app/forms/student.py:244
-#: app/forms/student.py:258 app/forms/student.py:293 app/forms/student.py:300
+#: app/forms/student.py:258 app/forms/student.py:289 app/forms/student.py:296
 #: app/forms/subject.py:21 app/forms/subject.py:38 app/forms/subject.py:60
 #: app/forms/teacher.py:16 app/forms/teacher.py:45 app/forms/teacher.py:52
 #: app/forms/time.py:30 app/forms/time.py:36 app/forms/time.py:49
@@ -1053,7 +1057,7 @@ msgstr "شناسه استاد"
 #: app/forms/attendance/student.py:15 app/forms/attendance/teacher.py:15
 #: app/forms/class_.py:25 app/forms/class_.py:41 app/forms/class_.py:57
 #: app/forms/employee.py:24 app/forms/exam.py:57 app/forms/exam.py:73
-#: app/forms/result.py:23 app/forms/result.py:39 app/forms/student.py:308
+#: app/forms/result.py:23 app/forms/result.py:39 app/forms/student.py:304
 #: app/forms/teacher.py:17
 msgid "THIS_FIELD_MUST_BE_8_CHARACTERS_MSG"
 msgstr "این فیلد باید دقیقاً 8 کاراکتر باشد"
@@ -1070,7 +1074,7 @@ msgstr "شناسه وقت"
 msgid "ADD_CLASS_LABEL"
 msgstr "علاوه کردن صنف"
 
-#: app/forms/class_.py:75 app/forms/exam.py:70 app/forms/student.py:305
+#: app/forms/class_.py:75 app/forms/exam.py:70 app/forms/student.py:301
 #: app/templates/admin/views/information/student.html:6
 msgid "CLASS_UID_LABEL"
 msgstr "شناسه صنف"
@@ -1150,7 +1154,7 @@ msgstr "مقدار باید حداقل %s باشد"
 msgid "EMPLOYEE_UID_LABEL"
 msgstr "شناسه کارمند"
 
-#: app/forms/employee.py:64 app/forms/student.py:298 app/forms/teacher.py:50
+#: app/forms/employee.py:64 app/forms/student.py:294 app/forms/teacher.py:50
 msgid "USER_UID_LABEL"
 msgstr "شناسه کاربر"
 
@@ -1245,7 +1249,7 @@ msgid "UPDATE_PERMISSION_LABEL"
 msgstr "بروزرسانی صلاحیت"
 
 #: app/forms/attendance/student.py:12 app/forms/result.py:36
-#: app/forms/student.py:291
+#: app/forms/student.py:287
 msgid "STUDENT_UID_LABEL"
 msgstr "شناسه محصل"
 
@@ -1440,15 +1444,15 @@ msgstr "آدرس محل وظیفه پدر"
 msgid "ADMISSION_CLASS_LABEL"
 msgstr "صنف شمولیت"
 
-#: app/forms/student.py:278
+#: app/forms/student.py:274
 msgid "VALUE_MUST_BE_A_NUMBER_MSG"
 msgstr "مقدار باید یک عدد باشد."
 
-#: app/forms/student.py:283
+#: app/forms/student.py:279
 msgid "VALUE_MUST_BE_BETWEEN_0_AND_100_MSG"
 msgstr "مقدار باید بین ۰ تا ۱۰۰ باشد."
 
-#: app/forms/student.py:320
+#: app/forms/student.py:316
 msgid "UPDATE_STUDENT_LABEL"
 msgstr "بروزرسانی محصل"
 
@@ -2061,6 +2065,34 @@ msgstr "دیپارتمنت"
 msgid "ATTENDANCES_LABEL"
 msgstr "حاضری‌ها"
 
+#: app/templates/admin/views/daily_section.html:20
+msgid "DAILY_SECTION_INFORMATION_LABEL"
+msgstr "اطلاعات بخش روزانه"
+
+#: app/templates/admin/views/daily_section.html:39
+msgid "STUDENT_COUNT_LABEL"
+msgstr "تعداد شاگردان"
+
+#: app/templates/admin/views/daily_section.html:62
+msgid "PASSED_STUDENTS_LABEL"
+msgstr "تعداد شاگردان کامیاب"
+
+#: app/templates/admin/views/daily_section.html:87
+msgid "FAILED_STUDENTS_LABEL"
+msgstr "تعداد شاگردان ناکام"
+
+#: app/templates/admin/views/daily_section.html:110
+msgid "AVERAGE_SCORE_LABEL"
+msgstr "اوسط نمره"
+
+#: app/templates/admin/views/daily_section.html:133
+msgid "HIGHEST_SCORE_LABEL"
+msgstr "بالاترین نمره"
+
+#: app/templates/admin/views/daily_section.html:158
+msgid "LOWEST_SCORE_LABEL"
+msgstr "پایین‌ترین نمره"
+
 #: app/templates/admin/views/department.html:20
 #: app/templates/admin/views/semester.html:26
 #: app/templates/admin/views/tabs/department.html:3
@@ -2152,6 +2184,7 @@ msgid "TIME_INFORMATION_LABEL"
 msgstr "معلومات وقت"
 
 #: app/templates/admin/views/information/class.html:9
+#: app/templates/admin/views/information/daily_section.html:13
 #: app/templates/admin/views/information/department.html:12
 #: app/templates/admin/views/information/employee.html:38
 #: app/templates/admin/views/information/exam.html:21
@@ -2167,6 +2200,7 @@ msgid "CREATED_AT_SUCCESS_MSG"
 msgstr "ایجاد شده در"
 
 #: app/templates/admin/views/information/class.html:12
+#: app/templates/admin/views/information/daily_section.html:17
 #: app/templates/admin/views/information/department.html:16
 #: app/templates/admin/views/information/employee.html:42
 #: app/templates/admin/views/information/exam.html:24

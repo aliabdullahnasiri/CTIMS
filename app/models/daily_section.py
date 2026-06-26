@@ -55,7 +55,7 @@ class DailySection(db.Model):
 
     @property
     def get_next_base_number(self):
-        Student = db.Model.registry._class_registry.get("Student")
+        Student = getattr(db.Model, "registry")._class_registry.get("Student")
 
         student = (
             Student.query.filter(Student.base_number > 0)
@@ -67,6 +67,10 @@ class DailySection(db.Model):
             return student.base_number + 1
 
         return self.starting_base_number
+
+    @property
+    def display_student_count(self):
+        return self.students.count()
 
     def to_dict(self) -> Dict:
         return {

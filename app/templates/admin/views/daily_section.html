@@ -1,0 +1,191 @@
+<div class="card card-plain">
+  <div class="card-header">
+    <div class="row gx-4 mb-2">
+      <div class="d-flex">
+        <div class="h-100">
+          <h5 class="mb-1">{{ daily_section.title }}</h5>
+          <p class="mb-0 font-weight-normal text-sm">
+            {{ daily_section.description }}
+          </p>
+        </div>
+
+        <div
+          class="align-items-center col-4 d-flex justify-content-end me-auto"
+        >
+          <a
+            class="align-items-center btn btn-outline-primary btn-rounded d-inline-flex gap-2 m-0 mx-3 p-2"
+            href="{{ url_for('api.export_daily_section', uid=daily_section.uid) }}"
+            target="_blank"
+          >
+            <i class="material-symbols-rounded opacity-10">download</i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body py-0">
+    <div class="row gx-3 my-1">
+      <div class="col-md-8">
+        <div class="row gx-0 mb-3">
+          <div class="card">
+            <div class="card-header pb-0">
+              <h5>{{ _("DAILY_SECTION_INFORMATION_LABEL") }}</h5>
+            </div>
+            <hr class="horizontal my-0 opacity-10" />
+            <div class="card-body p0">
+              {% include "admin/views/information/daily_section.html" %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="row mb-4">
+          <!-- Student Count -->
+          <div class="col-12 mb-3">
+            <div class="card">
+              <div class="card-header ps-3">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <p class="text-sm mb-0 text-capitalize">
+                      {{ _("STUDENT_COUNT_LABEL") }}
+                    </p>
+                    <h4 class="mb-0">
+                      {{ daily_section.display_student_count }}
+                    </h4>
+                  </div>
+                  <div
+                    class="icon icon-md icon-shape bg-gradient-primary shadow text-center border-radius-lg"
+                  >
+                    <i class="material-symbols-rounded opacity-10">groups</i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Average Score -->
+          <div class="col-12 mb-3">
+            <div class="card">
+              <div class="card-header ps-3">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <p class="text-sm mb-0 text-capitalize">
+                      {{ _("AVERAGE_SCORE_LABEL") }}
+                    </p>
+                    <h4 class="mb-0">
+                      {{ daily_section.exam.display_average_score }}
+                    </h4>
+                  </div>
+                  <div
+                    class="icon icon-md icon-shape bg-gradient-info shadow text-center border-radius-lg"
+                  >
+                    <i class="material-symbols-rounded opacity-10">analytics</i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Highest Score -->
+          <div class="col-12 mb-3">
+            <div class="card">
+              <div class="card-header ps-3">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <p class="text-sm mb-0 text-capitalize">
+                      {{ _("HIGHEST_SCORE_LABEL") }}
+                    </p>
+                    <h4 class="mb-0">
+                      {{ daily_section.exam.display_highest_score }}
+                    </h4>
+                  </div>
+                  <div
+                    class="icon icon-md icon-shape bg-gradient-warning shadow text-center border-radius-lg"
+                  >
+                    <i class="material-symbols-rounded opacity-10"
+                      >emoji_events</i
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Lowest Score -->
+          <div class="col-12 mb-3">
+            <div class="card">
+              <div class="card-header ps-3">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <p class="text-sm mb-0 text-capitalize">
+                      {{ _("LOWEST_SCORE_LABEL") }}
+                    </p>
+                    <h4 class="mb-0">
+                      {{ daily_section.exam.display_lowest_score }}
+                    </h4>
+                  </div>
+                  <div
+                    class="icon icon-md icon-shape bg-gradient-secondary shadow text-center border-radius-lg"
+                  >
+                    <i class="material-symbols-rounded opacity-10"
+                      >trending_down</i
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row gx-3 my-1">
+        <div class="col-lg-4 mx-auto mt-0">
+          <div class="nav-wrapper position-relative end-0">
+            <ul class="nav nav-pills nav-fill p-1" role="tablist">
+              <li class="nav-item" role="presentation">
+                <a
+                  class="nav-link mb-0 px-0 py-1 text-white"
+                  data-bs-toggle="tab"
+                  data-bs-target="#tab-students"
+                  href="javascript:;"
+                  role="tab"
+                  aria-selected="true"
+                >
+                  {{ _("STUDENTS_LABEL") }}
+                </a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a
+                  class="nav-link mb-0 px-0 py-1 text-white"
+                  data-bs-toggle="tab"
+                  data-bs-target="#tab-results"
+                  href="javascript:;"
+                  role="tab"
+                  aria-selected="true"
+                >
+                  {{ _("RESULTS_LABEL") }}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row gx-3 my-1">
+        <div class="col-md-12">
+          <div class="row gx-0 mb-2 mt-5">
+            <div role="tab-container">
+              <!--Students-->
+              {% with students = daily_section.students.all() %} {% include
+              "admin/views/tabs/students.html" %}{% endwith %}
+
+              <!--RESULTS-->
+              {% with results = daily_section.exam.results %} {% include
+              "admin/views/tabs/results.html" %}{% endwith %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer"></div>
+  </div>
+</div>
