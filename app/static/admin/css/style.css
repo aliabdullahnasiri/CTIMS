@@ -459,3 +459,9 @@ ul.nav.nav-pills.nav-fill {
 .dark-version .nav.nav-pills.nav-fill {
   background-color: #262626 !important;
 }
+.dropdown-menu {
+  display: none !important;
+}
+.dropdown-menu.show {
+  display: block !important;
+}
