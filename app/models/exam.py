@@ -2,7 +2,8 @@ from operator import call
 from typing import Dict
 
 from numerize.numerize import numerize
-from sqlalchemy import func
+from sqlalchemy import and_, func
+from sqlalchemy.ext.hybrid import hybrid_property
 
 from app.extensions.db import db
 from app.models.result import Result
@@ -54,23 +55,17 @@ class Exam(db.Model):
 
     @property
     def passed(self):
-        return Result.query.filter(Result.obtained_marks > self.min_marks)
+        return Result.query.join(Exam, Result.exam_id == getattr(Exam, "uid")).filter(
+            Result.passed.is_(True)
+        )
 
-    @property
-    def failed(self):
-        return Result.query.filter(Result.obtained_marks < self.min_marks)
-
-    @property
-    def get_passed(self):
-        return self.passed.all()
-
-    @property
-    def get_failed(self):
-        return self.failed.all()
-
-    @property
+    @hybrid_property
     def min_percentage(self):
         return round((self.min_marks / self.total_marks) * 100, 2)
+
+    @min_percentage.expression
+    def min_percentage(cls):
+        return (cls.min_marks * 100.0) / cls.total_marks
 
     @property
     def display_exam_date(self):
@@ -87,10 +82,6 @@ class Exam(db.Model):
     @property
     def display_number_of_passed(self):
         return numerize(self.passed.count())
-
-    @property
-    def display_number_of_failed(self):
-        return numerize(self.failed.count())
 
     @property
     def average_score(self):
