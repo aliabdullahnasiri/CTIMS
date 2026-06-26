@@ -68,7 +68,6 @@ def export_daily_section(uid: str):
     wb = load_workbook(template_path)
     ws = wb.active
 
-    print(list(d.passed_students))
     if ws is not None:
         cols = [
             (idx, val)

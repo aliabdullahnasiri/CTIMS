@@ -152,7 +152,6 @@ def update_daily_section() -> Response:
             response["category"] = "error"
     else:
         response["errors"] = form.errors
-        print(form.errors)
 
     return Response(
         json.dumps(response),
