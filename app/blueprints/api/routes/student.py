@@ -142,7 +142,7 @@ def add_student() -> Response:
         if role := Role.get(STUDENT):
             user.update_roles(primary_role=role)
 
-        db.session.commit()
+        db.session.flush()
 
         student = Student()
         student.user_id = getattr(user, "uid")
@@ -178,7 +178,7 @@ def add_student() -> Response:
             student.electronic_tazkira_number = None
 
         db.session.add(student)
-        db.session.commit()
+        db.session.flush()
 
         if form.phones.data:
             student.user.update_phones(json.loads(form.phones.data))
