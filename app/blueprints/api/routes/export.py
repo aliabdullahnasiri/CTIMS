@@ -69,6 +69,8 @@ def export_daily_section(uid: str):
     ws = wb.active
 
     if ws is not None:
+        ws.cell(7, 1).value = d.title
+
         cols = [
             (idx, val)
             for idx in range(column_index_from_string("AE"), 0, -1)
