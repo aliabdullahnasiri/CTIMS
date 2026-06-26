@@ -175,7 +175,7 @@
           <div class="row gx-0 mb-2 mt-5">
             <div role="tab-container">
               <!--Students-->
-              {% with students = daily_section.students.all() %} {% include
+              {% with students = daily_section._students.all() %} {% include
               "admin/views/tabs/students.html" %}{% endwith %}
 
               <!--RESULTS-->
