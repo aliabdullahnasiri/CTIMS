@@ -99,6 +99,8 @@ class Student(db.Model):
     father_job = db.Column(db.String(100), nullable=True)
     father_job_address = db.Column(db.String(100), nullable=True)
 
+    admission_class = db.Column(db.String(5), nullable=True, index=True)
+
     class_ = db.relationship("Class", back_populates="students")
     attendances = db.relationship(
         "StudentAttendance",
@@ -195,6 +197,7 @@ class Student(db.Model):
                 "high_school_name": self.high_school_name,
                 "high_school_registration_no": self.high_school_registration_no,
                 "high_school_graduation_year": self.high_school_graduation_year,
+                "admission_class": self.admission_class,
                 "admission_date": (
                     self.daily_section.academic_year if self.daily_section else None
                 ),
@@ -229,12 +232,12 @@ class Student(db.Model):
                 for s in getattr(self, "school_scores").all()
             }
             | {
-                f"GRADE_{uid}_SUM": round(val)
+                f"SUM_GRADE_{uid}": round(val)
                 for uid, val, _ in grade_stat
                 if isinstance(val, (int, float))
             }
             | {
-                f"GRADE_{uid}_AVG": round(val)
+                f"AVG_GRADE_{uid}": round(val)
                 for uid, _, val in grade_stat
                 if isinstance(val, (int, float))
             }

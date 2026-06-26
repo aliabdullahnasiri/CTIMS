@@ -208,6 +208,10 @@ class AddStudentForm(AddUserForm):
         validators=[Optional(), Length(max=100)],
     )
 
+    admission_class = StringField(
+        _("ADMISSION_CLASS_LABEL"), validators=[Optional(), Length(max=5)]
+    )
+
     submit = SubmitField(_("ADD_LABEL"))
 
     errors_dct = {}
@@ -267,11 +271,13 @@ class AddStudentForm(AddUserForm):
                 try:
                     val = int(value)
                 except ValueError:
-                    self.errors_dct.setdefault(key, [f"{key} must be a number"])
+                    self.errors_dct.setdefault(key, [_("VALUE_MUST_BE_A_NUMBER_MSG")])
                     continue
 
                 if val < 0 or val > 100:
-                    self.errors_dct.setdefault(key, [f"{key} must be 0–100"])
+                    self.errors_dct.setdefault(
+                        key, [_("VALUE_MUST_BE_BETWEEN_0_AND_100_MSG")]
+                    )
 
         return r and len(self.errors_dct) == 0
 

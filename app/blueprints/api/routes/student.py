@@ -252,6 +252,7 @@ def update_student() -> Response:
             student.high_school_province_uid = form.high_school_province.data
             student.father_job = form.father_job.data
             student.father_job_address = form.father_job_address.data
+            student.admission_class = form.admission_class.data
 
             if form.kankor_id.data and student.daily_section:
                 setattr(
@@ -287,11 +288,12 @@ def update_student() -> Response:
                 map(
                     lambda item: (tuple(item[0].split("_")[1:]), int(item[1])),
                     filter(
-                        lambda item: item[0].startswith("GRADE_"),
+                        lambda item: (item[0].startswith("GRADE_")),
                         list(request.form.items()),
                     ),
                 )
             ).items():
+
                 student_subject = StudentSubject.query.filter_by(
                     student_uid=student.uid,
                     subject_uid=subject_uid,

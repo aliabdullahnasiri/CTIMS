@@ -321,6 +321,15 @@
           <div class="col-md-12">
             <div class="my-2">
               <div class="input-group input-group-outline">
+                {{ f.admission_class.label(class="form-label") }}
+                {{ f.admission_class(class="form-control") }}
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div class="my-2">
+              <div class="input-group input-group-outline">
                 {{ f.class_id.label(class="form-label") }}
                 {{ f.class_id(class="form-control") }}
               </div>
@@ -457,7 +466,7 @@
                   {% with name = g.name | replace("_LABEL", "")  %}
                     <td class="p-0 pt-2">
                       <div class="text-sm" data-sum="{{ name | lower }}">
-                        <input class="bg-transparent border-0 form-control p-0 text-auto text-center w-100" id="{{ name | lower }}_sum" name="{{ name | lower }}_sum" type="text" disabled />
+                        <input class="bg-transparent border-0 form-control p-0 text-auto text-center w-100" id="SUM_GRADE_{{ g.uid }}" name="SUM_GRADE_{{ g.uid }}" type="text" disabled />
                       </div>
                     </td>
                   {% endwith %}
@@ -471,7 +480,7 @@
                   {% with name = g.name | replace("_LABEL", "")  %}
                     <td class="p-0 pt-2">
                       <div class="text-sm" data-avg="{{ name | lower }}">
-                          <input class="bg-transparent border-0 form-control p-0 text-auto text-center w-100" id="{{ name | lower }}_avg" name="{{ name | lower }}_avg" type="text" disabled />
+                          <input class="bg-transparent border-0 form-control p-0 text-auto text-center w-100" id="AVG_GRADE_{{ g.uid }}" name="AVG_GRADE_{{ g.uid }}" type="text" disabled />
                         </div>
                     </td>
                   {% endwith %}
