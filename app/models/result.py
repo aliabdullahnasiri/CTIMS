@@ -1,6 +1,9 @@
 from operator import call
 from typing import Dict
 
+from sqlalchemy import case
+from sqlalchemy.ext.hybrid import hybrid_property
+
 from app.extensions.db import db
 
 
@@ -27,9 +30,28 @@ class Result(db.Model):
             **call(getattr(super(), "to_dict")),
         }
 
+    @hybrid_property
+    def passed(self):
+        return (
+            self.obtained_marks * 100.0 / self.exam.total_marks
+        ) >= self.exam.min_percentage
+
+    @passed.expression
+    def passed(cls):
+        Exam = getattr(db.Model, "registry")._class_registry.get("Exam")
+
+        return case(
+            (
+                (Result.obtained_marks * 100.0 / Exam.total_marks)
+                >= Exam.min_percentage,
+                True,
+            ),
+            else_=False,
+        )
+
     @property
     def percentage(self):
-        return round((self.obtained_marks / self.exam.total_marks) * 100, 2)
+        return round((self.obtained_marks * 100.0 / self.exam.total_marks), 2)
 
     @property
     def display_percentage(self):
@@ -37,8 +59,8 @@ class Result(db.Model):
 
     @property
     def status(self):
-        return "Pass" if self.percentage >= self.exam.min_percentage else "Fail"
+        return "Pass" if self.passed else "Fail"
 
     @property
     def is_passed(self):
-        return self.percentage >= self.exam.min_percentage
+        return self.passed
