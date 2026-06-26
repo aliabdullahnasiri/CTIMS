@@ -1,11 +1,12 @@
 from operator import call
 from typing import Dict
 
-from sqlalchemy import and_
+from sqlalchemy import and_, or_
 
 from app.extensions.db import db
 from app.models.exam import Exam
 from app.models.result import Result
+from app.models.student import Student
 
 
 class DailySection(db.Model):
@@ -37,20 +38,14 @@ class DailySection(db.Model):
     )
 
     @property
-    def passed_students(self):
+    def _students(self):
         return (
-            result.student
-            for result in Result.query.join(
-                Exam, Result.exam_id == getattr(Exam, "uid")
+            self.students.outerjoin(
+                Result,
+                Result.student_id == getattr(Student, "uid"),
             )
-            .filter(
-                and_(
-                    Result.exam_id == self.exam_uid,
-                    (Result.obtained_marks * 100.0 / Exam.total_marks)
-                    >= Exam.min_percentage,
-                )
-            )
-            .all()
+            .filter(or_(Student.kankor_id.isnot(None), Result.passed.is_(True)))
+            .order_by(Student.base_number.asc())
         )
 
     @property
