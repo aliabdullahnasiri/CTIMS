@@ -214,8 +214,15 @@ import { createLoader, transformAllMovingTab } from "./script.js";
       }
     }, 1000);
   });
+
   document.addEventListener("hidden.bs.modal", (event) => {
     let b = event.target.closest("#ViewModal")?.querySelector(".modal-body");
     if (b) b.innerHTML = "";
   });
 }).call();
+
+$(function () {
+  document.addEventListener("show.bs.modal", (event) => {
+    $('[data-toggle="tooltip"]').tooltip();
+  });
+});

@@ -20,11 +20,11 @@
       </div>
       <div class="align-items-center col-4 d-flex justify-content-end me-auto">
         <a
-          class="btn btn-outline-primary d-inline-flex align-items-center gap-2 m-0"
+          class="align-items-center btn btn-outline-primary btn-rounded d-inline-flex gap-2 m-0 mx-3 p-2"
           href="{{ url_for('api.export_student_registration_form', uid=student.uid) }}"
           target="_blank"
         >
-          {{ _('EXPORT_REGISTRATION_FORM_LABEL') }}
+          <i class="material-symbols-rounded opacity-10">download</i>
         </a>
       </div>
     </div>
@@ -121,7 +121,7 @@
     <div class="row gx-3 my-1">
       <div class="col-lg-5 mx-auto mt-3">
         <div class="nav-wrapper position-relative end-0">
-          <ul class="nav nav-pills nav-fill p-1 " role="tablist">
+          <ul class="nav nav-pills nav-fill p-1" role="tablist">
             <li class="nav-item" role="presentation">
               <a
                 class="nav-link mb-0 px-0 py-1 text-white"
